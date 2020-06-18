@@ -1,0 +1,31 @@
+title: TransactionType
+type: object
+description: 'Data model for the complex type TransactionType.'
+properties:
+  scenario:
+    type: string
+    description: 'Deposit, withdrawal, refund, …'
+    example: DEPOSIT
+  subScenario:
+    type: string
+    description: 'Possible sub-scenario, defined locally within the scheme.'
+    example: 'Locally defined sub-scenario.'
+  initiator:
+    type: string
+    description: 'Who is initiating the transaction - Payer or Payee.'
+    example: PAYEE
+  initiatorType:
+    type: string
+    description: 'Consumer, agent, business, …'
+    example: CONSUMER
+  refundInfo:
+    $ref: '#/components/schemas/Refund'
+    description: 'Extra information specific to a refund scenario. Should only be populated if scenario is REFUND.'
+  balanceOfPayments:
+    type: string
+    description: 'Balance of Payments code.'
+    example: 123
+required:
+  - scenario
+  - initiator
+  - initiatorType

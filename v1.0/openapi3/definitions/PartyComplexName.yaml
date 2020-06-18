@@ -1,0 +1,16 @@
+title: PartyComplexName
+type: object
+description: 'Data model for the complex type PartyComplexName.'
+properties:
+  firstName:
+    type: string
+    description: 'Party’s first name.'
+    example: Henrik
+  middleName:
+    type: string
+    description: 'Party’s middle name.'
+    example: Johannes
+  lastName:
+    type: string
+    description: 'Party’s last name.'
+    example: Karlsson

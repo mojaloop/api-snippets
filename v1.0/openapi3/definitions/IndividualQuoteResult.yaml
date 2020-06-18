@@ -1,0 +1,67 @@
+title: IndividualQuoteResult
+type: object
+description: 'Data model for the complex type IndividualQuoteResult.'
+properties:
+  quoteId:
+    type: string
+    description: 'Identifies the quote message.'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  payee:
+    $ref: '#/components/schemas/Party'
+    description: 'Information about the Payee in the proposed financial transaction.'
+  transferAmount:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 124.45
+  payeeReceiveAmount:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 123.45
+  payeeFspFee:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 1.45
+  payeeFspCommission:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 1.45
+  ilpPacket:
+    type: string
+    description: 'The ILP Packet that must be attached to the transfer by the Payer.'
+    example: AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
+  condition:
+    type: string
+    description: 'The condition that must be attached to the transfer by the Payer.'
+    example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
+  errorInformation:
+    $ref: '#/components/schemas/ErrorInformation'
+    description: 'Error code, category description. **Note:** receiveAmount, payeeFspFee, payeeFspCommission, expiration, ilpPacket, condition should not be set if errorInformation is set.'
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - quoteId

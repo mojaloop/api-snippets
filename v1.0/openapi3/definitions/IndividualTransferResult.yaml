@@ -1,0 +1,20 @@
+title: IndividualTransferResult
+type: object
+description: 'Data model for the complex type IndividualTransferResult.'
+properties:
+  transferId:
+    type: string
+    description: 'Identifies messages related to the same /transfers sequence.'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  fulfilment:
+    type: string
+    description: 'Fulfilment of the condition specified with the transaction. **Note:** Either fulfilment or errorInformation should be set, not both.'
+    example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+  errorInformation:
+    $ref: '#/components/schemas/ErrorInformation'
+    description: 'If transfer is REJECTED, error information may be provided. **Note:** Either fulfilment or errorInformation should be set, not both.'
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - transferId

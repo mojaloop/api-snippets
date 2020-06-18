@@ -1,0 +1,95 @@
+title: BulkQuotesPostRequest
+type: object
+description: 'The object sent in the POST /bulkQuotes request.'
+properties:
+  bulkQuoteId:
+    type: string
+    description: 'Common ID between the FSPs for the bulk quote object, decided by the Payer FSP. The ID should be reused for resends of the same bulk quote. A new ID should be generated for each new bulk quote.'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  payer:
+    properties:
+      partyIdInfo:
+        $ref: '#/components/schemas/PartyIdInfo'
+        description: 'Party Id type, id, sub ID or type, and FSP Id.'
+      merchantClassificationCode:
+        type: string
+        description: 'Used in the context of Payee Information, where the Payee happens to be a merchant accepting merchant payments.'
+        example: 1234
+      name:
+        type: string
+        description: 'Display name of the Party, could be a real name or a nick name.'
+        example: 'Henrik Karlsson'
+      personalInfo:
+        $ref: '#/components/schemas/PartyPersonalInfo'
+        description: 'Personal information used to verify identity of Party such as first, middle, last name and date of birth.'
+  geoCode:
+    $ref: '#/components/schemas/GeoCode'
+    description: 'Longitude and Latitude of the initiating Party. Can be used to detect fraud.'
+  expiration:
+    type: string
+    description: 'Expiration is optional to let the Payee FSP know when a quote no longer needs to be returned.'
+    example: '2016-05-24T08:38:08.699-04:00'
+  individualQuotes:
+    properties:
+      quoteId:
+        type: string
+        description: 'Identifies quote message.'
+        example: b51ec534-ee48-4575-b6a9-ead2955b8069
+      transactionId:
+        type: string
+        description: 'Identifies transaction message.'
+        example: b51ec534-ee48-4575-b6a9-ead2955b8069
+      payee:
+        properties:
+          partyIdInfo:
+            $ref: '#/components/schemas/PartyIdInfo'
+            description: 'Party Id type, id, sub ID or type, and FSP Id.'
+          merchantClassificationCode:
+            type: string
+            description: 'Used in the context of Payee Information, where the Payee happens to be a merchant accepting merchant payments.'
+            example: 1234
+          name:
+            type: string
+            description: 'Display name of the Party, could be a real name or a nick name.'
+            example: 'Henrik Karlsson'
+          personalInfo:
+            $ref: '#/components/schemas/PartyPersonalInfo'
+            description: 'Personal information used to verify identity of Party such as first, middle, last name and date of birth.'
+      amountType:
+        type: string
+        description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
+        example: RECEIVE
+      amount:
+        properties:
+          currency:
+            type: string
+            description: 'Currency of the amount.'
+            example: USD
+          amount:
+            type: string
+            description: 'Amount of money.'
+            example: 123.45
+      fees:
+        properties:
+          currency:
+            type: string
+            description: 'Currency of the amount.'
+            example: USD
+          amount:
+            type: string
+            description: 'Amount of money.'
+            example: 1.45
+      transactionType:
+        $ref: '#/components/schemas/TransactionType'
+        description: 'Type of transaction that the quote is requested for.'
+      note:
+        type: string
+        description: 'Memo that will be attached to the transaction.'
+        example: 'Note sent to Payee.'
+      extensionList:
+        $ref: '#/components/schemas/ExtensionList'
+        description: 'Optional extension, specific to deployment.'
+required:
+  - bulkQuoteId
+  - payer
+  - individualQuotes

@@ -1,0 +1,21 @@
+title: TransactionsIDPutResponse
+type: object
+description: 'The object sent in the PUT /transactions/{ID} callback.'
+properties:
+  completedTimestamp:
+    type: string
+    description: 'Time and date when the transaction was completed.'
+    example: '2016-05-24T08:38:08.699-04:00'
+  transactionState:
+    type: string
+    description: 'State of the transaction.'
+    example: RECEIVED
+  code:
+    type: string
+    description: 'Optional redemption information provided to Payer after transaction has been completed.'
+    example: Test-Code
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - transactionState

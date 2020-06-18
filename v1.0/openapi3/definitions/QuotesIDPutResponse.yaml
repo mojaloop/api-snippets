@@ -1,0 +1,67 @@
+title: QuotesIDPutResponse
+type: object
+description: 'The object sent in the PUT /quotes/{ID} callback.'
+properties:
+  transferAmount:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 124.45
+  payeeReceiveAmount:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 123.45
+  payeeFspFee:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 1.45
+  payeeFspCommission:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 0
+  expiration:
+    type: string
+    description: 'Date and time until when the quotation is valid and can be honored when used in the subsequent transaction.'
+    example: '2016-05-24T08:38:08.699-04:00'
+  geoCode:
+    $ref: '#/components/schemas/GeoCode'
+    description: 'Longitude and Latitude of the Payee. Can be used to detect fraud.'
+  ilpPacket:
+    type: string
+    description: 'The ILP Packet that must be attached to the transfer by the Payer.'
+    example: “AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA”
+  condition:
+    type: string
+    description: 'The condition that must be attached to the transfer by the Payer.'
+    example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - transferAmount
+  - expiration
+  - ilpPacket
+  - condition

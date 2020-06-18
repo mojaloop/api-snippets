@@ -1,0 +1,8 @@
+title: AuthenticationValue
+oneOf:
+  -
+    $ref: '#/components/schemas/OtpValue'
+  -
+    $ref: '#/components/schemas/QRCODE'
+pattern: '^\d{3,10}$|^\S{1,64}$'
+description: 'Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.'

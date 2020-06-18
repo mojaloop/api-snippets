@@ -1,0 +1,15 @@
+title: AuthenticationInfo
+type: object
+description: 'Data model for the complex type AuthenticationInfo.'
+properties:
+  authentication:
+    type: string
+    description: 'Type of authentication.'
+    example: OTP
+  authenticationValue:
+    type: string
+    description: 'Authentication value.'
+    example: 1234
+required:
+  - authentication
+  - authenticationValue

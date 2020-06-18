@@ -1,0 +1,13 @@
+title: Extension
+type: object
+description: 'Data model for the complex type Extension.'
+properties:
+  key:
+    type: string
+    description: 'Extension key.'
+  value:
+    type: string
+    description: 'Extension value.'
+required:
+  - key
+  - value

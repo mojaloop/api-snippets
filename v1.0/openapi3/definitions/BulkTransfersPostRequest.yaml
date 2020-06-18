@@ -1,0 +1,41 @@
+title: BulkTransfersPostRequest
+type: object
+description: 'The object sent in the POST /bulkTransfers request.'
+properties:
+  bulkTransferId:
+    type: string
+    description: 'Common ID between the FSPs and the optional Switch for the bulk transfer object, decided by the Payer FSP. The ID should be reused for resends of the same bulk transfer. A new ID should be generated for each new bulk transfer.'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  bulkQuoteId:
+    type: string
+    description: 'ID of the related bulk quote.'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  payerFsp:
+    type: string
+    description: 'Payer FSP identifier.'
+    example: 5678
+  payeeFsp:
+    type: string
+    description: 'Payee FSP identifier.'
+    example: 1234
+  individualTransfers:
+    type: array
+    minItems: 1
+    maxItems: 1000
+    items:
+      $ref: '#/components/schemas/IndividualTransfer'
+    description: 'List of IndividualTransfer elements.'
+  expiration:
+    type: string
+    description: 'Expiration time of the transfers.'
+    example: '2016-05-24T08:38:08.699-04:00'
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - bulkTransferId
+  - bulkQuoteId
+  - payerFsp
+  - payeeFsp
+  - individualTransfers
+  - expiration

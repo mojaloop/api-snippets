@@ -1,0 +1,19 @@
+title: BulkQuotesIDPutResponse
+type: object
+description: 'The object sent in the PUT /bulkQuotes/{ID} callback.'
+properties:
+  individualQuoteResults:
+    type: array
+    maxItems: 1000
+    items:
+      $ref: '#/components/schemas/IndividualQuoteResult'
+    description: 'Fees for each individual transaction, if any of them are charged per transaction.'
+  expiration:
+    type: string
+    description: 'Date and time until when the quotation is valid and can be honored when used in the subsequent transaction request.'
+    example: '2016-05-24T08:38:08.699-04:00'
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - expiration

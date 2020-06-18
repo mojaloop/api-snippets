@@ -1,0 +1,19 @@
+openapi: 3.0.2
+info:
+  $ref: ./v1.0/openapi3/info/index.yaml
+servers:
+  -
+    url: '{protocol}://hostname:<port>/switch/'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+components:
+  schemas:
+    $ref: ./v1.0/openapi3/definitions/index.yaml
+  responses:
+    $ref: ./v1.0/openapi3/responses/index.yaml
+  parameters:
+    $ref: ./v1.0/openapi3/parameters/index.yaml

@@ -1,0 +1,20 @@
+title: Party
+type: object
+description: 'Data model for the complex type Party.'
+properties:
+  partyIdInfo:
+    $ref: '#/components/schemas/PartyIdInfo'
+    description: 'Party Id type, id, sub ID or type, and FSP Id.'
+  merchantClassificationCode:
+    type: string
+    description: 'Used in the context of Payee Information, where the Payee happens to be a merchant accepting merchant payments.'
+    example: 4321
+  name:
+    type: string
+    description: 'Display name of the Party, could be a real name or a nick name.'
+    example: 'Henrik Karlsson'
+  personalInfo:
+    $ref: '#/components/schemas/PartyPersonalInfo'
+    description: 'Personal information used to verify identity of Party such as first, middle, last name and date of birth.'
+required:
+  - partyIdInfo

@@ -1,0 +1,17 @@
+title: TransactionRequestsIDPutResponse
+type: object
+description: 'The object sent in the PUT /transactionRequests/{ID} callback.'
+properties:
+  transactionId:
+    type: string
+    description: 'Identifies a related transaction (if a transaction has been created).'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  transactionRequestState:
+    type: string
+    description: 'State of the transaction request.'
+    example: RECEIVED
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - transactionRequestState

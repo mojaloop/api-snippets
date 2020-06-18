@@ -1,0 +1,21 @@
+title: TransfersIDPutResponse
+type: object
+description: 'The object sent in the PUT /transfers/{ID} callback.'
+properties:
+  fulfilment:
+    type: string
+    description: 'Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.'
+    example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+  completedTimestamp:
+    type: string
+    description: 'Time and date when the transaction was completed.'
+    example: '2016-05-24T08:38:08.699-04:00'
+  transferState:
+    type: string
+    description: 'State of the transfer.'
+    example: RESERVED
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - transferState

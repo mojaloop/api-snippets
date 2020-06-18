@@ -1,0 +1,14 @@
+title: Refund
+type: object
+description: 'Data model for the complex type Refund.'
+properties:
+  originalTransactionId:
+    type: string
+    description: 'Reference to the original transaction ID that is requested to be refunded.'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  refundReason:
+    type: string
+    description: 'Free text indicating the reason for the refund.'
+    example: 'Free text indicating reason for the refund.'
+required:
+  - originalTransactionId

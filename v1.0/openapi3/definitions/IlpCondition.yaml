@@ -1,0 +1,5 @@
+title: IlpCondition
+type: string
+pattern: '^[A-Za-z0-9-_]{43}$'
+maxLength: 48
+description: 'Condition that must be attached to the transfer by the Payer.'

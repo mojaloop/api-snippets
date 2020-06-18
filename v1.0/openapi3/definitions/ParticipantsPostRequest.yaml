@@ -1,0 +1,22 @@
+title: ParticipantsPostRequest
+type: object
+description: 'The object sent in the POST /participants request.'
+properties:
+  requestId:
+    type: string
+    description: 'The ID of the request, decided by the client. Used for identification of the callback from the server.'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  partyList:
+    type: array
+    items:
+      $ref: '#/components/schemas/PartyIdInfo'
+    minItems: 1
+    maxItems: 10000
+    description: 'List of PartyIdInfo elements that the client would like to update or create FSP information about.'
+  currency:
+    type: string
+    description: 'Indicate that the provided Currency is supported by each PartyIdInfo in the list.'
+    example: USD
+required:
+  - requestId
+  - partyList

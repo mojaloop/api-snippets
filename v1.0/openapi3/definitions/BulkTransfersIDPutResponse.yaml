@@ -1,0 +1,23 @@
+title: BulkTransfersIDPutResponse
+type: object
+description: 'The object sent in the PUT /bulkTransfers/{ID} callback.'
+properties:
+  completedTimestamp:
+    type: string
+    description: 'Time and date when the bulk transaction was completed.'
+    example: '2016-05-24T08:38:08.699-04:00'
+  individualTransferResults:
+    type: array
+    maxItems: 1000
+    items:
+      $ref: '#/components/schemas/IndividualTransferResult'
+    description: 'List of IndividualTransferResult elements.'
+  bulkTransferState:
+    type: string
+    description: 'The state of the bulk transfer.'
+    example: RECEIVED
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - bulkTransferState

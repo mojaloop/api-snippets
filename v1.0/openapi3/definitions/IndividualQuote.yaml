@@ -1,0 +1,56 @@
+title: IndividualQuote
+type: object
+description: 'Data model for the complex type IndividualQuote.'
+properties:
+  quoteId:
+    type: string
+    description: 'Identifies the quote message.'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  transactionId:
+    type: string
+    description: 'Identifies the transaction message.'
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  payee:
+    $ref: '#/components/schemas/Party'
+    description: 'Information about the Payee in the proposed financial transaction.'
+  amountType:
+    type: string
+    description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
+    example: RECEIVE
+  amount:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 123.45
+  fees:
+    properties:
+      currency:
+        type: string
+        description: 'Currency of the amount.'
+        example: USD
+      amount:
+        type: string
+        description: 'Amount of money.'
+        example: 1.45
+  transactionType:
+    $ref: '#/components/schemas/TransactionType'
+    description: 'Type of transaction that the quote is requested for.'
+  note:
+    type: string
+    description: 'Memo that will be attached to the transaction.'
+    example: 'Note sent to Payee.'
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+    description: 'Optional extension, specific to deployment.'
+required:
+  - quoteId
+  - transactionId
+  - payee
+  - amountType
+  - amount
+  - transactionType
