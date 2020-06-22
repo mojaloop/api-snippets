@@ -2,14 +2,9 @@
   "name": "api-snippets",
   "version": "0.0.1",
   "description": "Mojaloop API specification reusable snippets",
-  "main": "resolve.js",
   "scripts": {
-    "start": "node resolve.js",
-    "test": "node resolve.js index.yaml > test/resolved.json && node resolve.js -o yaml index.yaml > test/resolved.yaml && node test/diffCheck.js",
-    "buildv1.0": "node resolve.js -o yaml v1.0/openapi3/index.yaml > docs/fspiop-rest-v1.0-openapi3-snippets.yaml"
-  },
-  "bin": {
-    "multi-file-swagger": "resolve.js"
+    "test": "multi-file-swagger test/index.yaml > test/resolved.json && multi-file-swagger -o yaml test/index.yaml > test/resolved.yaml && node test/diffCheck.js",
+    "buildv1.0": "multi-file-swagger -o yaml v1.0/openapi3/index.yaml > docs/fspiop-rest-v1.0-openapi3-snippets.yaml"
   },
   "license": "MIT",
   "dependencies": {
