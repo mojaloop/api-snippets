@@ -6,7 +6,7 @@ properties:
     $ref: '#/components/schemas/PartyIdInfo'
     description: 'Party Id type, id, sub ID or type, and FSP Id.'
   merchantClassificationCode:
-    type: '#/components/schemas/MerchantClassificationCode'
+    $ref: '#/components/schemas/MerchantClassificationCode'
     description: 'Used in the context of Payee Information, where the Payee happens to be a merchant accepting merchant payments.'
     example: 4321
   name:

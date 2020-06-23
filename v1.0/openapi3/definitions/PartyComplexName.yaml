@@ -3,14 +3,14 @@ type: object
 description: 'Data model for the complex type PartyComplexName.'
 properties:
   firstName:
-    type: '#/components/schemas/FirstName'
+    $ref: '#/components/schemas/FirstName'
     description: 'Party’s first name.'
     example: Henrik
   middleName:
-    type: '#/components/schemas/MiddleName'
+    $ref: '#/components/schemas/MiddleName'
     description: 'Party’s middle name.'
     example: Johannes
   lastName:
-    type: '#/components/schemas/LastName'
+    $ref: '#/components/schemas/LastName'
     description: 'Party’s last name.'
     example: Karlsson

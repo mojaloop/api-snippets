@@ -14,7 +14,7 @@ properties:
     $ref: '#/components/schemas/Party'
     description: 'Information about the Payee in the proposed financial transaction.'
   amountType:
-    $ref: '#/components/schemas/amountType'
+    $ref: '#/components/schemas/AmountType'
     description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
     example: RECEIVE
   amount:

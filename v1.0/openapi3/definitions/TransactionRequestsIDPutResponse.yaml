@@ -7,7 +7,7 @@ properties:
     description: 'Identifies a related transaction (if a transaction has been created).'
     example: b51ec534-ee48-4575-b6a9-ead2955b8069
   transactionRequestState:
-    t$ref: '#/components/schemas/TransactionRequestState'
+    $ref: '#/components/schemas/TransactionRequestState'
     description: 'State of the transaction request.'
     example: RECEIVED
   extensionList:

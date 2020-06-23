@@ -19,8 +19,12 @@ properties:
     $ref: '#/components/schemas/Money'
   ilpPacket:
     $ref: '#/components/schemas/IlpPacket'
+    description: 'The ILP Packet that must be attached to the transfer by the Payer.'
+    example: AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
   condition:
     $ref: '#/components/schemas/IlpCondition'
+    description: 'The condition that must be attached to the transfer by the Payer.'
+    example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
   errorInformation:
     $ref: '#/components/schemas/ErrorInformation'
     description: 'Error code, category description. **Note:** receiveAmount, payeeFspFee, payeeFspCommission, expiration, ilpPacket, condition should not be set if errorInformation is set.'

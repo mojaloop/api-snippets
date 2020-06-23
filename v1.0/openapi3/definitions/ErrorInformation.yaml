@@ -7,7 +7,7 @@ properties:
     description: 'Specific error number.'
     example: 5100
   errorDescription:
-    $ref: '#/components/schemas/errorDescription'
+    $ref: '#/components/schemas/ErrorDescription'
     description: 'Error description string.'
     example: 'This is an error description.'
   extensionList:
