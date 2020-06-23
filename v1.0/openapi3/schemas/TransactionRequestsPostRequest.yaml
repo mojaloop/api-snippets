@@ -3,7 +3,7 @@ type: object
 description: 'The object sent in the POST /transactionRequests request.'
 properties:
   transactionRequestId:
-    type: string
+    $ref: '#/components/schemas/CorrelationId'
     description: 'Common ID between the FSPs for the transaction request object, decided by the Payee FSP. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.'
     example: b51ec534-ee48-4575-b6a9-ead2955b8069
   payee:
