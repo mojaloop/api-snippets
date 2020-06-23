@@ -3,11 +3,11 @@ type: object
 description: 'Data model for the complex type AuthenticationInfo.'
 properties:
   authentication:
-    type: string
+    $ref: '#/components/schemas/AuthenticationType'
     description: 'Type of authentication.'
     example: OTP
   authenticationValue:
-    type: string
+    $ref: '#/components/schemas/AuthenticationValue'
     description: 'Authentication value.'
     example: 1234
 required:

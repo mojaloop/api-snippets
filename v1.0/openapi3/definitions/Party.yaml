@@ -6,11 +6,11 @@ properties:
     $ref: '#/components/schemas/PartyIdInfo'
     description: 'Party Id type, id, sub ID or type, and FSP Id.'
   merchantClassificationCode:
-    type: string
+    type: '#/components/schemas/MerchantClassificationCode'
     description: 'Used in the context of Payee Information, where the Payee happens to be a merchant accepting merchant payments.'
     example: 4321
   name:
-    type: string
+    $ref: '#/components/schemas/PartyName'
     description: 'Display name of the Party, could be a real name or a nick name.'
     example: 'Henrik Karlsson'
   personalInfo:

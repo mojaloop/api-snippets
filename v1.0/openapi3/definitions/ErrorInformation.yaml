@@ -3,11 +3,11 @@ type: object
 description: 'Data model for the complex type ErrorInformation.'
 properties:
   errorCode:
-    type: string
+    $ref: '#/components/schemas/ErrorCode'
     description: 'Specific error number.'
     example: 5100
   errorDescription:
-    type: string
+    $ref: '#/components/schemas/errorDescription'
     description: 'Error description string.'
     example: 'This is an error description.'
   extensionList:

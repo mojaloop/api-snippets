@@ -3,11 +3,11 @@ type: object
 description: 'The object sent in the POST /participants/{Type}/{ID}/{SubId} and /participants/{Type}/{ID} requests.'
 properties:
   fspId:
-    type: string
+    $ref: '#/components/schemas/FspId'
     description: 'FSP Identifier that the Party belongs to.'
     example: 1234
   currency:
-    type: string
+    $ref: '#/components/schemas/Currency'
     description: 'Indicate that the provided Currency is supported by the Party.'
     example: USD
 required:

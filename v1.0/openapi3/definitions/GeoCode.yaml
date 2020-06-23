@@ -3,11 +3,11 @@ type: object
 description: 'Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.'
 properties:
   latitude:
-    type: string
+    $ref: '#/components/schemas/Latitude'
     description: 'Latitude of the Party.'
     example: '+45.4215'
   longitude:
-    type: string
+    $ref: '#/components/schemas/Longitude'
     description: 'Longitude of the Party.'
     example: '+75.6972'
 required:

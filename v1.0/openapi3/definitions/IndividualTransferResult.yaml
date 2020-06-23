@@ -3,11 +3,11 @@ type: object
 description: 'Data model for the complex type IndividualTransferResult.'
 properties:
   transferId:
-    type: string
+    $ref: '#/components/schemas/CorrelationId'
     description: 'Identifies messages related to the same /transfers sequence.'
     example: b51ec534-ee48-4575-b6a9-ead2955b8069
   fulfilment:
-    type: string
+    $ref: '#/components/schemas/IlpFulfilment'
     description: 'Fulfilment of the condition specified with the transaction. **Note:** Either fulfilment or errorInformation should be set, not both.'
     example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
   errorInformation:

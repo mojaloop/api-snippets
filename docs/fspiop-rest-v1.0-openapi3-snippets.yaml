@@ -55,11 +55,11 @@ components:
       description: Data model for the complex type AuthenticationInfo.
       properties:
         authentication:
-          type: string
+          type: '#/components/schemas/AuthenticationType'
           description: Type of authentication.
           example: OTP
         authenticationValue:
-          type: string
+          type: '#/components/schemas/AuthenticationValue'
           description: Authentication value.
           example: 1234
       required:
@@ -157,7 +157,7 @@ components:
             Fees for each individual transaction, if any of them are charged per
             transaction.
         expiration:
-          type: string
+          type: '#/components/schemas/DateTime'
           description: >-
             Date and time until when the quotation is valid and can be honored
             when used in the subsequent transaction request.
@@ -173,109 +173,34 @@ components:
       description: The object sent in the POST /bulkQuotes request.
       properties:
         bulkQuoteId:
-          type: string
+          $ref: '#/components/schemas/CorrelationId'
           description: >-
             Common ID between the FSPs for the bulk quote object, decided by the
             Payer FSP. The ID should be reused for resends of the same bulk
             quote. A new ID should be generated for each new bulk quote.
           example: b51ec534-ee48-4575-b6a9-ead2955b8069
         payer:
-          properties:
-            partyIdInfo:
-              $ref: '#/components/schemas/PartyIdInfo'
-              description: 'Party Id type, id, sub ID or type, and FSP Id.'
-            merchantClassificationCode:
-              type: string
-              description: >-
-                Used in the context of Payee Information, where the Payee
-                happens to be a merchant accepting merchant payments.
-              example: 1234
-            name:
-              type: string
-              description: 'Display name of the Party, could be a real name or a nick name.'
-              example: Henrik Karlsson
-            personalInfo:
-              $ref: '#/components/schemas/PartyPersonalInfo'
-              description: >-
-                Personal information used to verify identity of Party such as
-                first, middle, last name and date of birth.
+          $ref: '#/components/schemas/Party'
         geoCode:
           $ref: '#/components/schemas/GeoCode'
           description: >-
             Longitude and Latitude of the initiating Party. Can be used to
             detect fraud.
         expiration:
-          type: string
+          $ref: '#/components/schemas/DateTime'
           description: >-
             Expiration is optional to let the Payee FSP know when a quote no
             longer needs to be returned.
           example: '2016-05-24T08:38:08.699-04:00'
         individualQuotes:
-          properties:
-            quoteId:
-              type: string
-              description: Identifies quote message.
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
-            transactionId:
-              type: string
-              description: Identifies transaction message.
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
-            payee:
-              properties:
-                partyIdInfo:
-                  $ref: '#/components/schemas/PartyIdInfo'
-                  description: 'Party Id type, id, sub ID or type, and FSP Id.'
-                merchantClassificationCode:
-                  type: string
-                  description: >-
-                    Used in the context of Payee Information, where the Payee
-                    happens to be a merchant accepting merchant payments.
-                  example: 1234
-                name:
-                  type: string
-                  description: >-
-                    Display name of the Party, could be a real name or a nick
-                    name.
-                  example: Henrik Karlsson
-                personalInfo:
-                  $ref: '#/components/schemas/PartyPersonalInfo'
-                  description: >-
-                    Personal information used to verify identity of Party such
-                    as first, middle, last name and date of birth.
-            amountType:
-              type: string
-              description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
-              example: RECEIVE
-            amount:
-              properties:
-                currency:
-                  type: string
-                  description: Currency of the amount.
-                  example: USD
-                amount:
-                  type: string
-                  description: Amount of money.
-                  example: 123.45
-            fees:
-              properties:
-                currency:
-                  type: string
-                  description: Currency of the amount.
-                  example: USD
-                amount:
-                  type: string
-                  description: Amount of money.
-                  example: 1.45
-            transactionType:
-              $ref: '#/components/schemas/TransactionType'
-              description: Type of transaction that the quote is requested for.
-            note:
-              type: string
-              description: Memo that will be attached to the transaction.
-              example: Note sent to Payee.
-            extensionList:
-              $ref: '#/components/schemas/ExtensionList'
-              description: 'Optional extension, specific to deployment.'
+          type: array
+          items:
+            $ref: '#/components/schemas/IndividualQuote '
+          minLength: 1
+          maxLength: 1000
+        extensionList:
+          $ref: '#/components/schemas/ExtensionList'
+          description: 'Optional extension, specific to deployment.'
       required:
         - bulkQuoteId
         - payer
@@ -286,9 +211,7 @@ components:
       description: 'The object sent in the PUT /bulkTransfers/{ID} callback.'
       properties:
         completedTimestamp:
-          type: string
-          description: Time and date when the bulk transaction was completed.
-          example: '2016-05-24T08:38:08.699-04:00'
+          $ref: '#/components/schemas/DateTime'
         individualTransferResults:
           type: array
           maxItems: 1000
@@ -296,12 +219,9 @@ components:
             $ref: '#/components/schemas/IndividualTransferResult'
           description: List of IndividualTransferResult elements.
         bulkTransferState:
-          type: string
-          description: The state of the bulk transfer.
-          example: RECEIVED
+          $ref: '#/components/schemas/BulkTransferState'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: 'Optional extension, specific to deployment.'
       required:
         - bulkTransferState
     BulkTransfersPostRequest:
@@ -310,25 +230,13 @@ components:
       description: The object sent in the POST /bulkTransfers request.
       properties:
         bulkTransferId:
-          type: string
-          description: >-
-            Common ID between the FSPs and the optional Switch for the bulk
-            transfer object, decided by the Payer FSP. The ID should be reused
-            for resends of the same bulk transfer. A new ID should be generated
-            for each new bulk transfer.
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          $ref: '#/components/schemas/CorrelationId'
         bulkQuoteId:
-          type: string
-          description: ID of the related bulk quote.
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          $ref: '#/components/schemas/CorrelationId'
         payerFsp:
-          type: string
-          description: Payer FSP identifier.
-          example: 5678
+          $ref: '#/components/schemas/FspId'
         payeeFsp:
-          type: string
-          description: Payee FSP identifier.
-          example: 1234
+          $ref: '#/components/schemas/FspId'
         individualTransfers:
           type: array
           minItems: 1
@@ -337,9 +245,7 @@ components:
             $ref: '#/components/schemas/IndividualTransfer'
           description: List of IndividualTransfer elements.
         expiration:
-          type: string
-          description: Expiration time of the transfers.
-          example: '2016-05-24T08:38:08.699-04:00'
+          $ref: '#/components/schemas/DateTime'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
           description: 'Optional extension, specific to deployment.'
@@ -627,11 +533,11 @@ components:
       description: Data model for the complex type ErrorInformation.
       properties:
         errorCode:
-          type: string
+          type: '#/components/schemas/ErrorCode'
           description: Specific error number.
           example: 5100
         errorDescription:
-          type: string
+          type: '#/components/schemas/errorDescription'
           description: Error description string.
           example: This is an error description.
         extensionList:
@@ -663,10 +569,10 @@ components:
       description: Data model for the complex type Extension.
       properties:
         key:
-          type: string
+          type: '#/components/schemas/ExtensionKey'
           description: Extension key.
         value:
-          type: string
+          type: '#/components/schemas/ExtensionValue'
           description: Extension value.
       required:
         - key
@@ -704,7 +610,7 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      pattern: '^(?!\s*$)[\p{L}\p{Nd} .,''-]{1,128}$'
       description: First name of the Party (Name Type).
     FspId:
       title: FspId
@@ -720,11 +626,11 @@ components:
         location from where the transaction was initiated.
       properties:
         latitude:
-          type: string
+          type: '#/components/schemas/Latitude'
           description: Latitude of the Party.
           example: '+45.4215'
         longitude:
-          type: string
+          type: '#/components/schemas/Longitude'
           description: Longitude of the Party.
           example: '+75.6972'
       required:
@@ -755,47 +661,23 @@ components:
       description: Data model for the complex type IndividualQuote.
       properties:
         quoteId:
-          type: string
-          description: Identifies the quote message.
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          $ref: '#/components/schemas/CorrelationId'
         transactionId:
-          type: string
-          description: Identifies the transaction message.
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          $ref: '#/components/schemas/CorrelationId'
         payee:
           $ref: '#/components/schemas/Party'
           description: Information about the Payee in the proposed financial transaction.
         amountType:
-          type: string
-          description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
-          example: RECEIVE
+          $ref: '#/components/schemas/amountType'
         amount:
-          properties:
-            currency:
-              type: string
-              description: Currency of the amount.
-              example: USD
-            amount:
-              type: string
-              description: Amount of money.
-              example: 123.45
+          $ref: '#/components/schemas/Money'
         fees:
-          properties:
-            currency:
-              type: string
-              description: Currency of the amount.
-              example: USD
-            amount:
-              type: string
-              description: Amount of money.
-              example: 1.45
+          $ref: '#/components/schemas/Money'
         transactionType:
           $ref: '#/components/schemas/TransactionType'
           description: Type of transaction that the quote is requested for.
         note:
-          type: string
-          description: Memo that will be attached to the transaction.
-          example: Note sent to Payee.
+          $ref: '#/components/schemas/Note'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
           description: 'Optional extension, specific to deployment.'
@@ -812,61 +694,22 @@ components:
       description: Data model for the complex type IndividualQuoteResult.
       properties:
         quoteId:
-          type: string
-          description: Identifies the quote message.
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          $ref: '#/components/schemas/CorrelationId'
         payee:
           $ref: '#/components/schemas/Party'
           description: Information about the Payee in the proposed financial transaction.
         transferAmount:
-          properties:
-            currency:
-              type: string
-              description: Currency of the amount.
-              example: USD
-            amount:
-              type: string
-              description: Amount of money.
-              example: 124.45
+          $ref: '#/components/schemas/Money'
         payeeReceiveAmount:
-          properties:
-            currency:
-              type: string
-              description: Currency of the amount.
-              example: USD
-            amount:
-              type: string
-              description: Amount of money.
-              example: 123.45
+          $ref: '#/components/schemas/Money'
         payeeFspFee:
-          properties:
-            currency:
-              type: string
-              description: Currency of the amount.
-              example: USD
-            amount:
-              type: string
-              description: Amount of money.
-              example: 1.45
+          $ref: '#/components/schemas/Money'
         payeeFspCommission:
-          properties:
-            currency:
-              type: string
-              description: Currency of the amount.
-              example: USD
-            amount:
-              type: string
-              description: Amount of money.
-              example: 1.45
+          $ref: '#/components/schemas/Money'
         ilpPacket:
-          type: string
-          description: The ILP Packet that must be attached to the transfer by the Payer.
-          example: >-
-            AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
+          $ref: '#/components/schemas/IlpPacket'
         condition:
-          type: string
-          description: The condition that must be attached to the transfer by the Payer.
-          example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
+          $ref: '#/components/schemas/IlpCondition'
         errorInformation:
           $ref: '#/components/schemas/ErrorInformation'
           description: >-
@@ -949,7 +792,7 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      pattern: '^(?!\s*$)[\p{L}\p{Nd} .,''-]{1,128}$'
       description: Last name of the Party (Name Type).
     Latitude:
       title: Latitude
@@ -980,7 +823,7 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      pattern: '^(?!\s*$)[\p{L}\p{Nd} .,''-]{1,128}$'
       description: Middle name of the Party (Name Type).
     Money:
       title: Money
@@ -1001,7 +844,7 @@ components:
     Name:
       title: Name
       type: string
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      pattern: '^(?!\s*$)[\p{L}\p{Nd} .,''-]{1,128}$'
       description: >-
         The API data type Name is a JSON String, restricted by a regular
         expression to avoid characters which are generally not used in a name.
@@ -1129,13 +972,13 @@ components:
           $ref: '#/components/schemas/PartyIdInfo'
           description: 'Party Id type, id, sub ID or type, and FSP Id.'
         merchantClassificationCode:
-          type: string
+          type: '#/components/schemas/MerchantClassificationCode'
           description: >-
             Used in the context of Payee Information, where the Payee happens to
             be a merchant accepting merchant payments.
           example: 4321
         name:
-          type: string
+          $ref: '#/components/schemas/PartyName'
           description: 'Display name of the Party, could be a real name or a nick name.'
           example: Henrik Karlsson
         personalInfo:
@@ -1151,15 +994,15 @@ components:
       description: Data model for the complex type PartyComplexName.
       properties:
         firstName:
-          type: string
+          type: '#/components/schemas/FirstName'
           description: Party’s first name.
           example: Henrik
         middleName:
-          type: string
+          type: '#/components/schemas/MiddleName'
           description: Party’s middle name.
           example: Johannes
         lastName:
-          type: string
+          type: '#/components/schemas/LastName'
           description: Party’s last name.
           example: Karlsson
     PartyIdentifier:

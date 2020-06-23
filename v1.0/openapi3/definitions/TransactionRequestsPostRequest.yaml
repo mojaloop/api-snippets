@@ -19,18 +19,18 @@ properties:
     $ref: '#/components/schemas/TransactionType'
     description: 'Type of transaction.'
   note:
-    type: string
+    $ref: '#/components/schemas/Note'
     description: 'Reason for the transaction request, intended to the Payer.'
     example: 'Free-text memo.'
   geoCode:
     $ref: '#/components/schemas/GeoCode'
     description: 'Longitude and Latitude of the initiating Party. Can be used to detect fraud.'
   authenticationType:
-    type: string
+    $ref: '#/components/schemas/AuthenticationType'
     description: 'OTP or QR Code, otherwise empty.'
     example: OTP
   expiration:
-    type: string
+    $ref: '#/components/schemas/DateTime'
     description: 'Can be set to get a quick failure in case the peer FSP takes too long to respond. Also, it may be beneficial for Consumer, Agent, Merchant to know that their request has a time limit.'
     example: '2016-05-24T08:38:08.699-04:00'
   extensionList:
