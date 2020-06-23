@@ -1,0 +1,17 @@
+title: ErrorInformation
+type: object
+description: 'Data model for the complex type ErrorInformation.'
+properties:
+  errorCode:
+    $ref: '#/components/schemas/ErrorCode'
+    description: 'Specific error number.'
+    example: 5100
+  errorDescription:
+    $ref: '#/components/schemas/ErrorDescription'
+    description: 'Error description string.'
+    example: 'This is an error description.'
+  extensionList:
+    $ref: '#/components/schemas/ExtensionList'
+required:
+  - errorCode
+  - errorDescription

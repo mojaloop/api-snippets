@@ -1,0 +1,5 @@
+title: RefundReason
+type: string
+minLength: 1
+maxLength: 128
+description: 'Reason for the refund.'

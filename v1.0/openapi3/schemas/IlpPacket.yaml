@@ -1,0 +1,6 @@
+title: IlpPacket
+type: string
+pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+minLength: 1
+maxLength: 32768
+description: 'Information for recipient (transport layer information).'

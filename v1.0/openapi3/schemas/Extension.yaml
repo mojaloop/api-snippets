@@ -1,0 +1,13 @@
+title: Extension
+type: object
+description: 'Data model for the complex type Extension.'
+properties:
+  key:
+    $ref: '#/components/schemas/ExtensionKey'
+    description: 'Extension key.'
+  value:
+    $ref: '#/components/schemas/ExtensionValue'
+    description: 'Extension value.'
+required:
+  - key
+  - value

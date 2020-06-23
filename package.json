@@ -1,0 +1,19 @@
+{
+  "name": "api-snippets",
+  "version": "0.0.1",
+  "description": "Mojaloop API specification reusable snippets",
+  "scripts": {
+    "test": "multi-file-swagger test/index.yaml > test/resolved.json && multi-file-swagger -o yaml test/index.yaml > test/resolved.yaml && node test/diffCheck.js",
+    "buildv1.0": "multi-file-swagger -o yaml v1.0/openapi3/index.yaml > docs/fspiop-rest-v1.0-openapi3-snippets.yaml"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "js-yaml": "^3.12.2",
+    "json-refs": "^3.0.12"
+  },
+  "devDependencies": {
+    "diff": "^4.0.1",
+    "multi-file-swagger": "^2.3.0"
+  }
+}

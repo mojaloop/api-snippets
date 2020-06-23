@@ -1,0 +1,92 @@
+'200':
+  description: OK
+'202':
+  description: Accepted
+'400':
+  description: 'Bad Request'
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ErrorInformationResponse'
+  headers:
+    Content-Length:
+      $ref: '#/components/parameters/Content-Length'
+    Content-Type:
+      $ref: '#/components/parameters/Content-Type'
+'401':
+  description: Unauthorized
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ErrorInformationResponse'
+  headers:
+    Content-Length:
+      $ref: '#/components/parameters/Content-Length'
+    Content-Type:
+      $ref: '#/components/parameters/Content-Type'
+'403':
+  description: Forbidden
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ErrorInformationResponse'
+  headers:
+    Content-Length:
+      $ref: '#/components/parameters/Content-Length'
+    Content-Type:
+      $ref: '#/components/parameters/Content-Type'
+'404':
+  description: 'Not Found'
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ErrorInformationResponse'
+  headers:
+    Content-Length:
+      $ref: '#/components/parameters/Content-Length'
+    Content-Type:
+      $ref: '#/components/parameters/Content-Type'
+'405':
+  description: 'Method Not Allowed'
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ErrorInformationResponse'
+  headers:
+    Content-Length:
+      $ref: '#/components/parameters/Content-Length'
+    Content-Type:
+      $ref: '#/components/parameters/Content-Type'
+'406':
+  description: 'Not Acceptable'
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ErrorInformationResponse'
+  headers:
+    Content-Length:
+      $ref: '#/components/parameters/Content-Length'
+    Content-Type:
+      $ref: '#/components/parameters/Content-Type'
+'501':
+  description: 'Not Implemented'
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ErrorInformationResponse'
+  headers:
+    Content-Length:
+      $ref: '#/components/parameters/Content-Length'
+    Content-Type:
+      $ref: '#/components/parameters/Content-Type'
+'503':
+  description: 'Service Unavailable'
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/ErrorInformationResponse'
+  headers:
+    Content-Length:
+      $ref: '#/components/parameters/Content-Length'
+    Content-Type:
+      $ref: '#/components/parameters/Content-Type'

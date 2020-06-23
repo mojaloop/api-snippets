@@ -1,0 +1,10 @@
+title: BulkTransactionState
+type: string
+enum:
+  - RECEIVED
+  - PENDING
+  - ACCEPTED
+  - PROCESSING
+  - COMPLETED
+  - REJECTED
+description: "Below are the allowed values for the enumeration.\n- RECEIVED - Payee FSP has received the bulk transfer from the Payer FSP.\n\n- PENDING - Payee FSP has validated the bulk transfer.\n\n- ACCEPTED - Payee FSP has accepted to process the bulk transfer.\n\n- PROCESSING - Payee FSP has started to transfer fund to the Payees.\n\n- COMPLETED - Payee FSP has completed transfer of funds to the Payees.\n\n- REJECTED - Payee FSP has rejected to process the bulk transfer."

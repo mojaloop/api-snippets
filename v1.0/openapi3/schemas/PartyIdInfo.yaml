@@ -1,0 +1,23 @@
+title: PartyIdInfo
+type: object
+description: 'Data model for the complex type PartyIdInfo.'
+properties:
+  partyIdType:
+    $ref: '#/components/schemas/PartyIdType'
+    description: 'Type of the identifier.'
+    example: PERSONAL_ID
+  partyIdentifier:
+    $ref: '#/components/schemas/PartyIdentifier'
+    description: 'An identifier for the Party.'
+    example: 16135551212
+  partySubIdOrType:
+    $ref: '#/components/schemas/PartySubIdOrType'
+    description: 'A sub-identifier or sub-type for the Party.'
+    example: DRIVING_LICENSE
+  fspId:
+    $ref: '#/components/schemas/FspId'
+    description: 'FSP ID (if known).'
+    example: 1234
+required:
+  - partyIdType
+  - partyIdentifier

@@ -1,0 +1,12 @@
+title: PartyResult
+type: object
+description: 'Data model for the complex type PartyResult.'
+properties:
+  partyId:
+    $ref: '#/components/schemas/PartyIdInfo'
+    description: 'Party Id type, id, sub ID or type, and FSP Id.'
+  errorInformation:
+    $ref: '#/components/schemas/ErrorInformation'
+    description: 'If the Party failed to be added, error information should be provided. Otherwise, this parameter should be empty to indicate success.'
+required:
+  - partyId
