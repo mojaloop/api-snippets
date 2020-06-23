@@ -12,7 +12,7 @@ servers:
         default: https
 components:
   schemas:
-    $ref: ./v1.0/openapi3/definitions/index.yaml
+    $ref: ./v1.0/openapi3/schemas/index.yaml
   responses:
     $ref: ./v1.0/openapi3/responses/index.yaml
   parameters:
