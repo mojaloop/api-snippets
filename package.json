@@ -4,7 +4,9 @@
   "description": "Mojaloop API specification reusable snippets",
   "scripts": {
     "test": "multi-file-swagger test/index.yaml > test/resolved.json && multi-file-swagger -o yaml test/index.yaml > test/resolved.yaml && node test/diffCheck.js",
-    "buildv1.0": "multi-file-swagger -o yaml v1.0/openapi3/index.yaml > docs/fspiop-rest-v1.0-openapi3-snippets.yaml"
+    "buildv1.0": "multi-file-swagger -o yaml v1.0/openapi3/index.yaml > docs/fspiop-rest-v1.0-openapi3-snippets.yaml",
+    "audit:resolve": "SHELL=sh resolve-audit --production",
+    "audit:check": "SHELL=sh check-audit --production"
   },
   "license": "Apache-2.0",
   "dependencies": {
@@ -14,6 +16,7 @@
   },
   "devDependencies": {
     "diff": "^4.0.1",
-    "multi-file-swagger": "^2.3.0"
+    "multi-file-swagger": "^2.3.0",
+    "npm-audit-resolver": "2.2.0"
   }
 }
