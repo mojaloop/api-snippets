@@ -2,6 +2,14 @@
 version: 2.1
 
 ##
+# orbs
+#
+# Orbs used in this pipeline
+##
+orbs:
+  slack: circleci/slack@3.4.2
+
+##
 # defaults
 #
 # YAML defaults templates, in alphabetical order
@@ -15,9 +23,6 @@ defaults_Dependencies: &defaults_Dependencies |
     apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake
     npm config set unsafe-perm true
     npm install -g node-gyp
-
-defaults_Typescript: &defaults_Typescript |
-    npm run build
 
 defaults_awsCliDependencies: &defaults_awsCliDependencies |
     apk --no-cache add \
@@ -50,14 +55,7 @@ defaults_license_scanner: &defaults_license_scanner
   command: |
     git clone https://github.com/mojaloop/license-scanner /tmp/license-scanner
     cd /tmp/license-scanner && make build default-files set-up
-defaults_slack_announcement: &defaults_slack_announcement
-  name: Slack announcement for tag releases
-  command: |
-    curl -X POST \
-      $SLACK_WEBHOOK_ANNOUNCEMENT \
-      -H 'Content-type: application/json' \
-      -H 'cache-control: no-cache' \
-      -d "{\"text\": \"*${CIRCLE_PROJECT_REPONAME}* - Release \`${CIRCLE_TAG}\`: https://github.com/mojaloop/${CIRCLE_PROJECT_REPONAME}/releases/tag/${CIRCLE_TAG}\"}"
+
 ##
 # Executors
 #
@@ -94,63 +92,6 @@ jobs:
           paths:
             - node_modules
 
-#  test-unit:
-#    executor: default-docker
-#    steps:
-#      - checkout
-#      - run:
-#          name: Install general dependencies
-#          command: *defaults_Dependencies
-#      - restore_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#      - run:
-#          name: Build typescript
-#          command: *defaults_Typescript
-#      - run:
-#          name: Create dir for test results
-#          command: mkdir -p ./test/results
-#      - run:
-#          name: Execute unit tests
-#          command: JEST_JUNIT_OUTPUT_DIR='./test/results' JEST_JUNIT_OUTPUT_NAME='junit.xml' npm run test:junit
-#      - store_artifacts:
-#          path: ./test/results
-#          prefix: test
-#      - store_test_results:
-#          path: ./test/results
-
-#  test-coverage:
-#    executor: default-docker
-#    steps:
-#      - checkout
-#      - run:
-#          name: Install general dependencies
-#          command: *defaults_Dependencies
-#      - run:
-#          name: Install AWS CLI dependencies
-#          command: *defaults_awsCliDependencies
-#      - restore_cache:
-#          key: dependency-cache-{{ checksum "package.json" }}
-#      - run:
-#          name: Install tape, tapes and tap-xunit
-#          command: npm install tape tapes tap-xunit tap-spec nyc
-#      - run:
-#          name: Execute code coverage check
-#          command: npm -s run test:coverage-check
-#      - store_artifacts:
-#          path: coverage
-#          prefix: test
-#      - store_test_results:
-#          path: coverage/lcov.info
-#      - run:
-#          name: Copy code coverage to SonarQube
-#          command: |
-#            if [ "${CIRCLE_BRANCH}" == "master" ];
-#            then
-#                echo "Sending lcov.info to SonarQube..."
-#                aws s3 cp coverage/lcov.info $AWS_S3_DIR_SONARQUBE/central-services-metrics/lcov.info
-#            else
-#                echo "Not a release (env CIRCLE_BRANCH != 'master'), skipping sending lcov.info to SonarQube."
-#            fi
   vulnerability-check:
     executor: default-docker
     steps:
@@ -202,7 +143,8 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Build typescript
-          command: *defaults_Typescript
+          command: |
+            npm run build
       - run:
           name: setup environment vars for SNAPSHOT release
           command: |
@@ -211,8 +153,9 @@ jobs:
           <<: *defaults_npm_auth
       - run:
           <<: *defaults_npm_publish_release
-      - run:
-          <<: *defaults_slack_announcement
+      - slack/status:
+          webhook: "$SLACK_WEBHOOK_ANNOUNCEMENT"
+          success_message: '*"${CIRCLE_PROJECT_REPONAME}"* - Release \`"${CIRCLE_TAG}"\` \nhttps://github.com/mojaloop/"${CIRCLE_PROJECT_REPONAME}"/releases/tag/"${CIRCLE_TAG}"'
 
   build:
     executor: default-docker
@@ -225,7 +168,8 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Build typescript
-          command: *defaults_Typescript
+          command: |
+            npm run build
       - run:
           name: setup environment vars for LATEST release
           command: |
@@ -234,8 +178,9 @@ jobs:
           <<: *defaults_npm_auth
       - run:
           <<: *defaults_npm_publish_release
-      - run:
-          <<: *defaults_slack_announcement
+      - slack/status:
+          webhook: "$SLACK_WEBHOOK_ANNOUNCEMENT"
+          success_message: '*"${CIRCLE_PROJECT_REPONAME}"* - Release \`"${CIRCLE_TAG}"\` \nhttps://github.com/mojaloop/"${CIRCLE_PROJECT_REPONAME}"/releases/tag/"${CIRCLE_TAG}"'
 
 ##
 # Workflows
@@ -255,28 +200,6 @@ workflows:
               ignore:
                 - /feature*/
                 - /bugfix*/
-      #- test-unit:
-      #    context: org-global
-      #    requires:
-      #      - setup
-      #    filters:
-      #      tags:
-      #        only: /.*/
-      #      branches:
-      #        ignore:
-      #          - /feature*/
-      #          - /bugfix*/
-      #- test-coverage:
-      #    context: org-global
-      #    requires:
-      #      - setup
-      #    filters:
-      #      tags:
-      #        only: /.*/
-      #      branches:
-      #        ignore:
-      #          - /feature*/
-      #          - /bugfix*/
       - vulnerability-check:
           context: org-global
           requires:
@@ -303,8 +226,6 @@ workflows:
           context: org-global
           requires:
             - setup
-            #- test-unit
-            #- test-coverage
             - vulnerability-check
             - audit-licenses
           filters:
@@ -317,8 +238,6 @@ workflows:
           context: org-global
           requires:
             - setup
-            #- test-unit
-            #- test-coverage
             - vulnerability-check
             - audit-licenses
           filters:
