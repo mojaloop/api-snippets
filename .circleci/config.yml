@@ -142,10 +142,6 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Build typescript
-          command: |
-            npm run build
-      - run:
           name: setup environment vars for SNAPSHOT release
           command: |
             echo 'export RELEASE_TAG=$RELEASE_TAG_SNAPSHOT' >> $BASH_ENV
@@ -166,10 +162,6 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Build typescript
-          command: |
-            npm run build
       - run:
           name: setup environment vars for LATEST release
           command: |
