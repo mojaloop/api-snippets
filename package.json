@@ -1,5 +1,5 @@
 {
-  "name": "api-snippets",
+  "name": "@mojaloop/api-snippets",
   "version": "1.0.0",
   "description": "Mojaloop API specification reusable snippets",
   "scripts": {
@@ -8,6 +8,22 @@
     "audit:resolve": "SHELL=sh resolve-audit --production",
     "audit:check": "SHELL=sh check-audit --production"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mojaloop/api-snippets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mojaloop/api-snippets/issues"
+  },
+  "homepage": "https://github.com/mojaloop/api-snippets#readme",
+  "keywords": [
+    "api",
+    "snippets"
+  ],
+  "author": "ModusBox",
+  "contributors": [
+    "ModusBox"
+  ],
   "license": "Apache-2.0",
   "dependencies": {
     "commander": "^2.19.0",
@@ -18,5 +34,8 @@
     "diff": "^4.0.1",
     "multi-file-swagger": "^2.3.0",
     "npm-audit-resolver": "2.2.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
