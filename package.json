@@ -1,6 +1,6 @@
 {
   "name": "api-snippets",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Mojaloop API specification reusable snippets",
   "scripts": {
     "test": "multi-file-swagger test/index.yaml > test/resolved.json && multi-file-swagger -o yaml test/index.yaml > test/resolved.yaml && node test/diffCheck.js",
