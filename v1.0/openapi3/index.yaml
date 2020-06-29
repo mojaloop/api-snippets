@@ -25,5 +25,10 @@ paths:
       description: The HTTP request GET /test is used to return the current status of the API.
       operationId: getTest
       responses:
-        200:
-          $ref: ./responses/index.yaml#/200
+        $ref: ./template/ResponseSetAccepted.yaml
+    put:
+      summary: Put server test status
+      description: The HTTP request GET /test is used to return the current status of the API.
+      operationId: putTest
+      responses:
+        $ref: ./template/ResponseSetOk.yaml
