@@ -3,6 +3,6 @@ type: object
 description: 'The object sent in the PUT /participants/{Type}/{ID}/{SubId} and /participants/{Type}/{ID} callbacks.'
 properties:
   fspId:
-    $ref: '#/components/schemas/FspId'
+    $ref: './FspId.yaml'
     description: 'FSP Identifier that the Party belongs to.'
     example: 1234

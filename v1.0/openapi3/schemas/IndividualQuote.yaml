@@ -3,33 +3,33 @@ type: object
 description: 'Data model for the complex type IndividualQuote.'
 properties:
   quoteId:
-    $ref: '#/components/schemas/CorrelationId'
+    $ref: './CorrelationId.yaml'
     description: 'Identifies the quote message.'
     example: b51ec534-ee48-4575-b6a9-ead2955b8069
   transactionId:
-    $ref: '#/components/schemas/CorrelationId'
+    $ref: './CorrelationId.yaml'
     description: 'Identifies the transaction message.'
     example: b51ec534-ee48-4575-b6a9-ead2955b8069
   payee:
-    $ref: '#/components/schemas/Party'
+    $ref: './Party.yaml'
     description: 'Information about the Payee in the proposed financial transaction.'
   amountType:
-    $ref: '#/components/schemas/AmountType'
+    $ref: './AmountType.yaml'
     description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
     example: RECEIVE
   amount:
-    $ref: '#/components/schemas/Money'
+    $ref: './Money.yaml'
   fees:
-    $ref: '#/components/schemas/Money'
+    $ref: './Money.yaml'
   transactionType:
-    $ref: '#/components/schemas/TransactionType'
+    $ref: './TransactionType.yaml'
     description: 'Type of transaction that the quote is requested for.'
   note:
-    $ref: '#/components/schemas/Note'
+    $ref: './Note.yaml'
     description: 'Memo that will be attached to the transaction.'
     example: 'Note sent to Payee.'
   extensionList:
-    $ref: '#/components/schemas/ExtensionList'
+    $ref: './ExtensionList.yaml'
     description: 'Optional extension, specific to deployment.'
 required:
   - quoteId

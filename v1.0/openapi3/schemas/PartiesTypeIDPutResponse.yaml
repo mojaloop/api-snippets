@@ -3,7 +3,7 @@ type: object
 description: 'The object sent in the PUT /parties/{Type}/{ID} callback.'
 properties:
   party:
-    $ref: '#/components/schemas/Party'
+    $ref: './Party.yaml'
     description: 'Information regarding the requested Party.'
 required:
   - party

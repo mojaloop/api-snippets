@@ -3,11 +3,11 @@ type: object
 description: 'Data model for the complex type Money.'
 properties:
   currency:
-    $ref: '#/components/schemas/Currency'
+    $ref: './Currency.yaml'
     description: 'Currency of the amount.'
     example: USD
   amount:
-    $ref: '#/components/schemas/Amount'
+    $ref: './Amount.yaml'
     description: 'Amount of Money.'
     example: 123.45
 required:

@@ -3,47 +3,47 @@ type: object
 description: 'The object sent in the POST /quotes request.'
 properties:
   quoteId:
-    $ref: '#/components/schemas/CorrelationId'
+    $ref: './CorrelationId.yaml'
     description: 'Common ID between the FSPs for the quote object, decided by the Payer FSP. The ID should be reused for resends of the same quote for a transaction. A new ID should be generated for each new quote for a transaction.'
     example: b51ec534-ee48-4575-b6a9-ead2955b8069
   transactionId:
-    $ref: '#/components/schemas/CorrelationId'
+    $ref: './CorrelationId.yaml'
     description: 'Common ID (decided by the Payer FSP) between the FSPs for the future transaction object. The actual transaction will be created as part of a successful transfer process. The ID should be reused for resends of the same quote for a transaction. A new ID should be generated for each new quote for a transaction.'
     example: a8323bc6-c228-4df2-ae82-e5a997baf899
   transactionRequestId:
-    $ref: '#/components/schemas/CorrelationId'
+    $ref: './CorrelationId.yaml'
     description: 'Identifies an optional previously-sent transaction request.'
     example: a8323bc6-c228-4df2-ae82-e5a997baf890
   payee:
-    $ref: '#/components/schemas/Party'
+    $ref: './Party.yaml'
     description: 'Information about the Payee in the proposed financial transaction.'
   payer:
-    $ref: '#/components/schemas/Party'
+    $ref: './Party.yaml'
     description: 'Information about the Payer in the proposed financial transaction.'
   amountType:
-    $ref: '#/components/schemas/AmountType'
+    $ref: './AmountType.yaml'
     description: 'SEND for send amount, RECEIVE for receive amount.'
     example: SEND
   amount:
-    $ref: '#/components/schemas/Money'
+    $ref: './Money.yaml'
   fees:
-    $ref: '#/components/schemas/Money'
+    $ref: './Money.yaml'
   transactionType:
-    $ref: '#/components/schemas/TransactionType'
+    $ref: './TransactionType.yaml'
     description: 'Type of transaction for which the quote is requested.'
   geoCode:
-    $ref: '#/components/schemas/GeoCode'
+    $ref: './GeoCode.yaml'
     description: 'Longitude and Latitude of the initiating Party. Can be used to detect fraud.'
   note:
-    $ref: '#/components/schemas/Note'
+    $ref: './Note.yaml'
     description: 'A memo that will be attached to the transaction.'
     example: 'Free-text memo.'
   expiration:
-    $ref: '#/components/schemas/DateTime'
+    $ref: './DateTime.yaml'
     description: 'Expiration is optional. It can be set to get a quick failure in case the peer FSP takes too long to respond. Also, it may be beneficial for Consumer, Agent, and Merchant to know that their request has a time limit.'
     example: '2016-05-24T08:38:08.699-04:00'
   extensionList:
-    $ref: '#/components/schemas/ExtensionList'
+    $ref: './ExtensionList.yaml'
     description: 'Optional extension, specific to deployment.'
 required:
   - quoteId

@@ -3,19 +3,19 @@ type: object
 description: 'The object sent in the POST /bulkTransfers request.'
 properties:
   bulkTransferId:
-    $ref: '#/components/schemas/CorrelationId'
+    $ref: './CorrelationId.yaml'
     description: 'Common ID between the FSPs and the optional Switch for the bulk transfer object, decided by the Payer FSP. The ID should be reused for resends of the same bulk transfer. A new ID should be generated for each new bulk transfer.'
     example: b51ec534-ee48-4575-b6a9-ead2955b8069
   bulkQuoteId:
-    $ref: '#/components/schemas/CorrelationId'
+    $ref: './CorrelationId.yaml'
     description: 'ID of the related bulk quote.'
     example: b51ec534-ee48-4575-b6a9-ead2955b8069
   payerFsp:
-    $ref: '#/components/schemas/FspId'
+    $ref: './FspId.yaml'
     description: 'Payer FSP identifier.'
     example: 5678
   payeeFsp:
-    $ref: '#/components/schemas/FspId'
+    $ref: './FspId.yaml'
     description: 'Payee FSP identifier.'
     example: 1234
   individualTransfers:
@@ -23,14 +23,14 @@ properties:
     minItems: 1
     maxItems: 1000
     items:
-      $ref: '#/components/schemas/IndividualTransfer'
+      $ref: './IndividualTransfer.yaml'
     description: 'List of IndividualTransfer elements.'
   expiration:
-    $ref: '#/components/schemas/DateTime'
+    $ref: './DateTime.yaml'
     description: 'Expiration time of the transfers.'
     example: '2016-05-24T08:38:08.699-04:00'
   extensionList:
-    $ref: '#/components/schemas/ExtensionList'
+    $ref: './ExtensionList.yaml'
     description: 'Optional extension, specific to deployment.'
 required:
   - bulkTransferId

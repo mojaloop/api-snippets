@@ -3,9 +3,9 @@ type: object
 description: 'Data model for the complex type PartyPersonalInfo.'
 properties:
   complexName:
-    $ref: '#/components/schemas/PartyComplexName'
+    $ref: './PartyComplexName.yaml'
     description: 'First, middle and last name for the Party.'
   dateOfBirth:
-    $ref: '#/components/schemas/DateOfBirth'
+    $ref: './DateOfBirth.yaml'
     description: 'Date of birth for the Party.'
     example: '1966-06-16'

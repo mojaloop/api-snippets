@@ -3,28 +3,28 @@ type: object
 description: 'Data model for the complex type Transaction. The Transaction type is used to carry end-to-end data between the Payer FSP and the Payee FSP in the ILP Packet. Both the transactionId and the quoteId in the data model are decided by the Payer FSP in the POST /quotes request.'
 properties:
   transactionId:
-    $ref: '#/components/schemas/CorrelationId'
+    $ref: './CorrelationId.yaml'
     description: 'ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote.'
   quoteId:
-    $ref: '#/components/schemas/CorrelationId'
+    $ref: './CorrelationId.yaml'
     description: 'ID of the quote, the ID is decided by the Payer FSP during the creation of the quote.'
   payee:
-    $ref: '#/components/schemas/Party'
+    $ref: './Party.yaml'
     description: 'Information about the Payee in the proposed financial transaction.'
   payer:
-    $ref: '#/components/schemas/Party'
+    $ref: './Party.yaml'
     description: 'Information about the Payer in the proposed financial transaction.'
   amount:
-    $ref: '#/components/schemas/Money'
+    $ref: './Money.yaml'
     description: 'Transaction amount to be sent.'
   transactionType:
-    $ref: '#/components/schemas/TransactionType'
+    $ref: './TransactionType.yaml'
     description: 'Type of the transaction.'
   note:
-    $ref: '#/components/schemas/Note'
+    $ref: './Note.yaml'
     description: 'Memo associated to the transaction, intended to the Payee.'
   extensionList:
-    $ref: '#/components/schemas/ExtensionList'
+    $ref: './ExtensionList.yaml'
     description: 'Optional extension, specific to deployment.'
 required:
   - transactionId

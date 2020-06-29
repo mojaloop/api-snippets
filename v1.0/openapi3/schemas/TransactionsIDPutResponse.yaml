@@ -3,19 +3,19 @@ type: object
 description: 'The object sent in the PUT /transactions/{ID} callback.'
 properties:
   completedTimestamp:
-    $ref: '#/components/schemas/DateTime'
+    $ref: './DateTime.yaml'
     description: 'Time and date when the transaction was completed.'
     example: '2016-05-24T08:38:08.699-04:00'
   transactionState:
-    $ref: '#/components/schemas/TransactionState'
+    $ref: './TransactionState.yaml'
     description: 'State of the transaction.'
     example: RECEIVED
   code:
-    $ref: '#/components/schemas/Code'
+    $ref: './Code.yaml'
     description: 'Optional redemption information provided to Payer after transaction has been completed.'
     example: Test-Code
   extensionList:
-    $ref: '#/components/schemas/ExtensionList'
+    $ref: './ExtensionList.yaml'
     description: 'Optional extension, specific to deployment.'
 required:
   - transactionState

@@ -3,11 +3,11 @@ type: object
 description: 'The object sent in the PUT /authorizations/{ID} callback.'
 properties:
   authenticationInfo:
-    $ref: '#/components/schemas/AuthenticationInfo'
+    $ref: './AuthenticationInfo.yaml'
     description: 'OTP or QR Code if entered, otherwise empty.'
     example: OTP
   responseType:
-    $ref: '#/components/schemas/AuthorizationResponse'
+    $ref: './AuthorizationResponse.yaml'
     description: 'Enum containing response information; if the customer entered the authentication value, rejected the transaction, or requested a resend of the authentication value.'
     example: ENTERED
 required:

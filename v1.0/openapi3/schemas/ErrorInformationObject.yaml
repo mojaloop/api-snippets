@@ -3,6 +3,6 @@ type: object
 description: 'Data model for the complex type object that contains ErrorInformation.'
 properties:
   errorInformation:
-    $ref: '#/components/schemas/ErrorInformation'
+    $ref: './ErrorInformation.yaml'
 required:
   - errorInformation
