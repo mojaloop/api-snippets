@@ -4,12 +4,8 @@ description: 'Data model for the complex type GeoCode. Indicates the geographic 
 properties:
   latitude:
     $ref: './Latitude.yaml'
-    description: 'Latitude of the Party.'
-    example: '+45.4215'
   longitude:
     $ref: './Longitude.yaml'
-    description: 'Longitude of the Party.'
-    example: '+75.6972'
 required:
   - latitude
   - longitude

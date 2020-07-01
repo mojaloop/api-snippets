@@ -11,7 +11,5 @@ properties:
     description: 'List of PartyResult elements that were either created or failed to be created.'
   currency:
     $ref: './Currency.yaml'
-    description: 'Indicate that the provided Currency was set to be supported by each successfully added PartyIdInfo.'
-    example: USD
 required:
   - partyList

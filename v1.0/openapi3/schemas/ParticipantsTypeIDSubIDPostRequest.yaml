@@ -4,11 +4,7 @@ description: 'The object sent in the POST /participants/{Type}/{ID}/{SubId} and 
 properties:
   fspId:
     $ref: './FspId.yaml'
-    description: 'FSP Identifier that the Party belongs to.'
-    example: 1234
   currency:
     $ref: './Currency.yaml'
-    description: 'Indicate that the provided Currency is supported by the Party.'
-    example: USD
 required:
   - fspId

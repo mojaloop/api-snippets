@@ -4,20 +4,12 @@ description: 'Data model for the complex type PartyIdInfo.'
 properties:
   partyIdType:
     $ref: './PartyIdType.yaml'
-    description: 'Type of the identifier.'
-    example: PERSONAL_ID
   partyIdentifier:
     $ref: './PartyIdentifier.yaml'
-    description: 'An identifier for the Party.'
-    example: 16135551212
   partySubIdOrType:
     $ref: './PartySubIdOrType.yaml'
-    description: 'A sub-identifier or sub-type for the Party.'
-    example: DRIVING_LICENSE
   fspId:
     $ref: './FspId.yaml'
-    description: 'FSP ID (if known).'
-    example: 1234
 required:
   - partyIdType
   - partyIdentifier
