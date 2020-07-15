@@ -4,38 +4,24 @@ description: 'The object sent in the POST /transactionRequests request.'
 properties:
   transactionRequestId:
     $ref: './CorrelationId.yaml'
-    description: 'Common ID between the FSPs for the transaction request object, decided by the Payee FSP. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.'
-    example: b51ec534-ee48-4575-b6a9-ead2955b8069
   payee:
     $ref: './Party.yaml'
-    description: 'Information about the Payee in the proposed financial transaction.'
   payer:
     $ref: './PartyIdInfo.yaml'
-    description: 'Information about the Payer type, id, sub-type/id, FSP Id in the proposed financial transaction.'
   amount:
     $ref: './Money.yaml'
-    description: 'Requested amount to be transferred from the Payer to Payee.'
   transactionType:
     $ref: './TransactionType.yaml'
-    description: 'Type of transaction.'
   note:
     $ref: './Note.yaml'
-    description: 'Reason for the transaction request, intended to the Payer.'
-    example: 'Free-text memo.'
   geoCode:
     $ref: './GeoCode.yaml'
-    description: 'Longitude and Latitude of the initiating Party. Can be used to detect fraud.'
   authenticationType:
     $ref: './AuthenticationType.yaml'
-    description: 'OTP or QR Code, otherwise empty.'
-    example: OTP
   expiration:
     $ref: './DateTime.yaml'
-    description: 'Can be set to get a quick failure in case the peer FSP takes too long to respond. Also, it may be beneficial for Consumer, Agent, Merchant to know that their request has a time limit.'
-    example: '2016-05-24T08:38:08.699-04:00'
   extensionList:
     $ref: './ExtensionList.yaml'
-    description: 'Optional extension, specific to deployment.'
 required:
   - transactionRequestId
   - payee
