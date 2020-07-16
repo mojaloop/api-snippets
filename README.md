@@ -4,12 +4,12 @@
 
 Install the snippet library
 ```bash
-  npm install api-snippets --save-dev
+  npm install @mojaloop/api-snippets --save-dev
 ```
 
 Install the reference resolving library
 ```bash
-  npm install multi-file-swagger --save-dev
+  npm install swagger-cli --save-dev
 ```
 
 Modify swagger file to reference `api-snippets`.
@@ -17,12 +17,17 @@ Modify swagger file to reference `api-snippets`.
 ex.
 ```yaml
 Money:
-  $ref: node_modules/api-snippets/v1.0/openapi3/definitions/Money.yaml
+  $ref: /path/to/node_modules/@mojaloop/api-snippets/v1.0/openapi3/definitions/Money.yaml
 ```
 
 Render and resolve the references.
 ```bash
-  multi-file-swagger -o yaml api.yaml > api_render.yaml
+  swagger-cli bundle -t yaml -o api_render.yaml api.yaml 
+```
+
+Validate the result file.
+```bash
+  swagger-cli validate api_render.yaml
 ```
 
 ## Questions
