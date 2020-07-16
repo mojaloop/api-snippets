@@ -5,13 +5,11 @@ properties:
   partyList:
     type: array
     items:
-      $ref: '#/components/schemas/PartyResult'
+      $ref: './PartyResult.yaml'
     minItems: 1
     maxItems: 10000
     description: 'List of PartyResult elements that were either created or failed to be created.'
   currency:
-    $ref: '#/components/schemas/Currency'
-    description: 'Indicate that the provided Currency was set to be supported by each successfully added PartyIdInfo.'
-    example: USD
+    $ref: './Currency.yaml'
 required:
   - partyList

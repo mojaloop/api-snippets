@@ -3,11 +3,9 @@ type: object
 description: 'Data model for the complex type Extension.'
 properties:
   key:
-    $ref: '#/components/schemas/ExtensionKey'
-    description: 'Extension key.'
+    $ref: './ExtensionKey.yaml'
   value:
-    $ref: '#/components/schemas/ExtensionValue'
-    description: 'Extension value.'
+    $ref: './ExtensionValue.yaml'
 required:
   - key
   - value

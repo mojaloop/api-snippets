@@ -3,14 +3,8 @@ type: object
 description: 'Data model for the complex type PartyComplexName.'
 properties:
   firstName:
-    $ref: '#/components/schemas/FirstName'
-    description: 'Party’s first name.'
-    example: Henrik
+    $ref: './FirstName.yaml'
   middleName:
-    $ref: '#/components/schemas/MiddleName'
-    description: 'Party’s middle name.'
-    example: Johannes
+    $ref: './MiddleName.yaml'
   lastName:
-    $ref: '#/components/schemas/LastName'
-    description: 'Party’s last name.'
-    example: Karlsson
+    $ref: './LastName.yaml'

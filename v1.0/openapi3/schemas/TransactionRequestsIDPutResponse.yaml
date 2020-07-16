@@ -3,15 +3,10 @@ type: object
 description: 'The object sent in the PUT /transactionRequests/{ID} callback.'
 properties:
   transactionId:
-    $ref: '#/components/schemas/CorrelationId'
-    description: 'Identifies a related transaction (if a transaction has been created).'
-    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+    $ref: './CorrelationId.yaml'
   transactionRequestState:
-    $ref: '#/components/schemas/TransactionRequestState'
-    description: 'State of the transaction request.'
-    example: RECEIVED
+    $ref: './TransactionRequestState.yaml'
   extensionList:
-    $ref: '#/components/schemas/ExtensionList'
-    description: 'Optional extension, specific to deployment.'
+    $ref: './ExtensionList.yaml'
 required:
   - transactionRequestState

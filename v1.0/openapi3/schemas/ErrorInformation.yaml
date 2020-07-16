@@ -3,15 +3,11 @@ type: object
 description: 'Data model for the complex type ErrorInformation.'
 properties:
   errorCode:
-    $ref: '#/components/schemas/ErrorCode'
-    description: 'Specific error number.'
-    example: 5100
+    $ref: './ErrorCode.yaml'
   errorDescription:
-    $ref: '#/components/schemas/ErrorDescription'
-    description: 'Error description string.'
-    example: 'This is an error description.'
+    $ref: './ErrorDescription.yaml'
   extensionList:
-    $ref: '#/components/schemas/ExtensionList'
+    $ref: './ExtensionList.yaml'
 required:
   - errorCode
   - errorDescription

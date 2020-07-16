@@ -1,9 +1,8 @@
 openapi: 3.0.2
 info:
-  $ref: ./v1.0/openapi3/info/index.yaml
+  $ref: ./info/index.yaml
 servers:
-  -
-    url: '{protocol}://hostname:<port>/switch/'
+  - url: '{protocol}://hostname:<port>/switch/'
     variables:
       protocol:
         enum:
@@ -12,8 +11,24 @@ servers:
         default: https
 components:
   schemas:
-    $ref: ./v1.0/openapi3/schemas/index.yaml
-  responses:
-    $ref: ./v1.0/openapi3/responses/index.yaml
+    $ref: ./schemas/index.yaml
   parameters:
-    $ref: ./v1.0/openapi3/parameters/index.yaml
+    $ref: ./parameters/index.yaml
+  headers:
+    $ref: ./headers/index.yaml
+  responses:
+    $ref: ./responses/index.yaml
+paths:
+  /test:
+    get:
+      summary: Get server test status
+      description: The HTTP request GET /test is used to return the current status of the API.
+      operationId: getTest
+      responses:
+        $ref: ./template/ResponseSetAccepted.yaml
+    put:
+      summary: Put server test status
+      description: The HTTP request GET /test is used to return the current status of the API.
+      operationId: putTest
+      responses:
+        $ref: ./template/ResponseSetOk.yaml

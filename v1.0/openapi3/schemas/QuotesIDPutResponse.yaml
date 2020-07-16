@@ -3,31 +3,23 @@ type: object
 description: 'The object sent in the PUT /quotes/{ID} callback.'
 properties:
   transferAmount:
-    $ref: '#/components/schemas/Money'
+    $ref: './Money.yaml'
   payeeReceiveAmount:
-    $ref: '#/components/schemas/Money'
+    $ref: './Money.yaml'
   payeeFspFee:
-    $ref: '#/components/schemas/Money'
+    $ref: './Money.yaml'
   payeeFspCommission:
-    $ref: '#/components/schemas/Money'
+    $ref: './Money.yaml'
   expiration:
-    $ref: '#/components/schemas/DateTime'
-    description: 'Date and time until when the quotation is valid and can be honored when used in the subsequent transaction.'
-    example: '2016-05-24T08:38:08.699-04:00'
+    $ref: './DateTime.yaml'
   geoCode:
-    $ref: '#/components/schemas/GeoCode'
-    description: 'Longitude and Latitude of the Payee. Can be used to detect fraud.'
+    $ref: './GeoCode.yaml'
   ilpPacket:
-    $ref: '#/components/schemas/IlpPacket'
-    description: 'The ILP Packet that must be attached to the transfer by the Payer.'
-    example: “AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA”
+    $ref: './IlpPacket.yaml'
   condition:
-    $ref: '#/components/schemas/IlpCondition'
-    description: 'The condition that must be attached to the transfer by the Payer.'
-    example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
+    $ref: './IlpCondition.yaml'
   extensionList:
-    $ref: '#/components/schemas/ExtensionList'
-    description: 'Optional extension, specific to deployment.'
+    $ref: './ExtensionList.yaml'
 required:
   - transferAmount
   - expiration

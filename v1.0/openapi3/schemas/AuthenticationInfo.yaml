@@ -3,13 +3,9 @@ type: object
 description: 'Data model for the complex type AuthenticationInfo.'
 properties:
   authentication:
-    $ref: '#/components/schemas/AuthenticationType'
-    description: 'Type of authentication.'
-    example: OTP
+    $ref: './AuthenticationType.yaml'
   authenticationValue:
-    $ref: '#/components/schemas/AuthenticationValue'
-    description: 'Authentication value.'
-    example: 1234
+    $ref: './AuthenticationValue.yaml'
 required:
   - authentication
   - authenticationValue

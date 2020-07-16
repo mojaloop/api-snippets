@@ -7,86 +7,86 @@
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ErrorInformationResponse'
+        $ref: '../schemas/ErrorInformationResponse.yaml'
   headers:
     Content-Length:
-      $ref: '#/components/parameters/Content-Length'
+      $ref: '../headers/Content-Length.yaml'
     Content-Type:
-      $ref: '#/components/parameters/Content-Type'
+      $ref: '../headers/Content-Type.yaml'
 '401':
   description: Unauthorized
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ErrorInformationResponse'
+        $ref: '../schemas/ErrorInformationResponse.yaml'
   headers:
     Content-Length:
-      $ref: '#/components/parameters/Content-Length'
+      $ref: '../headers/Content-Length.yaml'
     Content-Type:
-      $ref: '#/components/parameters/Content-Type'
+      $ref: '../headers/Content-Type.yaml'
 '403':
   description: Forbidden
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ErrorInformationResponse'
+        $ref: '../schemas/ErrorInformationResponse.yaml'
   headers:
     Content-Length:
-      $ref: '#/components/parameters/Content-Length'
+      $ref: '../headers/Content-Length.yaml'
     Content-Type:
-      $ref: '#/components/parameters/Content-Type'
+      $ref: '../headers/Content-Type.yaml'
 '404':
   description: 'Not Found'
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ErrorInformationResponse'
+        $ref: '../schemas/ErrorInformationResponse.yaml'
   headers:
     Content-Length:
-      $ref: '#/components/parameters/Content-Length'
+      $ref: '../headers/Content-Length.yaml'
     Content-Type:
-      $ref: '#/components/parameters/Content-Type'
+      $ref: '../headers/Content-Type.yaml'
 '405':
   description: 'Method Not Allowed'
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ErrorInformationResponse'
+        $ref: '../schemas/ErrorInformationResponse.yaml'
   headers:
     Content-Length:
-      $ref: '#/components/parameters/Content-Length'
+      $ref: '../headers/Content-Length.yaml'
     Content-Type:
-      $ref: '#/components/parameters/Content-Type'
+      $ref: '../headers/Content-Type.yaml'
 '406':
   description: 'Not Acceptable'
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ErrorInformationResponse'
+        $ref: '../schemas/ErrorInformationResponse.yaml'
   headers:
     Content-Length:
-      $ref: '#/components/parameters/Content-Length'
+      $ref: '../headers/Content-Length.yaml'
     Content-Type:
-      $ref: '#/components/parameters/Content-Type'
+      $ref: '../headers/Content-Type.yaml'
 '501':
   description: 'Not Implemented'
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ErrorInformationResponse'
+        $ref: '../schemas/ErrorInformationResponse.yaml'
   headers:
     Content-Length:
-      $ref: '#/components/parameters/Content-Length'
+      $ref: '../headers/Content-Length.yaml'
     Content-Type:
-      $ref: '#/components/parameters/Content-Type'
+      $ref: '../headers/Content-Type.yaml'
 '503':
   description: 'Service Unavailable'
   content:
     application/json:
       schema:
-        $ref: '#/components/schemas/ErrorInformationResponse'
+        $ref: '../schemas/ErrorInformationResponse.yaml'
   headers:
     Content-Length:
-      $ref: '#/components/parameters/Content-Length'
+      $ref: '../headers/Content-Length.yaml'
     Content-Type:
-      $ref: '#/components/parameters/Content-Type'
+      $ref: '../headers/Content-Type.yaml'

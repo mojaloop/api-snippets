@@ -5,7 +5,7 @@ properties:
   extension:
     type: array
     items:
-      $ref: '#/components/schemas/Extension'
+      $ref: './Extension.yaml'
     minItems: 1
     maxItems: 16
     description: 'Number of Extension elements.'
