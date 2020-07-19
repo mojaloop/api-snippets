@@ -21,7 +21,7 @@ components:
 paths:
   /health:
     get:
-      summary: This file is for demonstration purposes.
+      summary: This path is for demonstration purposes.
       description: A valid OpenApi3 specification requires `paths` to be defined.
       responses:
         202:
