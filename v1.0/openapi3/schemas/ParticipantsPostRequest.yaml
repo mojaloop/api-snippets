@@ -10,7 +10,9 @@ properties:
       $ref: './PartyIdInfo.yaml'
     minItems: 1
     maxItems: 10000
-    description: 'List of PartyIdInfo elements that the client would like to update or create FSP information about.'
+    description: |
+      List of PartyIdInfo elements that the client would like to update
+      or create FSP information about.
   currency:
     $ref: './Currency.yaml'
 required:

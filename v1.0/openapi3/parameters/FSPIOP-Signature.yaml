@@ -3,4 +3,6 @@ in: header
 schema:
   type: string
 required: false
-description: 'The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.'
+description: |
+  The `FSPIOP-Signature` header field is a non-HTTP standard field used by the
+  API for applying an end-to-end request signature.

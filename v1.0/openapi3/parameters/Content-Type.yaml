@@ -3,4 +3,6 @@ in: header
 schema:
   type: string
 required: true
-description: 'The `Content-Type` header indicates the specific version of the API used to send the payload body.'
+description: |
+  The `Content-Type` header indicates the specific version of the API used
+  to send the payload body.

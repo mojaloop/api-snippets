@@ -1,6 +1,10 @@
 title: Transaction
 type: object
-description: 'Data model for the complex type Transaction. The Transaction type is used to carry end-to-end data between the Payer FSP and the Payee FSP in the ILP Packet. Both the transactionId and the quoteId in the data model are decided by the Payer FSP in the POST /quotes request.'
+description: |
+  Data model for the complex type Transaction. The Transaction type is used to
+  carry end-to-end data between the Payer FSP and the Payee FSP in the ILP
+  Packet. Both the transactionId and the quoteId in the data model are decided
+  by the Payer FSP in the POST /quotes request.
 properties:
   transactionId:
     $ref: './CorrelationId.yaml'
