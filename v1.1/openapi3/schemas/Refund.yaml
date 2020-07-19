@@ -1,0 +1,10 @@
+title: Refund
+type: object
+description: 'Data model for the complex type Refund.'
+properties:
+  originalTransactionId:
+    $ref: './CorrelationId.yaml'
+  refundReason:
+    $ref: './RefundReason.yaml'
+required:
+  - originalTransactionId

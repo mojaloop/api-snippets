@@ -1,0 +1,6 @@
+title: TokenCode
+type: string
+pattern: '^[0-9a-zA-Z]{4,32}$'
+description: |
+  The API data type TokenCode is a JSON String between 4 and 32 characters,
+  consisting of digits or upper- or lowercase characters from a to z.

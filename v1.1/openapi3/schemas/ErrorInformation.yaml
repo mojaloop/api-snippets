@@ -1,0 +1,13 @@
+title: ErrorInformation
+type: object
+description: 'Data model for the complex type ErrorInformation.'
+properties:
+  errorCode:
+    $ref: './ErrorCode.yaml'
+  errorDescription:
+    $ref: './ErrorDescription.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - errorCode
+  - errorDescription

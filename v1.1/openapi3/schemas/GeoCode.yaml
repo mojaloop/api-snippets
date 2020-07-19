@@ -1,0 +1,13 @@
+title: GeoCode
+type: object
+description: |
+  Data model for the complex type GeoCode.
+  Indicates the geographic location from where the transaction was initiated.
+properties:
+  latitude:
+    $ref: './Latitude.yaml'
+  longitude:
+    $ref: './Longitude.yaml'
+required:
+  - latitude
+  - longitude

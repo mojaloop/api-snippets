@@ -1,0 +1,14 @@
+title: ParticipantsTypeIDSubIDPostRequest
+type: object
+description: |
+  The object sent in the POST /participants/{Type}/{ID}/{SubId} and
+  /participants/{Type}/{ID} requests.
+properties:
+  fspId:
+    $ref: './FspId.yaml'
+  currency:
+    $ref: './Currency.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - fspId

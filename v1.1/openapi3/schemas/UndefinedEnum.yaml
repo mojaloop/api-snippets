@@ -1,0 +1,6 @@
+title: UndefinedEnum
+type: string
+pattern: '^[A-Z_]{1,32}$'
+description: |
+  The API data type UndefinedEnum is a JSON String consisting of 1 to 32
+  uppercase characters including an underscore character (_).

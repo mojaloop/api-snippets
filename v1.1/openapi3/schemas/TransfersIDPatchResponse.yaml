@@ -1,0 +1,13 @@
+title: TransfersIDPatchResponse
+type: object
+description: 'PATCH /transfers/{ID} object'
+properties:
+  completedTimestamp:
+    $ref: './DateTime.yaml'
+  transferState:
+    $ref: './TransferState.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - completedTimestamp
+  - transferState

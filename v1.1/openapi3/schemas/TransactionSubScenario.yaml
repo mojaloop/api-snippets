@@ -1,0 +1,5 @@
+title: TransactionSubScenario
+type: string
+pattern: '^[A-Z_]{1,32}$'
+description: 'Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).'
+example: 'LOCALLY_DEFINED_SUBSCENARIO'

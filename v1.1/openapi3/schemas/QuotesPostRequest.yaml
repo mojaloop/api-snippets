@@ -1,0 +1,38 @@
+title: QuotesPostRequest
+type: object
+description: 'The object sent in the POST /quotes request.'
+properties:
+  quoteId:
+    $ref: './CorrelationId.yaml'
+  transactionId:
+    $ref: './CorrelationId.yaml'
+  transactionRequestId:
+    $ref: './CorrelationId.yaml'
+  payee:
+    $ref: './Party.yaml'
+  payer:
+    $ref: './Party.yaml'
+  amountType:
+    $ref: './AmountType.yaml'
+  amount:
+    $ref: './Money.yaml'
+  fees:
+    $ref: './Money.yaml'
+  transactionType:
+    $ref: './TransactionType.yaml'
+  geoCode:
+    $ref: './GeoCode.yaml'
+  note:
+    $ref: './Note.yaml'
+  expiration:
+    $ref: './DateTime.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - quoteId
+  - transactionId
+  - payee
+  - payer
+  - amountType
+  - amount
+  - transactionType

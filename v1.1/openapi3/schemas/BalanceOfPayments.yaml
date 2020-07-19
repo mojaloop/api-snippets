@@ -1,0 +1,8 @@
+title: BalanceOfPayments
+type: string
+pattern: '^[1-9]\d{2}$'
+description: |
+  (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/)
+  is a JSON String of 3 characters, consisting of digits only.
+  Negative numbers are not allowed. A leading zero is not allowed.
+example: 123

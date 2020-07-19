@@ -1,0 +1,14 @@
+title: IndividualTransferResult
+type: object
+description: 'Data model for the complex type IndividualTransferResult.'
+properties:
+  transferId:
+    $ref: './CorrelationId.yaml'
+  fulfilment:
+    $ref: './IlpFulfilment.yaml'
+  errorInformation:
+    $ref: './ErrorInformation.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - transferId

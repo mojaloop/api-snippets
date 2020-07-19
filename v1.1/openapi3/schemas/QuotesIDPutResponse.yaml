@@ -1,0 +1,27 @@
+title: QuotesIDPutResponse
+type: object
+description: 'The object sent in the PUT /quotes/{ID} callback.'
+properties:
+  transferAmount:
+    $ref: './Money.yaml'
+  payeeReceiveAmount:
+    $ref: './Money.yaml'
+  payeeFspFee:
+    $ref: './Money.yaml'
+  payeeFspCommission:
+    $ref: './Money.yaml'
+  expiration:
+    $ref: './DateTime.yaml'
+  geoCode:
+    $ref: './GeoCode.yaml'
+  ilpPacket:
+    $ref: './IlpPacket.yaml'
+  condition:
+    $ref: './IlpCondition.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - transferAmount
+  - expiration
+  - ilpPacket
+  - condition

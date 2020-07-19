@@ -1,0 +1,172 @@
+Amount:
+  $ref: ./Amount.yaml
+AmountType:
+  $ref: ./AmountType.yaml
+AuthenticationInfo:
+  $ref: ./AuthenticationInfo.yaml
+AuthenticationType:
+  $ref: ./AuthenticationType.yaml
+AuthenticationValue:
+  $ref: ./AuthenticationValue.yaml
+AuthorizationResponse:
+  $ref: ./AuthorizationResponse.yaml
+AuthorizationsIDPutResponse:
+  $ref: ./AuthorizationsIDPutResponse.yaml
+BalanceOfPayments:
+  $ref: ./BalanceOfPayments.yaml
+BinaryString:
+  $ref: ./BinaryString.yaml
+BinaryString32:
+  $ref: ./BinaryString32.yaml
+BulkQuotesIDPutResponse:
+  $ref: ./BulkQuotesIDPutResponse.yaml
+BulkQuotesPostRequest:
+  $ref: ./BulkQuotesPostRequest.yaml
+BulkTransfersIDPutResponse:
+  $ref: ./BulkTransfersIDPutResponse.yaml
+BulkTransfersPostRequest:
+  $ref: ./BulkTransfersPostRequest.yaml
+BulkTransferState:
+  $ref: ./BulkTransferState.yaml
+Code:
+  $ref: ./Code.yaml
+CorrelationId:
+  $ref: ./CorrelationId.yaml
+Currency:
+  $ref: ./Currency.yaml
+Date:
+  $ref: ./Date.yaml
+DateOfBirth:
+  $ref: ./DateOfBirth.yaml
+DateTime:
+  $ref: ./DateTime.yaml
+ErrorCode:
+  $ref: ./ErrorCode.yaml
+ErrorDescription:
+  $ref: ./ErrorDescription.yaml
+ErrorInformation:
+  $ref: ./ErrorInformation.yaml
+ErrorInformationObject:
+  $ref: ./ErrorInformationObject.yaml
+ErrorInformationResponse:
+  $ref: ./ErrorInformationResponse.yaml
+Extension:
+  $ref: ./Extension.yaml
+ExtensionKey:
+  $ref: ./ExtensionKey.yaml
+ExtensionList:
+  $ref: ./ExtensionList.yaml
+ExtensionValue:
+  $ref: ./ExtensionValue.yaml
+FirstName:
+  $ref: ./FirstName.yaml
+FspId:
+  $ref: ./FspId.yaml
+GeoCode:
+  $ref: ./GeoCode.yaml
+IlpCondition:
+  $ref: ./IlpCondition.yaml
+IlpFulfilment:
+  $ref: ./IlpFulfilment.yaml
+IlpPacket:
+  $ref: ./IlpPacket.yaml
+IndividualQuote:
+  $ref: ./IndividualQuote.yaml
+IndividualQuoteResult:
+  $ref: ./IndividualQuoteResult.yaml
+IndividualTransfer:
+  $ref: ./IndividualTransfer.yaml
+IndividualTransferResult:
+  $ref: ./IndividualTransferResult.yaml
+Integer:
+  $ref: ./Integer.yaml
+LastName:
+  $ref: ./LastName.yaml
+Latitude:
+  $ref: ./Latitude.yaml
+Longitude:
+  $ref: ./Longitude.yaml
+MerchantClassificationCode:
+  $ref: ./MerchantClassificationCode.yaml
+MiddleName:
+  $ref: ./MiddleName.yaml
+Money:
+  $ref: ./Money.yaml
+Name:
+  $ref: ./Name.yaml
+Note:
+  $ref: ./Note.yaml
+OtpValue:
+  $ref: ./OtpValue.yaml
+ParticipantsIDPutResponse:
+  $ref: ./ParticipantsIDPutResponse.yaml
+ParticipantsPostRequest:
+  $ref: ./ParticipantsPostRequest.yaml
+ParticipantsTypeIDPutResponse:
+  $ref: ./ParticipantsTypeIDPutResponse.yaml
+ParticipantsTypeIDSubIDPostRequest:
+  $ref: ./ParticipantsTypeIDSubIDPostRequest.yaml
+PartiesTypeIDPutResponse:
+  $ref: ./PartiesTypeIDPutResponse.yaml
+Party:
+  $ref: ./Party.yaml
+PartyComplexName:
+  $ref: ./PartyComplexName.yaml
+PartyIdentifier:
+  $ref: ./PartyIdentifier.yaml
+PartyIdInfo:
+  $ref: ./PartyIdInfo.yaml
+PartyIdType:
+  $ref: ./PartyIdType.yaml
+PartyName:
+  $ref: ./PartyName.yaml
+PartyPersonalInfo:
+  $ref: ./PartyPersonalInfo.yaml
+PartyResult:
+  $ref: ./PartyResult.yaml
+PartySubIdOrType:
+  $ref: ./PartySubIdOrType.yaml
+PersonalIdentifierType:
+  $ref: ./PersonalIdentifierType.yaml
+QRCODE:
+  $ref: ./QRCODE.yaml
+QuotesIDPutResponse:
+  $ref: ./QuotesIDPutResponse.yaml
+QuotesPostRequest:
+  $ref: ./QuotesPostRequest.yaml
+Refund:
+  $ref: ./Refund.yaml
+RefundReason:
+  $ref: ./RefundReason.yaml
+TokenCode:
+  $ref: ./TokenCode.yaml
+Transaction:
+  $ref: ./Transaction.yaml
+TransactionInitiator:
+  $ref: ./TransactionInitiator.yaml
+TransactionInitiatorType:
+  $ref: ./TransactionInitiatorType.yaml
+TransactionRequestsIDPutResponse:
+  $ref: ./TransactionRequestsIDPutResponse.yaml
+TransactionRequestsPostRequest:
+  $ref: ./TransactionRequestsPostRequest.yaml
+TransactionRequestState:
+  $ref: ./TransactionRequestState.yaml
+TransactionScenario:
+  $ref: ./TransactionScenario.yaml
+TransactionsIDPutResponse:
+  $ref: ./TransactionsIDPutResponse.yaml
+TransactionState:
+  $ref: ./TransactionState.yaml
+TransactionSubScenario:
+  $ref: ./TransactionSubScenario.yaml
+TransactionType:
+  $ref: ./TransactionType.yaml
+TransfersIDPutResponse:
+  $ref: ./TransfersIDPutResponse.yaml
+TransfersPostRequest:
+  $ref: ./TransfersPostRequest.yaml
+TransferState:
+  $ref: ./TransferState.yaml
+UndefinedEnum:
+  $ref: ./UndefinedEnum.yaml
