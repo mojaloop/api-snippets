@@ -1,5 +1,8 @@
 title: Currency
-description: 'The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.'
+description: |
+  The currency codes defined in
+  [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
+  as three-letter alphabetic codes are used as the standard naming representation for currencies.
 type: string
 minLength: 3
 maxLength: 3
