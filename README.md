@@ -57,3 +57,5 @@ TODO: Add more detailed instructions for this workflow.
 
 1) Are paths in the Mojaloop Specification considered "snippets"? Are they re-used widely across services?
 2) Do we need to support both Swagger 2.0 and Open Api 3?
+3) Does it make sense to have a common folder between versions for specification snippets that never change
+   to cut down on files?
