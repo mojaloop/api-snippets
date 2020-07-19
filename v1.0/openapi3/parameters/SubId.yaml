@@ -5,4 +5,4 @@ schema:
   type: string
 description: |
   A sub-identifier of the party identifier, or a sub-type of the party
-  identifier''s type. For example, `PASSPORT`, `DRIVING_LICENSE`.
+  identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`.
