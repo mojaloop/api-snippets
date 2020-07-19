@@ -37,6 +37,12 @@ Validate the result file.
 ## Quick Demonstration
 ![demonstration](./docs/demonstration.gif "Demonstration")
 
+## Swagger-UI
+
+The snippets specification is previewable using swagger-ui. Swagger-UI files
+are found in `docs/dist/`. Github pages uses the master branch `docs/` folder
+to build the page found at https://docs.mojaloop.io/api-snippets/
+
 ## Questions
 
 1) Are paths in the Mojaloop Specification considered "snippets"? Are they re-used widely across services?
