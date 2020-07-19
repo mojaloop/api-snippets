@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Mojaloop API specification reusable snippets",
   "scripts": {
-    "test": "swagger-cli bundle -t yaml -o test/resolved.yaml test/index.yaml && swagger-cli validate test/resolved.yaml",
-    "buildv1.0": "swagger-cli bundle -t yaml -o dist/openapi.yaml v1.0/openapi3/index.yaml && swagger-cli validate dist/openapi.yaml",
+    "buildv1.0": "swagger-cli bundle -t  yaml -o docs/fspiop-rest-v1.0-openapi3-snippets.yaml v1.0/openapi3/index.yaml && swagger-cli validate docs/fspiop-rest-v1.0-openapi3-snippets.yaml",
     "audit:resolve": "SHELL=sh resolve-audit --production",
     "audit:check": "SHELL=sh check-audit --production"
   },
