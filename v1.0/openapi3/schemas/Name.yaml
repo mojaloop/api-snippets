@@ -8,6 +8,7 @@ description: |
   Name type is \"^(?!\\s*$)[\\w .,'-]{1,128}$\". The restriction does not
   allow a string consisting of whitespace only, all Unicode characters are
   allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,)
-  and space characters ( ).**Note:** In some programming languages,
+  and space characters ( ).
+  **Note:** In some programming languages,
   Unicode support must be specifically enabled. For example, if Java is used,
   the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.

@@ -16,7 +16,8 @@ description: |
   The MSISDN identifier should be in international format according to the
   [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
   Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
-  international prefix.- EMAIL - An email is used as reference to a
+  international prefix.
+  - EMAIL - An email is used as reference to a
   participant. The format of the email should be according to the informational
   [RFC 3696](https://tools.ietf.org/html/rfc3696).
   - PERSONAL_ID - A personal identifier is used as reference to a participant.
