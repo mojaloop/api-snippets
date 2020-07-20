@@ -5,8 +5,8 @@ enum:
   - REJECTED
   - RESEND
 description: |
-  Below are the allowed values for the enumeration.\n
-  - ENTERED - Consumer entered the authentication value.\n\n
-  - REJECTED - Consumer rejected the transaction.\n\n
+  Below are the allowed values for the enumeration.
+  - ENTERED - Consumer entered the authentication value.
+  - REJECTED - Consumer rejected the transaction.
   - RESEND - Consumer requested to resend the authentication value.
 example: ENTERED
