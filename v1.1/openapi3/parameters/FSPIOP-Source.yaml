@@ -1,0 +1,11 @@
+name: FSPIOP-Source
+in: header
+schema:
+  type: string
+required: true
+description: |
+  The `FSPIOP-Source` header field is a non-HTTP standard field
+  used by the API for identifying the sender of the HTTP request.
+  The field should be set by the original sender of the request.
+  Required for routing and signature verification
+  (see header field `FSPIOP-Signature`).

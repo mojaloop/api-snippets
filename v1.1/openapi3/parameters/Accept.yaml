@@ -1,0 +1,8 @@
+name: Accept
+in: header
+required: true
+schema:
+  type: string
+description: |
+  The `Accept` header field indicates the version of the API the client
+  would like the server to use.

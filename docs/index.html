@@ -39,7 +39,10 @@
     window.onload = function() {
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
-        url: "fspiop-rest-v1.0-openapi3-snippets.yaml",
+        urls: [
+          {url: "fspiop-rest-v1.0-openapi3-snippets.yaml", name: "v1.0"},
+          {url: "fspiop-rest-v1.1-openapi3-snippets.yaml", name: "v1.1"},
+        ],
         dom_id: '#swagger-ui',
         deepLinking: true,
         presets: [

@@ -1,0 +1,14 @@
+title: TransfersIDPutResponse
+type: object
+description: 'The object sent in the PUT /transfers/{ID} callback.'
+properties:
+  fulfilment:
+    $ref: './IlpFulfilment.yaml'
+  completedTimestamp:
+    $ref: './DateTime.yaml'
+  transferState:
+    $ref: './TransferState.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - transferState

@@ -1,0 +1,6 @@
+name: Date
+in: header
+schema:
+  type: string
+required: true
+description: 'The `Date` header field indicates the date when the request was sent.'

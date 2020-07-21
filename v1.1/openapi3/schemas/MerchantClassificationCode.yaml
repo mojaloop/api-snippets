@@ -1,0 +1,8 @@
+title: MerchantClassificationCode
+type: string
+pattern: '^[\d]{1,4}$'
+description: |
+  A limited set of pre-defined numbers. This list would be a limited set of
+  numbers identifying a set of popular merchant types like School Fees,
+  Pubs and Restaurants, Groceries, etc.
+example: 4321

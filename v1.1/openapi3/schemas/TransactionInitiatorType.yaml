@@ -1,0 +1,14 @@
+title: TransactionInitiatorType
+type: string
+enum:
+  - CONSUMER
+  - AGENT
+  - BUSINESS
+  - DEVICE
+description: |
+  Below are the allowed values for the enumeration.
+  - CONSUMER - Consumer is the initiator of the transaction.
+  - AGENT - Agent is the initiator of the transaction.
+  - BUSINESS - Business is the initiator of the transaction.
+  - DEVICE - Device is the initiator of the transaction.
+example: CONSUMER

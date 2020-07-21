@@ -1,0 +1,5 @@
+title: Code
+type: string
+pattern: '^[0-9a-zA-Z]{4,32}$'
+description: 'Any code/token returned by the Payee FSP (TokenCode Type).'
+example: Test-Code

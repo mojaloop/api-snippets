@@ -1,0 +1,20 @@
+title: ParticipantsPostRequest
+type: object
+description: 'The object sent in the POST /participants request.'
+properties:
+  requestId:
+    $ref: './CorrelationId.yaml'
+  partyList:
+    type: array
+    items:
+      $ref: './PartyIdInfo.yaml'
+    minItems: 1
+    maxItems: 10000
+    description: |
+      List of PartyIdInfo elements that the client would like to update
+      or create FSP information about.
+  currency:
+    $ref: './Currency.yaml'
+required:
+  - requestId
+  - partyList

@@ -1,0 +1,19 @@
+title: IndividualTransfer
+type: object
+description: 'Data model for the complex type IndividualTransfer.'
+properties:
+  transferId:
+    $ref: './CorrelationId.yaml'
+  transferAmount:
+    $ref: './Money.yaml'
+  ilpPacket:
+    $ref: './IlpPacket.yaml'
+  condition:
+    $ref: './IlpCondition.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - transferId
+  - transferAmount
+  - ilpPacket
+  - condition
