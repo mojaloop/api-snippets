@@ -1,0 +1,6 @@
+title: PartyName
+type: string
+minLength: 1
+maxLength: 128
+description: 'Name of the Party. Could be a real name or a nickname.'
+example: 'Henrik Karlsson'

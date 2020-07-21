@@ -1,0 +1,12 @@
+title: TransactionRequestsIDPutResponse
+type: object
+description: 'The object sent in the PUT /transactionRequests/{ID} callback.'
+properties:
+  transactionId:
+    $ref: './CorrelationId.yaml'
+  transactionRequestState:
+    $ref: './TransactionRequestState.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - transactionRequestState

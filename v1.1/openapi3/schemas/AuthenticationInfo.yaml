@@ -1,0 +1,11 @@
+title: AuthenticationInfo
+type: object
+description: 'Data model for the complex type AuthenticationInfo.'
+properties:
+  authentication:
+    $ref: './AuthenticationType.yaml'
+  authenticationValue:
+    $ref: './AuthenticationValue.yaml'
+required:
+  - authentication
+  - authenticationValue

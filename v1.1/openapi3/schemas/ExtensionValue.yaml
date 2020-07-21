@@ -1,0 +1,5 @@
+title: ExtensionValue
+type: string
+minLength: 1
+maxLength: 128
+description: 'Extension value.'

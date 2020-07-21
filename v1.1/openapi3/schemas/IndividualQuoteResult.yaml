@@ -1,0 +1,26 @@
+title: IndividualQuoteResult
+type: object
+description: 'Data model for the complex type IndividualQuoteResult.'
+properties:
+  quoteId:
+    $ref: './CorrelationId.yaml'
+  payee:
+    $ref: './Party.yaml'
+  transferAmount:
+    $ref: './Money.yaml'
+  payeeReceiveAmount:
+    $ref: './Money.yaml'
+  payeeFspFee:
+    $ref: './Money.yaml'
+  payeeFspCommission:
+    $ref: './Money.yaml'
+  ilpPacket:
+    $ref: './IlpPacket.yaml'
+  condition:
+    $ref: './IlpCondition.yaml'
+  errorInformation:
+    $ref: './ErrorInformation.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - quoteId

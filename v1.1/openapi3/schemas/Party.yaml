@@ -1,0 +1,14 @@
+title: Party
+type: object
+description: 'Data model for the complex type Party.'
+properties:
+  partyIdInfo:
+    $ref: './PartyIdInfo.yaml'
+  merchantClassificationCode:
+    $ref: './MerchantClassificationCode.yaml'
+  name:
+    $ref: './PartyName.yaml'
+  personalInfo:
+    $ref: './PartyPersonalInfo.yaml'
+required:
+  - partyIdInfo

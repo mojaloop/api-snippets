@@ -1,0 +1,6 @@
+title: PartyIdentifier
+type: string
+minLength: 1
+maxLength: 128
+description: 'Identifier of the Party.'
+example: 16135551212

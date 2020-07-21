@@ -1,0 +1,6 @@
+name: ID
+in: path
+required: true
+schema:
+  type: string
+description: 'The identifier value.'
