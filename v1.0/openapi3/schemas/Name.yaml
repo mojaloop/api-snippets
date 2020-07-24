@@ -1,6 +1,6 @@
 title: Name
 type: string
-pattern: '^(?!\s*$)[\p{L}\p{Nd} .,''-]{1,128}$'
+pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
 description: |
   The API data type Name is a JSON String, restricted by a regular expression
   to avoid characters which are generally not used in a name.
