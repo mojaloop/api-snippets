@@ -2,7 +2,10 @@ openapi: 3.0.2
 info:
   version: '1.0'
   title: Open API for FSP Interoperability (FSPIOP) (Implementation Friendly Version) Snippets
-  description: 'Based on [API Definition version 1.0](https://github.com/mojaloop/mojaloop-specification/blob/develop/API%20Definition%20v1.0.pdf).**Note:** The API supports a maximum size of 65536 bytes (64 Kilobytes) in the HTTP header.'
+  description: |
+    Based on [API Definition version 1.0]
+    (https://github.com/mojaloop/mojaloop-specification/blob/develop/API%20Definition%20v1.0.pdf).
+    **Note:** The API supports a maximum size of 65536 bytes (64 Kilobytes) in the HTTP header.
   license:
     name: TBD
     url: Yet to be confirmed
@@ -550,7 +553,7 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      pattern: '^(?!\s*$)[\p{L}\p{Nd} .,''-]{1,128}$'
+      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: First name of the Party (Name Type).
       example: Henrik
     FspId:
@@ -701,7 +704,7 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      pattern: '^(?!\s*$)[\p{L}\p{Nd} .,''-]{1,128}$'
+      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: Last name of the Party (Name Type).
       example: Karlsson
     Latitude:
@@ -734,7 +737,7 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      pattern: '^(?!\s*$)[\p{L}\p{Nd} .,''-]{1,128}$'
+      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: Middle name of the Party (Name Type).
       example: Johannes
     Money:
@@ -752,7 +755,7 @@ components:
     Name:
       title: Name
       type: string
-      pattern: '^(?!\s*$)[\p{L}\p{Nd} .,''-]{1,128}$'
+      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: |
         The API data type Name is a JSON String, restricted by a regular expression
         to avoid characters which are generally not used in a name.
@@ -760,7 +763,8 @@ components:
         Name type is \"^(?!\\s*$)[\\w .,'-]{1,128}$\". The restriction does not
         allow a string consisting of whitespace only, all Unicode characters are
         allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,)
-        and space characters ( ).**Note:** In some programming languages,
+        and space characters ( ).
+        **Note:** In some programming languages,
         Unicode support must be specifically enabled. For example, if Java is used,
         the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
     Note:
@@ -914,7 +918,8 @@ components:
         The MSISDN identifier should be in international format according to the
         [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
         Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
-        international prefix.- EMAIL - An email is used as reference to a
+        international prefix.
+        - EMAIL - An email is used as reference to a
         participant. The format of the email should be according to the informational
         [RFC 3696](https://tools.ietf.org/html/rfc3696).
         - PERSONAL_ID - A personal identifier is used as reference to a participant.
@@ -1526,7 +1531,11 @@ components:
       required: false
       schema:
         type: integer
-      description: 'The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.**Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).'
+      description: |
+        The `Content-Length` header field indicates the anticipated
+        size of the payload body. Only sent if there is a body.
+        **Note:** The API supports a maximum size of 5242880 bytes
+        (5 Megabytes).
     Content-Type:
       schema:
         type: string
