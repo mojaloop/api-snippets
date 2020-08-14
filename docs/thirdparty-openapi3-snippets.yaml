@@ -1,0 +1,37 @@
+openapi: 3.0.2
+info:
+  version: '0.1'
+  title: Thirdparty Snippets
+  description: |
+    Based on sequence diagrams
+    (https://github.com/mojaloop/pisp/tree/master/docs/out).
+    This is a work in progress.
+  license:
+    name: TBD
+servers:
+  - url: '{protocol}://hostname:<port>/switch/'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+components:
+  schemas:
+    AccountAddress:
+      type: string
+      description: |
+        A long-lived unique account identifier provided by the DFSP this MUST NOT
+        be Bank Account Number or anything that may expose a User's private bank
+        account information.
+      pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
+      minLength: 1
+      maxLength: 1023
+paths:
+  /health:
+    get:
+      summary: This path is for demonstration purposes.
+      description: A valid OpenApi3 specification requires `paths` to be defined.
+      responses:
+        '200':
+          description: OK

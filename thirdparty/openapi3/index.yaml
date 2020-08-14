@@ -1,0 +1,22 @@
+openapi: 3.0.2
+info:
+  $ref: ./info/index.yaml
+servers:
+  - url: '{protocol}://hostname:<port>/switch/'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+components:
+  schemas:
+    $ref: ./schemas/index.yaml
+paths:
+  /health:
+    get:
+      summary: This path is for demonstration purposes.
+      description: A valid OpenApi3 specification requires `paths` to be defined.
+      responses:
+        '200':
+          description: OK
