@@ -1,0 +1,6 @@
+title: AccountId
+type: string
+description: >
+  A long-lived account identifier provided by the DFSP
+  this MUST NOT be Bank Account Number or anything that
+  may expose a User's private bank account information.
