@@ -19,6 +19,7 @@ servers:
 components:
   schemas:
     AccountAddress:
+      title: AccountAddress
       type: string
       description: |
         A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -27,11 +28,6 @@ components:
       pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
       minLength: 1
       maxLength: 1023
-    AccountId:
-      title: AccountId
-      type: string
-      description: |
-        A long-lived account identifier provided by the DFSP this MUST NOT be Bank Account Number or anything that may expose a User's private bank account information.
     ThirdpartyTransactionRequest:
       title: ThirdpartyTransactionRequest
       type: object
@@ -44,7 +40,7 @@ components:
             Common ID between the FSPs for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
         sourceAccountId:
           allOf:
-            - $ref: '#/components/schemas/AccountId'
+            - $ref: '#/components/schemas/AccountAddress'
           description: 'DFSP specific account identifiers, e.g. `dfspa.alice.1234`'
         consentId:
           allOf:
@@ -561,7 +557,7 @@ components:
             Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
         sourceAccountId:
           allOf:
-            - $ref: '#/components/schemas/AccountId'
+            - $ref: '#/components/schemas/AccountAddress'
           description: 'DFSP specific account identifiers, e.g. `dfspa.alice.1234`'
         status:
           type: string
@@ -593,7 +589,7 @@ components:
             Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
         sourceAccountId:
           allOf:
-            - $ref: '#/components/schemas/AccountId'
+            - $ref: '#/components/schemas/AccountAddress'
           description: 'DFSP specific account identifiers, e.g. `dfspa.alice.1234`'
         status:
           type: string

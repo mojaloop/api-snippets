@@ -1,7 +1,5 @@
 AccountAddress:
   $ref: ./AccountAddress.yaml
-AccountId:
-  $ref: ./AccountId.yaml
 ThirdpartyTransactionRequest:
   $ref: ./ThirdpartyTransactionRequest.yaml
 UpdateThirdpartyAuthorizationRequest:

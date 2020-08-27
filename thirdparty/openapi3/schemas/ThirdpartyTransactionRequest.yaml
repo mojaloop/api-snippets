@@ -11,7 +11,7 @@ properties:
       A new ID should be generated for each new transaction request.
   sourceAccountId:
     allOf:
-      - $ref: './AccountId.yaml'
+      - $ref: './AccountAddress.yaml'
     description: DFSP specific account identifiers, e.g. `dfspa.alice.1234`
   consentId:
     allOf:

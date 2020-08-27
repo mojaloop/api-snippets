@@ -1,3 +1,4 @@
+title: AccountAddress
 type: string
 description: |
   A long-lived unique account identifier provided by the DFSP. This MUST NOT
