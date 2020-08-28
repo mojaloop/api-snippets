@@ -1,0 +1,37 @@
+title: Consent
+type: object
+description: Data model for the complex type Consent.
+properties:
+  id:
+    allOf:
+      - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    description: |
+      Common ID between the PISP and FSP for the Consent object
+      decided by the DFSP who creates the Consent
+      This field is REQUIRED for POST /consent.
+  requestId:
+    allOf:
+      - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    description: |
+      The id of the ConsentRequest that was used to initiate the
+      creation of this Consent.
+  participantId:
+    $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
+  initiatorId:
+    allOf:
+      - $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
+    description: PISP identifier who uses this Consent.
+  revokedAt:
+    $ref: './ConsentRevokedAt.yaml'
+  scopes:
+    type: array
+    items:
+      $ref: './Scope.yaml'
+  credential:
+    $ref: './Credential.yaml'
+required:
+  - id
+  - scopes
+  - participantId
+  - initiatorId
+  - credential

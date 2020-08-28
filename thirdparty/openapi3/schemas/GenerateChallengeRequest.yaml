@@ -1,0 +1,10 @@
+title: GenerateChallengeRequest
+type: object
+description: |
+  A credential used to allow a user to prove their identity
+  and access to an account with a DFSP.
+properties:
+  type:
+    $ref: './CredentialTypeEnum.yaml'
+required:
+  - type
