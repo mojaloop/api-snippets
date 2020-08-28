@@ -1,4 +1,4 @@
-title: AuthScopesEnum
+title: AuthScopesType
 type: string
 enum:
   - accounts.getBalance

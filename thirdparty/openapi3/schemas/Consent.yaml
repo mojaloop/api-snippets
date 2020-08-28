@@ -22,7 +22,7 @@ properties:
       - $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
     description: PISP identifier who uses this Consent.
   revokedAt:
-    $ref: './ConsentRevokedAt.yaml'
+    $ref: '../../../v1.0/openapi3/schemas/DateTime.yaml'
   scopes:
     type: array
     items:

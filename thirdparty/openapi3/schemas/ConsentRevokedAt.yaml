@@ -1,5 +1,0 @@
-title: ConsentRevokedAt
-type: string
-description: |
-  The time/date (ISO date string) at which the Consent was revoked,
-  after which it is no longer valid.

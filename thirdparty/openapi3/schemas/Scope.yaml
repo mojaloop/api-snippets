@@ -3,7 +3,7 @@ type: object
 description: Scope + Account Identifier mapping for a Consent.
 properties:
   scope:
-    $ref: './AuthScopesEnum.yaml'
+    $ref: './AuthScopesType.yaml'
   accountId:
     $ref: './AccountAddress.yaml'
 required:

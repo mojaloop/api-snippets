@@ -1,4 +1,4 @@
-title: ConsentStatusEnum
+title: ConsentStatusType
 type: string
 enum:
   - ACTIVE

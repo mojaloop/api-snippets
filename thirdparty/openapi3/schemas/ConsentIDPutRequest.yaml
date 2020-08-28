@@ -1,4 +1,4 @@
-title: UpdateConsentRequest
+title: ConsentIDPutRequest
 type: object
 description: Data model for the complex type Consent.
 properties:
