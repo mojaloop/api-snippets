@@ -1,4 +1,4 @@
-title: VerifyThirdPartyAuthorizationRequest
+title: ThirdpartyAuthorizationIDPostRequest
 type: object
 description: The object sent in the POST /thirdpartyRequests/transactions/{id}/authorizations request.
 properties:

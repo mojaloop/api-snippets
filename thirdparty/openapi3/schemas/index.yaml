@@ -1,8 +1,8 @@
 AccountAddress:
   $ref: ./AccountAddress.yaml
 ThirdpartyTransactionRequest:
-  $ref: ./ThirdpartyTransactionRequest.yaml
-UpdateThirdpartyAuthorizationRequest:
-  $ref: ./UpdateThirdpartyAuthorizationRequest.yaml
-VerifyThirdPartyAuthorizationRequest:
-  $ref: ./VerifyThirdPartyAuthorizationRequest.yaml
+  $ref: ./ThirdpartyTransactionPostRequest.yaml
+ThirdpartyAuthorizationIDPutRequest:
+  $ref: ./ThirdpartyAuthorizationIDPutRequest.yaml
+ThirdpartyAuthorizationIDPostRequest:
+  $ref: ./ThirdpartyAuthorizationIDPostRequest.yaml

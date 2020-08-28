@@ -1,4 +1,4 @@
-title: ThirdpartyTransactionRequest
+title: ThirdpartyTransactionPostRequest
 type: object
 description: The object sent in the POST /thirdpartyRequests/transactions request.
 properties:

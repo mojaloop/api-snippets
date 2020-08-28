@@ -29,7 +29,7 @@ components:
       minLength: 1
       maxLength: 1023
     ThirdpartyTransactionRequest:
-      title: ThirdpartyTransactionRequest
+      title: ThirdpartyTransactionPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/transactions request.
       properties:
@@ -531,8 +531,8 @@ components:
         - amount
         - transactionType
         - expiration
-    UpdateThirdpartyAuthorizationRequest:
-      title: UpdateThirdpartyAuthorizationRequest
+    ThirdpartyAuthorizationIDPutRequest:
+      title: ThirdpartyAuthorizationIDPutRequest
       type: object
       description: 'The object sent in the PUT /thirdpartyRequests/transactions/{id}/authorizations request.'
       properties:
@@ -570,8 +570,8 @@ components:
         - consentId
         - sourceAccountId
         - status
-    VerifyThirdPartyAuthorizationRequest:
-      title: VerifyThirdPartyAuthorizationRequest
+    ThirdpartyAuthorizationIDPostRequest:
+      title: ThirdpartyAuthorizationIDPostRequest
       type: object
       description: 'The object sent in the POST /thirdpartyRequests/transactions/{id}/authorizations request.'
       properties:
@@ -580,7 +580,7 @@ components:
           description: The original Challenge Object as a JSON string
         value:
           allOf:
-            - $ref: '#/components/schemas/UpdateThirdpartyAuthorizationRequest/properties/value/allOf/0'
+            - $ref: '#/components/schemas/ThirdpartyAuthorizationIDPutRequest/properties/value/allOf/0'
           description: Base64 encoded binary string - the signed challenge
         consentId:
           allOf:

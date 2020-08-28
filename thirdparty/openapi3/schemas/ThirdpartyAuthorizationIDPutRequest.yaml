@@ -1,4 +1,4 @@
-title: UpdateThirdpartyAuthorizationRequest
+title: ThirdpartyAuthorizationIDPutRequest
 type: object
 description: The object sent in the PUT /thirdpartyRequests/transactions/{id}/authorizations request.
 properties:
