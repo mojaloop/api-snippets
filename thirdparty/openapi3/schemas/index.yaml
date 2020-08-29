@@ -26,5 +26,5 @@ ThirdpartyAuthorizationIDPutRequest:
   $ref: ./ThirdpartyAuthorizationIDPutRequest.yaml
 ThirdpartyTransactionRequest:
   $ref: ./ThirdpartyTransactionPostRequest.yaml
-UpdateCredentialRequest:
-  $ref: ./UpdateCredentialRequest.yaml
+UpdatedCredential:
+  $ref: ./UpdatedCredential.yaml

@@ -19,7 +19,7 @@ properties:
     items:
       $ref: './Scope.yaml'
   credential:
-    $ref: './UpdateCredentialRequest.yaml'
+    $ref: './UpdatedCredential.yaml'
 required:
   - requestId
   - participantId
