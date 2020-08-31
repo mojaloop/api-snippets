@@ -1,0 +1,11 @@
+title: Scope
+type: object
+description: Scope + Account Identifier mapping for a Consent.
+properties:
+  scope:
+    $ref: './AuthScopesType.yaml'
+  accountId:
+    $ref: './AccountAddress.yaml'
+required:
+  - scope
+  - accountId

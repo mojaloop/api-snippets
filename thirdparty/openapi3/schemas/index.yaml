@@ -1,8 +1,30 @@
 AccountAddress:
   $ref: ./AccountAddress.yaml
-ThirdpartyTransactionRequest:
-  $ref: ./ThirdpartyTransactionPostRequest.yaml
-ThirdpartyAuthorizationIDPutRequest:
-  $ref: ./ThirdpartyAuthorizationIDPutRequest.yaml
+AuthScopesType:
+  $ref: ./AuthScopesType.yaml
+Consent:
+  $ref: ./Consent.yaml
+ConsentGenerateChallengeIDPostRequest:
+  $ref: ./ConsentGenerateChallengeIDPostRequest.yaml
+ConsentIDPutRequest:
+  $ref: ./ConsentIDPutRequest.yaml
+ConsentStatusType:
+  $ref: ./ConsentStatusType.yaml
+Credential:
+  $ref: ./Credential.yaml
+CredentialChallenge:
+  $ref: ./CredentialChallenge.yaml
+CredentialStatusType:
+  $ref: ./CredentialStatusType.yaml
+CredentialType:
+  $ref: ./CredentialType.yaml
+Scope:
+  $ref: ./Scope.yaml
 ThirdpartyAuthorizationIDPostRequest:
   $ref: ./ThirdpartyAuthorizationIDPostRequest.yaml
+ThirdpartyAuthorizationIDPutRequest:
+  $ref: ./ThirdpartyAuthorizationIDPutRequest.yaml
+ThirdpartyTransactionRequest:
+  $ref: ./ThirdpartyTransactionPostRequest.yaml
+UpdatedCredential:
+  $ref: ./UpdatedCredential.yaml

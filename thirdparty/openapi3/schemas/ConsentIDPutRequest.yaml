@@ -1,0 +1,28 @@
+title: ConsentIDPutRequest
+type: object
+description: Data model for the complex type Consent.
+properties:
+  requestId:
+    allOf:
+      - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    description: |
+      The id of the ConsentRequest that was used to initiate the
+      creation of this Consent.
+  participantId:
+    $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
+  initiatorId:
+    allOf:
+      - $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
+    description: PISP identifier who uses this Consent.
+  scopes:
+    type: array
+    items:
+      $ref: './Scope.yaml'
+  credential:
+    $ref: './UpdatedCredential.yaml'
+required:
+  - requestId
+  - participantId
+  - initiatorId
+  - scopes
+  - credential
