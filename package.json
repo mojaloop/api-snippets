@@ -10,6 +10,12 @@
     "audit:check": "SHELL=sh check-audit --production",
     "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "post-commit": "git update-index --again"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mojaloop/api-snippets.git"
@@ -33,7 +39,10 @@
     "json-refs": "^3.0.12"
   },
   "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
     "diff": "^4.0.1",
+    "husky": "^4.2.5",
     "npm-audit-resolver": "2.2.0",
     "standard-version": "^9.0.0",
     "swagger-cli": "^4.0.3"
