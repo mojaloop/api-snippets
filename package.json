@@ -7,7 +7,8 @@
     "build:v1.1": "swagger-cli bundle -t yaml -o docs/fspiop-rest-v1.1-openapi3-snippets.yaml v1.1/openapi3/index.yaml && swagger-cli validate docs/fspiop-rest-v1.1-openapi3-snippets.yaml",
     "build:thirdparty": "swagger-cli bundle -t yaml -o docs/thirdparty-openapi3-snippets.yaml thirdparty/openapi3/index.yaml && swagger-cli validate docs/thirdparty-openapi3-snippets.yaml",
     "audit:resolve": "SHELL=sh resolve-audit --production",
-    "audit:check": "SHELL=sh check-audit --production"
+    "audit:check": "SHELL=sh check-audit --production",
+    "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "diff": "^4.0.1",
     "npm-audit-resolver": "2.2.0",
+    "standard-version": "^9.0.0",
     "swagger-cli": "^4.0.3"
   },
   "publishConfig": {
