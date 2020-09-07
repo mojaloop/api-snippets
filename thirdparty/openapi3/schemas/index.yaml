@@ -1,5 +1,7 @@
 AccountAddress:
   $ref: ./AccountAddress.yaml
+AuthChannelsType:
+  $ref: ./AuthChannelsType.yaml
 AuthScopesType:
   $ref: ./AuthScopesType.yaml
 Consent:
@@ -24,6 +26,8 @@ ThirdpartyAuthorizationIDPostRequest:
   $ref: ./ThirdpartyAuthorizationIDPostRequest.yaml
 ThirdpartyAuthorizationIDPutRequest:
   $ref: ./ThirdpartyAuthorizationIDPutRequest.yaml
+ThirdpartyTransactionIDPutResponse:
+  $ref: ./ThirdpartyTransactionIDPutResponse.yaml
 ThirdpartyTransactionRequest:
   $ref: ./ThirdpartyTransactionPostRequest.yaml
 UpdatedCredential:
