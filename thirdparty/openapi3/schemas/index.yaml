@@ -4,16 +4,20 @@ AccountAddress:
   $ref: ./AccountAddress.yaml
 AccountList:
   $ref: ./AccountList.yaml
-AuthChannelsType:
-  $ref: ./AuthChannelsType.yaml
-AuthScopesType:
-  $ref: ./AuthScopesType.yaml
+AuthorizationChannelType:
+  $ref: ./AuthorizationChannelType.yaml
+AuthorizationResponseType:
+  $ref: ./AuthorizationResponseType.yaml
 Consent:
   $ref: ./Consent.yaml
 ConsentGenerateChallengeIDPostRequest:
   $ref: ./ConsentGenerateChallengeIDPostRequest.yaml
 ConsentIDPutRequest:
   $ref: ./ConsentIDPutRequest.yaml
+ConsentRequestChannelType:
+  $ref: ./ConsentRequestChannelType.yaml
+ConsentScopeType:
+  $ref: ./ConsentScopeType.yaml
 ConsentStatusType:
   $ref: ./ConsentStatusType.yaml
 Credential:
@@ -30,6 +34,8 @@ Party:
   $ref: ./Party.yaml
 Scope:
   $ref: ./Scope.yaml
+ThirdpartyAuthorizationIDPostResponse:
+  $ref: ./ThirdpartyAuthorizationIDPostResponse.yaml
 ThirdpartyAuthorizationIDPostRequest:
   $ref: ./ThirdpartyAuthorizationIDPostRequest.yaml
 ThirdpartyAuthorizationIDPutRequest:

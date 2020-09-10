@@ -1,9 +1,9 @@
-title: AuthChannelsType
+title: ConsentRequestChannelType
 type: string
 enum:
   - WEB
   - OTP
 description: |
   The auth channel being used for the consentRequest.
-  - "WEB" - The Web auth channel
-  - "OTP" - The OTP auth channel
+  - "WEB" - The Web auth channel.
+  - "OTP" - The OTP auth channel.
