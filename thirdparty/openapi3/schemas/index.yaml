@@ -1,5 +1,9 @@
+Account:
+  $ref: ./Account.yaml
 AccountAddress:
   $ref: ./AccountAddress.yaml
+AccountList:
+  $ref: ./AccountList.yaml
 AuthChannelsType:
   $ref: ./AuthChannelsType.yaml
 AuthScopesType:
@@ -20,6 +24,10 @@ CredentialStatusType:
   $ref: ./CredentialStatusType.yaml
 CredentialType:
   $ref: ./CredentialType.yaml
+PartiesTypeIDPutResponse:
+  $ref: ./PartiesTypeIDPutResponse.yaml
+Party:
+  $ref: ./Party.yaml
 Scope:
   $ref: ./Scope.yaml
 ThirdpartyAuthorizationIDPostRequest:
