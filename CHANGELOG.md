@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.4](https://github.com/mojaloop/api-snippets/compare/v11.0.3...v11.0.4) (2020-09-14)
+
+
+### Maintenance
+
+* add account related snippets ([#23](https://github.com/mojaloop/api-snippets/issues/23)) ([a69429a](https://github.com/mojaloop/api-snippets/commit/a69429a2f4c36ee96af7a0aa88dc59c61a4b1f9b))
+
 ### [11.0.3](https://github.com/mojaloop/api-snippets/compare/v11.0.2...v11.0.3) (2020-09-07)
 
 
