@@ -3,7 +3,7 @@ type: object
 description: |
   The object sent in the PUT /parties/{Type}/{ID} callback.
 
-  This is a based on FSPIOP `PartiesTypeIDPutResponse` specification.
+  This is a variant based on FSPIOP `PartiesTypeIDPutResponse` specification.
   Main difference being that it returns a `Party` with the newly added
   `accounts` property.
 properties:

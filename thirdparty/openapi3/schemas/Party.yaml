@@ -3,7 +3,7 @@ type: object
 description: |
   Data model for the complex type Party.
 
-  This is a based on FSPIOP `Party` specification.
+  This is a variant based on FSPIOP `Party` specification.
   Main difference being the newly added `accounts` property.
 properties:
   partyIdInfo:
