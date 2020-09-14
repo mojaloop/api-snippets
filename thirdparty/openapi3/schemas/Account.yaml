@@ -1,0 +1,15 @@
+title: Account
+type: object
+description: Data model for the complex type Account.
+properties:
+  address:
+    $ref: './AccountAddress.yaml'
+  currency:
+    $ref: '../../../v1.0/openapi3/schemas/Currency.yaml'
+  description:
+    $ref: '../../../v1.0/openapi3/schemas/Name.yaml'
+required:
+  # todo: https://github.com/mojaloop/mojaloop-specification/issues/61
+  #       double check that currency is the only required field
+  #       since `Account` was designed for cross-currency functionality.
+  - currency

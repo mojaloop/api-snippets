@@ -1,0 +1,13 @@
+title: AccountList
+type: object
+description: Data model for the complex type AccountList.
+properties:
+  account:
+    type: array
+    items:
+      $ref: './Account.yaml'
+    minItems: 1
+    maxItems: 32
+    description: Accounts associated with the Party.
+required:
+  - account

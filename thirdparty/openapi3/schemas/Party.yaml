@@ -1,0 +1,21 @@
+title: Party
+type: object
+description: |
+  Data model for the complex type Party.
+
+  This is a variant based on FSPIOP `Party` specification.
+  Main difference being the newly added `accounts` property.
+properties:
+  partyIdInfo:
+    $ref: '../../../v1.0/openapi3/schemas/PartyIdInfo.yaml'
+  merchantClassificationCode:
+    $ref: '../../../v1.0/openapi3/schemas/MerchantClassificationCode.yaml'
+  name:
+    $ref: '../../../v1.0/openapi3/schemas/PartyName.yaml'
+  personalInfo:
+    $ref: '../../../v1.0/openapi3/schemas/PartyPersonalInfo.yaml'
+  accounts:
+    $ref: './AccountList.yaml'
+    description: List of accounts associated with the party containing and DFSP routable address, currency identifier and description.
+required:
+  - partyIdInfo
