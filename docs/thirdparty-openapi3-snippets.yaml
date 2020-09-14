@@ -435,7 +435,7 @@ components:
       description: |
         The object sent in the PUT /parties/{Type}/{ID} callback.
 
-        This is a based on FSPIOP `PartiesTypeIDPutResponse` specification.
+        This is a variant based on FSPIOP `PartiesTypeIDPutResponse` specification.
         Main difference being that it returns a `Party` with the newly added
         `accounts` property.
       properties:
@@ -449,7 +449,7 @@ components:
       description: |
         Data model for the complex type Party.
 
-        This is a based on FSPIOP `Party` specification.
+        This is a variant based on FSPIOP `Party` specification.
         Main difference being the newly added `accounts` property.
       properties:
         partyIdInfo:
@@ -671,6 +671,72 @@ components:
         - consentId
         - sourceAccountId
         - status
+    ThirdpartyTransactionIDPatchResponse:
+      title: ThirdpartyTransactionIDPatchResponse
+      type: object
+      description: 'The object sent in the PATCH /thirdpartyRequests/transactions/{ID} callback.'
+      properties:
+        fulfilment:
+          title: IlpFulfilment
+          type: string
+          pattern: '^[A-Za-z0-9-_]{43}$'
+          maxLength: 48
+          description: Fulfilment that must be attached to the transfer by the Payee.
+          example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+        completedTimestamp:
+          $ref: '#/components/schemas/Consent/properties/revokedAt'
+        transferState:
+          title: TransferState
+          type: string
+          enum:
+            - RECEIVED
+            - RESERVED
+            - COMMITTED
+            - ABORTED
+          description: |
+            Below are the allowed values for the enumeration.
+            - RECEIVED - Next ledger has received the transfer.
+            - RESERVED - Next ledger has reserved the transfer.
+            - COMMITTED - Next ledger has successfully performed the transfer.
+            - ABORTED - Next ledger has aborted the transfer due to a rejection or
+            failure to perform the transfer.
+          example: RESERVED
+        extensionList:
+          title: ExtensionList
+          type: object
+          description: |
+            Data model for the complex type ExtensionList.
+            An optional list of extensions, specific to deployment.
+          properties:
+            extension:
+              type: array
+              items:
+                title: Extension
+                type: object
+                description: Data model for the complex type Extension.
+                properties:
+                  key:
+                    title: ExtensionKey
+                    type: string
+                    minLength: 1
+                    maxLength: 32
+                    description: Extension key.
+                  value:
+                    title: ExtensionValue
+                    type: string
+                    minLength: 1
+                    maxLength: 128
+                    description: Extension value.
+                required:
+                  - key
+                  - value
+              minItems: 1
+              maxItems: 16
+              description: Number of Extension elements.
+          required:
+            - extension
+      required:
+        - transferState
     ThirdpartyTransactionIDPutResponse:
       title: ThirdpartyRequestsTransactionIDPutResponse
       type: object
