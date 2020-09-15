@@ -631,16 +631,16 @@ components:
       properties:
         challenge:
           type: string
-          description: A Base64 string.
+          description: Base64 encoded binary string - the original challenge.
         value:
           allOf:
             - $ref: '#/components/schemas/ThirdpartyAuthorizationIDPutRequest/properties/value/allOf/0'
-          description: Base64 encoded binary string - the signed challenge
+          description: Base64 encoded binary string - the signed challenge.
         consentId:
           allOf:
             - $ref: '#/components/schemas/Consent/properties/id/allOf/0'
           description: |
-            Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
+            Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which consent allows the PISP to initiate transaction.
         sourceAccountId:
           allOf:
             - $ref: '#/components/schemas/AccountAddress'
