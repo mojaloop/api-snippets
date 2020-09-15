@@ -34,6 +34,8 @@ ThirdpartyAuthorizationIDPostRequest:
   $ref: ./ThirdpartyAuthorizationIDPostRequest.yaml
 ThirdpartyAuthorizationIDPutRequest:
   $ref: ./ThirdpartyAuthorizationIDPutRequest.yaml
+ThirdpartyTransactionIDPatchResponse:
+  $ref: ./ThirdpartyTransactionIDPatchResponse.yaml
 ThirdpartyTransactionIDPutResponse:
   $ref: ./ThirdpartyTransactionIDPutResponse.yaml
 ThirdpartyTransactionRequest:
