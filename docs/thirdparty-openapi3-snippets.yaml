@@ -631,7 +631,7 @@ components:
       properties:
         challenge:
           type: string
-          description: The original Challenge Object as a JSON string
+          description: A Base64 string.
         value:
           allOf:
             - $ref: '#/components/schemas/ThirdpartyAuthorizationIDPutRequest/properties/value/allOf/0'
