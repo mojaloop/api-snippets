@@ -8,7 +8,7 @@ properties:
   value:
     allOf:
       - $ref: '../../../v1.0/openapi3/schemas/BinaryString.yaml'
-    description: Base64 encoded binary string - the signed challenge
+    description: Base64 encoded binary string - the signed challenge.
   consentId:
     allOf:
       - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'

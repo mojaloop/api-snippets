@@ -663,7 +663,7 @@ components:
       properties:
         challenge:
           type: string
-          description: The original Challenge Object as a JSON string
+          description: Base64 encoded binary string - the original challenge.
         value:
           allOf:
             - $ref: '#/components/schemas/ThirdpartyAuthorizationIDPutRequest/properties/value/allOf/0'
@@ -706,7 +706,7 @@ components:
                 where padding (character ‘=’) is added at the end of the data if
                 needed to ensure that the string is a multiple of 4 characters.
                 The length restriction indicates the allowed number of characters.
-          description: Base64 encoded binary string - the signed challenge
+          description: Base64 encoded binary string - the signed challenge.
         consentId:
           allOf:
             - $ref: '#/components/schemas/Consent/properties/id/allOf/0'
@@ -949,7 +949,7 @@ components:
         to an account with a DFSP.
 
         UpdatedCredential is a special formatting of the credential to allow us to be
-        more explict about the `status` field - it should only ever be PENDING when updating
+        more explicit about the `status` field - it should only ever be PENDING when updating
         a credential.
       properties:
         id:

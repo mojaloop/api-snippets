@@ -4,7 +4,7 @@ description: The object sent in the POST /thirdpartyRequests/transactions/{id}/a
 properties:
   challenge:
     type: string
-    description: The original Challenge Object as a JSON string
+    description: Base64 encoded binary string - the original challenge.
   value:
     allOf:
       - $ref: '../../../v1.0/openapi3/schemas/BinaryString.yaml'
