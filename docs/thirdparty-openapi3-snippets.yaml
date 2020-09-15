@@ -695,7 +695,7 @@ components:
       properties:
         challenge:
           type: string
-          description: The original Challenge Object as a JSON string
+          description: Base64 encoded binary string - the original challenge.
         value:
           allOf:
             - type: string
@@ -711,7 +711,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/Consent/properties/id/allOf/0'
           description: |
-            Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
+            Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which consent allows the PISP to initiate transaction.
         sourceAccountId:
           allOf:
             - $ref: '#/components/schemas/AccountAddress'

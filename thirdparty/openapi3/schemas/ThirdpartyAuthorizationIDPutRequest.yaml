@@ -4,17 +4,17 @@ description: The object sent in the PUT /thirdpartyRequests/transactions/{id}/au
 properties:
   challenge:
     type: string
-    description: The original Challenge Object as a JSON string
+    description: Base64 encoded binary string - the original challenge.
   value:
     allOf:
       - $ref: '../../../v1.0/openapi3/schemas/BinaryString.yaml'
-    description: 'Base64 encoded binary string - the signed challenge'
+    description: Base64 encoded binary string - the signed challenge
   consentId:
     allOf:
       - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
     description: >
       Common ID between the PISP and FSP for the Consent object
-      This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
+      This tells DFSP and auth-service which consent allows the PISP to initiate transaction.
   sourceAccountId:
     allOf:
       - $ref: './AccountAddress.yaml'
