@@ -2,8 +2,6 @@ title: AuthorizationsPostRequest
 description: POST /authorizations request object.
 type: object
 properties:
-  toParticipantId:
-    type: string
   authenticationType:
     $ref: './AuthorizationChannelType.yaml'
   retriesLeft:

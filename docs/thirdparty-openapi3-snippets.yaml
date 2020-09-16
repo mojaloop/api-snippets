@@ -259,8 +259,6 @@ components:
       description: POST /authorizations request object.
       type: object
       properties:
-        toParticipantId:
-          type: string
         authenticationType:
           $ref: '#/components/schemas/AuthorizationChannelType'
         retriesLeft:
