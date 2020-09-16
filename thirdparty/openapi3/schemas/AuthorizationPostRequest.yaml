@@ -1,0 +1,24 @@
+title: AuthorizationsPostRequest
+description: POST /authorizations request object.
+type: object
+properties:
+  authenticationType:
+    $ref: './AuthorizationChannelType.yaml'
+  retriesLeft:
+    $ref: '../../../v1.0/openapi3/schemas/Integer.yaml'
+  amount:
+    $ref: '../../../v1.0/openapi3/schemas/Money.yaml'
+  transactionId:
+    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+  transactionRequestId:
+    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+  quote:
+    $ref: '../../../v1.0/openapi3/schemas/QuotesIDPutResponse.yaml'
+required:
+  - authenticationType
+  - retriesLeft
+  - amount
+  - transactionId
+  - transactionRequestId
+  - quote
+additionalProperties: false
