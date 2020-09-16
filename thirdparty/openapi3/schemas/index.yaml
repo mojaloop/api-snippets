@@ -6,6 +6,8 @@ AccountList:
   $ref: ./AccountList.yaml
 AuthorizationChannelType:
   $ref: ./AuthorizationChannelType.yaml
+AuthorizationPostRequest:
+  $ref: ./AuthorizationPostRequest.yaml
 AuthorizationResponseType:
   $ref: ./AuthorizationResponseType.yaml
 Consent:
