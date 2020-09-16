@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.8](https://github.com/mojaloop/api-snippets/compare/v11.0.7...v11.0.8) (2020-09-16)
+
+
+### Maintenance
+
+* rename files and delete duplicated schema ([#26](https://github.com/mojaloop/api-snippets/issues/26)) ([3f9e2cd](https://github.com/mojaloop/api-snippets/commit/3f9e2cd08125f213079c09fa8472017572d73d54))
+
 ### [11.0.7](https://github.com/mojaloop/api-snippets/compare/v11.0.6...v11.0.7) (2020-09-16)
 
 
