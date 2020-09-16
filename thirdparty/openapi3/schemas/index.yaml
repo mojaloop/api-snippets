@@ -36,12 +36,10 @@ Party:
   $ref: ./Party.yaml
 Scope:
   $ref: ./Scope.yaml
-ThirdpartyAuthorizationIDPostResponse:
-  $ref: ./ThirdpartyAuthorizationIDPostResponse.yaml
 ThirdpartyAuthorizationIDPostRequest:
   $ref: ./ThirdpartyAuthorizationIDPostRequest.yaml
-ThirdpartyAuthorizationIDPutRequest:
-  $ref: ./ThirdpartyAuthorizationIDPutRequest.yaml
+ThirdpartyAuthorizationIDPutResponse:
+  $ref: ./ThirdpartyAuthorizationIDPutResponse.yaml
 ThirdpartyTransactionIDPatchResponse:
   $ref: ./ThirdpartyTransactionIDPatchResponse.yaml
 ThirdpartyTransactionIDPutResponse:

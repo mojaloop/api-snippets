@@ -738,38 +738,6 @@ components:
       required:
         - scope
         - accountId
-    ThirdpartyAuthorizationIDPostResponse:
-      title: ThirdpartyAuthorizationIDPostResponse
-      type: object
-      description: 'The response for POST /thirdpartyRequests/transactions/{id}/authorizations request.'
-      properties:
-        challenge:
-          type: string
-          description: Base64 encoded binary string - the original challenge.
-        value:
-          allOf:
-            - $ref: '#/components/schemas/ThirdpartyAuthorizationIDPutRequest/properties/value/allOf/0'
-          description: Base64 encoded binary string - the signed challenge.
-        consentId:
-          allOf:
-            - $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
-          description: |
-            Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which consent allows the PISP to initiate transaction.
-        sourceAccountId:
-          allOf:
-            - $ref: '#/components/schemas/AccountAddress'
-          description: 'DFSP specific account identifiers, e.g. `dfspa.alice.1234`'
-        status:
-          type: string
-          enum:
-            - VERIFIED
-          description: The status of the authorization.
-      required:
-        - challenge
-        - value
-        - consentId
-        - sourceAccountId
-        - status
     ThirdpartyAuthorizationIDPostRequest:
       title: ThirdpartyAuthorizationIDPostRequest
       type: object
@@ -780,7 +748,14 @@ components:
           description: Base64 encoded binary string - the original challenge.
         value:
           allOf:
-            - $ref: '#/components/schemas/ThirdpartyAuthorizationIDPutRequest/properties/value/allOf/0'
+            - type: string
+              pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+              description: |
+                The API data type BinaryString is a JSON String.
+                The string is a base64url  encoding of a string of raw bytes,
+                where padding (character ‘=’) is added at the end of the data if
+                needed to ensure that the string is a multiple of 4 characters.
+                The length restriction indicates the allowed number of characters.
           description: Base64 encoded binary string - the signed challenge
         consentId:
           allOf:
@@ -802,8 +777,8 @@ components:
         - consentId
         - sourceAccountId
         - status
-    ThirdpartyAuthorizationIDPutRequest:
-      title: ThirdpartyAuthorizationIDPutRequest
+    ThirdpartyAuthorizationIDPutResponse:
+      title: ThirdpartyAuthorizationIDPutResponse
       type: object
       description: 'The object sent in the PUT /thirdpartyRequests/transactions/{id}/authorizations request.'
       properties:
@@ -812,14 +787,7 @@ components:
           description: Base64 encoded binary string - the original challenge.
         value:
           allOf:
-            - type: string
-              pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
-              description: |
-                The API data type BinaryString is a JSON String.
-                The string is a base64url  encoding of a string of raw bytes,
-                where padding (character ‘=’) is added at the end of the data if
-                needed to ensure that the string is a multiple of 4 characters.
-                The length restriction indicates the allowed number of characters.
+            - $ref: '#/components/schemas/ThirdpartyAuthorizationIDPostRequest/properties/value/allOf/0'
           description: Base64 encoded binary string - the signed challenge.
         consentId:
           allOf:
@@ -834,7 +802,7 @@ components:
           type: string
           enum:
             - VERIFIED
-          description: The status of the authorization. This value must be `VERIFIED` for a PUT request
+          description: The status of the authorization. This value must be `VERIFIED` for a PUT request.
       required:
         - challenge
         - value
