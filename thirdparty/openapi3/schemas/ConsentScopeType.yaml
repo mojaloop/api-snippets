@@ -1,4 +1,4 @@
-title: AuthScopesType
+title: ConsentScopeType
 type: string
 enum:
   - accounts.getBalance

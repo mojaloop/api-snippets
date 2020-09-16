@@ -1,0 +1,10 @@
+title: AuthorizationResponseType
+description: |
+    Enum containing response information; if the customer entered the
+    authentication value, rejected the transaction, or requested a
+    resend of the authentication value.
+type: string
+enum:
+  - ENTERED
+  - REJECTED
+  - RESEND

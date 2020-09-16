@@ -1,6 +1,6 @@
-title: ThirdpartyAuthorizationIDPutRequest
+title: ThirdpartyAuthorizationIDPostResponse
 type: object
-description: The object sent in the PUT /thirdpartyRequests/transactions/{id}/authorizations request.
+description: The response for POST /thirdpartyRequests/transactions/{id}/authorizations request.
 properties:
   challenge:
     type: string
@@ -23,7 +23,7 @@ properties:
     type: string
     enum:
       - VERIFIED
-    description: The status of the authorization. This value must be `VERIFIED` for a PUT request
+    description: The status of the authorization.
 required:
   - challenge
   - value
