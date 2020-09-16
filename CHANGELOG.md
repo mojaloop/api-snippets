@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.7](https://github.com/mojaloop/api-snippets/compare/v11.0.6...v11.0.7) (2020-09-16)
+
+
+### Maintenance
+
+* add post authorization snippet ([#25](https://github.com/mojaloop/api-snippets/issues/25)) ([17d7797](https://github.com/mojaloop/api-snippets/commit/17d779775ca8641b308c04cadb973df1e7328713))
+
 ### [11.0.6](https://github.com/mojaloop/api-snippets/compare/v11.0.5...v11.0.6) (2020-09-16)
 
 
