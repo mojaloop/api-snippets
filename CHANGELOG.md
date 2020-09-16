@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.6](https://github.com/mojaloop/api-snippets/compare/v11.0.5...v11.0.6) (2020-09-16)
+
+
+### Maintenance
+
+* add tp scheme adapter snippets. clarify auth wording ([#22](https://github.com/mojaloop/api-snippets/issues/22)) ([2ca0bc4](https://github.com/mojaloop/api-snippets/commit/2ca0bc46a2f1c9ea2d355fd072f103bff2ca7fdd))
+
 ### [11.0.5](https://github.com/mojaloop/api-snippets/compare/v11.0.4...v11.0.5) (2020-09-15)
 
 
