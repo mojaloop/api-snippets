@@ -1,4 +1,4 @@
-title: ConsentPostRequest
+title: Consent
 type: object
 description: The object sent in a `POST /consents` request.
 properties:
@@ -29,8 +29,10 @@ properties:
       $ref: './Scope.yaml'
   credential:
     $ref: './Credential.yaml'
+    nullable: true
 required:
   - id
   - scopes
   - participantId
   - initiatorId
+  - credential
