@@ -1,4 +1,4 @@
-title: Consent
+title: ConsentPostRequest
 type: object
 description: The object sent in a `POST /consents` request.
 properties:
