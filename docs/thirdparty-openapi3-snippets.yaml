@@ -292,18 +292,9 @@ components:
             - currency
             - amount
         transactionId:
-          title: CorrelationId
-          type: string
-          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
-          description: |
-            Identifier that correlates all messages of the same sequence.
-            The API data type UUID (Universally Unique Identifier) is a JSON String
-            in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122),
-            that is restricted by a regular expression for interoperability reasons.
-            A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
         transactionRequestId:
-          $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+          $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
         quote:
           title: QuotesIDPutResponse
           type: object
@@ -393,14 +384,14 @@ components:
       properties:
         id:
           allOf:
-            - $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+            - $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
           description: |
             Common ID between the PISP and FSP for the Consent object
             decided by the DFSP who creates the Consent
             This field is REQUIRED for POST /consent.
         requestId:
           allOf:
-            - $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+            - $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -459,7 +450,7 @@ components:
       properties:
         requestId:
           allOf:
-            - $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+            - $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -491,6 +482,77 @@ components:
         The auth channel being used for the consentRequest.
         - "WEB" - The Web auth channel.
         - "OTP" - The OTP auth channel.
+    ConsentRequestIDPutResponse:
+      title: ConsentRequestIDPutResponse
+      type: object
+      description: 'The object sent in a `PUT /consentRequests/{ID}` request.'
+      properties:
+        id:
+          $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
+        initiatorId:
+          type: string
+          description: The id of the PISP who will initiate transactions on a user's behalf.
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scope'
+        authChannels:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationChannelType'
+        callbackUri:
+          type: string
+          description: The callback uri that the user will be redirected to after completing the WEB auth channel.
+        authUri:
+          type: string
+          description: The callback uri that the pisp app redirects to for user to complete their login.
+        authToken:
+          type: string
+          description: The Auth token from the OTP or redirect to pisp app.
+      required:
+        - id
+        - initiatorId
+        - scopes
+        - authChannels
+        - callbackUri
+        - authUri
+        - authToken
+    ConsentRequestPostRequest:
+      title: ConsentRequestPostRequest
+      type: object
+      description: The object sent in a `POST /consentRequests` request.
+      properties:
+        id:
+          title: CorrelationId
+          type: string
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
+          description: |
+            Identifier that correlates all messages of the same sequence.
+            The API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122),
+            that is restricted by a regular expression for interoperability reasons.
+            A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+        initiatorId:
+          type: string
+          description: The id of the PISP who will initiate transactions on a user's behalf.
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scope'
+        authChannels:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationChannelType'
+        callbackUri:
+          type: string
+          description: The callback uri that the user will be redirected to after completing the WEB auth channel.
+      required:
+        - id
+        - initiatorId
+        - scopes
+        - authChannels
+        - callbackUri
     ConsentScopeType:
       title: ConsentScopeType
       type: string
@@ -759,7 +821,7 @@ components:
           description: Base64 encoded binary string - the signed challenge
         consentId:
           allOf:
-            - $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+            - $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
           description: |
             Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
         sourceAccountId:
@@ -791,7 +853,7 @@ components:
           description: Base64 encoded binary string - the signed challenge.
         consentId:
           allOf:
-            - $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+            - $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
           description: |
             Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which consent allows the PISP to initiate transaction.
         sourceAccountId:
@@ -881,7 +943,7 @@ components:
       description: 'The object sent in the PUT /thirdPartyRequests/transactions/{ID} request.'
       properties:
         transactionId:
-          $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+          $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
           description: |
             Identifies a related transaction (if a transaction has been created).
         transactionRequestState:
@@ -901,7 +963,7 @@ components:
       properties:
         transactionRequestId:
           allOf:
-            - $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+            - $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
           description: |
             Common ID between the FSPs for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
         sourceAccountId:
@@ -910,7 +972,7 @@ components:
           description: 'DFSP specific account identifiers, e.g. `dfspa.alice.1234`'
         consentId:
           allOf:
-            - $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+            - $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
           description: |
             Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
         payee:
@@ -1030,7 +1092,7 @@ components:
                   description: Data model for the complex type Refund.
                   properties:
                     originalTransactionId:
-                      $ref: '#/components/schemas/AuthorizationPostRequest/properties/transactionId'
+                      $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
                     refundReason:
                       title: RefundReason
                       type: string

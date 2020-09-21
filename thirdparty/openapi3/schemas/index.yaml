@@ -18,6 +18,10 @@ ConsentIDPutRequest:
   $ref: ./ConsentIDPutRequest.yaml
 ConsentRequestChannelType:
   $ref: ./ConsentRequestChannelType.yaml
+ConsentRequestIDPutResponse:
+  $ref: ./ConsentRequestIDPutResponse.yaml
+ConsentRequestPostRequest:
+  $ref: ./ConsentRequestPostRequest.yaml
 ConsentScopeType:
   $ref: ./ConsentScopeType.yaml
 ConsentStatusType:

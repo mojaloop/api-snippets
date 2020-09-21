@@ -1,0 +1,28 @@
+title: ConsentRequestPostRequest
+type: object
+description: The object sent in a `POST /consentRequests` request.
+properties:
+  id:
+    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+  initiatorId:
+    type: string
+    description: The id of the PISP who will initiate transactions on a user's behalf.
+  scopes:
+    type: array
+    items:
+      $ref: './Scope.yaml'
+  authChannels:
+    type: array
+    items:
+      $ref: './AuthorizationChannelType.yaml'
+    # TODO: min and max
+  callbackUri:
+    # TODO: enforce uri type
+    type: string
+    description: The callback uri that the user will be redirected to after completing the WEB auth channel.
+required:
+  - id
+  - initiatorId
+  - scopes
+  - authChannels
+  - callbackUri
