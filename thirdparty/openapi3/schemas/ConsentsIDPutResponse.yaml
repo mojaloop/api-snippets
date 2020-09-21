@@ -1,4 +1,4 @@
-title: ConsentIDPutResponse
+title: ConsentsIDPutResponse
 type: object
 description: |
   The HTTP request `PUT /consents/{ID}` is used to update a specified consent object.

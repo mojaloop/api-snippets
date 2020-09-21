@@ -12,18 +12,18 @@ AuthorizationResponseType:
   $ref: ./AuthorizationResponseType.yaml
 ConsentGenerateChallengeIDPostRequest:
   $ref: ./ConsentGenerateChallengeIDPostRequest.yaml
-ConsentIDPutResponse:
-  $ref: ./ConsentIDPutResponse.yaml
-ConsentPostRequest:
-  $ref: ./ConsentPostRequest.yaml
 ConsentRequestChannelType:
   $ref: ./ConsentRequestChannelType.yaml
-ConsentRequestIDPutResponse:
-  $ref: ./ConsentRequestIDPutResponse.yaml
-ConsentRequestPostRequest:
-  $ref: ./ConsentRequestPostRequest.yaml
+ConsentRequestsIDPutResponse:
+  $ref: ./ConsentRequestsIDPutResponse.yaml
+ConsentRequestsPostRequest:
+  $ref: ./ConsentRequestsPostRequest.yaml
 ConsentScopeType:
   $ref: ./ConsentScopeType.yaml
+ConsentsIDPutResponse:
+  $ref: ./ConsentsIDPutResponse.yaml
+ConsentsPostRequest:
+  $ref: ./ConsentsPostRequest.yaml
 ConsentStatusType:
   $ref: ./ConsentStatusType.yaml
 Credential:
