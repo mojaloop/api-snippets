@@ -309,7 +309,7 @@ components:
             payeeFspCommission:
               $ref: '#/components/schemas/AuthorizationPostRequest/properties/amount'
             expiration:
-              $ref: '#/components/schemas/Consent/properties/revokedAt'
+              $ref: '#/components/schemas/ConsentPostRequest/properties/revokedAt'
             geoCode:
               title: GeoCode
               type: object
@@ -377,10 +377,56 @@ components:
         - ENTERED
         - REJECTED
         - RESEND
-    Consent:
-      title: Consent
+    ConsentGenerateChallengeIDPostRequest:
+      title: ConsentGenerateChallengeIDPostRequest
       type: object
-      description: Data model for the complex type Consent.
+      description: |
+        A credential used to allow a user to prove their identity
+        and access to an account with a DFSP.
+      properties:
+        type:
+          $ref: '#/components/schemas/CredentialType'
+      required:
+        - type
+    ConsentIDPutResponse:
+      title: ConsentIDPutResponse
+      type: object
+      description: |
+        The HTTP request `PUT /consents/{ID}` is used to update a specified consent object.
+        The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
+
+        - Called by a `auth-service` to add the credential details
+
+        - Called by a `PISP` to add a signature of the challenge
+      properties:
+        requestId:
+          allOf:
+            - $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
+          description: |
+            The id of the ConsentRequest that was used to initiate the
+            creation of this Consent.
+        participantId:
+          $ref: '#/components/schemas/ConsentPostRequest/properties/participantId'
+        initiatorId:
+          allOf:
+            - $ref: '#/components/schemas/ConsentPostRequest/properties/participantId'
+          description: PISP identifier who uses this Consent.
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scope'
+        credential:
+          $ref: '#/components/schemas/UpdatedCredential'
+      required:
+        - requestId
+        - participantId
+        - initiatorId
+        - scopes
+        - credential
+    ConsentPostRequest:
+      title: ConsentPostRequest
+      type: object
+      description: The object sent in a `POST /consents` request.
       properties:
         id:
           allOf:
@@ -404,7 +450,7 @@ components:
           example: 1234
         initiatorId:
           allOf:
-            - $ref: '#/components/schemas/Consent/properties/participantId'
+            - $ref: '#/components/schemas/ConsentPostRequest/properties/participantId'
           description: PISP identifier who uses this Consent.
         revokedAt:
           title: DateTime
@@ -431,47 +477,6 @@ components:
         - scopes
         - participantId
         - initiatorId
-        - credential
-    ConsentGenerateChallengeIDPostRequest:
-      title: ConsentGenerateChallengeIDPostRequest
-      type: object
-      description: |
-        A credential used to allow a user to prove their identity
-        and access to an account with a DFSP.
-      properties:
-        type:
-          $ref: '#/components/schemas/CredentialType'
-      required:
-        - type
-    ConsentIDPutRequest:
-      title: ConsentIDPutRequest
-      type: object
-      description: Data model for the complex type Consent.
-      properties:
-        requestId:
-          allOf:
-            - $ref: '#/components/schemas/ConsentRequestPostRequest/properties/id'
-          description: |
-            The id of the ConsentRequest that was used to initiate the
-            creation of this Consent.
-        participantId:
-          $ref: '#/components/schemas/Consent/properties/participantId'
-        initiatorId:
-          allOf:
-            - $ref: '#/components/schemas/Consent/properties/participantId'
-          description: PISP identifier who uses this Consent.
-        scopes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Scope'
-        credential:
-          $ref: '#/components/schemas/UpdatedCredential'
-      required:
-        - requestId
-        - participantId
-        - initiatorId
-        - scopes
-        - credential
     ConsentRequestChannelType:
       title: ConsentRequestChannelType
       type: string
@@ -723,7 +728,7 @@ components:
                 PartyIdType, normally a PersonalIdentifierType.
               example: DRIVING_LICENSE
             fspId:
-              $ref: '#/components/schemas/Consent/properties/participantId'
+              $ref: '#/components/schemas/ConsentPostRequest/properties/participantId'
           required:
             - partyIdType
             - partyIdentifier
@@ -884,7 +889,7 @@ components:
           description: Fulfilment that must be attached to the transfer by the Payee.
           example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
         completedTimestamp:
-          $ref: '#/components/schemas/Consent/properties/revokedAt'
+          $ref: '#/components/schemas/ConsentPostRequest/properties/revokedAt'
         transferState:
           title: TransferState
           type: string
