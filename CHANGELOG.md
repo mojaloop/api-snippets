@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.10](https://github.com/mojaloop/api-snippets/compare/v11.0.9...v11.0.10) (2020-09-22)
+
+
+### Maintenance
+
+* rename files to follow path naming better ([#28](https://github.com/mojaloop/api-snippets/issues/28)) ([49232c4](https://github.com/mojaloop/api-snippets/commit/49232c4578e029f64cb7e636c1953919b9a89d32))
+
 ### [11.0.9](https://github.com/mojaloop/api-snippets/compare/v11.0.8...v11.0.9) (2020-09-22)
 
 
