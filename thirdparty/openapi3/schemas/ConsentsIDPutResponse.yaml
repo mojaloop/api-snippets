@@ -1,14 +1,13 @@
-title: Consent
+title: ConsentsIDPutResponse
 type: object
-description: Data model for the complex type Consent.
+description: |
+  The HTTP request `PUT /consents/{ID}` is used to update a specified consent object.
+  The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
+
+  - Called by a `auth-service` to add the credential details
+
+  - Called by a `PISP` to add a signature of the challenge
 properties:
-  id:
-    allOf:
-      - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
-    description: |
-      Common ID between the PISP and FSP for the Consent object
-      decided by the DFSP who creates the Consent
-      This field is REQUIRED for POST /consent.
   requestId:
     allOf:
       - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
@@ -21,17 +20,15 @@ properties:
     allOf:
       - $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
     description: PISP identifier who uses this Consent.
-  revokedAt:
-    $ref: '../../../v1.0/openapi3/schemas/DateTime.yaml'
   scopes:
     type: array
     items:
       $ref: './Scope.yaml'
   credential:
-    $ref: './Credential.yaml'
+    $ref: './UpdatedCredential.yaml'
 required:
-  - id
-  - scopes
+  - requestId
   - participantId
   - initiatorId
+  - scopes
   - credential
