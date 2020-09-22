@@ -6,12 +6,10 @@ AccountList:
   $ref: ./AccountList.yaml
 AuthorizationChannelType:
   $ref: ./AuthorizationChannelType.yaml
-AuthorizationPostRequest:
-  $ref: ./AuthorizationPostRequest.yaml
 AuthorizationResponseType:
   $ref: ./AuthorizationResponseType.yaml
-ConsentGenerateChallengeIDPostRequest:
-  $ref: ./ConsentGenerateChallengeIDPostRequest.yaml
+AuthorizationsPostRequest:
+  $ref: ./AuthorizationsPostRequest.yaml
 ConsentRequestChannelType:
   $ref: ./ConsentRequestChannelType.yaml
 ConsentRequestsIDPutResponse:
@@ -20,6 +18,8 @@ ConsentRequestsPostRequest:
   $ref: ./ConsentRequestsPostRequest.yaml
 ConsentScopeType:
   $ref: ./ConsentScopeType.yaml
+ConsentsIDGenerateChallengePostRequest:
+  $ref: ./ConsentsIDGenerateChallengePostRequest.yaml
 ConsentsIDPutResponse:
   $ref: ./ConsentsIDPutResponse.yaml
 ConsentsPostRequest:
@@ -40,15 +40,15 @@ Party:
   $ref: ./Party.yaml
 Scope:
   $ref: ./Scope.yaml
-ThirdpartyAuthorizationIDPostRequest:
-  $ref: ./ThirdpartyAuthorizationIDPostRequest.yaml
-ThirdpartyAuthorizationIDPutResponse:
-  $ref: ./ThirdpartyAuthorizationIDPutResponse.yaml
-ThirdpartyTransactionIDPatchResponse:
-  $ref: ./ThirdpartyTransactionIDPatchResponse.yaml
-ThirdpartyTransactionIDPutResponse:
-  $ref: ./ThirdpartyTransactionIDPutResponse.yaml
-ThirdpartyTransactionRequest:
-  $ref: ./ThirdpartyTransactionPostRequest.yaml
+ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
+  $ref: ./ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest.yaml
+ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse:
+  $ref: ./ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse.yaml
+ThirdpartyRequestsTransactionsIDPatchResponse:
+  $ref: ./ThirdpartyRequestsTransactionsIDPatchResponse.yaml
+ThirdpartyRequestsTransactionsIDPutResponse:
+  $ref: ./ThirdpartyRequestsTransactionsIDPutResponse.yaml
+ThirdpartyRequestsTransactionsPostRequest:
+  $ref: ./ThirdpartyRequestsTransactionsPostRequest.yaml
 UpdatedCredential:
   $ref: ./UpdatedCredential.yaml
