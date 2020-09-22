@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.9](https://github.com/mojaloop/api-snippets/compare/v11.0.8...v11.0.9) (2020-09-22)
+
+
+### Maintenance
+
+* add consentRequest request/response and rename files ([#27](https://github.com/mojaloop/api-snippets/issues/27)) ([5380a07](https://github.com/mojaloop/api-snippets/commit/5380a07aee6a4a11d77034adb0dbfc3ded4d7c5a))
+
 ### [11.0.8](https://github.com/mojaloop/api-snippets/compare/v11.0.7...v11.0.8) (2020-09-16)
 
 
