@@ -254,7 +254,18 @@ components:
 
         This is based on FSPIOP `AuthenticationType` with U2F added.
       example: U2F
-    AuthorizationPostRequest:
+    AuthorizationResponseType:
+      title: AuthorizationResponseType
+      description: |
+        Enum containing response information; if the customer entered the
+        authentication value, rejected the transaction, or requested a
+        resend of the authentication value.
+      type: string
+      enum:
+        - ENTERED
+        - REJECTED
+        - RESEND
+    AuthorizationsPostRequest:
       title: AuthorizationsPostRequest
       description: POST /authorizations request object.
       type: object
@@ -301,13 +312,13 @@ components:
           description: 'The object sent in the PUT /quotes/{ID} callback.'
           properties:
             transferAmount:
-              $ref: '#/components/schemas/AuthorizationPostRequest/properties/amount'
+              $ref: '#/components/schemas/AuthorizationsPostRequest/properties/amount'
             payeeReceiveAmount:
-              $ref: '#/components/schemas/AuthorizationPostRequest/properties/amount'
+              $ref: '#/components/schemas/AuthorizationsPostRequest/properties/amount'
             payeeFspFee:
-              $ref: '#/components/schemas/AuthorizationPostRequest/properties/amount'
+              $ref: '#/components/schemas/AuthorizationsPostRequest/properties/amount'
             payeeFspCommission:
-              $ref: '#/components/schemas/AuthorizationPostRequest/properties/amount'
+              $ref: '#/components/schemas/AuthorizationsPostRequest/properties/amount'
             expiration:
               $ref: '#/components/schemas/ConsentsPostRequest/properties/revokedAt'
             geoCode:
@@ -352,7 +363,7 @@ components:
               description: Condition that must be attached to the transfer by the Payer.
               example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
             extensionList:
-              $ref: '#/components/schemas/ThirdpartyTransactionIDPatchResponse/properties/extensionList'
+              $ref: '#/components/schemas/ThirdpartyRequestsTransactionsIDPatchResponse/properties/extensionList'
           required:
             - transferAmount
             - expiration
@@ -366,28 +377,6 @@ components:
         - transactionRequestId
         - quote
       additionalProperties: false
-    AuthorizationResponseType:
-      title: AuthorizationResponseType
-      description: |
-        Enum containing response information; if the customer entered the
-        authentication value, rejected the transaction, or requested a
-        resend of the authentication value.
-      type: string
-      enum:
-        - ENTERED
-        - REJECTED
-        - RESEND
-    ConsentGenerateChallengeIDPostRequest:
-      title: ConsentGenerateChallengeIDPostRequest
-      type: object
-      description: |
-        A credential used to allow a user to prove their identity
-        and access to an account with a DFSP.
-      properties:
-        type:
-          $ref: '#/components/schemas/CredentialType'
-      required:
-        - type
     ConsentRequestChannelType:
       title: ConsentRequestChannelType
       type: string
@@ -479,6 +468,17 @@ components:
         The scopes requested for a ConsentRequest.
         - "accounts.getBalance" - Get the balance of a given account.
         - "accounts.transfer" - Initiate a transfer from an account.
+    ConsentsIDGenerateChallengePostRequest:
+      title: ConsentsIDGenerateChallengePostRequest
+      type: object
+      description: |
+        A credential used to allow a user to prove their identity
+        and access to an account with a DFSP.
+      properties:
+        type:
+          $ref: '#/components/schemas/CredentialType'
+      required:
+        - type
     ConsentsIDPutResponse:
       title: ConsentsIDPutResponse
       type: object
@@ -807,8 +807,8 @@ components:
       required:
         - scope
         - accountId
-    ThirdpartyAuthorizationIDPostRequest:
-      title: ThirdpartyAuthorizationIDPostRequest
+    ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
+      title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object
       description: 'The object sent in the POST /thirdpartyRequests/transactions/{id}/authorizations request.'
       properties:
@@ -846,8 +846,8 @@ components:
         - consentId
         - sourceAccountId
         - status
-    ThirdpartyAuthorizationIDPutResponse:
-      title: ThirdpartyAuthorizationIDPutResponse
+    ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse:
+      title: ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse
       type: object
       description: 'The object sent in the PUT /thirdpartyRequests/transactions/{id}/authorizations request.'
       properties:
@@ -856,7 +856,7 @@ components:
           description: Base64 encoded binary string - the original challenge.
         value:
           allOf:
-            - $ref: '#/components/schemas/ThirdpartyAuthorizationIDPostRequest/properties/value/allOf/0'
+            - $ref: '#/components/schemas/ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest/properties/value/allOf/0'
           description: Base64 encoded binary string - the signed challenge.
         consentId:
           allOf:
@@ -878,8 +878,8 @@ components:
         - consentId
         - sourceAccountId
         - status
-    ThirdpartyTransactionIDPatchResponse:
-      title: ThirdpartyTransactionIDPatchResponse
+    ThirdpartyRequestsTransactionsIDPatchResponse:
+      title: ThirdpartyRequestsTransactionsIDPatchResponse
       type: object
       description: 'The object sent in the PATCH /thirdpartyRequests/transactions/{ID} callback.'
       properties:
@@ -944,8 +944,8 @@ components:
             - extension
       required:
         - transferState
-    ThirdpartyTransactionIDPutResponse:
-      title: ThirdpartyRequestsTransactionIDPutResponse
+    ThirdpartyRequestsTransactionsIDPutResponse:
+      title: ThirdpartyRequestsTransactionsIDPutResponse
       type: object
       description: 'The object sent in the PUT /thirdPartyRequests/transactions/{ID} request.'
       properties:
@@ -963,8 +963,8 @@ components:
             - ACCEPTED
             - REJECTED
           example: RECEIVED
-    ThirdpartyTransactionRequest:
-      title: ThirdpartyTransactionPostRequest
+    ThirdpartyRequestsTransactionsPostRequest:
+      title: ThirdpartyRequestsTransactionsPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/transactions request.
       properties:
@@ -1001,7 +1001,7 @@ components:
           description: Information about the Payee in the proposed financial transaction.
         payer:
           allOf:
-            - $ref: '#/components/schemas/ThirdpartyTransactionRequest/properties/payee/allOf/0'
+            - $ref: '#/components/schemas/ThirdpartyRequestsTransactionsPostRequest/properties/payee/allOf/0'
           description: Information about the Payer in the proposed financial transaction.
         amountType:
           allOf:
@@ -1020,7 +1020,7 @@ components:
           description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
         amount:
           allOf:
-            - $ref: '#/components/schemas/AuthorizationPostRequest/properties/amount'
+            - $ref: '#/components/schemas/AuthorizationsPostRequest/properties/amount'
           description: Requested amount to be transferred from the Payer to Payee.
         transactionType:
           allOf:

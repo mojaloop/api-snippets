@@ -1,4 +1,4 @@
-title: ThirdpartyTransactionIDPatchResponse
+title: ThirdpartyRequestsTransactionsIDPatchResponse
 type: object
 description: 'The object sent in the PATCH /thirdpartyRequests/transactions/{ID} callback.'
 properties:

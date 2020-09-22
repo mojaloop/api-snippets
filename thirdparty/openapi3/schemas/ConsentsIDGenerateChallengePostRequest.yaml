@@ -1,4 +1,4 @@
-title: ConsentGenerateChallengeIDPostRequest
+title: ConsentsIDGenerateChallengePostRequest
 type: object
 description: |
   A credential used to allow a user to prove their identity
