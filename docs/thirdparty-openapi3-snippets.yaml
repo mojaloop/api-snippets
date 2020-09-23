@@ -937,8 +937,10 @@ components:
       type: object
       description: Scope + Account Identifier mapping for a Consent.
       example: |
-        { accountId: "dfsp.username.5678",
-          actions: [ "accounts.transfer", "accounts.getBalance" ] }
+        {
+          accountId: "dfsp.username.5678",
+          actions: [ "accounts.transfer", "accounts.getBalance" ]
+        }
       properties:
         accountId:
           $ref: '#/components/schemas/AccountAddress'
