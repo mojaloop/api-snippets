@@ -22,15 +22,9 @@ properties:
     # TODO: enforce uri type
     type: string
     description: The callback uri that the user will be redirected to after completing the WEB auth channel.
-  authUri:
-    # TODO: enforce uri type
-    type: string
-    description: This field is null for OTP/SMS consent request flow.
-    nullable: true
 required:
   - id
   - initiatorId
   - scopes
   - authChannels
   - callbackUri
-  - authUri
