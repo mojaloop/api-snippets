@@ -18,10 +18,7 @@ properties:
     items:
       $ref: './Scope.yaml'
   authChannels:
-    type: array
-    items:
-      $ref: './AuthorizationChannelType.yaml'
-    # TODO: min and max
+    $ref: './ConsentRequestChannelTypeWeb.yaml'
   callbackUri:
     # TODO: enforce uri type
     type: string

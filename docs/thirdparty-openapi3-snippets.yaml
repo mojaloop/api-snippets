@@ -387,6 +387,20 @@ components:
         The auth channel being used for the consentRequest.
         - "WEB" - The Web auth channel.
         - "OTP" - The OTP auth channel.
+    ConsentRequestChannelTypeOTP:
+      title: ConsentRequestChannelTypeOTP
+      type: array
+      enum:
+        - - OTP
+      description: |
+        The OTP auth channel being used for PUT consentRequest/{ID} request.
+    ConsentRequestChannelTypeWeb:
+      title: ConsentRequestChannelTypeWeb
+      type: array
+      enum:
+        - - Web
+      description: |
+        The web auth channel being used for PUT consentRequest/{ID} request.
     ConsentRequestsIDPutResponseOTP:
       title: ConsentRequestsIDPutResponseOTP
       type: object
@@ -405,9 +419,7 @@ components:
           items:
             $ref: '#/components/schemas/Scope'
         authChannels:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthorizationChannelType'
+          $ref: '#/components/schemas/ConsentRequestChannelTypeOTP'
         callbackUri:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.
@@ -442,9 +454,7 @@ components:
           items:
             $ref: '#/components/schemas/Scope'
         authChannels:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthorizationChannelType'
+          $ref: '#/components/schemas/ConsentRequestChannelTypeOTP'
         callbackUri:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.
@@ -484,9 +494,7 @@ components:
           items:
             $ref: '#/components/schemas/Scope'
         authChannels:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthorizationChannelType'
+          $ref: '#/components/schemas/ConsentRequestChannelTypeWeb'
         callbackUri:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.
@@ -520,9 +528,7 @@ components:
           items:
             $ref: '#/components/schemas/Scope'
         authChannels:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthorizationChannelType'
+          $ref: '#/components/schemas/ConsentRequestChannelTypeWeb'
         callbackUri:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.
@@ -566,7 +572,7 @@ components:
         authChannels:
           type: array
           items:
-            $ref: '#/components/schemas/AuthorizationChannelType'
+            $ref: '#/components/schemas/ConsentRequestChannelType'
         callbackUri:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.
