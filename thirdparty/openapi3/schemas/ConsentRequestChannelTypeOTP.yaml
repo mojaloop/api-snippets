@@ -1,0 +1,6 @@
+title: ConsentRequestChannelTypeOTP
+type: string
+enum:
+  - OTP
+description: |
+  The OTP auth channel being used for PUT consentRequest/{ID} request.

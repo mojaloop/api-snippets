@@ -1,6 +1,9 @@
-title: ConsentRequestsPostRequest
+title: ConsentRequestsIDPutResponseOTP
 type: object
-description: The object sent in a `POST /consentRequests` request.
+description: |
+  The object sent in a `PUT /consentRequests/{ID}` request.
+
+  Schema used in the request consent phase of the account linking OTP/SMS flow.
 properties:
   id:
     $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
@@ -14,8 +17,7 @@ properties:
   authChannels:
     type: array
     items:
-      $ref: './ConsentRequestChannelType.yaml'
-    # TODO: min and max
+      $ref: './ConsentRequestChannelTypeOTP.yaml'
   callbackUri:
     # TODO: enforce uri type
     type: string

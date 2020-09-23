@@ -387,10 +387,27 @@ components:
         The auth channel being used for the consentRequest.
         - "WEB" - The Web auth channel.
         - "OTP" - The OTP auth channel.
-    ConsentRequestsIDPutResponse:
-      title: ConsentRequestsIDPutResponse
+    ConsentRequestChannelTypeOTP:
+      title: ConsentRequestChannelTypeOTP
+      type: string
+      enum:
+        - OTP
+      description: |
+        The OTP auth channel being used for PUT consentRequest/{ID} request.
+    ConsentRequestChannelTypeWeb:
+      title: ConsentRequestChannelTypeWeb
+      type: string
+      enum:
+        - WEB
+      description: |
+        The web auth channel being used for PUT consentRequest/{ID} request.
+    ConsentRequestsIDPutResponseOTP:
+      title: ConsentRequestsIDPutResponseOTP
       type: object
-      description: 'The object sent in a `PUT /consentRequests/{ID}` request.'
+      description: |
+        The object sent in a `PUT /consentRequests/{ID}` request.
+
+        Schema used in the request consent phase of the account linking OTP/SMS flow.
       properties:
         id:
           $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
@@ -404,7 +421,122 @@ components:
         authChannels:
           type: array
           items:
-            $ref: '#/components/schemas/AuthorizationChannelType'
+            $ref: '#/components/schemas/ConsentRequestChannelTypeOTP'
+        callbackUri:
+          type: string
+          description: The callback uri that the user will be redirected to after completing the WEB auth channel.
+        authUri:
+          type: string
+          description: This field is null for OTP/SMS consent request flow.
+          nullable: true
+      required:
+        - id
+        - initiatorId
+        - scopes
+        - authChannels
+        - callbackUri
+        - authUri
+    ConsentRequestsIDPutResponseOTPAuth:
+      title: ConsentRequestsIDPutResponseOTPAuth
+      type: object
+      description: |
+        The object sent in a `PUT /consentRequests/{ID}` request.
+
+        Schema used in the authentication phase of the account linking flow,
+        the user is expected to prove their identity to the DFSP by passing a OTP
+        or secret to the PISP.
+      properties:
+        id:
+          $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
+        initiatorId:
+          type: string
+          description: The id of the PISP who will initiate transactions on a user's behalf.
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scope'
+        authChannels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsentRequestChannelTypeOTP'
+        callbackUri:
+          type: string
+          description: The callback uri that the user will be redirected to after completing the WEB auth channel.
+        authUri:
+          type: string
+          description: This field is null for OTP/SMS consent request flow.
+          nullable: true
+        authToken:
+          type: string
+          description: The Auth token from the OTP or redirect to pisp app.
+      required:
+        - id
+        - initiatorId
+        - scopes
+        - authChannels
+        - callbackUri
+        - authUri
+        - authToken
+    ConsentRequestsIDPutResponseWeb:
+      title: ConsentRequestsIDPutResponseWeb
+      type: object
+      description: |
+        The object sent in a `PUT /consentRequests/{ID}` request.
+
+        Schema used in the request consent phase of the account linking web flow,
+        the result is the PISP being instructed on a specific URL where this
+        supposed user should be redirected. This URL should be a place where
+        the user can prove their identity (e.g., by logging in).
+      properties:
+        id:
+          $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
+        initiatorId:
+          type: string
+          description: The id of the PISP who will initiate transactions on a user's behalf.
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scope'
+        authChannels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsentRequestChannelTypeWeb'
+        callbackUri:
+          type: string
+          description: The callback uri that the user will be redirected to after completing the WEB auth channel.
+        authUri:
+          type: string
+          description: The callback uri that the pisp app redirects to for user to complete their login.
+      required:
+        - id
+        - initiatorId
+        - scopes
+        - authChannels
+        - callbackUri
+        - authUri
+    ConsentRequestsIDPutResponseWebAuth:
+      title: ConsentRequestsIDPutResponseWebAuth
+      type: object
+      description: |
+        The object sent in a `PUT /consentRequests/{ID}` request.
+
+        Schema used in the authentication phase of the account linking flow,
+        the user is expected to prove their identity to the DFSP by passing a OTP
+        or secret to the PISP.
+      properties:
+        id:
+          $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
+        initiatorId:
+          type: string
+          description: The id of the PISP who will initiate transactions on a user's behalf.
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scope'
+        authChannels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsentRequestChannelTypeWeb'
         callbackUri:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.
@@ -448,7 +580,7 @@ components:
         authChannels:
           type: array
           items:
-            $ref: '#/components/schemas/AuthorizationChannelType'
+            $ref: '#/components/schemas/ConsentRequestChannelType'
         callbackUri:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.

@@ -1,0 +1,6 @@
+title: ConsentRequestChannelTypeWeb
+type: string
+enum:
+  - WEB
+description: |
+  The web auth channel being used for PUT consentRequest/{ID} request.

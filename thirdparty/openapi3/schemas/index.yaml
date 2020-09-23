@@ -12,8 +12,18 @@ AuthorizationsPostRequest:
   $ref: ./AuthorizationsPostRequest.yaml
 ConsentRequestChannelType:
   $ref: ./ConsentRequestChannelType.yaml
-ConsentRequestsIDPutResponse:
-  $ref: ./ConsentRequestsIDPutResponse.yaml
+ConsentRequestChannelTypeOTP:
+  $ref: ./ConsentRequestChannelTypeOTP.yaml
+ConsentRequestChannelTypeWeb:
+  $ref: ./ConsentRequestChannelTypeWeb.yaml
+ConsentRequestsIDPutResponseOTP:
+  $ref: ./ConsentRequestsIDPutResponseOTP.yaml
+ConsentRequestsIDPutResponseOTPAuth:
+  $ref: ./ConsentRequestsIDPutResponseOTPAuth.yaml
+ConsentRequestsIDPutResponseWeb:
+  $ref: ./ConsentRequestsIDPutResponseWeb.yaml
+ConsentRequestsIDPutResponseWebAuth:
+  $ref: ./ConsentRequestsIDPutResponseWebAuth.yaml
 ConsentRequestsPostRequest:
   $ref: ./ConsentRequestsPostRequest.yaml
 ConsentScopeType:
