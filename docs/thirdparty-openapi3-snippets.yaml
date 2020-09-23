@@ -937,13 +937,15 @@ components:
       type: object
       description: Scope + Account Identifier mapping for a Consent.
       properties:
-        scope:
-          $ref: '#/components/schemas/ConsentScopeType'
         accountId:
           $ref: '#/components/schemas/AccountAddress'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsentScopeType'
       required:
-        - scope
         - accountId
+        - actions
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
       title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object

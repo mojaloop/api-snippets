@@ -2,10 +2,13 @@ title: Scope
 type: object
 description: Scope + Account Identifier mapping for a Consent.
 properties:
-  scope:
-    $ref: './ConsentScopeType.yaml'
   accountId:
     $ref: './AccountAddress.yaml'
+  actions:
+    type: array
+    items:
+      $ref: './ConsentScopeType.yaml'
 required:
-  - scope
   - accountId
+  - actions
+
