@@ -1,4 +1,4 @@
-title: ConsentRequestsIDPutResponseAuth
+title: ConsentRequestsIDPutResponseOTPAuth
 type: object
 description: |
   The object sent in a `PUT /consentRequests/{ID}` request.

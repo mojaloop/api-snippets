@@ -423,7 +423,7 @@ components:
         - callbackUri
         - authUri
     ConsentRequestsIDPutResponseOTPAuth:
-      title: ConsentRequestsIDPutResponseAuth
+      title: ConsentRequestsIDPutResponseOTPAuth
       type: object
       description: |
         The object sent in a `PUT /consentRequests/{ID}` request.
@@ -501,7 +501,7 @@ components:
         - callbackUri
         - authUri
     ConsentRequestsIDPutResponseWebAuth:
-      title: ConsentRequestsIDPutResponseAuth
+      title: ConsentRequestsIDPutResponseWebAuth
       type: object
       description: |
         The object sent in a `PUT /consentRequests/{ID}` request.
