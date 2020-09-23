@@ -398,7 +398,7 @@ components:
       title: ConsentRequestChannelTypeWeb
       type: string
       enum:
-        - Web
+        - WEB
       description: |
         The web auth channel being used for PUT consentRequest/{ID} request.
     ConsentRequestsIDPutResponseOTP:
