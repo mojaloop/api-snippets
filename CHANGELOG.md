@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.11](https://github.com/mojaloop/api-snippets/compare/v11.0.10...v11.0.11) (2020-09-23)
+
+
+### Maintenance
+
+* refactor consentRequestsIDPutResponse ([#29](https://github.com/mojaloop/api-snippets/issues/29)) ([75fb2ae](https://github.com/mojaloop/api-snippets/commit/75fb2ae5d4a2071fc7789f381262e4c17e72c96a))
+
 ### [11.0.10](https://github.com/mojaloop/api-snippets/compare/v11.0.9...v11.0.10) (2020-09-22)
 
 
