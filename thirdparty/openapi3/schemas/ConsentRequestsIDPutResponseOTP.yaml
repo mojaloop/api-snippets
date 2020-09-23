@@ -16,7 +16,6 @@ properties:
       $ref: './Scope.yaml'
   authChannels:
     $ref: './ConsentRequestChannelTypeOTP.yaml'
-    # TODO: min and max
   callbackUri:
     # TODO: enforce uri type
     type: string
