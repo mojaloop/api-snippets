@@ -30,6 +30,8 @@ ConsentScopeType:
   $ref: ./ConsentScopeType.yaml
 ConsentsIDGenerateChallengePostRequest:
   $ref: ./ConsentsIDGenerateChallengePostRequest.yaml
+ConsentsIDPatchResponse:
+  $ref: ./ConsentsIDPatchResponse.yaml
 ConsentsIDPutResponse:
   $ref: ./ConsentsIDPutResponse.yaml
 ConsentsPostRequest:
