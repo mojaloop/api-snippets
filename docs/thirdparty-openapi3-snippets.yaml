@@ -936,14 +936,21 @@ components:
       title: Scope
       type: object
       description: Scope + Account Identifier mapping for a Consent.
+      example: |
+        {
+          accountId: "dfsp.username.5678",
+          actions: [ "accounts.transfer", "accounts.getBalance" ]
+        }
       properties:
-        scope:
-          $ref: '#/components/schemas/ConsentScopeType'
         accountId:
           $ref: '#/components/schemas/AccountAddress'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsentScopeType'
       required:
-        - scope
         - accountId
+        - actions
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
       title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object
