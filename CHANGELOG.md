@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.12](https://github.com/mojaloop/api-snippets/compare/v11.0.11...v11.0.12) (2020-09-24)
+
+
+### Maintenance
+
+* add PATCH consents snippet for unlinking ([#31](https://github.com/mojaloop/api-snippets/issues/31)) ([a6db952](https://github.com/mojaloop/api-snippets/commit/a6db952e94e47777263fe4e5cf5da3e7aa416c5b))
+
 ### [11.0.11](https://github.com/mojaloop/api-snippets/compare/v11.0.10...v11.0.11) (2020-09-23)
 
 
