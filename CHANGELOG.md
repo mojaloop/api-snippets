@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.13](https://github.com/mojaloop/api-snippets/compare/v11.0.12...v11.0.13) (2020-09-24)
+
+
+### Maintenance
+
+* fix scope object and rebundle docs ([#30](https://github.com/mojaloop/api-snippets/issues/30)) ([ef2af9b](https://github.com/mojaloop/api-snippets/commit/ef2af9b0103158d1fad01d885962a7912a9d7707))
+
 ### [11.0.12](https://github.com/mojaloop/api-snippets/compare/v11.0.11...v11.0.12) (2020-09-24)
 
 
