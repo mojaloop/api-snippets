@@ -1,0 +1,14 @@
+title: ConsentsIDPatchResponse
+description: |
+  PATCH /consents/{ID} request object.
+
+  Sent to both the PISP and DFSP when a consent is revoked.
+type: object
+properties:
+  status:
+    $ref: './ConsentStatusType.yaml'
+  revokedAt:
+    $ref: '../../../v1.0/openapi3/schemas/DateTime.yaml'
+required:
+  - status
+  - revokedAt

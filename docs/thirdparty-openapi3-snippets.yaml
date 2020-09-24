@@ -425,17 +425,12 @@ components:
         callbackUri:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.
-        authUri:
-          type: string
-          description: This field is null for OTP/SMS consent request flow.
-          nullable: true
       required:
         - id
         - initiatorId
         - scopes
         - authChannels
         - callbackUri
-        - authUri
     ConsentRequestsIDPutResponseOTPAuth:
       title: ConsentRequestsIDPutResponseOTPAuth
       type: object
@@ -462,10 +457,6 @@ components:
         callbackUri:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.
-        authUri:
-          type: string
-          description: This field is null for OTP/SMS consent request flow.
-          nullable: true
         authToken:
           type: string
           description: The Auth token from the OTP or redirect to pisp app.
@@ -475,7 +466,6 @@ components:
         - scopes
         - authChannels
         - callbackUri
-        - authUri
         - authToken
     ConsentRequestsIDPutResponseWeb:
       title: ConsentRequestsIDPutResponseWeb
@@ -611,6 +601,21 @@ components:
           $ref: '#/components/schemas/CredentialType'
       required:
         - type
+    ConsentsIDPatchResponse:
+      title: ConsentsIDPatchResponse
+      description: |
+        PATCH /consents/{ID} request object.
+
+        Sent to both the PISP and DFSP when a consent is revoked.
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/ConsentStatusType'
+        revokedAt:
+          $ref: '#/components/schemas/ConsentsPostRequest/properties/revokedAt'
+      required:
+        - status
+        - revokedAt
     ConsentsIDPutResponse:
       title: ConsentsIDPutResponse
       type: object
