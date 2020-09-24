@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.14](https://github.com/mojaloop/api-snippets/compare/v11.0.13...v11.0.14) (2020-09-24)
+
+
+### Maintenance
+
+* remove active from consent status enum ([#32](https://github.com/mojaloop/api-snippets/issues/32)) ([0a9bec9](https://github.com/mojaloop/api-snippets/commit/0a9bec95bc110f61de73ec707fada82063fcff50))
+
 ### [11.0.13](https://github.com/mojaloop/api-snippets/compare/v11.0.12...v11.0.13) (2020-09-24)
 
 
