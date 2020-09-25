@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.15](https://github.com/mojaloop/api-snippets/compare/v11.0.14...v11.0.15) (2020-09-25)
+
+
+### Maintenance
+
+* add additional properties false for oneOf check ([#33](https://github.com/mojaloop/api-snippets/issues/33)) ([ef2c53c](https://github.com/mojaloop/api-snippets/commit/ef2c53c880829e57cec99dd2bfa29b4397dcbafa))
+
 ### [11.0.14](https://github.com/mojaloop/api-snippets/compare/v11.0.13...v11.0.14) (2020-09-24)
 
 
