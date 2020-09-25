@@ -36,3 +36,4 @@ required:
   - authChannels
   - callbackUri
   - authUri
+additionalProperties: false

@@ -39,3 +39,4 @@ required:
   - callbackUri
   - authUri
   - authToken
+additionalProperties: false

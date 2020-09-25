@@ -431,6 +431,7 @@ components:
         - scopes
         - authChannels
         - callbackUri
+      additionalProperties: false
     ConsentRequestsIDPutResponseOTPAuth:
       title: ConsentRequestsIDPutResponseOTPAuth
       type: object
@@ -467,6 +468,7 @@ components:
         - authChannels
         - callbackUri
         - authToken
+      additionalProperties: false
     ConsentRequestsIDPutResponseWeb:
       title: ConsentRequestsIDPutResponseWeb
       type: object
@@ -504,6 +506,7 @@ components:
         - authChannels
         - callbackUri
         - authUri
+      additionalProperties: false
     ConsentRequestsIDPutResponseWebAuth:
       title: ConsentRequestsIDPutResponseWebAuth
       type: object
@@ -544,6 +547,7 @@ components:
         - callbackUri
         - authUri
         - authToken
+      additionalProperties: false
     ConsentRequestsPostRequest:
       title: ConsentRequestsPostRequest
       type: object
