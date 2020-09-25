@@ -409,8 +409,6 @@ components:
 
         Schema used in the request consent phase of the account linking OTP/SMS flow.
       properties:
-        id:
-          $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
         initiatorId:
           type: string
           description: The id of the PISP who will initiate transactions on a user's behalf.
@@ -426,11 +424,11 @@ components:
           type: string
           description: The callback uri that the user will be redirected to after completing the WEB auth channel.
       required:
-        - id
         - initiatorId
         - scopes
         - authChannels
         - callbackUri
+      additionalProperties: false
     ConsentRequestsIDPutResponseOTPAuth:
       title: ConsentRequestsIDPutResponseOTPAuth
       type: object
@@ -441,8 +439,6 @@ components:
         the user is expected to prove their identity to the DFSP by passing a OTP
         or secret to the PISP.
       properties:
-        id:
-          $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
         initiatorId:
           type: string
           description: The id of the PISP who will initiate transactions on a user's behalf.
@@ -461,12 +457,12 @@ components:
           type: string
           description: The Auth token from the OTP or redirect to pisp app.
       required:
-        - id
         - initiatorId
         - scopes
         - authChannels
         - callbackUri
         - authToken
+      additionalProperties: false
     ConsentRequestsIDPutResponseWeb:
       title: ConsentRequestsIDPutResponseWeb
       type: object
@@ -478,8 +474,6 @@ components:
         supposed user should be redirected. This URL should be a place where
         the user can prove their identity (e.g., by logging in).
       properties:
-        id:
-          $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
         initiatorId:
           type: string
           description: The id of the PISP who will initiate transactions on a user's behalf.
@@ -498,12 +492,12 @@ components:
           type: string
           description: The callback uri that the pisp app redirects to for user to complete their login.
       required:
-        - id
         - initiatorId
         - scopes
         - authChannels
         - callbackUri
         - authUri
+      additionalProperties: false
     ConsentRequestsIDPutResponseWebAuth:
       title: ConsentRequestsIDPutResponseWebAuth
       type: object
@@ -514,8 +508,6 @@ components:
         the user is expected to prove their identity to the DFSP by passing a OTP
         or secret to the PISP.
       properties:
-        id:
-          $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
         initiatorId:
           type: string
           description: The id of the PISP who will initiate transactions on a user's behalf.
@@ -537,13 +529,13 @@ components:
           type: string
           description: The Auth token from the OTP or redirect to pisp app.
       required:
-        - id
         - initiatorId
         - scopes
         - authChannels
         - callbackUri
         - authUri
         - authToken
+      additionalProperties: false
     ConsentRequestsPostRequest:
       title: ConsentRequestsPostRequest
       type: object
