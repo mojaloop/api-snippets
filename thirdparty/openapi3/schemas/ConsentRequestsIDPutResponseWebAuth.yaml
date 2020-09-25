@@ -7,8 +7,6 @@ description: |
   the user is expected to prove their identity to the DFSP by passing a OTP
   or secret to the PISP.
 properties:
-  id:
-    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
   initiatorId:
     type: string
     description: The id of the PISP who will initiate transactions on a user's behalf.
@@ -32,7 +30,6 @@ properties:
     type: string
     description: The Auth token from the OTP or redirect to pisp app.
 required:
-  - id
   - initiatorId
   - scopes
   - authChannels
