@@ -690,15 +690,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Scope'
-        credential:
-          $ref: '#/components/schemas/Credential'
-          nullable: true
       required:
         - id
         - scopes
         - participantId
         - initiatorId
-        - credential
     ConsentStatusType:
       title: ConsentStatusType
       type: string
