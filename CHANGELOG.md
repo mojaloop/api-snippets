@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.16](https://github.com/mojaloop/api-snippets/compare/v11.0.15...v11.0.16) (2020-09-29)
+
+
+### Maintenance
+
+* remove credential field ([#34](https://github.com/mojaloop/api-snippets/issues/34)) ([cca8b6b](https://github.com/mojaloop/api-snippets/commit/cca8b6bc14de8c6e482b396896154e3f768c6242))
+
 ### [11.0.15](https://github.com/mojaloop/api-snippets/compare/v11.0.14...v11.0.15) (2020-09-25)
 
 
