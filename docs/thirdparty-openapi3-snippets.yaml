@@ -608,16 +608,14 @@ components:
       required:
         - status
         - revokedAt
-    ConsentsIDPutResponse:
-      title: ConsentsIDPutResponse
+    ConsentsIDPutResponseSigned:
+      title: ConsentsIDPutResponseUnsigned
       type: object
       description: |
-        The HTTP request `PUT /consents/{ID}` is used to update a specified consent object.
+        The HTTP request `PUT /consents/{ID}` is used to request a PISP to sign a challenge.
         The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
 
-        - Called by a `auth-service` to add the credential details
-
-        - Called by a `PISP` to add a signature of the challenge
+        Called by a `PISP` to after signing a challenge. Sent to an `auth-service` for verification.
       properties:
         requestId:
           allOf:
@@ -636,7 +634,73 @@ components:
           items:
             $ref: '#/components/schemas/Scope'
         credential:
-          $ref: '#/components/schemas/UpdatedCredential'
+          $ref: '#/components/schemas/SignedCredential'
+      required:
+        - requestId
+        - participantId
+        - initiatorId
+        - scopes
+        - credential
+    ConsentsIDPutResponseUnsigned:
+      title: ConsentsIDPutResponseUnsigned
+      type: object
+      description: |
+        The HTTP request `PUT /consents/{ID}` is used to request a PISP to sign a challenge.
+        The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
+
+        Called by a `auth-service` to request PISP to add the credential details.
+      properties:
+        requestId:
+          allOf:
+            - $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
+          description: |
+            The id of the ConsentRequest that was used to initiate the
+            creation of this Consent.
+        participantId:
+          $ref: '#/components/schemas/ConsentsPostRequest/properties/participantId'
+        initiatorId:
+          allOf:
+            - $ref: '#/components/schemas/ConsentsPostRequest/properties/participantId'
+          description: PISP identifier who uses this Consent.
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scope'
+        credential:
+          $ref: '#/components/schemas/UnsignedCredential'
+      required:
+        - requestId
+        - participantId
+        - initiatorId
+        - scopes
+        - credential
+    ConsentsIDPutResponseVerified:
+      title: ConsentsIDPutResponseVerified
+      type: object
+      description: |
+        The HTTP request `PUT /consents/{ID}` is used to request a PISP to sign a challenge.
+        The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
+
+        Called by a `auth-service` to notify a DFSP and PISP that a credential has been verified and registered.
+      properties:
+        requestId:
+          allOf:
+            - $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
+          description: |
+            The id of the ConsentRequest that was used to initiate the
+            creation of this Consent.
+        participantId:
+          $ref: '#/components/schemas/ConsentsPostRequest/properties/participantId'
+        initiatorId:
+          allOf:
+            - $ref: '#/components/schemas/ConsentsPostRequest/properties/participantId'
+          description: PISP identifier who uses this Consent.
+        scopes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Scope'
+        credential:
+          $ref: '#/components/schemas/VerifiedCredential'
       required:
         - requestId
         - participantId
@@ -703,34 +767,11 @@ components:
       description: |
         The status of the Consent.
         - "REVOKED" - The Consent is no longer valid and has been revoked.
-    Credential:
-      title: Credential
+    CredentialChallengeSigned:
+      title: CredentialChallengeSigned
       type: object
       description: |
-        A credential used to allow a user to prove their identity and
-        access to an account with a DFSP.
-      properties:
-        id:
-          type: string
-          description: The id of a Credential.
-        type:
-          $ref: '#/components/schemas/CredentialType'
-        status:
-          $ref: '#/components/schemas/CredentialStatusType'
-        challenge:
-          $ref: '#/components/schemas/CredentialChallenge'
-        payload:
-          type: string
-          description: Base64 encoded bytes - The public key of the Public/Private keypair.
-      required:
-        - id
-        - type
-        - status
-    CredentialChallenge:
-      title: CredentialChallenge
-      type: object
-      description: |
-        The challenge issued by a DFSP that must be answered by the PISP.
+        The challenge that has been signed by a PISP.
       properties:
         payload:
           type: string
@@ -740,17 +781,18 @@ components:
           description: Base64 encoded binary string or result of the payload signed by the PISP using the private key.
       required:
         - payload
-    CredentialStatusType:
-      title: CredentialStatusType
-      type: string
-      enum:
-        - PENDING
-        - ACTIVE
+        - signature
+    CredentialChallengeUnsigned:
+      title: CredentialChallengeSigned
+      type: object
       description: |
-        The status of the Credential's creation
-        - "PENDING" - The PISP has requested a challenge, or the challenge has
-                      initialized but not yet answered by the PISP.
-        - "VERIFIED" - The Credential is valid, and ready to be used by the PISP.
+        The challenge issued by a DFSP that must be answered by the PISP.
+      properties:
+        payload:
+          type: string
+          description: Base64 encoded binary of the challenge that must be answered by the PISP.
+      required:
+        - payload
     CredentialType:
       title: CredentialType
       type: string
@@ -937,6 +979,36 @@ components:
       required:
         - accountId
         - actions
+    SignedCredential:
+      title: SignedCredential
+      type: object
+      description: |
+        A credential used to allow a user to prove their identity and access
+        to an account with a DFSP.
+
+        SignedCredential is a special formatting of the credential to allow us to be
+        more explicit about the `status` field - it should only ever be PENDING when updating
+        a credential.
+      properties:
+        id:
+          type: string
+          description: The id of a Credential.
+        type:
+          $ref: '#/components/schemas/CredentialType'
+        status:
+          type: string
+          enum:
+            - PENDING
+          description: The challenge has signed but not yet verified.
+        challenge:
+          $ref: '#/components/schemas/CredentialChallengeSigned'
+        payload:
+          type: string
+          description: Base64 encoded bytes - The public key of the Public/Private keypair.
+      required:
+        - type
+        - status
+        - challenge
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
       title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object
@@ -1268,15 +1340,39 @@ components:
         - amount
         - transactionType
         - expiration
-    UpdatedCredential:
-      title: UpdatedCredential
+    UnsignedCredential:
+      title: UnsignedCredential
       type: object
       description: |
         A credential used to allow a user to prove their identity and access
         to an account with a DFSP.
 
-        UpdatedCredential is a special formatting of the credential to allow us to be
+        UnsignedCredential is a special formatting of the credential to allow us to be
         more explicit about the `status` field - it should only ever be PENDING when updating
+        a credential.
+      properties:
+        type:
+          $ref: '#/components/schemas/CredentialType'
+        status:
+          type: string
+          enum:
+            - PENDING
+          description: The challenge has initialized but not yet answered by the PISP.
+        challenge:
+          $ref: '#/components/schemas/CredentialChallengeUnsigned'
+      required:
+        - type
+        - status
+        - challenge
+    VerifiedCredential:
+      title: VerifiedCredential
+      type: object
+      description: |
+        A credential used to allow a user to prove their identity and access
+        to an account with a DFSP.
+
+        VerifiedCredential is a special formatting of the credential to allow us to be
+        more explicit about the `status` field - it should only ever be VERIFIED when updating
         a credential.
       properties:
         id:
@@ -1285,18 +1381,19 @@ components:
         type:
           $ref: '#/components/schemas/CredentialType'
         status:
-          $ref: '#/components/schemas/CredentialStatusType'
+          type: string
+          enum:
+            - VERIFIED
+          description: 'The Credential is valid, and ready to be used by the PISP.'
         challenge:
-          $ref: '#/components/schemas/CredentialChallenge'
+          $ref: '#/components/schemas/CredentialChallengeSigned'
         payload:
           type: string
           description: Base64 encoded bytes - The public key of the Public/Private keypair.
       required:
-        - id
         - type
         - status
         - challenge
-        - payload
 paths:
   /health:
     get:

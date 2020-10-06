@@ -32,18 +32,20 @@ ConsentsIDGenerateChallengePostRequest:
   $ref: ./ConsentsIDGenerateChallengePostRequest.yaml
 ConsentsIDPatchResponse:
   $ref: ./ConsentsIDPatchResponse.yaml
-ConsentsIDPutResponse:
-  $ref: ./ConsentsIDPutResponse.yaml
+ConsentsIDPutResponseSigned:
+  $ref: ./ConsentsIDPutResponseSigned.yaml
+ConsentsIDPutResponseUnsigned:
+  $ref: ./ConsentsIDPutResponseUnsigned.yaml
+ConsentsIDPutResponseVerified:
+  $ref: ./ConsentsIDPutResponseVerified.yaml
 ConsentsPostRequest:
   $ref: ./ConsentsPostRequest.yaml
 ConsentStatusType:
   $ref: ./ConsentStatusType.yaml
-Credential:
-  $ref: ./Credential.yaml
-CredentialChallenge:
-  $ref: ./CredentialChallenge.yaml
-CredentialStatusType:
-  $ref: ./CredentialStatusType.yaml
+CredentialChallengeSigned:
+  $ref: ./CredentialChallengeSigned.yaml
+CredentialChallengeUnsigned:
+  $ref: ./CredentialChallengeUnsigned.yaml
 CredentialType:
   $ref: ./CredentialType.yaml
 PartiesTypeIDPutResponse:
@@ -52,6 +54,8 @@ Party:
   $ref: ./Party.yaml
 Scope:
   $ref: ./Scope.yaml
+SignedCredential:
+  $ref: ./SignedCredential.yaml
 ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
   $ref: ./ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest.yaml
 ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse:
@@ -62,5 +66,7 @@ ThirdpartyRequestsTransactionsIDPutResponse:
   $ref: ./ThirdpartyRequestsTransactionsIDPutResponse.yaml
 ThirdpartyRequestsTransactionsPostRequest:
   $ref: ./ThirdpartyRequestsTransactionsPostRequest.yaml
-UpdatedCredential:
-  $ref: ./UpdatedCredential.yaml
+UnsignedCredential:
+  $ref: ./UnsignedCredential.yaml
+VerifiedCredential:
+  $ref: ./VerifiedCredential.yaml

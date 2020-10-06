@@ -1,0 +1,32 @@
+title: ConsentsIDPutResponseUnsigned
+type: object
+description: |
+  The HTTP request `PUT /consents/{ID}` is used to request a PISP to sign a challenge.
+  The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
+
+  Called by a `auth-service` to request PISP to add the credential details.
+properties:
+  requestId:
+    allOf:
+      - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    description: |
+      The id of the ConsentRequest that was used to initiate the
+      creation of this Consent.
+  participantId:
+    $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
+  initiatorId:
+    allOf:
+      - $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
+    description: PISP identifier who uses this Consent.
+  scopes:
+    type: array
+    items:
+      $ref: './Scope.yaml'
+  credential:
+    $ref: './UnsignedCredential.yaml'
+required:
+  - requestId
+  - participantId
+  - initiatorId
+  - scopes
+  - credential
