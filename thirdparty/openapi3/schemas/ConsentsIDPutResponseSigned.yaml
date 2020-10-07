@@ -1,4 +1,4 @@
-title: ConsentsIDPutResponseUnsigned
+title: ConsentsIDPutResponseSigned
 type: object
 description: |
   The HTTP request `PUT /consents/{ID}` is used to request a PISP to sign a challenge.
