@@ -1,0 +1,32 @@
+title: ConsentsIDPutResponseVerified
+type: object
+description: |
+  The HTTP request `PUT /consents/{ID}` is used by the DFSP or Auth-Service to
+  update a Consent object once it has been Verified.
+
+  Called by a `auth-service` to notify a DFSP and PISP that a credential has been verified and registered.
+properties:
+  requestId:
+    allOf:
+      - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    description: |
+      The id of the ConsentRequest that was used to initiate the
+      creation of this Consent.
+  participantId:
+    $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
+  initiatorId:
+    allOf:
+      - $ref: '../../../v1.0/openapi3/schemas/FspId.yaml'
+    description: PISP identifier who uses this Consent.
+  scopes:
+    type: array
+    items:
+      $ref: './Scope.yaml'
+  credential:
+    $ref: './VerifiedCredential.yaml'
+required:
+  - requestId
+  - participantId
+  - initiatorId
+  - scopes
+  - credential

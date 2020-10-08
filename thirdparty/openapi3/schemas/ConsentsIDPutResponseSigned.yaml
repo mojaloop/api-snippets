@@ -1,12 +1,10 @@
-title: ConsentsIDPutResponse
+title: ConsentsIDPutResponseSigned
 type: object
 description: |
-  The HTTP request `PUT /consents/{ID}` is used to update a specified consent object.
-  The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
+  The HTTP request `PUT /consents/{ID}` is used by the PISP to update a Consent
+  with a signed challenge and register a credential.
 
-  - Called by a `auth-service` to add the credential details
-
-  - Called by a `PISP` to add a signature of the challenge
+  Called by a `PISP` to after signing a challenge. Sent to an `auth-service` for verification.
 properties:
   requestId:
     allOf:
@@ -25,7 +23,7 @@ properties:
     items:
       $ref: './Scope.yaml'
   credential:
-    $ref: './UpdatedCredential.yaml'
+    $ref: './SignedCredential.yaml'
 required:
   - requestId
   - participantId
