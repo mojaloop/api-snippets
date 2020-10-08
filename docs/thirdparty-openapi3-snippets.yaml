@@ -782,6 +782,7 @@ components:
       required:
         - payload
         - signature
+      additionalProperties: false
     CredentialChallengeUnsigned:
       title: CredentialChallengeSigned
       type: object
@@ -793,6 +794,7 @@ components:
           description: Base64 encoded binary of the challenge that must be answered by the PISP.
       required:
         - payload
+      additionalProperties: false
     CredentialType:
       title: CredentialType
       type: string
@@ -1011,6 +1013,7 @@ components:
         - status
         - challenge
         - payload
+      additionalProperties: false
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
       title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object
@@ -1366,6 +1369,7 @@ components:
         - type
         - status
         - challenge
+      additionalProperties: false
     VerifiedCredential:
       title: VerifiedCredential
       type: object
@@ -1396,6 +1400,7 @@ components:
         - type
         - status
         - challenge
+      additionalProperties: false
 paths:
   /health:
     get:
