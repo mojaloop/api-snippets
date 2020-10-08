@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.17](https://github.com/mojaloop/api-snippets/compare/v11.0.16...v11.0.17) (2020-10-08)
+
+
+### Code Refactor
+
+* change consents id put responses to be more explicit ([#35](https://github.com/mojaloop/api-snippets/issues/35)) ([10baa2e](https://github.com/mojaloop/api-snippets/commit/10baa2e617762d10be4d70442dd2143dadfb26f6))
+
 ### [11.0.16](https://github.com/mojaloop/api-snippets/compare/v11.0.15...v11.0.16) (2020-09-29)
 
 
