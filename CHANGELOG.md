@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.18](https://github.com/mojaloop/api-snippets/compare/v11.0.17...v11.0.18) (2020-10-09)
+
+
+### Maintenance
+
+* add additional properties false ([#36](https://github.com/mojaloop/api-snippets/issues/36)) ([e9d718a](https://github.com/mojaloop/api-snippets/commit/e9d718aec3101a820f3b2820d309ceabf2c36ed5))
+
 ### [11.0.17](https://github.com/mojaloop/api-snippets/compare/v11.0.16...v11.0.17) (2020-10-08)
 
 

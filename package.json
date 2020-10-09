@@ -1,6 +1,6 @@
 {
   "name": "@mojaloop/api-snippets",
-  "version": "11.0.17",
+  "version": "11.0.18",
   "description": "Mojaloop API specification reusable snippets",
   "scripts": {
     "build:v1.0": "swagger-cli bundle -t yaml -o docs/fspiop-rest-v1.0-openapi3-snippets.yaml v1.0/openapi3/index.yaml && swagger-cli validate docs/fspiop-rest-v1.0-openapi3-snippets.yaml",
