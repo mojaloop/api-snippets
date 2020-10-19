@@ -7,7 +7,7 @@ properties:
   transactionRequestState:
     $ref: '../../../v1.0/openapi3/schemas/TransactionRequestState.yaml'
   transactionState:
-    $ref: '../../../v1.0/openapi3/schemas/TransferState.yaml'
+    $ref: '../../../v1.0/openapi3/schemas/TransactionState.yaml'
 required:
   - transactionId
   - transactionRequestState

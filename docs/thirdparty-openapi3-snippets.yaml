@@ -1140,21 +1140,20 @@ components:
             - REJECTED - Payer has rejected the transaction."
           example: RECEIVED
         transactionState:
-          title: TransferState
+          title: TransactionState
           type: string
           enum:
             - RECEIVED
-            - RESERVED
-            - COMMITTED
-            - ABORTED
+            - PENDING
+            - COMPLETED
+            - REJECTED
           description: |
             Below are the allowed values for the enumeration.
-            - RECEIVED - Next ledger has received the transfer.
-            - RESERVED - Next ledger has reserved the transfer.
-            - COMMITTED - Next ledger has successfully performed the transfer.
-            - ABORTED - Next ledger has aborted the transfer due to a rejection or
-            failure to perform the transfer.
-          example: RESERVED
+            - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
+            - PENDING - Payee FSP has validated the transaction.
+            - COMPLETED - Payee FSP has successfully performed the transaction.
+            - REJECTED - Payee FSP has failed to perform the transaction.
+          example: RECEIVED
       required:
         - transactionId
         - transactionRequestState
