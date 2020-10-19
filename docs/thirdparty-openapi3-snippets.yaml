@@ -363,7 +363,39 @@ components:
               description: Condition that must be attached to the transfer by the Payer.
               example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
             extensionList:
-              $ref: '#/components/schemas/ThirdpartyRequestsTransactionsIDPatchResponse/properties/extensionList'
+              title: ExtensionList
+              type: object
+              description: |
+                Data model for the complex type ExtensionList.
+                An optional list of extensions, specific to deployment.
+              properties:
+                extension:
+                  type: array
+                  items:
+                    title: Extension
+                    type: object
+                    description: Data model for the complex type Extension.
+                    properties:
+                      key:
+                        title: ExtensionKey
+                        type: string
+                        minLength: 1
+                        maxLength: 32
+                        description: Extension key.
+                      value:
+                        title: ExtensionValue
+                        type: string
+                        minLength: 1
+                        maxLength: 128
+                        description: Extension value.
+                    required:
+                      - key
+                      - value
+                  minItems: 1
+                  maxItems: 16
+                  description: Number of Extension elements.
+              required:
+                - extension
           required:
             - transferAmount
             - expiration
@@ -1090,16 +1122,24 @@ components:
       type: object
       description: 'The object sent in the PATCH /thirdpartyRequests/transactions/{ID} callback.'
       properties:
-        fulfilment:
-          title: IlpFulfilment
+        transactionId:
+          $ref: '#/components/schemas/ConsentRequestsPostRequest/properties/id'
+        transactionRequestState:
+          title: TransactionRequestState
           type: string
-          pattern: '^[A-Za-z0-9-_]{43}$'
-          maxLength: 48
-          description: Fulfilment that must be attached to the transfer by the Payee.
-          example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
-        completedTimestamp:
-          $ref: '#/components/schemas/ConsentsPostRequest/properties/revokedAt'
-        transferState:
+          enum:
+            - RECEIVED
+            - PENDING
+            - ACCEPTED
+            - REJECTED
+          description: |
+            Below are the allowed values for the enumeration.
+            - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
+            - PENDING - Payer FSP has sent the transaction request to the Payer.
+            - ACCEPTED - Payer has approved the transaction.
+            - REJECTED - Payer has rejected the transaction."
+          example: RECEIVED
+        transactionState:
           title: TransferState
           type: string
           enum:
@@ -1115,42 +1155,10 @@ components:
             - ABORTED - Next ledger has aborted the transfer due to a rejection or
             failure to perform the transfer.
           example: RESERVED
-        extensionList:
-          title: ExtensionList
-          type: object
-          description: |
-            Data model for the complex type ExtensionList.
-            An optional list of extensions, specific to deployment.
-          properties:
-            extension:
-              type: array
-              items:
-                title: Extension
-                type: object
-                description: Data model for the complex type Extension.
-                properties:
-                  key:
-                    title: ExtensionKey
-                    type: string
-                    minLength: 1
-                    maxLength: 32
-                    description: Extension key.
-                  value:
-                    title: ExtensionValue
-                    type: string
-                    minLength: 1
-                    maxLength: 128
-                    description: Extension value.
-                required:
-                  - key
-                  - value
-              minItems: 1
-              maxItems: 16
-              description: Number of Extension elements.
-          required:
-            - extension
       required:
-        - transferState
+        - transactionId
+        - transactionRequestState
+        - transactionState
     ThirdpartyRequestsTransactionsIDPutResponse:
       title: ThirdpartyRequestsTransactionsIDPutResponse
       type: object
@@ -1161,15 +1169,8 @@ components:
           description: |
             Identifies a related transaction (if a transaction has been created).
         transactionRequestState:
+          $ref: '#/components/schemas/ThirdpartyRequestsTransactionsIDPatchResponse/properties/transactionRequestState'
           description: State of the transaction request.
-          title: TransactionRequestState
-          type: string
-          enum:
-            - RECEIVED
-            - PENDING
-            - ACCEPTED
-            - REJECTED
-          example: RECEIVED
     ThirdpartyRequestsTransactionsPostRequest:
       title: ThirdpartyRequestsTransactionsPostRequest
       type: object
