@@ -2,13 +2,13 @@ title: ThirdpartyRequestsTransactionsIDPatchResponse
 type: object
 description: 'The object sent in the PATCH /thirdpartyRequests/transactions/{ID} callback.'
 properties:
-  fulfilment:
-    $ref: '../../../v1.0/openapi3/schemas/IlpFulfilment.yaml'
-  completedTimestamp:
-    $ref: '../../../v1.0/openapi3/schemas/DateTime.yaml'
-  transferState:
-    $ref: '../../../v1.0/openapi3/schemas/TransferState.yaml'
-  extensionList:
-    $ref: '../../../v1.0/openapi3/schemas/ExtensionList.yaml'
+  transactionId:
+    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+  transactionRequestState:
+    $ref: '../../../v1.0/openapi3/schemas/TransactionRequestState.yaml'
+  transactionState:
+    $ref: '../../../v1.0/openapi3/schemas/TransactionState.yaml'
 required:
-  - transferState
+  - transactionId
+  - transactionRequestState
+  - transactionState
