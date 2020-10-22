@@ -6,3 +6,6 @@ properties:
     $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
   transactionRequestState:
     $ref: '../../../v1.0/openapi3/schemas/TransactionRequestState.yaml'
+required:
+  - transactionId
+  - transactionRequestState
