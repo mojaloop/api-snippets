@@ -4,8 +4,8 @@ description: The object sent in the PUT /thirdPartyRequests/transactions/{ID} re
 properties:
   transactionId:
     $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
-    description: |
-      Identifies a related transaction (if a transaction has been created).
   transactionRequestState:
     $ref: '../../../v1.0/openapi3/schemas/TransactionRequestState.yaml'
-    description: State of the transaction request.
+required:
+  - transactionId
+  - transactionRequestState
