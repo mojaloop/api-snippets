@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.20](https://github.com/mojaloop/api-snippets/compare/v11.0.19...v11.0.20) (2020-10-22)
+
+
+### Maintenance
+
+* fix ThirdpartyRequestsTransactionsIDPutResponse ([#38](https://github.com/mojaloop/api-snippets/issues/38)) ([8785339](https://github.com/mojaloop/api-snippets/commit/8785339b47712a3e6761bab6b4f69685f97edb81))
+
 ### [11.0.19](https://github.com/mojaloop/api-snippets/compare/v11.0.18...v11.0.19) (2020-10-19)
 
 
