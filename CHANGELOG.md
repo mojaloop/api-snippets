@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.0.21](https://github.com/mojaloop/api-snippets/compare/v11.0.20...v11.0.21) (2020-12-09)
+
+
+### Maintenance
+
+* update license file ([#39](https://github.com/mojaloop/api-snippets/issues/39)) ([0619e33](https://github.com/mojaloop/api-snippets/commit/0619e33e64b78217c92df70247a3e734daf5d1e7))
+
 ### [11.0.20](https://github.com/mojaloop/api-snippets/compare/v11.0.19...v11.0.20) (2020-10-22)
 
 
