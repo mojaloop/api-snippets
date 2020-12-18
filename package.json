@@ -30,7 +30,8 @@
   ],
   "author": "ModusBox",
   "contributors": [
-    "ModusBox"
+    "ModusBox",
+    "Paweł Marzec <pawel.marzec@modusbox.com>"
   ],
   "license": "Apache-2.0",
   "dependencies": {
@@ -40,7 +41,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
-    "@commitlint/config-conventional": "^9.1.2",
+    "@commitlint/config-conventional": "^11.0.0",
     "diff": "^4.0.1",
     "husky": "^4.2.5",
     "npm-audit-resolver": "2.2.0",
