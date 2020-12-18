@@ -36,17 +36,17 @@
   "license": "Apache-2.0",
   "dependencies": {
     "commander": "^2.19.0",
-    "js-yaml": "^3.12.2",
+    "js-yaml": "^3.14.1",
     "json-refs": "^3.0.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^11.0.0",
     "diff": "^4.0.1",
-    "husky": "^4.2.5",
+    "husky": "^4.3.6",
     "npm-audit-resolver": "2.2.0",
     "standard-version": "^9.0.0",
-    "swagger-cli": "^4.0.3"
+    "swagger-cli": "^4.0.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
