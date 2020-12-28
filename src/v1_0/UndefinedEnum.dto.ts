@@ -1,0 +1,1 @@
+export type UndefinedEnum = string

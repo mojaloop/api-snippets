@@ -1,0 +1,1 @@
+export type IlpPacket = string

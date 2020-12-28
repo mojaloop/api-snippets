@@ -1,0 +1,10 @@
+export enum PartyIdType {
+  MSISDN = 'MSISDN',
+  EMAIL = 'EMAIL',
+  PERSONAL_ID = 'PERSONAL_ID',
+  BUSINESS = 'BUSINESS',
+  DEVICE = 'DEVICE',
+  ACCOUNT_ID = 'ACCOUNT_ID',
+  IBAN = 'IBAN',
+  ALIAS = 'ALIAS'
+}

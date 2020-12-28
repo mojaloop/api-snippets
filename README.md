@@ -59,3 +59,62 @@ TODO: Add more detailed instructions for this workflow.
 2) Do we need to support both Swagger 2.0 and Open Api 3?
 3) Does it make sense to have a common folder between versions for specification snippets that never change
    to cut down on files?
+
+## DTO TypeScript definitions for snippets
+> [Data Transfer Object](https://en.wikipedia.org/wiki/Data_transfer_object) description
+
+
+The reason to have DTO is to allow separation between data transfer and data access phases. 
+
+From OpenAPI definition perspective `api-snippets` module allows building api.yaml definitions using a structured set of building blocks - `the snippets`.
+
+From microservices implementation point of view there is a need to have similar mechanism to allow declaring aggregated api data transfer types using basic types. These basic types reflect api-snippets definitions at implementation language level: TypeScript and Javascript.
+
+### Example of payload definition
+
+Let assume we want to define a new type to represent the http request POST payload body with two properties: `requestId` and `amount` using already defined in `api-snippets` basic types: `CorrelationId` and `Money`
+
+
+```typescript
+import v1_0 from '@mojaloop/api-snippets'
+
+class ExampleTransferRequest {
+  requestId: v1_0.CorrelationId
+  amount: v1_0.Money
+}
+```
+
+### structure of `@mojaloop/api-snippets` Javascript/TypeScript type system module
+
+> `v1_0` types are already defined  
+> `TODO`: declare `v1_1` and `thirdparty`
+
+`api-snippets` OpenAPI definitions are grouped in three sections/folders with corresponding Javascript sub-modules
+
+| OpenApi                      | Javascript/TypeScript |
+|------------------------------|-----------------------|
+| v1.0/openapi3/schemas        | v1_0                  |
+| v1.1/openapi3/schemas        | v1_1                  |
+| thirdparty/opeanapi3/schemas | thirdparty            |
+
+
+The same structure is kept in Javascript module, but with some handy shortcuts: there are no `openapi3/schemas` sub-folders/sub-modules, instead we ca
+
+To use the types defined for `CorrelationId` and `Money` snippets 
+- `v1.0/openapi3/schemas/CorrelationId.yaml`
+- `v1.0/openapi3/schemas/Money.yaml`
+
+You can import them in a such short way:
+```typescript
+import { CorrelationId, Money } from `@mojaloop/api-snippets/v1_0`
+
+class ExampleTransferRequest {
+  requestId: CorrelationId
+  amount: Money
+}
+```
+
+### DTO TODO:
+- generation from yaml
+- testing of DTO declarations
+- linting
