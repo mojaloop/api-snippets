@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [11.1.0](https://github.com/mojaloop/api-snippets/compare/v11.0.21...v11.1.0) (2020-12-28)
+
+
+### Features
+
+* 1923 common dto for v1.0 ([#41](https://github.com/mojaloop/api-snippets/issues/41)) ([8903d0a](https://github.com/mojaloop/api-snippets/commit/8903d0afc5755eb52f232ecd7b92a9a37280fc00))
+
 ### [11.0.21](https://github.com/mojaloop/api-snippets/compare/v11.0.20...v11.0.21) (2020-12-09)
 
 
