@@ -3,9 +3,9 @@ type: object
 description: The object sent in the PUT /thirdPartyRequests/transactions/{ID} request.
 properties:
   transactionId:
-    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    $ref: './CorrelationId.yaml'
   transactionRequestState:
-    $ref: '../../../v1.0/openapi3/schemas/TransactionRequestState.yaml'
+    $ref: './TransactionRequestState.yaml'
 required:
   - transactionId
   - transactionRequestState
