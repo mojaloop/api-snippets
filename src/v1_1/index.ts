@@ -683,6 +683,7 @@ export interface components {
     ParticipantsTypeIDSubIDPostRequest: {
       fspId: components["schemas"]["FspId"];
       currency?: components["schemas"]["Currency"];
+      extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
      * The object sent in the PUT /parties/{Type}/{ID} callback.
@@ -717,6 +718,7 @@ export interface components {
       partyIdentifier: components["schemas"]["PartyIdentifier"];
       partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
       fspId?: components["schemas"]["FspId"];
+      extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
      * Below are the allowed values for the enumeration.
@@ -932,7 +934,7 @@ export interface components {
      * - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
      * - PENDING - Payer FSP has sent the transaction request to the Payer.
      * - ACCEPTED - Payer has approved the transaction.
-     * - REJECTED - Payer has rejected the transaction."
+     * - REJECTED - Payer has rejected the transaction.
      */
     TransactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
     /**

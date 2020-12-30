@@ -1,6 +1,0 @@
-export enum TransferState {
-  RECEIVED = 'RECEIVED',
-  RESERVED = 'RESERVED',
-  COMMITTED = 'COMMITTED',
-  ABORTED = 'ABORTED'
-}

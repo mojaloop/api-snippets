@@ -7,8 +7,12 @@
   "scripts": {
     "audit:resolve": "SHELL=sh resolve-audit --production",
     "audit:check": "SHELL=sh check-audit --production",
-    "build": "npm run build:dto; npm run build:v1.0; npm run build:v1.1; npm run build:thirdparty",
-    "build:dto": "tsc",
+    "build": "npm run build:openapi; npm run build:dto;",
+    "build:dto": "npm run build:dto:v1.0; npm run build:dto:v1.1; npm run build:dto:thirdparty; tsc",
+    "build:dto:v1.0": "openapi-typescript docs/fspiop-rest-v1.0-openapi3-snippets.yaml --output src/v1_0/index.ts",
+    "build:dto:v1.1": "openapi-typescript docs/fspiop-rest-v1.1-openapi3-snippets.yaml --output src/v1_1/index.ts",
+    "build:dto:thirdparty": "openapi-typescript docs/thirdparty-openapi3-snippets.yaml --output src/thirdparty/index.ts",
+    "build:openapi": "npm run build:v1.0; npm run build:v1.1; npm run build:thirdparty",
     "build:v1.0": "swagger-cli bundle -t yaml -o docs/fspiop-rest-v1.0-openapi3-snippets.yaml v1.0/openapi3/index.yaml && swagger-cli validate docs/fspiop-rest-v1.0-openapi3-snippets.yaml",
     "build:v1.1": "swagger-cli bundle -t yaml -o docs/fspiop-rest-v1.1-openapi3-snippets.yaml v1.1/openapi3/index.yaml && swagger-cli validate docs/fspiop-rest-v1.1-openapi3-snippets.yaml",
     "build:thirdparty": "swagger-cli bundle -t yaml -o docs/thirdparty-openapi3-snippets.yaml thirdparty/openapi3/index.yaml && swagger-cli validate docs/thirdparty-openapi3-snippets.yaml",
@@ -42,7 +46,9 @@
   "dependencies": {
     "commander": "^2.19.0",
     "js-yaml": "^3.14.1",
-    "json-refs": "^3.0.12"
+    "json-refs": "^3.0.12",
+    "openapi-types": "^7.0.1",
+    "openapi-typescript": "^2.4.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
