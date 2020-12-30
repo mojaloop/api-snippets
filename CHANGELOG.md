@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [11.2.0](https://github.com/mojaloop/api-snippets/compare/v11.1.0...v11.2.0) (2020-12-30)
+
+
+### Features
+
+* 1927 auto generate dto ([#42](https://github.com/mojaloop/api-snippets/issues/42)) ([5618be2](https://github.com/mojaloop/api-snippets/commit/5618be23bf25a0fe029e39321241fd7225cc3fd0))
+
 ## [11.1.0](https://github.com/mojaloop/api-snippets/compare/v11.0.21...v11.1.0) (2020-12-28)
 
 
