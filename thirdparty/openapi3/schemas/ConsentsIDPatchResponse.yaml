@@ -8,7 +8,7 @@ properties:
   status:
     $ref: './ConsentStatusType.yaml'
   revokedAt:
-    $ref: '../../../v1.0/openapi3/schemas/DateTime.yaml'
+    $ref: './DateTime.yaml'
 required:
   - status
   - revokedAt

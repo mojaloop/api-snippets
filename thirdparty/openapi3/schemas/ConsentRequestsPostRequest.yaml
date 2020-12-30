@@ -3,7 +3,7 @@ type: object
 description: The object sent in a `POST /consentRequests` request.
 properties:
   id:
-    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    $ref: './CorrelationId.yaml'
   initiatorId:
     type: string
     description: The id of the PISP who will initiate transactions on a user's behalf.

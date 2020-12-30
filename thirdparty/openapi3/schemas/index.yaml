@@ -10,6 +10,8 @@ AuthorizationResponseType:
   $ref: ./AuthorizationResponseType.yaml
 AuthorizationsPostRequest:
   $ref: ./AuthorizationsPostRequest.yaml
+BinaryString:
+  $ref: ./BinaryString.yaml
 ConsentRequestChannelType:
   $ref: ./ConsentRequestChannelType.yaml
 ConsentRequestChannelTypeOTP:
@@ -42,16 +44,32 @@ ConsentsPostRequest:
   $ref: ./ConsentsPostRequest.yaml
 ConsentStatusType:
   $ref: ./ConsentStatusType.yaml
+CorrelationId:
+  $ref: ./CorrelationId.yaml
+Currency:
+  $ref: ./Currency.yaml
 CredentialChallengeSigned:
   $ref: ./CredentialChallengeSigned.yaml
 CredentialChallengeUnsigned:
   $ref: ./CredentialChallengeUnsigned.yaml
 CredentialType:
   $ref: ./CredentialType.yaml
+DateTime:
+  $ref: ./DateTime.yaml
+FspId:
+  $ref: ./FspId.yaml
+Integer:
+  $ref: ./Integer.yaml
+Money:
+  $ref: ./Money.yaml
+Name:
+  $ref: ./Name.yaml
 PartiesTypeIDPutResponse:
   $ref: ./PartiesTypeIDPutResponse.yaml
 Party:
   $ref: ./Party.yaml
+QuotesIDPutResponse:
+  $ref: ./QuotesIDPutResponse.yaml
 Scope:
   $ref: ./Scope.yaml
 SignedCredential:
@@ -66,6 +84,10 @@ ThirdpartyRequestsTransactionsIDPutResponse:
   $ref: ./ThirdpartyRequestsTransactionsIDPutResponse.yaml
 ThirdpartyRequestsTransactionsPostRequest:
   $ref: ./ThirdpartyRequestsTransactionsPostRequest.yaml
+TransactionRequestState:
+  $ref: ./TransactionRequestState.yaml
+TransactionState:
+  $ref: ./TransactionState.yaml
 UnsignedCredential:
   $ref: ./UnsignedCredential.yaml
 VerifiedCredential:

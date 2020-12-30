@@ -5,15 +5,15 @@ properties:
   authenticationType:
     $ref: './AuthorizationChannelType.yaml'
   retriesLeft:
-    $ref: '../../../v1.0/openapi3/schemas/Integer.yaml'
+    $ref: './Integer.yaml'
   amount:
-    $ref: '../../../v1.0/openapi3/schemas/Money.yaml'
+    $ref: './Money.yaml'
   transactionId:
-    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    $ref: './CorrelationId.yaml'
   transactionRequestId:
-    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    $ref: './CorrelationId.yaml'
   quote:
-    $ref: '../../../v1.0/openapi3/schemas/QuotesIDPutResponse.yaml'
+    $ref: './QuotesIDPutResponse.yaml'
 required:
   - authenticationType
   - retriesLeft

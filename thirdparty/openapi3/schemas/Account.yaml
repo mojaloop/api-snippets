@@ -5,9 +5,9 @@ properties:
   address:
     $ref: './AccountAddress.yaml'
   currency:
-    $ref: '../../../v1.0/openapi3/schemas/Currency.yaml'
+    $ref: './Currency.yaml'
   description:
-    $ref: '../../../v1.0/openapi3/schemas/Name.yaml'
+    $ref: './Name.yaml'
 required:
   # todo: https://github.com/mojaloop/mojaloop-specification/issues/61
   #       double check that currency is the only required field

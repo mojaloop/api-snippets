@@ -4,7 +4,7 @@ description: The object sent in the POST /thirdpartyRequests/transactions reques
 properties:
   transactionRequestId:
     allOf:
-      - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+      - $ref: './CorrelationId.yaml'
     description: >
       Common ID between the FSPs for the transaction request object.
       The ID should be reused for resends of the same transaction request.
@@ -15,17 +15,17 @@ properties:
     description: DFSP specific account identifiers, e.g. `dfspa.alice.1234`
   consentId:
     allOf:
-      - $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+      - $ref: './CorrelationId.yaml'
     description: >
       Common ID between the PISP and FSP for the Consent object
       This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
   payee:
     allOf:
-      - $ref: '../../../v1.0/openapi3/schemas/Party.yaml'
+      - $ref: './Party.yaml'
     description: Information about the Payee in the proposed financial transaction.
   payer:
     allOf:
-      - $ref: '../../../v1.0/openapi3/schemas/Party.yaml'
+      - $ref: './Party.yaml'
     description: Information about the Payer in the proposed financial transaction.
   amountType:
     allOf:
@@ -33,7 +33,7 @@ properties:
     description: SEND for sendAmount, RECEIVE for receiveAmount.
   amount:
     allOf:
-      - $ref: '../../../v1.0/openapi3/schemas/Money.yaml'
+      - $ref: './Money.yaml'
     description: Requested amount to be transferred from the Payer to Payee.
   transactionType:
     allOf:

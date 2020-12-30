@@ -3,11 +3,11 @@ type: object
 description: 'The object sent in the PATCH /thirdpartyRequests/transactions/{ID} callback.'
 properties:
   transactionId:
-    $ref: '../../../v1.0/openapi3/schemas/CorrelationId.yaml'
+    $ref: './CorrelationId.yaml'
   transactionRequestState:
-    $ref: '../../../v1.0/openapi3/schemas/TransactionRequestState.yaml'
+    $ref: './TransactionRequestState.yaml'
   transactionState:
-    $ref: '../../../v1.0/openapi3/schemas/TransactionState.yaml'
+    $ref: './TransactionState.yaml'
 required:
   - transactionId
   - transactionRequestState
