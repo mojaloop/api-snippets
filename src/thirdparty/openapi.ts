@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-  "/health": {
+  '/health': {
     /**
      * A valid OpenApi3 specification requires `paths` to be defined.
      */
@@ -13,7 +13,7 @@ export interface paths {
         /**
          * OK
          */
-        "200": unknown;
+        '200': unknown;
       };
     };
   };
@@ -27,9 +27,9 @@ export interface components {
      * Data model for the complex type Account.
      */
     Account: {
-      address?: components["schemas"]["AccountAddress"];
-      currency: components["schemas"]["Currency"];
-      description?: components["schemas"]["Name"];
+      address?: components['schemas']['AccountAddress'];
+      currency: components['schemas']['Currency'];
+      description?: components['schemas']['Name'];
     };
     /**
      * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -44,7 +44,7 @@ export interface components {
       /**
        * Accounts associated with the Party.
        */
-      account: components["schemas"]["Account"][];
+      account: components['schemas']['Account'][];
     };
     /**
      * Below are the allowed values for the enumeration AuthorizationChannelType.
@@ -54,23 +54,23 @@ export interface components {
      *
      * This is based on FSPIOP `AuthenticationType` with U2F added.
      */
-    AuthorizationChannelType: "OTP" | "QRCODE" | "U2F";
+    AuthorizationChannelType: 'OTP' | 'QRCODE' | 'U2F';
     /**
      * Enum containing response information; if the customer entered the
      * authentication value, rejected the transaction, or requested a
      * resend of the authentication value.
      */
-    AuthorizationResponseType: "ENTERED" | "REJECTED" | "RESEND";
+    AuthorizationResponseType: 'ENTERED' | 'REJECTED' | 'RESEND';
     /**
      * POST /authorizations request object.
      */
     AuthorizationsPostRequest: {
-      authenticationType: components["schemas"]["AuthorizationChannelType"];
-      retriesLeft: components["schemas"]["Integer"];
-      amount: components["schemas"]["Money"];
-      transactionId: components["schemas"]["CorrelationId"];
-      transactionRequestId: components["schemas"]["CorrelationId"];
-      quote: components["schemas"]["QuotesIDPutResponse"];
+      authenticationType: components['schemas']['AuthorizationChannelType'];
+      retriesLeft: components['schemas']['Integer'];
+      amount: components['schemas']['Money'];
+      transactionId: components['schemas']['CorrelationId'];
+      transactionRequestId: components['schemas']['CorrelationId'];
+      quote: components['schemas']['QuotesIDPutResponse'];
     };
     /**
      * The API data type BinaryString is a JSON String.
@@ -85,15 +85,15 @@ export interface components {
      * - "WEB" - The Web auth channel.
      * - "OTP" - The OTP auth channel.
      */
-    ConsentRequestChannelType: "WEB" | "OTP";
+    ConsentRequestChannelType: 'WEB' | 'OTP';
     /**
      * The OTP auth channel being used for PUT consentRequest/{ID} request.
      */
-    ConsentRequestChannelTypeOTP: "OTP";
+    ConsentRequestChannelTypeOTP: 'OTP';
     /**
      * The web auth channel being used for PUT consentRequest/{ID} request.
      */
-    ConsentRequestChannelTypeWeb: "WEB";
+    ConsentRequestChannelTypeWeb: 'WEB';
     /**
      * The object sent in a `PUT /consentRequests/{ID}` request.
      *
@@ -104,8 +104,8 @@ export interface components {
        * The id of the PISP who will initiate transactions on a user's behalf.
        */
       initiatorId: string;
-      scopes: components["schemas"]["Scope"][];
-      authChannels: components["schemas"]["ConsentRequestChannelTypeOTP"][];
+      scopes: components['schemas']['Scope'][];
+      authChannels: components['schemas']['ConsentRequestChannelTypeOTP'][];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -123,8 +123,8 @@ export interface components {
        * The id of the PISP who will initiate transactions on a user's behalf.
        */
       initiatorId: string;
-      scopes: components["schemas"]["Scope"][];
-      authChannels: components["schemas"]["ConsentRequestChannelTypeOTP"][];
+      scopes: components['schemas']['Scope'][];
+      authChannels: components['schemas']['ConsentRequestChannelTypeOTP'][];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -147,8 +147,8 @@ export interface components {
        * The id of the PISP who will initiate transactions on a user's behalf.
        */
       initiatorId: string;
-      scopes: components["schemas"]["Scope"][];
-      authChannels: components["schemas"]["ConsentRequestChannelTypeWeb"][];
+      scopes: components['schemas']['Scope'][];
+      authChannels: components['schemas']['ConsentRequestChannelTypeWeb'][];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -170,8 +170,8 @@ export interface components {
        * The id of the PISP who will initiate transactions on a user's behalf.
        */
       initiatorId: string;
-      scopes: components["schemas"]["Scope"][];
-      authChannels: components["schemas"]["ConsentRequestChannelTypeWeb"][];
+      scopes: components['schemas']['Scope'][];
+      authChannels: components['schemas']['ConsentRequestChannelTypeWeb'][];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -189,13 +189,13 @@ export interface components {
      * The object sent in a `POST /consentRequests` request.
      */
     ConsentRequestsPostRequest: {
-      id: components["schemas"]["CorrelationId"];
+      id: components['schemas']['CorrelationId'];
       /**
        * The id of the PISP who will initiate transactions on a user's behalf.
        */
       initiatorId: string;
-      scopes: components["schemas"]["Scope"][];
-      authChannels: components["schemas"]["ConsentRequestChannelType"][];
+      scopes: components['schemas']['Scope'][];
+      authChannels: components['schemas']['ConsentRequestChannelType'][];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -206,13 +206,13 @@ export interface components {
      * - "accounts.getBalance" - Get the balance of a given account.
      * - "accounts.transfer" - Initiate a transfer from an account.
      */
-    ConsentScopeType: "accounts.getBalance" | "accounts.transfer";
+    ConsentScopeType: 'accounts.getBalance' | 'accounts.transfer';
     /**
      * A credential used to allow a user to prove their identity
      * and access to an account with a DFSP.
      */
     ConsentsIDGenerateChallengePostRequest: {
-      type: components["schemas"]["CredentialType"];
+      type: components['schemas']['CredentialType'];
     };
     /**
      * PATCH /consents/{ID} request object.
@@ -220,8 +220,8 @@ export interface components {
      * Sent to both the PISP and DFSP when a consent is revoked.
      */
     ConsentsIDPatchResponse: {
-      status: components["schemas"]["ConsentStatusType"];
-      revokedAt: components["schemas"]["DateTime"];
+      status: components['schemas']['ConsentStatusType'];
+      revokedAt: components['schemas']['DateTime'];
     };
     /**
      * The HTTP request `PUT /consents/{ID}` is used by the PISP to update a Consent
@@ -234,14 +234,14 @@ export interface components {
        * The id of the ConsentRequest that was used to initiate the
        * creation of this Consent.
        */
-      requestId: components["schemas"]["CorrelationId"];
-      participantId: components["schemas"]["FspId"];
+      requestId: components['schemas']['CorrelationId'];
+      participantId: components['schemas']['FspId'];
       /**
        * PISP identifier who uses this Consent.
        */
-      initiatorId: components["schemas"]["FspId"];
-      scopes: components["schemas"]["Scope"][];
-      credential: components["schemas"]["SignedCredential"];
+      initiatorId: components['schemas']['FspId'];
+      scopes: components['schemas']['Scope'][];
+      credential: components['schemas']['SignedCredential'];
     };
     /**
      * The HTTP request `PUT /consents/{ID}` is used to request a PISP to sign a challenge.
@@ -254,14 +254,14 @@ export interface components {
        * The id of the ConsentRequest that was used to initiate the
        * creation of this Consent.
        */
-      requestId: components["schemas"]["CorrelationId"];
-      participantId: components["schemas"]["FspId"];
+      requestId: components['schemas']['CorrelationId'];
+      participantId: components['schemas']['FspId'];
       /**
        * PISP identifier who uses this Consent.
        */
-      initiatorId: components["schemas"]["FspId"];
-      scopes: components["schemas"]["Scope"][];
-      credential: components["schemas"]["UnsignedCredential"];
+      initiatorId: components['schemas']['FspId'];
+      scopes: components['schemas']['Scope'][];
+      credential: components['schemas']['UnsignedCredential'];
     };
     /**
      * The HTTP request `PUT /consents/{ID}` is used by the DFSP or Auth-Service to
@@ -274,14 +274,14 @@ export interface components {
        * The id of the ConsentRequest that was used to initiate the
        * creation of this Consent.
        */
-      requestId: components["schemas"]["CorrelationId"];
-      participantId: components["schemas"]["FspId"];
+      requestId: components['schemas']['CorrelationId'];
+      participantId: components['schemas']['FspId'];
       /**
        * PISP identifier who uses this Consent.
        */
-      initiatorId: components["schemas"]["FspId"];
-      scopes: components["schemas"]["Scope"][];
-      credential: components["schemas"]["VerifiedCredential"];
+      initiatorId: components['schemas']['FspId'];
+      scopes: components['schemas']['Scope'][];
+      credential: components['schemas']['VerifiedCredential'];
     };
     /**
      * The object sent in a `POST /consents` request.
@@ -292,25 +292,25 @@ export interface components {
        * decided by the DFSP who creates the Consent
        * This field is REQUIRED for POST /consent.
        */
-      id: components["schemas"]["CorrelationId"];
+      id: components['schemas']['CorrelationId'];
       /**
        * The id of the ConsentRequest that was used to initiate the
        * creation of this Consent.
        */
-      requestId?: components["schemas"]["CorrelationId"];
-      participantId: components["schemas"]["FspId"];
+      requestId?: components['schemas']['CorrelationId'];
+      participantId: components['schemas']['FspId'];
       /**
        * PISP identifier who uses this Consent.
        */
-      initiatorId: components["schemas"]["FspId"];
-      revokedAt?: components["schemas"]["DateTime"];
-      scopes: components["schemas"]["Scope"][];
+      initiatorId: components['schemas']['FspId'];
+      revokedAt?: components['schemas']['DateTime'];
+      scopes: components['schemas']['Scope'][];
     };
     /**
      * The status of the Consent.
      * - "REVOKED" - The Consent is no longer valid and has been revoked.
      */
-    ConsentStatusType: "REVOKED";
+    ConsentStatusType: 'REVOKED';
     /**
      * Identifier that correlates all messages of the same sequence.
      * The API data type UUID (Universally Unique Identifier) is a JSON String
@@ -325,168 +325,168 @@ export interface components {
      * as three-letter alphabetic codes are used as the standard naming representation for currencies.
      */
     Currency:
-      | "AED"
-      | "AFN"
-      | "ALL"
-      | "AMD"
-      | "ANG"
-      | "AOA"
-      | "ARS"
-      | "AUD"
-      | "AWG"
-      | "AZN"
-      | "BAM"
-      | "BBD"
-      | "BDT"
-      | "BGN"
-      | "BHD"
-      | "BIF"
-      | "BMD"
-      | "BND"
-      | "BOB"
-      | "BRL"
-      | "BSD"
-      | "BTN"
-      | "BWP"
-      | "BYN"
-      | "BZD"
-      | "CAD"
-      | "CDF"
-      | "CHF"
-      | "CLP"
-      | "CNY"
-      | "COP"
-      | "CRC"
-      | "CUC"
-      | "CUP"
-      | "CVE"
-      | "CZK"
-      | "DJF"
-      | "DKK"
-      | "DOP"
-      | "DZD"
-      | "EGP"
-      | "ERN"
-      | "ETB"
-      | "EUR"
-      | "FJD"
-      | "FKP"
-      | "GBP"
-      | "GEL"
-      | "GGP"
-      | "GHS"
-      | "GIP"
-      | "GMD"
-      | "GNF"
-      | "GTQ"
-      | "GYD"
-      | "HKD"
-      | "HNL"
-      | "HRK"
-      | "HTG"
-      | "HUF"
-      | "IDR"
-      | "ILS"
-      | "IMP"
-      | "INR"
-      | "IQD"
-      | "IRR"
-      | "ISK"
-      | "JEP"
-      | "JMD"
-      | "JOD"
-      | "JPY"
-      | "KES"
-      | "KGS"
-      | "KHR"
-      | "KMF"
-      | "KPW"
-      | "KRW"
-      | "KWD"
-      | "KYD"
-      | "KZT"
-      | "LAK"
-      | "LBP"
-      | "LKR"
-      | "LRD"
-      | "LSL"
-      | "LYD"
-      | "MAD"
-      | "MDL"
-      | "MGA"
-      | "MKD"
-      | "MMK"
-      | "MNT"
-      | "MOP"
-      | "MRO"
-      | "MUR"
-      | "MVR"
-      | "MWK"
-      | "MXN"
-      | "MYR"
-      | "MZN"
-      | "NAD"
-      | "NGN"
-      | "NIO"
-      | "NOK"
-      | "NPR"
-      | "NZD"
-      | "OMR"
-      | "PAB"
-      | "PEN"
-      | "PGK"
-      | "PHP"
-      | "PKR"
-      | "PLN"
-      | "PYG"
-      | "QAR"
-      | "RON"
-      | "RSD"
-      | "RUB"
-      | "RWF"
-      | "SAR"
-      | "SBD"
-      | "SCR"
-      | "SDG"
-      | "SEK"
-      | "SGD"
-      | "SHP"
-      | "SLL"
-      | "SOS"
-      | "SPL"
-      | "SRD"
-      | "STD"
-      | "SVC"
-      | "SYP"
-      | "SZL"
-      | "THB"
-      | "TJS"
-      | "TMT"
-      | "TND"
-      | "TOP"
-      | "TRY"
-      | "TTD"
-      | "TVD"
-      | "TWD"
-      | "TZS"
-      | "UAH"
-      | "UGX"
-      | "USD"
-      | "UYU"
-      | "UZS"
-      | "VEF"
-      | "VND"
-      | "VUV"
-      | "WST"
-      | "XAF"
-      | "XCD"
-      | "XDR"
-      | "XOF"
-      | "XPF"
-      | "YER"
-      | "ZAR"
-      | "ZMW"
-      | "ZWD";
+    | 'AED'
+    | 'AFN'
+    | 'ALL'
+    | 'AMD'
+    | 'ANG'
+    | 'AOA'
+    | 'ARS'
+    | 'AUD'
+    | 'AWG'
+    | 'AZN'
+    | 'BAM'
+    | 'BBD'
+    | 'BDT'
+    | 'BGN'
+    | 'BHD'
+    | 'BIF'
+    | 'BMD'
+    | 'BND'
+    | 'BOB'
+    | 'BRL'
+    | 'BSD'
+    | 'BTN'
+    | 'BWP'
+    | 'BYN'
+    | 'BZD'
+    | 'CAD'
+    | 'CDF'
+    | 'CHF'
+    | 'CLP'
+    | 'CNY'
+    | 'COP'
+    | 'CRC'
+    | 'CUC'
+    | 'CUP'
+    | 'CVE'
+    | 'CZK'
+    | 'DJF'
+    | 'DKK'
+    | 'DOP'
+    | 'DZD'
+    | 'EGP'
+    | 'ERN'
+    | 'ETB'
+    | 'EUR'
+    | 'FJD'
+    | 'FKP'
+    | 'GBP'
+    | 'GEL'
+    | 'GGP'
+    | 'GHS'
+    | 'GIP'
+    | 'GMD'
+    | 'GNF'
+    | 'GTQ'
+    | 'GYD'
+    | 'HKD'
+    | 'HNL'
+    | 'HRK'
+    | 'HTG'
+    | 'HUF'
+    | 'IDR'
+    | 'ILS'
+    | 'IMP'
+    | 'INR'
+    | 'IQD'
+    | 'IRR'
+    | 'ISK'
+    | 'JEP'
+    | 'JMD'
+    | 'JOD'
+    | 'JPY'
+    | 'KES'
+    | 'KGS'
+    | 'KHR'
+    | 'KMF'
+    | 'KPW'
+    | 'KRW'
+    | 'KWD'
+    | 'KYD'
+    | 'KZT'
+    | 'LAK'
+    | 'LBP'
+    | 'LKR'
+    | 'LRD'
+    | 'LSL'
+    | 'LYD'
+    | 'MAD'
+    | 'MDL'
+    | 'MGA'
+    | 'MKD'
+    | 'MMK'
+    | 'MNT'
+    | 'MOP'
+    | 'MRO'
+    | 'MUR'
+    | 'MVR'
+    | 'MWK'
+    | 'MXN'
+    | 'MYR'
+    | 'MZN'
+    | 'NAD'
+    | 'NGN'
+    | 'NIO'
+    | 'NOK'
+    | 'NPR'
+    | 'NZD'
+    | 'OMR'
+    | 'PAB'
+    | 'PEN'
+    | 'PGK'
+    | 'PHP'
+    | 'PKR'
+    | 'PLN'
+    | 'PYG'
+    | 'QAR'
+    | 'RON'
+    | 'RSD'
+    | 'RUB'
+    | 'RWF'
+    | 'SAR'
+    | 'SBD'
+    | 'SCR'
+    | 'SDG'
+    | 'SEK'
+    | 'SGD'
+    | 'SHP'
+    | 'SLL'
+    | 'SOS'
+    | 'SPL'
+    | 'SRD'
+    | 'STD'
+    | 'SVC'
+    | 'SYP'
+    | 'SZL'
+    | 'THB'
+    | 'TJS'
+    | 'TMT'
+    | 'TND'
+    | 'TOP'
+    | 'TRY'
+    | 'TTD'
+    | 'TVD'
+    | 'TWD'
+    | 'TZS'
+    | 'UAH'
+    | 'UGX'
+    | 'USD'
+    | 'UYU'
+    | 'UZS'
+    | 'VEF'
+    | 'VND'
+    | 'VUV'
+    | 'WST'
+    | 'XAF'
+    | 'XCD'
+    | 'XDR'
+    | 'XOF'
+    | 'XPF'
+    | 'YER'
+    | 'ZAR'
+    | 'ZMW'
+    | 'ZWD';
     /**
      * The challenge that has been signed by a PISP.
      */
@@ -513,7 +513,7 @@ export interface components {
      * The type of the Credential.
      * - "FIDO" - A FIDO public/private keypair.
      */
-    CredentialType: "FIDO";
+    CredentialType: 'FIDO';
     /**
      * The API data type DateTime is a JSON String in a lexical format that is
      * restricted by a regular expression for interoperability reasons.
@@ -539,7 +539,7 @@ export interface components {
      * Data model for the complex type Money.
      */
     Money: {
-      currency: components["schemas"]["Currency"];
+      currency: components['schemas']['Currency'];
       /**
        * The API data type Amount is a JSON String in a canonical format that is
        * restricted by a regular expression for interoperability reasons.
@@ -570,7 +570,7 @@ export interface components {
      * Main difference being that it returns a `Party` with the newly added
      * `accounts` property.
      */
-    PartiesTypeIDPutResponse: { party: components["schemas"]["Party"] };
+    PartiesTypeIDPutResponse: { party: components['schemas']['Party'] };
     /**
      * Data model for the complex type Party.
      */
@@ -617,14 +617,14 @@ export interface components {
          * by the PartyIdentifier.
          */
         partyIdType:
-          | "MSISDN"
-          | "EMAIL"
-          | "PERSONAL_ID"
-          | "BUSINESS"
-          | "DEVICE"
-          | "ACCOUNT_ID"
-          | "IBAN"
-          | "ALIAS";
+        | 'MSISDN'
+        | 'EMAIL'
+        | 'PERSONAL_ID'
+        | 'BUSINESS'
+        | 'DEVICE'
+        | 'ACCOUNT_ID'
+        | 'IBAN'
+        | 'ALIAS';
         /**
          * Identifier of the Party.
          */
@@ -634,7 +634,7 @@ export interface components {
          * PartyIdType, normally a PersonalIdentifierType.
          */
         partySubIdOrType?: string;
-        fspId?: components["schemas"]["FspId"];
+        fspId?: components['schemas']['FspId'];
       };
       /**
        * A limited set of pre-defined numbers. This list would be a limited set of
@@ -677,11 +677,11 @@ export interface components {
      * The object sent in the PUT /quotes/{ID} callback.
      */
     QuotesIDPutResponse: {
-      transferAmount: components["schemas"]["Money"];
-      payeeReceiveAmount?: components["schemas"]["Money"];
-      payeeFspFee?: components["schemas"]["Money"];
-      payeeFspCommission?: components["schemas"]["Money"];
-      expiration: components["schemas"]["DateTime"];
+      transferAmount: components['schemas']['Money'];
+      payeeReceiveAmount?: components['schemas']['Money'];
+      payeeFspFee?: components['schemas']['Money'];
+      payeeFspCommission?: components['schemas']['Money'];
+      expiration: components['schemas']['DateTime'];
       /**
        * Data model for the complex type GeoCode.
        * Indicates the geographic location from where the transaction was initiated.
@@ -730,8 +730,8 @@ export interface components {
      * Scope + Account Identifier mapping for a Consent.
      */
     Scope: {
-      accountId: components["schemas"]["AccountAddress"];
-      actions: components["schemas"]["ConsentScopeType"][];
+      accountId: components['schemas']['AccountAddress'];
+      actions: components['schemas']['ConsentScopeType'][];
     };
     /**
      * A credential used to allow a user to prove their identity and access
@@ -746,12 +746,12 @@ export interface components {
        * The id of a Credential.
        */
       id: string;
-      type: components["schemas"]["CredentialType"];
+      type: components['schemas']['CredentialType'];
       /**
        * The challenge has signed but not yet verified.
        */
-      status: "PENDING";
-      challenge: components["schemas"]["CredentialChallengeSigned"];
+      status: 'PENDING';
+      challenge: components['schemas']['CredentialChallengeSigned'];
       /**
        * Base64 encoded bytes - The public key of the Public/Private keypair.
        */
@@ -768,19 +768,19 @@ export interface components {
       /**
        * Base64 encoded binary string - the signed challenge
        */
-      value: components["schemas"]["BinaryString"];
+      value: components['schemas']['BinaryString'];
       /**
        * Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
        */
-      consentId: components["schemas"]["CorrelationId"];
+      consentId: components['schemas']['CorrelationId'];
       /**
        * DFSP specific account identifiers, e.g. `dfspa.alice.1234`
        */
-      sourceAccountId: components["schemas"]["AccountAddress"];
+      sourceAccountId: components['schemas']['AccountAddress'];
       /**
        * The status of the authorization. This MUST be PENDING for a POST request
        */
-      status: "PENDING";
+      status: 'PENDING';
     };
     /**
      * The object sent in the PUT /thirdpartyRequests/transactions/{id}/authorizations request.
@@ -793,34 +793,34 @@ export interface components {
       /**
        * Base64 encoded binary string - the signed challenge.
        */
-      value: components["schemas"]["BinaryString"];
+      value: components['schemas']['BinaryString'];
       /**
        * Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which consent allows the PISP to initiate transaction.
        */
-      consentId: components["schemas"]["CorrelationId"];
+      consentId: components['schemas']['CorrelationId'];
       /**
        * DFSP specific account identifiers, e.g. `dfspa.alice.1234`
        */
-      sourceAccountId: components["schemas"]["AccountAddress"];
+      sourceAccountId: components['schemas']['AccountAddress'];
       /**
        * The status of the authorization. This value must be `VERIFIED` for a PUT request.
        */
-      status: "VERIFIED";
+      status: 'VERIFIED';
     };
     /**
      * The object sent in the PATCH /thirdpartyRequests/transactions/{ID} callback.
      */
     ThirdpartyRequestsTransactionsIDPatchResponse: {
-      transactionId: components["schemas"]["CorrelationId"];
-      transactionRequestState: components["schemas"]["TransactionRequestState"];
-      transactionState: components["schemas"]["TransactionState"];
+      transactionId: components['schemas']['CorrelationId'];
+      transactionRequestState: components['schemas']['TransactionRequestState'];
+      transactionState: components['schemas']['TransactionState'];
     };
     /**
      * The object sent in the PUT /thirdPartyRequests/transactions/{ID} request.
      */
     ThirdpartyRequestsTransactionsIDPutResponse: {
-      transactionId: components["schemas"]["CorrelationId"];
-      transactionRequestState: components["schemas"]["TransactionRequestState"];
+      transactionId: components['schemas']['CorrelationId'];
+      transactionRequestState: components['schemas']['TransactionRequestState'];
     };
     /**
      * The object sent in the POST /thirdpartyRequests/transactions request.
@@ -829,31 +829,31 @@ export interface components {
       /**
        * Common ID between the FSPs for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
        */
-      transactionRequestId: components["schemas"]["CorrelationId"];
+      transactionRequestId: components['schemas']['CorrelationId'];
       /**
        * DFSP specific account identifiers, e.g. `dfspa.alice.1234`
        */
-      sourceAccountId: components["schemas"]["AccountAddress"];
+      sourceAccountId: components['schemas']['AccountAddress'];
       /**
        * Common ID between the PISP and FSP for the Consent object This tells DFSP and auth-service which constent allows the PISP to initiate transaction.
        */
-      consentId: components["schemas"]["CorrelationId"];
+      consentId: components['schemas']['CorrelationId'];
       /**
        * Information about the Payee in the proposed financial transaction.
        */
-      payee: components["schemas"]["Party"];
+      payee: components['schemas']['Party'];
       /**
        * Information about the Payer in the proposed financial transaction.
        */
-      payer: components["schemas"]["Party"];
+      payer: components['schemas']['Party'];
       /**
        * SEND for sendAmount, RECEIVE for receiveAmount.
        */
-      amountType: "SEND" | "RECEIVE";
+      amountType: 'SEND' | 'RECEIVE';
       /**
        * Requested amount to be transferred from the Payer to Payee.
        */
-      amount: components["schemas"]["Money"];
+      amount: components['schemas']['Money'];
       /**
        * Type of transaction.
        */
@@ -877,7 +877,7 @@ export interface components {
          * bill payment, a donation, and so on.
          * - REFUND - Used for performing a refund of transaction.
          */
-        scenario: "DEPOSIT" | "WITHDRAWAL" | "TRANSFER" | "PAYMENT" | "REFUND";
+        scenario: 'DEPOSIT' | 'WITHDRAWAL' | 'TRANSFER' | 'PAYMENT' | 'REFUND';
         /**
          * Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
          */
@@ -892,7 +892,7 @@ export interface components {
          * automatically by a pre-generated OTP or by pre-approval of the Payee,
          * or by manually approving in his or her own Device.
          */
-        initiator: "PAYER" | "PAYEE";
+        initiator: 'PAYER' | 'PAYEE';
         /**
          * Below are the allowed values for the enumeration.
          * - CONSUMER - Consumer is the initiator of the transaction.
@@ -900,12 +900,12 @@ export interface components {
          * - BUSINESS - Business is the initiator of the transaction.
          * - DEVICE - Device is the initiator of the transaction.
          */
-        initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+        initiatorType: 'CONSUMER' | 'AGENT' | 'BUSINESS' | 'DEVICE';
         /**
          * Data model for the complex type Refund.
          */
         refundInfo?: {
-          originalTransactionId: components["schemas"]["CorrelationId"];
+          originalTransactionId: components['schemas']['CorrelationId'];
           /**
            * Reason for the refund.
            */
@@ -930,7 +930,7 @@ export interface components {
      * - ACCEPTED - Payer has approved the transaction.
      * - REJECTED - Payer has rejected the transaction."
      */
-    TransactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
+    TransactionRequestState: 'RECEIVED' | 'PENDING' | 'ACCEPTED' | 'REJECTED';
     /**
      * Below are the allowed values for the enumeration.
      * - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
@@ -938,7 +938,7 @@ export interface components {
      * - COMPLETED - Payee FSP has successfully performed the transaction.
      * - REJECTED - Payee FSP has failed to perform the transaction.
      */
-    TransactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
+    TransactionState: 'RECEIVED' | 'PENDING' | 'COMPLETED' | 'REJECTED';
     /**
      * A credential used to allow a user to prove their identity and access
      * to an account with a DFSP.
@@ -948,12 +948,12 @@ export interface components {
      * a credential.
      */
     UnsignedCredential: {
-      type: components["schemas"]["CredentialType"];
+      type: components['schemas']['CredentialType'];
       /**
        * The challenge has initialized but not yet answered by the PISP.
        */
-      status: "PENDING";
-      challenge: components["schemas"]["CredentialChallengeUnsigned"];
+      status: 'PENDING';
+      challenge: components['schemas']['CredentialChallengeUnsigned'];
     };
     /**
      * A credential used to allow a user to prove their identity and access
@@ -968,12 +968,12 @@ export interface components {
        * The id of a Credential.
        */
       id?: string;
-      type: components["schemas"]["CredentialType"];
+      type: components['schemas']['CredentialType'];
       /**
        * The Credential is valid, and ready to be used by the PISP.
        */
-      status: "VERIFIED";
-      challenge: components["schemas"]["CredentialChallengeSigned"];
+      status: 'VERIFIED';
+      challenge: components['schemas']['CredentialChallengeSigned'];
       /**
        * Base64 encoded bytes - The public key of the Public/Private keypair.
        */

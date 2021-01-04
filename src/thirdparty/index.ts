@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-namespace */
+
 import { components } from './openapi'
 export * as openapi from './openapi'
 
-export namespace Schemas { 
+export namespace Schemas {
   export type Account = components['schemas']['Account']
   export type AccountAddress = components['schemas']['AccountAddress']
   export type AccountList = components['schemas']['AccountList']

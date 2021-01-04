@@ -8,7 +8,7 @@
     "audit:resolve": "SHELL=sh resolve-audit --production",
     "audit:check": "SHELL=sh check-audit --production",
     "build": "npm run build:openapi; npm run build:dto;",
-    "build:dto": "npm run build:dto:v1.0; npm run build:dto:v1.1; npm run build:dto:thirdparty; tsc",
+    "build:dto": "npm run build:dto:v1.0; npm run build:dto:v1.1; npm run build:dto:thirdparty; tsc; npm run lint -- --fix",
     "build:dto:v1.0": "openapi-typescript docs/fspiop-rest-v1.0-openapi3-snippets.yaml --output src/v1_0/openapi.ts",
     "build:dto:v1.1": "openapi-typescript docs/fspiop-rest-v1.1-openapi3-snippets.yaml --output src/v1_1/openapi.ts",
     "build:dto:thirdparty": "openapi-typescript docs/thirdparty-openapi3-snippets.yaml --output src/thirdparty/openapi.ts",
@@ -16,14 +16,19 @@
     "build:v1.0": "swagger-cli bundle -t yaml -o docs/fspiop-rest-v1.0-openapi3-snippets.yaml v1.0/openapi3/index.yaml && swagger-cli validate docs/fspiop-rest-v1.0-openapi3-snippets.yaml",
     "build:v1.1": "swagger-cli bundle -t yaml -o docs/fspiop-rest-v1.1-openapi3-snippets.yaml v1.1/openapi3/index.yaml && swagger-cli validate docs/fspiop-rest-v1.1-openapi3-snippets.yaml",
     "build:thirdparty": "swagger-cli bundle -t yaml -o docs/thirdparty-openapi3-snippets.yaml thirdparty/openapi3/index.yaml && swagger-cli validate docs/thirdparty-openapi3-snippets.yaml",
+    "lint": "eslint ./src/**/*.ts *.js",
     "prepare": "npm run build",
     "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged",
       "post-commit": "git update-index --again"
     }
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --cache --fix"
   },
   "repository": {
     "type": "git",
@@ -53,8 +58,19 @@
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
     "diff": "^4.0.1",
+    "eslint": "^7.17.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-cucumber": "^1.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^5.0.0",
     "husky": "^4.3.6",
+    "lint-staged": "^10.5.3",
     "npm-audit-resolver": "2.2.0",
     "standard-version": "^9.0.0",
     "swagger-cli": "^4.0.4",
