@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 import { components } from './openapi'
 export * as openapi from './openapi'
 
