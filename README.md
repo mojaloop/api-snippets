@@ -170,6 +170,13 @@ let request: Schemas.MyCustomRequest = { ... }
 ### DTO usage examples
 please check in `src/example.ts` for further reading
 
-### DTO TODO:
+### DTO linting
+to lint generated files use:
+```bash
+npm run lint
+```
+
+the `npm run build:dto` script is already executing linting with auto-fixing
+
+### DTO testing
 - testing of DTO declarations
-- linting
