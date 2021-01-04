@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [11.3.0](https://github.com/mojaloop/api-snippets/compare/v11.2.0...v11.3.0) (2021-01-04)
+
+
+### Features
+
+* 1931 TS linting ([#43](https://github.com/mojaloop/api-snippets/issues/43)) ([1c02307](https://github.com/mojaloop/api-snippets/commit/1c02307e47cb11bfa0668a44aa7cccd51742cdf2))
+
 ## [11.2.0](https://github.com/mojaloop/api-snippets/compare/v11.1.0...v11.2.0) (2020-12-30)
 
 
