@@ -1,3 +1,5 @@
 node_modules
 test/resolved.*
 /lib
+junit.xml
+.eslintcache
