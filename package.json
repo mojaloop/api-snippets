@@ -8,7 +8,7 @@
     "audit:resolve": "SHELL=sh resolve-audit --production",
     "audit:check": "SHELL=sh check-audit --production",
     "build": "npm run build:openapi; npm run build:dto;",
-    "build:dto": "npm run build:dto:v1.0; npm run build:dto:v1.1; npm run build:dto:thirdparty; tsc; npm run lint -- --fix",
+    "build:dto": "npm run build:dto:v1.0; npm run build:dto:v1.1; npm run build:dto:thirdparty; tsc; npm run lint -- --fix; npm run test:dto",
     "build:dto:v1.0": "openapi-typescript docs/fspiop-rest-v1.0-openapi3-snippets.yaml --output src/v1_0/openapi.ts",
     "build:dto:v1.1": "openapi-typescript docs/fspiop-rest-v1.1-openapi3-snippets.yaml --output src/v1_1/openapi.ts",
     "build:dto:thirdparty": "openapi-typescript docs/thirdparty-openapi3-snippets.yaml --output src/thirdparty/openapi.ts",
@@ -18,12 +18,14 @@
     "build:thirdparty": "swagger-cli bundle -t yaml -o docs/thirdparty-openapi3-snippets.yaml thirdparty/openapi3/index.yaml && swagger-cli validate docs/thirdparty-openapi3-snippets.yaml",
     "lint": "eslint ./src/**/*.ts *.js",
     "prepare": "npm run build",
-    "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'"
+    "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",
+    "test": "npm run test:dto",
+    "test:dto": "jest --testMatch '**/tests/dto/*.(test|spec).ts'"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged",
+      "pre-commit": "lint-staged; npm run test",
       "post-commit": "git update-index --again"
     }
   },
@@ -58,6 +60,7 @@
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^11.0.0",
+    "@types/jest": "26.0.14",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "diff": "^4.0.1",
@@ -70,11 +73,15 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^5.0.0",
     "husky": "^4.3.6",
+    "jest": "26.5.3",
+    "jest-junit": "12.0.0",
     "lint-staged": "^10.5.3",
     "npm-audit-resolver": "2.2.0",
     "standard-version": "^9.0.0",
     "swagger-cli": "^4.0.4",
     "tslib": "^2.0.3",
+    "ts-node": "^9.0.0",
+    "ts-jest": "^26.4.1",
     "typescript": "^4.1.3"
   },
   "publishConfig": {

@@ -1,11 +1,14 @@
 {
   "include": [
-    "src",
+    ".eslintrc.js",
     "commitlint.config.js",
-    ".eslintrc.js"
+    "jest.config.js",
+    "src",
+    "tests"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "tests"
   ],
   "compilerOptions": {
     "target": "es2018",
@@ -34,6 +37,14 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "~/*": [
+        "src/*"
+      ],
+      "test/*": [
+        "test/*"
+      ]
+    }
   }
 }

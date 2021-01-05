@@ -178,5 +178,6 @@ npm run lint
 
 the `npm run build:dto` script is already executing linting with auto-fixing
 
+there is pre-commit hook setup witch do a linting for staged files.
 ### DTO testing
 - testing of DTO declarations
