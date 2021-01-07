@@ -17,8 +17,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
-    project: './tsconfig.json',
-    tsConfigRootDir: './'
+    project: './tsconfig.eslint.json',
+    tsConfigRootDir: __dirname
   },
   rules: {
     indent: 'off',
@@ -47,7 +47,7 @@ module.exports = {
     {
       // Disable some rules that we abuse in unit tests.
       files: [
-        'test /**/*.ts'
+        'tests /**/*.ts'
       ],
       rules: {
         '@typescript-eslint/explicit-function-return-type': 'off'
