@@ -123,7 +123,7 @@ describe('v1_0', () => {
     partyId: partyIdInfo,
     errorInformation
   }
-  
+
   const partyIdentifier: Schemas.PartyIdentifier = 'abcdef'
   const partyIdType: Schemas.PartyIdType = 'EMAIL'
   const partyName: Schemas.PartyName = 'party-name'
@@ -138,7 +138,7 @@ describe('v1_0', () => {
   const transactionState: Schemas.TransactionState = 'RECEIVED'
   const transactionSubScenario: Schemas.TransactionSubScenario = 'transaction-sub-scenario'
   const transferState: Schemas.TransferState = 'COMMITTED'
-  
+
   test('Amount', () => {
     expect(amount).toBeDefined()
   })
@@ -158,7 +158,7 @@ describe('v1_0', () => {
   test('AuthenticationValue', () => {
     const otpValue: Schemas.OtpValue = 'otp-value'
     const authenticationValueOTP: Schemas.AuthenticationValue = otpValue
-    expect(authenticationValueOTP).toBeDefined
+    expect(authenticationValueOTP).toBeDefined()
 
     const qrcodeValue: Schemas.QRCODE = 'qrcode-value'
     const authenticationValueQRCode: Schemas.AuthenticationValue = qrcodeValue
@@ -267,11 +267,11 @@ describe('v1_0', () => {
   test('Date', () => {
     expect(date).toBeDefined()
   })
-  
+
   test('DateOfBirth', () => {
     expect(dateOfBirth).toBeDefined()
   })
-  
+
   test('DateTime', () => {
     expect(dateTime).toBeDefined()
   })
@@ -310,7 +310,7 @@ describe('v1_0', () => {
 
   test('ExtensionValue', () => {
     expect(extensionValue).toBeDefined()
-  })  
+  })
 
   test('FirstName', () => {
     expect(firstName).toBeDefined()
@@ -368,7 +368,6 @@ describe('v1_0', () => {
   })
 
   test('IndividualTransferResult', () => {
-    
     expect(individualTransferResult).toBeDefined()
   })
 
@@ -649,7 +648,7 @@ describe('v1_0', () => {
     }
     expect(transfersPostRequest).toBeDefined()
   })
-  
+
   test('TransferState', () => {
     expect(transferState).toBeDefined()
   })
