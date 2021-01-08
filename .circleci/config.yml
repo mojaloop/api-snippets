@@ -279,7 +279,7 @@ workflows:
       - vulnerability-check:
           context: org-global
           requires:
-            - test
+            - build_and_test
           filters:
             tags:
               only: /.*/
@@ -287,7 +287,7 @@ workflows:
       - audit-licenses:
           context: org-global
           requires:
-            - test
+            - build_and_test
           filters:
             tags:
               only: /.*/
@@ -296,8 +296,6 @@ workflows:
       - release:
           context: org-global
           requires:
-            - setup
-            - test
             - audit-licenses
             - vulnerability-check
           filters:
@@ -317,8 +315,6 @@ workflows:
       - publish:
           context: org-global
           requires:
-            - setup
-            - test
             - vulnerability-check
             - audit-licenses
           filters:
