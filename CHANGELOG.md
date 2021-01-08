@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.4.1](https://github.com/mojaloop/api-snippets/compare/v11.4.0...v11.4.1) (2021-01-08)
+
+
+### Maintenance
+
+* 1932 cicd ([#45](https://github.com/mojaloop/api-snippets/issues/45)) ([4a91738](https://github.com/mojaloop/api-snippets/commit/4a9173820c189f101b40a01c9aa73fa0dde379c1))
+
 ## [11.4.0](https://github.com/mojaloop/api-snippets/compare/v11.3.0...v11.4.0) (2021-01-08)
 
 
