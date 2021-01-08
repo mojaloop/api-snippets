@@ -104,6 +104,32 @@ jobs:
           paths:
             - node_modules
 
+  build_and_test:
+    executor: default-docker
+    steps:
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: build
+          command: npm run build
+      - run:
+          name: test
+          command: npm run test
+      - run:
+          name: prepare test/results
+          command: |
+            mkdir -p test/results
+            mv junit.xml test/results
+      - store_artifacts:
+          path: ./test/results
+          prefix: test
+      - store_test_results:
+          path: ./test/results
+
   vulnerability-check:
     executor: default-docker
     steps:
@@ -143,7 +169,7 @@ jobs:
       - store_artifacts:
           path: /tmp/license-scanner/results
           prefix: licenses
-
+  
   release:
     executor: default-docker
     steps:
@@ -209,7 +235,7 @@ jobs:
           webhook: "$SLACK_WEBHOOK_ANNOUNCEMENT"
           success_message: '*"${CIRCLE_PROJECT_REPONAME}"* - Release \`"v${RELEASE_TAG}"\` \nhttps://github.com/mojaloop/"${CIRCLE_PROJECT_REPONAME}"/releases/tag/"v${RELEASE_TAG}"'
 
-  build:
+  publish:
     executor: default-docker
     steps:
       - run:
@@ -242,7 +268,7 @@ workflows:
             tags:
               only: /.*/
 
-      - vulnerability-check:
+      - build_and_test:
           context: org-global
           requires:
             - setup
@@ -250,10 +276,18 @@ workflows:
             tags:
               only: /.*/
 
+      - vulnerability-check:
+          context: org-global
+          requires:
+            - build_and_test
+          filters:
+            tags:
+              only: /.*/
+
       - audit-licenses:
           context: org-global
           requires:
-            - setup
+            - build_and_test
           filters:
             tags:
               only: /.*/
@@ -262,7 +296,6 @@ workflows:
       - release:
           context: org-global
           requires:
-            - setup
             - audit-licenses
             - vulnerability-check
           filters:
@@ -279,10 +312,9 @@ workflows:
               only:
                 - master
 
-      - build:
+      - publish:
           context: org-global
           requires:
-            - setup
             - vulnerability-check
             - audit-licenses
           filters:
