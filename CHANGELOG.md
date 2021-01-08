@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [11.4.0](https://github.com/mojaloop/api-snippets/compare/v11.3.0...v11.4.0) (2021-01-08)
+
+
+### Features
+
+* 1928 dto testing ([#44](https://github.com/mojaloop/api-snippets/issues/44)) ([3274762](https://github.com/mojaloop/api-snippets/commit/32747629c800a1d8f5eb0c3ee54a4b896e6023cb))
+
 ## [11.3.0](https://github.com/mojaloop/api-snippets/compare/v11.2.0...v11.3.0) (2021-01-04)
 
 
