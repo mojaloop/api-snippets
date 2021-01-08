@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    ".eslintrc.js",
+    "commitlint.config.js",
+    "jest.config.js",
+    "src",
+    "tests/dto/v1_0.test.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
