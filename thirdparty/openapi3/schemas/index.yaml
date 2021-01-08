@@ -4,6 +4,10 @@ AccountAddress:
   $ref: ./AccountAddress.yaml
 AccountList:
   $ref: ./AccountList.yaml
+Amount:
+  $ref: ./Amount.yaml
+AmountType:
+  $ref: ./AmountType.yaml
 AuthorizationChannelType:
   $ref: ./AuthorizationChannelType.yaml
 AuthorizationResponseType:
@@ -56,18 +60,58 @@ CredentialType:
   $ref: ./CredentialType.yaml
 DateTime:
   $ref: ./DateTime.yaml
+DateOfBirth:
+  $ref: ./DateOfBirth.yaml
+Extension:
+  $ref: ./Extension.yaml
+ExtensionKey:
+  $ref: ./ExtensionKey.yaml
+ExtensionList:
+  $ref: ./ExtensionList.yaml
+ExtensionValue:
+  $ref: ./ExtensionValue.yaml
+FirstName:
+  $ref: ./FirstName.yaml
 FspId:
   $ref: ./FspId.yaml
+GeoCode:
+  $ref: ./GeoCode.yaml
+IlpCondition:
+  $ref: ./IlpCondition.yaml
+LastName:
+  $ref: ./LastName.yaml
+IlpFulfilment:
+  $ref: ./IlpFulfilment.yaml
+IlpPacket:
+  $ref: ./IlpPacket.yaml
 Integer:
   $ref: ./Integer.yaml
+Latitude:
+  $ref: ./Latitude.yaml
+Longitude:
+  $ref: ./Longitude.yaml
+MerchantClassificationCode:
+  $ref: ./MerchantClassificationCode.yaml
+MiddleName:
+  $ref: ./MiddleName.yaml
 Money:
   $ref: ./Money.yaml
 Name:
   $ref: ./Name.yaml
+Note:
+  $ref: ./Note.yaml
 PartiesTypeIDPutResponse:
   $ref: ./PartiesTypeIDPutResponse.yaml
 Party:
   $ref: ./Party.yaml
+PartyComplexName:
+  $ref: ./PartyComplexName.yaml
+PartyIdInfo:
+  $ref: ./PartyIdInfo.yaml
+PartyIdType:
+  $ref: ./PartyIdType.yaml
+PartyPersonalInfo:
+  $ref: ./PartyPersonalInfo.yaml
 QuotesIDPutResponse:
   $ref: ./QuotesIDPutResponse.yaml
 Scope:
@@ -88,6 +132,8 @@ TransactionRequestState:
   $ref: ./TransactionRequestState.yaml
 TransactionState:
   $ref: ./TransactionState.yaml
+TransactionType:
+  $ref: ./TransactionType.yaml
 UnsignedCredential:
   $ref: ./UnsignedCredential.yaml
 VerifiedCredential:

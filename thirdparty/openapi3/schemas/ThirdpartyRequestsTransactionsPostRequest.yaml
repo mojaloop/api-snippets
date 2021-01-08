@@ -29,7 +29,7 @@ properties:
     description: Information about the Payer in the proposed financial transaction.
   amountType:
     allOf:
-      - $ref: '../../../v1.0/openapi3/schemas/AmountType.yaml'
+      - $ref: './AmountType.yaml'
     description: SEND for sendAmount, RECEIVE for receiveAmount.
   amount:
     allOf:
@@ -37,7 +37,7 @@ properties:
     description: Requested amount to be transferred from the Payer to Payee.
   transactionType:
     allOf:
-      - $ref: '../../../v1.0/openapi3/schemas/TransactionType.yaml'
+      - $ref: './TransactionType.yaml'
     description: Type of transaction.
   expiration:
     type: string
