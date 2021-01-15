@@ -1,0 +1,30 @@
+title: TransactionRequestsPostRequest
+type: object
+description: 'The object sent in the POST /transactionRequests request.'
+properties:
+  transactionRequestId:
+    $ref: './CorrelationId.yaml'
+  payee:
+    $ref: './Party.yaml'
+  payer:
+    $ref: './PartyIdInfo.yaml'
+  amount:
+    $ref: './Money.yaml'
+  transactionType:
+    $ref: './TransactionType.yaml'
+  note:
+    $ref: './Note.yaml'
+  geoCode:
+    $ref: './GeoCode.yaml'
+  authenticationType:
+    $ref: './AuthenticationType.yaml'
+  expiration:
+    $ref: './DateTime.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - transactionRequestId
+  - payee
+  - payer
+  - amount
+  - transactionType

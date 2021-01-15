@@ -8,6 +8,8 @@ Amount:
   $ref: ./Amount.yaml
 AmountType:
   $ref: ./AmountType.yaml
+AuthenticationType:
+  $ref: ./AuthenticationType.yaml
 AuthorizationChannelType:
   $ref: ./AuthorizationChannelType.yaml
 AuthorizationResponseType:
@@ -60,6 +62,12 @@ CredentialType:
   $ref: ./CredentialType.yaml
 DateTime:
   $ref: ./DateTime.yaml
+ErrorCode:
+  $ref: ./ErrorCode.yaml
+ErrorDescription:
+  $ref: ./ErrorDescription.yaml
+ErrorInformation:
+  $ref: ./ErrorInformation.yaml
 DateOfBirth:
   $ref: ./DateOfBirth.yaml
 Extension:
@@ -100,18 +108,28 @@ Name:
   $ref: ./Name.yaml
 Note:
   $ref: ./Note.yaml
+ParticipantsPostRequest:
+  $ref: ./ParticipantsPostRequest.yaml
 PartiesTypeIDPutResponse:
   $ref: ./PartiesTypeIDPutResponse.yaml
 Party:
   $ref: ./Party.yaml
 PartyComplexName:
   $ref: ./PartyComplexName.yaml
+PartyIdentifier:
+  $ref: ./PartyIdentifier.yaml
 PartyIdInfo:
   $ref: ./PartyIdInfo.yaml
 PartyIdType:
   $ref: ./PartyIdType.yaml
+PartyName:
+  $ref: ./PartyName.yaml
 PartyPersonalInfo:
   $ref: ./PartyPersonalInfo.yaml
+PartyResult:
+  $ref: ./PartyResult.yaml
+PartySubIdOrType:
+  $ref: ./PartySubIdOrType.yaml
 QuotesIDPutResponse:
   $ref: ./QuotesIDPutResponse.yaml
 Scope:
@@ -128,6 +146,8 @@ ThirdpartyRequestsTransactionsIDPutResponse:
   $ref: ./ThirdpartyRequestsTransactionsIDPutResponse.yaml
 ThirdpartyRequestsTransactionsPostRequest:
   $ref: ./ThirdpartyRequestsTransactionsPostRequest.yaml
+TransactionRequestsPostRequest:
+  $ref: ./TransactionRequestsPostRequest.yaml
 TransactionRequestState:
   $ref: ./TransactionRequestState.yaml
 TransactionState:

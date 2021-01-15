@@ -1,1 +1,17 @@
-$ref: '../../../v1.0/openapi3/schemas/PartyIdInfo.yaml'
+title: PartyIdInfo
+type: object
+description: 'Data model for the complex type PartyIdInfo.'
+properties:
+  partyIdType:
+    $ref: './PartyIdType.yaml'
+  partyIdentifier:
+    $ref: './PartyIdentifier.yaml'
+  partySubIdOrType:
+    $ref: './PartySubIdOrType.yaml'
+  fspId:
+    $ref: './FspId.yaml'
+  extensionList:
+    $ref: './ExtensionList.yaml'
+required:
+  - partyIdType
+  - partyIdentifier
