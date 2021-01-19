@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.4.2](https://github.com/mojaloop/api-snippets/compare/v11.4.1...v11.4.2) (2021-01-19)
+
+
+### Maintenance
+
+* add CONSENT and THIRD_PARTY_LINK to thirdparty variant PartyIdType ([#46](https://github.com/mojaloop/api-snippets/issues/46)) ([ea8f76a](https://github.com/mojaloop/api-snippets/commit/ea8f76af1957257d9445c05e0ab7da5748f486aa))
+
 ### [11.4.1](https://github.com/mojaloop/api-snippets/compare/v11.4.0...v11.4.1) (2021-01-08)
 
 
