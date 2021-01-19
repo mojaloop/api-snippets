@@ -1,0 +1,10 @@
+title: PartyResult
+type: object
+description: 'Data model for the complex type PartyResult.'
+properties:
+  partyId:
+    $ref: './PartyIdInfo.yaml'
+  errorInformation:
+    $ref: './ErrorInformation.yaml'
+required:
+  - partyId
