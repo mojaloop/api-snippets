@@ -2,6 +2,7 @@ import { Schemas } from '../../lib/thirdparty'
 
 describe('thirdparty', () => {
   const accountAddress: Schemas.AccountAddress = 'account-address'
+  const authenticationTypeQRCODE: Schemas.AuthenticationType = 'QRCODE'
   const currency: Schemas.Currency = 'USD'
   const name: Schemas.Name = 'name'
   const account: Schemas.Account = {
@@ -20,6 +21,13 @@ describe('thirdparty', () => {
   }
   const extensionList: Schemas.ExtensionList = {
     extension: [extension]
+  }
+  const errorCode: Schemas.ErrorCode = '00001'
+  const errorDescription: Schemas.ErrorDescription = 'error description'
+  const errorInformation: Schemas.ErrorInformation = {
+    errorCode,
+    errorDescription,
+    extensionList
   }
   const integer: Schemas.Integer = '1'
   const correlationId: Schemas.CorrelationId = 'abcd-efgh'
@@ -121,6 +129,15 @@ describe('thirdparty', () => {
     initiator: 'PAYER',
     initiatorType: 'CONSUMER',
   }
+  const partyResult: Schemas.PartyResult = {
+    partyId: partyIdInfo,
+    errorInformation
+  }
+
+  const partyIdentifier: Schemas.PartyIdentifier = 'abcdef'
+  const partyName: Schemas.PartyName = 'party-name'
+  const partySubIdOrType: Schemas.PartySubIdOrType = 'party-sub-id-or-type'
+
   test('Account', () => {
     expect(account).toBeDefined()
   })
@@ -258,7 +275,7 @@ describe('thirdparty', () => {
     }
     expect(consentsIDPutResponseSigned).toBeDefined()
   })
-  
+
   test('ConsentsIDPutResponseUnsigned', () => {
     const consentsIDPutResponseUnsigned: Schemas.ConsentsIDPutResponseUnsigned = {
       requestId: correlationId,
@@ -372,12 +389,22 @@ describe('thirdparty', () => {
     expect(note).toBeDefined()
   })
 
+  test('ParticipantsPostRequest', () => {
+    const participantsPostRequest: Schemas.ParticipantsPostRequest = {
+      requestId: correlationId,
+      partyList: [partyIdInfo],
+      currency
+    }
+    expect(participantsPostRequest).toBeDefined()
+  })
+
   test('PartiesTypeIDPutResponse', () => {
     const partiesTypeIDPutResponse: Schemas.PartiesTypeIDPutResponse = {
       party
     }
     expect(partiesTypeIDPutResponse).toBeDefined()
   })
+
   test('Party', () => {
     expect(party).toBeDefined()
   })
@@ -386,12 +413,28 @@ describe('thirdparty', () => {
     expect(partyComplexName).toBeDefined()
   })
 
+  test('PartyIdentifier', () => {
+    expect(partyIdentifier).toBeDefined()
+  })
+
   test('PartyIdInfo', () => {
     expect(partyIdInfo).toBeDefined()
   })
 
   test('PartyIdType', () => {
     expect(partyIdTypeEMAIL).toBeDefined()
+  })
+
+  test('PartyName', () => {
+    expect(partyName).toBeDefined()
+  })
+
+  test('PartyResult', () => {
+    expect(partyResult).toBeDefined()
+  })
+
+  test('PartySubIdOrType', () => {
+    expect(partySubIdOrType).toBeDefined()
   })
 
   test('PartyPersonalInfo', () => {
@@ -424,11 +467,11 @@ describe('thirdparty', () => {
   test('SignedCredential', () => {
     expect(signedCredential).toBeDefined()
   })
-  
+
   test('ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest', () => {
     const thirdpartyRequestsTransactionsIDAuthorizationsPostRequest: Schemas.ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest = {
       challenge: 'the-challenge',
-      value: 'signed-challenge', 
+      value: 'signed-challenge',
       consentId: correlationId,
       sourceAccountId: accountAddress,
       status: 'PENDING'
@@ -439,7 +482,7 @@ describe('thirdparty', () => {
   test('ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse', () => {
     const thirdpartyRequestsTransactionsIDAuthorizationsPutResponse: Schemas.ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse = {
       challenge: 'the-challenge',
-      value: 'signed-challenge', 
+      value: 'signed-challenge',
       consentId: correlationId,
       sourceAccountId: accountAddress,
       status: 'VERIFIED'
@@ -484,7 +527,23 @@ describe('thirdparty', () => {
   test('TransactionType', () => {
     expect(transactionType).toBeDefined()
   })
-  
+
+  test('TransactionRequestsPostRequest', () => {
+    const transactionRequestsPostRequest: Schemas.TransactionRequestsPostRequest = {
+      transactionRequestId: correlationId,
+      payee: party,
+      payer: partyIdInfo,
+      amount: money,
+      transactionType,
+      note,
+      geoCode,
+      authenticationType: authenticationTypeQRCODE,
+      expiration: dateTime,
+      extensionList
+    }
+    expect(transactionRequestsPostRequest).toBeDefined()
+  })
+
   test('UnsignedCredential', () => {
     expect(unsignedCredential).toBeDefined()
   })
