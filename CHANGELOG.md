@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.4.3](https://github.com/mojaloop/api-snippets/compare/v11.4.2...v11.4.3) (2021-01-21)
+
+
+### Maintenance
+
+* add types to exports ([#47](https://github.com/mojaloop/api-snippets/issues/47)) ([de9b3c8](https://github.com/mojaloop/api-snippets/commit/de9b3c8683bcb636f4fc2f7eacd98c3fea4b7a00))
+
 ### [11.4.2](https://github.com/mojaloop/api-snippets/compare/v11.4.1...v11.4.2) (2021-01-19)
 
 
