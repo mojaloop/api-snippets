@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [11.4.4](https://github.com/mojaloop/api-snippets/compare/v11.4.3...v11.4.4) (2021-01-22)
+
+
+### Maintenance
+
+* adding codeowners list ([#48](https://github.com/mojaloop/api-snippets/issues/48)) ([2b3ffab](https://github.com/mojaloop/api-snippets/commit/2b3ffabe02fe0986ed72b44be279bdb84367f324))
+
 ### [11.4.3](https://github.com/mojaloop/api-snippets/compare/v11.4.2...v11.4.3) (2021-01-21)
 
 
