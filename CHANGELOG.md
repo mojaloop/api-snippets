@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [11.5.0](https://github.com/mojaloop/api-snippets/compare/v11.4.4...v11.5.0) (2021-02-05)
+
+
+### Features
+
+* **ci/cd:** add pr title check ([#49](https://github.com/mojaloop/api-snippets/issues/49)) ([1dce9dd](https://github.com/mojaloop/api-snippets/commit/1dce9ddb0daf2c13c77328edc27a4bd9c6a2c5d6))
+
 ### [11.4.4](https://github.com/mojaloop/api-snippets/compare/v11.4.3...v11.4.4) (2021-01-22)
 
 
