@@ -1,6 +1,0 @@
-title: Note
-type: string
-minLength: 1
-maxLength: 128
-description: 'Memo assigned to transaction.'
-example: 'Note sent to Payee.'

@@ -1,0 +1,167 @@
+parameters:
+  - $ref: ../components/parameters/Type.yaml
+  - $ref: ../components/parameters/ID.yaml
+  - $ref: ../components/parameters/SubId.yaml
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+post:
+  description: >-
+    The HTTP request `POST /participants/{Type}/{ID}` (or `POST
+    /participants/{Type}/{ID}/{SubId}`) is used to create information in the
+    server regarding the provided identity, defined by `{Type}`, `{ID}`, and
+    optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or
+    `POST /participants/BUSINESS/shoecompany/employee1`).
+  summary: Create participant information
+  tags:
+    - participants
+  operationId: ParticipantsSubIdByTypeAndIDPost
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    description: Participant information to be created.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ParticipantsTypeIDSubIDPostRequest.yaml
+  responses:
+    '202':
+      $ref: ../components/responses/202.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml
+get:
+  description: >-
+    The HTTP request `GET /participants/{Type}/{ID}` (or `GET
+    /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the
+    requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is
+    located (for example, `GET /participants/MSISDN/123456789`, or `GET
+    /participants/BUSINESS/shoecompany/employee1`). This HTTP request should
+    support a query string for filtering of currency. To use filtering of
+    currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ`
+    should be used, where `XYZ` is the requested currency.
+  summary: Look up participant information
+  tags:
+    - participants
+  operationId: ParticipantsSubIdByTypeAndID
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    '202':
+      $ref: ../components/responses/202.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml
+put:
+  description: >-
+    The callback `PUT /participants/{Type}/{ID}` (or `PUT
+    /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a
+    successful result of the lookup, creation, or deletion of the FSP
+    information related to the Party. If the FSP information is deleted, the
+    fspId element should be empty; otherwise the element should include the FSP
+    information for the Party.
+  summary: Return participant information
+  tags:
+    - participants
+  operationId: ParticipantsSubIdByTypeAndID3
+  parameters:
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    description: Participant information returned.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ParticipantsTypeIDPutResponse.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/200.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml
+delete:
+  description: >-
+    The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE
+    /participants/{Type}/{ID}/{SubId}`) is used to delete information in the
+    server regarding the provided identity, defined by `{Type}` and `{ID}`) (for
+    example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`.
+    This HTTP request should support a query string to delete FSP information
+    regarding a specific currency only. To delete a specific currency only, the
+    HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used,
+    where `XYZ` is the requested currency.
+
+
+    **Note:** The Account Lookup System should verify that it is the Party’s
+    current FSP that is deleting the FSP information.
+  summary: Delete participant information
+  tags:
+    - participants
+  operationId: ParticipantsSubIdByTypeAndID2
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    '202':
+      $ref: ../components/responses/202.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml

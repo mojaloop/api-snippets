@@ -1,0 +1,81 @@
+parameters:
+  - $ref: ../components/parameters/ID.yaml
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+get:
+  description: >-
+    The HTTP request `GET /transactionRequests/{ID}` is used to get information
+    regarding a transaction request created or requested earlier. The `{ID}` in
+    the URI should contain the `transactionRequestId` that was used for the
+    creation of the transaction request.
+  summary: Retrieve transaction request information
+  tags:
+    - transactionRequests
+  operationId: TransactionRequestsByID
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    '202':
+      $ref: ../components/responses/202.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml
+put:
+  description: >-
+    The callback `PUT /transactionRequests/{ID}` is used to inform the client of
+    a requested or created transaction request. The `{ID}` in the URI should
+    contain the `transactionRequestId` that was used for the creation of the
+    transaction request, or the `{ID}` that was used in the `GET
+    /transactionRequests/{ID}`.
+  summary: Return transaction request information
+  tags:
+    - transactionRequests
+  operationId: TransactionRequestsByIDPut
+  parameters:
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    description: Transaction request information returned.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/TransactionRequestsIDPutResponse.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/200.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml

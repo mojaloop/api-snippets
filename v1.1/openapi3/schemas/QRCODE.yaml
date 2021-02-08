@@ -1,5 +1,0 @@
-title: QRCODE
-type: string
-minLength: 1
-maxLength: 64
-description: 'QR code used as a One Time Password.'

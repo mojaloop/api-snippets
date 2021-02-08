@@ -1,8 +1,0 @@
-title: ParticipantsTypeIDPutResponse
-type: object
-description: |
-  The object sent in the PUT /participants/{Type}/{ID}/{SubId} and
-  /participants/{Type}/{ID} callbacks.
-properties:
-  fspId:
-    $ref: './FspId.yaml'

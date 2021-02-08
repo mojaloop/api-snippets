@@ -1,0 +1,10 @@
+description: Unauthorized
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ErrorInformationResponse.yaml
+headers:
+  Content-Length:
+    $ref: ../parameters/Content-Length.yaml
+  Content-Type:
+    $ref: ../parameters/Content-Type.yaml

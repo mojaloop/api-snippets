@@ -1,8 +1,0 @@
-title: PartyPersonalInfo
-type: object
-description: 'Data model for the complex type PartyPersonalInfo.'
-properties:
-  complexName:
-    $ref: './PartyComplexName.yaml'
-  dateOfBirth:
-    $ref: './DateOfBirth.yaml'

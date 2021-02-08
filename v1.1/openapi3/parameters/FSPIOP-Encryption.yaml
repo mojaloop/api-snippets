@@ -1,8 +1,0 @@
-name: FSPIOP-Encryption
-in: header
-schema:
-  type: string
-required: false
-description: |
-  The `FSPIOP-Encryption` header field is a non-HTTP standard field used by
-  the API for applying end-to-end encryption of the request.
