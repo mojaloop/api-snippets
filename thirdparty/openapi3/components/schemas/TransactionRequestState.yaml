@@ -1,0 +1,14 @@
+title: TransactionRequestState
+type: string
+enum:
+  - RECEIVED
+  - PENDING
+  - ACCEPTED
+  - REJECTED
+description: |
+  Below are the allowed values for the enumeration.
+  - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
+  - PENDING - Payer FSP has sent the transaction request to the Payer.
+  - ACCEPTED - Payer has approved the transaction.
+  - REJECTED - Payer has rejected the transaction."
+example: RECEIVED

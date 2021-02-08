@@ -1,0 +1,6 @@
+get:
+  summary: This path is for demonstration purposes.
+  description: A valid OpenApi3 specification requires `paths` to be defined.
+  responses:
+    '200':
+      description: OK

@@ -1,0 +1,8 @@
+type: string
+pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+description: |
+  The API data type BinaryString is a JSON String.
+  The string is a base64url  encoding of a string of raw bytes,
+  where padding (character ‘=’) is added at the end of the data if
+  needed to ensure that the string is a multiple of 4 characters.
+  The length restriction indicates the allowed number of characters.
