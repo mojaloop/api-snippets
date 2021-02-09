@@ -6,7 +6,7 @@ content:
 headers:
   Content-Length:
     description: Content-Length header
-    $ref: ../parameters/Content-Length.yaml
+    $ref: ../headers/Content-Length.yaml
   Content-Type:
     description: Content-Length header
-    $ref: ../parameters/Content-Type.yaml
+    $ref: ../headers/Content-Type.yaml

@@ -30,7 +30,7 @@ paths:
         Essential path to include schema definitions that are not used so that
         these definitions get included into the openapi-cli bundle api
         definition so that they get converted into typescript definitions.
-      operationId: Interface
+      operationId: test
       requestBody:
         content:
           application/json:

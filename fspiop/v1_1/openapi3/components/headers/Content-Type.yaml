@@ -1,5 +1,3 @@
-name: Content-Type
-in: header
 schema:
   type: string
 required: true

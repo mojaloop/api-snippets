@@ -30,7 +30,7 @@ paths:
         Essential path to include schema definitions that are not used so that
         these definitions get included into the openapi-cli bundle api
         definition so that they get converted into typescript definitions.
-      operationId: Interface
+      operationId: test
       requestBody:
         content:
           application/json:
@@ -4157,8 +4157,6 @@ components:
           $ref: '#/components/headers/Content-Type'
   headers:
     Content-Length:
-      name: Content-Length
-      in: header
       required: false
       schema:
         type: integer
@@ -4170,8 +4168,6 @@ components:
         **Note:** The API supports a maximum size of 5242880 bytes (5
         Megabytes).
     Content-Type:
-      name: Content-Type
-      in: header
       schema:
         type: string
       required: true

@@ -1,5 +1,3 @@
-name: Content-Length
-in: header
 required: false
 schema:
   type: integer
