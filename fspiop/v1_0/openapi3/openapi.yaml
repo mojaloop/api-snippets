@@ -1,0 +1,152 @@
+openapi: 3.0.2
+info:
+  version: '1.0'
+  title: Open API for FSP Interoperability (FSPIOP) (Implementation Friendly Version)
+  description: >-
+    Based on [API Definition version
+    1.0](https://github.com/mojaloop/mojaloop-specification/blob/develop/API%20Definition%20v1.0.pdf).
+
+
+    **Note:** The API supports a maximum size of 65536 bytes (64 Kilobytes) in
+    the HTTP header.
+  license:
+    name: >-
+      Open API for FSP Interoperability (FSPIOP) (Implementation Friendly
+      Version)
+    url: 'https://github.com/mojaloop/mojaloop-specification/blob/develop/LICENSE.md'
+servers:
+  - url: 'protocol://hostname:<port>/switch/'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+paths:
+  /interface:
+    post:
+      description: >-
+        Essential path to include schema components that are not used so that
+        these definitions get included into the openapi-cli bundle api
+        definition so that they get converted into typescript definitions.
+      operationId: Interface
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: './components/schemas/Amount.yaml'
+                - $ref: './components/schemas/AmountType.yaml'
+                - $ref: './components/schemas/AuthenticationInfo.yaml'
+                - $ref: './components/schemas/AuthenticationType.yaml'
+                - $ref: './components/schemas/AuthenticationValue.yaml'
+                - $ref: './components/schemas/AuthorizationResponse.yaml'
+                - $ref: './components/schemas/BalanceOfPayments.yaml'
+                - $ref: './components/schemas/BinaryString.yaml'
+                - $ref: './components/schemas/BinaryString32.yaml'
+                - $ref: './components/schemas/BulkTransferState.yaml'
+                - $ref: './components/schemas/Code.yaml'
+                - $ref: './components/schemas/CorrelationId.yaml'
+                - $ref: './components/schemas/Currency.yaml'
+                - $ref: './components/schemas/Date.yaml'
+                - $ref: './components/schemas/DateOfBirth.yaml'
+                - $ref: './components/schemas/DateTime.yaml'
+                - $ref: './components/schemas/ErrorCode.yaml'
+                - $ref: './components/schemas/ErrorDescription.yaml'
+                - $ref: './components/schemas/ExtensionKey.yaml'
+                - $ref: './components/schemas/ExtensionValue.yaml'
+                - $ref: './components/schemas/FirstName.yaml'
+                - $ref: './components/schemas/FspId.yaml'
+                - $ref: './components/schemas/IlpCondition.yaml'
+                - $ref: './components/schemas/IlpFulfilment.yaml'
+                - $ref: './components/schemas/IlpPacket.yaml'
+                - $ref: './components/schemas/IndividualQuote.yaml'
+                - $ref: './components/schemas/Integer.yaml'
+                - $ref: './components/schemas/LastName.yaml'
+                - $ref: './components/schemas/Latitude.yaml'
+                - $ref: './components/schemas/Longitude.yaml'
+                - $ref: './components/schemas/MerchantClassificationCode.yaml'
+                - $ref: './components/schemas/MiddleName.yaml'
+                - $ref: './components/schemas/Name.yaml'
+                - $ref: './components/schemas/Note.yaml'
+                - $ref: './components/schemas/OtpValue.yaml'
+                - $ref: './components/schemas/PartyIdentifier.yaml'
+                - $ref: './components/schemas/PartyIdType.yaml'
+                - $ref: './components/schemas/PartyName.yaml'
+                - $ref: './components/schemas/PartySubIdOrType.yaml'
+                - $ref: './components/schemas/PersonalIdentifierType.yaml'
+                - $ref: './components/schemas/RefundReason.yaml'
+                - $ref: './components/schemas/QRCODE.yaml'
+                - $ref: './components/schemas/TokenCode.yaml'
+                - $ref: './components/schemas/Transaction.yaml'
+                - $ref: './components/schemas/TransactionInitiator.yaml'
+                - $ref: './components/schemas/TransactionInitiatorType.yaml'
+                - $ref: './components/schemas/TransactionRequestState.yaml'
+                - $ref: './components/schemas/TransactionScenario.yaml'
+                - $ref: './components/schemas/TransactionState.yaml'
+                - $ref: './components/schemas/TransactionSubScenario.yaml'
+                - $ref: './components/schemas/TransferState.yaml'
+                - $ref: './components/schemas/UndefinedEnum.yaml'
+      responses:
+        200:
+          description: Ok
+  /participants/Type/ID:
+    $ref: 'paths/participants_Type_ID.yaml'
+  /participants/Type/ID/error:
+    $ref: 'paths/participants_Type_ID_error.yaml'
+  /participants/Type/ID/SubId:
+    $ref: 'paths/participants_Type_ID_SubId.yaml'
+  /participants/Type/ID/SubId/error:
+    $ref: 'paths/participants_Type_ID_SubId_error.yaml'
+  /participants:
+    $ref: 'paths/participants.yaml'
+  /participants/ID:
+    $ref: 'paths/participants_ID.yaml'
+  /participants/ID/error:
+    $ref: 'paths/participants_ID_error.yaml'
+  /parties/Type/ID:
+    $ref: 'paths/parties_Type_ID.yaml'
+  /parties/Type/ID/error:
+    $ref: 'paths/parties_Type_ID_error.yaml'
+  /parties/Type/ID/SubId:
+    $ref: 'paths/parties_Type_ID_SubId.yaml'
+  /parties/Type/ID/SubId/error:
+    $ref: 'paths/parties_Type_ID_SubId_error.yaml'
+  /transactionRequests:
+    $ref: 'paths/transactionRequests.yaml'
+  /transactionRequests/ID:
+    $ref: 'paths/transactionRequests_ID.yaml'
+  /transactionRequests/ID/error:
+    $ref: 'paths/transactionRequests_ID_error.yaml'
+  /quotes:
+    $ref: 'paths/quotes.yaml'
+  /quotes/ID:
+    $ref: 'paths/quotes_ID.yaml'
+  /quotes/ID/error:
+    $ref: 'paths/quotes_ID_error.yaml'
+  /authorizations/ID:
+    $ref: 'paths/authorizations_ID.yaml'
+  /authorizations/ID/error:
+    $ref: 'paths/authorizations_ID_error.yaml'
+  /transfers:
+    $ref: 'paths/transfers.yaml'
+  /transfers/ID:
+    $ref: 'paths/transfers_ID.yaml'
+  /transfers/ID/error:
+    $ref: 'paths/transfers_ID_error.yaml'
+  /transactions/ID:
+    $ref: 'paths/transactions_ID.yaml'
+  /transactions/ID/error:
+    $ref: 'paths/transactions_ID_error.yaml'
+  /bulkQuotes:
+    $ref: 'paths/bulkQuotes.yaml'
+  /bulkQuotes/ID:
+    $ref: 'paths/bulkQuotes_ID.yaml'
+  /bulkQuotes/ID/error:
+    $ref: 'paths/bulkQuotes_ID_error.yaml'
+  /bulkTransfers:
+    $ref: 'paths/bulkTransfers.yaml'
+  /bulkTransfers/ID:
+    $ref: 'paths/bulkTransfers_ID.yaml'
+  /bulkTransfers/ID/error:
+    $ref: 'paths/bulkTransfers_ID_error.yaml'
