@@ -1,0 +1,24 @@
+openapi: 3.0.2
+info:
+  version: '0.1'
+  title: Thirdparty Snippets
+  description: |
+    Based on sequence diagrams
+    (https://github.com/mojaloop/pisp/tree/master/docs/out).
+    This is a work in progress.
+  license:
+    name: TBD
+servers:
+  - url: '{protocol}://hostname:<port>/switch/'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+paths:
+  /health:
+    $ref: paths/health.yaml
+components:
+  schemas:
+    $ref: './components/schemas/index.yaml'

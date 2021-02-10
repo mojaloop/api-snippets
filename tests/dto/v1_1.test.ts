@@ -1,4 +1,4 @@
-import { Schemas } from '../../lib/v1_1'
+import { Schemas } from '../../lib/fspiop/v1_1'
 
 describe('v1_1', () => {
   const amount: Schemas.Amount = '1.00'

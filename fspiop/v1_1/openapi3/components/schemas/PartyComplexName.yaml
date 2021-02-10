@@ -1,0 +1,16 @@
+title: PartyComplexName
+type: object
+description: Data model for the complex type PartyComplexName.
+properties:
+  firstName:
+    $ref: ./FirstName.yaml
+    description: Party’s first name.
+    example: Henrik
+  middleName:
+    $ref: ./MiddleName.yaml
+    description: Party’s middle name.
+    example: Johannes
+  lastName:
+    $ref: ./LastName.yaml
+    description: Party’s last name.
+    example: Karlsson

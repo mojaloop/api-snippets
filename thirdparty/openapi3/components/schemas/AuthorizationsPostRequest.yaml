@@ -1,0 +1,24 @@
+title: AuthorizationsPostRequest
+description: POST /authorizations request object.
+type: object
+properties:
+  authenticationType:
+    $ref: ./AuthorizationChannelType.yaml
+  retriesLeft:
+    $ref: ./Integer.yaml
+  amount:
+    $ref: ./Money.yaml
+  transactionId:
+    $ref: ./CorrelationId.yaml
+  transactionRequestId:
+    $ref: ./CorrelationId.yaml
+  quote:
+    $ref: ./QuotesIDPutResponse.yaml
+required:
+  - authenticationType
+  - retriesLeft
+  - amount
+  - transactionId
+  - transactionRequestId
+  - quote
+additionalProperties: false

@@ -1,0 +1,23 @@
+title: TransfersIDPutResponse
+type: object
+description: 'The object sent in the PUT /transfers/{ID} callback.'
+properties:
+  fulfilment:
+    $ref: ./IlpFulfilment.yaml
+    description: >-
+      Fulfilment of the condition specified with the transaction. Mandatory if
+      transfer has completed successfully.
+    example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+  completedTimestamp:
+    $ref: ./DateTime.yaml
+    description: Time and date when the transaction was completed.
+    example: '2016-05-24T08:38:08.699-04:00'
+  transferState:
+    $ref: ./TransferState.yaml
+    description: State of the transfer.
+    example: COMMITTED
+  extensionList:
+    $ref: ./ExtensionList.yaml
+    description: 'Optional extension, specific to deployment.'
+required:
+  - transferState

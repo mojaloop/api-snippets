@@ -1,7 +1,0 @@
-title: MiddleName
-type: string
-minLength: 1
-maxLength: 128
-pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-description: 'Middle name of the Party (Name Type).'
-example: Johannes

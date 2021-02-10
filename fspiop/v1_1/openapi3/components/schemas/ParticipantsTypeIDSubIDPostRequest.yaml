@@ -1,0 +1,20 @@
+title: ParticipantsTypeIDSubIDPostRequest
+type: object
+description: >-
+  The object sent in the POST /participants/{Type}/{ID}/{SubId} and
+  /participants/{Type}/{ID} requests. An additional optional ExtensionList
+  element has been added as part of v1.1 changes.
+properties:
+  fspId:
+    $ref: ./FspId.yaml
+    description: FSP Identifier that the Party belongs to.
+    example: 1234
+  currency:
+    $ref: ./Currency.yaml
+    description: Indicate that the provided Currency is supported by the Party.
+    example: USD
+  extensionList:
+    $ref: ./ExtensionList.yaml
+    description: 'Optional extension, specific to deployment.'
+required:
+  - fspId

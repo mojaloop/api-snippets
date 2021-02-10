@@ -1,7 +1,0 @@
-title: Integer
-type: string
-pattern: '^[1-9]\d*$'
-description: |
-  The API data type Integer is a JSON String consisting of digits only.
-  Negative numbers and leading zeroes are not allowed.
-  The data type is always limited to a specific number of digits.

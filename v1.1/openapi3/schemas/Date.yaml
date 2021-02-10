@@ -1,9 +1,0 @@
-title: Date
-type: string
-pattern: '^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$'
-description: |
-  The API data type Date is a JSON String in a lexical format that is
-  restricted by a regular expression for interoperability reasons.
-  This format, as specified in ISO 8601, contains a date only.
-  A more readable version of the format is yyyy-MM-dd.
-  Examples are \"1982-05-23\", \"1987-08-05”.

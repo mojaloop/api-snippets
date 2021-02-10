@@ -1,6 +1,0 @@
-title: ErrorDescription
-type: string
-minLength: 1
-maxLength: 128
-description: 'Error description string.'
-example: 'This is an error description.'

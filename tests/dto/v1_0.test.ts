@@ -1,4 +1,4 @@
-import { Schemas } from '../../lib/v1_0'
+import { Schemas } from '../../lib/fspiop/v1_0'
 
 describe('v1_0', () => {
   const amount: Schemas.Amount = '1.00'
@@ -8,6 +8,9 @@ describe('v1_0', () => {
     authentication: authenticationTypeQRCODE,
     authenticationValue: '123'
   }
+  // In AuthorizationsIDPutResponse `authenticationInfo` is a string
+  // even though `AuthenticationInfo` is an object.
+  const authenticationInfoString: string = authenticationTypeQRCODE
   const authorizationResponseRESEND: Schemas.AuthorizationResponse = 'RESEND'
   const balanceOfPayments: Schemas.BalanceOfPayments = '1.00'
   const bulkTransferStatePROCESSING: Schemas.BulkTransferState = 'PROCESSING'
@@ -171,7 +174,7 @@ describe('v1_0', () => {
 
   test('AuthorizationsIDPutResponse', () => {
     const authorizationsIDPutResponse: Schemas.AuthorizationsIDPutResponse = {
-      authenticationInfo,
+      authenticationInfo: authenticationInfoString,
       responseType: authorizationResponseRESEND
     }
     expect(authorizationsIDPutResponse).toBeDefined()
@@ -214,13 +217,14 @@ describe('v1_0', () => {
   })
 
   test('BulkQuotesPostRequest', () => {
+    // In v1.0 `individualQuotes` does not seem to be an array but
+    // just a single `IndividualQuote`.
     const bulkQuotesPostRequest: Schemas.BulkQuotesPostRequest = {
       bulkQuoteId: correlationId,
       payer: party,
       geoCode,
       expiration: dateTime,
-      individualQuotes: [individualQuote],
-      extensionList
+      individualQuotes: individualQuote
     }
     expect(bulkQuotesPostRequest).toBeDefined()
   })

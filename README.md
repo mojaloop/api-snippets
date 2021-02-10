@@ -13,7 +13,7 @@ Install the snippet library
 
 Install the reference resolving library
 ```bash
-  npm install swagger-cli --save-dev
+  npm install @redocly/openapi-cli --save-dev
 ```
 
 Modify swagger file to reference `api-snippets`.
@@ -21,12 +21,12 @@ Modify swagger file to reference `api-snippets`.
 ex.
 ```yaml
 Money:
-  $ref: /path/to/node_modules/@mojaloop/api-snippets/v1.0/openapi3/schemas/Money.yaml
+  $ref: /path/to/node_modules/@mojaloop/api-snippets/fspiop/v1_1/openapi3/components/schemas/Money.yaml
 ```
 
 Render and resolve the references.
 ```bash
-  swagger-cli bundle -t yaml -o api_render.yaml api.yaml
+  openapi bundle --output openapi.yaml --ext yaml openapi_template.yaml
 ```
 
 Validate the result file.
@@ -45,26 +45,23 @@ to build the page found at https://docs.mojaloop.io/api-snippets/
 
 ## Dev Tools
 
-To create snippets the tool found at https://www.npmjs.com/package/evrythng-openapi-tools
+To create snippets the tool found at https://redoc.ly/docs/cli/#installation-and-usage
 was used to break up large specification files. Some manual edits to the paths
 are needed to format the files.
 
 TODO: Add more detailed instructions for this workflow.
-- `npm i -g evrythng-openapi-tools`
-- `evrythng-openapi-tools split /path/to/my-large-specifcation-file.yaml /path/to/output-directory/`
+- `npm install -g @redocly/openapi-cli`
+- `openapi split fspiop-rest-v1.1-openapi3-snippets.yaml --outDir ./fspiop/v1_1`
 
 ## Questions
 
-1) Are paths in the Mojaloop Specification considered "snippets"? Are they re-used widely across services?
-2) Do we need to support both Swagger 2.0 and Open Api 3?
-3) Does it make sense to have a common folder between versions for specification snippets that never change
-   to cut down on files?
+1) Do we need to support both Swagger 2.0 and Open Api 3?
 
 ## DTO TypeScript definitions for snippets
 > [Data Transfer Object](https://en.wikipedia.org/wiki/Data_transfer_object) description
 
 
-The reason to have DTO is to allow separation between data transfer and data access phases. 
+The reason to have DTO is to allow separation between data transfer and data access phases.
 
 From OpenAPI definition perspective `api-snippets` module allows building api.yaml definitions using a structured set of building blocks - `the snippets`.
 
@@ -98,7 +95,7 @@ interface ExampleTransferRequest {
 
 The same structure is kept in TypesScript module, but with some handy shortcuts: there are no `openapi3/schemas` sub-folders/sub-modules
 
-To use the types defined for `CorrelationId` and `Money` snippets 
+To use the types defined for `CorrelationId` and `Money` snippets
 - `v1.0/openapi3/schemas/CorrelationId.yaml`
 - `v1.0/openapi3/schemas/Money.yaml`
 
@@ -132,7 +129,7 @@ npm run build
 It will generate OpenAPI specifications from snippets, then generate DTO from these snippets and finally generate javascript code
 
 ### Auto generation for micro services
-When developing a micro service, to generate interfaces from your own OpenAPI specification custom types, please use 
+When developing a micro service, to generate interfaces from your own OpenAPI specification custom types, please use
 ```bash
 npx openapi-typescript src/interface/api.yaml --output src/interface/openapi.ts
 ```
@@ -164,7 +161,7 @@ So later in you implementation code you can refer to interfaces via these aliase
 ```typescript
 import { Schemas } from 'src/interface/api.ts'
 
-let request: Schemas.MyCustomRequest = { ... } 
+let request: Schemas.MyCustomRequest = { ... }
 ```
 
 ### DTO usage examples
