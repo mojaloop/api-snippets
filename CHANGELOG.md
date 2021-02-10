@@ -1,4 +1,15 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [12.0.0](https://github.com/mojaloop/api-snippets/compare/v11.5.0...v12.0.0) (2021-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **openapi:** convert bundling library to openapi-cli (#50)
+
+### Code Refactor
+
+* **openapi:** convert bundling library to openapi-cli ([#50](https://github.com/mojaloop/api-snippets/issues/50)) ([5374eb7](https://github.com/mojaloop/api-snippets/commit/5374eb7e02ba0751bd3df0e8f81f753baf1655ed))
+
 ## [11.5.0](https://github.com/mojaloop/api-snippets/compare/v11.4.4...v11.5.0) (2021-02-05)
 
 
