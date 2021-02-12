@@ -1,7 +1,1 @@
-title: FirstName
-type: string
-minLength: 1
-maxLength: 128
-pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-description: First name of the Party (Name Type).
-example: Henrik
+$ref: '../../../../fspiop/v1_1/openapi3/components/schemas/FirstName.yaml'

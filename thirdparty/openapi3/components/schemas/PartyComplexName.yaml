@@ -1,10 +1,1 @@
-title: PartyComplexName
-type: object
-description: Data model for the complex type PartyComplexName.
-properties:
-  firstName:
-    $ref: ./FirstName.yaml
-  middleName:
-    $ref: ./MiddleName.yaml
-  lastName:
-    $ref: ./LastName.yaml
+$ref: '../../../../fspiop/v1_1/openapi3/components/schemas/PartyComplexName.yaml'

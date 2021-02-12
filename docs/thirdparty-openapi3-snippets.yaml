@@ -41,13 +41,11 @@ components:
       maxLength: 1023
     Currency:
       title: Currency
-      description: >
-        The currency codes defined in
-
-        [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
-
-        as three-letter alphabetic codes are used as the standard naming
-        representation for currencies.
+      description: >-
+        The currency codes defined in [ISO
+        4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter
+        alphabetic codes are used as the standard naming representation for
+        currencies.
       type: string
       minLength: 3
       maxLength: 3
@@ -214,34 +212,25 @@ components:
         - ZAR
         - ZMW
         - ZWD
-      example: USD
     Name:
       title: Name
       type: string
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-      description: >
+      description: >-
         The API data type Name is a JSON String, restricted by a regular
-        expression
+        expression to avoid characters which are generally not used in a name.
 
-        to avoid characters which are generally not used in a name.
 
-        Regular Expression - The regular expression for restricting the
-
-        Name type is \"^(?!\\s*$)[\\w .,'-]{1,128}$\". The restriction does not
-
-        allow a string consisting of whitespace only, all Unicode characters are
-
+        Regular Expression - The regular expression for restricting the Name
+        type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a
+        string consisting of whitespace only, all Unicode characters are
         allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,)
-
         and space characters ( ).
 
-        **Note:** In some programming languages,
 
-        Unicode support must be specifically enabled. For example, if Java is
-        used,
-
-        the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode
-        characters.
+        **Note:** In some programming languages, Unicode support must be
+        specifically enabled. For example, if Java is used, the flag
+        UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
     Account:
       title: Account
       type: object
@@ -263,55 +252,42 @@ components:
           maxLength: 1023
         currency:
           title: Currency
-          description: >
-            The currency codes defined in
-
-            [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
-
-            as three-letter alphabetic codes are used as the standard naming
+          description: >-
+            The currency codes defined in [ISO
+            4217](https://www.iso.org/iso-4217-currency-codes.html) as
+            three-letter alphabetic codes are used as the standard naming
             representation for currencies.
           type: string
           minLength: 3
           maxLength: 3
           enum: *ref_0
-          example: USD
         description:
           title: Name
           type: string
           pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-          description: >
+          description: >-
             The API data type Name is a JSON String, restricted by a regular
-            expression
+            expression to avoid characters which are generally not used in a
+            name.
 
-            to avoid characters which are generally not used in a name.
 
-            Regular Expression - The regular expression for restricting the
-
-            Name type is \"^(?!\\s*$)[\\w .,'-]{1,128}$\". The restriction does
-            not
-
-            allow a string consisting of whitespace only, all Unicode characters
-            are
-
+            Regular Expression - The regular expression for restricting the Name
+            type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow
+            a string consisting of whitespace only, all Unicode characters are
             allowed, as well as the period (.) (apostrophe (‘), dash (-), comma
-            (,)
+            (,) and space characters ( ).
 
-            and space characters ( ).
 
-            **Note:** In some programming languages,
-
-            Unicode support must be specifically enabled. For example, if Java
-            is used,
-
-            the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode
-            characters.
+            **Note:** In some programming languages, Unicode support must be
+            specifically enabled. For example, if Java is used, the flag
+            UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
       required: &ref_2
         - currency
     AccountList:
       title: AccountList
       type: object
       description: Data model for the complex type AccountList.
-      properties:
+      properties: &ref_36
         account:
           type: array
           items:
@@ -323,57 +299,43 @@ components:
           minItems: 1
           maxItems: 32
           description: Accounts associated with the Party.
-      required:
+      required: &ref_37
         - account
     Amount:
       title: Amount
       type: string
       pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
-      description: >
+      description: >-
         The API data type Amount is a JSON String in a canonical format that is
-
-        restricted by a regular expression for interoperability reasons.
-
-        This pattern does not allow any trailing zeroes at all, but allows an
-        amount
-
+        restricted by a regular expression for interoperability reasons. This
+        pattern does not allow any trailing zeroes at all, but allows an amount
         without a minor currency unit. It also only allows four digits in the
-        minor
-
-        currency unit; a negative value is not allowed. Using more than 18
-        digits
-
-        in the major currency unit is not allowed.
-      example: 123.45
+        minor currency unit; a negative value is not allowed. Using more than 18
+        digits in the major currency unit is not allowed.
     AmountType:
       title: AmountType
       type: string
-      enum: &ref_43
+      enum: &ref_50
         - SEND
         - RECEIVE
-      description: >
+      description: >-
         Below are the allowed values for the enumeration AmountType.
 
         - SEND - Amount the Payer would like to send, that is, the amount that
-        should
-
-        be withdrawn from the Payer account including any fees.
+        should be withdrawn from the Payer account including any fees.
 
         - RECEIVE - Amount the Payer would like the Payee to receive, that is,
-
         the amount that should be sent to the receiver exclusive of any fees.
-      example: RECEIVE
     AuthenticationType:
       title: AuthenticationType
       type: string
-      enum: &ref_46
+      enum: &ref_53
         - OTP
         - QRCODE
-      description: |
+      description: |-
         Below are the allowed values for the enumeration AuthenticationType.
         - OTP - One-time password generated by the Payer FSP.
         - QRCODE - QR code used as One Time Password.
-      example: OTP
     AuthorizationChannelType:
       title: AuthorizationChannelType
       type: string
@@ -409,50 +371,39 @@ components:
       title: Integer
       type: string
       pattern: '^[1-9]\d*$'
-      description: |
+      description: >-
         The API data type Integer is a JSON String consisting of digits only.
-        Negative numbers and leading zeroes are not allowed.
-        The data type is always limited to a specific number of digits.
+        Negative numbers and leading zeroes are not allowed. The data type is
+        always limited to a specific number of digits.
     Money:
       title: Money
       type: object
       description: Data model for the complex type Money.
       properties: &ref_5
         currency:
-          title: Currency
-          description: >
-            The currency codes defined in
-
-            [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
-
-            as three-letter alphabetic codes are used as the standard naming
+          description: >-
+            The currency codes defined in [ISO
+            4217](https://www.iso.org/iso-4217-currency-codes.html) as
+            three-letter alphabetic codes are used as the standard naming
             representation for currencies.
+          example: USD
+          title: Currency
           type: string
           minLength: 3
           maxLength: 3
           enum: *ref_0
-          example: USD
         amount:
+          description: >-
+            The API data type Amount is a JSON String in a canonical format that
+            is restricted by a regular expression for interoperability reasons.
+            This pattern does not allow any trailing zeroes at all, but allows
+            an amount without a minor currency unit. It also only allows four
+            digits in the minor currency unit; a negative value is not allowed.
+            Using more than 18 digits in the major currency unit is not allowed.
+          example: '123.45'
           title: Amount
           type: string
           pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
-          description: >
-            The API data type Amount is a JSON String in a canonical format that
-            is
-
-            restricted by a regular expression for interoperability reasons.
-
-            This pattern does not allow any trailing zeroes at all, but allows
-            an amount
-
-            without a minor currency unit. It also only allows four digits in
-            the minor
-
-            currency unit; a negative value is not allowed. Using more than 18
-            digits
-
-            in the major currency unit is not allowed.
-          example: 123.45
       required: &ref_6
         - currency
         - amount
@@ -461,92 +412,69 @@ components:
       type: string
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-      description: >
-        Identifier that correlates all messages of the same sequence.
-
-        The API data type UUID (Universally Unique Identifier) is a JSON String
-
-        in canonical format, conforming to [RFC
-        4122](https://tools.ietf.org/html/rfc4122),
-
-        that is restricted by a regular expression for interoperability reasons.
-
-        A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes
-        (‘-‘).
-      example: b51ec534-ee48-4575-b6a9-ead2955b8069
+      description: >-
+        Identifier that correlates all messages of the same sequence. The API
+        data type UUID (Universally Unique Identifier) is a JSON String in
+        canonical format, conforming to [RFC
+        4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+        regular expression for interoperability reasons. A UUID is always 36
+        characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
     DateTime:
       title: DateTime
       type: string
       pattern: >-
         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-      description: >
+      description: >-
         The API data type DateTime is a JSON String in a lexical format that is
-
-        restricted by a regular expression for interoperability reasons.
-
-        The format is according to
-
-        [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html),
-
-        expressed in a combined date, time and time zone format.
-
-        A more readable version of the format is
-        yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
-
-        Examples are \"2016-05-24T08:38:08.699-04:00\",
-        \"2016-05-24T08:38:08.699Z\"
-
-        (where Z indicates Zulu time zone, same as UTC).
-      example: '2016-05-24T08:38:08.699-04:00'
+        restricted by a regular expression for interoperability reasons. The
+        format is according to [ISO
+        8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed
+        in a combined date, time and time zone format. A more readable version
+        of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are
+        "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z
+        indicates Zulu time zone, same as UTC).
     Latitude:
       title: Latitude
       type: string
       pattern: >-
         ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
-      description: |
+      description: >-
         The API data type Latitude is a JSON String in a lexical format that is
         restricted by a regular expression for interoperability reasons.
-      example: '+45.4215'
     Longitude:
       title: Longitude
       type: string
       pattern: >-
         ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
-      description: |
-        The API data type Longitude is a JSON String in a lexical format that
-        is restricted by a regular expression for interoperability reasons.
-      example: '+75.6972'
+      description: >-
+        The API data type Longitude is a JSON String in a lexical format that is
+        restricted by a regular expression for interoperability reasons.
     GeoCode:
       title: GeoCode
       type: object
-      description: >
-        Data model for the complex type GeoCode.
-
-        Indicates the geographic location from where the transaction was
-        initiated.
+      description: >-
+        Data model for the complex type GeoCode. Indicates the geographic
+        location from where the transaction was initiated.
       properties: &ref_7
         latitude:
+          description: >-
+            The API data type Latitude is a JSON String in a lexical format that
+            is restricted by a regular expression for interoperability reasons.
+          example: '+45.4215'
           title: Latitude
           type: string
           pattern: >-
             ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
-          description: >
-            The API data type Latitude is a JSON String in a lexical format that
-            is
-
-            restricted by a regular expression for interoperability reasons.
-          example: '+45.4215'
         longitude:
+          description: >-
+            The API data type Longitude is a JSON String in a lexical format
+            that is restricted by a regular expression for interoperability
+            reasons.
+          example: '+75.6972'
           title: Longitude
           type: string
           pattern: >-
             ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
-          description: >
-            The API data type Longitude is a JSON String in a lexical format
-            that
-
-            is restricted by a regular expression for interoperability reasons.
-          example: '+75.6972'
       required: &ref_8
         - latitude
         - longitude
@@ -557,15 +485,12 @@ components:
       minLength: 1
       maxLength: 32768
       description: Information for recipient (transport layer information).
-      example: >-
-        AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
     IlpCondition:
       title: IlpCondition
       type: string
       pattern: '^[A-Za-z0-9-_]{43}$'
       maxLength: 48
       description: Condition that must be attached to the transfer by the Payer.
-      example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
     ExtensionKey:
       title: ExtensionKey
       type: string
@@ -584,26 +509,26 @@ components:
       description: Data model for the complex type Extension.
       properties: &ref_3
         key:
+          description: Extension key.
           title: ExtensionKey
           type: string
           minLength: 1
           maxLength: 32
-          description: Extension key.
         value:
+          description: Extension value.
           title: ExtensionValue
           type: string
           minLength: 1
           maxLength: 128
-          description: Extension value.
       required: &ref_4
         - key
         - value
     ExtensionList:
       title: ExtensionList
       type: object
-      description: |
-        Data model for the complex type ExtensionList.
-        An optional list of extensions, specific to deployment.
+      description: >-
+        Data model for the complex type ExtensionList. An optional list of
+        extensions, specific to deployment.
       properties: &ref_9
         extension:
           type: array
@@ -624,86 +549,75 @@ components:
       description: 'The object sent in the PUT /quotes/{ID} callback.'
       properties: &ref_12
         transferAmount:
+          description: Data model for the complex type Money.
           title: Money
           type: object
-          description: Data model for the complex type Money.
           properties: *ref_5
           required: *ref_6
         payeeReceiveAmount:
+          description: Data model for the complex type Money.
           title: Money
           type: object
-          description: Data model for the complex type Money.
           properties: *ref_5
           required: *ref_6
         payeeFspFee:
+          description: Data model for the complex type Money.
           title: Money
           type: object
-          description: Data model for the complex type Money.
           properties: *ref_5
           required: *ref_6
         payeeFspCommission:
+          description: Data model for the complex type Money.
           title: Money
           type: object
-          description: Data model for the complex type Money.
           properties: *ref_5
           required: *ref_6
         expiration:
+          description: >-
+            The API data type DateTime is a JSON String in a lexical format that
+            is restricted by a regular expression for interoperability reasons.
+            The format is according to [ISO
+            8601](https://www.iso.org/iso-8601-date-and-time-format.html),
+            expressed in a combined date, time and time zone format. A more
+            readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
+            Examples are "2016-05-24T08:38:08.699-04:00",
+            "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same
+            as UTC).
+          example: '2016-05-24T08:38:08.699-04:00'
           title: DateTime
           type: string
           pattern: >-
             ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-          description: >
-            The API data type DateTime is a JSON String in a lexical format that
-            is
-
-            restricted by a regular expression for interoperability reasons.
-
-            The format is according to
-
-            [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html),
-
-            expressed in a combined date, time and time zone format.
-
-            A more readable version of the format is
-            yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
-
-            Examples are \"2016-05-24T08:38:08.699-04:00\",
-            \"2016-05-24T08:38:08.699Z\"
-
-            (where Z indicates Zulu time zone, same as UTC).
-          example: '2016-05-24T08:38:08.699-04:00'
         geoCode:
+          description: >-
+            Data model for the complex type GeoCode. Indicates the geographic
+            location from where the transaction was initiated.
           title: GeoCode
           type: object
-          description: >
-            Data model for the complex type GeoCode.
-
-            Indicates the geographic location from where the transaction was
-            initiated.
           properties: *ref_7
           required: *ref_8
         ilpPacket:
+          description: Information for recipient (transport layer information).
+          example: >-
+            “AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA”
           title: IlpPacket
           type: string
           pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
           minLength: 1
           maxLength: 32768
-          description: Information for recipient (transport layer information).
-          example: >-
-            AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
         condition:
+          description: Condition that must be attached to the transfer by the Payer.
+          example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
           title: IlpCondition
           type: string
           pattern: '^[A-Za-z0-9-_]{43}$'
           maxLength: 48
-          description: Condition that must be attached to the transfer by the Payer.
-          example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
         extensionList:
+          description: >-
+            Data model for the complex type ExtensionList. An optional list of
+            extensions, specific to deployment.
           title: ExtensionList
           type: object
-          description: |
-            Data model for the complex type ExtensionList.
-            An optional list of extensions, specific to deployment.
           properties: *ref_9
           required: *ref_10
       required: &ref_13
@@ -737,13 +651,10 @@ components:
           title: Integer
           type: string
           pattern: '^[1-9]\d*$'
-          description: >
+          description: >-
             The API data type Integer is a JSON String consisting of digits
-            only.
-
-            Negative numbers and leading zeroes are not allowed.
-
-            The data type is always limited to a specific number of digits.
+            only. Negative numbers and leading zeroes are not allowed. The data
+            type is always limited to a specific number of digits.
         amount:
           title: Money
           type: object
@@ -755,41 +666,25 @@ components:
           type: string
           pattern: >-
             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-          description: >
-            Identifier that correlates all messages of the same sequence.
-
-            The API data type UUID (Universally Unique Identifier) is a JSON
-            String
-
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
             in canonical format, conforming to [RFC
-            4122](https://tools.ietf.org/html/rfc4122),
-
-            that is restricted by a regular expression for interoperability
-            reasons.
-
-            A UUID is always 36 characters long, 32 hexadecimal symbols and 4
-            dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
         transactionRequestId:
           title: CorrelationId
           type: string
           pattern: >-
             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-          description: >
-            Identifier that correlates all messages of the same sequence.
-
-            The API data type UUID (Universally Unique Identifier) is a JSON
-            String
-
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
             in canonical format, conforming to [RFC
-            4122](https://tools.ietf.org/html/rfc4122),
-
-            that is restricted by a regular expression for interoperability
-            reasons.
-
-            A UUID is always 36 characters long, 32 hexadecimal symbols and 4
-            dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
         quote:
           title: QuotesIDPutResponse
           type: object
@@ -807,12 +702,12 @@ components:
     BinaryString:
       type: string
       pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
-      description: |
-        The API data type BinaryString is a JSON String.
-        The string is a base64url  encoding of a string of raw bytes,
-        where padding (character ‘=’) is added at the end of the data if
-        needed to ensure that the string is a multiple of 4 characters.
-        The length restriction indicates the allowed number of characters.
+      description: >-
+        The API data type BinaryString is a JSON String. The string is a
+        base64url  encoding of a string of raw bytes, where padding (character
+        ‘=’) is added at the end of the data if needed to ensure that the string
+        is a multiple of 4 characters. The length restriction indicates the
+        allowed number of characters.
     ConsentRequestChannelType:
       title: ConsentRequestChannelType
       type: string
@@ -1120,21 +1015,13 @@ components:
           type: string
           pattern: >-
             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-          description: >
-            Identifier that correlates all messages of the same sequence.
-
-            The API data type UUID (Universally Unique Identifier) is a JSON
-            String
-
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
             in canonical format, conforming to [RFC
-            4122](https://tools.ietf.org/html/rfc4122),
-
-            that is restricted by a regular expression for interoperability
-            reasons.
-
-            A UUID is always 36 characters long, 32 hexadecimal symbols and 4
-            dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
         initiatorId:
           type: string
           description: >-
@@ -1226,26 +1113,16 @@ components:
           type: string
           pattern: >-
             ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-          description: >
+          description: >-
             The API data type DateTime is a JSON String in a lexical format that
-            is
-
-            restricted by a regular expression for interoperability reasons.
-
-            The format is according to
-
-            [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html),
-
-            expressed in a combined date, time and time zone format.
-
-            A more readable version of the format is
-            yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
-
-            Examples are \"2016-05-24T08:38:08.699-04:00\",
-            \"2016-05-24T08:38:08.699Z\"
-
-            (where Z indicates Zulu time zone, same as UTC).
-          example: '2016-05-24T08:38:08.699-04:00'
+            is restricted by a regular expression for interoperability reasons.
+            The format is according to [ISO
+            8601](https://www.iso.org/iso-8601-date-and-time-format.html),
+            expressed in a combined date, time and time zone format. A more
+            readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
+            Examples are "2016-05-24T08:38:08.699-04:00",
+            "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same
+            as UTC).
       required:
         - status
         - revokedAt
@@ -1255,7 +1132,6 @@ components:
       minLength: 1
       maxLength: 32
       description: FSP identifier.
-      example: 1234
     CredentialChallengeSigned:
       title: CredentialChallengeSigned
       type: object
@@ -1345,21 +1221,14 @@ components:
               type: string
               pattern: >-
                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
+              description: >-
                 Identifier that correlates all messages of the same sequence.
-
                 The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                String in canonical format, conforming to [RFC
+                4122](https://tools.ietf.org/html/rfc4122), that is restricted
+                by a regular expression for interoperability reasons. A UUID is
+                always 36 characters long, 32 hexadecimal symbols and 4 dashes
+                (‘-‘).
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -1369,7 +1238,6 @@ components:
           minLength: 1
           maxLength: 32
           description: FSP identifier.
-          example: 1234
         initiatorId:
           allOf:
             - title: FspId
@@ -1377,7 +1245,6 @@ components:
               minLength: 1
               maxLength: 32
               description: FSP identifier.
-              example: 1234
           description: PISP identifier who uses this Consent.
         scopes:
           type: array
@@ -1493,21 +1360,14 @@ components:
               type: string
               pattern: >-
                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
+              description: >-
                 Identifier that correlates all messages of the same sequence.
-
                 The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                String in canonical format, conforming to [RFC
+                4122](https://tools.ietf.org/html/rfc4122), that is restricted
+                by a regular expression for interoperability reasons. A UUID is
+                always 36 characters long, 32 hexadecimal symbols and 4 dashes
+                (‘-‘).
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -1517,7 +1377,6 @@ components:
           minLength: 1
           maxLength: 32
           description: FSP identifier.
-          example: 1234
         initiatorId:
           allOf:
             - title: FspId
@@ -1525,7 +1384,6 @@ components:
               minLength: 1
               maxLength: 32
               description: FSP identifier.
-              example: 1234
           description: PISP identifier who uses this Consent.
         scopes:
           type: array
@@ -1632,21 +1490,14 @@ components:
               type: string
               pattern: >-
                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
+              description: >-
                 Identifier that correlates all messages of the same sequence.
-
                 The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                String in canonical format, conforming to [RFC
+                4122](https://tools.ietf.org/html/rfc4122), that is restricted
+                by a regular expression for interoperability reasons. A UUID is
+                always 36 characters long, 32 hexadecimal symbols and 4 dashes
+                (‘-‘).
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -1656,7 +1507,6 @@ components:
           minLength: 1
           maxLength: 32
           description: FSP identifier.
-          example: 1234
         initiatorId:
           allOf:
             - title: FspId
@@ -1664,7 +1514,6 @@ components:
               minLength: 1
               maxLength: 32
               description: FSP identifier.
-              example: 1234
           description: PISP identifier who uses this Consent.
         scopes:
           type: array
@@ -1715,21 +1564,14 @@ components:
               type: string
               pattern: >-
                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
+              description: >-
                 Identifier that correlates all messages of the same sequence.
-
                 The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                String in canonical format, conforming to [RFC
+                4122](https://tools.ietf.org/html/rfc4122), that is restricted
+                by a regular expression for interoperability reasons. A UUID is
+                always 36 characters long, 32 hexadecimal symbols and 4 dashes
+                (‘-‘).
           description: |
             Common ID between the PISP and FSP for the Consent object
             decided by the DFSP who creates the Consent
@@ -1740,21 +1582,14 @@ components:
               type: string
               pattern: >-
                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
+              description: >-
                 Identifier that correlates all messages of the same sequence.
-
                 The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                String in canonical format, conforming to [RFC
+                4122](https://tools.ietf.org/html/rfc4122), that is restricted
+                by a regular expression for interoperability reasons. A UUID is
+                always 36 characters long, 32 hexadecimal symbols and 4 dashes
+                (‘-‘).
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -1764,7 +1599,6 @@ components:
           minLength: 1
           maxLength: 32
           description: FSP identifier.
-          example: 1234
         initiatorId:
           allOf:
             - title: FspId
@@ -1772,33 +1606,22 @@ components:
               minLength: 1
               maxLength: 32
               description: FSP identifier.
-              example: 1234
           description: PISP identifier who uses this Consent.
         revokedAt:
           title: DateTime
           type: string
           pattern: >-
             ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-          description: >
+          description: >-
             The API data type DateTime is a JSON String in a lexical format that
-            is
-
-            restricted by a regular expression for interoperability reasons.
-
-            The format is according to
-
-            [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html),
-
-            expressed in a combined date, time and time zone format.
-
-            A more readable version of the format is
-            yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
-
-            Examples are \"2016-05-24T08:38:08.699-04:00\",
-            \"2016-05-24T08:38:08.699Z\"
-
-            (where Z indicates Zulu time zone, same as UTC).
-          example: '2016-05-24T08:38:08.699-04:00'
+            is restricted by a regular expression for interoperability reasons.
+            The format is according to [ISO
+            8601](https://www.iso.org/iso-8601-date-and-time-format.html),
+            expressed in a combined date, time and time zone format. A more
+            readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
+            Examples are "2016-05-24T08:38:08.699-04:00",
+            "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same
+            as UTC).
         scopes:
           type: array
           items:
@@ -1821,72 +1644,55 @@ components:
       title: ErrorCode
       type: string
       pattern: '^[1-9]\d{3}$'
-      description: >
+      description: >-
         The API data type ErrorCode is a JSON String of four characters,
-
-        consisting of digits only. Negative numbers are not allowed.
-
-        A leading zero is not allowed. Each error code in the API is a
-
-        four-digit number, for example, 1234, where the first number
-
-        (1 in the example) represents the high-level error category,
-
-        the second number (2 in the example) represents the low-level error
-        category,
-
-        and the last two numbers (34 in the example) represent the specific
-        error.
-      example: 5100
+        consisting of digits only. Negative numbers are not allowed. A leading
+        zero is not allowed. Each error code in the API is a four-digit number,
+        for example, 1234, where the first number (1 in the example) represents
+        the high-level error category, the second number (2 in the example)
+        represents the low-level error category, and the last two numbers (34 in
+        the example) represent the specific error.
     ErrorDescription:
       title: ErrorDescription
       type: string
       minLength: 1
       maxLength: 128
       description: Error description string.
-      example: This is an error description.
     ErrorInformation:
       title: ErrorInformation
       type: object
       description: Data model for the complex type ErrorInformation.
-      properties: &ref_39
+      properties: &ref_41
         errorCode:
-          title: ErrorCode
-          type: string
-          pattern: '^[1-9]\d{3}$'
-          description: >
+          description: >-
             The API data type ErrorCode is a JSON String of four characters,
-
-            consisting of digits only. Negative numbers are not allowed.
-
-            A leading zero is not allowed. Each error code in the API is a
-
-            four-digit number, for example, 1234, where the first number
-
-            (1 in the example) represents the high-level error category,
-
-            the second number (2 in the example) represents the low-level error
-            category,
-
+            consisting of digits only. Negative numbers are not allowed. A
+            leading zero is not allowed. Each error code in the API is a
+            four-digit number, for example, 1234, where the first number (1 in
+            the example) represents the high-level error category, the second
+            number (2 in the example) represents the low-level error category,
             and the last two numbers (34 in the example) represent the specific
             error.
           example: 5100
+          title: ErrorCode
+          type: string
+          pattern: '^[1-9]\d{3}$'
         errorDescription:
+          description: Error description string.
+          example: This is an error description.
           title: ErrorDescription
           type: string
           minLength: 1
           maxLength: 128
-          description: Error description string.
-          example: This is an error description.
         extensionList:
           title: ExtensionList
           type: object
-          description: |
-            Data model for the complex type ExtensionList.
-            An optional list of extensions, specific to deployment.
+          description: >-
+            Data model for the complex type ExtensionList. An optional list of
+            extensions, specific to deployment.
           properties: *ref_9
           required: *ref_10
-      required: &ref_40
+      required: &ref_42
         - errorCode
         - errorDescription
     DateOfBirth:
@@ -1895,7 +1701,6 @@ components:
       pattern: >-
         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
       description: Date of Birth of the Party.
-      example: '1966-06-16'
     FirstName:
       title: FirstName
       type: string
@@ -1903,7 +1708,6 @@ components:
       maxLength: 128
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: First name of the Party (Name Type).
-      example: Henrik
     LastName:
       title: LastName
       type: string
@@ -1911,26 +1715,20 @@ components:
       maxLength: 128
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: Last name of the Party (Name Type).
-      example: Karlsson
     IlpFulfilment:
       title: IlpFulfilment
       type: string
       pattern: '^[A-Za-z0-9-_]{43}$'
       maxLength: 48
       description: Fulfilment that must be attached to the transfer by the Payee.
-      example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
     MerchantClassificationCode:
       title: MerchantClassificationCode
       type: string
       pattern: '^[\d]{1,4}$'
-      description: >
+      description: >-
         A limited set of pre-defined numbers. This list would be a limited set
-        of
-
-        numbers identifying a set of popular merchant types like School Fees,
-
+        of numbers identifying a set of popular merchant types like School Fees,
         Pubs and Restaurants, Groceries, etc.
-      example: 4321
     MiddleName:
       title: MiddleName
       type: string
@@ -1938,14 +1736,12 @@ components:
       maxLength: 128
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: Middle name of the Party (Name Type).
-      example: Johannes
     Note:
       title: Note
       type: string
       minLength: 1
       maxLength: 128
       description: Memo assigned to transaction.
-      example: Note sent to Payee.
     PartyIdType:
       title: PartyIdType
       type: string
@@ -2063,16 +1859,14 @@ components:
       minLength: 1
       maxLength: 128
       description: Identifier of the Party.
-      example: 16135551212
     PartySubIdOrType:
       title: PartySubIdOrType
       type: string
       minLength: 1
       maxLength: 128
-      description: |
+      description: >-
         Either a sub-identifier of a PartyIdentifier, or a sub-type of the
         PartyIdType, normally a PersonalIdentifierType.
-      example: DRIVING_LICENSE
     PartyIdInfo:
       title: PartyIdInfo
       type: object
@@ -2189,29 +1983,26 @@ components:
           minLength: 1
           maxLength: 128
           description: Identifier of the Party.
-          example: 16135551212
         partySubIdOrType:
           title: PartySubIdOrType
           type: string
           minLength: 1
           maxLength: 128
-          description: |
+          description: >-
             Either a sub-identifier of a PartyIdentifier, or a sub-type of the
             PartyIdType, normally a PersonalIdentifierType.
-          example: DRIVING_LICENSE
         fspId:
           title: FspId
           type: string
           minLength: 1
           maxLength: 32
           description: FSP identifier.
-          example: 1234
         extensionList:
           title: ExtensionList
           type: object
-          description: |
-            Data model for the complex type ExtensionList.
-            An optional list of extensions, specific to deployment.
+          description: >-
+            Data model for the complex type ExtensionList. An optional list of
+            extensions, specific to deployment.
           properties: *ref_9
           required: *ref_10
       required: &ref_34
@@ -2227,21 +2018,13 @@ components:
           type: string
           pattern: >-
             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-          description: >
-            Identifier that correlates all messages of the same sequence.
-
-            The API data type UUID (Universally Unique Identifier) is a JSON
-            String
-
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
             in canonical format, conforming to [RFC
-            4122](https://tools.ietf.org/html/rfc4122),
-
-            that is restricted by a regular expression for interoperability
-            reasons.
-
-            A UUID is always 36 characters long, 32 hexadecimal symbols and 4
-            dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
         partyList:
           type: array
           items:
@@ -2257,18 +2040,15 @@ components:
             or create FSP information about.
         currency:
           title: Currency
-          description: >
-            The currency codes defined in
-
-            [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
-
-            as three-letter alphabetic codes are used as the standard naming
+          description: >-
+            The currency codes defined in [ISO
+            4217](https://www.iso.org/iso-4217-currency-codes.html) as
+            three-letter alphabetic codes are used as the standard naming
             representation for currencies.
           type: string
           minLength: 3
           maxLength: 3
           enum: *ref_0
-          example: USD
       required:
         - requestId
         - partyList
@@ -2278,58 +2058,63 @@ components:
       minLength: 1
       maxLength: 128
       description: Name of the Party. Could be a real name or a nickname.
-      example: Henrik Karlsson
     PartyComplexName:
       title: PartyComplexName
       type: object
       description: Data model for the complex type PartyComplexName.
       properties: &ref_35
         firstName:
+          description: First name of the Party (Name Type).
+          example: Henrik
           title: FirstName
           type: string
           minLength: 1
           maxLength: 128
           pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-          description: First name of the Party (Name Type).
-          example: Henrik
         middleName:
+          description: Middle name of the Party (Name Type).
+          example: Johannes
           title: MiddleName
           type: string
           minLength: 1
           maxLength: 128
           pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-          description: Middle name of the Party (Name Type).
-          example: Johannes
         lastName:
+          description: Last name of the Party (Name Type).
+          example: Karlsson
           title: LastName
           type: string
           minLength: 1
           maxLength: 128
           pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-          description: Last name of the Party (Name Type).
-          example: Karlsson
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
       description: Data model for the complex type PartyPersonalInfo.
-      properties: &ref_36
+      properties: &ref_38
         complexName:
+          description: Data model for the complex type PartyComplexName.
           title: PartyComplexName
           type: object
-          description: Data model for the complex type PartyComplexName.
           properties: *ref_35
         dateOfBirth:
+          description: Date of Birth of the Party.
+          example: '1966-06-16'
           title: DateofBirth (type Date)
           type: string
           pattern: >-
             ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
-          description: Date of Birth of the Party.
-          example: '1966-06-16'
     Party:
       title: Party
       type: object
       description: Data model for the complex type Party.
-      properties: &ref_37
+      properties: &ref_39
+        accounts:
+          title: AccountList
+          type: object
+          description: Data model for the complex type AccountList.
+          properties: *ref_36
+          required: *ref_37
         partyIdInfo:
           title: PartyIdInfo
           type: object
@@ -2340,28 +2125,22 @@ components:
           title: MerchantClassificationCode
           type: string
           pattern: '^[\d]{1,4}$'
-          description: >
+          description: >-
             A limited set of pre-defined numbers. This list would be a limited
-            set of
-
-            numbers identifying a set of popular merchant types like School
-            Fees,
-
-            Pubs and Restaurants, Groceries, etc.
-          example: 4321
+            set of numbers identifying a set of popular merchant types like
+            School Fees, Pubs and Restaurants, Groceries, etc.
         name:
           title: PartyName
           type: string
           minLength: 1
           maxLength: 128
           description: Name of the Party. Could be a real name or a nickname.
-          example: Henrik Karlsson
         personalInfo:
           title: PartyPersonalInfo
           type: object
           description: Data model for the complex type PartyPersonalInfo.
-          properties: *ref_36
-      required: &ref_38
+          properties: *ref_38
+      required: &ref_40
         - partyIdInfo
     PartiesTypeIDPutResponse:
       title: PartiesTypeIDPutResponse
@@ -2381,8 +2160,8 @@ components:
           title: Party
           type: object
           description: Data model for the complex type Party.
-          properties: *ref_37
-          required: *ref_38
+          properties: *ref_39
+          required: *ref_40
       required:
         - party
     PartyResult:
@@ -2391,17 +2170,17 @@ components:
       description: Data model for the complex type PartyResult.
       properties:
         partyId:
+          description: Data model for the complex type PartyIdInfo.
           title: PartyIdInfo
           type: object
-          description: Data model for the complex type PartyIdInfo.
           properties: *ref_33
           required: *ref_34
         errorInformation:
+          description: Data model for the complex type ErrorInformation.
           title: ErrorInformation
           type: object
-          description: Data model for the complex type ErrorInformation.
-          properties: *ref_39
-          required: *ref_40
+          properties: *ref_41
+          required: *ref_42
       required:
         - partyId
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
@@ -2418,17 +2197,12 @@ components:
           allOf:
             - type: string
               pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
-              description: >
-                The API data type BinaryString is a JSON String.
-
-                The string is a base64url  encoding of a string of raw bytes,
-
-                where padding (character ‘=’) is added at the end of the data if
-
-                needed to ensure that the string is a multiple of 4 characters.
-
-                The length restriction indicates the allowed number of
-                characters.
+              description: >-
+                The API data type BinaryString is a JSON String. The string is a
+                base64url  encoding of a string of raw bytes, where padding
+                (character ‘=’) is added at the end of the data if needed to
+                ensure that the string is a multiple of 4 characters. The length
+                restriction indicates the allowed number of characters.
           description: Base64 encoded binary string - the signed challenge
         consentId:
           allOf:
@@ -2436,21 +2210,14 @@ components:
               type: string
               pattern: >-
                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
+              description: >-
                 Identifier that correlates all messages of the same sequence.
-
                 The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                String in canonical format, conforming to [RFC
+                4122](https://tools.ietf.org/html/rfc4122), that is restricted
+                by a regular expression for interoperability reasons. A UUID is
+                always 36 characters long, 32 hexadecimal symbols and 4 dashes
+                (‘-‘).
           description: >
             Common ID between the PISP and FSP for the Consent object This tells
             DFSP and auth-service which constent allows the PISP to initiate
@@ -2498,17 +2265,12 @@ components:
           allOf:
             - type: string
               pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
-              description: >
-                The API data type BinaryString is a JSON String.
-
-                The string is a base64url  encoding of a string of raw bytes,
-
-                where padding (character ‘=’) is added at the end of the data if
-
-                needed to ensure that the string is a multiple of 4 characters.
-
-                The length restriction indicates the allowed number of
-                characters.
+              description: >-
+                The API data type BinaryString is a JSON String. The string is a
+                base64url  encoding of a string of raw bytes, where padding
+                (character ‘=’) is added at the end of the data if needed to
+                ensure that the string is a multiple of 4 characters. The length
+                restriction indicates the allowed number of characters.
           description: Base64 encoded binary string - the signed challenge.
         consentId:
           allOf:
@@ -2516,21 +2278,14 @@ components:
               type: string
               pattern: >-
                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
+              description: >-
                 Identifier that correlates all messages of the same sequence.
-
                 The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                String in canonical format, conforming to [RFC
+                4122](https://tools.ietf.org/html/rfc4122), that is restricted
+                by a regular expression for interoperability reasons. A UUID is
+                always 36 characters long, 32 hexadecimal symbols and 4 dashes
+                (‘-‘).
           description: >
             Common ID between the PISP and FSP for the Consent object This tells
             DFSP and auth-service which consent allows the PISP to initiate
@@ -2567,33 +2322,31 @@ components:
     TransactionRequestState:
       title: TransactionRequestState
       type: string
-      enum: &ref_41
+      enum: &ref_43
         - RECEIVED
         - PENDING
         - ACCEPTED
         - REJECTED
-      description: |
+      description: |-
         Below are the allowed values for the enumeration.
         - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
         - PENDING - Payer FSP has sent the transaction request to the Payer.
         - ACCEPTED - Payer has approved the transaction.
-        - REJECTED - Payer has rejected the transaction."
-      example: RECEIVED
+        - REJECTED - Payer has rejected the transaction.
     TransactionState:
       title: TransactionState
       type: string
-      enum: &ref_42
+      enum: &ref_44
         - RECEIVED
         - PENDING
         - COMPLETED
         - REJECTED
-      description: |
+      description: |-
         Below are the allowed values for the enumeration.
         - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
         - PENDING - Payee FSP has validated the transaction.
         - COMPLETED - Payee FSP has successfully performed the transaction.
         - REJECTED - Payee FSP has failed to perform the transaction.
-      example: RECEIVED
     ThirdpartyRequestsTransactionsIDPatchResponse:
       title: ThirdpartyRequestsTransactionsIDPatchResponse
       type: object
@@ -2606,26 +2359,18 @@ components:
           type: string
           pattern: >-
             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-          description: >
-            Identifier that correlates all messages of the same sequence.
-
-            The API data type UUID (Universally Unique Identifier) is a JSON
-            String
-
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
             in canonical format, conforming to [RFC
-            4122](https://tools.ietf.org/html/rfc4122),
-
-            that is restricted by a regular expression for interoperability
-            reasons.
-
-            A UUID is always 36 characters long, 32 hexadecimal symbols and 4
-            dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
         transactionRequestState:
           title: TransactionRequestState
           type: string
-          enum: *ref_41
-          description: >
+          enum: *ref_43
+          description: >-
             Below are the allowed values for the enumeration.
 
             - RECEIVED - Payer FSP has received the transaction from the Payee
@@ -2635,13 +2380,12 @@ components:
 
             - ACCEPTED - Payer has approved the transaction.
 
-            - REJECTED - Payer has rejected the transaction."
-          example: RECEIVED
+            - REJECTED - Payer has rejected the transaction.
         transactionState:
           title: TransactionState
           type: string
-          enum: *ref_42
-          description: >
+          enum: *ref_44
+          description: >-
             Below are the allowed values for the enumeration.
 
             - RECEIVED - Payee FSP has received the transaction from the Payer
@@ -2652,7 +2396,6 @@ components:
             - COMPLETED - Payee FSP has successfully performed the transaction.
 
             - REJECTED - Payee FSP has failed to perform the transaction.
-          example: RECEIVED
       required:
         - transactionId
         - transactionRequestState
@@ -2669,26 +2412,18 @@ components:
           type: string
           pattern: >-
             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-          description: >
-            Identifier that correlates all messages of the same sequence.
-
-            The API data type UUID (Universally Unique Identifier) is a JSON
-            String
-
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
             in canonical format, conforming to [RFC
-            4122](https://tools.ietf.org/html/rfc4122),
-
-            that is restricted by a regular expression for interoperability
-            reasons.
-
-            A UUID is always 36 characters long, 32 hexadecimal symbols and 4
-            dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
         transactionRequestState:
           title: TransactionRequestState
           type: string
-          enum: *ref_41
-          description: >
+          enum: *ref_43
+          description: >-
             Below are the allowed values for the enumeration.
 
             - RECEIVED - Payer FSP has received the transaction from the Payee
@@ -2698,164 +2433,209 @@ components:
 
             - ACCEPTED - Payer has approved the transaction.
 
-            - REJECTED - Payer has rejected the transaction."
-          example: RECEIVED
+            - REJECTED - Payer has rejected the transaction.
       required:
         - transactionId
         - transactionRequestState
+    TransactionScenario:
+      title: TransactionScenario
+      type: string
+      enum: &ref_45
+        - DEPOSIT
+        - WITHDRAWAL
+        - TRANSFER
+        - PAYMENT
+        - REFUND
+      description: >-
+        Below are the allowed values for the enumeration.
+
+        - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a
+        normal scenario, electronic funds are transferred from a Business
+        account to a Consumer account, and physical cash is given from the
+        Consumer to the Business User.
+
+        - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction.
+        In a normal scenario, electronic funds are transferred from a Consumer’s
+        account to a Business account, and physical cash is given from the
+        Business User to the Consumer.
+
+        - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to
+        Consumer) transaction.
+
+        - PAYMENT - Usually used for performing a transaction from a Consumer to
+        a Merchant or Organization, but could also be for a B2B (Business to
+        Business) payment. The transaction could be online for a purchase in an
+        Internet store, in a physical store where both the Consumer and Business
+        User are present, a bill payment, a donation, and so on.
+
+        - REFUND - Used for performing a refund of transaction.
+    TransactionSubScenario:
+      title: TransactionSubScenario
+      type: string
+      pattern: '^[A-Z_]{1,32}$'
+      description: >-
+        Possible sub-scenario, defined locally within the scheme (UndefinedEnum
+        Type).
+    TransactionInitiator:
+      title: TransactionInitiator
+      type: string
+      enum: &ref_46
+        - PAYER
+        - PAYEE
+      description: >-
+        Below are the allowed values for the enumeration.
+
+        - PAYER - Sender of funds is initiating the transaction. The account to
+        send from is either owned by the Payer or is connected to the Payer in
+        some way.
+
+        - PAYEE - Recipient of the funds is initiating the transaction by
+        sending a transaction request. The Payer must approve the transaction,
+        either automatically by a pre-generated OTP or by pre-approval of the
+        Payee, or by manually approving in his or her own Device.
+    TransactionInitiatorType:
+      title: TransactionInitiatorType
+      type: string
+      enum: &ref_47
+        - CONSUMER
+        - AGENT
+        - BUSINESS
+        - DEVICE
+      description: |-
+        Below are the allowed values for the enumeration.
+        - CONSUMER - Consumer is the initiator of the transaction.
+        - AGENT - Agent is the initiator of the transaction.
+        - BUSINESS - Business is the initiator of the transaction.
+        - DEVICE - Device is the initiator of the transaction.
+    RefundReason:
+      title: RefundReason
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Reason for the refund.
+    Refund:
+      title: Refund
+      type: object
+      description: Data model for the complex type Refund.
+      properties: &ref_48
+        originalTransactionId:
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+        refundReason:
+          description: Reason for the refund.
+          example: Free text indicating reason for the refund.
+          title: RefundReason
+          type: string
+          minLength: 1
+          maxLength: 128
+      required: &ref_49
+        - originalTransactionId
+    BalanceOfPayments:
+      title: BalanceOfPayments
+      type: string
+      pattern: '^[1-9]\d{2}$'
+      description: >-
+        (BopCode) The API data type
+        [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String
+        of 3 characters, consisting of digits only. Negative numbers are not
+        allowed. A leading zero is not allowed.
     TransactionType:
       title: TransactionType
       type: object
       description: Data model for the complex type TransactionType.
-      properties: &ref_44
+      properties: &ref_51
         scenario:
-          title: TransactionScenario
-          type: string
-          enum:
-            - DEPOSIT
-            - WITHDRAWAL
-            - TRANSFER
-            - PAYMENT
-            - REFUND
-          description: >
+          description: >-
             Below are the allowed values for the enumeration.
 
-            - DEPOSIT - Used for performing a Cash-In (deposit) transaction.
-
-            In a normal scenario, electronic funds are transferred from a
-
-            Business account to a Consumer account, and physical cash is given
-
-            from the Consumer to the Business User.
+            - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In
+            a normal scenario, electronic funds are transferred from a Business
+            account to a Consumer account, and physical cash is given from the
+            Consumer to the Business User.
 
             - WITHDRAWAL - Used for performing a Cash-Out (withdrawal)
-            transaction.
-
-            In a normal scenario, electronic funds are transferred from a
-            Consumer’s
-
-            account to a Business account, and physical cash is given from the
-            Business
-
-            User to the Consumer.
+            transaction. In a normal scenario, electronic funds are transferred
+            from a Consumer’s account to a Business account, and physical cash
+            is given from the Business User to the Consumer.
 
             - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to
-            Consumer)
-
-            transaction.
+            Consumer) transaction.
 
             - PAYMENT - Usually used for performing a transaction from a
-            Consumer to a
-
-            Merchant or Organization, but could also be for a B2B (Business to
-            Business)
-
-            payment. The transaction could be online for a purchase in an
-            Internet store,
-
-            in a physical store where both the Consumer and Business User are
-            present, a
-
-            bill payment, a donation, and so on.
+            Consumer to a Merchant or Organization, but could also be for a B2B
+            (Business to Business) payment. The transaction could be online for
+            a purchase in an Internet store, in a physical store where both the
+            Consumer and Business User are present, a bill payment, a donation,
+            and so on.
 
             - REFUND - Used for performing a refund of transaction.
           example: DEPOSIT
-        subScenario:
-          title: TransactionSubScenario
+          title: TransactionScenario
           type: string
-          pattern: '^[A-Z_]{1,32}$'
+          enum: *ref_45
+        subScenario:
           description: >-
             Possible sub-scenario, defined locally within the scheme
             (UndefinedEnum Type).
-          example: LOCALLY_DEFINED_SUBSCENARIO
-        initiator:
-          title: TransactionInitiator
+          example: Locally defined sub-scenario.
+          title: TransactionSubScenario
           type: string
-          enum:
-            - PAYER
-            - PAYEE
-          description: >
+          pattern: '^[A-Z_]{1,32}$'
+        initiator:
+          description: >-
             Below are the allowed values for the enumeration.
 
-            - PAYER - Sender of funds is initiating the transaction.
-
-            The account to send from is either owned by the Payer or is
-            connected to the
-
+            - PAYER - Sender of funds is initiating the transaction. The account
+            to send from is either owned by the Payer or is connected to the
             Payer in some way.
 
             - PAYEE - Recipient of the funds is initiating the transaction by
-            sending a
-
-            transaction request. The Payer must approve the transaction, either
-
-            automatically by a pre-generated OTP or by pre-approval of the
-            Payee,
-
-            or by manually approving in his or her own Device.
+            sending a transaction request. The Payer must approve the
+            transaction, either automatically by a pre-generated OTP or by
+            pre-approval of the Payee, or by manually approving in his or her
+            own Device.
           example: PAYEE
-        initiatorType:
-          title: TransactionInitiatorType
+          title: TransactionInitiator
           type: string
-          enum:
-            - CONSUMER
-            - AGENT
-            - BUSINESS
-            - DEVICE
-          description: |
+          enum: *ref_46
+        initiatorType:
+          description: |-
             Below are the allowed values for the enumeration.
             - CONSUMER - Consumer is the initiator of the transaction.
             - AGENT - Agent is the initiator of the transaction.
             - BUSINESS - Business is the initiator of the transaction.
             - DEVICE - Device is the initiator of the transaction.
           example: CONSUMER
+          title: TransactionInitiatorType
+          type: string
+          enum: *ref_47
         refundInfo:
+          description: Data model for the complex type Refund.
           title: Refund
           type: object
-          description: Data model for the complex type Refund.
-          properties:
-            originalTransactionId:
-              title: CorrelationId
-              type: string
-              pattern: >-
-                ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
-                Identifier that correlates all messages of the same sequence.
-
-                The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
-            refundReason:
-              title: RefundReason
-              type: string
-              minLength: 1
-              maxLength: 128
-              description: Reason for the refund.
-              example: Free text indicating reason for the refund.
-          required:
-            - originalTransactionId
+          properties: *ref_48
+          required: *ref_49
         balanceOfPayments:
+          description: >-
+            (BopCode) The API data type
+            [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON
+            String of 3 characters, consisting of digits only. Negative numbers
+            are not allowed. A leading zero is not allowed.
+          example: 123
           title: BalanceOfPayments
           type: string
           pattern: '^[1-9]\d{2}$'
-          description: >
-            (BopCode) The API data type
-            [BopCode](https://www.imf.org/external/np/sta/bopcode/)
-
-            is a JSON String of 3 characters, consisting of digits only.
-
-            Negative numbers are not allowed. A leading zero is not allowed.
-          example: 123
-      required: &ref_45
+      required: &ref_52
         - scenario
         - initiator
         - initiatorType
@@ -2870,21 +2650,14 @@ components:
               type: string
               pattern: >-
                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
+              description: >-
                 Identifier that correlates all messages of the same sequence.
-
                 The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                String in canonical format, conforming to [RFC
+                4122](https://tools.ietf.org/html/rfc4122), that is restricted
+                by a regular expression for interoperability reasons. A UUID is
+                always 36 characters long, 32 hexadecimal symbols and 4 dashes
+                (‘-‘).
           description: >
             Common ID between the FSPs for the transaction request object. The
             ID should be reused for resends of the same transaction request. A
@@ -2911,21 +2684,14 @@ components:
               type: string
               pattern: >-
                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-              description: >
+              description: >-
                 Identifier that correlates all messages of the same sequence.
-
                 The API data type UUID (Universally Unique Identifier) is a JSON
-                String
-
-                in canonical format, conforming to [RFC
-                4122](https://tools.ietf.org/html/rfc4122),
-
-                that is restricted by a regular expression for interoperability
-                reasons.
-
-                A UUID is always 36 characters long, 32 hexadecimal symbols and
-                4 dashes (‘-‘).
-              example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                String in canonical format, conforming to [RFC
+                4122](https://tools.ietf.org/html/rfc4122), that is restricted
+                by a regular expression for interoperability reasons. A UUID is
+                always 36 characters long, 32 hexadecimal symbols and 4 dashes
+                (‘-‘).
           description: >
             Common ID between the PISP and FSP for the Consent object This tells
             DFSP and auth-service which constent allows the PISP to initiate
@@ -2935,36 +2701,32 @@ components:
             - title: Party
               type: object
               description: Data model for the complex type Party.
-              properties: *ref_37
-              required: *ref_38
+              properties: *ref_39
+              required: *ref_40
           description: Information about the Payee in the proposed financial transaction.
         payer:
           allOf:
             - title: Party
               type: object
               description: Data model for the complex type Party.
-              properties: *ref_37
-              required: *ref_38
+              properties: *ref_39
+              required: *ref_40
           description: Information about the Payer in the proposed financial transaction.
         amountType:
           allOf:
             - title: AmountType
               type: string
-              enum: *ref_43
-              description: >
+              enum: *ref_50
+              description: >-
                 Below are the allowed values for the enumeration AmountType.
 
                 - SEND - Amount the Payer would like to send, that is, the
-                amount that should
-
-                be withdrawn from the Payer account including any fees.
+                amount that should be withdrawn from the Payer account including
+                any fees.
 
                 - RECEIVE - Amount the Payer would like the Payee to receive,
-                that is,
-
-                the amount that should be sent to the receiver exclusive of any
-                fees.
-              example: RECEIVE
+                that is, the amount that should be sent to the receiver
+                exclusive of any fees.
           description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
         amount:
           allOf:
@@ -2979,8 +2741,8 @@ components:
             - title: TransactionType
               type: object
               description: Data model for the complex type TransactionType.
-              properties: *ref_44
-              required: *ref_45
+              properties: *ref_51
+              required: *ref_52
           description: Type of transaction.
         expiration:
           type: string
@@ -3009,27 +2771,19 @@ components:
           type: string
           pattern: >-
             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-          description: >
-            Identifier that correlates all messages of the same sequence.
-
-            The API data type UUID (Universally Unique Identifier) is a JSON
-            String
-
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
             in canonical format, conforming to [RFC
-            4122](https://tools.ietf.org/html/rfc4122),
-
-            that is restricted by a regular expression for interoperability
-            reasons.
-
-            A UUID is always 36 characters long, 32 hexadecimal symbols and 4
-            dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
         payee:
           title: Party
           type: object
           description: Data model for the complex type Party.
-          properties: *ref_37
-          required: *ref_38
+          properties: *ref_39
+          required: *ref_40
         payer:
           title: PartyIdInfo
           type: object
@@ -3046,65 +2800,51 @@ components:
           title: TransactionType
           type: object
           description: Data model for the complex type TransactionType.
-          properties: *ref_44
-          required: *ref_45
+          properties: *ref_51
+          required: *ref_52
         note:
           title: Note
           type: string
           minLength: 1
           maxLength: 128
           description: Memo assigned to transaction.
-          example: Note sent to Payee.
         geoCode:
           title: GeoCode
           type: object
-          description: >
-            Data model for the complex type GeoCode.
-
-            Indicates the geographic location from where the transaction was
-            initiated.
+          description: >-
+            Data model for the complex type GeoCode. Indicates the geographic
+            location from where the transaction was initiated.
           properties: *ref_7
           required: *ref_8
         authenticationType:
           title: AuthenticationType
           type: string
-          enum: *ref_46
-          description: |
+          enum: *ref_53
+          description: |-
             Below are the allowed values for the enumeration AuthenticationType.
             - OTP - One-time password generated by the Payer FSP.
             - QRCODE - QR code used as One Time Password.
-          example: OTP
         expiration:
           title: DateTime
           type: string
           pattern: >-
             ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-          description: >
+          description: >-
             The API data type DateTime is a JSON String in a lexical format that
-            is
-
-            restricted by a regular expression for interoperability reasons.
-
-            The format is according to
-
-            [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html),
-
-            expressed in a combined date, time and time zone format.
-
-            A more readable version of the format is
-            yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
-
-            Examples are \"2016-05-24T08:38:08.699-04:00\",
-            \"2016-05-24T08:38:08.699Z\"
-
-            (where Z indicates Zulu time zone, same as UTC).
-          example: '2016-05-24T08:38:08.699-04:00'
+            is restricted by a regular expression for interoperability reasons.
+            The format is according to [ISO
+            8601](https://www.iso.org/iso-8601-date-and-time-format.html),
+            expressed in a combined date, time and time zone format. A more
+            readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
+            Examples are "2016-05-24T08:38:08.699-04:00",
+            "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same
+            as UTC).
         extensionList:
           title: ExtensionList
           type: object
-          description: |
-            Data model for the complex type ExtensionList.
-            An optional list of extensions, specific to deployment.
+          description: >-
+            Data model for the complex type ExtensionList. An optional list of
+            extensions, specific to deployment.
           properties: *ref_9
           required: *ref_10
       required:

@@ -1,8 +1,1 @@
-title: PartySubIdOrType
-type: string
-minLength: 1
-maxLength: 128
-description: |
-  Either a sub-identifier of a PartyIdentifier, or a sub-type of the
-  PartyIdType, normally a PersonalIdentifierType.
-example: DRIVING_LICENSE
+$ref: '../../../../fspiop/v1_1/openapi3/components/schemas/PartySubIdOrType.yaml'
