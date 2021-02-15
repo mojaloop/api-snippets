@@ -1,13 +1,1 @@
-title: GeoCode
-type: object
-description: |
-  Data model for the complex type GeoCode.
-  Indicates the geographic location from where the transaction was initiated.
-properties:
-  latitude:
-    $ref: ./Latitude.yaml
-  longitude:
-    $ref: ./Longitude.yaml
-required:
-  - latitude
-  - longitude
+$ref: '../../../../fspiop/v1_1/openapi3/components/schemas/GeoCode.yaml'
