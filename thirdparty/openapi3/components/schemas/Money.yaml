@@ -1,11 +1,1 @@
-title: Money
-type: object
-description: Data model for the complex type Money.
-properties:
-  currency:
-    $ref: ./Currency.yaml
-  amount:
-    $ref: ./Amount.yaml
-required:
-  - currency
-  - amount
+$ref: '../../../../fspiop/v1_1/openapi3/components/schemas/Money.yaml'

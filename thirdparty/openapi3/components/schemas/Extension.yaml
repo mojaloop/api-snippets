@@ -1,11 +1,1 @@
-title: Extension
-type: object
-description: Data model for the complex type Extension.
-properties:
-  key:
-    $ref: ./ExtensionKey.yaml
-  value:
-    $ref: ./ExtensionValue.yaml
-required:
-  - key
-  - value
+$ref: '../../../../fspiop/v1_1/openapi3/components/schemas/Extension.yaml'

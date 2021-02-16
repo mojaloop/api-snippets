@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.1](https://github.com/mojaloop/api-snippets/compare/v12.0.0...v12.0.1) (2021-02-15)
+
+
+### Maintenance
+
+* add accounts to party and fix references ([#51](https://github.com/mojaloop/api-snippets/issues/51)) ([5b8991d](https://github.com/mojaloop/api-snippets/commit/5b8991d802c9340a838865917796dbe8b8711b80))
+
 ## [12.0.0](https://github.com/mojaloop/api-snippets/compare/v11.5.0...v12.0.0) (2021-02-10)
 
 

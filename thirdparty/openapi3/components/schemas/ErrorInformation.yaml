@@ -1,13 +1,1 @@
-title: ErrorInformation
-type: object
-description: Data model for the complex type ErrorInformation.
-properties:
-  errorCode:
-    $ref: ./ErrorCode.yaml
-  errorDescription:
-    $ref: ./ErrorDescription.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
-required:
-  - errorCode
-  - errorDescription
+$ref: '../../../../fspiop/v1_1/openapi3/components/schemas/ErrorInformation.yaml'
