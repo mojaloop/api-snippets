@@ -4,12 +4,8 @@ description: Data model for the complex type ErrorInformation.
 properties:
   errorCode:
     $ref: ./ErrorCode.yaml
-    description: Specific error number.
-    example: 5100
   errorDescription:
     $ref: ./ErrorDescription.yaml
-    description: Error description string.
-    example: This is an error description.
   extensionList:
     $ref: ./ExtensionList.yaml
 required:

@@ -5,8 +5,6 @@ content:
       $ref: ../schemas/ErrorInformationResponse.yaml
 headers:
   Content-Length:
-    description: Content-Length header
     $ref: ../headers/Content-Length.yaml
   Content-Type:
-    description: Content-Length header
     $ref: ../headers/Content-Type.yaml
