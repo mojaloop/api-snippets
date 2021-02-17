@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.3](https://github.com/mojaloop/api-snippets/compare/v12.0.2...v12.0.3) (2021-02-17)
+
+
+### Bug Fixes
+
+* **thirdparty:** add components that reference new Party to thirdparty ([#53](https://github.com/mojaloop/api-snippets/issues/53)) ([38c7bc6](https://github.com/mojaloop/api-snippets/commit/38c7bc6c87dcba7cf1f3e9551b184e42f49244ef))
+
 ### [12.0.2](https://github.com/mojaloop/api-snippets/compare/v12.0.1...v12.0.2) (2021-02-17)
 
 
