@@ -1,0 +1,46 @@
+title: IndividualQuoteResult
+type: object
+description: Data model for the complex type IndividualQuoteResult.
+properties:
+  quoteId:
+    $ref: ./CorrelationId.yaml
+    description: Identifies the quote message.
+    example: b51ec534-ee48-4575-b6a9-ead2955b8069
+  payee:
+    $ref: ./Party.yaml
+    description: Information about the Payee in the proposed financial transaction.
+  transferAmount:
+    $ref: ./Money.yaml
+    description: The amount of money that the Payee FSP should receive.
+  payeeReceiveAmount:
+    $ref: ./Money.yaml
+    description: >-
+      The amount of Money that the Payee should receive in the end-to-end
+      transaction. Optional as the Payee FSP might not want to disclose any
+      optional Payee fees.
+  payeeFspFee:
+    $ref: ./Money.yaml
+    description: Payee FSP’s part of the transaction fee.
+  payeeFspCommission:
+    $ref: ./Money.yaml
+    description: Transaction commission from the Payee FSP.
+  ilpPacket:
+    $ref: ./IlpPacket.yaml
+    description: The ILP Packet that must be attached to the transfer by the Payer.
+    example: >-
+      AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
+  condition:
+    $ref: ./IlpCondition.yaml
+    description: The condition that must be attached to the transfer by the Payer.
+    example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
+  errorInformation:
+    $ref: ./ErrorInformation.yaml
+    description: >-
+      Error code, category description. **Note:** receiveAmount, payeeFspFee,
+      payeeFspCommission, expiration, ilpPacket, condition should not be set if
+      errorInformation is set.
+  extensionList:
+    $ref: ./ExtensionList.yaml
+    description: 'Optional extension, specific to deployment.'
+required:
+  - quoteId

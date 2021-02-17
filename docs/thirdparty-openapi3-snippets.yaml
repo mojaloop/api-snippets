@@ -287,7 +287,7 @@ components:
       title: AccountList
       type: object
       description: Data model for the complex type AccountList.
-      properties: &ref_36
+      properties: &ref_34
         account:
           type: array
           items:
@@ -299,7 +299,7 @@ components:
           minItems: 1
           maxItems: 32
           description: Accounts associated with the Party.
-      required: &ref_37
+      required: &ref_35
         - account
     Amount:
       title: Amount
@@ -315,7 +315,7 @@ components:
     AmountType:
       title: AmountType
       type: string
-      enum: &ref_50
+      enum: &ref_46
         - SEND
         - RECEIVE
       description: >-
@@ -381,18 +381,20 @@ components:
       description: Data model for the complex type Money.
       properties: &ref_5
         currency:
+          title: Currency
           description: >-
             The currency codes defined in [ISO
             4217](https://www.iso.org/iso-4217-currency-codes.html) as
             three-letter alphabetic codes are used as the standard naming
             representation for currencies.
-          example: USD
-          title: Currency
           type: string
           minLength: 3
           maxLength: 3
           enum: *ref_0
         amount:
+          title: Amount
+          type: string
+          pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
           description: >-
             The API data type Amount is a JSON String in a canonical format that
             is restricted by a regular expression for interoperability reasons.
@@ -400,10 +402,6 @@ components:
             an amount without a minor currency unit. It also only allows four
             digits in the minor currency unit; a negative value is not allowed.
             Using more than 18 digits in the major currency unit is not allowed.
-          example: '123.45'
-          title: Amount
-          type: string
-          pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
       required: &ref_6
         - currency
         - amount
@@ -509,17 +507,17 @@ components:
       description: Data model for the complex type Extension.
       properties: &ref_3
         key:
-          description: Extension key.
           title: ExtensionKey
           type: string
           minLength: 1
           maxLength: 32
+          description: Extension key.
         value:
-          description: Extension value.
           title: ExtensionValue
           type: string
           minLength: 1
           maxLength: 128
+          description: Extension value.
       required: &ref_4
         - key
         - value
@@ -1662,8 +1660,11 @@ components:
       title: ErrorInformation
       type: object
       description: Data model for the complex type ErrorInformation.
-      properties: &ref_41
+      properties: &ref_49
         errorCode:
+          title: ErrorCode
+          type: string
+          pattern: '^[1-9]\d{3}$'
           description: >-
             The API data type ErrorCode is a JSON String of four characters,
             consisting of digits only. Negative numbers are not allowed. A
@@ -1673,17 +1674,12 @@ components:
             number (2 in the example) represents the low-level error category,
             and the last two numbers (34 in the example) represent the specific
             error.
-          example: 5100
-          title: ErrorCode
-          type: string
-          pattern: '^[1-9]\d{3}$'
         errorDescription:
-          description: Error description string.
-          example: This is an error description.
           title: ErrorDescription
           type: string
           minLength: 1
           maxLength: 128
+          description: Error description string.
         extensionList:
           title: ExtensionList
           type: object
@@ -1692,7 +1688,7 @@ components:
             extensions, specific to deployment.
           properties: *ref_9
           required: *ref_10
-      required: &ref_42
+      required: &ref_50
         - errorCode
         - errorDescription
     DateOfBirth:
@@ -1721,27 +1717,6 @@ components:
       pattern: '^[A-Za-z0-9-_]{43}$'
       maxLength: 48
       description: Fulfilment that must be attached to the transfer by the Payee.
-    MerchantClassificationCode:
-      title: MerchantClassificationCode
-      type: string
-      pattern: '^[\d]{1,4}$'
-      description: >-
-        A limited set of pre-defined numbers. This list would be a limited set
-        of numbers identifying a set of popular merchant types like School Fees,
-        Pubs and Restaurants, Groceries, etc.
-    MiddleName:
-      title: MiddleName
-      type: string
-      minLength: 1
-      maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-      description: Middle name of the Party (Name Type).
-    Note:
-      title: Note
-      type: string
-      minLength: 1
-      maxLength: 128
-      description: Memo assigned to transaction.
     PartyIdType:
       title: PartyIdType
       type: string
@@ -1871,7 +1846,7 @@ components:
       title: PartyIdInfo
       type: object
       description: Data model for the complex type PartyIdInfo.
-      properties: &ref_33
+      properties: &ref_36
         partyIdType:
           title: PartyIdType
           type: string
@@ -2005,9 +1980,482 @@ components:
             extensions, specific to deployment.
           properties: *ref_9
           required: *ref_10
-      required: &ref_34
+      required: &ref_37
         - partyIdType
         - partyIdentifier
+    MerchantClassificationCode:
+      title: MerchantClassificationCode
+      type: string
+      pattern: '^[\d]{1,4}$'
+      description: >-
+        A limited set of pre-defined numbers. This list would be a limited set
+        of numbers identifying a set of popular merchant types like School Fees,
+        Pubs and Restaurants, Groceries, etc.
+    PartyName:
+      title: PartyName
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Name of the Party. Could be a real name or a nickname.
+    MiddleName:
+      title: MiddleName
+      type: string
+      minLength: 1
+      maxLength: 128
+      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      description: Middle name of the Party (Name Type).
+    PartyComplexName:
+      title: PartyComplexName
+      type: object
+      description: Data model for the complex type PartyComplexName.
+      properties: &ref_33
+        firstName:
+          title: FirstName
+          type: string
+          minLength: 1
+          maxLength: 128
+          pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+          description: First name of the Party (Name Type).
+        middleName:
+          title: MiddleName
+          type: string
+          minLength: 1
+          maxLength: 128
+          pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+          description: Middle name of the Party (Name Type).
+        lastName:
+          title: LastName
+          type: string
+          minLength: 1
+          maxLength: 128
+          pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+          description: Last name of the Party (Name Type).
+    PartyPersonalInfo:
+      title: PartyPersonalInfo
+      type: object
+      description: Data model for the complex type PartyPersonalInfo.
+      properties: &ref_38
+        complexName:
+          title: PartyComplexName
+          type: object
+          description: Data model for the complex type PartyComplexName.
+          properties: *ref_33
+        dateOfBirth:
+          title: DateofBirth (type Date)
+          type: string
+          pattern: >-
+            ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
+          description: Date of Birth of the Party.
+    Party:
+      title: Party
+      type: object
+      description: Data model for the complex type Party.
+      properties: &ref_44
+        accounts:
+          title: AccountList
+          type: object
+          description: Data model for the complex type AccountList.
+          properties: *ref_34
+          required: *ref_35
+        partyIdInfo:
+          title: PartyIdInfo
+          type: object
+          description: Data model for the complex type PartyIdInfo.
+          properties: *ref_36
+          required: *ref_37
+        merchantClassificationCode:
+          title: MerchantClassificationCode
+          type: string
+          pattern: '^[\d]{1,4}$'
+          description: >-
+            A limited set of pre-defined numbers. This list would be a limited
+            set of numbers identifying a set of popular merchant types like
+            School Fees, Pubs and Restaurants, Groceries, etc.
+        name:
+          title: PartyName
+          type: string
+          minLength: 1
+          maxLength: 128
+          description: Name of the Party. Could be a real name or a nickname.
+        personalInfo:
+          title: PartyPersonalInfo
+          type: object
+          description: Data model for the complex type PartyPersonalInfo.
+          properties: *ref_38
+      required: &ref_45
+        - partyIdInfo
+    TransactionScenario:
+      title: TransactionScenario
+      type: string
+      enum: &ref_39
+        - DEPOSIT
+        - WITHDRAWAL
+        - TRANSFER
+        - PAYMENT
+        - REFUND
+      description: >-
+        Below are the allowed values for the enumeration.
+
+        - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a
+        normal scenario, electronic funds are transferred from a Business
+        account to a Consumer account, and physical cash is given from the
+        Consumer to the Business User.
+
+        - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction.
+        In a normal scenario, electronic funds are transferred from a Consumer’s
+        account to a Business account, and physical cash is given from the
+        Business User to the Consumer.
+
+        - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to
+        Consumer) transaction.
+
+        - PAYMENT - Usually used for performing a transaction from a Consumer to
+        a Merchant or Organization, but could also be for a B2B (Business to
+        Business) payment. The transaction could be online for a purchase in an
+        Internet store, in a physical store where both the Consumer and Business
+        User are present, a bill payment, a donation, and so on.
+
+        - REFUND - Used for performing a refund of transaction.
+    TransactionSubScenario:
+      title: TransactionSubScenario
+      type: string
+      pattern: '^[A-Z_]{1,32}$'
+      description: >-
+        Possible sub-scenario, defined locally within the scheme (UndefinedEnum
+        Type).
+    TransactionInitiator:
+      title: TransactionInitiator
+      type: string
+      enum: &ref_40
+        - PAYER
+        - PAYEE
+      description: >-
+        Below are the allowed values for the enumeration.
+
+        - PAYER - Sender of funds is initiating the transaction. The account to
+        send from is either owned by the Payer or is connected to the Payer in
+        some way.
+
+        - PAYEE - Recipient of the funds is initiating the transaction by
+        sending a transaction request. The Payer must approve the transaction,
+        either automatically by a pre-generated OTP or by pre-approval of the
+        Payee, or by manually approving in his or her own Device.
+    TransactionInitiatorType:
+      title: TransactionInitiatorType
+      type: string
+      enum: &ref_41
+        - CONSUMER
+        - AGENT
+        - BUSINESS
+        - DEVICE
+      description: |-
+        Below are the allowed values for the enumeration.
+        - CONSUMER - Consumer is the initiator of the transaction.
+        - AGENT - Agent is the initiator of the transaction.
+        - BUSINESS - Business is the initiator of the transaction.
+        - DEVICE - Device is the initiator of the transaction.
+    RefundReason:
+      title: RefundReason
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Reason for the refund.
+    Refund:
+      title: Refund
+      type: object
+      description: Data model for the complex type Refund.
+      properties: &ref_42
+        originalTransactionId:
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+        refundReason:
+          title: RefundReason
+          type: string
+          minLength: 1
+          maxLength: 128
+          description: Reason for the refund.
+      required: &ref_43
+        - originalTransactionId
+    BalanceOfPayments:
+      title: BalanceOfPayments
+      type: string
+      pattern: '^[1-9]\d{2}$'
+      description: >-
+        (BopCode) The API data type
+        [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String
+        of 3 characters, consisting of digits only. Negative numbers are not
+        allowed. A leading zero is not allowed.
+    TransactionType:
+      title: TransactionType
+      type: object
+      description: Data model for the complex type TransactionType.
+      properties: &ref_47
+        scenario:
+          title: TransactionScenario
+          type: string
+          enum: *ref_39
+          description: >-
+            Below are the allowed values for the enumeration.
+
+            - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In
+            a normal scenario, electronic funds are transferred from a Business
+            account to a Consumer account, and physical cash is given from the
+            Consumer to the Business User.
+
+            - WITHDRAWAL - Used for performing a Cash-Out (withdrawal)
+            transaction. In a normal scenario, electronic funds are transferred
+            from a Consumer’s account to a Business account, and physical cash
+            is given from the Business User to the Consumer.
+
+            - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to
+            Consumer) transaction.
+
+            - PAYMENT - Usually used for performing a transaction from a
+            Consumer to a Merchant or Organization, but could also be for a B2B
+            (Business to Business) payment. The transaction could be online for
+            a purchase in an Internet store, in a physical store where both the
+            Consumer and Business User are present, a bill payment, a donation,
+            and so on.
+
+            - REFUND - Used for performing a refund of transaction.
+        subScenario:
+          title: TransactionSubScenario
+          type: string
+          pattern: '^[A-Z_]{1,32}$'
+          description: >-
+            Possible sub-scenario, defined locally within the scheme
+            (UndefinedEnum Type).
+        initiator:
+          title: TransactionInitiator
+          type: string
+          enum: *ref_40
+          description: >-
+            Below are the allowed values for the enumeration.
+
+            - PAYER - Sender of funds is initiating the transaction. The account
+            to send from is either owned by the Payer or is connected to the
+            Payer in some way.
+
+            - PAYEE - Recipient of the funds is initiating the transaction by
+            sending a transaction request. The Payer must approve the
+            transaction, either automatically by a pre-generated OTP or by
+            pre-approval of the Payee, or by manually approving in his or her
+            own Device.
+        initiatorType:
+          title: TransactionInitiatorType
+          type: string
+          enum: *ref_41
+          description: |-
+            Below are the allowed values for the enumeration.
+            - CONSUMER - Consumer is the initiator of the transaction.
+            - AGENT - Agent is the initiator of the transaction.
+            - BUSINESS - Business is the initiator of the transaction.
+            - DEVICE - Device is the initiator of the transaction.
+        refundInfo:
+          title: Refund
+          type: object
+          description: Data model for the complex type Refund.
+          properties: *ref_42
+          required: *ref_43
+        balanceOfPayments:
+          title: BalanceOfPayments
+          type: string
+          pattern: '^[1-9]\d{2}$'
+          description: >-
+            (BopCode) The API data type
+            [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON
+            String of 3 characters, consisting of digits only. Negative numbers
+            are not allowed. A leading zero is not allowed.
+      required: &ref_48
+        - scenario
+        - initiator
+        - initiatorType
+    Note:
+      title: Note
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Memo assigned to transaction.
+    IndividualQuote:
+      title: IndividualQuote
+      type: object
+      description: Data model for the complex type IndividualQuote.
+      properties:
+        quoteId:
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+        transactionId:
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+        payee:
+          description: Data model for the complex type Party.
+          title: Party
+          type: object
+          properties: *ref_44
+          required: *ref_45
+        amountType:
+          description: >-
+            Below are the allowed values for the enumeration AmountType.
+
+            - SEND - Amount the Payer would like to send, that is, the amount
+            that should be withdrawn from the Payer account including any fees.
+
+            - RECEIVE - Amount the Payer would like the Payee to receive, that
+            is, the amount that should be sent to the receiver exclusive of any
+            fees.
+          example: RECEIVE
+          title: AmountType
+          type: string
+          enum: *ref_46
+        amount:
+          description: Data model for the complex type Money.
+          title: Money
+          type: object
+          properties: *ref_5
+          required: *ref_6
+        fees:
+          description: Data model for the complex type Money.
+          title: Money
+          type: object
+          properties: *ref_5
+          required: *ref_6
+        transactionType:
+          description: Data model for the complex type TransactionType.
+          title: TransactionType
+          type: object
+          properties: *ref_47
+          required: *ref_48
+        note:
+          description: Memo assigned to transaction.
+          example: Note sent to Payee.
+          title: Note
+          type: string
+          minLength: 1
+          maxLength: 128
+        extensionList:
+          description: >-
+            Data model for the complex type ExtensionList. An optional list of
+            extensions, specific to deployment.
+          title: ExtensionList
+          type: object
+          properties: *ref_9
+          required: *ref_10
+      required:
+        - quoteId
+        - transactionId
+        - payee
+        - amountType
+        - amount
+        - transactionType
+    IndividualQuoteResult:
+      title: IndividualQuoteResult
+      type: object
+      description: Data model for the complex type IndividualQuoteResult.
+      properties:
+        quoteId:
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+        payee:
+          description: Data model for the complex type Party.
+          title: Party
+          type: object
+          properties: *ref_44
+          required: *ref_45
+        transferAmount:
+          description: Data model for the complex type Money.
+          title: Money
+          type: object
+          properties: *ref_5
+          required: *ref_6
+        payeeReceiveAmount:
+          description: Data model for the complex type Money.
+          title: Money
+          type: object
+          properties: *ref_5
+          required: *ref_6
+        payeeFspFee:
+          description: Data model for the complex type Money.
+          title: Money
+          type: object
+          properties: *ref_5
+          required: *ref_6
+        payeeFspCommission:
+          description: Data model for the complex type Money.
+          title: Money
+          type: object
+          properties: *ref_5
+          required: *ref_6
+        ilpPacket:
+          description: Information for recipient (transport layer information).
+          example: >-
+            AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
+          title: IlpPacket
+          type: string
+          pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+          minLength: 1
+          maxLength: 32768
+        condition:
+          description: Condition that must be attached to the transfer by the Payer.
+          example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
+          title: IlpCondition
+          type: string
+          pattern: '^[A-Za-z0-9-_]{43}$'
+          maxLength: 48
+        errorInformation:
+          description: Data model for the complex type ErrorInformation.
+          title: ErrorInformation
+          type: object
+          properties: *ref_49
+          required: *ref_50
+        extensionList:
+          description: >-
+            Data model for the complex type ExtensionList. An optional list of
+            extensions, specific to deployment.
+          title: ExtensionList
+          type: object
+          properties: *ref_9
+          required: *ref_10
+      required:
+        - quoteId
     ParticipantsPostRequest:
       title: ParticipantsPostRequest
       type: object
@@ -2031,8 +2479,8 @@ components:
             title: PartyIdInfo
             type: object
             description: Data model for the complex type PartyIdInfo.
-            properties: *ref_33
-            required: *ref_34
+            properties: *ref_36
+            required: *ref_37
           minItems: 1
           maxItems: 10000
           description: |
@@ -2052,96 +2500,6 @@ components:
       required:
         - requestId
         - partyList
-    PartyName:
-      title: PartyName
-      type: string
-      minLength: 1
-      maxLength: 128
-      description: Name of the Party. Could be a real name or a nickname.
-    PartyComplexName:
-      title: PartyComplexName
-      type: object
-      description: Data model for the complex type PartyComplexName.
-      properties: &ref_35
-        firstName:
-          description: First name of the Party (Name Type).
-          example: Henrik
-          title: FirstName
-          type: string
-          minLength: 1
-          maxLength: 128
-          pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-        middleName:
-          description: Middle name of the Party (Name Type).
-          example: Johannes
-          title: MiddleName
-          type: string
-          minLength: 1
-          maxLength: 128
-          pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-        lastName:
-          description: Last name of the Party (Name Type).
-          example: Karlsson
-          title: LastName
-          type: string
-          minLength: 1
-          maxLength: 128
-          pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-    PartyPersonalInfo:
-      title: PartyPersonalInfo
-      type: object
-      description: Data model for the complex type PartyPersonalInfo.
-      properties: &ref_38
-        complexName:
-          description: Data model for the complex type PartyComplexName.
-          title: PartyComplexName
-          type: object
-          properties: *ref_35
-        dateOfBirth:
-          description: Date of Birth of the Party.
-          example: '1966-06-16'
-          title: DateofBirth (type Date)
-          type: string
-          pattern: >-
-            ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
-    Party:
-      title: Party
-      type: object
-      description: Data model for the complex type Party.
-      properties: &ref_39
-        accounts:
-          title: AccountList
-          type: object
-          description: Data model for the complex type AccountList.
-          properties: *ref_36
-          required: *ref_37
-        partyIdInfo:
-          title: PartyIdInfo
-          type: object
-          description: Data model for the complex type PartyIdInfo.
-          properties: *ref_33
-          required: *ref_34
-        merchantClassificationCode:
-          title: MerchantClassificationCode
-          type: string
-          pattern: '^[\d]{1,4}$'
-          description: >-
-            A limited set of pre-defined numbers. This list would be a limited
-            set of numbers identifying a set of popular merchant types like
-            School Fees, Pubs and Restaurants, Groceries, etc.
-        name:
-          title: PartyName
-          type: string
-          minLength: 1
-          maxLength: 128
-          description: Name of the Party. Could be a real name or a nickname.
-        personalInfo:
-          title: PartyPersonalInfo
-          type: object
-          description: Data model for the complex type PartyPersonalInfo.
-          properties: *ref_38
-      required: &ref_40
-        - partyIdInfo
     PartiesTypeIDPutResponse:
       title: PartiesTypeIDPutResponse
       type: object
@@ -2160,8 +2518,8 @@ components:
           title: Party
           type: object
           description: Data model for the complex type Party.
-          properties: *ref_39
-          required: *ref_40
+          properties: *ref_44
+          required: *ref_45
       required:
         - party
     PartyResult:
@@ -2173,16 +2531,151 @@ components:
           description: Data model for the complex type PartyIdInfo.
           title: PartyIdInfo
           type: object
-          properties: *ref_33
-          required: *ref_34
+          properties: *ref_36
+          required: *ref_37
         errorInformation:
           description: Data model for the complex type ErrorInformation.
           title: ErrorInformation
           type: object
-          properties: *ref_41
-          required: *ref_42
+          properties: *ref_49
+          required: *ref_50
       required:
         - partyId
+    QuotesPostRequest:
+      title: QuotesPostRequest
+      type: object
+      description: The object sent in the POST /quotes request.
+      properties:
+        quoteId:
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+        transactionId:
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: a8323bc6-c228-4df2-ae82-e5a997baf899
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+        transactionRequestId:
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: a8323bc6-c228-4df2-ae82-e5a997baf890
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+        payee:
+          description: Data model for the complex type Party.
+          title: Party
+          type: object
+          properties: *ref_44
+          required: *ref_45
+        payer:
+          description: Data model for the complex type Party.
+          title: Party
+          type: object
+          properties: *ref_44
+          required: *ref_45
+        amountType:
+          description: >-
+            Below are the allowed values for the enumeration AmountType.
+
+            - SEND - Amount the Payer would like to send, that is, the amount
+            that should be withdrawn from the Payer account including any fees.
+
+            - RECEIVE - Amount the Payer would like the Payee to receive, that
+            is, the amount that should be sent to the receiver exclusive of any
+            fees.
+          example: SEND
+          title: AmountType
+          type: string
+          enum: *ref_46
+        amount:
+          description: Data model for the complex type Money.
+          title: Money
+          type: object
+          properties: *ref_5
+          required: *ref_6
+        fees:
+          description: Data model for the complex type Money.
+          title: Money
+          type: object
+          properties: *ref_5
+          required: *ref_6
+        transactionType:
+          description: Data model for the complex type TransactionType.
+          title: TransactionType
+          type: object
+          properties: *ref_47
+          required: *ref_48
+        geoCode:
+          description: >-
+            Data model for the complex type GeoCode. Indicates the geographic
+            location from where the transaction was initiated.
+          title: GeoCode
+          type: object
+          properties: *ref_7
+          required: *ref_8
+        note:
+          description: Memo assigned to transaction.
+          example: Free-text memo.
+          title: Note
+          type: string
+          minLength: 1
+          maxLength: 128
+        expiration:
+          description: >-
+            The API data type DateTime is a JSON String in a lexical format that
+            is restricted by a regular expression for interoperability reasons.
+            The format is according to [ISO
+            8601](https://www.iso.org/iso-8601-date-and-time-format.html),
+            expressed in a combined date, time and time zone format. A more
+            readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM].
+            Examples are "2016-05-24T08:38:08.699-04:00",
+            "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same
+            as UTC).
+          example: '2016-05-24T08:38:08.699-04:00'
+          title: DateTime
+          type: string
+          pattern: >-
+            ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
+        extensionList:
+          description: >-
+            Data model for the complex type ExtensionList. An optional list of
+            extensions, specific to deployment.
+          title: ExtensionList
+          type: object
+          properties: *ref_9
+          required: *ref_10
+      required:
+        - quoteId
+        - transactionId
+        - payee
+        - payer
+        - amountType
+        - amount
+        - transactionType
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
       title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object
@@ -2322,7 +2815,7 @@ components:
     TransactionRequestState:
       title: TransactionRequestState
       type: string
-      enum: &ref_43
+      enum: &ref_51
         - RECEIVED
         - PENDING
         - ACCEPTED
@@ -2336,7 +2829,7 @@ components:
     TransactionState:
       title: TransactionState
       type: string
-      enum: &ref_44
+      enum: &ref_52
         - RECEIVED
         - PENDING
         - COMPLETED
@@ -2369,7 +2862,7 @@ components:
         transactionRequestState:
           title: TransactionRequestState
           type: string
-          enum: *ref_43
+          enum: *ref_51
           description: >-
             Below are the allowed values for the enumeration.
 
@@ -2384,7 +2877,7 @@ components:
         transactionState:
           title: TransactionState
           type: string
-          enum: *ref_44
+          enum: *ref_52
           description: >-
             Below are the allowed values for the enumeration.
 
@@ -2422,7 +2915,7 @@ components:
         transactionRequestState:
           title: TransactionRequestState
           type: string
-          enum: *ref_43
+          enum: *ref_51
           description: >-
             Below are the allowed values for the enumeration.
 
@@ -2437,208 +2930,6 @@ components:
       required:
         - transactionId
         - transactionRequestState
-    TransactionScenario:
-      title: TransactionScenario
-      type: string
-      enum: &ref_45
-        - DEPOSIT
-        - WITHDRAWAL
-        - TRANSFER
-        - PAYMENT
-        - REFUND
-      description: >-
-        Below are the allowed values for the enumeration.
-
-        - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a
-        normal scenario, electronic funds are transferred from a Business
-        account to a Consumer account, and physical cash is given from the
-        Consumer to the Business User.
-
-        - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction.
-        In a normal scenario, electronic funds are transferred from a Consumer’s
-        account to a Business account, and physical cash is given from the
-        Business User to the Consumer.
-
-        - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to
-        Consumer) transaction.
-
-        - PAYMENT - Usually used for performing a transaction from a Consumer to
-        a Merchant or Organization, but could also be for a B2B (Business to
-        Business) payment. The transaction could be online for a purchase in an
-        Internet store, in a physical store where both the Consumer and Business
-        User are present, a bill payment, a donation, and so on.
-
-        - REFUND - Used for performing a refund of transaction.
-    TransactionSubScenario:
-      title: TransactionSubScenario
-      type: string
-      pattern: '^[A-Z_]{1,32}$'
-      description: >-
-        Possible sub-scenario, defined locally within the scheme (UndefinedEnum
-        Type).
-    TransactionInitiator:
-      title: TransactionInitiator
-      type: string
-      enum: &ref_46
-        - PAYER
-        - PAYEE
-      description: >-
-        Below are the allowed values for the enumeration.
-
-        - PAYER - Sender of funds is initiating the transaction. The account to
-        send from is either owned by the Payer or is connected to the Payer in
-        some way.
-
-        - PAYEE - Recipient of the funds is initiating the transaction by
-        sending a transaction request. The Payer must approve the transaction,
-        either automatically by a pre-generated OTP or by pre-approval of the
-        Payee, or by manually approving in his or her own Device.
-    TransactionInitiatorType:
-      title: TransactionInitiatorType
-      type: string
-      enum: &ref_47
-        - CONSUMER
-        - AGENT
-        - BUSINESS
-        - DEVICE
-      description: |-
-        Below are the allowed values for the enumeration.
-        - CONSUMER - Consumer is the initiator of the transaction.
-        - AGENT - Agent is the initiator of the transaction.
-        - BUSINESS - Business is the initiator of the transaction.
-        - DEVICE - Device is the initiator of the transaction.
-    RefundReason:
-      title: RefundReason
-      type: string
-      minLength: 1
-      maxLength: 128
-      description: Reason for the refund.
-    Refund:
-      title: Refund
-      type: object
-      description: Data model for the complex type Refund.
-      properties: &ref_48
-        originalTransactionId:
-          description: >-
-            Identifier that correlates all messages of the same sequence. The
-            API data type UUID (Universally Unique Identifier) is a JSON String
-            in canonical format, conforming to [RFC
-            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
-            regular expression for interoperability reasons. A UUID is always 36
-            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
-          title: CorrelationId
-          type: string
-          pattern: >-
-            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-        refundReason:
-          description: Reason for the refund.
-          example: Free text indicating reason for the refund.
-          title: RefundReason
-          type: string
-          minLength: 1
-          maxLength: 128
-      required: &ref_49
-        - originalTransactionId
-    BalanceOfPayments:
-      title: BalanceOfPayments
-      type: string
-      pattern: '^[1-9]\d{2}$'
-      description: >-
-        (BopCode) The API data type
-        [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String
-        of 3 characters, consisting of digits only. Negative numbers are not
-        allowed. A leading zero is not allowed.
-    TransactionType:
-      title: TransactionType
-      type: object
-      description: Data model for the complex type TransactionType.
-      properties: &ref_51
-        scenario:
-          description: >-
-            Below are the allowed values for the enumeration.
-
-            - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In
-            a normal scenario, electronic funds are transferred from a Business
-            account to a Consumer account, and physical cash is given from the
-            Consumer to the Business User.
-
-            - WITHDRAWAL - Used for performing a Cash-Out (withdrawal)
-            transaction. In a normal scenario, electronic funds are transferred
-            from a Consumer’s account to a Business account, and physical cash
-            is given from the Business User to the Consumer.
-
-            - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to
-            Consumer) transaction.
-
-            - PAYMENT - Usually used for performing a transaction from a
-            Consumer to a Merchant or Organization, but could also be for a B2B
-            (Business to Business) payment. The transaction could be online for
-            a purchase in an Internet store, in a physical store where both the
-            Consumer and Business User are present, a bill payment, a donation,
-            and so on.
-
-            - REFUND - Used for performing a refund of transaction.
-          example: DEPOSIT
-          title: TransactionScenario
-          type: string
-          enum: *ref_45
-        subScenario:
-          description: >-
-            Possible sub-scenario, defined locally within the scheme
-            (UndefinedEnum Type).
-          example: Locally defined sub-scenario.
-          title: TransactionSubScenario
-          type: string
-          pattern: '^[A-Z_]{1,32}$'
-        initiator:
-          description: >-
-            Below are the allowed values for the enumeration.
-
-            - PAYER - Sender of funds is initiating the transaction. The account
-            to send from is either owned by the Payer or is connected to the
-            Payer in some way.
-
-            - PAYEE - Recipient of the funds is initiating the transaction by
-            sending a transaction request. The Payer must approve the
-            transaction, either automatically by a pre-generated OTP or by
-            pre-approval of the Payee, or by manually approving in his or her
-            own Device.
-          example: PAYEE
-          title: TransactionInitiator
-          type: string
-          enum: *ref_46
-        initiatorType:
-          description: |-
-            Below are the allowed values for the enumeration.
-            - CONSUMER - Consumer is the initiator of the transaction.
-            - AGENT - Agent is the initiator of the transaction.
-            - BUSINESS - Business is the initiator of the transaction.
-            - DEVICE - Device is the initiator of the transaction.
-          example: CONSUMER
-          title: TransactionInitiatorType
-          type: string
-          enum: *ref_47
-        refundInfo:
-          description: Data model for the complex type Refund.
-          title: Refund
-          type: object
-          properties: *ref_48
-          required: *ref_49
-        balanceOfPayments:
-          description: >-
-            (BopCode) The API data type
-            [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON
-            String of 3 characters, consisting of digits only. Negative numbers
-            are not allowed. A leading zero is not allowed.
-          example: 123
-          title: BalanceOfPayments
-          type: string
-          pattern: '^[1-9]\d{2}$'
-      required: &ref_52
-        - scenario
-        - initiator
-        - initiatorType
     ThirdpartyRequestsTransactionsPostRequest:
       title: ThirdpartyRequestsTransactionsPostRequest
       type: object
@@ -2701,22 +2992,22 @@ components:
             - title: Party
               type: object
               description: Data model for the complex type Party.
-              properties: *ref_39
-              required: *ref_40
+              properties: *ref_44
+              required: *ref_45
           description: Information about the Payee in the proposed financial transaction.
         payer:
           allOf:
             - title: Party
               type: object
               description: Data model for the complex type Party.
-              properties: *ref_39
-              required: *ref_40
+              properties: *ref_44
+              required: *ref_45
           description: Information about the Payer in the proposed financial transaction.
         amountType:
           allOf:
             - title: AmountType
               type: string
-              enum: *ref_50
+              enum: *ref_46
               description: >-
                 Below are the allowed values for the enumeration AmountType.
 
@@ -2741,8 +3032,8 @@ components:
             - title: TransactionType
               type: object
               description: Data model for the complex type TransactionType.
-              properties: *ref_51
-              required: *ref_52
+              properties: *ref_47
+              required: *ref_48
           description: Type of transaction.
         expiration:
           type: string
@@ -2782,14 +3073,14 @@ components:
           title: Party
           type: object
           description: Data model for the complex type Party.
-          properties: *ref_39
-          required: *ref_40
+          properties: *ref_44
+          required: *ref_45
         payer:
           title: PartyIdInfo
           type: object
           description: Data model for the complex type PartyIdInfo.
-          properties: *ref_33
-          required: *ref_34
+          properties: *ref_36
+          required: *ref_37
         amount:
           title: Money
           type: object
@@ -2800,8 +3091,8 @@ components:
           title: TransactionType
           type: object
           description: Data model for the complex type TransactionType.
-          properties: *ref_51
-          required: *ref_52
+          properties: *ref_47
+          required: *ref_48
         note:
           title: Note
           type: string
@@ -2853,3 +3144,91 @@ components:
         - payer
         - amount
         - transactionType
+    Transaction:
+      title: Transaction
+      type: object
+      description: >-
+        Data model for the complex type Transaction. The Transaction type is
+        used to carry end-to-end data between the Payer FSP and the Payee FSP in
+        the ILP Packet. Both the transactionId and the quoteId in the data model
+        are decided by the Payer FSP in the POST /quotes request.
+      properties: &ref_54
+        transactionId:
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+        quoteId:
+          description: >-
+            Identifier that correlates all messages of the same sequence. The
+            API data type UUID (Universally Unique Identifier) is a JSON String
+            in canonical format, conforming to [RFC
+            4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
+            regular expression for interoperability reasons. A UUID is always 36
+            characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          title: CorrelationId
+          type: string
+          pattern: >-
+            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+        payee:
+          description: Data model for the complex type Party.
+          title: Party
+          type: object
+          properties: *ref_44
+          required: *ref_45
+        payer:
+          description: Data model for the complex type Party.
+          title: Party
+          type: object
+          properties: *ref_44
+          required: *ref_45
+        amount:
+          description: Data model for the complex type Money.
+          title: Money
+          type: object
+          properties: *ref_5
+          required: *ref_6
+        transactionType:
+          description: Data model for the complex type TransactionType.
+          title: TransactionType
+          type: object
+          properties: *ref_47
+          required: *ref_48
+        note:
+          description: Memo assigned to transaction.
+          title: Note
+          type: string
+          minLength: 1
+          maxLength: 128
+        extensionList:
+          description: >-
+            Data model for the complex type ExtensionList. An optional list of
+            extensions, specific to deployment.
+          title: ExtensionList
+          type: object
+          properties: *ref_9
+          required: *ref_10
+      required: &ref_55
+        - transactionId
+        - quoteId
+        - payee
+        - payer
+        - amount
+        - transactionType
+    Transactione:
+      title: Transaction
+      type: object
+      description: >-
+        Data model for the complex type Transaction. The Transaction type is
+        used to carry end-to-end data between the Payer FSP and the Payee FSP in
+        the ILP Packet. Both the transactionId and the quoteId in the data model
+        are decided by the Payer FSP in the POST /quotes request.
+      properties: *ref_54
+      required: *ref_55

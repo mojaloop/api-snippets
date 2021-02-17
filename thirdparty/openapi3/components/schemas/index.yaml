@@ -92,6 +92,10 @@ IlpFulfilment:
   $ref: ./IlpFulfilment.yaml
 IlpPacket:
   $ref: ./IlpPacket.yaml
+IndividualQuote:
+  $ref: ./IndividualQuote.yaml
+IndividualQuoteResult:
+  $ref: ./IndividualQuoteResult.yaml
 Integer:
   $ref: ./Integer.yaml
 Latitude:
@@ -132,6 +136,8 @@ PartySubIdOrType:
   $ref: ./PartySubIdOrType.yaml
 QuotesIDPutResponse:
   $ref: ./QuotesIDPutResponse.yaml
+QuotesPostRequest:
+  $ref: ./QuotesPostRequest.yaml
 Scope:
   $ref: ./Scope.yaml
 SignedCredential:
@@ -148,6 +154,8 @@ ThirdpartyRequestsTransactionsPostRequest:
   $ref: ./ThirdpartyRequestsTransactionsPostRequest.yaml
 TransactionRequestsPostRequest:
   $ref: ./TransactionRequestsPostRequest.yaml
+Transactione:
+  $ref: ./Transaction.yaml
 TransactionRequestState:
   $ref: ./TransactionRequestState.yaml
 TransactionState:
