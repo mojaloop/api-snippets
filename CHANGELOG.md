@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.2](https://github.com/mojaloop/api-snippets/compare/v12.0.1...v12.0.2) (2021-02-17)
+
+
+### Maintenance
+
+* delete ref siblings ([#52](https://github.com/mojaloop/api-snippets/issues/52)) ([d715064](https://github.com/mojaloop/api-snippets/commit/d7150644fa74969b07d81bf6cd6fb8f18a94954a))
+
 ### [12.0.1](https://github.com/mojaloop/api-snippets/compare/v12.0.0...v12.0.1) (2021-02-15)
 
 
