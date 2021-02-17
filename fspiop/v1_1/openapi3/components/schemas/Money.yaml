@@ -4,12 +4,8 @@ description: Data model for the complex type Money.
 properties:
   currency:
     $ref: ./Currency.yaml
-    description: Currency of the amount.
-    example: USD
   amount:
     $ref: ./Amount.yaml
-    description: Amount of Money.
-    example: '123.45'
 required:
   - currency
   - amount

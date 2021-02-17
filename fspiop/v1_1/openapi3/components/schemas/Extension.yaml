@@ -4,10 +4,8 @@ description: Data model for the complex type Extension.
 properties:
   key:
     $ref: ./ExtensionKey.yaml
-    description: Extension key.
   value:
     $ref: ./ExtensionValue.yaml
-    description: Extension value.
 required:
   - key
   - value
