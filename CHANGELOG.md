@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.4](https://github.com/mojaloop/api-snippets/compare/v12.0.3...v12.0.4) (2021-02-18)
+
+
+### Maintenance
+
+* add thirdparty authorization schemas ([#54](https://github.com/mojaloop/api-snippets/issues/54)) ([61bde0c](https://github.com/mojaloop/api-snippets/commit/61bde0c5a6f56a302f5b70aff2ca5627f63a56e5))
+
 ### [12.0.3](https://github.com/mojaloop/api-snippets/compare/v12.0.2...v12.0.3) (2021-02-17)
 
 
