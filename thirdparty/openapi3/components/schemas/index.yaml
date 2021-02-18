@@ -8,8 +8,12 @@ Amount:
   $ref: ./Amount.yaml
 AmountType:
   $ref: ./AmountType.yaml
+AuthenticationInfo:
+   $ref: ./AuthenticationInfo.yaml
 AuthenticationType:
   $ref: ./AuthenticationType.yaml
+AuthenticationValue:
+   $ref: ./AuthenticationValue.yaml
 AuthorizationChannelType:
   $ref: ./AuthorizationChannelType.yaml
 AuthorizationResponseType:
@@ -162,6 +166,10 @@ TransactionState:
   $ref: ./TransactionState.yaml
 TransactionType:
   $ref: ./TransactionType.yaml
+U2FPIN:
+  $ref: ./U2FPIN.yaml
+U2FPinValue:
+  $ref: ./U2FPinValue.yaml
 UnsignedCredential:
   $ref: ./UnsignedCredential.yaml
 VerifiedCredential:

@@ -1,0 +1,19 @@
+title: U2FPinValue
+type: object
+description: >
+  U2F challenge-response, where payer FSP verifies if the response
+  provided by end-user device matches the previously registered key.
+properties:
+  pinValue:
+    allOf:
+      - $ref: ./U2FPIN.yaml
+    description: U2F challenge-response.
+  counter:
+    allOf:
+      - $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/Integer.yaml'
+    description: >-
+      Sequential counter used for cloning detection. Present only for U2F
+      authentication.
+required:
+  - pinValue
+  - counter
