@@ -405,7 +405,7 @@ components:
         - counter
     AuthenticationValue:
       title: AuthenticationValue
-      oneOf: &ref_6
+      anyOf: &ref_6
         - title: OtpValue
           type: string
           pattern: '^\d{3,10}$'
@@ -450,7 +450,7 @@ components:
             authentication type used in the AuthenticationInfo complex type.
           example: 1234
           title: AuthenticationValue
-          oneOf: *ref_6
+          anyOf: *ref_6
           pattern: '^\d{3,10}$|^\S{1,64}$'
       required:
         - authentication
