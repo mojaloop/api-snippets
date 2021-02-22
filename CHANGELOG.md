@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.5](https://github.com/mojaloop/api-snippets/compare/v12.0.4...v12.0.5) (2021-02-22)
+
+
+### Maintenance
+
+* add U2F to AuthenticationType in v1.1 ([#55](https://github.com/mojaloop/api-snippets/issues/55)) ([334388c](https://github.com/mojaloop/api-snippets/commit/334388c8a4342a1a1d509d026c8fc023db4bf216))
+
 ### [12.0.4](https://github.com/mojaloop/api-snippets/compare/v12.0.3...v12.0.4) (2021-02-18)
 
 
