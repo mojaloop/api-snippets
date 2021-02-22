@@ -1,7 +1,8 @@
 title: AuthenticationValue
-oneOf:
+anyOf:
   - $ref: ./OtpValue.yaml
   - $ref: ./QRCODE.yaml
+  - $ref: ./U2FPinValue.yaml
 pattern: '^\d{3,10}$|^\S{1,64}$'
 description: >-
   Contains the authentication value. The format depends on the authentication
