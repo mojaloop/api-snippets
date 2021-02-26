@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.6](https://github.com/mojaloop/api-snippets/compare/v12.0.5...v12.0.6) (2021-02-26)
+
+
+### Bug Fixes
+
+* typescript exports & rebuild openapi ([#56](https://github.com/mojaloop/api-snippets/issues/56)) ([cdee10b](https://github.com/mojaloop/api-snippets/commit/cdee10b68c62af41286007f6ec8f7711829051d9))
+
 ### [12.0.5](https://github.com/mojaloop/api-snippets/compare/v12.0.4...v12.0.5) (2021-02-22)
 
 
