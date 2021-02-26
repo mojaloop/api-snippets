@@ -627,19 +627,18 @@ export interface components {
     /**
      * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
      */
-    AuthenticationValue:
-    | string
-    | string
-    | {
+    AuthenticationValue: Partial<string> &
+    Partial<string> &
+    Partial<{
       /**
-           * U2F challenge-response.
-           */
+         * U2F challenge-response.
+         */
       pinValue: string;
       /**
-           * Sequential counter used for cloning detection. Present only for U2F authentication.
-           */
+         * Sequential counter used for cloning detection. Present only for U2F authentication.
+         */
       counter: string;
-    };
+    }>;
     /**
      * Data model for the complex type AuthenticationInfo.
      */
@@ -654,19 +653,18 @@ export interface components {
       /**
        * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
        */
-      authenticationValue:
-      | string
-      | string
-      | {
+      authenticationValue: Partial<string> &
+      Partial<string> &
+      Partial<{
         /**
-             * U2F challenge-response.
-             */
+           * U2F challenge-response.
+           */
         pinValue: string;
         /**
-             * Sequential counter used for cloning detection. Present only for U2F authentication.
-             */
+           * Sequential counter used for cloning detection. Present only for U2F authentication.
+           */
         counter: string;
-      };
+      }>;
     };
     /**
      * Below are the allowed values for the enumeration AuthorizationChannelType.
