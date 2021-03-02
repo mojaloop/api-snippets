@@ -48,7 +48,7 @@ paths:
       responses:
         '200':
           description: Ok
-  /participants/Type/ID:
+  '/participants/{Type}/{ID}':
     parameters:
       - $ref: '#/components/parameters/Type'
       - $ref: '#/components/parameters/ID'
@@ -217,7 +217,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/Type/ID/error:
+  '/participants/{Type}/{ID}/error':
     put:
       description: >-
         If the server is unable to find, create or delete the associated FSP of
@@ -267,7 +267,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/Type/ID/SubId:
+  '/participants/{Type}/{ID}/{SubId}':
     parameters:
       - $ref: '#/components/parameters/Type'
       - $ref: '#/components/parameters/ID'
@@ -437,7 +437,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/Type/ID/SubId/error:
+  '/participants/{Type}/{ID}/{SubId}/error':
     put:
       description: >-
         If the server is unable to find, create or delete the associated FSP of
@@ -538,7 +538,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/ID:
+  '/participants/{ID}':
     put:
       description: >-
         The callback `PUT /participants/{ID}` is used to inform the client of
@@ -585,7 +585,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/ID/error:
+  '/participants/{ID}/error':
     put:
       description: >-
         If there is an error during FSP information creation in the server, the
@@ -634,7 +634,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /parties/Type/ID:
+  '/parties/{Type}/{ID}':
     parameters:
       - $ref: '#/components/parameters/Type'
       - $ref: '#/components/parameters/ID'
@@ -716,7 +716,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /parties/Type/ID/error:
+  '/parties/{Type}/{ID}/error':
     put:
       description: >-
         If the server is unable to find Party information of the provided
@@ -766,7 +766,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /parties/Type/ID/SubId:
+  '/parties/{Type}/{ID}/{SubId}':
     parameters:
       - $ref: '#/components/parameters/Type'
       - $ref: '#/components/parameters/ID'
@@ -849,7 +849,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /parties/Type/ID/SubId/error:
+  '/parties/{Type}/{ID}/{SubId}/error':
     put:
       description: >-
         If the server is unable to find Party information of the provided
@@ -948,7 +948,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transactionRequests/ID:
+  '/transactionRequests/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1030,7 +1030,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transactionRequests/ID/error:
+  '/transactionRequests/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a transaction request, or
@@ -1128,7 +1128,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /quotes/ID:
+  '/quotes/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1208,7 +1208,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /quotes/ID/error:
+  '/quotes/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a quote, or some other
@@ -1258,7 +1258,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /authorizations/ID:
+  '/authorizations/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1371,7 +1371,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /authorizations/ID/error:
+  '/authorizations/{ID}/error':
     put:
       description: >-
         If the server is unable to find the transaction request, or another
@@ -1468,7 +1468,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transfers/ID:
+  '/transfers/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1589,7 +1589,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transfers/ID/error:
+  '/transfers/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a transfer, or another
@@ -1639,7 +1639,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transactions/ID:
+  '/transactions/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1720,7 +1720,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transactions/ID/error:
+  '/transactions/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a transaction, or another
@@ -1816,7 +1816,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /bulkQuotes/ID:
+  '/bulkQuotes/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1897,7 +1897,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /bulkQuotes/ID/error:
+  '/bulkQuotes/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a bulk quote, or another
@@ -1994,7 +1994,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /bulkTransfers/ID:
+  '/bulkTransfers/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -2076,7 +2076,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /bulkTransfers/ID/error:
+  '/bulkTransfers/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a bulk transfer, or another
