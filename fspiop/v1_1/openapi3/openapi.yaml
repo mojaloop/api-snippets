@@ -48,63 +48,63 @@ paths:
       responses:
         200:
           description: Ok
-  /participants/Type/ID:
+  /participants/{Type}/{ID}:
     $ref: 'paths/participants_Type_ID.yaml'
-  /participants/Type/ID/error:
+  /participants/{Type}/{ID}/error:
     $ref: 'paths/participants_Type_ID_error.yaml'
-  /participants/Type/ID/SubId:
+  /participants/{Type}/{ID}/{SubId}:
     $ref: 'paths/participants_Type_ID_SubId.yaml'
-  /participants/Type/ID/SubId/error:
+  /participants/{Type}/{ID}/{SubId}/error:
     $ref: 'paths/participants_Type_ID_SubId_error.yaml'
   /participants:
     $ref: 'paths/participants.yaml'
-  /participants/ID:
+  /participants/{ID}:
     $ref: 'paths/participants_ID.yaml'
-  /participants/ID/error:
+  /participants/{ID}/error:
     $ref: 'paths/participants_ID_error.yaml'
-  /parties/Type/ID:
+  /parties/{Type}/{ID}:
     $ref: 'paths/parties_Type_ID.yaml'
-  /parties/Type/ID/error:
+  /parties/{Type}/{ID}/error:
     $ref: 'paths/parties_Type_ID_error.yaml'
-  /parties/Type/ID/SubId:
+  /parties/{Type}/{ID}/{SubId}:
     $ref: 'paths/parties_Type_ID_SubId.yaml'
-  /parties/Type/ID/SubId/error:
+  /parties/{Type}/{ID}/{SubId}/error:
     $ref: 'paths/parties_Type_ID_SubId_error.yaml'
   /transactionRequests:
     $ref: 'paths/transactionRequests.yaml'
-  /transactionRequests/ID:
+  /transactionRequests/{ID}:
     $ref: 'paths/transactionRequests_ID.yaml'
-  /transactionRequests/ID/error:
+  /transactionRequests/{ID}/error:
     $ref: 'paths/transactionRequests_ID_error.yaml'
   /quotes:
     $ref: 'paths/quotes.yaml'
-  /quotes/ID:
+  /quotes/{ID}:
     $ref: 'paths/quotes_ID.yaml'
-  /quotes/ID/error:
+  /quotes/{ID}/error:
     $ref: 'paths/quotes_ID_error.yaml'
-  /authorizations/ID:
+  /authorizations/{ID}:
     $ref: 'paths/authorizations_ID.yaml'
-  /authorizations/ID/error:
+  /authorizations/{ID}/error:
     $ref: 'paths/authorizations_ID_error.yaml'
   /transfers:
     $ref: 'paths/transfers.yaml'
-  /transfers/ID:
+  /transfers/{ID}:
     $ref: 'paths/transfers_ID.yaml'
-  /transfers/ID/error:
+  /transfers/{ID}/error:
     $ref: 'paths/transfers_ID_error.yaml'
-  /transactions/ID:
+  /transactions/{ID}:
     $ref: 'paths/transactions_ID.yaml'
-  /transactions/ID/error:
+  /transactions/{ID}/error:
     $ref: 'paths/transactions_ID_error.yaml'
   /bulkQuotes:
     $ref: 'paths/bulkQuotes.yaml'
-  /bulkQuotes/ID:
+  /bulkQuotes/{ID}:
     $ref: 'paths/bulkQuotes_ID.yaml'
-  /bulkQuotes/ID/error:
+  /bulkQuotes/{ID}/error:
     $ref: 'paths/bulkQuotes_ID_error.yaml'
   /bulkTransfers:
     $ref: 'paths/bulkTransfers.yaml'
-  /bulkTransfers/ID:
+  /bulkTransfers/{ID}:
     $ref: 'paths/bulkTransfers_ID.yaml'
-  /bulkTransfers/ID/error:
+  /bulkTransfers/{ID}/error:
     $ref: 'paths/bulkTransfers_ID_error.yaml'
