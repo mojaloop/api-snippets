@@ -29,3 +29,4 @@ description: >-
   bill payment, a donation, and so on.
 
   - REFUND - Used for performing a refund of transaction.
+example: DEPOSIT
