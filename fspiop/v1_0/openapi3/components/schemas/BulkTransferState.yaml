@@ -15,4 +15,3 @@ description: |-
   - PROCESSING - Payee FSP has started to transfer fund to the Payees.
   - COMPLETED - Payee FSP has completed transfer of funds to the Payees.
   - REJECTED - Payee FSP has rejected to process the bulk transfer.
-example: RECEIVED

@@ -11,4 +11,3 @@ description: |-
   - PENDING - Payee FSP has validated the transaction.
   - COMPLETED - Payee FSP has successfully performed the transaction.
   - REJECTED - Payee FSP has failed to perform the transaction.
-example: RECEIVED

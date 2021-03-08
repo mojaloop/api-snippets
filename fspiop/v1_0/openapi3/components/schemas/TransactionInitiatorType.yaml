@@ -11,4 +11,3 @@ description: |-
   - AGENT - Agent is the initiator of the transaction.
   - BUSINESS - Business is the initiator of the transaction.
   - DEVICE - Device is the initiator of the transaction.
-example: CONSUMER
