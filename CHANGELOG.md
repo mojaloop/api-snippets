@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.8](https://github.com/mojaloop/api-snippets/compare/v12.0.7...v12.0.8) (2021-03-08)
+
+
+### Maintenance
+
+* fix re-introduced ref sibling validation error ([#58](https://github.com/mojaloop/api-snippets/issues/58)) ([696ba74](https://github.com/mojaloop/api-snippets/commit/696ba74979fe9a361982d93d694ed650c1404c10))
+
 ### [12.0.7](https://github.com/mojaloop/api-snippets/compare/v12.0.6...v12.0.7) (2021-03-02)
 
 
