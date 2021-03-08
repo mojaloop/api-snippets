@@ -4,25 +4,12 @@ description: The object sent in the POST /bulkQuotes request.
 properties:
   bulkQuoteId:
     $ref: ./CorrelationId.yaml
-    description: >-
-      Common ID between the FSPs for the bulk quote object, decided by the Payer
-      FSP. The ID should be reused for resends of the same bulk quote. A new ID
-      should be generated for each new bulk quote.
-    example: b51ec534-ee48-4575-b6a9-ead2955b8069
   payer:
     $ref: ./Party.yaml
-    description: Information about the Payer in the proposed financial transaction.
   geoCode:
     $ref: ./GeoCode.yaml
-    description: >-
-      Longitude and Latitude of the initiating Party. Can be used to detect
-      fraud.
   expiration:
     $ref: ./DateTime.yaml
-    description: >-
-      Expiration is optional to let the Payee FSP know when a quote no longer
-      needs to be returned.
-    example: '2016-05-24T08:38:08.699-04:00'
   individualQuotes:
     type: array
     minItems: 1
@@ -32,7 +19,6 @@ properties:
     description: List of quotes elements.
   extensionList:
     $ref: ./ExtensionList.yaml
-    description: 'Optional extension, specific to deployment.'
 required:
   - bulkQuoteId
   - payer

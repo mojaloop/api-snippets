@@ -4,10 +4,6 @@ description: The object sent in the POST /participants request.
 properties:
   requestId:
     $ref: ./CorrelationId.yaml
-    description: >-
-      The ID of the request, decided by the client. Used for identification of
-      the callback from the server.
-    example: b51ec534-ee48-4575-b6a9-ead2955b8069
   partyList:
     type: array
     items:
@@ -19,10 +15,6 @@ properties:
       create FSP information about.
   currency:
     $ref: ./Currency.yaml
-    description: >-
-      Indicate that the provided Currency is supported by each PartyIdInfo in
-      the list.
-    example: USD
 required:
   - requestId
   - partyList

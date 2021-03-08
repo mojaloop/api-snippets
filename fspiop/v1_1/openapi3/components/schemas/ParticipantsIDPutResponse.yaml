@@ -13,9 +13,5 @@ properties:
       created.
   currency:
     $ref: ./Currency.yaml
-    description: >-
-      Indicate that the provided Currency was set to be supported by each
-      successfully added PartyIdInfo.
-    example: USD
 required:
   - partyList
