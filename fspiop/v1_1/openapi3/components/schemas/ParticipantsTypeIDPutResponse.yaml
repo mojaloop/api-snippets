@@ -6,5 +6,3 @@ description: >-
 properties:
   fspId:
     $ref: ./FspId.yaml
-    description: FSP Identifier that the Party belongs to.
-    example: 1234

@@ -11,3 +11,4 @@ description: |-
   - PENDING - Payer FSP has sent the transaction request to the Payer.
   - ACCEPTED - Payer has approved the transaction.
   - REJECTED - Payer has rejected the transaction.
+example: 'RECEIVED'

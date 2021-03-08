@@ -4,14 +4,9 @@ description: 'The object sent in the PUT /transactionRequests/{ID} callback.'
 properties:
   transactionId:
     $ref: ./CorrelationId.yaml
-    description: Identifies a related transaction (if a transaction has been created).
-    example: b51ec534-ee48-4575-b6a9-ead2955b8069
   transactionRequestState:
     $ref: ./TransactionRequestState.yaml
-    description: State of the transaction request.
-    example: RECEIVED
   extensionList:
     $ref: ./ExtensionList.yaml
-    description: 'Optional extension, specific to deployment.'
 required:
   - transactionRequestState

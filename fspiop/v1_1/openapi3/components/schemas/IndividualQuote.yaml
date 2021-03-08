@@ -4,44 +4,22 @@ description: Data model for the complex type IndividualQuote.
 properties:
   quoteId:
     $ref: ./CorrelationId.yaml
-    description: Identifies the quote message.
-    example: b51ec534-ee48-4575-b6a9-ead2955b8069
   transactionId:
     $ref: ./CorrelationId.yaml
-    description: Identifies the transaction message.
-    example: b51ec534-ee48-4575-b6a9-ead2955b8069
   payee:
     $ref: ./Party.yaml
-    description: Information about the Payee in the proposed financial transaction.
   amountType:
     $ref: ./AmountType.yaml
-    description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
-    example: RECEIVE
   amount:
     $ref: ./Money.yaml
-    description: >-
-      Depending on amountType If SEND - The amount the Payer would like to send,
-      that is, the amount that should be withdrawn from the Payer account
-      including any fees. The amount is updated by each participating entity in
-      the transaction. If RECEIVE - The amount the Payee should receive, that
-      is, the amount that should be sent to the receiver exclusive of any fees.
-      The amount is not updated by any of the participating entities.
   fees:
     $ref: ./Money.yaml
-    description: >-
-      The fees in the transaction. The fees element should be empty if fees
-      should be non-disclosed. The fees element should be non-empty if fees
-      should be disclosed.
   transactionType:
     $ref: ./TransactionType.yaml
-    description: Type of transaction that the quote is requested for.
   note:
     $ref: ./Note.yaml
-    description: Memo that will be attached to the transaction.
-    example: Note sent to Payee.
   extensionList:
     $ref: ./ExtensionList.yaml
-    description: 'Optional extension, specific to deployment.'
 required:
   - quoteId
   - transactionId

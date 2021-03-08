@@ -16,3 +16,4 @@ description: >-
 
   - ABORTED - Next ledger has aborted the transfer due to a rejection or failure
   to perform the transfer.
+example: 'RESERVED'
