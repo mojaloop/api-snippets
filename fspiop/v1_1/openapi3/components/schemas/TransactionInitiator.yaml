@@ -13,3 +13,4 @@ description: >-
   transaction request. The Payer must approve the transaction, either
   automatically by a pre-generated OTP or by pre-approval of the Payee, or by
   manually approving in his or her own Device.
+example: 'PAYEE'

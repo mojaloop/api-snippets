@@ -2259,6 +2259,7 @@ components:
         4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
         regular expression for interoperability reasons. A UUID is always 36
         characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+      example: b51ec534-ee48-4575-b6a9-ead2955b8069
     PartyIdType:
       title: PartyIdType
       type: string
@@ -2323,6 +2324,7 @@ components:
       minLength: 1
       maxLength: 128
       description: Identifier of the Party.
+      example: '16135551212'
     PartySubIdOrType:
       title: PartySubIdOrType
       type: string
@@ -2418,6 +2420,7 @@ components:
       maxLength: 128
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: First name of the Party (Name Type).
+      example: Henrik
     MiddleName:
       title: MiddleName
       type: string
@@ -2425,6 +2428,7 @@ components:
       maxLength: 128
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: Middle name of the Party (Name Type).
+      example: Johannes
     LastName:
       title: LastName
       type: string
@@ -2432,6 +2436,7 @@ components:
       maxLength: 128
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: Last name of the Party (Name Type).
+      example: Karlsson
     PartyComplexName:
       title: PartyComplexName
       type: object
@@ -2449,6 +2454,7 @@ components:
       pattern: >-
         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
       description: Date of Birth of the Party.
+      example: '1966-06-16'
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
@@ -2657,6 +2663,7 @@ components:
         without a minor currency unit. It also only allows four digits in the
         minor currency unit; a negative value is not allowed. Using more than 18
         digits in the major currency unit is not allowed.
+      example: '123.45'
     Money:
       title: Money
       type: object
@@ -2701,6 +2708,7 @@ components:
         User are present, a bill payment, a donation, and so on.
 
         - REFUND - Used for performing a refund of transaction.
+      example: DEPOSIT
     TransactionSubScenario:
       title: TransactionSubScenario
       type: string
@@ -2708,6 +2716,7 @@ components:
       description: >-
         Possible sub-scenario, defined locally within the scheme (UndefinedEnum
         Type).
+      example: LOCALLY_DEFINED_SUBSCENARIO
     TransactionInitiator:
       title: TransactionInitiator
       type: string
@@ -2725,6 +2734,7 @@ components:
         sending a transaction request. The Payer must approve the transaction,
         either automatically by a pre-generated OTP or by pre-approval of the
         Payee, or by manually approving in his or her own Device.
+      example: PAYEE
     TransactionInitiatorType:
       title: TransactionInitiatorType
       type: string
@@ -2739,12 +2749,14 @@ components:
         - AGENT - Agent is the initiator of the transaction.
         - BUSINESS - Business is the initiator of the transaction.
         - DEVICE - Device is the initiator of the transaction.
+      example: CONSUMER
     RefundReason:
       title: RefundReason
       type: string
       minLength: 1
       maxLength: 128
       description: Reason for the refund.
+      example: Free text indicating reason for the refund.
     Refund:
       title: Refund
       type: object
@@ -2765,6 +2777,7 @@ components:
         [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String
         of 3 characters, consisting of digits only. Negative numbers are not
         allowed. A leading zero is not allowed.
+      example: '123'
     TransactionType:
       title: TransactionType
       type: object
@@ -2792,6 +2805,7 @@ components:
       minLength: 1
       maxLength: 128
       description: Memo assigned to transaction.
+      example: Note sent to Payee.
     Transaction:
       title: Transaction
       type: object
@@ -2843,6 +2857,7 @@ components:
         the high-level error category, the second number (2 in the example)
         represents the low-level error category, and the last two numbers (34 in
         the example) represent the specific error.
+      example: '5100'
     ErrorDescription:
       title: ErrorDescription
       type: string
@@ -2973,6 +2988,7 @@ components:
       description: >-
         The API data type Latitude is a JSON String in a lexical format that is
         restricted by a regular expression for interoperability reasons.
+      example: '+45.4215'
     Longitude:
       title: Longitude
       type: string
@@ -2981,6 +2997,7 @@ components:
       description: >-
         The API data type Longitude is a JSON String in a lexical format that is
         restricted by a regular expression for interoperability reasons.
+      example: '+75.6972'
     GeoCode:
       title: GeoCode
       type: object
@@ -3007,6 +3024,7 @@ components:
         - OTP - One-time password generated by the Payer FSP.
         - QRCODE - QR code used as One Time Password.
         - U2F - U2F is a new addition isolated to Thirdparty stream.
+      example: OTP
     DateTime:
       title: DateTime
       type: string
@@ -3021,6 +3039,7 @@ components:
         of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are
         "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z
         indicates Zulu time zone, same as UTC).
+      example: '2016-05-24T08:38:08.699-04:00'
     TransactionRequestsPostRequest:
       title: TransactionRequestsPostRequest
       type: object
@@ -3066,6 +3085,7 @@ components:
         - PENDING - Payer FSP has sent the transaction request to the Payer.
         - ACCEPTED - Payer has approved the transaction.
         - REJECTED - Payer has rejected the transaction.
+      example: RECEIVED
     TransactionRequestsIDPutResponse:
       title: TransactionRequestsIDPutResponse
       type: object
@@ -3093,6 +3113,7 @@ components:
 
         - RECEIVE - Amount the Payer would like the Payee to receive, that is,
         the amount that should be sent to the receiver exclusive of any fees.
+      example: RECEIVE
     QuotesPostRequest:
       title: QuotesPostRequest
       type: object
@@ -3139,6 +3160,8 @@ components:
       minLength: 1
       maxLength: 32768
       description: Information for recipient (transport layer information).
+      example: >-
+        AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
     IlpCondition:
       title: IlpCondition
       type: string
@@ -3250,6 +3273,7 @@ components:
         - ENTERED - Consumer entered the authentication value.
         - REJECTED - Consumer rejected the transaction.
         - RESEND - Consumer requested to resend the authentication value.
+      example: ENTERED
     AuthorizationsIDPutResponse:
       title: AuthorizationsIDPutResponse
       type: object
@@ -3296,6 +3320,7 @@ components:
       pattern: '^[A-Za-z0-9-_]{43}$'
       maxLength: 48
       description: Fulfilment that must be attached to the transfer by the Payee.
+      example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
     TransferState:
       title: TransferState
       type: string
@@ -3315,6 +3340,7 @@ components:
 
         - ABORTED - Next ledger has aborted the transfer due to a rejection or
         failure to perform the transfer.
+      example: RESERVED
     TransfersIDPutResponse:
       title: TransfersIDPutResponse
       type: object
@@ -3358,11 +3384,13 @@ components:
         - PENDING - Payee FSP has validated the transaction.
         - COMPLETED - Payee FSP has successfully performed the transaction.
         - REJECTED - Payee FSP has failed to perform the transaction.
+      example: RECEIVED
     Code:
       title: Code
       type: string
       pattern: '^[0-9a-zA-Z]{4,32}$'
       description: Any code/token returned by the Payee FSP (TokenCode Type).
+      example: Test-Code
     TransactionsIDPutResponse:
       title: TransactionsIDPutResponse
       type: object
@@ -3571,6 +3599,7 @@ components:
         - COMPLETED - Payee FSP has completed transfer of funds to the Payees.
 
         - REJECTED - Payee FSP has rejected to process the bulk transfer.
+      example: RECEIVED
     BulkTransfersIDPutResponse:
       title: BulkTransfersIDPutResponse
       type: object

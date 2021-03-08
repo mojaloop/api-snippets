@@ -9,3 +9,4 @@ description: |-
   - ENTERED - Consumer entered the authentication value.
   - REJECTED - Consumer rejected the transaction.
   - RESEND - Consumer requested to resend the authentication value.
+example: 'ENTERED'
