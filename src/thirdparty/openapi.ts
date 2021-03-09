@@ -2648,6 +2648,15 @@ export interface components {
      */
     ConsentRequestChannelTypeWeb: 'WEB';
     /**
+     * The object sent in a `PATCH /consentRequests/{ID}` request.
+     */
+    ConsentRequestsIDPatchRequest: {
+      /**
+       * The API data type OtpValue is a JSON String of 3 to 10 characters, consisting of digits only. Negative numbers are not allowed. One or more leading zeros are allowed.
+       */
+      authToken: string;
+    };
+    /**
      * The scopes requested for a ConsentRequest.
      * - "accounts.getBalance" - Get the balance of a given account.
      * - "accounts.transfer" - Initiate a transfer from an account.
