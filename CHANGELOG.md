@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.11](https://github.com/mojaloop/api-snippets/compare/v12.0.10...v12.0.11) (2021-03-09)
+
+
+### Maintenance
+
+* export consentRequest and account interfaces ([#62](https://github.com/mojaloop/api-snippets/issues/62)) ([89e24dc](https://github.com/mojaloop/api-snippets/commit/89e24dc4f260518c8726c05e0d42eaea941ee2a3))
+
 ### [12.0.10](https://github.com/mojaloop/api-snippets/compare/v12.0.9...v12.0.10) (2021-03-09)
 
 
