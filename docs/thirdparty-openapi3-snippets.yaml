@@ -312,6 +312,7 @@ components:
         without a minor currency unit. It also only allows four digits in the
         minor currency unit; a negative value is not allowed. Using more than 18
         digits in the major currency unit is not allowed.
+      example: '123.45'
     AmountType:
       title: AmountType
       type: string
@@ -326,6 +327,7 @@ components:
 
         - RECEIVE - Amount the Payer would like the Payee to receive, that is,
         the amount that should be sent to the receiver exclusive of any fees.
+      example: RECEIVE
     AuthenticationType:
       title: AuthenticationType
       type: string
@@ -513,6 +515,7 @@ components:
             an amount without a minor currency unit. It also only allows four
             digits in the minor currency unit; a negative value is not allowed.
             Using more than 18 digits in the major currency unit is not allowed.
+          example: '123.45'
       required: &ref_10
         - currency
         - amount
@@ -528,6 +531,7 @@ components:
         4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
         regular expression for interoperability reasons. A UUID is always 36
         characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+      example: b51ec534-ee48-4575-b6a9-ead2955b8069
     DateTime:
       title: DateTime
       type: string
@@ -542,6 +546,7 @@ components:
         of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are
         "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z
         indicates Zulu time zone, same as UTC).
+      example: '2016-05-24T08:38:08.699-04:00'
     Latitude:
       title: Latitude
       type: string
@@ -550,6 +555,7 @@ components:
       description: >-
         The API data type Latitude is a JSON String in a lexical format that is
         restricted by a regular expression for interoperability reasons.
+      example: '+45.4215'
     Longitude:
       title: Longitude
       type: string
@@ -558,6 +564,7 @@ components:
       description: >-
         The API data type Longitude is a JSON String in a lexical format that is
         restricted by a regular expression for interoperability reasons.
+      example: '+75.6972'
     GeoCode:
       title: GeoCode
       type: object
@@ -566,24 +573,24 @@ components:
         location from where the transaction was initiated.
       properties: &ref_11
         latitude:
-          description: >-
-            The API data type Latitude is a JSON String in a lexical format that
-            is restricted by a regular expression for interoperability reasons.
-          example: '+45.4215'
           title: Latitude
           type: string
           pattern: >-
             ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
+          description: >-
+            The API data type Latitude is a JSON String in a lexical format that
+            is restricted by a regular expression for interoperability reasons.
+          example: '+45.4215'
         longitude:
+          title: Longitude
+          type: string
+          pattern: >-
+            ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
           description: >-
             The API data type Longitude is a JSON String in a lexical format
             that is restricted by a regular expression for interoperability
             reasons.
           example: '+75.6972'
-          title: Longitude
-          type: string
-          pattern: >-
-            ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
       required: &ref_12
         - latitude
         - longitude
@@ -594,6 +601,8 @@ components:
       minLength: 1
       maxLength: 32768
       description: Information for recipient (transport layer information).
+      example: >-
+        AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
     IlpCondition:
       title: IlpCondition
       type: string
@@ -658,30 +667,34 @@ components:
       description: 'The object sent in the PUT /quotes/{ID} callback.'
       properties: &ref_16
         transferAmount:
-          description: Data model for the complex type Money.
           title: Money
           type: object
+          description: Data model for the complex type Money.
           properties: *ref_9
           required: *ref_10
         payeeReceiveAmount:
-          description: Data model for the complex type Money.
           title: Money
           type: object
+          description: Data model for the complex type Money.
           properties: *ref_9
           required: *ref_10
         payeeFspFee:
-          description: Data model for the complex type Money.
           title: Money
           type: object
+          description: Data model for the complex type Money.
           properties: *ref_9
           required: *ref_10
         payeeFspCommission:
-          description: Data model for the complex type Money.
           title: Money
           type: object
+          description: Data model for the complex type Money.
           properties: *ref_9
           required: *ref_10
         expiration:
+          title: DateTime
+          type: string
+          pattern: >-
+            ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
           description: >-
             The API data type DateTime is a JSON String in a lexical format that
             is restricted by a regular expression for interoperability reasons.
@@ -693,40 +706,35 @@ components:
             "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same
             as UTC).
           example: '2016-05-24T08:38:08.699-04:00'
-          title: DateTime
-          type: string
-          pattern: >-
-            ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
         geoCode:
+          title: GeoCode
+          type: object
           description: >-
             Data model for the complex type GeoCode. Indicates the geographic
             location from where the transaction was initiated.
-          title: GeoCode
-          type: object
           properties: *ref_11
           required: *ref_12
         ilpPacket:
-          description: Information for recipient (transport layer information).
-          example: >-
-            “AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA”
           title: IlpPacket
           type: string
           pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
           minLength: 1
           maxLength: 32768
+          description: Information for recipient (transport layer information).
+          example: >-
+            AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
         condition:
-          description: Condition that must be attached to the transfer by the Payer.
-          example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
           title: IlpCondition
           type: string
           pattern: '^[A-Za-z0-9-_]{43}$'
           maxLength: 48
+          description: Condition that must be attached to the transfer by the Payer.
         extensionList:
+          title: ExtensionList
+          type: object
           description: >-
             Data model for the complex type ExtensionList. An optional list of
             extensions, specific to deployment.
-          title: ExtensionList
-          type: object
           properties: *ref_13
           required: *ref_14
       required: &ref_17
@@ -782,6 +790,7 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         transactionRequestId:
           title: CorrelationId
           type: string
@@ -794,6 +803,7 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         quote:
           title: QuotesIDPutResponse
           type: object
@@ -1131,6 +1141,7 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         initiatorId:
           type: string
           description: >-
@@ -1232,6 +1243,7 @@ components:
             Examples are "2016-05-24T08:38:08.699-04:00",
             "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same
             as UTC).
+          example: '2016-05-24T08:38:08.699-04:00'
       required:
         - status
         - revokedAt
@@ -1338,6 +1350,7 @@ components:
                 by a regular expression for interoperability reasons. A UUID is
                 always 36 characters long, 32 hexadecimal symbols and 4 dashes
                 (‘-‘).
+              example: b51ec534-ee48-4575-b6a9-ead2955b8069
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -1477,6 +1490,7 @@ components:
                 by a regular expression for interoperability reasons. A UUID is
                 always 36 characters long, 32 hexadecimal symbols and 4 dashes
                 (‘-‘).
+              example: b51ec534-ee48-4575-b6a9-ead2955b8069
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -1607,6 +1621,7 @@ components:
                 by a regular expression for interoperability reasons. A UUID is
                 always 36 characters long, 32 hexadecimal symbols and 4 dashes
                 (‘-‘).
+              example: b51ec534-ee48-4575-b6a9-ead2955b8069
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -1681,6 +1696,7 @@ components:
                 by a regular expression for interoperability reasons. A UUID is
                 always 36 characters long, 32 hexadecimal symbols and 4 dashes
                 (‘-‘).
+              example: b51ec534-ee48-4575-b6a9-ead2955b8069
           description: |
             Common ID between the PISP and FSP for the Consent object
             decided by the DFSP who creates the Consent
@@ -1699,6 +1715,7 @@ components:
                 by a regular expression for interoperability reasons. A UUID is
                 always 36 characters long, 32 hexadecimal symbols and 4 dashes
                 (‘-‘).
+              example: b51ec534-ee48-4575-b6a9-ead2955b8069
           description: |
             The id of the ConsentRequest that was used to initiate the
             creation of this Consent.
@@ -1731,6 +1748,7 @@ components:
             Examples are "2016-05-24T08:38:08.699-04:00",
             "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same
             as UTC).
+          example: '2016-05-24T08:38:08.699-04:00'
         scopes:
           type: array
           items:
@@ -1761,6 +1779,7 @@ components:
         the high-level error category, the second number (2 in the example)
         represents the low-level error category, and the last two numbers (34 in
         the example) represent the specific error.
+      example: '5100'
     ErrorDescription:
       title: ErrorDescription
       type: string
@@ -1785,6 +1804,7 @@ components:
             number (2 in the example) represents the low-level error category,
             and the last two numbers (34 in the example) represent the specific
             error.
+          example: '5100'
         errorDescription:
           title: ErrorDescription
           type: string
@@ -1808,6 +1828,7 @@ components:
       pattern: >-
         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
       description: Date of Birth of the Party.
+      example: '1966-06-16'
     FirstName:
       title: FirstName
       type: string
@@ -1815,6 +1836,7 @@ components:
       maxLength: 128
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: First name of the Party (Name Type).
+      example: Henrik
     LastName:
       title: LastName
       type: string
@@ -1822,12 +1844,14 @@ components:
       maxLength: 128
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: Last name of the Party (Name Type).
+      example: Karlsson
     IlpFulfilment:
       title: IlpFulfilment
       type: string
       pattern: '^[A-Za-z0-9-_]{43}$'
       maxLength: 48
       description: Fulfilment that must be attached to the transfer by the Payee.
+      example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
     PartyIdType:
       title: PartyIdType
       type: string
@@ -1945,6 +1969,7 @@ components:
       minLength: 1
       maxLength: 128
       description: Identifier of the Party.
+      example: '16135551212'
     PartySubIdOrType:
       title: PartySubIdOrType
       type: string
@@ -2069,6 +2094,7 @@ components:
           minLength: 1
           maxLength: 128
           description: Identifier of the Party.
+          example: '16135551212'
         partySubIdOrType:
           title: PartySubIdOrType
           type: string
@@ -2115,6 +2141,7 @@ components:
       maxLength: 128
       pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: Middle name of the Party (Name Type).
+      example: Johannes
     PartyComplexName:
       title: PartyComplexName
       type: object
@@ -2127,6 +2154,7 @@ components:
           maxLength: 128
           pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
           description: First name of the Party (Name Type).
+          example: Henrik
         middleName:
           title: MiddleName
           type: string
@@ -2134,6 +2162,7 @@ components:
           maxLength: 128
           pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
           description: Middle name of the Party (Name Type).
+          example: Johannes
         lastName:
           title: LastName
           type: string
@@ -2141,6 +2170,7 @@ components:
           maxLength: 128
           pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
           description: Last name of the Party (Name Type).
+          example: Karlsson
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
@@ -2157,6 +2187,7 @@ components:
           pattern: >-
             ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
           description: Date of Birth of the Party.
+          example: '1966-06-16'
     Party:
       title: Party
       type: object
@@ -2227,6 +2258,7 @@ components:
         User are present, a bill payment, a donation, and so on.
 
         - REFUND - Used for performing a refund of transaction.
+      example: DEPOSIT
     TransactionSubScenario:
       title: TransactionSubScenario
       type: string
@@ -2234,6 +2266,7 @@ components:
       description: >-
         Possible sub-scenario, defined locally within the scheme (UndefinedEnum
         Type).
+      example: LOCALLY_DEFINED_SUBSCENARIO
     TransactionInitiator:
       title: TransactionInitiator
       type: string
@@ -2251,6 +2284,7 @@ components:
         sending a transaction request. The Payer must approve the transaction,
         either automatically by a pre-generated OTP or by pre-approval of the
         Payee, or by manually approving in his or her own Device.
+      example: PAYEE
     TransactionInitiatorType:
       title: TransactionInitiatorType
       type: string
@@ -2265,12 +2299,14 @@ components:
         - AGENT - Agent is the initiator of the transaction.
         - BUSINESS - Business is the initiator of the transaction.
         - DEVICE - Device is the initiator of the transaction.
+      example: CONSUMER
     RefundReason:
       title: RefundReason
       type: string
       minLength: 1
       maxLength: 128
       description: Reason for the refund.
+      example: Free text indicating reason for the refund.
     Refund:
       title: Refund
       type: object
@@ -2288,12 +2324,14 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         refundReason:
           title: RefundReason
           type: string
           minLength: 1
           maxLength: 128
           description: Reason for the refund.
+          example: Free text indicating reason for the refund.
       required: &ref_47
         - originalTransactionId
     BalanceOfPayments:
@@ -2305,6 +2343,7 @@ components:
         [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String
         of 3 characters, consisting of digits only. Negative numbers are not
         allowed. A leading zero is not allowed.
+      example: '123'
     TransactionType:
       title: TransactionType
       type: object
@@ -2338,6 +2377,7 @@ components:
             and so on.
 
             - REFUND - Used for performing a refund of transaction.
+          example: DEPOSIT
         subScenario:
           title: TransactionSubScenario
           type: string
@@ -2345,6 +2385,7 @@ components:
           description: >-
             Possible sub-scenario, defined locally within the scheme
             (UndefinedEnum Type).
+          example: LOCALLY_DEFINED_SUBSCENARIO
         initiator:
           title: TransactionInitiator
           type: string
@@ -2361,6 +2402,7 @@ components:
             transaction, either automatically by a pre-generated OTP or by
             pre-approval of the Payee, or by manually approving in his or her
             own Device.
+          example: PAYEE
         initiatorType:
           title: TransactionInitiatorType
           type: string
@@ -2371,6 +2413,7 @@ components:
             - AGENT - Agent is the initiator of the transaction.
             - BUSINESS - Business is the initiator of the transaction.
             - DEVICE - Device is the initiator of the transaction.
+          example: CONSUMER
         refundInfo:
           title: Refund
           type: object
@@ -2386,6 +2429,7 @@ components:
             [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON
             String of 3 characters, consisting of digits only. Negative numbers
             are not allowed. A leading zero is not allowed.
+          example: '123'
       required: &ref_52
         - scenario
         - initiator
@@ -2396,6 +2440,7 @@ components:
       minLength: 1
       maxLength: 128
       description: Memo assigned to transaction.
+      example: Note sent to Payee.
     IndividualQuote:
       title: IndividualQuote
       type: object
@@ -2584,6 +2629,7 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         partyList:
           type: array
           items:
@@ -2678,7 +2724,7 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-          example: a8323bc6-c228-4df2-ae82-e5a997baf899
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
           title: CorrelationId
           type: string
           pattern: >-
@@ -2691,7 +2737,7 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-          example: a8323bc6-c228-4df2-ae82-e5a997baf890
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
           title: CorrelationId
           type: string
           pattern: >-
@@ -2718,7 +2764,7 @@ components:
             - RECEIVE - Amount the Payer would like the Payee to receive, that
             is, the amount that should be sent to the receiver exclusive of any
             fees.
-          example: SEND
+          example: RECEIVE
           title: AmountType
           type: string
           enum: *ref_50
@@ -2750,7 +2796,7 @@ components:
           required: *ref_12
         note:
           description: Memo assigned to transaction.
-          example: Free-text memo.
+          example: Note sent to Payee.
           title: Note
           type: string
           minLength: 1
@@ -2822,6 +2868,7 @@ components:
                 by a regular expression for interoperability reasons. A UUID is
                 always 36 characters long, 32 hexadecimal symbols and 4 dashes
                 (‘-‘).
+              example: b51ec534-ee48-4575-b6a9-ead2955b8069
           description: >
             Common ID between the PISP and FSP for the Consent object This tells
             DFSP and auth-service which constent allows the PISP to initiate
@@ -2890,6 +2937,7 @@ components:
                 by a regular expression for interoperability reasons. A UUID is
                 always 36 characters long, 32 hexadecimal symbols and 4 dashes
                 (‘-‘).
+              example: b51ec534-ee48-4575-b6a9-ead2955b8069
           description: >
             Common ID between the PISP and FSP for the Consent object This tells
             DFSP and auth-service which consent allows the PISP to initiate
@@ -2937,6 +2985,7 @@ components:
         - PENDING - Payer FSP has sent the transaction request to the Payer.
         - ACCEPTED - Payer has approved the transaction.
         - REJECTED - Payer has rejected the transaction.
+      example: RECEIVED
     TransactionState:
       title: TransactionState
       type: string
@@ -2951,6 +3000,7 @@ components:
         - PENDING - Payee FSP has validated the transaction.
         - COMPLETED - Payee FSP has successfully performed the transaction.
         - REJECTED - Payee FSP has failed to perform the transaction.
+      example: RECEIVED
     ThirdpartyRequestsTransactionsIDPatchResponse:
       title: ThirdpartyRequestsTransactionsIDPatchResponse
       type: object
@@ -2970,6 +3020,7 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         transactionRequestState:
           title: TransactionRequestState
           type: string
@@ -2985,6 +3036,7 @@ components:
             - ACCEPTED - Payer has approved the transaction.
 
             - REJECTED - Payer has rejected the transaction.
+          example: RECEIVED
         transactionState:
           title: TransactionState
           type: string
@@ -3000,6 +3052,7 @@ components:
             - COMPLETED - Payee FSP has successfully performed the transaction.
 
             - REJECTED - Payee FSP has failed to perform the transaction.
+          example: RECEIVED
       required:
         - transactionId
         - transactionRequestState
@@ -3023,6 +3076,7 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         transactionRequestState:
           title: TransactionRequestState
           type: string
@@ -3038,6 +3092,7 @@ components:
             - ACCEPTED - Payer has approved the transaction.
 
             - REJECTED - Payer has rejected the transaction.
+          example: RECEIVED
       required:
         - transactionId
         - transactionRequestState
@@ -3060,6 +3115,7 @@ components:
                 by a regular expression for interoperability reasons. A UUID is
                 always 36 characters long, 32 hexadecimal symbols and 4 dashes
                 (‘-‘).
+              example: b51ec534-ee48-4575-b6a9-ead2955b8069
           description: >
             Common ID between the FSPs for the transaction request object. The
             ID should be reused for resends of the same transaction request. A
@@ -3094,6 +3150,7 @@ components:
                 by a regular expression for interoperability reasons. A UUID is
                 always 36 characters long, 32 hexadecimal symbols and 4 dashes
                 (‘-‘).
+              example: b51ec534-ee48-4575-b6a9-ead2955b8069
           description: >
             Common ID between the PISP and FSP for the Consent object This tells
             DFSP and auth-service which constent allows the PISP to initiate
@@ -3129,6 +3186,7 @@ components:
                 - RECEIVE - Amount the Payer would like the Payee to receive,
                 that is, the amount that should be sent to the receiver
                 exclusive of any fees.
+              example: RECEIVE
           description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
         amount:
           allOf:
@@ -3180,6 +3238,7 @@ components:
             4122](https://tools.ietf.org/html/rfc4122), that is restricted by a
             regular expression for interoperability reasons. A UUID is always 36
             characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         payee:
           title: Party
           type: object
@@ -3210,6 +3269,7 @@ components:
           minLength: 1
           maxLength: 128
           description: Memo assigned to transaction.
+          example: Note sent to Payee.
         geoCode:
           title: GeoCode
           type: object
@@ -3242,6 +3302,7 @@ components:
             Examples are "2016-05-24T08:38:08.699-04:00",
             "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same
             as UTC).
+          example: '2016-05-24T08:38:08.699-04:00'
         extensionList:
           title: ExtensionList
           type: object
@@ -3277,6 +3338,7 @@ components:
           type: string
           pattern: >-
             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         quoteId:
           description: >-
             Identifier that correlates all messages of the same sequence. The
@@ -3289,6 +3351,7 @@ components:
           type: string
           pattern: >-
             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+          example: b51ec534-ee48-4575-b6a9-ead2955b8069
         payee:
           description: Data model for the complex type Party.
           title: Party
@@ -3319,6 +3382,7 @@ components:
           type: string
           minLength: 1
           maxLength: 128
+          example: Note sent to Payee.
         extensionList:
           description: >-
             Data model for the complex type ExtensionList. An optional list of

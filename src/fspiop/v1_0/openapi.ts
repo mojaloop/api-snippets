@@ -7,7 +7,7 @@ export interface paths {
   "/interface": {
     post: operations["Interface"];
   };
-  "/participants/Type/ID": {
+  "/participants/{Type}/{ID}": {
     post: operations["ParticipantsByIDAndType"];
     get: operations["ParticipantsByTypeAndID"];
     put: operations["ParticipantsByTypeAndID3"];
@@ -30,10 +30,10 @@ export interface paths {
       };
     };
   };
-  "/participants/Type/ID/error": {
+  "/participants/{Type}/{ID}/error": {
     put: operations["ParticipantsErrorByTypeAndID"];
   };
-  "/participants/Type/ID/SubId": {
+  "/participants/{Type}/{ID}/{SubId}": {
     post: operations["ParticipantsSubIdByTypeAndIDPost"];
     get: operations["ParticipantsSubIdByTypeAndID"];
     put: operations["ParticipantsSubIdByTypeAndID3"];
@@ -57,19 +57,19 @@ export interface paths {
       };
     };
   };
-  "/participants/Type/ID/SubId/error": {
+  "/participants/{Type}/{ID}/{SubId}/error": {
     put: operations["ParticipantsSubIdErrorByTypeAndID"];
   };
   "/participants": {
     post: operations["Participants1"];
   };
-  "/participants/ID": {
+  "/participants/{ID}": {
     put: operations["putParticipantsByID"];
   };
-  "/participants/ID/error": {
+  "/participants/{ID}/error": {
     put: operations["ParticipantsByIDAndError"];
   };
-  "/parties/Type/ID": {
+  "/parties/{Type}/{ID}": {
     get: operations["PartiesByTypeAndID"];
     put: operations["PartiesByTypeAndID2"];
     parameters: {
@@ -90,10 +90,10 @@ export interface paths {
       };
     };
   };
-  "/parties/Type/ID/error": {
+  "/parties/{Type}/{ID}/error": {
     put: operations["PartiesErrorByTypeAndID"];
   };
-  "/parties/Type/ID/SubId": {
+  "/parties/{Type}/{ID}/{SubId}": {
     get: operations["PartiesSubIdByTypeAndID"];
     put: operations["PartiesSubIdByTypeAndIDPut"];
     parameters: {
@@ -115,13 +115,13 @@ export interface paths {
       };
     };
   };
-  "/parties/Type/ID/SubId/error": {
+  "/parties/{Type}/{ID}/{SubId}/error": {
     put: operations["PartiesSubIdErrorByTypeAndID"];
   };
   "/transactionRequests": {
     post: operations["TransactionRequests"];
   };
-  "/transactionRequests/ID": {
+  "/transactionRequests/{ID}": {
     get: operations["TransactionRequestsByID"];
     put: operations["TransactionRequestsByIDPut"];
     parameters: {
@@ -141,13 +141,13 @@ export interface paths {
       };
     };
   };
-  "/transactionRequests/ID/error": {
+  "/transactionRequests/{ID}/error": {
     put: operations["TransactionRequestsErrorByID"];
   };
   "/quotes": {
     post: operations["Quotes"];
   };
-  "/quotes/ID": {
+  "/quotes/{ID}": {
     get: operations["QuotesByID"];
     put: operations["QuotesByID1"];
     parameters: {
@@ -167,10 +167,10 @@ export interface paths {
       };
     };
   };
-  "/quotes/ID/error": {
+  "/quotes/{ID}/error": {
     put: operations["QuotesByIDAndError"];
   };
-  "/authorizations/ID": {
+  "/authorizations/{ID}": {
     get: operations["AuthorizationsByIDGet"];
     put: operations["AuthorizationsByIDPut"];
     parameters: {
@@ -190,13 +190,13 @@ export interface paths {
       };
     };
   };
-  "/authorizations/ID/error": {
+  "/authorizations/{ID}/error": {
     put: operations["AuthorizationsByIDAndError"];
   };
   "/transfers": {
     post: operations["transfers"];
   };
-  "/transfers/ID": {
+  "/transfers/{ID}": {
     get: operations["TransfersByIDGet"];
     put: operations["TransfersByIDPut"];
     parameters: {
@@ -216,10 +216,10 @@ export interface paths {
       };
     };
   };
-  "/transfers/ID/error": {
+  "/transfers/{ID}/error": {
     put: operations["TransfersByIDAndError"];
   };
-  "/transactions/ID": {
+  "/transactions/{ID}": {
     get: operations["TransactionsByID"];
     put: operations["TransactionsByID1"];
     parameters: {
@@ -239,13 +239,13 @@ export interface paths {
       };
     };
   };
-  "/transactions/ID/error": {
+  "/transactions/{ID}/error": {
     put: operations["TransactionsErrorByID"];
   };
   "/bulkQuotes": {
     post: operations["BulkQuotes"];
   };
-  "/bulkQuotes/ID": {
+  "/bulkQuotes/{ID}": {
     get: operations["BulkQuotesByID"];
     put: operations["BulkQuotesByID1"];
     parameters: {
@@ -265,13 +265,13 @@ export interface paths {
       };
     };
   };
-  "/bulkQuotes/ID/error": {
+  "/bulkQuotes/{ID}/error": {
     put: operations["BulkQuotesErrorByID"];
   };
   "/bulkTransfers": {
     post: operations["BulkTransfers"];
   };
-  "/bulkTransfers/ID": {
+  "/bulkTransfers/{ID}": {
     get: operations["BulkTransferByID"];
     put: operations["BulkTransfersByIDPut"];
     parameters: {
@@ -291,7 +291,7 @@ export interface paths {
       };
     };
   };
-  "/bulkTransfers/ID/error": {
+  "/bulkTransfers/{ID}/error": {
     put: operations["BulkTransfersErrorByID"];
   };
 }
