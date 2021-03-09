@@ -7,6 +7,7 @@ export namespace Schemas {
   export type Account = components['schemas']['Account']
   export type AccountAddress = components['schemas']['AccountAddress']
   export type AccountList = components['schemas']['AccountList']
+  export type AccountsIDPutResponse = components['schemas']['AccountsIDPutResponse']
   export type Amount = components['schemas']['Amount']
   export type AmountType = components['schemas']['AmountType']
   export type AuthenticationType = components['schemas']['AuthenticationType']
@@ -17,6 +18,7 @@ export namespace Schemas {
   export type ConsentRequestChannelType = components['schemas']['ConsentRequestChannelType']
   export type ConsentRequestChannelTypeOTP = components['schemas']['ConsentRequestChannelTypeOTP']
   export type ConsentRequestChannelTypeWeb = components['schemas']['ConsentRequestChannelTypeWeb']
+  export type ConsentRequestsIDPatchRequest = components['schemas']['ConsentRequestsIDPatchRequest']
   export type ConsentRequestsIDPutResponseOTP = components['schemas']['ConsentRequestsIDPutResponseOTP']
   export type ConsentRequestsIDPutResponseOTPAuth = components['schemas']['ConsentRequestsIDPutResponseOTPAuth']
   export type ConsentRequestsIDPutResponseWeb = components['schemas']['ConsentRequestsIDPutResponseWeb']
@@ -84,5 +86,4 @@ export namespace Schemas {
   export type TransactionType = components['schemas']['TransactionType']
   export type UnsignedCredential = components['schemas']['UnsignedCredential']
   export type VerifiedCredential = components['schemas']['VerifiedCredential']
-
 }
