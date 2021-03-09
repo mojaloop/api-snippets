@@ -28,6 +28,8 @@ ConsentRequestChannelTypeOTP:
   $ref: ./ConsentRequestChannelTypeOTP.yaml
 ConsentRequestChannelTypeWeb:
   $ref: ./ConsentRequestChannelTypeWeb.yaml
+ConsentRequestsIDPatchRequest:
+  $ref: ./ConsentRequestsIDPatchRequest.yaml
 ConsentRequestsIDPutResponseOTP:
   $ref: ./ConsentRequestsIDPutResponseOTP.yaml
 ConsentRequestsIDPutResponseOTPAuth:

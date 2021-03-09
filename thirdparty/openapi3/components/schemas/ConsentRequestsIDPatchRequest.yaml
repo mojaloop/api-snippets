@@ -1,0 +1,8 @@
+title: ConsentRequestsIDPatchRequest
+type: object
+description: The object sent in a `PATCH /consentRequests/{ID}` request.
+properties:
+  authToken:
+    $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/OtpValue.yaml'
+required:
+  - authToken

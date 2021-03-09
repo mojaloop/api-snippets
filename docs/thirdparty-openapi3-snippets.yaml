@@ -851,6 +851,21 @@ components:
         - WEB
       description: |
         The web auth channel being used for PUT consentRequest/{ID} request.
+    ConsentRequestsIDPatchRequest:
+      title: ConsentRequestsIDPatchRequest
+      type: object
+      description: 'The object sent in a `PATCH /consentRequests/{ID}` request.'
+      properties:
+        authToken:
+          title: OtpValue
+          type: string
+          pattern: '^\d{3,10}$'
+          description: >-
+            The API data type OtpValue is a JSON String of 3 to 10 characters,
+            consisting of digits only. Negative numbers are not allowed. One or
+            more leading zeros are allowed.
+      required:
+        - authToken
     ConsentScopeType:
       title: ConsentScopeType
       type: string
