@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.10](https://github.com/mojaloop/api-snippets/compare/v12.0.9...v12.0.10) (2021-03-09)
+
+
+### Maintenance
+
+* add PATCH consentRequests/{ID} request and PUT accounts/{ID} response ([#61](https://github.com/mojaloop/api-snippets/issues/61)) ([33d9e23](https://github.com/mojaloop/api-snippets/commit/33d9e23a17c0694c932153f5a216d91748318a20))
+
 ### [12.0.9](https://github.com/mojaloop/api-snippets/compare/v12.0.8...v12.0.9) (2021-03-09)
 
 
