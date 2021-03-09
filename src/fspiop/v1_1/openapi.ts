@@ -7,7 +7,7 @@ export interface paths {
   "/interface": {
     post: operations["test"];
   };
-  "/participants/Type/ID": {
+  "/participants/{Type}/{ID}": {
     post: operations["ParticipantsByIDAndType"];
     get: operations["ParticipantsByTypeAndID"];
     put: operations["ParticipantsByTypeAndID3"];
@@ -30,10 +30,10 @@ export interface paths {
       };
     };
   };
-  "/participants/Type/ID/error": {
+  "/participants/{Type}/{ID}/error": {
     put: operations["ParticipantsErrorByTypeAndID"];
   };
-  "/participants/Type/ID/SubId": {
+  "/participants/{Type}/{ID}/{SubId}": {
     post: operations["ParticipantsSubIdByTypeAndIDPost"];
     get: operations["ParticipantsSubIdByTypeAndID"];
     put: operations["ParticipantsSubIdByTypeAndID3"];
@@ -57,19 +57,19 @@ export interface paths {
       };
     };
   };
-  "/participants/Type/ID/SubId/error": {
+  "/participants/{Type}/{ID}/{SubId}/error": {
     put: operations["ParticipantsSubIdErrorByTypeAndID"];
   };
   "/participants": {
     post: operations["Participants1"];
   };
-  "/participants/ID": {
+  "/participants/{ID}": {
     put: operations["putParticipantsByID"];
   };
-  "/participants/ID/error": {
+  "/participants/{ID}/error": {
     put: operations["ParticipantsByIDAndError"];
   };
-  "/parties/Type/ID": {
+  "/parties/{Type}/{ID}": {
     get: operations["PartiesByTypeAndID"];
     put: operations["PartiesByTypeAndID2"];
     parameters: {
@@ -90,10 +90,10 @@ export interface paths {
       };
     };
   };
-  "/parties/Type/ID/error": {
+  "/parties/{Type}/{ID}/error": {
     put: operations["PartiesErrorByTypeAndID"];
   };
-  "/parties/Type/ID/SubId": {
+  "/parties/{Type}/{ID}/{SubId}": {
     get: operations["PartiesSubIdByTypeAndID"];
     put: operations["PartiesSubIdByTypeAndIDPut"];
     parameters: {
@@ -115,13 +115,13 @@ export interface paths {
       };
     };
   };
-  "/parties/Type/ID/SubId/error": {
+  "/parties/{Type}/{ID}/{SubId}/error": {
     put: operations["PartiesSubIdErrorByTypeAndID"];
   };
   "/transactionRequests": {
     post: operations["TransactionRequests"];
   };
-  "/transactionRequests/ID": {
+  "/transactionRequests/{ID}": {
     get: operations["TransactionRequestsByID"];
     put: operations["TransactionRequestsByIDPut"];
     parameters: {
@@ -141,13 +141,13 @@ export interface paths {
       };
     };
   };
-  "/transactionRequests/ID/error": {
+  "/transactionRequests/{ID}/error": {
     put: operations["TransactionRequestsErrorByID"];
   };
   "/quotes": {
     post: operations["Quotes"];
   };
-  "/quotes/ID": {
+  "/quotes/{ID}": {
     get: operations["QuotesByID"];
     put: operations["QuotesByID1"];
     parameters: {
@@ -167,10 +167,10 @@ export interface paths {
       };
     };
   };
-  "/quotes/ID/error": {
+  "/quotes/{ID}/error": {
     put: operations["QuotesByIDAndError"];
   };
-  "/authorizations/ID": {
+  "/authorizations/{ID}": {
     get: operations["AuthorizationsByIDGet"];
     put: operations["AuthorizationsByIDPut"];
     parameters: {
@@ -190,13 +190,13 @@ export interface paths {
       };
     };
   };
-  "/authorizations/ID/error": {
+  "/authorizations/{ID}/error": {
     put: operations["AuthorizationsByIDAndError"];
   };
   "/transfers": {
     post: operations["transfers"];
   };
-  "/transfers/ID": {
+  "/transfers/{ID}": {
     get: operations["TransfersByIDGet"];
     patch: operations["TransfersByIDPatch"];
     put: operations["TransfersByIDPut"];
@@ -217,10 +217,10 @@ export interface paths {
       };
     };
   };
-  "/transfers/ID/error": {
+  "/transfers/{ID}/error": {
     put: operations["TransfersByIDAndError"];
   };
-  "/transactions/ID": {
+  "/transactions/{ID}": {
     get: operations["TransactionsByID"];
     put: operations["TransactionsByID1"];
     parameters: {
@@ -240,13 +240,13 @@ export interface paths {
       };
     };
   };
-  "/transactions/ID/error": {
+  "/transactions/{ID}/error": {
     put: operations["TransactionsErrorByID"];
   };
   "/bulkQuotes": {
     post: operations["BulkQuotes"];
   };
-  "/bulkQuotes/ID": {
+  "/bulkQuotes/{ID}": {
     get: operations["BulkQuotesByID"];
     put: operations["BulkQuotesByID1"];
     parameters: {
@@ -266,13 +266,13 @@ export interface paths {
       };
     };
   };
-  "/bulkQuotes/ID/error": {
+  "/bulkQuotes/{ID}/error": {
     put: operations["BulkQuotesErrorByID"];
   };
   "/bulkTransfers": {
     post: operations["BulkTransfers"];
   };
-  "/bulkTransfers/ID": {
+  "/bulkTransfers/{ID}": {
     get: operations["BulkTransferByID"];
     put: operations["BulkTransfersByIDPut"];
     parameters: {
@@ -292,7 +292,7 @@ export interface paths {
       };
     };
   };
-  "/bulkTransfers/ID/error": {
+  "/bulkTransfers/{ID}/error": {
     put: operations["BulkTransfersErrorByID"];
   };
 }
@@ -1814,25 +1814,10 @@ export interface components {
      * Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
      */
     PartyIdInfo: {
-      /**
-       * Type of the identifier.
-       */
       partyIdType: components["schemas"]["PartyIdType"];
-      /**
-       * An identifier for the Party.
-       */
       partyIdentifier: components["schemas"]["PartyIdentifier"];
-      /**
-       * A sub-identifier or sub-type for the Party.
-       */
       partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
-      /**
-       * FSP ID (if known).
-       */
       fspId?: components["schemas"]["FspId"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -1878,21 +1863,9 @@ export interface components {
      * Data model for the complex type Party.
      */
     Party: {
-      /**
-       * Party Id type, id, sub ID or type, and FSP Id.
-       */
       partyIdInfo: components["schemas"]["PartyIdInfo"];
-      /**
-       * Used in the context of Payee Information, where the Payee happens to be a merchant accepting merchant payments.
-       */
       merchantClassificationCode?: components["schemas"]["MerchantClassificationCode"];
-      /**
-       * Display name of the Party, could be a real name or a nick name.
-       */
       name?: components["schemas"]["PartyName"];
-      /**
-       * Personal information used to verify identity of Party such as first, middle, last name and date of birth.
-       */
       personalInfo?: components["schemas"]["PartyPersonalInfo"];
     };
     /**
@@ -2138,37 +2111,13 @@ export interface components {
      * Data model for the complex type Transaction. The Transaction type is used to carry end-to-end data between the Payer FSP and the Payee FSP in the ILP Packet. Both the transactionId and the quoteId in the data model are decided by the Payer FSP in the POST /quotes request.
      */
     Transaction: {
-      /**
-       * ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote.
-       */
       transactionId: components["schemas"]["CorrelationId"];
-      /**
-       * ID of the quote, the ID is decided by the Payer FSP during the creation of the quote.
-       */
       quoteId: components["schemas"]["CorrelationId"];
-      /**
-       * Information about the Payee in the proposed financial transaction.
-       */
       payee: components["schemas"]["Party"];
-      /**
-       * Information about the Payer in the proposed financial transaction.
-       */
       payer: components["schemas"]["Party"];
-      /**
-       * Transaction amount to be sent.
-       */
       amount: components["schemas"]["Money"];
-      /**
-       * Type of the transaction.
-       */
       transactionType: components["schemas"]["TransactionType"];
-      /**
-       * Memo associated to the transaction, intended to the Payee.
-       */
       note?: components["schemas"]["Note"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2200,27 +2149,13 @@ export interface components {
     /**
      * The object sent in the PUT /participants/{Type}/{ID}/{SubId} and /participants/{Type}/{ID} callbacks.
      */
-    ParticipantsTypeIDPutResponse: {
-      /**
-       * FSP Identifier that the Party belongs to.
-       */
-      fspId?: components["schemas"]["FspId"];
-    };
+    ParticipantsTypeIDPutResponse: { fspId?: components["schemas"]["FspId"] };
     /**
      * The object sent in the POST /participants/{Type}/{ID}/{SubId} and /participants/{Type}/{ID} requests. An additional optional ExtensionList element has been added as part of v1.1 changes.
      */
     ParticipantsTypeIDSubIDPostRequest: {
-      /**
-       * FSP Identifier that the Party belongs to.
-       */
       fspId: components["schemas"]["FspId"];
-      /**
-       * Indicate that the provided Currency is supported by the Party.
-       */
       currency?: components["schemas"]["Currency"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2233,30 +2168,18 @@ export interface components {
      * The object sent in the POST /participants request.
      */
     ParticipantsPostRequest: {
-      /**
-       * The ID of the request, decided by the client. Used for identification of the callback from the server.
-       */
       requestId: components["schemas"]["CorrelationId"];
       /**
        * List of PartyIdInfo elements that the client would like to update or create FSP information about.
        */
       partyList: components["schemas"]["PartyIdInfo"][];
-      /**
-       * Indicate that the provided Currency is supported by each PartyIdInfo in the list.
-       */
       currency?: components["schemas"]["Currency"];
     };
     /**
      * Data model for the complex type PartyResult.
      */
     PartyResult: {
-      /**
-       * Party Id type, id, sub ID or type, and FSP Id.
-       */
       partyId: components["schemas"]["PartyIdInfo"];
-      /**
-       * If the Party failed to be added, error information should be provided. Otherwise, this parameter should be empty to indicate success.
-       */
       errorInformation?: components["schemas"]["ErrorInformation"];
     };
     /**
@@ -2267,20 +2190,12 @@ export interface components {
        * List of PartyResult elements that were either created or failed to be created.
        */
       partyList: components["schemas"]["PartyResult"][];
-      /**
-       * Indicate that the provided Currency was set to be supported by each successfully added PartyIdInfo.
-       */
       currency?: components["schemas"]["Currency"];
     };
     /**
      * The object sent in the PUT /parties/{Type}/{ID} callback.
      */
-    PartiesTypeIDPutResponse: {
-      /**
-       * Information regarding the requested Party.
-       */
-      party: components["schemas"]["Party"];
-    };
+    PartiesTypeIDPutResponse: { party: components["schemas"]["Party"] };
     /**
      * The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
      */
@@ -2293,13 +2208,7 @@ export interface components {
      * Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
      */
     GeoCode: {
-      /**
-       * Latitude of the Party.
-       */
       latitude: components["schemas"]["Latitude"];
-      /**
-       * Longitude of the Party.
-       */
       longitude: components["schemas"]["Longitude"];
     };
     /**
@@ -2317,45 +2226,15 @@ export interface components {
      * The object sent in the POST /transactionRequests request.
      */
     TransactionRequestsPostRequest: {
-      /**
-       * Common ID between the FSPs for the transaction request object, decided by the Payee FSP. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
-       */
       transactionRequestId: components["schemas"]["CorrelationId"];
-      /**
-       * Information about the Payee in the proposed financial transaction.
-       */
       payee: components["schemas"]["Party"];
-      /**
-       * Information about the Payer type, id, sub-type/id, FSP Id in the proposed financial transaction.
-       */
       payer: components["schemas"]["PartyIdInfo"];
-      /**
-       * Requested amount to be transferred from the Payer to Payee.
-       */
       amount: components["schemas"]["Money"];
-      /**
-       * Type of transaction.
-       */
       transactionType: components["schemas"]["TransactionType"];
-      /**
-       * Reason for the transaction request, intended to the Payer.
-       */
       note?: components["schemas"]["Note"];
-      /**
-       * Longitude and Latitude of the initiating Party. Can be used to detect fraud.
-       */
       geoCode?: components["schemas"]["GeoCode"];
-      /**
-       * OTP or QR Code, otherwise empty.
-       */
       authenticationType?: components["schemas"]["AuthenticationType"];
-      /**
-       * Can be set to get a quick failure in case the peer FSP takes too long to respond. Also, it may be beneficial for Consumer, Agent, Merchant to know that their request has a time limit.
-       */
       expiration?: components["schemas"]["DateTime"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2370,17 +2249,8 @@ export interface components {
      * The object sent in the PUT /transactionRequests/{ID} callback.
      */
     TransactionRequestsIDPutResponse: {
-      /**
-       * Identifies a related transaction (if a transaction has been created).
-       */
       transactionId?: components["schemas"]["CorrelationId"];
-      /**
-       * State of the transaction request.
-       */
       transactionRequestState: components["schemas"]["TransactionRequestState"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2393,57 +2263,18 @@ export interface components {
      * The object sent in the POST /quotes request.
      */
     QuotesPostRequest: {
-      /**
-       * Common ID between the FSPs for the quote object, decided by the Payer FSP. The ID should be reused for resends of the same quote for a transaction. A new ID should be generated for each new quote for a transaction.
-       */
       quoteId: components["schemas"]["CorrelationId"];
-      /**
-       * Common ID (decided by the Payer FSP) between the FSPs for the future transaction object. The actual transaction will be created as part of a successful transfer process. The ID should be reused for resends of the same quote for a transaction. A new ID should be generated for each new quote for a transaction.
-       */
       transactionId: components["schemas"]["CorrelationId"];
-      /**
-       * Identifies an optional previously-sent transaction request.
-       */
       transactionRequestId?: components["schemas"]["CorrelationId"];
-      /**
-       * Information about the Payee in the proposed financial transaction.
-       */
       payee: components["schemas"]["Party"];
-      /**
-       * Information about the Payer in the proposed financial transaction.
-       */
       payer: components["schemas"]["Party"];
-      /**
-       * SEND for send amount, RECEIVE for receive amount.
-       */
       amountType: components["schemas"]["AmountType"];
-      /**
-       * Depending on amountType - If SEND - The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction. If RECEIVE - The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities.
-       */
       amount: components["schemas"]["Money"];
-      /**
-       * The fees in the transaction. The fees element should be empty if fees should be non-disclosed. The fees element should be non-empty if fees should be disclosed.
-       */
       fees?: components["schemas"]["Money"];
-      /**
-       * Type of transaction for which the quote is requested.
-       */
       transactionType: components["schemas"]["TransactionType"];
-      /**
-       * Longitude and Latitude of the initiating Party. Can be used to detect fraud.
-       */
       geoCode?: components["schemas"]["GeoCode"];
-      /**
-       * A memo that will be attached to the transaction.
-       */
       note?: components["schemas"]["Note"];
-      /**
-       * Expiration is optional. It can be set to get a quick failure in case the peer FSP takes too long to respond. Also, it may be beneficial for Consumer, Agent, and Merchant to know that their request has a time limit.
-       */
       expiration?: components["schemas"]["DateTime"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2458,41 +2289,14 @@ export interface components {
      * The object sent in the PUT /quotes/{ID} callback.
      */
     QuotesIDPutResponse: {
-      /**
-       * The amount of money that the Payee FSP should receive.
-       */
       transferAmount: components["schemas"]["Money"];
-      /**
-       * The amount of Money that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees.
-       */
       payeeReceiveAmount?: components["schemas"]["Money"];
-      /**
-       * Payee FSP’s part of the transaction fee.
-       */
       payeeFspFee?: components["schemas"]["Money"];
-      /**
-       * Transaction commission from the Payee FSP.
-       */
       payeeFspCommission?: components["schemas"]["Money"];
-      /**
-       * Date and time until when the quotation is valid and can be honored when used in the subsequent transaction.
-       */
       expiration: components["schemas"]["DateTime"];
-      /**
-       * Longitude and Latitude of the Payee. Can be used to detect fraud.
-       */
       geoCode?: components["schemas"]["GeoCode"];
-      /**
-       * The ILP Packet that must be attached to the transfer by the Payer.
-       */
       ilpPacket: components["schemas"]["IlpPacket"];
-      /**
-       * The condition that must be attached to the transfer by the Payer.
-       */
       condition: components["schemas"]["IlpCondition"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2530,13 +2334,7 @@ export interface components {
      * Data model for the complex type AuthenticationInfo.
      */
     AuthenticationInfo: {
-      /**
-       * Type of authentication.
-       */
       authentication: components["schemas"]["AuthenticationType"];
-      /**
-       * Authentication value.
-       */
       authenticationValue: components["schemas"]["AuthenticationValue"];
     };
     /**
@@ -2550,50 +2348,20 @@ export interface components {
      * The object sent in the PUT /authorizations/{ID} callback.
      */
     AuthorizationsIDPutResponse: {
-      /**
-       * OTP or QR Code if entered, otherwise empty.
-       */
       authenticationInfo?: components["schemas"]["AuthenticationInfo"];
-      /**
-       * Enum containing response information; if the customer entered the authentication value, rejected the transaction, or requested a resend of the authentication value.
-       */
       responseType: components["schemas"]["AuthorizationResponse"];
     };
     /**
      * The object sent in the POST /transfers request.
      */
     TransfersPostRequest: {
-      /**
-       * The common ID between the FSPs and the optional Switch for the transfer object, decided by the Payer FSP. The ID should be reused for resends of the same transfer. A new ID should be generated for each new transfer.
-       */
       transferId: components["schemas"]["CorrelationId"];
-      /**
-       * Payee FSP in the proposed financial transaction.
-       */
       payeeFsp: components["schemas"]["FspId"];
-      /**
-       * Payer FSP in the proposed financial transaction.
-       */
       payerFsp: components["schemas"]["FspId"];
-      /**
-       * The transfer amount to be sent.
-       */
       amount: components["schemas"]["Money"];
-      /**
-       * The ILP Packet containing the amount delivered to the Payee and the ILP Address of the Payee and any other end-to-end data.
-       */
       ilpPacket: components["schemas"]["IlpPacket"];
-      /**
-       * The condition that must be fulfilled to commit the transfer.
-       */
       condition: components["schemas"]["IlpCondition"];
-      /**
-       * Expiration can be set to get a quick failure expiration of the transfer. The transfer should be rolled back if no fulfilment is delivered before this time.
-       */
       expiration: components["schemas"]["DateTime"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2612,38 +2380,17 @@ export interface components {
      * The object sent in the PUT /transfers/{ID} callback.
      */
     TransfersIDPutResponse: {
-      /**
-       * Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.
-       */
       fulfilment?: components["schemas"]["IlpFulfilment"];
-      /**
-       * Time and date when the transaction was completed.
-       */
       completedTimestamp?: components["schemas"]["DateTime"];
-      /**
-       * State of the transfer.
-       */
       transferState: components["schemas"]["TransferState"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
      * PATCH /transfers/{ID} object
      */
     TransfersIDPatchResponse: {
-      /**
-       * Time and date when the transaction was completed.
-       */
       completedTimestamp: components["schemas"]["DateTime"];
-      /**
-       * State of the transfer.
-       */
       transferState: components["schemas"]["TransferState"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2662,136 +2409,52 @@ export interface components {
      * The object sent in the PUT /transactions/{ID} callback.
      */
     TransactionsIDPutResponse: {
-      /**
-       * Time and date when the transaction was completed.
-       */
       completedTimestamp?: components["schemas"]["DateTime"];
-      /**
-       * State of the transaction.
-       */
       transactionState: components["schemas"]["TransactionState"];
-      /**
-       * Optional redemption information provided to Payer after transaction has been completed.
-       */
       code?: components["schemas"]["Code"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
      * Data model for the complex type IndividualQuote.
      */
     IndividualQuote: {
-      /**
-       * Identifies the quote message.
-       */
       quoteId: components["schemas"]["CorrelationId"];
-      /**
-       * Identifies the transaction message.
-       */
       transactionId: components["schemas"]["CorrelationId"];
-      /**
-       * Information about the Payee in the proposed financial transaction.
-       */
       payee: components["schemas"]["Party"];
-      /**
-       * SEND for sendAmount, RECEIVE for receiveAmount.
-       */
       amountType: components["schemas"]["AmountType"];
-      /**
-       * Depending on amountType If SEND - The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction. If RECEIVE - The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive of any fees. The amount is not updated by any of the participating entities.
-       */
       amount: components["schemas"]["Money"];
-      /**
-       * The fees in the transaction. The fees element should be empty if fees should be non-disclosed. The fees element should be non-empty if fees should be disclosed.
-       */
       fees?: components["schemas"]["Money"];
-      /**
-       * Type of transaction that the quote is requested for.
-       */
       transactionType: components["schemas"]["TransactionType"];
-      /**
-       * Memo that will be attached to the transaction.
-       */
       note?: components["schemas"]["Note"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
      * The object sent in the POST /bulkQuotes request.
      */
     BulkQuotesPostRequest: {
-      /**
-       * Common ID between the FSPs for the bulk quote object, decided by the Payer FSP. The ID should be reused for resends of the same bulk quote. A new ID should be generated for each new bulk quote.
-       */
       bulkQuoteId: components["schemas"]["CorrelationId"];
-      /**
-       * Information about the Payer in the proposed financial transaction.
-       */
       payer: components["schemas"]["Party"];
-      /**
-       * Longitude and Latitude of the initiating Party. Can be used to detect fraud.
-       */
       geoCode?: components["schemas"]["GeoCode"];
-      /**
-       * Expiration is optional to let the Payee FSP know when a quote no longer needs to be returned.
-       */
       expiration?: components["schemas"]["DateTime"];
       /**
        * List of quotes elements.
        */
       individualQuotes: components["schemas"]["IndividualQuote"][];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
      * Data model for the complex type IndividualQuoteResult.
      */
     IndividualQuoteResult: {
-      /**
-       * Identifies the quote message.
-       */
       quoteId: components["schemas"]["CorrelationId"];
-      /**
-       * Information about the Payee in the proposed financial transaction.
-       */
       payee?: components["schemas"]["Party"];
-      /**
-       * The amount of money that the Payee FSP should receive.
-       */
       transferAmount?: components["schemas"]["Money"];
-      /**
-       * The amount of Money that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees.
-       */
       payeeReceiveAmount?: components["schemas"]["Money"];
-      /**
-       * Payee FSP’s part of the transaction fee.
-       */
       payeeFspFee?: components["schemas"]["Money"];
-      /**
-       * Transaction commission from the Payee FSP.
-       */
       payeeFspCommission?: components["schemas"]["Money"];
-      /**
-       * The ILP Packet that must be attached to the transfer by the Payer.
-       */
       ilpPacket?: components["schemas"]["IlpPacket"];
-      /**
-       * The condition that must be attached to the transfer by the Payer.
-       */
       condition?: components["schemas"]["IlpCondition"];
-      /**
-       * Error code, category description. **Note:** receiveAmount, payeeFspFee, payeeFspCommission, expiration, ilpPacket, condition should not be set if errorInformation is set.
-       */
       errorInformation?: components["schemas"]["ErrorInformation"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2802,92 +2465,41 @@ export interface components {
        * Fees for each individual transaction, if any of them are charged per transaction.
        */
       individualQuoteResults?: components["schemas"]["IndividualQuoteResult"][];
-      /**
-       * Date and time until when the quotation is valid and can be honored when used in the subsequent transaction request.
-       */
       expiration: components["schemas"]["DateTime"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
      * Data model for the complex type IndividualTransfer.
      */
     IndividualTransfer: {
-      /**
-       * Identifies messages related to the same /transfers sequence.
-       */
       transferId: components["schemas"]["CorrelationId"];
-      /**
-       * Transaction amount to be sent.
-       */
       transferAmount: components["schemas"]["Money"];
-      /**
-       * ILP Packet containing the amount delivered to the Payee and the ILP Address of the Payee and any other end-to-end data.
-       */
       ilpPacket: components["schemas"]["IlpPacket"];
-      /**
-       * Condition that must be fulfilled to commit the transfer.
-       */
       condition: components["schemas"]["IlpCondition"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
      * The object sent in the POST /bulkTransfers request.
      */
     BulkTransfersPostRequest: {
-      /**
-       * Common ID between the FSPs and the optional Switch for the bulk transfer object, decided by the Payer FSP. The ID should be reused for resends of the same bulk transfer. A new ID should be generated for each new bulk transfer.
-       */
       bulkTransferId: components["schemas"]["CorrelationId"];
-      /**
-       * ID of the related bulk quote.
-       */
       bulkQuoteId: components["schemas"]["CorrelationId"];
-      /**
-       * Payer FSP identifier.
-       */
       payerFsp: components["schemas"]["FspId"];
-      /**
-       * Payee FSP identifier.
-       */
       payeeFsp: components["schemas"]["FspId"];
       /**
        * List of IndividualTransfer elements.
        */
       individualTransfers: components["schemas"]["IndividualTransfer"][];
-      /**
-       * Expiration time of the transfers.
-       */
       expiration: components["schemas"]["DateTime"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
      * Data model for the complex type IndividualTransferResult.
      */
     IndividualTransferResult: {
-      /**
-       * Identifies messages related to the same /transfers sequence.
-       */
       transferId: components["schemas"]["CorrelationId"];
-      /**
-       * Fulfilment of the condition specified with the transaction. **Note:** Either fulfilment or errorInformation should be set, not both.
-       */
       fulfilment?: components["schemas"]["IlpFulfilment"];
-      /**
-       * If transfer is REJECTED, error information may be provided. **Note:** Either fulfilment or errorInformation should be set, not both.
-       */
       errorInformation?: components["schemas"]["ErrorInformation"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -2910,21 +2522,12 @@ export interface components {
      * The object sent in the PUT /bulkTransfers/{ID} callback.
      */
     BulkTransfersIDPutResponse: {
-      /**
-       * Time and date when the bulk transaction was completed.
-       */
       completedTimestamp?: components["schemas"]["DateTime"];
       /**
        * List of IndividualTransferResult elements.
        */
       individualTransferResults?: components["schemas"]["IndividualTransferResult"][];
-      /**
-       * The state of the bulk transfer.
-       */
       bulkTransferState: components["schemas"]["BulkTransferState"];
-      /**
-       * Optional extension, specific to deployment.
-       */
       extensionList?: components["schemas"]["ExtensionList"];
     };
   };
