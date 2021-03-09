@@ -4,6 +4,8 @@ AccountAddress:
   $ref: ./AccountAddress.yaml
 AccountList:
   $ref: ./AccountList.yaml
+AccountsIDPutResponse:
+  $ref: ./AccountsIDPutResponse.yaml
 Amount:
   $ref: ./Amount.yaml
 AmountType:

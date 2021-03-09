@@ -301,6 +301,57 @@ components:
           description: Accounts associated with the Party.
       required: &ref_39
         - account
+    AccountsIDPutResponse:
+      title: AccountsIDPutResponse
+      type: array
+      items:
+        type: object
+        description: |
+          The object sent in a `PUT /accounts/{ID}` request.
+        properties:
+          accountNickname:
+            title: AccountAddress
+            type: string
+            description: >
+              A long-lived unique account identifier provided by the DFSP. This
+              MUST NOT
+
+              be Bank Account Number or anything that may expose a User's
+              private bank
+
+              account information.
+            pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
+            minLength: 1
+            maxLength: 1023
+          id:
+            title: AccountAddress
+            type: string
+            description: >
+              A long-lived unique account identifier provided by the DFSP. This
+              MUST NOT
+
+              be Bank Account Number or anything that may expose a User's
+              private bank
+
+              account information.
+            pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
+            minLength: 1
+            maxLength: 1023
+          currency:
+            title: Currency
+            description: >-
+              The currency codes defined in [ISO
+              4217](https://www.iso.org/iso-4217-currency-codes.html) as
+              three-letter alphabetic codes are used as the standard naming
+              representation for currencies.
+            type: string
+            minLength: 3
+            maxLength: 3
+            enum: *ref_0
+        required:
+          - accountNickname
+          - id
+          - currency
     Amount:
       title: Amount
       type: string
