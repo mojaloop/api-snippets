@@ -4,6 +4,8 @@ AccountAddress:
   $ref: ./AccountAddress.yaml
 AccountList:
   $ref: ./AccountList.yaml
+AccountsIDPutResponse:
+  $ref: ./AccountsIDPutResponse.yaml
 Amount:
   $ref: ./Amount.yaml
 AmountType:
@@ -28,6 +30,8 @@ ConsentRequestChannelTypeOTP:
   $ref: ./ConsentRequestChannelTypeOTP.yaml
 ConsentRequestChannelTypeWeb:
   $ref: ./ConsentRequestChannelTypeWeb.yaml
+ConsentRequestsIDPatchRequest:
+  $ref: ./ConsentRequestsIDPatchRequest.yaml
 ConsentRequestsIDPutResponseOTP:
   $ref: ./ConsentRequestsIDPutResponseOTP.yaml
 ConsentRequestsIDPutResponseOTPAuth:
