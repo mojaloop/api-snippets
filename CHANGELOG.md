@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.0.12](https://github.com/mojaloop/api-snippets/compare/v12.0.11...v12.0.12) (2021-03-10)
+
+
+### Maintenance
+
+* update POST consents request body ([#63](https://github.com/mojaloop/api-snippets/issues/63)) ([dac7c70](https://github.com/mojaloop/api-snippets/commit/dac7c706e7566e7c344e0f891cc26a15499e98b8))
+
 ### [12.0.11](https://github.com/mojaloop/api-snippets/compare/v12.0.10...v12.0.11) (2021-03-09)
 
 
