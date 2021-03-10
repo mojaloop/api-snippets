@@ -300,11 +300,8 @@ describe('thirdparty', () => {
 
   test('ConsentsPostRequest', () => {
     const consentsPostRequest: Schemas.ConsentsPostRequest = {
-      id: correlationId,
-      requestId: correlationId,
-      participantId: fspId,
-      initiatorId: 'pisp-id',
-      revokedAt: dateTime,
+      consentId: correlationId,
+      consentRequestId: correlationId,
       scopes: [scope]
     }
     expect(consentsPostRequest).toBeDefined()
