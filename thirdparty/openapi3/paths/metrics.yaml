@@ -20,6 +20,6 @@ get:
       $ref: ../components/responses/501.yaml
     503:
       $ref: ../components/responses/503.yaml
-  operationId: HealthGet
-  summary: Health check endpoint
-  description: The HTTP request GET /health is used to return the current status of the API.
+  operationId: MetricsGet
+  summary: Prometheus metrics endpoint
+  description: The HTTP request GET /metrics is used to return metrics for the API.
