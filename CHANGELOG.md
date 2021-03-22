@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [12.1.0](https://github.com/mojaloop/api-snippets/compare/v12.0.12...v12.1.0) (2021-03-22)
+
+
+### Features
+
+* add thirdparty API definitions ([#64](https://github.com/mojaloop/api-snippets/issues/64)) ([18ce61f](https://github.com/mojaloop/api-snippets/commit/18ce61f91aa859d7ff6029e2fd411e11ecef296b))
+
 ### [12.0.12](https://github.com/mojaloop/api-snippets/compare/v12.0.11...v12.0.12) (2021-03-10)
 
 
