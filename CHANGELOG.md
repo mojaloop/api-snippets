@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.1.1](https://github.com/mojaloop/api-snippets/compare/v12.1.0...v12.1.1) (2021-03-22)
+
+
+### Code Refactor
+
+* 2060 design change post thridpartyrequests transactions ([#65](https://github.com/mojaloop/api-snippets/issues/65)) ([6c6f719](https://github.com/mojaloop/api-snippets/commit/6c6f7196666602e0e1dbb962ef0e37e29e562340))
+
 ## [12.1.0](https://github.com/mojaloop/api-snippets/compare/v12.0.12...v12.1.0) (2021-03-22)
 
 
