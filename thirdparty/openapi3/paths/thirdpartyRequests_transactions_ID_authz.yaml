@@ -1,0 +1,97 @@
+parameters:
+  #Path
+  - $ref: ../components/parameters/ID.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Length.yaml
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+post:
+  tags:
+    - thirdpartyRequests
+    - sampled
+  operationId: VerifyThirdPartyAuthorization
+  summary: VerifyThirdPartyAuthorization
+  description: |
+    The HTTP request `POST /thirdpartyRequests/transactions/{id}/authorizations` is used by the DFSP to verify a third party authorization.
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    description: The thirdparty authorization details to verify
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest.yaml
+        example:
+          challenge: '<QuoteResponse object>'
+          value: '<base64 encoded binary - the signed quote response object>'
+          consentId: '8d34f91d-d078-4077-8263-2c0498dhbjr'
+          sourceAccountId: 'dfspa.alice.1234'
+          status: 'PENDING'
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
+put:
+  operationId: UpdateThirdpartyAuthorization
+  summary: UpdateThirdpartyAuthorization
+  description: |
+    The HTTP request `PUT /thirdpartyRequests/transactions/{id}/authorizations` is used by the auth-service to update a thirdparty authorization after successful validation.
+    For an unsuccessful authorization result, the `PUT /thirdpartyRequests/transactions/{id}/authorizations/error` will be called by the auth-service, instead of this endpoint.
+  tags:
+    - thirdpartyRequests
+    - sampled
+  requestBody:
+    description: The thirdparty authorization details to update
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse.yaml
+        example:
+          challenge: '<QuoteResponse object>'
+          value: '<base64 encoded binary - the signed quote response object>'
+          consentId: '8d34f91d-d078-4077-8263-2c0498dhbjr'
+          sourceAccountId: 'dfspa.alice.1234'
+          status: 'VERIFIED'
+  responses:
+    200:
+      $ref: ../components/responses/200.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml

@@ -1,0 +1,10 @@
+title: AuthorizationsIDPutResponse
+type: object
+description: 'The object sent in the PUT /authorizations/{ID} callback.'
+properties:
+  authenticationInfo:
+    $ref: ./AuthenticationInfo.yaml
+  responseType:
+    $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/AuthorizationResponse.yaml'
+required:
+  - responseType

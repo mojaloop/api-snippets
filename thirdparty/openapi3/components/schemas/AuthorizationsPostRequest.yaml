@@ -3,7 +3,7 @@ description: POST /authorizations request object.
 type: object
 properties:
   authenticationType:
-    $ref: ./AuthorizationChannelType.yaml
+    $ref: ./AuthenticationType.yaml
   retriesLeft:
     $ref: ./Integer.yaml
   amount:

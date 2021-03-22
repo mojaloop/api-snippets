@@ -1,0 +1,72 @@
+# todo: uncomment parameters after header middleware similar to 
+# `sdk-scheme-adapter` is implemented in `thirdparty-scheme-adapter`
+#parameters:
+# - $ref: ../components/parameters/ID.yaml
+# - $ref: ../components/parameters/Content-Type.yaml
+# - $ref: ../components/parameters/Date.yaml
+# - $ref: ../components/parameters/X-Forwarded-For.yaml
+# - $ref: ../components/parameters/FSPIOP-Source.yaml
+# - $ref: ../components/parameters/FSPIOP-Destination.yaml
+# - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+# - $ref: ../components/parameters/FSPIOP-Signature.yaml
+# - $ref: ../components/parameters/FSPIOP-URI.yaml
+# - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+post:
+  requestBody:
+    description: Transaction request to be created.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ThirdpartyRequestsTransactionsPostRequest.yaml
+        example:
+          transactionRequestId: '8d34f91d-d078-4077-8263-2c047876fcf6'
+          sourceAccountId: 'dfspa.alice.1234'
+          consentId: '111'
+          payee:
+            partyIdInfo:
+              partyIdType: 'MSISDN'
+              partyIdentifier: '+44 1234 5678'
+              fspId: 'dfspb'
+          payer:
+            personalInfo:
+              complexName:
+                firstName: 'Alice'
+                lastName: 'K'
+            partyIdInfo:
+              partyIdType: 'MSISDN'
+              partyIdentifier: '+44 8765 4321'
+              fspId: 'dfspa'
+          amountType: 'SEND'
+          amount:
+            amount: '100'
+            currency: 'USD'
+          transactionType:
+            scenario: 'TRANSFER'
+            initiator: 'PAYER'
+            initiatorType: 'CONSUMER'
+          expiration: '2020-07-15T22:17:28.985-01:00'
+  responses:
+    200:
+      $ref: ../components/responses/200.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
+  operationId: ThirdpartyRequestsTransactionsPost
+  summary: ThirdpartyRequestsTransactionsPost
+  description: The HTTP request POST `/thirdpartyRequests/transactions` is used to create a transaction.
+  tags:
+    - thirdpartyRequests

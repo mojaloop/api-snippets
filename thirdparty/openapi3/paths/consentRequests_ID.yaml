@@ -1,0 +1,88 @@
+parameters:
+  #Path
+  - $ref: ../components/parameters/ID.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Length.yaml
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+put:
+  tags:
+    - consentRequests
+    - sampled
+  operationId: UpdateConsentRequest
+  summary: UpdateConsentRequest
+  description: |
+    DFSP updates auth channels and/or auth uri in response to consentRequest.
+
+    PISP updates the consentRequest to include authorization token from their user,
+    which the DFSP is to then verify.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: ../components/schemas/ConsentRequestsIDPutResponseWeb.yaml
+            - $ref: ../components/schemas/ConsentRequestsIDPutResponseWebAuth.yaml
+            - $ref: ../components/schemas/ConsentRequestsIDPutResponseOTP.yaml
+            - $ref: ../components/schemas/ConsentRequestsIDPutResponseOTPAuth.yaml
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
+patch:
+  tags:
+    - consentRequests
+    - sampled
+  operationId: PatchConsentRequest
+  summary: PatchConsentRequest
+  description: >
+    PISP sends user's OTP token to a DFSP to verify user trusts
+    aforementioned PISP
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ConsentRequestsIDPatchRequest.yaml
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml

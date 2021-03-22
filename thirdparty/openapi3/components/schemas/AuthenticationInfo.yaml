@@ -4,12 +4,8 @@ description: Data model for the complex type AuthenticationInfo.
 properties:
   authentication:
     $ref: ./AuthenticationType.yaml
-    description: Type of authentication.
-    example: U2F
   authenticationValue:
     $ref: ./AuthenticationValue.yaml
-    description: Authentication value.
-    example: 1234
 required:
   - authentication
   - authenticationValue
