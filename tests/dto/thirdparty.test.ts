@@ -91,6 +91,11 @@ describe('thirdparty', () => {
     partySubIdOrType: '456',
     fspId: fspId
   }
+  const partyIdInfoTPLink: Schemas.PartyIdInfoTPLink = {
+    partyIdType: 'THIRD_PARTY_LINK',
+    partyIdentifier: '123',
+    fspId: fspId
+  }
   const dateOfBirth: Schemas.DateOfBirth = '2021-01-01T00:00:0000'
   const partyPersonalInfo: Schemas.PartyPersonalInfo = {
     complexName: partyComplexName,
@@ -98,6 +103,12 @@ describe('thirdparty', () => {
   }
   const party: Schemas.Party = {
     partyIdInfo,
+    merchantClassificationCode,
+    name,
+    personalInfo: partyPersonalInfo
+  }
+  const partyTPLink: Schemas.PartyTPLink = {
+    partyIdInfo: partyIdInfoTPLink,
     merchantClassificationCode,
     name,
     personalInfo: partyPersonalInfo
@@ -113,7 +124,7 @@ describe('thirdparty', () => {
   const unsignedCredential: Schemas.UnsignedCredential = {
     type: credentialTypeFIDO,
     status: 'PENDING',
-    challenge: credentialChallengeUnsigned,
+    challenge: credentialChallengeUnsigned
   }
   const verifiedCredential: Schemas.VerifiedCredential = {
     id: 'credential-id',
@@ -127,7 +138,7 @@ describe('thirdparty', () => {
     scenario: 'TRANSFER',
     subScenario: 'sub-scenario',
     initiator: 'PAYER',
-    initiatorType: 'CONSUMER',
+    initiatorType: 'CONSUMER'
   }
   const partyResult: Schemas.PartyResult = {
     partyId: partyIdInfo,
@@ -158,7 +169,7 @@ describe('thirdparty', () => {
   })
 
   test('AuthorizationResponseType', () => {
-    expect(authorizationResponseTypeENTERED).toBeDefined
+    expect(authorizationResponseTypeENTERED).toBeDefined()
   })
 
   test('AuthorizationsPostRequest', () => {
@@ -499,10 +510,8 @@ describe('thirdparty', () => {
   test('ThirdpartyRequestsTransactionsPostRequest', () => {
     const thirdpartyRequestsTransactionsPostRequest: Schemas.ThirdpartyRequestsTransactionsPostRequest = {
       transactionRequestId: correlationId,
-      sourceAccountId: accountAddress,
-      consentId: correlationId,
       payee: party,
-      payer: party,
+      payer: partyTPLink,
       amountType: 'SEND',
       amount: money,
       transactionType,
