@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.1.2](https://github.com/mojaloop/api-snippets/compare/v12.1.1...v12.1.2) (2021-03-23)
+
+
+### Maintenance
+
+* add delete consent path ([#66](https://github.com/mojaloop/api-snippets/issues/66)) ([dc7714f](https://github.com/mojaloop/api-snippets/commit/dc7714f9565e3fc342f32672c611b1f603b6989b))
+
 ### [12.1.1](https://github.com/mojaloop/api-snippets/compare/v12.1.0...v12.1.1) (2021-03-22)
 
 
