@@ -194,6 +194,7 @@ export interface paths {
   "/consents/{ID}": {
     get: operations["GetConsent"];
     put: operations["UpdateConsent"];
+    delete: operations["DeleteConsentByID"];
     parameters: {
       path: {
         /**
@@ -245,9 +246,6 @@ export interface paths {
   };
   "/consents/{ID}/generateChallenge": {
     post: operations["GenerateChallengeRequest"];
-  };
-  "/consents/{ID}/revoke": {
-    post: operations["RevokeConsent"];
   };
   "/thirdpartyRequests/transactions": {
     post: operations["CreateThirdpartyTransactionRequests"];
@@ -9014,78 +9012,11 @@ export interface operations {
     };
   };
   /**
-   * PISP requests a challenge from the auth service.
+   * The HTTP request `DELETE /consents/{ID}` is used to delete a previously created consent.
    *
-   * PISP -> Switch
+   * - Called by a PISP when a user wants to remove their consent.
    */
-  GenerateChallengeRequest: {
-    parameters: {
-      path: {
-        /**
-         * The identifier value.
-         */
-        ID: string;
-      };
-      header: {
-        /**
-         * The `Accept` header field indicates the version of the API the client would like the server to use.
-         */
-        Accept: string;
-        /**
-         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
-         *
-         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
-         */
-        "Content-Length"?: number;
-        /**
-         * The `Content-Type` header indicates the specific version of the API used to send the payload body.
-         */
-        "Content-Type": string;
-        /**
-         * The `Date` header field indicates the date when the request was sent.
-         */
-        Date: string;
-        /**
-         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
-         *
-         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
-         */
-        "X-Forwarded-For"?: string;
-        /**
-         * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
-         */
-        "FSPIOP-Source": string;
-        /**
-         * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
-         */
-        "FSPIOP-Destination"?: string;
-        /**
-         * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
-         */
-        "FSPIOP-Encryption"?: string;
-        /**
-         * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
-         */
-        "FSPIOP-Signature"?: string;
-        /**
-         * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-         */
-        "FSPIOP-URI"?: string;
-        /**
-         * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-         */
-        "FSPIOP-HTTP-Method"?: string;
-      };
-    };
-    requestBody: {
-      "application/json": {
-        /**
-         * The type of the Credential.
-         * - "FIDO" - A FIDO public/private keypair.
-         */
-        type: "FIDO";
-      };
-    };
+  DeleteConsentByID: {
     responses: {
       /**
        * Accepted
@@ -9398,11 +9329,11 @@ export interface operations {
     };
   };
   /**
-   * The HTTP request `POST /consents/{ID}/revoke` is used to revoke a previously created consent.
+   * PISP requests a challenge from the auth service.
    *
-   * - Called by a PISP when a user wants to unlink their account(s).
+   * PISP -> Switch
    */
-  RevokeConsent: {
+  GenerateChallengeRequest: {
     parameters: {
       path: {
         /**
@@ -9411,6 +9342,10 @@ export interface operations {
         ID: string;
       };
       header: {
+        /**
+         * The `Accept` header field indicates the version of the API the client would like the server to use.
+         */
+        Accept: string;
         /**
          * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
          *
@@ -9455,6 +9390,15 @@ export interface operations {
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
         "FSPIOP-HTTP-Method"?: string;
+      };
+    };
+    requestBody: {
+      "application/json": {
+        /**
+         * The type of the Credential.
+         * - "FIDO" - A FIDO public/private keypair.
+         */
+        type: "FIDO";
       };
     };
     responses: {
