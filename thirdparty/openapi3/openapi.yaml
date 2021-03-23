@@ -69,8 +69,6 @@ paths:
     $ref: paths/consents_ID.yaml
   /consents/{ID}/generateChallenge:
     $ref: paths/consents_ID_generateChallenge.yaml
-  /consents/{ID}/revoke:
-    $ref: paths/consents_ID_revoke.yaml
   /thirdpartyRequests/transactions:
     $ref: paths/thirdpartyRequests_transactions.yaml
   /thirdpartyRequests/transactions-tsa:

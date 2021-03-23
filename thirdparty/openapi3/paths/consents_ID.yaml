@@ -87,3 +87,30 @@ put:
       $ref: ../components/responses/501.yaml
     503:
       $ref: ../components/responses/503.yaml
+delete: 
+  description: |
+    The HTTP request `DELETE /consents/{ID}` is used to mark as deleted a previously created consent.
+
+    - Called by a PISP when a user wants to remove their consent.
+  operationId: DeleteConsentByID
+  tags:
+    - consents
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
