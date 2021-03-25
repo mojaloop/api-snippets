@@ -4,12 +4,12 @@
  */
 
 export interface paths {
-  '/interface': {
-    post: operations['test'];
+  "/interface": {
+    post: operations["test"];
   };
-  '/accounts/{ID}': {
-    get: operations['GetAccountsByUserId'];
-    put: operations['UpdateAccountsByUserId'];
+  "/accounts/{ID}": {
+    get: operations["GetAccountsByUserId"];
+    put: operations["UpdateAccountsByUserId"];
     parameters: {
       path: {
         /**
@@ -27,109 +27,36 @@ export interface paths {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
   };
-  '/accounts/{ID}/error': {
-    put: operations['UpdateAccountsByUserIdError'];
-    parameters: {
-      path: {
-        /**
-         * The identifier value.
-         */
-        ID: string;
-      };
-      header: {
-        /**
-         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
-         *
-         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
-         */
-        'Content-Length'?: number;
-        /**
-         * The `Content-Type` header indicates the specific version of the API used to send the payload body.
-         */
-        'Content-Type': string;
-        /**
-         * The `Date` header field indicates the date when the request was sent.
-         */
-        Date: string;
-        /**
-         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
-         *
-         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
-         */
-        'X-Forwarded-For'?: string;
-        /**
-         * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
-         */
-        'FSPIOP-Source': string;
-        /**
-         * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
-         */
-        'FSPIOP-Destination'?: string;
-        /**
-         * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
-         */
-        'FSPIOP-Encryption'?: string;
-        /**
-         * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
-         */
-        'FSPIOP-Signature'?: string;
-        /**
-         * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-         */
-        'FSPIOP-URI'?: string;
-        /**
-         * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-         */
-        'FSPIOP-HTTP-Method'?: string;
-      };
-    };
-  };
-  '/authorizations': {
-    post: operations['AuthorizationsPostRequest'];
-  };
-  '/authorizations/{ID}': {
-    put: operations['InboundAuthorizationsIDPutResponse'];
-  };
-  '/health': {
-    get: operations['HealthGet'];
-  };
-  '/metrics': {
-    get: operations['MetricsGet'];
-  };
-  '/consentRequests': {
-    post: operations['CreateConsentRequest'];
-  };
-  '/consentRequests/{ID}': {
-    put: operations['UpdateConsentRequest'];
-    patch: operations['PatchConsentRequest'];
+  "/accounts/{ID}/error": {
+    put: operations["UpdateAccountsByUserIdError"];
     parameters: {
       path: {
         /**
@@ -143,11 +70,11 @@ export interface paths {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
         /**
          * The `Date` header field indicates the date when the request was sent.
          */
@@ -157,44 +84,117 @@ export interface paths {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
   };
-  '/consentRequests/{ID}/error': {
-    put: operations['NotifyErrorConsentRequests'];
+  "/authorizations": {
+    post: operations["AuthorizationsPostRequest"];
   };
-  '/consents': {
-    post: operations['PostConsents'];
+  "/authorizations/{ID}": {
+    put: operations["InboundAuthorizationsIDPutResponse"];
   };
-  '/consents/{ID}': {
-    get: operations['GetConsent'];
-    put: operations['UpdateConsent'];
-    delete: operations['DeleteConsentByID'];
+  "/health": {
+    get: operations["HealthGet"];
+  };
+  "/metrics": {
+    get: operations["MetricsGet"];
+  };
+  "/consentRequests": {
+    post: operations["CreateConsentRequest"];
+  };
+  "/consentRequests/{ID}": {
+    put: operations["UpdateConsentRequest"];
+    patch: operations["PatchConsentRequest"];
+    parameters: {
+      path: {
+        /**
+         * The identifier value.
+         */
+        ID: string;
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: number;
+        /**
+         * The `Content-Type` header indicates the specific version of the API used to send the payload body.
+         */
+        "Content-Type": string;
+        /**
+         * The `Date` header field indicates the date when the request was sent.
+         */
+        Date: string;
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: string;
+        /**
+         * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
+         */
+        "FSPIOP-Source": string;
+        /**
+         * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
+         */
+        "FSPIOP-Destination"?: string;
+        /**
+         * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
+         */
+        "FSPIOP-Encryption"?: string;
+        /**
+         * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
+         */
+        "FSPIOP-Signature"?: string;
+        /**
+         * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+         */
+        "FSPIOP-URI"?: string;
+        /**
+         * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+         */
+        "FSPIOP-HTTP-Method"?: string;
+      };
+    };
+  };
+  "/consentRequests/{ID}/error": {
+    put: operations["NotifyErrorConsentRequests"];
+  };
+  "/consents": {
+    post: operations["PostConsents"];
+  };
+  "/consents/{ID}": {
+    get: operations["GetConsent"];
+    put: operations["UpdateConsent"];
+    delete: operations["DeleteConsentByID"];
     parameters: {
       path: {
         /**
@@ -206,7 +206,7 @@ export interface paths {
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
         /**
          * The `Date` header field indicates the date when the request was sent.
          */
@@ -216,39 +216,39 @@ export interface paths {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
   };
-  '/consents/{ID}/generateChallenge': {
-    post: operations['GenerateChallengeRequest'];
+  "/consents/{ID}/generateChallenge": {
+    post: operations["GenerateChallengeRequest"];
   };
-  '/thirdpartyRequests/transactions': {
-    post: operations['CreateThirdpartyTransactionRequests'];
+  "/thirdpartyRequests/transactions": {
+    post: operations["CreateThirdpartyTransactionRequests"];
     parameters: {
       header: {
         /**
@@ -260,11 +260,11 @@ export interface paths {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
         /**
          * The `Date` header field indicates the date when the request was sent.
          */
@@ -274,41 +274,41 @@ export interface paths {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
   };
-  '/thirdpartyRequests/transactions-tsa': {
-    post: operations['ThirdpartyRequestsTransactionsPost'];
+  "/thirdpartyRequests/transactions-tsa": {
+    post: operations["ThirdpartyRequestsTransactionsPost"];
   };
-  '/thirdpartyRequests/transactions/{ID}': {
-    get: operations['GetThirdpartyTransactionRequests'];
-    put: operations['UpdateThirdPartyTransactionRequests'];
-    patch: operations['NotifyThirdpartyTransactionRequests'];
+  "/thirdpartyRequests/transactions/{ID}": {
+    get: operations["GetThirdpartyTransactionRequests"];
+    put: operations["UpdateThirdPartyTransactionRequests"];
+    patch: operations["NotifyThirdpartyTransactionRequests"];
     parameters: {
       path: {
         /**
@@ -330,40 +330,40 @@ export interface paths {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
   };
-  '/thirdpartyRequests/transactions/{ID}/error': {
-    put: operations['ThirdpartyTransactionRequestsError'];
+  "/thirdpartyRequests/transactions/{ID}/error": {
+    put: operations["ThirdpartyTransactionRequestsError"];
   };
-  '/thirdpartyRequests/transactions/{ID}/authorizations': {
-    post: operations['VerifyThirdPartyAuthorization'];
-    put: operations['UpdateThirdpartyAuthorization'];
+  "/thirdpartyRequests/transactions/{ID}/authorizations": {
+    post: operations["VerifyThirdPartyAuthorization"];
+    put: operations["UpdateThirdpartyAuthorization"];
     parameters: {
       path: {
         /**
@@ -377,11 +377,11 @@ export interface paths {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
         /**
          * The `Date` header field indicates the date when the request was sent.
          */
@@ -391,31 +391,31 @@ export interface paths {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
   };
@@ -427,973 +427,973 @@ export interface operations {
    */
   test: {
     requestBody: {
-      'application/json':
-      | ('OTP' | 'QRCODE' | 'U2F')
-      | ('ENTERED' | 'REJECTED' | 'RESEND')
-      | {
-        /**
+      "application/json":
+        | ("OTP" | "QRCODE" | "U2F")
+        | ("ENTERED" | "REJECTED" | "RESEND")
+        | {
+            /**
              * Below are the allowed values for the enumeration AuthenticationType.
              * - OTP - One-time password generated by the Payer FSP.
              * - QRCODE - QR code used as One Time Password.
              * - U2F - U2F is a new addition isolated to Thirdparty stream.
              */
-        authenticationType: 'OTP' | 'QRCODE' | 'U2F';
-        /**
+            authenticationType: "OTP" | "QRCODE" | "U2F";
+            /**
              * The API data type Integer is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited to a specific number of digits.
              */
-        retriesLeft: string;
-        /**
+            retriesLeft: string;
+            /**
              * Data model for the complex type Money.
              */
-        amount: {
-          /**
+            amount: {
+              /**
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
-          currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
-          /**
+              currency:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /**
                * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
                */
-          amount: string;
-        };
-        /**
+              amount: string;
+            };
+            /**
              * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
              */
-        transactionId: string;
-        /**
+            transactionId: string;
+            /**
              * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
              */
-        transactionRequestId: string;
-        /**
+            transactionRequestId: string;
+            /**
              * The object sent in the PUT /quotes/{ID} callback.
              */
-        quote: {
-          /**
+            quote: {
+              /**
                * Data model for the complex type Money.
                */
-          transferAmount: {
-            /**
+              transferAmount: {
+                /**
                  * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                  */
-            currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
-            /**
+                currency:
+                  | "AED"
+                  | "AFN"
+                  | "ALL"
+                  | "AMD"
+                  | "ANG"
+                  | "AOA"
+                  | "ARS"
+                  | "AUD"
+                  | "AWG"
+                  | "AZN"
+                  | "BAM"
+                  | "BBD"
+                  | "BDT"
+                  | "BGN"
+                  | "BHD"
+                  | "BIF"
+                  | "BMD"
+                  | "BND"
+                  | "BOB"
+                  | "BRL"
+                  | "BSD"
+                  | "BTN"
+                  | "BWP"
+                  | "BYN"
+                  | "BZD"
+                  | "CAD"
+                  | "CDF"
+                  | "CHF"
+                  | "CLP"
+                  | "CNY"
+                  | "COP"
+                  | "CRC"
+                  | "CUC"
+                  | "CUP"
+                  | "CVE"
+                  | "CZK"
+                  | "DJF"
+                  | "DKK"
+                  | "DOP"
+                  | "DZD"
+                  | "EGP"
+                  | "ERN"
+                  | "ETB"
+                  | "EUR"
+                  | "FJD"
+                  | "FKP"
+                  | "GBP"
+                  | "GEL"
+                  | "GGP"
+                  | "GHS"
+                  | "GIP"
+                  | "GMD"
+                  | "GNF"
+                  | "GTQ"
+                  | "GYD"
+                  | "HKD"
+                  | "HNL"
+                  | "HRK"
+                  | "HTG"
+                  | "HUF"
+                  | "IDR"
+                  | "ILS"
+                  | "IMP"
+                  | "INR"
+                  | "IQD"
+                  | "IRR"
+                  | "ISK"
+                  | "JEP"
+                  | "JMD"
+                  | "JOD"
+                  | "JPY"
+                  | "KES"
+                  | "KGS"
+                  | "KHR"
+                  | "KMF"
+                  | "KPW"
+                  | "KRW"
+                  | "KWD"
+                  | "KYD"
+                  | "KZT"
+                  | "LAK"
+                  | "LBP"
+                  | "LKR"
+                  | "LRD"
+                  | "LSL"
+                  | "LYD"
+                  | "MAD"
+                  | "MDL"
+                  | "MGA"
+                  | "MKD"
+                  | "MMK"
+                  | "MNT"
+                  | "MOP"
+                  | "MRO"
+                  | "MUR"
+                  | "MVR"
+                  | "MWK"
+                  | "MXN"
+                  | "MYR"
+                  | "MZN"
+                  | "NAD"
+                  | "NGN"
+                  | "NIO"
+                  | "NOK"
+                  | "NPR"
+                  | "NZD"
+                  | "OMR"
+                  | "PAB"
+                  | "PEN"
+                  | "PGK"
+                  | "PHP"
+                  | "PKR"
+                  | "PLN"
+                  | "PYG"
+                  | "QAR"
+                  | "RON"
+                  | "RSD"
+                  | "RUB"
+                  | "RWF"
+                  | "SAR"
+                  | "SBD"
+                  | "SCR"
+                  | "SDG"
+                  | "SEK"
+                  | "SGD"
+                  | "SHP"
+                  | "SLL"
+                  | "SOS"
+                  | "SPL"
+                  | "SRD"
+                  | "STD"
+                  | "SVC"
+                  | "SYP"
+                  | "SZL"
+                  | "THB"
+                  | "TJS"
+                  | "TMT"
+                  | "TND"
+                  | "TOP"
+                  | "TRY"
+                  | "TTD"
+                  | "TVD"
+                  | "TWD"
+                  | "TZS"
+                  | "UAH"
+                  | "UGX"
+                  | "USD"
+                  | "UYU"
+                  | "UZS"
+                  | "VEF"
+                  | "VND"
+                  | "VUV"
+                  | "WST"
+                  | "XAF"
+                  | "XCD"
+                  | "XDR"
+                  | "XOF"
+                  | "XPF"
+                  | "YER"
+                  | "ZAR"
+                  | "ZMW"
+                  | "ZWD";
+                /**
                  * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
                  */
-            amount: string;
-          };
-          /**
+                amount: string;
+              };
+              /**
                * Data model for the complex type Money.
                */
-          payeeReceiveAmount?: {
-            /**
+              payeeReceiveAmount?: {
+                /**
                  * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                  */
-            currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
-            /**
+                currency:
+                  | "AED"
+                  | "AFN"
+                  | "ALL"
+                  | "AMD"
+                  | "ANG"
+                  | "AOA"
+                  | "ARS"
+                  | "AUD"
+                  | "AWG"
+                  | "AZN"
+                  | "BAM"
+                  | "BBD"
+                  | "BDT"
+                  | "BGN"
+                  | "BHD"
+                  | "BIF"
+                  | "BMD"
+                  | "BND"
+                  | "BOB"
+                  | "BRL"
+                  | "BSD"
+                  | "BTN"
+                  | "BWP"
+                  | "BYN"
+                  | "BZD"
+                  | "CAD"
+                  | "CDF"
+                  | "CHF"
+                  | "CLP"
+                  | "CNY"
+                  | "COP"
+                  | "CRC"
+                  | "CUC"
+                  | "CUP"
+                  | "CVE"
+                  | "CZK"
+                  | "DJF"
+                  | "DKK"
+                  | "DOP"
+                  | "DZD"
+                  | "EGP"
+                  | "ERN"
+                  | "ETB"
+                  | "EUR"
+                  | "FJD"
+                  | "FKP"
+                  | "GBP"
+                  | "GEL"
+                  | "GGP"
+                  | "GHS"
+                  | "GIP"
+                  | "GMD"
+                  | "GNF"
+                  | "GTQ"
+                  | "GYD"
+                  | "HKD"
+                  | "HNL"
+                  | "HRK"
+                  | "HTG"
+                  | "HUF"
+                  | "IDR"
+                  | "ILS"
+                  | "IMP"
+                  | "INR"
+                  | "IQD"
+                  | "IRR"
+                  | "ISK"
+                  | "JEP"
+                  | "JMD"
+                  | "JOD"
+                  | "JPY"
+                  | "KES"
+                  | "KGS"
+                  | "KHR"
+                  | "KMF"
+                  | "KPW"
+                  | "KRW"
+                  | "KWD"
+                  | "KYD"
+                  | "KZT"
+                  | "LAK"
+                  | "LBP"
+                  | "LKR"
+                  | "LRD"
+                  | "LSL"
+                  | "LYD"
+                  | "MAD"
+                  | "MDL"
+                  | "MGA"
+                  | "MKD"
+                  | "MMK"
+                  | "MNT"
+                  | "MOP"
+                  | "MRO"
+                  | "MUR"
+                  | "MVR"
+                  | "MWK"
+                  | "MXN"
+                  | "MYR"
+                  | "MZN"
+                  | "NAD"
+                  | "NGN"
+                  | "NIO"
+                  | "NOK"
+                  | "NPR"
+                  | "NZD"
+                  | "OMR"
+                  | "PAB"
+                  | "PEN"
+                  | "PGK"
+                  | "PHP"
+                  | "PKR"
+                  | "PLN"
+                  | "PYG"
+                  | "QAR"
+                  | "RON"
+                  | "RSD"
+                  | "RUB"
+                  | "RWF"
+                  | "SAR"
+                  | "SBD"
+                  | "SCR"
+                  | "SDG"
+                  | "SEK"
+                  | "SGD"
+                  | "SHP"
+                  | "SLL"
+                  | "SOS"
+                  | "SPL"
+                  | "SRD"
+                  | "STD"
+                  | "SVC"
+                  | "SYP"
+                  | "SZL"
+                  | "THB"
+                  | "TJS"
+                  | "TMT"
+                  | "TND"
+                  | "TOP"
+                  | "TRY"
+                  | "TTD"
+                  | "TVD"
+                  | "TWD"
+                  | "TZS"
+                  | "UAH"
+                  | "UGX"
+                  | "USD"
+                  | "UYU"
+                  | "UZS"
+                  | "VEF"
+                  | "VND"
+                  | "VUV"
+                  | "WST"
+                  | "XAF"
+                  | "XCD"
+                  | "XDR"
+                  | "XOF"
+                  | "XPF"
+                  | "YER"
+                  | "ZAR"
+                  | "ZMW"
+                  | "ZWD";
+                /**
                  * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
                  */
-            amount: string;
-          };
-          /**
+                amount: string;
+              };
+              /**
                * Data model for the complex type Money.
                */
-          payeeFspFee?: {
-            /**
+              payeeFspFee?: {
+                /**
                  * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                  */
-            currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
-            /**
+                currency:
+                  | "AED"
+                  | "AFN"
+                  | "ALL"
+                  | "AMD"
+                  | "ANG"
+                  | "AOA"
+                  | "ARS"
+                  | "AUD"
+                  | "AWG"
+                  | "AZN"
+                  | "BAM"
+                  | "BBD"
+                  | "BDT"
+                  | "BGN"
+                  | "BHD"
+                  | "BIF"
+                  | "BMD"
+                  | "BND"
+                  | "BOB"
+                  | "BRL"
+                  | "BSD"
+                  | "BTN"
+                  | "BWP"
+                  | "BYN"
+                  | "BZD"
+                  | "CAD"
+                  | "CDF"
+                  | "CHF"
+                  | "CLP"
+                  | "CNY"
+                  | "COP"
+                  | "CRC"
+                  | "CUC"
+                  | "CUP"
+                  | "CVE"
+                  | "CZK"
+                  | "DJF"
+                  | "DKK"
+                  | "DOP"
+                  | "DZD"
+                  | "EGP"
+                  | "ERN"
+                  | "ETB"
+                  | "EUR"
+                  | "FJD"
+                  | "FKP"
+                  | "GBP"
+                  | "GEL"
+                  | "GGP"
+                  | "GHS"
+                  | "GIP"
+                  | "GMD"
+                  | "GNF"
+                  | "GTQ"
+                  | "GYD"
+                  | "HKD"
+                  | "HNL"
+                  | "HRK"
+                  | "HTG"
+                  | "HUF"
+                  | "IDR"
+                  | "ILS"
+                  | "IMP"
+                  | "INR"
+                  | "IQD"
+                  | "IRR"
+                  | "ISK"
+                  | "JEP"
+                  | "JMD"
+                  | "JOD"
+                  | "JPY"
+                  | "KES"
+                  | "KGS"
+                  | "KHR"
+                  | "KMF"
+                  | "KPW"
+                  | "KRW"
+                  | "KWD"
+                  | "KYD"
+                  | "KZT"
+                  | "LAK"
+                  | "LBP"
+                  | "LKR"
+                  | "LRD"
+                  | "LSL"
+                  | "LYD"
+                  | "MAD"
+                  | "MDL"
+                  | "MGA"
+                  | "MKD"
+                  | "MMK"
+                  | "MNT"
+                  | "MOP"
+                  | "MRO"
+                  | "MUR"
+                  | "MVR"
+                  | "MWK"
+                  | "MXN"
+                  | "MYR"
+                  | "MZN"
+                  | "NAD"
+                  | "NGN"
+                  | "NIO"
+                  | "NOK"
+                  | "NPR"
+                  | "NZD"
+                  | "OMR"
+                  | "PAB"
+                  | "PEN"
+                  | "PGK"
+                  | "PHP"
+                  | "PKR"
+                  | "PLN"
+                  | "PYG"
+                  | "QAR"
+                  | "RON"
+                  | "RSD"
+                  | "RUB"
+                  | "RWF"
+                  | "SAR"
+                  | "SBD"
+                  | "SCR"
+                  | "SDG"
+                  | "SEK"
+                  | "SGD"
+                  | "SHP"
+                  | "SLL"
+                  | "SOS"
+                  | "SPL"
+                  | "SRD"
+                  | "STD"
+                  | "SVC"
+                  | "SYP"
+                  | "SZL"
+                  | "THB"
+                  | "TJS"
+                  | "TMT"
+                  | "TND"
+                  | "TOP"
+                  | "TRY"
+                  | "TTD"
+                  | "TVD"
+                  | "TWD"
+                  | "TZS"
+                  | "UAH"
+                  | "UGX"
+                  | "USD"
+                  | "UYU"
+                  | "UZS"
+                  | "VEF"
+                  | "VND"
+                  | "VUV"
+                  | "WST"
+                  | "XAF"
+                  | "XCD"
+                  | "XDR"
+                  | "XOF"
+                  | "XPF"
+                  | "YER"
+                  | "ZAR"
+                  | "ZMW"
+                  | "ZWD";
+                /**
                  * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
                  */
-            amount: string;
-          };
-          /**
+                amount: string;
+              };
+              /**
                * Data model for the complex type Money.
                */
-          payeeFspCommission?: {
-            /**
+              payeeFspCommission?: {
+                /**
                  * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                  */
-            currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
-            /**
+                currency:
+                  | "AED"
+                  | "AFN"
+                  | "ALL"
+                  | "AMD"
+                  | "ANG"
+                  | "AOA"
+                  | "ARS"
+                  | "AUD"
+                  | "AWG"
+                  | "AZN"
+                  | "BAM"
+                  | "BBD"
+                  | "BDT"
+                  | "BGN"
+                  | "BHD"
+                  | "BIF"
+                  | "BMD"
+                  | "BND"
+                  | "BOB"
+                  | "BRL"
+                  | "BSD"
+                  | "BTN"
+                  | "BWP"
+                  | "BYN"
+                  | "BZD"
+                  | "CAD"
+                  | "CDF"
+                  | "CHF"
+                  | "CLP"
+                  | "CNY"
+                  | "COP"
+                  | "CRC"
+                  | "CUC"
+                  | "CUP"
+                  | "CVE"
+                  | "CZK"
+                  | "DJF"
+                  | "DKK"
+                  | "DOP"
+                  | "DZD"
+                  | "EGP"
+                  | "ERN"
+                  | "ETB"
+                  | "EUR"
+                  | "FJD"
+                  | "FKP"
+                  | "GBP"
+                  | "GEL"
+                  | "GGP"
+                  | "GHS"
+                  | "GIP"
+                  | "GMD"
+                  | "GNF"
+                  | "GTQ"
+                  | "GYD"
+                  | "HKD"
+                  | "HNL"
+                  | "HRK"
+                  | "HTG"
+                  | "HUF"
+                  | "IDR"
+                  | "ILS"
+                  | "IMP"
+                  | "INR"
+                  | "IQD"
+                  | "IRR"
+                  | "ISK"
+                  | "JEP"
+                  | "JMD"
+                  | "JOD"
+                  | "JPY"
+                  | "KES"
+                  | "KGS"
+                  | "KHR"
+                  | "KMF"
+                  | "KPW"
+                  | "KRW"
+                  | "KWD"
+                  | "KYD"
+                  | "KZT"
+                  | "LAK"
+                  | "LBP"
+                  | "LKR"
+                  | "LRD"
+                  | "LSL"
+                  | "LYD"
+                  | "MAD"
+                  | "MDL"
+                  | "MGA"
+                  | "MKD"
+                  | "MMK"
+                  | "MNT"
+                  | "MOP"
+                  | "MRO"
+                  | "MUR"
+                  | "MVR"
+                  | "MWK"
+                  | "MXN"
+                  | "MYR"
+                  | "MZN"
+                  | "NAD"
+                  | "NGN"
+                  | "NIO"
+                  | "NOK"
+                  | "NPR"
+                  | "NZD"
+                  | "OMR"
+                  | "PAB"
+                  | "PEN"
+                  | "PGK"
+                  | "PHP"
+                  | "PKR"
+                  | "PLN"
+                  | "PYG"
+                  | "QAR"
+                  | "RON"
+                  | "RSD"
+                  | "RUB"
+                  | "RWF"
+                  | "SAR"
+                  | "SBD"
+                  | "SCR"
+                  | "SDG"
+                  | "SEK"
+                  | "SGD"
+                  | "SHP"
+                  | "SLL"
+                  | "SOS"
+                  | "SPL"
+                  | "SRD"
+                  | "STD"
+                  | "SVC"
+                  | "SYP"
+                  | "SZL"
+                  | "THB"
+                  | "TJS"
+                  | "TMT"
+                  | "TND"
+                  | "TOP"
+                  | "TRY"
+                  | "TTD"
+                  | "TVD"
+                  | "TWD"
+                  | "TZS"
+                  | "UAH"
+                  | "UGX"
+                  | "USD"
+                  | "UYU"
+                  | "UZS"
+                  | "VEF"
+                  | "VND"
+                  | "VUV"
+                  | "WST"
+                  | "XAF"
+                  | "XCD"
+                  | "XDR"
+                  | "XOF"
+                  | "XPF"
+                  | "YER"
+                  | "ZAR"
+                  | "ZMW"
+                  | "ZWD";
+                /**
                  * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
                  */
-            amount: string;
-          };
-          /**
+                amount: string;
+              };
+              /**
                * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
                */
-          expiration: string;
-          /**
+              expiration: string;
+              /**
                * Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
                */
-          geoCode?: {
-            /**
+              geoCode?: {
+                /**
                  * The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
                  */
-            latitude: string;
-            /**
+                latitude: string;
+                /**
                  * The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
                  */
-            longitude: string;
-          };
-          /**
+                longitude: string;
+              };
+              /**
                * Information for recipient (transport layer information).
                */
-          ilpPacket: string;
-          /**
+              ilpPacket: string;
+              /**
                * Condition that must be attached to the transfer by the Payer.
                */
-          condition: string;
-          /**
+              condition: string;
+              /**
                * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
                */
-          extensionList?: {
-            /**
+              extensionList?: {
+                /**
                  * Number of Extension elements.
                  */
-            extension: {
-              /**
+                extension: {
+                  /**
                    * Extension key.
                    */
-              key: string;
-              /**
+                  key: string;
+                  /**
                    * Extension value.
                    */
-              value: string;
-            }[];
-          };
-        };
-      }
-      | {
-        /**
+                  value: string;
+                }[];
+              };
+            };
+          }
+        | {
+            /**
              * The status of the Consent.
              * - "REVOKED" - The Consent is no longer valid and has been revoked.
              */
-        status: 'REVOKED';
-        /**
+            status: "REVOKED";
+            /**
              * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
              */
-        revokedAt: string;
-      }
-      | 'REVOKED'
-      | string
-      | string
-      | {
-        /**
+            revokedAt: string;
+          }
+        | "REVOKED"
+        | string
+        | string
+        | {
+            /**
              * Data model for the complex type PartyIdInfo.
              */
-        partyId: {
-          /**
+            partyId: {
+              /**
                * This is a variant based on FSPIOP `PartyIdType` specification.
                * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
                *
@@ -1435,91 +1435,91 @@ export interface operations {
                * - CONSENT - TBD
                * - THIRD_PARTY_LINK - TBD
                */
-          partyIdType:
-          | 'MSISDN'
-          | 'EMAIL'
-          | 'PERSONAL_ID'
-          | 'BUSINESS'
-          | 'DEVICE'
-          | 'ACCOUNT_ID'
-          | 'IBAN'
-          | 'ALIAS'
-          | 'CONSENT'
-          | 'THIRD_PARTY_LINK';
-          /**
+              partyIdType:
+                | "MSISDN"
+                | "EMAIL"
+                | "PERSONAL_ID"
+                | "BUSINESS"
+                | "DEVICE"
+                | "ACCOUNT_ID"
+                | "IBAN"
+                | "ALIAS"
+                | "CONSENT"
+                | "THIRD_PARTY_LINK";
+              /**
                * Identifier of the Party.
                */
-          partyIdentifier: string;
-          /**
+              partyIdentifier: string;
+              /**
                * Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
                */
-          partySubIdOrType?: string;
-          /**
+              partySubIdOrType?: string;
+              /**
                * FSP identifier.
                */
-          fspId?: string;
-          /**
+              fspId?: string;
+              /**
                * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
                */
-          extensionList?: {
-            /**
+              extensionList?: {
+                /**
                  * Number of Extension elements.
                  */
-            extension: {
-              /**
+                extension: {
+                  /**
                    * Extension key.
                    */
-              key: string;
-              /**
+                  key: string;
+                  /**
                    * Extension value.
                    */
-              value: string;
-            }[];
-          };
-        };
-        /**
+                  value: string;
+                }[];
+              };
+            };
+            /**
              * Data model for the complex type ErrorInformation.
              */
-        errorInformation?: {
-          /**
+            errorInformation?: {
+              /**
                * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
                */
-          errorCode: string;
-          /**
+              errorCode: string;
+              /**
                * Error description string.
                */
-          errorDescription: string;
-          /**
+              errorDescription: string;
+              /**
                * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
                */
-          extensionList?: {
-            /**
+              extensionList?: {
+                /**
                  * Number of Extension elements.
                  */
-            extension: {
-              /**
+                extension: {
+                  /**
                    * Extension key.
                    */
-              key: string;
-              /**
+                  key: string;
+                  /**
                    * Extension value.
                    */
-              value: string;
-            }[];
-          };
-        };
-      }
-      | {
-        /**
+                  value: string;
+                }[];
+              };
+            };
+          }
+        | {
+            /**
              * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
              */
-        requestId: string;
-        /**
+            requestId: string;
+            /**
              * List of PartyIdInfo elements that the client would like to update
              * or create FSP information about.
              */
-        partyList: {
-          /**
+            partyList: {
+              /**
                * This is a variant based on FSPIOP `PartyIdType` specification.
                * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
                *
@@ -1561,415 +1561,415 @@ export interface operations {
                * - CONSENT - TBD
                * - THIRD_PARTY_LINK - TBD
                */
-          partyIdType:
-          | 'MSISDN'
-          | 'EMAIL'
-          | 'PERSONAL_ID'
-          | 'BUSINESS'
-          | 'DEVICE'
-          | 'ACCOUNT_ID'
-          | 'IBAN'
-          | 'ALIAS'
-          | 'CONSENT'
-          | 'THIRD_PARTY_LINK';
-          /**
+              partyIdType:
+                | "MSISDN"
+                | "EMAIL"
+                | "PERSONAL_ID"
+                | "BUSINESS"
+                | "DEVICE"
+                | "ACCOUNT_ID"
+                | "IBAN"
+                | "ALIAS"
+                | "CONSENT"
+                | "THIRD_PARTY_LINK";
+              /**
                * Identifier of the Party.
                */
-          partyIdentifier: string;
-          /**
+              partyIdentifier: string;
+              /**
                * Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
                */
-          partySubIdOrType?: string;
-          /**
+              partySubIdOrType?: string;
+              /**
                * FSP identifier.
                */
-          fspId?: string;
-          /**
+              fspId?: string;
+              /**
                * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
                */
-          extensionList?: {
-            /**
+              extensionList?: {
+                /**
                  * Number of Extension elements.
                  */
-            extension: {
-              /**
+                extension: {
+                  /**
                    * Extension key.
                    */
-              key: string;
-              /**
+                  key: string;
+                  /**
                    * Extension value.
                    */
-              value: string;
+                  value: string;
+                }[];
+              };
             }[];
-          };
-        }[];
-        /**
+            /**
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
-        currency?:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
-      }
-      | {
-        /**
+            currency?:
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
+          }
+        | {
+            /**
              * Data model for the complex type Party.
              */
-        party: {
-          /**
+            party: {
+              /**
                * Data model for the complex type AccountList.
                */
-          accounts?: {
-            /**
+              accounts?: {
+                /**
                  * Accounts associated with the Party.
                  */
-            account: {
-              /**
+                account: {
+                  /**
                    * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                    * be Bank Account Number or anything that may expose a User's private bank
                    * account information.
                    */
-              address?: string;
-              /**
+                  address?: string;
+                  /**
                    * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                    */
-              currency:
-              | 'AED'
-              | 'AFN'
-              | 'ALL'
-              | 'AMD'
-              | 'ANG'
-              | 'AOA'
-              | 'ARS'
-              | 'AUD'
-              | 'AWG'
-              | 'AZN'
-              | 'BAM'
-              | 'BBD'
-              | 'BDT'
-              | 'BGN'
-              | 'BHD'
-              | 'BIF'
-              | 'BMD'
-              | 'BND'
-              | 'BOB'
-              | 'BRL'
-              | 'BSD'
-              | 'BTN'
-              | 'BWP'
-              | 'BYN'
-              | 'BZD'
-              | 'CAD'
-              | 'CDF'
-              | 'CHF'
-              | 'CLP'
-              | 'CNY'
-              | 'COP'
-              | 'CRC'
-              | 'CUC'
-              | 'CUP'
-              | 'CVE'
-              | 'CZK'
-              | 'DJF'
-              | 'DKK'
-              | 'DOP'
-              | 'DZD'
-              | 'EGP'
-              | 'ERN'
-              | 'ETB'
-              | 'EUR'
-              | 'FJD'
-              | 'FKP'
-              | 'GBP'
-              | 'GEL'
-              | 'GGP'
-              | 'GHS'
-              | 'GIP'
-              | 'GMD'
-              | 'GNF'
-              | 'GTQ'
-              | 'GYD'
-              | 'HKD'
-              | 'HNL'
-              | 'HRK'
-              | 'HTG'
-              | 'HUF'
-              | 'IDR'
-              | 'ILS'
-              | 'IMP'
-              | 'INR'
-              | 'IQD'
-              | 'IRR'
-              | 'ISK'
-              | 'JEP'
-              | 'JMD'
-              | 'JOD'
-              | 'JPY'
-              | 'KES'
-              | 'KGS'
-              | 'KHR'
-              | 'KMF'
-              | 'KPW'
-              | 'KRW'
-              | 'KWD'
-              | 'KYD'
-              | 'KZT'
-              | 'LAK'
-              | 'LBP'
-              | 'LKR'
-              | 'LRD'
-              | 'LSL'
-              | 'LYD'
-              | 'MAD'
-              | 'MDL'
-              | 'MGA'
-              | 'MKD'
-              | 'MMK'
-              | 'MNT'
-              | 'MOP'
-              | 'MRO'
-              | 'MUR'
-              | 'MVR'
-              | 'MWK'
-              | 'MXN'
-              | 'MYR'
-              | 'MZN'
-              | 'NAD'
-              | 'NGN'
-              | 'NIO'
-              | 'NOK'
-              | 'NPR'
-              | 'NZD'
-              | 'OMR'
-              | 'PAB'
-              | 'PEN'
-              | 'PGK'
-              | 'PHP'
-              | 'PKR'
-              | 'PLN'
-              | 'PYG'
-              | 'QAR'
-              | 'RON'
-              | 'RSD'
-              | 'RUB'
-              | 'RWF'
-              | 'SAR'
-              | 'SBD'
-              | 'SCR'
-              | 'SDG'
-              | 'SEK'
-              | 'SGD'
-              | 'SHP'
-              | 'SLL'
-              | 'SOS'
-              | 'SPL'
-              | 'SRD'
-              | 'STD'
-              | 'SVC'
-              | 'SYP'
-              | 'SZL'
-              | 'THB'
-              | 'TJS'
-              | 'TMT'
-              | 'TND'
-              | 'TOP'
-              | 'TRY'
-              | 'TTD'
-              | 'TVD'
-              | 'TWD'
-              | 'TZS'
-              | 'UAH'
-              | 'UGX'
-              | 'USD'
-              | 'UYU'
-              | 'UZS'
-              | 'VEF'
-              | 'VND'
-              | 'VUV'
-              | 'WST'
-              | 'XAF'
-              | 'XCD'
-              | 'XDR'
-              | 'XOF'
-              | 'XPF'
-              | 'YER'
-              | 'ZAR'
-              | 'ZMW'
-              | 'ZWD';
-              /**
+                  currency:
+                    | "AED"
+                    | "AFN"
+                    | "ALL"
+                    | "AMD"
+                    | "ANG"
+                    | "AOA"
+                    | "ARS"
+                    | "AUD"
+                    | "AWG"
+                    | "AZN"
+                    | "BAM"
+                    | "BBD"
+                    | "BDT"
+                    | "BGN"
+                    | "BHD"
+                    | "BIF"
+                    | "BMD"
+                    | "BND"
+                    | "BOB"
+                    | "BRL"
+                    | "BSD"
+                    | "BTN"
+                    | "BWP"
+                    | "BYN"
+                    | "BZD"
+                    | "CAD"
+                    | "CDF"
+                    | "CHF"
+                    | "CLP"
+                    | "CNY"
+                    | "COP"
+                    | "CRC"
+                    | "CUC"
+                    | "CUP"
+                    | "CVE"
+                    | "CZK"
+                    | "DJF"
+                    | "DKK"
+                    | "DOP"
+                    | "DZD"
+                    | "EGP"
+                    | "ERN"
+                    | "ETB"
+                    | "EUR"
+                    | "FJD"
+                    | "FKP"
+                    | "GBP"
+                    | "GEL"
+                    | "GGP"
+                    | "GHS"
+                    | "GIP"
+                    | "GMD"
+                    | "GNF"
+                    | "GTQ"
+                    | "GYD"
+                    | "HKD"
+                    | "HNL"
+                    | "HRK"
+                    | "HTG"
+                    | "HUF"
+                    | "IDR"
+                    | "ILS"
+                    | "IMP"
+                    | "INR"
+                    | "IQD"
+                    | "IRR"
+                    | "ISK"
+                    | "JEP"
+                    | "JMD"
+                    | "JOD"
+                    | "JPY"
+                    | "KES"
+                    | "KGS"
+                    | "KHR"
+                    | "KMF"
+                    | "KPW"
+                    | "KRW"
+                    | "KWD"
+                    | "KYD"
+                    | "KZT"
+                    | "LAK"
+                    | "LBP"
+                    | "LKR"
+                    | "LRD"
+                    | "LSL"
+                    | "LYD"
+                    | "MAD"
+                    | "MDL"
+                    | "MGA"
+                    | "MKD"
+                    | "MMK"
+                    | "MNT"
+                    | "MOP"
+                    | "MRO"
+                    | "MUR"
+                    | "MVR"
+                    | "MWK"
+                    | "MXN"
+                    | "MYR"
+                    | "MZN"
+                    | "NAD"
+                    | "NGN"
+                    | "NIO"
+                    | "NOK"
+                    | "NPR"
+                    | "NZD"
+                    | "OMR"
+                    | "PAB"
+                    | "PEN"
+                    | "PGK"
+                    | "PHP"
+                    | "PKR"
+                    | "PLN"
+                    | "PYG"
+                    | "QAR"
+                    | "RON"
+                    | "RSD"
+                    | "RUB"
+                    | "RWF"
+                    | "SAR"
+                    | "SBD"
+                    | "SCR"
+                    | "SDG"
+                    | "SEK"
+                    | "SGD"
+                    | "SHP"
+                    | "SLL"
+                    | "SOS"
+                    | "SPL"
+                    | "SRD"
+                    | "STD"
+                    | "SVC"
+                    | "SYP"
+                    | "SZL"
+                    | "THB"
+                    | "TJS"
+                    | "TMT"
+                    | "TND"
+                    | "TOP"
+                    | "TRY"
+                    | "TTD"
+                    | "TVD"
+                    | "TWD"
+                    | "TZS"
+                    | "UAH"
+                    | "UGX"
+                    | "USD"
+                    | "UYU"
+                    | "UZS"
+                    | "VEF"
+                    | "VND"
+                    | "VUV"
+                    | "WST"
+                    | "XAF"
+                    | "XCD"
+                    | "XDR"
+                    | "XOF"
+                    | "XPF"
+                    | "YER"
+                    | "ZAR"
+                    | "ZMW"
+                    | "ZWD";
+                  /**
                    * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
                    *
                    * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
                    *
                    * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
                    */
-              description?: string;
-            }[];
-          };
-          /**
+                  description?: string;
+                }[];
+              };
+              /**
                * Data model for the complex type PartyIdInfo.
                */
-          partyIdInfo: {
-            /**
+              partyIdInfo: {
+                /**
                  * This is a variant based on FSPIOP `PartyIdType` specification.
                  * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
                  *
@@ -2011,314 +2011,314 @@ export interface operations {
                  * - CONSENT - TBD
                  * - THIRD_PARTY_LINK - TBD
                  */
-            partyIdType:
-            | 'MSISDN'
-            | 'EMAIL'
-            | 'PERSONAL_ID'
-            | 'BUSINESS'
-            | 'DEVICE'
-            | 'ACCOUNT_ID'
-            | 'IBAN'
-            | 'ALIAS'
-            | 'CONSENT'
-            | 'THIRD_PARTY_LINK';
-            /**
+                partyIdType:
+                  | "MSISDN"
+                  | "EMAIL"
+                  | "PERSONAL_ID"
+                  | "BUSINESS"
+                  | "DEVICE"
+                  | "ACCOUNT_ID"
+                  | "IBAN"
+                  | "ALIAS"
+                  | "CONSENT"
+                  | "THIRD_PARTY_LINK";
+                /**
                  * Identifier of the Party.
                  */
-            partyIdentifier: string;
-            /**
+                partyIdentifier: string;
+                /**
                  * Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
                  */
-            partySubIdOrType?: string;
-            /**
+                partySubIdOrType?: string;
+                /**
                  * FSP identifier.
                  */
-            fspId?: string;
-            /**
+                fspId?: string;
+                /**
                  * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
                  */
-            extensionList?: {
-              /**
+                extensionList?: {
+                  /**
                    * Number of Extension elements.
                    */
-              extension: {
-                /**
+                  extension: {
+                    /**
                      * Extension key.
                      */
-                key: string;
-                /**
+                    key: string;
+                    /**
                      * Extension value.
                      */
-                value: string;
-              }[];
-            };
-          };
-          /**
+                    value: string;
+                  }[];
+                };
+              };
+              /**
                * A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
                */
-          merchantClassificationCode?: string;
-          /**
+              merchantClassificationCode?: string;
+              /**
                * Name of the Party. Could be a real name or a nickname.
                */
-          name?: string;
-          /**
+              name?: string;
+              /**
                * Data model for the complex type PartyPersonalInfo.
                */
-          personalInfo?: {
-            /**
+              personalInfo?: {
+                /**
                  * Data model for the complex type PartyComplexName.
                  */
-            complexName?: {
-              /**
+                complexName?: {
+                  /**
                    * First name of the Party (Name Type).
                    */
-              firstName?: string;
-              /**
+                  firstName?: string;
+                  /**
                    * Middle name of the Party (Name Type).
                    */
-              middleName?: string;
-              /**
+                  middleName?: string;
+                  /**
                    * Last name of the Party (Name Type).
                    */
-              lastName?: string;
-            };
-            /**
+                  lastName?: string;
+                };
+                /**
                  * Date of Birth of the Party.
                  */
-            dateOfBirth?: string;
-          };
-        };
-      }
-      | {
-        /**
+                dateOfBirth?: string;
+              };
+            };
+          }
+        | {
+            /**
              * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
              */
-        transactionId: string;
-        /**
+            transactionId: string;
+            /**
              * Below are the allowed values for the enumeration.
              * - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
              * - PENDING - Payer FSP has sent the transaction request to the Payer.
              * - ACCEPTED - Payer has approved the transaction.
              * - REJECTED - Payer has rejected the transaction.
              */
-        transactionRequestState:
-        | 'RECEIVED'
-        | 'PENDING'
-        | 'ACCEPTED'
-        | 'REJECTED';
-        /**
+            transactionRequestState:
+              | "RECEIVED"
+              | "PENDING"
+              | "ACCEPTED"
+              | "REJECTED";
+            /**
              * Below are the allowed values for the enumeration.
              * - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
              * - PENDING - Payee FSP has validated the transaction.
              * - COMPLETED - Payee FSP has successfully performed the transaction.
              * - REJECTED - Payee FSP has failed to perform the transaction.
              */
-        transactionState: 'RECEIVED' | 'PENDING' | 'COMPLETED' | 'REJECTED';
-      }
-      | {
-        /**
+            transactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
+          }
+        | {
+            /**
              * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
              */
-        transactionRequestId: string;
-        /**
+            transactionRequestId: string;
+            /**
              * Data model for the complex type Party.
              */
-        payee: {
-          /**
+            payee: {
+              /**
                * Data model for the complex type AccountList.
                */
-          accounts?: {
-            /**
+              accounts?: {
+                /**
                  * Accounts associated with the Party.
                  */
-            account: {
-              /**
+                account: {
+                  /**
                    * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                    * be Bank Account Number or anything that may expose a User's private bank
                    * account information.
                    */
-              address?: string;
-              /**
+                  address?: string;
+                  /**
                    * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                    */
-              currency:
-              | 'AED'
-              | 'AFN'
-              | 'ALL'
-              | 'AMD'
-              | 'ANG'
-              | 'AOA'
-              | 'ARS'
-              | 'AUD'
-              | 'AWG'
-              | 'AZN'
-              | 'BAM'
-              | 'BBD'
-              | 'BDT'
-              | 'BGN'
-              | 'BHD'
-              | 'BIF'
-              | 'BMD'
-              | 'BND'
-              | 'BOB'
-              | 'BRL'
-              | 'BSD'
-              | 'BTN'
-              | 'BWP'
-              | 'BYN'
-              | 'BZD'
-              | 'CAD'
-              | 'CDF'
-              | 'CHF'
-              | 'CLP'
-              | 'CNY'
-              | 'COP'
-              | 'CRC'
-              | 'CUC'
-              | 'CUP'
-              | 'CVE'
-              | 'CZK'
-              | 'DJF'
-              | 'DKK'
-              | 'DOP'
-              | 'DZD'
-              | 'EGP'
-              | 'ERN'
-              | 'ETB'
-              | 'EUR'
-              | 'FJD'
-              | 'FKP'
-              | 'GBP'
-              | 'GEL'
-              | 'GGP'
-              | 'GHS'
-              | 'GIP'
-              | 'GMD'
-              | 'GNF'
-              | 'GTQ'
-              | 'GYD'
-              | 'HKD'
-              | 'HNL'
-              | 'HRK'
-              | 'HTG'
-              | 'HUF'
-              | 'IDR'
-              | 'ILS'
-              | 'IMP'
-              | 'INR'
-              | 'IQD'
-              | 'IRR'
-              | 'ISK'
-              | 'JEP'
-              | 'JMD'
-              | 'JOD'
-              | 'JPY'
-              | 'KES'
-              | 'KGS'
-              | 'KHR'
-              | 'KMF'
-              | 'KPW'
-              | 'KRW'
-              | 'KWD'
-              | 'KYD'
-              | 'KZT'
-              | 'LAK'
-              | 'LBP'
-              | 'LKR'
-              | 'LRD'
-              | 'LSL'
-              | 'LYD'
-              | 'MAD'
-              | 'MDL'
-              | 'MGA'
-              | 'MKD'
-              | 'MMK'
-              | 'MNT'
-              | 'MOP'
-              | 'MRO'
-              | 'MUR'
-              | 'MVR'
-              | 'MWK'
-              | 'MXN'
-              | 'MYR'
-              | 'MZN'
-              | 'NAD'
-              | 'NGN'
-              | 'NIO'
-              | 'NOK'
-              | 'NPR'
-              | 'NZD'
-              | 'OMR'
-              | 'PAB'
-              | 'PEN'
-              | 'PGK'
-              | 'PHP'
-              | 'PKR'
-              | 'PLN'
-              | 'PYG'
-              | 'QAR'
-              | 'RON'
-              | 'RSD'
-              | 'RUB'
-              | 'RWF'
-              | 'SAR'
-              | 'SBD'
-              | 'SCR'
-              | 'SDG'
-              | 'SEK'
-              | 'SGD'
-              | 'SHP'
-              | 'SLL'
-              | 'SOS'
-              | 'SPL'
-              | 'SRD'
-              | 'STD'
-              | 'SVC'
-              | 'SYP'
-              | 'SZL'
-              | 'THB'
-              | 'TJS'
-              | 'TMT'
-              | 'TND'
-              | 'TOP'
-              | 'TRY'
-              | 'TTD'
-              | 'TVD'
-              | 'TWD'
-              | 'TZS'
-              | 'UAH'
-              | 'UGX'
-              | 'USD'
-              | 'UYU'
-              | 'UZS'
-              | 'VEF'
-              | 'VND'
-              | 'VUV'
-              | 'WST'
-              | 'XAF'
-              | 'XCD'
-              | 'XDR'
-              | 'XOF'
-              | 'XPF'
-              | 'YER'
-              | 'ZAR'
-              | 'ZMW'
-              | 'ZWD';
-              /**
+                  currency:
+                    | "AED"
+                    | "AFN"
+                    | "ALL"
+                    | "AMD"
+                    | "ANG"
+                    | "AOA"
+                    | "ARS"
+                    | "AUD"
+                    | "AWG"
+                    | "AZN"
+                    | "BAM"
+                    | "BBD"
+                    | "BDT"
+                    | "BGN"
+                    | "BHD"
+                    | "BIF"
+                    | "BMD"
+                    | "BND"
+                    | "BOB"
+                    | "BRL"
+                    | "BSD"
+                    | "BTN"
+                    | "BWP"
+                    | "BYN"
+                    | "BZD"
+                    | "CAD"
+                    | "CDF"
+                    | "CHF"
+                    | "CLP"
+                    | "CNY"
+                    | "COP"
+                    | "CRC"
+                    | "CUC"
+                    | "CUP"
+                    | "CVE"
+                    | "CZK"
+                    | "DJF"
+                    | "DKK"
+                    | "DOP"
+                    | "DZD"
+                    | "EGP"
+                    | "ERN"
+                    | "ETB"
+                    | "EUR"
+                    | "FJD"
+                    | "FKP"
+                    | "GBP"
+                    | "GEL"
+                    | "GGP"
+                    | "GHS"
+                    | "GIP"
+                    | "GMD"
+                    | "GNF"
+                    | "GTQ"
+                    | "GYD"
+                    | "HKD"
+                    | "HNL"
+                    | "HRK"
+                    | "HTG"
+                    | "HUF"
+                    | "IDR"
+                    | "ILS"
+                    | "IMP"
+                    | "INR"
+                    | "IQD"
+                    | "IRR"
+                    | "ISK"
+                    | "JEP"
+                    | "JMD"
+                    | "JOD"
+                    | "JPY"
+                    | "KES"
+                    | "KGS"
+                    | "KHR"
+                    | "KMF"
+                    | "KPW"
+                    | "KRW"
+                    | "KWD"
+                    | "KYD"
+                    | "KZT"
+                    | "LAK"
+                    | "LBP"
+                    | "LKR"
+                    | "LRD"
+                    | "LSL"
+                    | "LYD"
+                    | "MAD"
+                    | "MDL"
+                    | "MGA"
+                    | "MKD"
+                    | "MMK"
+                    | "MNT"
+                    | "MOP"
+                    | "MRO"
+                    | "MUR"
+                    | "MVR"
+                    | "MWK"
+                    | "MXN"
+                    | "MYR"
+                    | "MZN"
+                    | "NAD"
+                    | "NGN"
+                    | "NIO"
+                    | "NOK"
+                    | "NPR"
+                    | "NZD"
+                    | "OMR"
+                    | "PAB"
+                    | "PEN"
+                    | "PGK"
+                    | "PHP"
+                    | "PKR"
+                    | "PLN"
+                    | "PYG"
+                    | "QAR"
+                    | "RON"
+                    | "RSD"
+                    | "RUB"
+                    | "RWF"
+                    | "SAR"
+                    | "SBD"
+                    | "SCR"
+                    | "SDG"
+                    | "SEK"
+                    | "SGD"
+                    | "SHP"
+                    | "SLL"
+                    | "SOS"
+                    | "SPL"
+                    | "SRD"
+                    | "STD"
+                    | "SVC"
+                    | "SYP"
+                    | "SZL"
+                    | "THB"
+                    | "TJS"
+                    | "TMT"
+                    | "TND"
+                    | "TOP"
+                    | "TRY"
+                    | "TTD"
+                    | "TVD"
+                    | "TWD"
+                    | "TZS"
+                    | "UAH"
+                    | "UGX"
+                    | "USD"
+                    | "UYU"
+                    | "UZS"
+                    | "VEF"
+                    | "VND"
+                    | "VUV"
+                    | "WST"
+                    | "XAF"
+                    | "XCD"
+                    | "XDR"
+                    | "XOF"
+                    | "XPF"
+                    | "YER"
+                    | "ZAR"
+                    | "ZMW"
+                    | "ZWD";
+                  /**
                    * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
                    *
                    * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
                    *
                    * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
                    */
-              description?: string;
-            }[];
-          };
-          /**
+                  description?: string;
+                }[];
+              };
+              /**
                * Data model for the complex type PartyIdInfo.
                */
-          partyIdInfo: {
-            /**
+              partyIdInfo: {
+                /**
                  * This is a variant based on FSPIOP `PartyIdType` specification.
                  * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
                  *
@@ -2360,88 +2360,88 @@ export interface operations {
                  * - CONSENT - TBD
                  * - THIRD_PARTY_LINK - TBD
                  */
-            partyIdType:
-            | 'MSISDN'
-            | 'EMAIL'
-            | 'PERSONAL_ID'
-            | 'BUSINESS'
-            | 'DEVICE'
-            | 'ACCOUNT_ID'
-            | 'IBAN'
-            | 'ALIAS'
-            | 'CONSENT'
-            | 'THIRD_PARTY_LINK';
-            /**
+                partyIdType:
+                  | "MSISDN"
+                  | "EMAIL"
+                  | "PERSONAL_ID"
+                  | "BUSINESS"
+                  | "DEVICE"
+                  | "ACCOUNT_ID"
+                  | "IBAN"
+                  | "ALIAS"
+                  | "CONSENT"
+                  | "THIRD_PARTY_LINK";
+                /**
                  * Identifier of the Party.
                  */
-            partyIdentifier: string;
-            /**
+                partyIdentifier: string;
+                /**
                  * Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
                  */
-            partySubIdOrType?: string;
-            /**
+                partySubIdOrType?: string;
+                /**
                  * FSP identifier.
                  */
-            fspId?: string;
-            /**
+                fspId?: string;
+                /**
                  * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
                  */
-            extensionList?: {
-              /**
+                extensionList?: {
+                  /**
                    * Number of Extension elements.
                    */
-              extension: {
-                /**
+                  extension: {
+                    /**
                      * Extension key.
                      */
-                key: string;
-                /**
+                    key: string;
+                    /**
                      * Extension value.
                      */
-                value: string;
-              }[];
-            };
-          };
-          /**
+                    value: string;
+                  }[];
+                };
+              };
+              /**
                * A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
                */
-          merchantClassificationCode?: string;
-          /**
+              merchantClassificationCode?: string;
+              /**
                * Name of the Party. Could be a real name or a nickname.
                */
-          name?: string;
-          /**
+              name?: string;
+              /**
                * Data model for the complex type PartyPersonalInfo.
                */
-          personalInfo?: {
-            /**
+              personalInfo?: {
+                /**
                  * Data model for the complex type PartyComplexName.
                  */
-            complexName?: {
-              /**
+                complexName?: {
+                  /**
                    * First name of the Party (Name Type).
                    */
-              firstName?: string;
-              /**
+                  firstName?: string;
+                  /**
                    * Middle name of the Party (Name Type).
                    */
-              middleName?: string;
-              /**
+                  middleName?: string;
+                  /**
                    * Last name of the Party (Name Type).
                    */
-              lastName?: string;
-            };
-            /**
+                  lastName?: string;
+                };
+                /**
                  * Date of Birth of the Party.
                  */
-            dateOfBirth?: string;
-          };
-        };
-        /**
+                dateOfBirth?: string;
+              };
+            };
+            /**
              * Data model for the complex type PartyIdInfo.
              */
-        payer: {
-          /**
+            payer: {
+              /**
                * This is a variant based on FSPIOP `PartyIdType` specification.
                * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
                *
@@ -2483,228 +2483,228 @@ export interface operations {
                * - CONSENT - TBD
                * - THIRD_PARTY_LINK - TBD
                */
-          partyIdType:
-          | 'MSISDN'
-          | 'EMAIL'
-          | 'PERSONAL_ID'
-          | 'BUSINESS'
-          | 'DEVICE'
-          | 'ACCOUNT_ID'
-          | 'IBAN'
-          | 'ALIAS'
-          | 'CONSENT'
-          | 'THIRD_PARTY_LINK';
-          /**
+              partyIdType:
+                | "MSISDN"
+                | "EMAIL"
+                | "PERSONAL_ID"
+                | "BUSINESS"
+                | "DEVICE"
+                | "ACCOUNT_ID"
+                | "IBAN"
+                | "ALIAS"
+                | "CONSENT"
+                | "THIRD_PARTY_LINK";
+              /**
                * Identifier of the Party.
                */
-          partyIdentifier: string;
-          /**
+              partyIdentifier: string;
+              /**
                * Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
                */
-          partySubIdOrType?: string;
-          /**
+              partySubIdOrType?: string;
+              /**
                * FSP identifier.
                */
-          fspId?: string;
-          /**
+              fspId?: string;
+              /**
                * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
                */
-          extensionList?: {
-            /**
+              extensionList?: {
+                /**
                  * Number of Extension elements.
                  */
-            extension: {
-              /**
+                extension: {
+                  /**
                    * Extension key.
                    */
-              key: string;
-              /**
+                  key: string;
+                  /**
                    * Extension value.
                    */
-              value: string;
-            }[];
-          };
-        };
-        /**
+                  value: string;
+                }[];
+              };
+            };
+            /**
              * Data model for the complex type Money.
              */
-        amount: {
-          /**
+            amount: {
+              /**
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
-          currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
-          /**
+              currency:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /**
                * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
                */
-          amount: string;
-        };
-        /**
+              amount: string;
+            };
+            /**
              * Data model for the complex type TransactionType.
              */
-        transactionType: {
-          /**
+            transactionType: {
+              /**
                * Below are the allowed values for the enumeration.
                * - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.
                * - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.
@@ -2712,102 +2712,102 @@ export interface operations {
                * - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
                * - REFUND - Used for performing a refund of transaction.
                */
-          scenario:
-          | 'DEPOSIT'
-          | 'WITHDRAWAL'
-          | 'TRANSFER'
-          | 'PAYMENT'
-          | 'REFUND';
-          /**
+              scenario:
+                | "DEPOSIT"
+                | "WITHDRAWAL"
+                | "TRANSFER"
+                | "PAYMENT"
+                | "REFUND";
+              /**
                * Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
                */
-          subScenario?: string;
-          /**
+              subScenario?: string;
+              /**
                * Below are the allowed values for the enumeration.
                * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
                * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
                */
-          initiator: 'PAYER' | 'PAYEE';
-          /**
+              initiator: "PAYER" | "PAYEE";
+              /**
                * Below are the allowed values for the enumeration.
                * - CONSUMER - Consumer is the initiator of the transaction.
                * - AGENT - Agent is the initiator of the transaction.
                * - BUSINESS - Business is the initiator of the transaction.
                * - DEVICE - Device is the initiator of the transaction.
                */
-          initiatorType: 'CONSUMER' | 'AGENT' | 'BUSINESS' | 'DEVICE';
-          /**
+              initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+              /**
                * Data model for the complex type Refund.
                */
-          refundInfo?: {
-            /**
+              refundInfo?: {
+                /**
                  * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                  */
-            originalTransactionId: string;
-            /**
+                originalTransactionId: string;
+                /**
                  * Reason for the refund.
                  */
-            refundReason?: string;
-          };
-          /**
+                refundReason?: string;
+              };
+              /**
                * (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
                */
-          balanceOfPayments?: string;
-        };
-        /**
+              balanceOfPayments?: string;
+            };
+            /**
              * Memo assigned to transaction.
              */
-        note?: string;
-        /**
+            note?: string;
+            /**
              * Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
              */
-        geoCode?: {
-          /**
+            geoCode?: {
+              /**
                * The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
                */
-          latitude: string;
-          /**
+              latitude: string;
+              /**
                * The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
                */
-          longitude: string;
-        };
-        /**
+              longitude: string;
+            };
+            /**
              * Below are the allowed values for the enumeration AuthenticationType.
              * - OTP - One-time password generated by the Payer FSP.
              * - QRCODE - QR code used as One Time Password.
              * - U2F - U2F is a new addition isolated to Thirdparty stream.
              */
-        authenticationType?: 'OTP' | 'QRCODE' | 'U2F';
-        /**
+            authenticationType?: "OTP" | "QRCODE" | "U2F";
+            /**
              * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
              */
-        expiration?: string;
-        /**
+            expiration?: string;
+            /**
              * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
              */
-        extensionList?: {
-          /**
+            extensionList?: {
+              /**
                * Number of Extension elements.
                */
-          extension: {
-            /**
+              extension: {
+                /**
                  * Extension key.
                  */
-            key: string;
-            /**
+                key: string;
+                /**
                  * Extension value.
                  */
-            value: string;
-          }[];
-        };
-      }
-      | ('RECEIVED' | 'PENDING' | 'COMPLETED' | 'REJECTED');
+                value: string;
+              }[];
+            };
+          }
+        | ("RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED");
     };
     responses: {
       /**
        * Ok
        */
-      '200': unknown;
+      "200": unknown;
     };
   };
   /**
@@ -2826,12 +2826,12 @@ export interface operations {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -2868,8 +2868,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -2906,8 +2906,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -2944,8 +2944,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -2982,8 +2982,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3020,8 +3020,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3058,8 +3058,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3096,8 +3096,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3144,15 +3144,15 @@ export interface operations {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
       };
     };
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
          * be Bank Account Number or anything that may expose a User's private bank
@@ -3169,180 +3169,180 @@ export interface operations {
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
         currency:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
       }[];
     };
     responses: {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3379,8 +3379,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3417,8 +3417,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3455,8 +3455,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3493,8 +3493,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3531,8 +3531,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3569,8 +3569,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3607,8 +3607,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3649,7 +3649,7 @@ export interface operations {
    */
   UpdateAccountsByUserIdError: {
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Data model for the complex type ErrorInformation.
          */
@@ -3687,12 +3687,12 @@ export interface operations {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3729,8 +3729,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3767,8 +3767,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3805,8 +3805,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3843,8 +3843,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3881,8 +3881,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3919,8 +3919,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3957,8 +3957,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -3999,14 +3999,14 @@ export interface operations {
    */
   AuthorizationsPostRequest: {
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Below are the allowed values for the enumeration AuthenticationType.
          * - OTP - One-time password generated by the Payer FSP.
          * - QRCODE - QR code used as One Time Password.
          * - U2F - U2F is a new addition isolated to Thirdparty stream.
          */
-        authenticationType: 'OTP' | 'QRCODE' | 'U2F';
+        authenticationType: "OTP" | "QRCODE" | "U2F";
         /**
          * The API data type Integer is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited to a specific number of digits.
          */
@@ -4019,168 +4019,168 @@ export interface operations {
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
           currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
           /**
            * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
            */
@@ -4206,168 +4206,168 @@ export interface operations {
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
             currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
             /**
              * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
              */
@@ -4381,168 +4381,168 @@ export interface operations {
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
             currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
             /**
              * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
              */
@@ -4556,168 +4556,168 @@ export interface operations {
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
             currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
             /**
              * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
              */
@@ -4731,168 +4731,168 @@ export interface operations {
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
             currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
             /**
              * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
              */
@@ -4948,12 +4948,12 @@ export interface operations {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -4990,8 +4990,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5028,8 +5028,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5066,8 +5066,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5104,8 +5104,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5142,8 +5142,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5180,8 +5180,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5218,8 +5218,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5270,8 +5270,8 @@ export interface operations {
       /**
        * information about result of required (via POST) /authorization
        */
-      '200': {
-        'application/json': {
+      "200": {
+        "application/json": {
           /**
            * Data model for the complex type AuthenticationInfo.
            */
@@ -5282,22 +5282,22 @@ export interface operations {
              * - QRCODE - QR code used as One Time Password.
              * - U2F - U2F is a new addition isolated to Thirdparty stream.
              */
-            authentication: 'OTP' | 'QRCODE' | 'U2F';
+            authentication: "OTP" | "QRCODE" | "U2F";
             /**
              * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
              */
             authenticationValue: Partial<string> &
-            Partial<string> &
-            Partial<{
-              /**
+              Partial<string> &
+              Partial<{
+                /**
                  * U2F challenge-response.
                  */
-              pinValue: string;
-              /**
+                pinValue: string;
+                /**
                  * Sequential counter used for cloning detection. Present only for U2F authentication.
                  */
-              counter: string;
-            }>;
+                counter: string;
+              }>;
           };
           /**
            * Below are the allowed values for the enumeration.
@@ -5305,14 +5305,14 @@ export interface operations {
            * - REJECTED - Consumer rejected the transaction.
            * - RESEND - Consumer requested to resend the authentication value.
            */
-          responseType: 'ENTERED' | 'REJECTED' | 'RESEND';
+          responseType: "ENTERED" | "REJECTED" | "RESEND";
         };
       };
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5349,8 +5349,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5387,8 +5387,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5425,8 +5425,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5463,8 +5463,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5501,8 +5501,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5539,8 +5539,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5577,8 +5577,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5622,12 +5622,12 @@ export interface operations {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5664,8 +5664,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5702,8 +5702,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5740,8 +5740,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5778,8 +5778,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5816,8 +5816,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5854,8 +5854,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5892,8 +5892,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5937,12 +5937,12 @@ export interface operations {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -5979,8 +5979,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6017,8 +6017,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6055,8 +6055,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6093,8 +6093,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6131,8 +6131,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6169,8 +6169,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6207,8 +6207,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6259,11 +6259,11 @@ export interface operations {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
         /**
          * The `Date` header field indicates the date when the request was sent.
          */
@@ -6273,35 +6273,35 @@ export interface operations {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
          */
@@ -6317,9 +6317,9 @@ export interface operations {
            * account information.
            */
           accountId: string;
-          actions: ('accounts.getBalance' | 'accounts.transfer')[];
+          actions: ("accounts.getBalance" | "accounts.transfer")[];
         }[];
-        authChannels: ('WEB' | 'OTP')[];
+        authChannels: ("WEB" | "OTP")[];
         /**
          * The callback uri that the user will be redirected to after completing the WEB auth channel.
          */
@@ -6330,12 +6330,12 @@ export interface operations {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6372,8 +6372,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6410,8 +6410,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6448,8 +6448,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6486,8 +6486,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6524,8 +6524,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6562,8 +6562,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6600,8 +6600,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6645,114 +6645,114 @@ export interface operations {
    */
   UpdateConsentRequest: {
     requestBody: {
-      'application/json':
-      | {
-        /**
+      "application/json":
+        | {
+            /**
              * The id of the PISP who will initiate transactions on a user's behalf.
              */
-        initiatorId: string;
-        scopes: {
-          /**
+            initiatorId: string;
+            scopes: {
+              /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-          accountId: string;
-          actions: ('accounts.getBalance' | 'accounts.transfer')[];
-        }[];
-        authChannels: 'WEB'[];
-        /**
+              accountId: string;
+              actions: ("accounts.getBalance" | "accounts.transfer")[];
+            }[];
+            authChannels: "WEB"[];
+            /**
              * The callback uri that the user will be redirected to after completing the WEB auth channel.
              */
-        callbackUri: string;
-        /**
+            callbackUri: string;
+            /**
              * The callback uri that the pisp app redirects to for user to complete their login.
              */
-        authUri: string;
-      }
-      | {
-        /**
+            authUri: string;
+          }
+        | {
+            /**
              * The id of the PISP who will initiate transactions on a user's behalf.
              */
-        initiatorId: string;
-        scopes: {
-          /**
+            initiatorId: string;
+            scopes: {
+              /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-          accountId: string;
-          actions: ('accounts.getBalance' | 'accounts.transfer')[];
-        }[];
-        authChannels: 'WEB'[];
-        /**
+              accountId: string;
+              actions: ("accounts.getBalance" | "accounts.transfer")[];
+            }[];
+            authChannels: "WEB"[];
+            /**
              * The callback uri that the user will be redirected to after completing the WEB auth channel.
              */
-        callbackUri: string;
-        /**
+            callbackUri: string;
+            /**
              * The callback uri that the pisp app redirects to for user to complete their login.
              */
-        authUri: string;
-        /**
+            authUri: string;
+            /**
              * The Auth token from the OTP or redirect to pisp app.
              */
-        authToken: string;
-      }
-      | {
-        /**
+            authToken: string;
+          }
+        | {
+            /**
              * The id of the PISP who will initiate transactions on a user's behalf.
              */
-        initiatorId: string;
-        scopes: {
-          /**
+            initiatorId: string;
+            scopes: {
+              /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-          accountId: string;
-          actions: ('accounts.getBalance' | 'accounts.transfer')[];
-        }[];
-        authChannels: 'OTP'[];
-        /**
+              accountId: string;
+              actions: ("accounts.getBalance" | "accounts.transfer")[];
+            }[];
+            authChannels: "OTP"[];
+            /**
              * The callback uri that the user will be redirected to after completing the WEB auth channel.
              */
-        callbackUri: string;
-      }
-      | {
-        /**
+            callbackUri: string;
+          }
+        | {
+            /**
              * The id of the PISP who will initiate transactions on a user's behalf.
              */
-        initiatorId: string;
-        scopes: {
-          /**
+            initiatorId: string;
+            scopes: {
+              /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-          accountId: string;
-          actions: ('accounts.getBalance' | 'accounts.transfer')[];
-        }[];
-        authChannels: 'OTP'[];
-        /**
+              accountId: string;
+              actions: ("accounts.getBalance" | "accounts.transfer")[];
+            }[];
+            authChannels: "OTP"[];
+            /**
              * The callback uri that the user will be redirected to after completing the WEB auth channel.
              */
-        callbackUri: string;
-        /**
+            callbackUri: string;
+            /**
              * The Auth token from the OTP or redirect to pisp app.
              */
-        authToken: string;
-      };
+            authToken: string;
+          };
     };
     responses: {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6789,8 +6789,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6827,8 +6827,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6865,8 +6865,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6903,8 +6903,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6941,8 +6941,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -6979,8 +6979,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7017,8 +7017,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7059,7 +7059,7 @@ export interface operations {
    */
   PatchConsentRequest: {
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * The API data type OtpValue is a JSON String of 3 to 10 characters, consisting of digits only. Negative numbers are not allowed. One or more leading zeros are allowed.
          */
@@ -7070,12 +7070,12 @@ export interface operations {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7112,8 +7112,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7150,8 +7150,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7188,8 +7188,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7226,8 +7226,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7264,8 +7264,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7302,8 +7302,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7340,8 +7340,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7394,11 +7394,11 @@ export interface operations {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
         /**
          * The `Date` header field indicates the date when the request was sent.
          */
@@ -7408,35 +7408,35 @@ export interface operations {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Data model for the complex type ErrorInformation.
          */
@@ -7474,12 +7474,12 @@ export interface operations {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7516,8 +7516,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7554,8 +7554,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7592,8 +7592,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7630,8 +7630,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7668,8 +7668,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7706,8 +7706,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7744,8 +7744,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7796,11 +7796,11 @@ export interface operations {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
         /**
          * The `Date` header field indicates the date when the request was sent.
          */
@@ -7810,35 +7810,35 @@ export interface operations {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Common ID between the PISP and FSP for the Consent object
          * decided by the DFSP who creates the Consent
@@ -7857,7 +7857,7 @@ export interface operations {
            * account information.
            */
           accountId: string;
-          actions: ('accounts.getBalance' | 'accounts.transfer')[];
+          actions: ("accounts.getBalance" | "accounts.transfer")[];
         }[];
       };
     };
@@ -7865,12 +7865,12 @@ export interface operations {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7907,8 +7907,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7945,8 +7945,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -7983,8 +7983,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8021,8 +8021,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8059,8 +8059,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8097,8 +8097,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8135,8 +8135,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8188,12 +8188,12 @@ export interface operations {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8230,8 +8230,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8268,8 +8268,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8306,8 +8306,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8344,8 +8344,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8382,8 +8382,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8420,8 +8420,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8458,8 +8458,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8510,35 +8510,35 @@ export interface operations {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
       };
     };
     requestBody: {
-      'application/json':
-      | {
-        /**
+      "application/json":
+        | {
+            /**
              * The id of the ConsentRequest that was used to initiate the
              * creation of this Consent.
              */
-        requestId: string;
-        /**
+            requestId: string;
+            /**
              * FSP identifier.
              */
-        participantId: string;
-        /**
+            participantId: string;
+            /**
              * PISP identifier who uses this Consent.
              */
-        initiatorId: string;
-        scopes: {
-          /**
+            initiatorId: string;
+            scopes: {
+              /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-          accountId: string;
-          actions: ('accounts.getBalance' | 'accounts.transfer')[];
-        }[];
-        /**
+              accountId: string;
+              actions: ("accounts.getBalance" | "accounts.transfer")[];
+            }[];
+            /**
              * A credential used to allow a user to prove their identity and access
              * to an account with a DFSP.
              *
@@ -8546,63 +8546,63 @@ export interface operations {
              * more explicit about the `status` field - it should only ever be PENDING when updating
              * a credential.
              */
-        credential: {
-          /**
+            credential: {
+              /**
                * The id of a Credential.
                */
-          id: string;
-          /**
+              id: string;
+              /**
                * The type of the Credential.
                * - "FIDO" - A FIDO public/private keypair.
                */
-          type: 'FIDO';
-          /**
+              type: "FIDO";
+              /**
                * The challenge has signed but not yet verified.
                */
-          status: 'PENDING';
-          /**
+              status: "PENDING";
+              /**
                * The challenge that has been signed by a PISP.
                */
-          challenge: {
-            /**
+              challenge: {
+                /**
                  * Base64 encoded binary of the challenge that must be answered by the PISP.
                  */
-            payload: string;
-            /**
+                payload: string;
+                /**
                  * Base64 encoded binary string or result of the payload signed by the PISP using the private key.
                  */
-            signature: string;
-          };
-          /**
+                signature: string;
+              };
+              /**
                * Base64 encoded bytes - The public key of the Public/Private keypair.
                */
-          payload: string;
-        };
-      }
-      | {
-        /**
+              payload: string;
+            };
+          }
+        | {
+            /**
              * The id of the ConsentRequest that was used to initiate the
              * creation of this Consent.
              */
-        requestId: string;
-        /**
+            requestId: string;
+            /**
              * FSP identifier.
              */
-        participantId: string;
-        /**
+            participantId: string;
+            /**
              * PISP identifier who uses this Consent.
              */
-        initiatorId: string;
-        scopes: {
-          /**
+            initiatorId: string;
+            scopes: {
+              /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-          accountId: string;
-          actions: ('accounts.getBalance' | 'accounts.transfer')[];
-        }[];
-        /**
+              accountId: string;
+              actions: ("accounts.getBalance" | "accounts.transfer")[];
+            }[];
+            /**
              * A credential used to allow a user to prove their identity and access
              * to an account with a DFSP.
              *
@@ -8610,51 +8610,51 @@ export interface operations {
              * more explicit about the `status` field - it should only ever be PENDING when updating
              * a credential.
              */
-        credential: {
-          /**
+            credential: {
+              /**
                * The type of the Credential.
                * - "FIDO" - A FIDO public/private keypair.
                */
-          type: 'FIDO';
-          /**
+              type: "FIDO";
+              /**
                * The challenge has initialized but not yet answered by the PISP.
                */
-          status: 'PENDING';
-          /**
+              status: "PENDING";
+              /**
                * The challenge issued by a DFSP that must be answered by the PISP.
                */
-          challenge: {
-            /**
+              challenge: {
+                /**
                  * Base64 encoded binary of the challenge that must be answered by the PISP.
                  */
-            payload: string;
-          };
-        };
-      }
-      | {
-        /**
+                payload: string;
+              };
+            };
+          }
+        | {
+            /**
              * The id of the ConsentRequest that was used to initiate the
              * creation of this Consent.
              */
-        requestId: string;
-        /**
+            requestId: string;
+            /**
              * FSP identifier.
              */
-        participantId: string;
-        /**
+            participantId: string;
+            /**
              * PISP identifier who uses this Consent.
              */
-        initiatorId: string;
-        scopes: {
-          /**
+            initiatorId: string;
+            scopes: {
+              /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-          accountId: string;
-          actions: ('accounts.getBalance' | 'accounts.transfer')[];
-        }[];
-        /**
+              accountId: string;
+              actions: ("accounts.getBalance" | "accounts.transfer")[];
+            }[];
+            /**
              * A credential used to allow a user to prove their identity and access
              * to an account with a DFSP.
              *
@@ -8662,54 +8662,54 @@ export interface operations {
              * more explicit about the `status` field - it should only ever be VERIFIED when updating
              * a credential.
              */
-        credential: {
-          /**
+            credential: {
+              /**
                * The id of a Credential.
                */
-          id?: string;
-          /**
+              id?: string;
+              /**
                * The type of the Credential.
                * - "FIDO" - A FIDO public/private keypair.
                */
-          type: 'FIDO';
-          /**
+              type: "FIDO";
+              /**
                * The Credential is valid, and ready to be used by the PISP.
                */
-          status: 'VERIFIED';
-          /**
+              status: "VERIFIED";
+              /**
                * The challenge that has been signed by a PISP.
                */
-          challenge: {
-            /**
+              challenge: {
+                /**
                  * Base64 encoded binary of the challenge that must be answered by the PISP.
                  */
-            payload: string;
-            /**
+                payload: string;
+                /**
                  * Base64 encoded binary string or result of the payload signed by the PISP using the private key.
                  */
-            signature: string;
-          };
-          /**
+                signature: string;
+              };
+              /**
                * Base64 encoded bytes - The public key of the Public/Private keypair.
                */
-          payload?: string;
-        };
-      };
+              payload?: string;
+            };
+          };
     };
     responses: {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8746,8 +8746,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8784,8 +8784,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8822,8 +8822,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8860,8 +8860,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8898,8 +8898,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8936,8 +8936,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -8974,8 +8974,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9021,12 +9021,12 @@ export interface operations {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9063,8 +9063,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9101,8 +9101,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9139,8 +9139,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9177,8 +9177,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9215,8 +9215,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9253,8 +9253,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9291,8 +9291,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9351,11 +9351,11 @@ export interface operations {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
         /**
          * The `Date` header field indicates the date when the request was sent.
          */
@@ -9365,52 +9365,52 @@ export interface operations {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * The type of the Credential.
          * - "FIDO" - A FIDO public/private keypair.
          */
-        type: 'FIDO';
+        type: "FIDO";
       };
     };
     responses: {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9447,8 +9447,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9485,8 +9485,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9523,8 +9523,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9561,8 +9561,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9599,8 +9599,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9637,8 +9637,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9675,8 +9675,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -9717,7 +9717,7 @@ export interface operations {
    */
   CreateThirdpartyTransactionRequests: {
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Common ID between the FSPs for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
          */
@@ -9744,168 +9744,168 @@ export interface operations {
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
               currency:
-              | 'AED'
-              | 'AFN'
-              | 'ALL'
-              | 'AMD'
-              | 'ANG'
-              | 'AOA'
-              | 'ARS'
-              | 'AUD'
-              | 'AWG'
-              | 'AZN'
-              | 'BAM'
-              | 'BBD'
-              | 'BDT'
-              | 'BGN'
-              | 'BHD'
-              | 'BIF'
-              | 'BMD'
-              | 'BND'
-              | 'BOB'
-              | 'BRL'
-              | 'BSD'
-              | 'BTN'
-              | 'BWP'
-              | 'BYN'
-              | 'BZD'
-              | 'CAD'
-              | 'CDF'
-              | 'CHF'
-              | 'CLP'
-              | 'CNY'
-              | 'COP'
-              | 'CRC'
-              | 'CUC'
-              | 'CUP'
-              | 'CVE'
-              | 'CZK'
-              | 'DJF'
-              | 'DKK'
-              | 'DOP'
-              | 'DZD'
-              | 'EGP'
-              | 'ERN'
-              | 'ETB'
-              | 'EUR'
-              | 'FJD'
-              | 'FKP'
-              | 'GBP'
-              | 'GEL'
-              | 'GGP'
-              | 'GHS'
-              | 'GIP'
-              | 'GMD'
-              | 'GNF'
-              | 'GTQ'
-              | 'GYD'
-              | 'HKD'
-              | 'HNL'
-              | 'HRK'
-              | 'HTG'
-              | 'HUF'
-              | 'IDR'
-              | 'ILS'
-              | 'IMP'
-              | 'INR'
-              | 'IQD'
-              | 'IRR'
-              | 'ISK'
-              | 'JEP'
-              | 'JMD'
-              | 'JOD'
-              | 'JPY'
-              | 'KES'
-              | 'KGS'
-              | 'KHR'
-              | 'KMF'
-              | 'KPW'
-              | 'KRW'
-              | 'KWD'
-              | 'KYD'
-              | 'KZT'
-              | 'LAK'
-              | 'LBP'
-              | 'LKR'
-              | 'LRD'
-              | 'LSL'
-              | 'LYD'
-              | 'MAD'
-              | 'MDL'
-              | 'MGA'
-              | 'MKD'
-              | 'MMK'
-              | 'MNT'
-              | 'MOP'
-              | 'MRO'
-              | 'MUR'
-              | 'MVR'
-              | 'MWK'
-              | 'MXN'
-              | 'MYR'
-              | 'MZN'
-              | 'NAD'
-              | 'NGN'
-              | 'NIO'
-              | 'NOK'
-              | 'NPR'
-              | 'NZD'
-              | 'OMR'
-              | 'PAB'
-              | 'PEN'
-              | 'PGK'
-              | 'PHP'
-              | 'PKR'
-              | 'PLN'
-              | 'PYG'
-              | 'QAR'
-              | 'RON'
-              | 'RSD'
-              | 'RUB'
-              | 'RWF'
-              | 'SAR'
-              | 'SBD'
-              | 'SCR'
-              | 'SDG'
-              | 'SEK'
-              | 'SGD'
-              | 'SHP'
-              | 'SLL'
-              | 'SOS'
-              | 'SPL'
-              | 'SRD'
-              | 'STD'
-              | 'SVC'
-              | 'SYP'
-              | 'SZL'
-              | 'THB'
-              | 'TJS'
-              | 'TMT'
-              | 'TND'
-              | 'TOP'
-              | 'TRY'
-              | 'TTD'
-              | 'TVD'
-              | 'TWD'
-              | 'TZS'
-              | 'UAH'
-              | 'UGX'
-              | 'USD'
-              | 'UYU'
-              | 'UZS'
-              | 'VEF'
-              | 'VND'
-              | 'VUV'
-              | 'WST'
-              | 'XAF'
-              | 'XCD'
-              | 'XDR'
-              | 'XOF'
-              | 'XPF'
-              | 'YER'
-              | 'ZAR'
-              | 'ZMW'
-              | 'ZWD';
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
               /**
                * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
                *
@@ -9963,16 +9963,16 @@ export interface operations {
              * - THIRD_PARTY_LINK - TBD
              */
             partyIdType:
-            | 'MSISDN'
-            | 'EMAIL'
-            | 'PERSONAL_ID'
-            | 'BUSINESS'
-            | 'DEVICE'
-            | 'ACCOUNT_ID'
-            | 'IBAN'
-            | 'ALIAS'
-            | 'CONSENT'
-            | 'THIRD_PARTY_LINK';
+              | "MSISDN"
+              | "EMAIL"
+              | "PERSONAL_ID"
+              | "BUSINESS"
+              | "DEVICE"
+              | "ACCOUNT_ID"
+              | "IBAN"
+              | "ALIAS"
+              | "CONSENT"
+              | "THIRD_PARTY_LINK";
             /**
              * Identifier of the Party.
              */
@@ -10061,168 +10061,168 @@ export interface operations {
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
               currency:
-              | 'AED'
-              | 'AFN'
-              | 'ALL'
-              | 'AMD'
-              | 'ANG'
-              | 'AOA'
-              | 'ARS'
-              | 'AUD'
-              | 'AWG'
-              | 'AZN'
-              | 'BAM'
-              | 'BBD'
-              | 'BDT'
-              | 'BGN'
-              | 'BHD'
-              | 'BIF'
-              | 'BMD'
-              | 'BND'
-              | 'BOB'
-              | 'BRL'
-              | 'BSD'
-              | 'BTN'
-              | 'BWP'
-              | 'BYN'
-              | 'BZD'
-              | 'CAD'
-              | 'CDF'
-              | 'CHF'
-              | 'CLP'
-              | 'CNY'
-              | 'COP'
-              | 'CRC'
-              | 'CUC'
-              | 'CUP'
-              | 'CVE'
-              | 'CZK'
-              | 'DJF'
-              | 'DKK'
-              | 'DOP'
-              | 'DZD'
-              | 'EGP'
-              | 'ERN'
-              | 'ETB'
-              | 'EUR'
-              | 'FJD'
-              | 'FKP'
-              | 'GBP'
-              | 'GEL'
-              | 'GGP'
-              | 'GHS'
-              | 'GIP'
-              | 'GMD'
-              | 'GNF'
-              | 'GTQ'
-              | 'GYD'
-              | 'HKD'
-              | 'HNL'
-              | 'HRK'
-              | 'HTG'
-              | 'HUF'
-              | 'IDR'
-              | 'ILS'
-              | 'IMP'
-              | 'INR'
-              | 'IQD'
-              | 'IRR'
-              | 'ISK'
-              | 'JEP'
-              | 'JMD'
-              | 'JOD'
-              | 'JPY'
-              | 'KES'
-              | 'KGS'
-              | 'KHR'
-              | 'KMF'
-              | 'KPW'
-              | 'KRW'
-              | 'KWD'
-              | 'KYD'
-              | 'KZT'
-              | 'LAK'
-              | 'LBP'
-              | 'LKR'
-              | 'LRD'
-              | 'LSL'
-              | 'LYD'
-              | 'MAD'
-              | 'MDL'
-              | 'MGA'
-              | 'MKD'
-              | 'MMK'
-              | 'MNT'
-              | 'MOP'
-              | 'MRO'
-              | 'MUR'
-              | 'MVR'
-              | 'MWK'
-              | 'MXN'
-              | 'MYR'
-              | 'MZN'
-              | 'NAD'
-              | 'NGN'
-              | 'NIO'
-              | 'NOK'
-              | 'NPR'
-              | 'NZD'
-              | 'OMR'
-              | 'PAB'
-              | 'PEN'
-              | 'PGK'
-              | 'PHP'
-              | 'PKR'
-              | 'PLN'
-              | 'PYG'
-              | 'QAR'
-              | 'RON'
-              | 'RSD'
-              | 'RUB'
-              | 'RWF'
-              | 'SAR'
-              | 'SBD'
-              | 'SCR'
-              | 'SDG'
-              | 'SEK'
-              | 'SGD'
-              | 'SHP'
-              | 'SLL'
-              | 'SOS'
-              | 'SPL'
-              | 'SRD'
-              | 'STD'
-              | 'SVC'
-              | 'SYP'
-              | 'SZL'
-              | 'THB'
-              | 'TJS'
-              | 'TMT'
-              | 'TND'
-              | 'TOP'
-              | 'TRY'
-              | 'TTD'
-              | 'TVD'
-              | 'TWD'
-              | 'TZS'
-              | 'UAH'
-              | 'UGX'
-              | 'USD'
-              | 'UYU'
-              | 'UZS'
-              | 'VEF'
-              | 'VND'
-              | 'VUV'
-              | 'WST'
-              | 'XAF'
-              | 'XCD'
-              | 'XDR'
-              | 'XOF'
-              | 'XPF'
-              | 'YER'
-              | 'ZAR'
-              | 'ZMW'
-              | 'ZWD';
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
               /**
                * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
                *
@@ -10242,7 +10242,7 @@ export interface operations {
              * This validation interface should be use by `POST /thirdpartyRequests/transactions`
              * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
              */
-            partyIdType: 'THIRD_PARTY_LINK';
+            partyIdType: "THIRD_PARTY_LINK";
             /**
              * Identifier of the Party.
              */
@@ -10312,7 +10312,7 @@ export interface operations {
         /**
          * SEND for sendAmount, RECEIVE for receiveAmount.
          */
-        amountType: 'SEND' | 'RECEIVE';
+        amountType: "SEND" | "RECEIVE";
         /**
          * Requested amount to be transferred from the Payer to Payee.
          */
@@ -10321,168 +10321,168 @@ export interface operations {
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
           currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
           /**
            * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
            */
@@ -10501,11 +10501,11 @@ export interface operations {
            * - REFUND - Used for performing a refund of transaction.
            */
           scenario:
-          | 'DEPOSIT'
-          | 'WITHDRAWAL'
-          | 'TRANSFER'
-          | 'PAYMENT'
-          | 'REFUND';
+            | "DEPOSIT"
+            | "WITHDRAWAL"
+            | "TRANSFER"
+            | "PAYMENT"
+            | "REFUND";
           /**
            * Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
            */
@@ -10515,7 +10515,7 @@ export interface operations {
            * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
            * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
            */
-          initiator: 'PAYER' | 'PAYEE';
+          initiator: "PAYER" | "PAYEE";
           /**
            * Below are the allowed values for the enumeration.
            * - CONSUMER - Consumer is the initiator of the transaction.
@@ -10523,7 +10523,7 @@ export interface operations {
            * - BUSINESS - Business is the initiator of the transaction.
            * - DEVICE - Device is the initiator of the transaction.
            */
-          initiatorType: 'CONSUMER' | 'AGENT' | 'BUSINESS' | 'DEVICE';
+          initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
           /**
            * Data model for the complex type Refund.
            */
@@ -10552,12 +10552,12 @@ export interface operations {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -10594,8 +10594,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -10632,8 +10632,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -10670,8 +10670,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -10708,8 +10708,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -10746,8 +10746,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -10784,8 +10784,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -10822,8 +10822,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -10864,7 +10864,7 @@ export interface operations {
    */
   ThirdpartyRequestsTransactionsPost: {
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Common ID between the FSPs for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
          */
@@ -10891,168 +10891,168 @@ export interface operations {
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
               currency:
-              | 'AED'
-              | 'AFN'
-              | 'ALL'
-              | 'AMD'
-              | 'ANG'
-              | 'AOA'
-              | 'ARS'
-              | 'AUD'
-              | 'AWG'
-              | 'AZN'
-              | 'BAM'
-              | 'BBD'
-              | 'BDT'
-              | 'BGN'
-              | 'BHD'
-              | 'BIF'
-              | 'BMD'
-              | 'BND'
-              | 'BOB'
-              | 'BRL'
-              | 'BSD'
-              | 'BTN'
-              | 'BWP'
-              | 'BYN'
-              | 'BZD'
-              | 'CAD'
-              | 'CDF'
-              | 'CHF'
-              | 'CLP'
-              | 'CNY'
-              | 'COP'
-              | 'CRC'
-              | 'CUC'
-              | 'CUP'
-              | 'CVE'
-              | 'CZK'
-              | 'DJF'
-              | 'DKK'
-              | 'DOP'
-              | 'DZD'
-              | 'EGP'
-              | 'ERN'
-              | 'ETB'
-              | 'EUR'
-              | 'FJD'
-              | 'FKP'
-              | 'GBP'
-              | 'GEL'
-              | 'GGP'
-              | 'GHS'
-              | 'GIP'
-              | 'GMD'
-              | 'GNF'
-              | 'GTQ'
-              | 'GYD'
-              | 'HKD'
-              | 'HNL'
-              | 'HRK'
-              | 'HTG'
-              | 'HUF'
-              | 'IDR'
-              | 'ILS'
-              | 'IMP'
-              | 'INR'
-              | 'IQD'
-              | 'IRR'
-              | 'ISK'
-              | 'JEP'
-              | 'JMD'
-              | 'JOD'
-              | 'JPY'
-              | 'KES'
-              | 'KGS'
-              | 'KHR'
-              | 'KMF'
-              | 'KPW'
-              | 'KRW'
-              | 'KWD'
-              | 'KYD'
-              | 'KZT'
-              | 'LAK'
-              | 'LBP'
-              | 'LKR'
-              | 'LRD'
-              | 'LSL'
-              | 'LYD'
-              | 'MAD'
-              | 'MDL'
-              | 'MGA'
-              | 'MKD'
-              | 'MMK'
-              | 'MNT'
-              | 'MOP'
-              | 'MRO'
-              | 'MUR'
-              | 'MVR'
-              | 'MWK'
-              | 'MXN'
-              | 'MYR'
-              | 'MZN'
-              | 'NAD'
-              | 'NGN'
-              | 'NIO'
-              | 'NOK'
-              | 'NPR'
-              | 'NZD'
-              | 'OMR'
-              | 'PAB'
-              | 'PEN'
-              | 'PGK'
-              | 'PHP'
-              | 'PKR'
-              | 'PLN'
-              | 'PYG'
-              | 'QAR'
-              | 'RON'
-              | 'RSD'
-              | 'RUB'
-              | 'RWF'
-              | 'SAR'
-              | 'SBD'
-              | 'SCR'
-              | 'SDG'
-              | 'SEK'
-              | 'SGD'
-              | 'SHP'
-              | 'SLL'
-              | 'SOS'
-              | 'SPL'
-              | 'SRD'
-              | 'STD'
-              | 'SVC'
-              | 'SYP'
-              | 'SZL'
-              | 'THB'
-              | 'TJS'
-              | 'TMT'
-              | 'TND'
-              | 'TOP'
-              | 'TRY'
-              | 'TTD'
-              | 'TVD'
-              | 'TWD'
-              | 'TZS'
-              | 'UAH'
-              | 'UGX'
-              | 'USD'
-              | 'UYU'
-              | 'UZS'
-              | 'VEF'
-              | 'VND'
-              | 'VUV'
-              | 'WST'
-              | 'XAF'
-              | 'XCD'
-              | 'XDR'
-              | 'XOF'
-              | 'XPF'
-              | 'YER'
-              | 'ZAR'
-              | 'ZMW'
-              | 'ZWD';
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
               /**
                * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
                *
@@ -11110,16 +11110,16 @@ export interface operations {
              * - THIRD_PARTY_LINK - TBD
              */
             partyIdType:
-            | 'MSISDN'
-            | 'EMAIL'
-            | 'PERSONAL_ID'
-            | 'BUSINESS'
-            | 'DEVICE'
-            | 'ACCOUNT_ID'
-            | 'IBAN'
-            | 'ALIAS'
-            | 'CONSENT'
-            | 'THIRD_PARTY_LINK';
+              | "MSISDN"
+              | "EMAIL"
+              | "PERSONAL_ID"
+              | "BUSINESS"
+              | "DEVICE"
+              | "ACCOUNT_ID"
+              | "IBAN"
+              | "ALIAS"
+              | "CONSENT"
+              | "THIRD_PARTY_LINK";
             /**
              * Identifier of the Party.
              */
@@ -11208,168 +11208,168 @@ export interface operations {
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
               currency:
-              | 'AED'
-              | 'AFN'
-              | 'ALL'
-              | 'AMD'
-              | 'ANG'
-              | 'AOA'
-              | 'ARS'
-              | 'AUD'
-              | 'AWG'
-              | 'AZN'
-              | 'BAM'
-              | 'BBD'
-              | 'BDT'
-              | 'BGN'
-              | 'BHD'
-              | 'BIF'
-              | 'BMD'
-              | 'BND'
-              | 'BOB'
-              | 'BRL'
-              | 'BSD'
-              | 'BTN'
-              | 'BWP'
-              | 'BYN'
-              | 'BZD'
-              | 'CAD'
-              | 'CDF'
-              | 'CHF'
-              | 'CLP'
-              | 'CNY'
-              | 'COP'
-              | 'CRC'
-              | 'CUC'
-              | 'CUP'
-              | 'CVE'
-              | 'CZK'
-              | 'DJF'
-              | 'DKK'
-              | 'DOP'
-              | 'DZD'
-              | 'EGP'
-              | 'ERN'
-              | 'ETB'
-              | 'EUR'
-              | 'FJD'
-              | 'FKP'
-              | 'GBP'
-              | 'GEL'
-              | 'GGP'
-              | 'GHS'
-              | 'GIP'
-              | 'GMD'
-              | 'GNF'
-              | 'GTQ'
-              | 'GYD'
-              | 'HKD'
-              | 'HNL'
-              | 'HRK'
-              | 'HTG'
-              | 'HUF'
-              | 'IDR'
-              | 'ILS'
-              | 'IMP'
-              | 'INR'
-              | 'IQD'
-              | 'IRR'
-              | 'ISK'
-              | 'JEP'
-              | 'JMD'
-              | 'JOD'
-              | 'JPY'
-              | 'KES'
-              | 'KGS'
-              | 'KHR'
-              | 'KMF'
-              | 'KPW'
-              | 'KRW'
-              | 'KWD'
-              | 'KYD'
-              | 'KZT'
-              | 'LAK'
-              | 'LBP'
-              | 'LKR'
-              | 'LRD'
-              | 'LSL'
-              | 'LYD'
-              | 'MAD'
-              | 'MDL'
-              | 'MGA'
-              | 'MKD'
-              | 'MMK'
-              | 'MNT'
-              | 'MOP'
-              | 'MRO'
-              | 'MUR'
-              | 'MVR'
-              | 'MWK'
-              | 'MXN'
-              | 'MYR'
-              | 'MZN'
-              | 'NAD'
-              | 'NGN'
-              | 'NIO'
-              | 'NOK'
-              | 'NPR'
-              | 'NZD'
-              | 'OMR'
-              | 'PAB'
-              | 'PEN'
-              | 'PGK'
-              | 'PHP'
-              | 'PKR'
-              | 'PLN'
-              | 'PYG'
-              | 'QAR'
-              | 'RON'
-              | 'RSD'
-              | 'RUB'
-              | 'RWF'
-              | 'SAR'
-              | 'SBD'
-              | 'SCR'
-              | 'SDG'
-              | 'SEK'
-              | 'SGD'
-              | 'SHP'
-              | 'SLL'
-              | 'SOS'
-              | 'SPL'
-              | 'SRD'
-              | 'STD'
-              | 'SVC'
-              | 'SYP'
-              | 'SZL'
-              | 'THB'
-              | 'TJS'
-              | 'TMT'
-              | 'TND'
-              | 'TOP'
-              | 'TRY'
-              | 'TTD'
-              | 'TVD'
-              | 'TWD'
-              | 'TZS'
-              | 'UAH'
-              | 'UGX'
-              | 'USD'
-              | 'UYU'
-              | 'UZS'
-              | 'VEF'
-              | 'VND'
-              | 'VUV'
-              | 'WST'
-              | 'XAF'
-              | 'XCD'
-              | 'XDR'
-              | 'XOF'
-              | 'XPF'
-              | 'YER'
-              | 'ZAR'
-              | 'ZMW'
-              | 'ZWD';
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
               /**
                * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
                *
@@ -11389,7 +11389,7 @@ export interface operations {
              * This validation interface should be use by `POST /thirdpartyRequests/transactions`
              * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
              */
-            partyIdType: 'THIRD_PARTY_LINK';
+            partyIdType: "THIRD_PARTY_LINK";
             /**
              * Identifier of the Party.
              */
@@ -11459,7 +11459,7 @@ export interface operations {
         /**
          * SEND for sendAmount, RECEIVE for receiveAmount.
          */
-        amountType: 'SEND' | 'RECEIVE';
+        amountType: "SEND" | "RECEIVE";
         /**
          * Requested amount to be transferred from the Payer to Payee.
          */
@@ -11468,168 +11468,168 @@ export interface operations {
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
           currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
           /**
            * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
            */
@@ -11648,11 +11648,11 @@ export interface operations {
            * - REFUND - Used for performing a refund of transaction.
            */
           scenario:
-          | 'DEPOSIT'
-          | 'WITHDRAWAL'
-          | 'TRANSFER'
-          | 'PAYMENT'
-          | 'REFUND';
+            | "DEPOSIT"
+            | "WITHDRAWAL"
+            | "TRANSFER"
+            | "PAYMENT"
+            | "REFUND";
           /**
            * Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
            */
@@ -11662,7 +11662,7 @@ export interface operations {
            * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
            * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
            */
-          initiator: 'PAYER' | 'PAYEE';
+          initiator: "PAYER" | "PAYEE";
           /**
            * Below are the allowed values for the enumeration.
            * - CONSUMER - Consumer is the initiator of the transaction.
@@ -11670,7 +11670,7 @@ export interface operations {
            * - BUSINESS - Business is the initiator of the transaction.
            * - DEVICE - Device is the initiator of the transaction.
            */
-          initiatorType: 'CONSUMER' | 'AGENT' | 'BUSINESS' | 'DEVICE';
+          initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
           /**
            * Data model for the complex type Refund.
            */
@@ -11699,12 +11699,12 @@ export interface operations {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -11741,8 +11741,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -11779,8 +11779,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -11817,8 +11817,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -11855,8 +11855,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -11893,8 +11893,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -11931,8 +11931,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -11969,8 +11969,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12015,12 +12015,12 @@ export interface operations {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12057,8 +12057,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12095,8 +12095,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12133,8 +12133,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12171,8 +12171,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12209,8 +12209,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12247,8 +12247,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12285,8 +12285,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12336,15 +12336,15 @@ export interface operations {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
       };
     };
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
          */
@@ -12357,22 +12357,22 @@ export interface operations {
          * - REJECTED - Payer has rejected the transaction.
          */
         transactionRequestState:
-        | 'RECEIVED'
-        | 'PENDING'
-        | 'ACCEPTED'
-        | 'REJECTED';
+          | "RECEIVED"
+          | "PENDING"
+          | "ACCEPTED"
+          | "REJECTED";
       };
     };
     responses: {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12409,8 +12409,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12447,8 +12447,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12485,8 +12485,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12523,8 +12523,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12561,8 +12561,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12599,8 +12599,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12637,8 +12637,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12688,15 +12688,15 @@ export interface operations {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
       };
     };
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
          */
@@ -12709,22 +12709,22 @@ export interface operations {
          * - REJECTED - Payer has rejected the transaction.
          */
         transactionRequestState:
-        | 'RECEIVED'
-        | 'PENDING'
-        | 'ACCEPTED'
-        | 'REJECTED';
+          | "RECEIVED"
+          | "PENDING"
+          | "ACCEPTED"
+          | "REJECTED";
       };
     };
     responses: {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12761,8 +12761,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12799,8 +12799,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12837,8 +12837,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12875,8 +12875,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12913,8 +12913,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12951,8 +12951,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -12989,8 +12989,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13045,11 +13045,11 @@ export interface operations {
          *
          * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
-        'Content-Length'?: number;
+        "Content-Length"?: number;
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
          */
-        'Content-Type': string;
+        "Content-Type": string;
         /**
          * The `Date` header field indicates the date when the request was sent.
          */
@@ -13059,35 +13059,35 @@ export interface operations {
          *
          * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
          */
-        'X-Forwarded-For'?: string;
+        "X-Forwarded-For"?: string;
         /**
          * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
          */
-        'FSPIOP-Source': string;
+        "FSPIOP-Source": string;
         /**
          * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
          */
-        'FSPIOP-Destination'?: string;
+        "FSPIOP-Destination"?: string;
         /**
          * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
          */
-        'FSPIOP-Encryption'?: string;
+        "FSPIOP-Encryption"?: string;
         /**
          * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
          */
-        'FSPIOP-Signature'?: string;
+        "FSPIOP-Signature"?: string;
         /**
          * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-URI'?: string;
+        "FSPIOP-URI"?: string;
         /**
          * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
          */
-        'FSPIOP-HTTP-Method'?: string;
+        "FSPIOP-HTTP-Method"?: string;
       };
     };
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Data model for the complex type ErrorInformation.
          */
@@ -13125,12 +13125,12 @@ export interface operations {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13167,8 +13167,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13205,8 +13205,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13243,8 +13243,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13281,8 +13281,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13319,8 +13319,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13357,8 +13357,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13395,8 +13395,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13445,7 +13445,7 @@ export interface operations {
       };
     };
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Base64 encoded binary string - the original challenge.
          */
@@ -13465,19 +13465,19 @@ export interface operations {
         /**
          * The status of the authorization. This MUST be PENDING for a POST request
          */
-        status: 'PENDING';
+        status: "PENDING";
       };
     };
     responses: {
       /**
        * Accepted
        */
-      '202': unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13514,8 +13514,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13552,8 +13552,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13590,8 +13590,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13628,8 +13628,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13666,8 +13666,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13704,8 +13704,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13742,8 +13742,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13785,7 +13785,7 @@ export interface operations {
    */
   UpdateThirdpartyAuthorization: {
     requestBody: {
-      'application/json': {
+      "application/json": {
         /**
          * Base64 encoded binary string - the original challenge.
          */
@@ -13805,19 +13805,19 @@ export interface operations {
         /**
          * The status of the authorization. This value must be `VERIFIED` for a PUT request.
          */
-        status: 'VERIFIED';
+        status: "VERIFIED";
       };
     };
     responses: {
       /**
        * OK
        */
-      '200': unknown;
+      "200": unknown;
       /**
        * Bad Request
        */
-      '400': {
-        'application/json': {
+      "400": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13854,8 +13854,8 @@ export interface operations {
       /**
        * Unauthorized
        */
-      '401': {
-        'application/json': {
+      "401": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13892,8 +13892,8 @@ export interface operations {
       /**
        * Forbidden
        */
-      '403': {
-        'application/json': {
+      "403": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13930,8 +13930,8 @@ export interface operations {
       /**
        * Not Found
        */
-      '404': {
-        'application/json': {
+      "404": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -13968,8 +13968,8 @@ export interface operations {
       /**
        * Method Not Allowed
        */
-      '405': {
-        'application/json': {
+      "405": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -14006,8 +14006,8 @@ export interface operations {
       /**
        * Not Acceptable
        */
-      '406': {
-        'application/json': {
+      "406": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -14044,8 +14044,8 @@ export interface operations {
       /**
        * Not Implemented
        */
-      '501': {
-        'application/json': {
+      "501": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -14082,8 +14082,8 @@ export interface operations {
       /**
        * Service Unavailable
        */
-      '503': {
-        'application/json': {
+      "503": {
+        "application/json": {
           /**
            * Data model for the complex type ErrorInformation.
            */
@@ -14136,31 +14136,31 @@ export interface components {
      *
      * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
      */
-    'X-Forwarded-For': string;
+    "X-Forwarded-For": string;
     /**
      * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
      */
-    'FSPIOP-Source': string;
+    "FSPIOP-Source": string;
     /**
      * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
      */
-    'FSPIOP-Destination': string;
+    "FSPIOP-Destination": string;
     /**
      * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
      */
-    'FSPIOP-Encryption': string;
+    "FSPIOP-Encryption": string;
     /**
      * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
      */
-    'FSPIOP-Signature': string;
+    "FSPIOP-Signature": string;
     /**
      * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
      */
-    'FSPIOP-URI': string;
+    "FSPIOP-URI": string;
     /**
      * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
      */
-    'FSPIOP-HTTP-Method': string;
+    "FSPIOP-HTTP-Method": string;
     /**
      * The `Accept` header field indicates the version of the API the client would like the server to use.
      */
@@ -14170,11 +14170,11 @@ export interface components {
      *
      * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
      */
-    'Content-Length': number;
+    "Content-Length": number;
     /**
      * The `Content-Type` header indicates the specific version of the API used to send the payload body.
      */
-    'Content-Type': string;
+    "Content-Type": string;
   };
   schemas: {
     /**
@@ -14183,20 +14183,20 @@ export interface components {
      * - QRCODE - QR code used as One Time Password.
      * - U2F - U2F is a new addition isolated to Thirdparty stream.
      */
-    AuthorizationChannelType: 'OTP' | 'QRCODE' | 'U2F';
+    AuthorizationChannelType: "OTP" | "QRCODE" | "U2F";
     /**
      * Enum containing response information; if the customer entered the
      * authentication value, rejected the transaction, or requested a
      * resend of the authentication value.
      */
-    AuthorizationResponseType: 'ENTERED' | 'REJECTED' | 'RESEND';
+    AuthorizationResponseType: "ENTERED" | "REJECTED" | "RESEND";
     /**
      * Below are the allowed values for the enumeration AuthenticationType.
      * - OTP - One-time password generated by the Payer FSP.
      * - QRCODE - QR code used as One Time Password.
      * - U2F - U2F is a new addition isolated to Thirdparty stream.
      */
-    AuthenticationType: 'OTP' | 'QRCODE' | 'U2F';
+    AuthenticationType: "OTP" | "QRCODE" | "U2F";
     /**
      * The API data type Integer is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited to a specific number of digits.
      */
@@ -14205,168 +14205,168 @@ export interface components {
      * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
      */
     Currency:
-    | 'AED'
-    | 'AFN'
-    | 'ALL'
-    | 'AMD'
-    | 'ANG'
-    | 'AOA'
-    | 'ARS'
-    | 'AUD'
-    | 'AWG'
-    | 'AZN'
-    | 'BAM'
-    | 'BBD'
-    | 'BDT'
-    | 'BGN'
-    | 'BHD'
-    | 'BIF'
-    | 'BMD'
-    | 'BND'
-    | 'BOB'
-    | 'BRL'
-    | 'BSD'
-    | 'BTN'
-    | 'BWP'
-    | 'BYN'
-    | 'BZD'
-    | 'CAD'
-    | 'CDF'
-    | 'CHF'
-    | 'CLP'
-    | 'CNY'
-    | 'COP'
-    | 'CRC'
-    | 'CUC'
-    | 'CUP'
-    | 'CVE'
-    | 'CZK'
-    | 'DJF'
-    | 'DKK'
-    | 'DOP'
-    | 'DZD'
-    | 'EGP'
-    | 'ERN'
-    | 'ETB'
-    | 'EUR'
-    | 'FJD'
-    | 'FKP'
-    | 'GBP'
-    | 'GEL'
-    | 'GGP'
-    | 'GHS'
-    | 'GIP'
-    | 'GMD'
-    | 'GNF'
-    | 'GTQ'
-    | 'GYD'
-    | 'HKD'
-    | 'HNL'
-    | 'HRK'
-    | 'HTG'
-    | 'HUF'
-    | 'IDR'
-    | 'ILS'
-    | 'IMP'
-    | 'INR'
-    | 'IQD'
-    | 'IRR'
-    | 'ISK'
-    | 'JEP'
-    | 'JMD'
-    | 'JOD'
-    | 'JPY'
-    | 'KES'
-    | 'KGS'
-    | 'KHR'
-    | 'KMF'
-    | 'KPW'
-    | 'KRW'
-    | 'KWD'
-    | 'KYD'
-    | 'KZT'
-    | 'LAK'
-    | 'LBP'
-    | 'LKR'
-    | 'LRD'
-    | 'LSL'
-    | 'LYD'
-    | 'MAD'
-    | 'MDL'
-    | 'MGA'
-    | 'MKD'
-    | 'MMK'
-    | 'MNT'
-    | 'MOP'
-    | 'MRO'
-    | 'MUR'
-    | 'MVR'
-    | 'MWK'
-    | 'MXN'
-    | 'MYR'
-    | 'MZN'
-    | 'NAD'
-    | 'NGN'
-    | 'NIO'
-    | 'NOK'
-    | 'NPR'
-    | 'NZD'
-    | 'OMR'
-    | 'PAB'
-    | 'PEN'
-    | 'PGK'
-    | 'PHP'
-    | 'PKR'
-    | 'PLN'
-    | 'PYG'
-    | 'QAR'
-    | 'RON'
-    | 'RSD'
-    | 'RUB'
-    | 'RWF'
-    | 'SAR'
-    | 'SBD'
-    | 'SCR'
-    | 'SDG'
-    | 'SEK'
-    | 'SGD'
-    | 'SHP'
-    | 'SLL'
-    | 'SOS'
-    | 'SPL'
-    | 'SRD'
-    | 'STD'
-    | 'SVC'
-    | 'SYP'
-    | 'SZL'
-    | 'THB'
-    | 'TJS'
-    | 'TMT'
-    | 'TND'
-    | 'TOP'
-    | 'TRY'
-    | 'TTD'
-    | 'TVD'
-    | 'TWD'
-    | 'TZS'
-    | 'UAH'
-    | 'UGX'
-    | 'USD'
-    | 'UYU'
-    | 'UZS'
-    | 'VEF'
-    | 'VND'
-    | 'VUV'
-    | 'WST'
-    | 'XAF'
-    | 'XCD'
-    | 'XDR'
-    | 'XOF'
-    | 'XPF'
-    | 'YER'
-    | 'ZAR'
-    | 'ZMW'
-    | 'ZWD';
+      | "AED"
+      | "AFN"
+      | "ALL"
+      | "AMD"
+      | "ANG"
+      | "AOA"
+      | "ARS"
+      | "AUD"
+      | "AWG"
+      | "AZN"
+      | "BAM"
+      | "BBD"
+      | "BDT"
+      | "BGN"
+      | "BHD"
+      | "BIF"
+      | "BMD"
+      | "BND"
+      | "BOB"
+      | "BRL"
+      | "BSD"
+      | "BTN"
+      | "BWP"
+      | "BYN"
+      | "BZD"
+      | "CAD"
+      | "CDF"
+      | "CHF"
+      | "CLP"
+      | "CNY"
+      | "COP"
+      | "CRC"
+      | "CUC"
+      | "CUP"
+      | "CVE"
+      | "CZK"
+      | "DJF"
+      | "DKK"
+      | "DOP"
+      | "DZD"
+      | "EGP"
+      | "ERN"
+      | "ETB"
+      | "EUR"
+      | "FJD"
+      | "FKP"
+      | "GBP"
+      | "GEL"
+      | "GGP"
+      | "GHS"
+      | "GIP"
+      | "GMD"
+      | "GNF"
+      | "GTQ"
+      | "GYD"
+      | "HKD"
+      | "HNL"
+      | "HRK"
+      | "HTG"
+      | "HUF"
+      | "IDR"
+      | "ILS"
+      | "IMP"
+      | "INR"
+      | "IQD"
+      | "IRR"
+      | "ISK"
+      | "JEP"
+      | "JMD"
+      | "JOD"
+      | "JPY"
+      | "KES"
+      | "KGS"
+      | "KHR"
+      | "KMF"
+      | "KPW"
+      | "KRW"
+      | "KWD"
+      | "KYD"
+      | "KZT"
+      | "LAK"
+      | "LBP"
+      | "LKR"
+      | "LRD"
+      | "LSL"
+      | "LYD"
+      | "MAD"
+      | "MDL"
+      | "MGA"
+      | "MKD"
+      | "MMK"
+      | "MNT"
+      | "MOP"
+      | "MRO"
+      | "MUR"
+      | "MVR"
+      | "MWK"
+      | "MXN"
+      | "MYR"
+      | "MZN"
+      | "NAD"
+      | "NGN"
+      | "NIO"
+      | "NOK"
+      | "NPR"
+      | "NZD"
+      | "OMR"
+      | "PAB"
+      | "PEN"
+      | "PGK"
+      | "PHP"
+      | "PKR"
+      | "PLN"
+      | "PYG"
+      | "QAR"
+      | "RON"
+      | "RSD"
+      | "RUB"
+      | "RWF"
+      | "SAR"
+      | "SBD"
+      | "SCR"
+      | "SDG"
+      | "SEK"
+      | "SGD"
+      | "SHP"
+      | "SLL"
+      | "SOS"
+      | "SPL"
+      | "SRD"
+      | "STD"
+      | "SVC"
+      | "SYP"
+      | "SZL"
+      | "THB"
+      | "TJS"
+      | "TMT"
+      | "TND"
+      | "TOP"
+      | "TRY"
+      | "TTD"
+      | "TVD"
+      | "TWD"
+      | "TZS"
+      | "UAH"
+      | "UGX"
+      | "USD"
+      | "UYU"
+      | "UZS"
+      | "VEF"
+      | "VND"
+      | "VUV"
+      | "WST"
+      | "XAF"
+      | "XCD"
+      | "XDR"
+      | "XOF"
+      | "XPF"
+      | "YER"
+      | "ZAR"
+      | "ZMW"
+      | "ZWD";
     /**
      * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
      */
@@ -14379,168 +14379,168 @@ export interface components {
        * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
        */
       currency:
-      | 'AED'
-      | 'AFN'
-      | 'ALL'
-      | 'AMD'
-      | 'ANG'
-      | 'AOA'
-      | 'ARS'
-      | 'AUD'
-      | 'AWG'
-      | 'AZN'
-      | 'BAM'
-      | 'BBD'
-      | 'BDT'
-      | 'BGN'
-      | 'BHD'
-      | 'BIF'
-      | 'BMD'
-      | 'BND'
-      | 'BOB'
-      | 'BRL'
-      | 'BSD'
-      | 'BTN'
-      | 'BWP'
-      | 'BYN'
-      | 'BZD'
-      | 'CAD'
-      | 'CDF'
-      | 'CHF'
-      | 'CLP'
-      | 'CNY'
-      | 'COP'
-      | 'CRC'
-      | 'CUC'
-      | 'CUP'
-      | 'CVE'
-      | 'CZK'
-      | 'DJF'
-      | 'DKK'
-      | 'DOP'
-      | 'DZD'
-      | 'EGP'
-      | 'ERN'
-      | 'ETB'
-      | 'EUR'
-      | 'FJD'
-      | 'FKP'
-      | 'GBP'
-      | 'GEL'
-      | 'GGP'
-      | 'GHS'
-      | 'GIP'
-      | 'GMD'
-      | 'GNF'
-      | 'GTQ'
-      | 'GYD'
-      | 'HKD'
-      | 'HNL'
-      | 'HRK'
-      | 'HTG'
-      | 'HUF'
-      | 'IDR'
-      | 'ILS'
-      | 'IMP'
-      | 'INR'
-      | 'IQD'
-      | 'IRR'
-      | 'ISK'
-      | 'JEP'
-      | 'JMD'
-      | 'JOD'
-      | 'JPY'
-      | 'KES'
-      | 'KGS'
-      | 'KHR'
-      | 'KMF'
-      | 'KPW'
-      | 'KRW'
-      | 'KWD'
-      | 'KYD'
-      | 'KZT'
-      | 'LAK'
-      | 'LBP'
-      | 'LKR'
-      | 'LRD'
-      | 'LSL'
-      | 'LYD'
-      | 'MAD'
-      | 'MDL'
-      | 'MGA'
-      | 'MKD'
-      | 'MMK'
-      | 'MNT'
-      | 'MOP'
-      | 'MRO'
-      | 'MUR'
-      | 'MVR'
-      | 'MWK'
-      | 'MXN'
-      | 'MYR'
-      | 'MZN'
-      | 'NAD'
-      | 'NGN'
-      | 'NIO'
-      | 'NOK'
-      | 'NPR'
-      | 'NZD'
-      | 'OMR'
-      | 'PAB'
-      | 'PEN'
-      | 'PGK'
-      | 'PHP'
-      | 'PKR'
-      | 'PLN'
-      | 'PYG'
-      | 'QAR'
-      | 'RON'
-      | 'RSD'
-      | 'RUB'
-      | 'RWF'
-      | 'SAR'
-      | 'SBD'
-      | 'SCR'
-      | 'SDG'
-      | 'SEK'
-      | 'SGD'
-      | 'SHP'
-      | 'SLL'
-      | 'SOS'
-      | 'SPL'
-      | 'SRD'
-      | 'STD'
-      | 'SVC'
-      | 'SYP'
-      | 'SZL'
-      | 'THB'
-      | 'TJS'
-      | 'TMT'
-      | 'TND'
-      | 'TOP'
-      | 'TRY'
-      | 'TTD'
-      | 'TVD'
-      | 'TWD'
-      | 'TZS'
-      | 'UAH'
-      | 'UGX'
-      | 'USD'
-      | 'UYU'
-      | 'UZS'
-      | 'VEF'
-      | 'VND'
-      | 'VUV'
-      | 'WST'
-      | 'XAF'
-      | 'XCD'
-      | 'XDR'
-      | 'XOF'
-      | 'XPF'
-      | 'YER'
-      | 'ZAR'
-      | 'ZMW'
-      | 'ZWD';
+        | "AED"
+        | "AFN"
+        | "ALL"
+        | "AMD"
+        | "ANG"
+        | "AOA"
+        | "ARS"
+        | "AUD"
+        | "AWG"
+        | "AZN"
+        | "BAM"
+        | "BBD"
+        | "BDT"
+        | "BGN"
+        | "BHD"
+        | "BIF"
+        | "BMD"
+        | "BND"
+        | "BOB"
+        | "BRL"
+        | "BSD"
+        | "BTN"
+        | "BWP"
+        | "BYN"
+        | "BZD"
+        | "CAD"
+        | "CDF"
+        | "CHF"
+        | "CLP"
+        | "CNY"
+        | "COP"
+        | "CRC"
+        | "CUC"
+        | "CUP"
+        | "CVE"
+        | "CZK"
+        | "DJF"
+        | "DKK"
+        | "DOP"
+        | "DZD"
+        | "EGP"
+        | "ERN"
+        | "ETB"
+        | "EUR"
+        | "FJD"
+        | "FKP"
+        | "GBP"
+        | "GEL"
+        | "GGP"
+        | "GHS"
+        | "GIP"
+        | "GMD"
+        | "GNF"
+        | "GTQ"
+        | "GYD"
+        | "HKD"
+        | "HNL"
+        | "HRK"
+        | "HTG"
+        | "HUF"
+        | "IDR"
+        | "ILS"
+        | "IMP"
+        | "INR"
+        | "IQD"
+        | "IRR"
+        | "ISK"
+        | "JEP"
+        | "JMD"
+        | "JOD"
+        | "JPY"
+        | "KES"
+        | "KGS"
+        | "KHR"
+        | "KMF"
+        | "KPW"
+        | "KRW"
+        | "KWD"
+        | "KYD"
+        | "KZT"
+        | "LAK"
+        | "LBP"
+        | "LKR"
+        | "LRD"
+        | "LSL"
+        | "LYD"
+        | "MAD"
+        | "MDL"
+        | "MGA"
+        | "MKD"
+        | "MMK"
+        | "MNT"
+        | "MOP"
+        | "MRO"
+        | "MUR"
+        | "MVR"
+        | "MWK"
+        | "MXN"
+        | "MYR"
+        | "MZN"
+        | "NAD"
+        | "NGN"
+        | "NIO"
+        | "NOK"
+        | "NPR"
+        | "NZD"
+        | "OMR"
+        | "PAB"
+        | "PEN"
+        | "PGK"
+        | "PHP"
+        | "PKR"
+        | "PLN"
+        | "PYG"
+        | "QAR"
+        | "RON"
+        | "RSD"
+        | "RUB"
+        | "RWF"
+        | "SAR"
+        | "SBD"
+        | "SCR"
+        | "SDG"
+        | "SEK"
+        | "SGD"
+        | "SHP"
+        | "SLL"
+        | "SOS"
+        | "SPL"
+        | "SRD"
+        | "STD"
+        | "SVC"
+        | "SYP"
+        | "SZL"
+        | "THB"
+        | "TJS"
+        | "TMT"
+        | "TND"
+        | "TOP"
+        | "TRY"
+        | "TTD"
+        | "TVD"
+        | "TWD"
+        | "TZS"
+        | "UAH"
+        | "UGX"
+        | "USD"
+        | "UYU"
+        | "UZS"
+        | "VEF"
+        | "VND"
+        | "VUV"
+        | "WST"
+        | "XAF"
+        | "XCD"
+        | "XDR"
+        | "XOF"
+        | "XPF"
+        | "YER"
+        | "ZAR"
+        | "ZMW"
+        | "ZWD";
       /**
        * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
        */
@@ -14634,168 +14634,168 @@ export interface components {
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
         currency:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
         /**
          * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
          */
@@ -14809,168 +14809,168 @@ export interface components {
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
         currency:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
         /**
          * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
          */
@@ -14984,168 +14984,168 @@ export interface components {
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
         currency:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
         /**
          * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
          */
@@ -15159,168 +15159,168 @@ export interface components {
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
         currency:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
         /**
          * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
          */
@@ -15380,7 +15380,7 @@ export interface components {
        * - QRCODE - QR code used as One Time Password.
        * - U2F - U2F is a new addition isolated to Thirdparty stream.
        */
-      authenticationType: 'OTP' | 'QRCODE' | 'U2F';
+      authenticationType: "OTP" | "QRCODE" | "U2F";
       /**
        * The API data type Integer is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited to a specific number of digits.
        */
@@ -15393,168 +15393,168 @@ export interface components {
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
         currency:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
         /**
          * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
          */
@@ -15580,168 +15580,168 @@ export interface components {
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
           currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
           /**
            * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
            */
@@ -15755,168 +15755,168 @@ export interface components {
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
           currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
           /**
            * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
            */
@@ -15930,168 +15930,168 @@ export interface components {
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
           currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
           /**
            * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
            */
@@ -16105,168 +16105,168 @@ export interface components {
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
           currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
           /**
            * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
            */
@@ -16321,7 +16321,7 @@ export interface components {
      * The status of the Consent.
      * - "REVOKED" - The Consent is no longer valid and has been revoked.
      */
-    ConsentStatusType: 'REVOKED';
+    ConsentStatusType: "REVOKED";
     /**
      * PATCH /consents/{ID} request object.
      *
@@ -16332,7 +16332,7 @@ export interface components {
        * The status of the Consent.
        * - "REVOKED" - The Consent is no longer valid and has been revoked.
        */
-      status: 'REVOKED';
+      status: "REVOKED";
       /**
        * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
        */
@@ -16389,16 +16389,16 @@ export interface components {
      * - THIRD_PARTY_LINK - TBD
      */
     PartyIdType:
-    | 'MSISDN'
-    | 'EMAIL'
-    | 'PERSONAL_ID'
-    | 'BUSINESS'
-    | 'DEVICE'
-    | 'ACCOUNT_ID'
-    | 'IBAN'
-    | 'ALIAS'
-    | 'CONSENT'
-    | 'THIRD_PARTY_LINK';
+      | "MSISDN"
+      | "EMAIL"
+      | "PERSONAL_ID"
+      | "BUSINESS"
+      | "DEVICE"
+      | "ACCOUNT_ID"
+      | "IBAN"
+      | "ALIAS"
+      | "CONSENT"
+      | "THIRD_PARTY_LINK";
     /**
      * Identifier of the Party.
      */
@@ -16458,16 +16458,16 @@ export interface components {
        * - THIRD_PARTY_LINK - TBD
        */
       partyIdType:
-      | 'MSISDN'
-      | 'EMAIL'
-      | 'PERSONAL_ID'
-      | 'BUSINESS'
-      | 'DEVICE'
-      | 'ACCOUNT_ID'
-      | 'IBAN'
-      | 'ALIAS'
-      | 'CONSENT'
-      | 'THIRD_PARTY_LINK';
+        | "MSISDN"
+        | "EMAIL"
+        | "PERSONAL_ID"
+        | "BUSINESS"
+        | "DEVICE"
+        | "ACCOUNT_ID"
+        | "IBAN"
+        | "ALIAS"
+        | "CONSENT"
+        | "THIRD_PARTY_LINK";
       /**
        * Identifier of the Party.
        */
@@ -16589,16 +16589,16 @@ export interface components {
          * - THIRD_PARTY_LINK - TBD
          */
         partyIdType:
-        | 'MSISDN'
-        | 'EMAIL'
-        | 'PERSONAL_ID'
-        | 'BUSINESS'
-        | 'DEVICE'
-        | 'ACCOUNT_ID'
-        | 'IBAN'
-        | 'ALIAS'
-        | 'CONSENT'
-        | 'THIRD_PARTY_LINK';
+          | "MSISDN"
+          | "EMAIL"
+          | "PERSONAL_ID"
+          | "BUSINESS"
+          | "DEVICE"
+          | "ACCOUNT_ID"
+          | "IBAN"
+          | "ALIAS"
+          | "CONSENT"
+          | "THIRD_PARTY_LINK";
         /**
          * Identifier of the Party.
          */
@@ -16718,16 +16718,16 @@ export interface components {
          * - THIRD_PARTY_LINK - TBD
          */
         partyIdType:
-        | 'MSISDN'
-        | 'EMAIL'
-        | 'PERSONAL_ID'
-        | 'BUSINESS'
-        | 'DEVICE'
-        | 'ACCOUNT_ID'
-        | 'IBAN'
-        | 'ALIAS'
-        | 'CONSENT'
-        | 'THIRD_PARTY_LINK';
+          | "MSISDN"
+          | "EMAIL"
+          | "PERSONAL_ID"
+          | "BUSINESS"
+          | "DEVICE"
+          | "ACCOUNT_ID"
+          | "IBAN"
+          | "ALIAS"
+          | "CONSENT"
+          | "THIRD_PARTY_LINK";
         /**
          * Identifier of the Party.
          */
@@ -16763,168 +16763,168 @@ export interface components {
        * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
        */
       currency?:
-      | 'AED'
-      | 'AFN'
-      | 'ALL'
-      | 'AMD'
-      | 'ANG'
-      | 'AOA'
-      | 'ARS'
-      | 'AUD'
-      | 'AWG'
-      | 'AZN'
-      | 'BAM'
-      | 'BBD'
-      | 'BDT'
-      | 'BGN'
-      | 'BHD'
-      | 'BIF'
-      | 'BMD'
-      | 'BND'
-      | 'BOB'
-      | 'BRL'
-      | 'BSD'
-      | 'BTN'
-      | 'BWP'
-      | 'BYN'
-      | 'BZD'
-      | 'CAD'
-      | 'CDF'
-      | 'CHF'
-      | 'CLP'
-      | 'CNY'
-      | 'COP'
-      | 'CRC'
-      | 'CUC'
-      | 'CUP'
-      | 'CVE'
-      | 'CZK'
-      | 'DJF'
-      | 'DKK'
-      | 'DOP'
-      | 'DZD'
-      | 'EGP'
-      | 'ERN'
-      | 'ETB'
-      | 'EUR'
-      | 'FJD'
-      | 'FKP'
-      | 'GBP'
-      | 'GEL'
-      | 'GGP'
-      | 'GHS'
-      | 'GIP'
-      | 'GMD'
-      | 'GNF'
-      | 'GTQ'
-      | 'GYD'
-      | 'HKD'
-      | 'HNL'
-      | 'HRK'
-      | 'HTG'
-      | 'HUF'
-      | 'IDR'
-      | 'ILS'
-      | 'IMP'
-      | 'INR'
-      | 'IQD'
-      | 'IRR'
-      | 'ISK'
-      | 'JEP'
-      | 'JMD'
-      | 'JOD'
-      | 'JPY'
-      | 'KES'
-      | 'KGS'
-      | 'KHR'
-      | 'KMF'
-      | 'KPW'
-      | 'KRW'
-      | 'KWD'
-      | 'KYD'
-      | 'KZT'
-      | 'LAK'
-      | 'LBP'
-      | 'LKR'
-      | 'LRD'
-      | 'LSL'
-      | 'LYD'
-      | 'MAD'
-      | 'MDL'
-      | 'MGA'
-      | 'MKD'
-      | 'MMK'
-      | 'MNT'
-      | 'MOP'
-      | 'MRO'
-      | 'MUR'
-      | 'MVR'
-      | 'MWK'
-      | 'MXN'
-      | 'MYR'
-      | 'MZN'
-      | 'NAD'
-      | 'NGN'
-      | 'NIO'
-      | 'NOK'
-      | 'NPR'
-      | 'NZD'
-      | 'OMR'
-      | 'PAB'
-      | 'PEN'
-      | 'PGK'
-      | 'PHP'
-      | 'PKR'
-      | 'PLN'
-      | 'PYG'
-      | 'QAR'
-      | 'RON'
-      | 'RSD'
-      | 'RUB'
-      | 'RWF'
-      | 'SAR'
-      | 'SBD'
-      | 'SCR'
-      | 'SDG'
-      | 'SEK'
-      | 'SGD'
-      | 'SHP'
-      | 'SLL'
-      | 'SOS'
-      | 'SPL'
-      | 'SRD'
-      | 'STD'
-      | 'SVC'
-      | 'SYP'
-      | 'SZL'
-      | 'THB'
-      | 'TJS'
-      | 'TMT'
-      | 'TND'
-      | 'TOP'
-      | 'TRY'
-      | 'TTD'
-      | 'TVD'
-      | 'TWD'
-      | 'TZS'
-      | 'UAH'
-      | 'UGX'
-      | 'USD'
-      | 'UYU'
-      | 'UZS'
-      | 'VEF'
-      | 'VND'
-      | 'VUV'
-      | 'WST'
-      | 'XAF'
-      | 'XCD'
-      | 'XDR'
-      | 'XOF'
-      | 'XPF'
-      | 'YER'
-      | 'ZAR'
-      | 'ZMW'
-      | 'ZWD';
+        | "AED"
+        | "AFN"
+        | "ALL"
+        | "AMD"
+        | "ANG"
+        | "AOA"
+        | "ARS"
+        | "AUD"
+        | "AWG"
+        | "AZN"
+        | "BAM"
+        | "BBD"
+        | "BDT"
+        | "BGN"
+        | "BHD"
+        | "BIF"
+        | "BMD"
+        | "BND"
+        | "BOB"
+        | "BRL"
+        | "BSD"
+        | "BTN"
+        | "BWP"
+        | "BYN"
+        | "BZD"
+        | "CAD"
+        | "CDF"
+        | "CHF"
+        | "CLP"
+        | "CNY"
+        | "COP"
+        | "CRC"
+        | "CUC"
+        | "CUP"
+        | "CVE"
+        | "CZK"
+        | "DJF"
+        | "DKK"
+        | "DOP"
+        | "DZD"
+        | "EGP"
+        | "ERN"
+        | "ETB"
+        | "EUR"
+        | "FJD"
+        | "FKP"
+        | "GBP"
+        | "GEL"
+        | "GGP"
+        | "GHS"
+        | "GIP"
+        | "GMD"
+        | "GNF"
+        | "GTQ"
+        | "GYD"
+        | "HKD"
+        | "HNL"
+        | "HRK"
+        | "HTG"
+        | "HUF"
+        | "IDR"
+        | "ILS"
+        | "IMP"
+        | "INR"
+        | "IQD"
+        | "IRR"
+        | "ISK"
+        | "JEP"
+        | "JMD"
+        | "JOD"
+        | "JPY"
+        | "KES"
+        | "KGS"
+        | "KHR"
+        | "KMF"
+        | "KPW"
+        | "KRW"
+        | "KWD"
+        | "KYD"
+        | "KZT"
+        | "LAK"
+        | "LBP"
+        | "LKR"
+        | "LRD"
+        | "LSL"
+        | "LYD"
+        | "MAD"
+        | "MDL"
+        | "MGA"
+        | "MKD"
+        | "MMK"
+        | "MNT"
+        | "MOP"
+        | "MRO"
+        | "MUR"
+        | "MVR"
+        | "MWK"
+        | "MXN"
+        | "MYR"
+        | "MZN"
+        | "NAD"
+        | "NGN"
+        | "NIO"
+        | "NOK"
+        | "NPR"
+        | "NZD"
+        | "OMR"
+        | "PAB"
+        | "PEN"
+        | "PGK"
+        | "PHP"
+        | "PKR"
+        | "PLN"
+        | "PYG"
+        | "QAR"
+        | "RON"
+        | "RSD"
+        | "RUB"
+        | "RWF"
+        | "SAR"
+        | "SBD"
+        | "SCR"
+        | "SDG"
+        | "SEK"
+        | "SGD"
+        | "SHP"
+        | "SLL"
+        | "SOS"
+        | "SPL"
+        | "SRD"
+        | "STD"
+        | "SVC"
+        | "SYP"
+        | "SZL"
+        | "THB"
+        | "TJS"
+        | "TMT"
+        | "TND"
+        | "TOP"
+        | "TRY"
+        | "TTD"
+        | "TVD"
+        | "TWD"
+        | "TZS"
+        | "UAH"
+        | "UGX"
+        | "USD"
+        | "UYU"
+        | "UZS"
+        | "VEF"
+        | "VND"
+        | "VUV"
+        | "WST"
+        | "XAF"
+        | "XCD"
+        | "XDR"
+        | "XOF"
+        | "XPF"
+        | "YER"
+        | "ZAR"
+        | "ZMW"
+        | "ZWD";
     };
     /**
      * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -16954,168 +16954,168 @@ export interface components {
        * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
        */
       currency:
-      | 'AED'
-      | 'AFN'
-      | 'ALL'
-      | 'AMD'
-      | 'ANG'
-      | 'AOA'
-      | 'ARS'
-      | 'AUD'
-      | 'AWG'
-      | 'AZN'
-      | 'BAM'
-      | 'BBD'
-      | 'BDT'
-      | 'BGN'
-      | 'BHD'
-      | 'BIF'
-      | 'BMD'
-      | 'BND'
-      | 'BOB'
-      | 'BRL'
-      | 'BSD'
-      | 'BTN'
-      | 'BWP'
-      | 'BYN'
-      | 'BZD'
-      | 'CAD'
-      | 'CDF'
-      | 'CHF'
-      | 'CLP'
-      | 'CNY'
-      | 'COP'
-      | 'CRC'
-      | 'CUC'
-      | 'CUP'
-      | 'CVE'
-      | 'CZK'
-      | 'DJF'
-      | 'DKK'
-      | 'DOP'
-      | 'DZD'
-      | 'EGP'
-      | 'ERN'
-      | 'ETB'
-      | 'EUR'
-      | 'FJD'
-      | 'FKP'
-      | 'GBP'
-      | 'GEL'
-      | 'GGP'
-      | 'GHS'
-      | 'GIP'
-      | 'GMD'
-      | 'GNF'
-      | 'GTQ'
-      | 'GYD'
-      | 'HKD'
-      | 'HNL'
-      | 'HRK'
-      | 'HTG'
-      | 'HUF'
-      | 'IDR'
-      | 'ILS'
-      | 'IMP'
-      | 'INR'
-      | 'IQD'
-      | 'IRR'
-      | 'ISK'
-      | 'JEP'
-      | 'JMD'
-      | 'JOD'
-      | 'JPY'
-      | 'KES'
-      | 'KGS'
-      | 'KHR'
-      | 'KMF'
-      | 'KPW'
-      | 'KRW'
-      | 'KWD'
-      | 'KYD'
-      | 'KZT'
-      | 'LAK'
-      | 'LBP'
-      | 'LKR'
-      | 'LRD'
-      | 'LSL'
-      | 'LYD'
-      | 'MAD'
-      | 'MDL'
-      | 'MGA'
-      | 'MKD'
-      | 'MMK'
-      | 'MNT'
-      | 'MOP'
-      | 'MRO'
-      | 'MUR'
-      | 'MVR'
-      | 'MWK'
-      | 'MXN'
-      | 'MYR'
-      | 'MZN'
-      | 'NAD'
-      | 'NGN'
-      | 'NIO'
-      | 'NOK'
-      | 'NPR'
-      | 'NZD'
-      | 'OMR'
-      | 'PAB'
-      | 'PEN'
-      | 'PGK'
-      | 'PHP'
-      | 'PKR'
-      | 'PLN'
-      | 'PYG'
-      | 'QAR'
-      | 'RON'
-      | 'RSD'
-      | 'RUB'
-      | 'RWF'
-      | 'SAR'
-      | 'SBD'
-      | 'SCR'
-      | 'SDG'
-      | 'SEK'
-      | 'SGD'
-      | 'SHP'
-      | 'SLL'
-      | 'SOS'
-      | 'SPL'
-      | 'SRD'
-      | 'STD'
-      | 'SVC'
-      | 'SYP'
-      | 'SZL'
-      | 'THB'
-      | 'TJS'
-      | 'TMT'
-      | 'TND'
-      | 'TOP'
-      | 'TRY'
-      | 'TTD'
-      | 'TVD'
-      | 'TWD'
-      | 'TZS'
-      | 'UAH'
-      | 'UGX'
-      | 'USD'
-      | 'UYU'
-      | 'UZS'
-      | 'VEF'
-      | 'VND'
-      | 'VUV'
-      | 'WST'
-      | 'XAF'
-      | 'XCD'
-      | 'XDR'
-      | 'XOF'
-      | 'XPF'
-      | 'YER'
-      | 'ZAR'
-      | 'ZMW'
-      | 'ZWD';
+        | "AED"
+        | "AFN"
+        | "ALL"
+        | "AMD"
+        | "ANG"
+        | "AOA"
+        | "ARS"
+        | "AUD"
+        | "AWG"
+        | "AZN"
+        | "BAM"
+        | "BBD"
+        | "BDT"
+        | "BGN"
+        | "BHD"
+        | "BIF"
+        | "BMD"
+        | "BND"
+        | "BOB"
+        | "BRL"
+        | "BSD"
+        | "BTN"
+        | "BWP"
+        | "BYN"
+        | "BZD"
+        | "CAD"
+        | "CDF"
+        | "CHF"
+        | "CLP"
+        | "CNY"
+        | "COP"
+        | "CRC"
+        | "CUC"
+        | "CUP"
+        | "CVE"
+        | "CZK"
+        | "DJF"
+        | "DKK"
+        | "DOP"
+        | "DZD"
+        | "EGP"
+        | "ERN"
+        | "ETB"
+        | "EUR"
+        | "FJD"
+        | "FKP"
+        | "GBP"
+        | "GEL"
+        | "GGP"
+        | "GHS"
+        | "GIP"
+        | "GMD"
+        | "GNF"
+        | "GTQ"
+        | "GYD"
+        | "HKD"
+        | "HNL"
+        | "HRK"
+        | "HTG"
+        | "HUF"
+        | "IDR"
+        | "ILS"
+        | "IMP"
+        | "INR"
+        | "IQD"
+        | "IRR"
+        | "ISK"
+        | "JEP"
+        | "JMD"
+        | "JOD"
+        | "JPY"
+        | "KES"
+        | "KGS"
+        | "KHR"
+        | "KMF"
+        | "KPW"
+        | "KRW"
+        | "KWD"
+        | "KYD"
+        | "KZT"
+        | "LAK"
+        | "LBP"
+        | "LKR"
+        | "LRD"
+        | "LSL"
+        | "LYD"
+        | "MAD"
+        | "MDL"
+        | "MGA"
+        | "MKD"
+        | "MMK"
+        | "MNT"
+        | "MOP"
+        | "MRO"
+        | "MUR"
+        | "MVR"
+        | "MWK"
+        | "MXN"
+        | "MYR"
+        | "MZN"
+        | "NAD"
+        | "NGN"
+        | "NIO"
+        | "NOK"
+        | "NPR"
+        | "NZD"
+        | "OMR"
+        | "PAB"
+        | "PEN"
+        | "PGK"
+        | "PHP"
+        | "PKR"
+        | "PLN"
+        | "PYG"
+        | "QAR"
+        | "RON"
+        | "RSD"
+        | "RUB"
+        | "RWF"
+        | "SAR"
+        | "SBD"
+        | "SCR"
+        | "SDG"
+        | "SEK"
+        | "SGD"
+        | "SHP"
+        | "SLL"
+        | "SOS"
+        | "SPL"
+        | "SRD"
+        | "STD"
+        | "SVC"
+        | "SYP"
+        | "SZL"
+        | "THB"
+        | "TJS"
+        | "TMT"
+        | "TND"
+        | "TOP"
+        | "TRY"
+        | "TTD"
+        | "TVD"
+        | "TWD"
+        | "TZS"
+        | "UAH"
+        | "UGX"
+        | "USD"
+        | "UYU"
+        | "UZS"
+        | "VEF"
+        | "VND"
+        | "VUV"
+        | "WST"
+        | "XAF"
+        | "XCD"
+        | "XDR"
+        | "XOF"
+        | "XPF"
+        | "YER"
+        | "ZAR"
+        | "ZMW"
+        | "ZWD";
       /**
        * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
        *
@@ -17143,168 +17143,168 @@ export interface components {
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
         currency:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
         /**
          * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
          *
@@ -17404,168 +17404,168 @@ export interface components {
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
           currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
           /**
            * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
            *
@@ -17623,16 +17623,16 @@ export interface components {
          * - THIRD_PARTY_LINK - TBD
          */
         partyIdType:
-        | 'MSISDN'
-        | 'EMAIL'
-        | 'PERSONAL_ID'
-        | 'BUSINESS'
-        | 'DEVICE'
-        | 'ACCOUNT_ID'
-        | 'IBAN'
-        | 'ALIAS'
-        | 'CONSENT'
-        | 'THIRD_PARTY_LINK';
+          | "MSISDN"
+          | "EMAIL"
+          | "PERSONAL_ID"
+          | "BUSINESS"
+          | "DEVICE"
+          | "ACCOUNT_ID"
+          | "IBAN"
+          | "ALIAS"
+          | "CONSENT"
+          | "THIRD_PARTY_LINK";
         /**
          * Identifier of the Party.
          */
@@ -17729,168 +17729,168 @@ export interface components {
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
             currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
             /**
              * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
              *
@@ -17948,16 +17948,16 @@ export interface components {
            * - THIRD_PARTY_LINK - TBD
            */
           partyIdType:
-          | 'MSISDN'
-          | 'EMAIL'
-          | 'PERSONAL_ID'
-          | 'BUSINESS'
-          | 'DEVICE'
-          | 'ACCOUNT_ID'
-          | 'IBAN'
-          | 'ALIAS'
-          | 'CONSENT'
-          | 'THIRD_PARTY_LINK';
+            | "MSISDN"
+            | "EMAIL"
+            | "PERSONAL_ID"
+            | "BUSINESS"
+            | "DEVICE"
+            | "ACCOUNT_ID"
+            | "IBAN"
+            | "ALIAS"
+            | "CONSENT"
+            | "THIRD_PARTY_LINK";
           /**
            * Identifier of the Party.
            */
@@ -18032,7 +18032,7 @@ export interface components {
      * - ACCEPTED - Payer has approved the transaction.
      * - REJECTED - Payer has rejected the transaction.
      */
-    TransactionRequestState: 'RECEIVED' | 'PENDING' | 'ACCEPTED' | 'REJECTED';
+    TransactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
     /**
      * Below are the allowed values for the enumeration.
      * - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
@@ -18040,7 +18040,7 @@ export interface components {
      * - COMPLETED - Payee FSP has successfully performed the transaction.
      * - REJECTED - Payee FSP has failed to perform the transaction.
      */
-    TransactionState: 'RECEIVED' | 'PENDING' | 'COMPLETED' | 'REJECTED';
+    TransactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
     /**
      * The object sent in the PATCH /thirdpartyRequests/transactions/{ID} callback.
      */
@@ -18056,7 +18056,7 @@ export interface components {
        * - ACCEPTED - Payer has approved the transaction.
        * - REJECTED - Payer has rejected the transaction.
        */
-      transactionRequestState: 'RECEIVED' | 'PENDING' | 'ACCEPTED' | 'REJECTED';
+      transactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
       /**
        * Below are the allowed values for the enumeration.
        * - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
@@ -18064,7 +18064,7 @@ export interface components {
        * - COMPLETED - Payee FSP has successfully performed the transaction.
        * - REJECTED - Payee FSP has failed to perform the transaction.
        */
-      transactionState: 'RECEIVED' | 'PENDING' | 'COMPLETED' | 'REJECTED';
+      transactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
     };
     /**
      * Below are the allowed values for the enumeration.
@@ -18075,11 +18075,11 @@ export interface components {
      * - REFUND - Used for performing a refund of transaction.
      */
     TransactionScenario:
-    | 'DEPOSIT'
-    | 'WITHDRAWAL'
-    | 'TRANSFER'
-    | 'PAYMENT'
-    | 'REFUND';
+      | "DEPOSIT"
+      | "WITHDRAWAL"
+      | "TRANSFER"
+      | "PAYMENT"
+      | "REFUND";
     /**
      * Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
      */
@@ -18089,7 +18089,7 @@ export interface components {
      * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
      * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
      */
-    TransactionInitiator: 'PAYER' | 'PAYEE';
+    TransactionInitiator: "PAYER" | "PAYEE";
     /**
      * Below are the allowed values for the enumeration.
      * - CONSUMER - Consumer is the initiator of the transaction.
@@ -18097,7 +18097,7 @@ export interface components {
      * - BUSINESS - Business is the initiator of the transaction.
      * - DEVICE - Device is the initiator of the transaction.
      */
-    TransactionInitiatorType: 'CONSUMER' | 'AGENT' | 'BUSINESS' | 'DEVICE';
+    TransactionInitiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
     /**
      * Reason for the refund.
      */
@@ -18131,7 +18131,7 @@ export interface components {
        * - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
        * - REFUND - Used for performing a refund of transaction.
        */
-      scenario: 'DEPOSIT' | 'WITHDRAWAL' | 'TRANSFER' | 'PAYMENT' | 'REFUND';
+      scenario: "DEPOSIT" | "WITHDRAWAL" | "TRANSFER" | "PAYMENT" | "REFUND";
       /**
        * Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
        */
@@ -18141,7 +18141,7 @@ export interface components {
        * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
        * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
        */
-      initiator: 'PAYER' | 'PAYEE';
+      initiator: "PAYER" | "PAYEE";
       /**
        * Below are the allowed values for the enumeration.
        * - CONSUMER - Consumer is the initiator of the transaction.
@@ -18149,7 +18149,7 @@ export interface components {
        * - BUSINESS - Business is the initiator of the transaction.
        * - DEVICE - Device is the initiator of the transaction.
        */
-      initiatorType: 'CONSUMER' | 'AGENT' | 'BUSINESS' | 'DEVICE';
+      initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
       /**
        * Data model for the complex type Refund.
        */
@@ -18198,168 +18198,168 @@ export interface components {
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
             currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
             /**
              * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
              *
@@ -18417,16 +18417,16 @@ export interface components {
            * - THIRD_PARTY_LINK - TBD
            */
           partyIdType:
-          | 'MSISDN'
-          | 'EMAIL'
-          | 'PERSONAL_ID'
-          | 'BUSINESS'
-          | 'DEVICE'
-          | 'ACCOUNT_ID'
-          | 'IBAN'
-          | 'ALIAS'
-          | 'CONSENT'
-          | 'THIRD_PARTY_LINK';
+            | "MSISDN"
+            | "EMAIL"
+            | "PERSONAL_ID"
+            | "BUSINESS"
+            | "DEVICE"
+            | "ACCOUNT_ID"
+            | "IBAN"
+            | "ALIAS"
+            | "CONSENT"
+            | "THIRD_PARTY_LINK";
           /**
            * Identifier of the Party.
            */
@@ -18540,16 +18540,16 @@ export interface components {
          * - THIRD_PARTY_LINK - TBD
          */
         partyIdType:
-        | 'MSISDN'
-        | 'EMAIL'
-        | 'PERSONAL_ID'
-        | 'BUSINESS'
-        | 'DEVICE'
-        | 'ACCOUNT_ID'
-        | 'IBAN'
-        | 'ALIAS'
-        | 'CONSENT'
-        | 'THIRD_PARTY_LINK';
+          | "MSISDN"
+          | "EMAIL"
+          | "PERSONAL_ID"
+          | "BUSINESS"
+          | "DEVICE"
+          | "ACCOUNT_ID"
+          | "IBAN"
+          | "ALIAS"
+          | "CONSENT"
+          | "THIRD_PARTY_LINK";
         /**
          * Identifier of the Party.
          */
@@ -18589,168 +18589,168 @@ export interface components {
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
         currency:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
         /**
          * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
          */
@@ -18768,7 +18768,7 @@ export interface components {
          * - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
          * - REFUND - Used for performing a refund of transaction.
          */
-        scenario: 'DEPOSIT' | 'WITHDRAWAL' | 'TRANSFER' | 'PAYMENT' | 'REFUND';
+        scenario: "DEPOSIT" | "WITHDRAWAL" | "TRANSFER" | "PAYMENT" | "REFUND";
         /**
          * Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
          */
@@ -18778,7 +18778,7 @@ export interface components {
          * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
          * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
          */
-        initiator: 'PAYER' | 'PAYEE';
+        initiator: "PAYER" | "PAYEE";
         /**
          * Below are the allowed values for the enumeration.
          * - CONSUMER - Consumer is the initiator of the transaction.
@@ -18786,7 +18786,7 @@ export interface components {
          * - BUSINESS - Business is the initiator of the transaction.
          * - DEVICE - Device is the initiator of the transaction.
          */
-        initiatorType: 'CONSUMER' | 'AGENT' | 'BUSINESS' | 'DEVICE';
+        initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
         /**
          * Data model for the complex type Refund.
          */
@@ -18828,7 +18828,7 @@ export interface components {
        * - QRCODE - QR code used as One Time Password.
        * - U2F - U2F is a new addition isolated to Thirdparty stream.
        */
-      authenticationType?: 'OTP' | 'QRCODE' | 'U2F';
+      authenticationType?: "OTP" | "QRCODE" | "U2F";
       /**
        * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
        */
@@ -18905,168 +18905,168 @@ export interface components {
        * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
        */
       currency:
-      | 'AED'
-      | 'AFN'
-      | 'ALL'
-      | 'AMD'
-      | 'ANG'
-      | 'AOA'
-      | 'ARS'
-      | 'AUD'
-      | 'AWG'
-      | 'AZN'
-      | 'BAM'
-      | 'BBD'
-      | 'BDT'
-      | 'BGN'
-      | 'BHD'
-      | 'BIF'
-      | 'BMD'
-      | 'BND'
-      | 'BOB'
-      | 'BRL'
-      | 'BSD'
-      | 'BTN'
-      | 'BWP'
-      | 'BYN'
-      | 'BZD'
-      | 'CAD'
-      | 'CDF'
-      | 'CHF'
-      | 'CLP'
-      | 'CNY'
-      | 'COP'
-      | 'CRC'
-      | 'CUC'
-      | 'CUP'
-      | 'CVE'
-      | 'CZK'
-      | 'DJF'
-      | 'DKK'
-      | 'DOP'
-      | 'DZD'
-      | 'EGP'
-      | 'ERN'
-      | 'ETB'
-      | 'EUR'
-      | 'FJD'
-      | 'FKP'
-      | 'GBP'
-      | 'GEL'
-      | 'GGP'
-      | 'GHS'
-      | 'GIP'
-      | 'GMD'
-      | 'GNF'
-      | 'GTQ'
-      | 'GYD'
-      | 'HKD'
-      | 'HNL'
-      | 'HRK'
-      | 'HTG'
-      | 'HUF'
-      | 'IDR'
-      | 'ILS'
-      | 'IMP'
-      | 'INR'
-      | 'IQD'
-      | 'IRR'
-      | 'ISK'
-      | 'JEP'
-      | 'JMD'
-      | 'JOD'
-      | 'JPY'
-      | 'KES'
-      | 'KGS'
-      | 'KHR'
-      | 'KMF'
-      | 'KPW'
-      | 'KRW'
-      | 'KWD'
-      | 'KYD'
-      | 'KZT'
-      | 'LAK'
-      | 'LBP'
-      | 'LKR'
-      | 'LRD'
-      | 'LSL'
-      | 'LYD'
-      | 'MAD'
-      | 'MDL'
-      | 'MGA'
-      | 'MKD'
-      | 'MMK'
-      | 'MNT'
-      | 'MOP'
-      | 'MRO'
-      | 'MUR'
-      | 'MVR'
-      | 'MWK'
-      | 'MXN'
-      | 'MYR'
-      | 'MZN'
-      | 'NAD'
-      | 'NGN'
-      | 'NIO'
-      | 'NOK'
-      | 'NPR'
-      | 'NZD'
-      | 'OMR'
-      | 'PAB'
-      | 'PEN'
-      | 'PGK'
-      | 'PHP'
-      | 'PKR'
-      | 'PLN'
-      | 'PYG'
-      | 'QAR'
-      | 'RON'
-      | 'RSD'
-      | 'RUB'
-      | 'RWF'
-      | 'SAR'
-      | 'SBD'
-      | 'SCR'
-      | 'SDG'
-      | 'SEK'
-      | 'SGD'
-      | 'SHP'
-      | 'SLL'
-      | 'SOS'
-      | 'SPL'
-      | 'SRD'
-      | 'STD'
-      | 'SVC'
-      | 'SYP'
-      | 'SZL'
-      | 'THB'
-      | 'TJS'
-      | 'TMT'
-      | 'TND'
-      | 'TOP'
-      | 'TRY'
-      | 'TTD'
-      | 'TVD'
-      | 'TWD'
-      | 'TZS'
-      | 'UAH'
-      | 'UGX'
-      | 'USD'
-      | 'UYU'
-      | 'UZS'
-      | 'VEF'
-      | 'VND'
-      | 'VUV'
-      | 'WST'
-      | 'XAF'
-      | 'XCD'
-      | 'XDR'
-      | 'XOF'
-      | 'XPF'
-      | 'YER'
-      | 'ZAR'
-      | 'ZMW'
-      | 'ZWD';
+        | "AED"
+        | "AFN"
+        | "ALL"
+        | "AMD"
+        | "ANG"
+        | "AOA"
+        | "ARS"
+        | "AUD"
+        | "AWG"
+        | "AZN"
+        | "BAM"
+        | "BBD"
+        | "BDT"
+        | "BGN"
+        | "BHD"
+        | "BIF"
+        | "BMD"
+        | "BND"
+        | "BOB"
+        | "BRL"
+        | "BSD"
+        | "BTN"
+        | "BWP"
+        | "BYN"
+        | "BZD"
+        | "CAD"
+        | "CDF"
+        | "CHF"
+        | "CLP"
+        | "CNY"
+        | "COP"
+        | "CRC"
+        | "CUC"
+        | "CUP"
+        | "CVE"
+        | "CZK"
+        | "DJF"
+        | "DKK"
+        | "DOP"
+        | "DZD"
+        | "EGP"
+        | "ERN"
+        | "ETB"
+        | "EUR"
+        | "FJD"
+        | "FKP"
+        | "GBP"
+        | "GEL"
+        | "GGP"
+        | "GHS"
+        | "GIP"
+        | "GMD"
+        | "GNF"
+        | "GTQ"
+        | "GYD"
+        | "HKD"
+        | "HNL"
+        | "HRK"
+        | "HTG"
+        | "HUF"
+        | "IDR"
+        | "ILS"
+        | "IMP"
+        | "INR"
+        | "IQD"
+        | "IRR"
+        | "ISK"
+        | "JEP"
+        | "JMD"
+        | "JOD"
+        | "JPY"
+        | "KES"
+        | "KGS"
+        | "KHR"
+        | "KMF"
+        | "KPW"
+        | "KRW"
+        | "KWD"
+        | "KYD"
+        | "KZT"
+        | "LAK"
+        | "LBP"
+        | "LKR"
+        | "LRD"
+        | "LSL"
+        | "LYD"
+        | "MAD"
+        | "MDL"
+        | "MGA"
+        | "MKD"
+        | "MMK"
+        | "MNT"
+        | "MOP"
+        | "MRO"
+        | "MUR"
+        | "MVR"
+        | "MWK"
+        | "MXN"
+        | "MYR"
+        | "MZN"
+        | "NAD"
+        | "NGN"
+        | "NIO"
+        | "NOK"
+        | "NPR"
+        | "NZD"
+        | "OMR"
+        | "PAB"
+        | "PEN"
+        | "PGK"
+        | "PHP"
+        | "PKR"
+        | "PLN"
+        | "PYG"
+        | "QAR"
+        | "RON"
+        | "RSD"
+        | "RUB"
+        | "RWF"
+        | "SAR"
+        | "SBD"
+        | "SCR"
+        | "SDG"
+        | "SEK"
+        | "SGD"
+        | "SHP"
+        | "SLL"
+        | "SOS"
+        | "SPL"
+        | "SRD"
+        | "STD"
+        | "SVC"
+        | "SYP"
+        | "SZL"
+        | "THB"
+        | "TJS"
+        | "TMT"
+        | "TND"
+        | "TOP"
+        | "TRY"
+        | "TTD"
+        | "TVD"
+        | "TWD"
+        | "TZS"
+        | "UAH"
+        | "UGX"
+        | "USD"
+        | "UYU"
+        | "UZS"
+        | "VEF"
+        | "VND"
+        | "VUV"
+        | "WST"
+        | "XAF"
+        | "XCD"
+        | "XDR"
+        | "XOF"
+        | "XPF"
+        | "YER"
+        | "ZAR"
+        | "ZMW"
+        | "ZWD";
     }[];
     /**
      * Data model for the complex type object that contains ErrorInformation.
@@ -19133,17 +19133,17 @@ export interface components {
      * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
      */
     AuthenticationValue: Partial<string> &
-    Partial<string> &
-    Partial<{
-      /**
+      Partial<string> &
+      Partial<{
+        /**
          * U2F challenge-response.
          */
-      pinValue: string;
-      /**
+        pinValue: string;
+        /**
          * Sequential counter used for cloning detection. Present only for U2F authentication.
          */
-      counter: string;
-    }>;
+        counter: string;
+      }>;
     /**
      * Data model for the complex type AuthenticationInfo.
      */
@@ -19154,22 +19154,22 @@ export interface components {
        * - QRCODE - QR code used as One Time Password.
        * - U2F - U2F is a new addition isolated to Thirdparty stream.
        */
-      authentication: 'OTP' | 'QRCODE' | 'U2F';
+      authentication: "OTP" | "QRCODE" | "U2F";
       /**
        * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
        */
       authenticationValue: Partial<string> &
-      Partial<string> &
-      Partial<{
-        /**
+        Partial<string> &
+        Partial<{
+          /**
            * U2F challenge-response.
            */
-        pinValue: string;
-        /**
+          pinValue: string;
+          /**
            * Sequential counter used for cloning detection. Present only for U2F authentication.
            */
-        counter: string;
-      }>;
+          counter: string;
+        }>;
     };
     /**
      * Below are the allowed values for the enumeration.
@@ -19177,7 +19177,7 @@ export interface components {
      * - REJECTED - Consumer rejected the transaction.
      * - RESEND - Consumer requested to resend the authentication value.
      */
-    AuthorizationResponse: 'ENTERED' | 'REJECTED' | 'RESEND';
+    AuthorizationResponse: "ENTERED" | "REJECTED" | "RESEND";
     /**
      * The object sent in the PUT /authorizations/{ID} callback.
      */
@@ -19192,22 +19192,22 @@ export interface components {
          * - QRCODE - QR code used as One Time Password.
          * - U2F - U2F is a new addition isolated to Thirdparty stream.
          */
-        authentication: 'OTP' | 'QRCODE' | 'U2F';
+        authentication: "OTP" | "QRCODE" | "U2F";
         /**
          * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
          */
         authenticationValue: Partial<string> &
-        Partial<string> &
-        Partial<{
-          /**
+          Partial<string> &
+          Partial<{
+            /**
              * U2F challenge-response.
              */
-          pinValue: string;
-          /**
+            pinValue: string;
+            /**
              * Sequential counter used for cloning detection. Present only for U2F authentication.
              */
-          counter: string;
-        }>;
+            counter: string;
+          }>;
       };
       /**
        * Below are the allowed values for the enumeration.
@@ -19215,14 +19215,14 @@ export interface components {
        * - REJECTED - Consumer rejected the transaction.
        * - RESEND - Consumer requested to resend the authentication value.
        */
-      responseType: 'ENTERED' | 'REJECTED' | 'RESEND';
+      responseType: "ENTERED" | "REJECTED" | "RESEND";
     };
     /**
      * The scopes requested for a ConsentRequest.
      * - "accounts.getBalance" - Get the balance of a given account.
      * - "accounts.transfer" - Initiate a transfer from an account.
      */
-    ConsentScopeType: 'accounts.getBalance' | 'accounts.transfer';
+    ConsentScopeType: "accounts.getBalance" | "accounts.transfer";
     /**
      * Scope + Account Identifier mapping for a Consent.
      */
@@ -19233,14 +19233,14 @@ export interface components {
        * account information.
        */
       accountId: string;
-      actions: ('accounts.getBalance' | 'accounts.transfer')[];
+      actions: ("accounts.getBalance" | "accounts.transfer")[];
     };
     /**
      * The auth channel being used for the consentRequest.
      * - "WEB" - The Web auth channel.
      * - "OTP" - The OTP auth channel.
      */
-    ConsentRequestChannelType: 'WEB' | 'OTP';
+    ConsentRequestChannelType: "WEB" | "OTP";
     /**
      * The object sent in a `POST /consentRequests` request.
      */
@@ -19260,9 +19260,9 @@ export interface components {
          * account information.
          */
         accountId: string;
-        actions: ('accounts.getBalance' | 'accounts.transfer')[];
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
-      authChannels: ('WEB' | 'OTP')[];
+      authChannels: ("WEB" | "OTP")[];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -19271,7 +19271,7 @@ export interface components {
     /**
      * The web auth channel being used for PUT consentRequest/{ID} request.
      */
-    ConsentRequestChannelTypeWeb: 'WEB';
+    ConsentRequestChannelTypeWeb: "WEB";
     /**
      * The object sent in a `PUT /consentRequests/{ID}` request.
      *
@@ -19292,9 +19292,9 @@ export interface components {
          * account information.
          */
         accountId: string;
-        actions: ('accounts.getBalance' | 'accounts.transfer')[];
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
-      authChannels: 'WEB'[];
+      authChannels: "WEB"[];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -19323,9 +19323,9 @@ export interface components {
          * account information.
          */
         accountId: string;
-        actions: ('accounts.getBalance' | 'accounts.transfer')[];
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
-      authChannels: 'WEB'[];
+      authChannels: "WEB"[];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -19342,7 +19342,7 @@ export interface components {
     /**
      * The OTP auth channel being used for PUT consentRequest/{ID} request.
      */
-    ConsentRequestChannelTypeOTP: 'OTP';
+    ConsentRequestChannelTypeOTP: "OTP";
     /**
      * The object sent in a `PUT /consentRequests/{ID}` request.
      *
@@ -19360,9 +19360,9 @@ export interface components {
          * account information.
          */
         accountId: string;
-        actions: ('accounts.getBalance' | 'accounts.transfer')[];
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
-      authChannels: 'OTP'[];
+      authChannels: "OTP"[];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -19387,9 +19387,9 @@ export interface components {
          * account information.
          */
         accountId: string;
-        actions: ('accounts.getBalance' | 'accounts.transfer')[];
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
-      authChannels: 'OTP'[];
+      authChannels: "OTP"[];
       /**
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
@@ -19430,14 +19430,14 @@ export interface components {
          * account information.
          */
         accountId: string;
-        actions: ('accounts.getBalance' | 'accounts.transfer')[];
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
     };
     /**
      * The type of the Credential.
      * - "FIDO" - A FIDO public/private keypair.
      */
-    CredentialType: 'FIDO';
+    CredentialType: "FIDO";
     /**
      * The challenge that has been signed by a PISP.
      */
@@ -19468,11 +19468,11 @@ export interface components {
        * The type of the Credential.
        * - "FIDO" - A FIDO public/private keypair.
        */
-      type: 'FIDO';
+      type: "FIDO";
       /**
        * The challenge has signed but not yet verified.
        */
-      status: 'PENDING';
+      status: "PENDING";
       /**
        * The challenge that has been signed by a PISP.
        */
@@ -19518,7 +19518,7 @@ export interface components {
          * account information.
          */
         accountId: string;
-        actions: ('accounts.getBalance' | 'accounts.transfer')[];
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
       /**
        * A credential used to allow a user to prove their identity and access
@@ -19537,11 +19537,11 @@ export interface components {
          * The type of the Credential.
          * - "FIDO" - A FIDO public/private keypair.
          */
-        type: 'FIDO';
+        type: "FIDO";
         /**
          * The challenge has signed but not yet verified.
          */
-        status: 'PENDING';
+        status: "PENDING";
         /**
          * The challenge that has been signed by a PISP.
          */
@@ -19583,11 +19583,11 @@ export interface components {
        * The type of the Credential.
        * - "FIDO" - A FIDO public/private keypair.
        */
-      type: 'FIDO';
+      type: "FIDO";
       /**
        * The challenge has initialized but not yet answered by the PISP.
        */
-      status: 'PENDING';
+      status: "PENDING";
       /**
        * The challenge issued by a DFSP that must be answered by the PISP.
        */
@@ -19625,7 +19625,7 @@ export interface components {
          * account information.
          */
         accountId: string;
-        actions: ('accounts.getBalance' | 'accounts.transfer')[];
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
       /**
        * A credential used to allow a user to prove their identity and access
@@ -19640,11 +19640,11 @@ export interface components {
          * The type of the Credential.
          * - "FIDO" - A FIDO public/private keypair.
          */
-        type: 'FIDO';
+        type: "FIDO";
         /**
          * The challenge has initialized but not yet answered by the PISP.
          */
-        status: 'PENDING';
+        status: "PENDING";
         /**
          * The challenge issued by a DFSP that must be answered by the PISP.
          */
@@ -19673,11 +19673,11 @@ export interface components {
        * The type of the Credential.
        * - "FIDO" - A FIDO public/private keypair.
        */
-      type: 'FIDO';
+      type: "FIDO";
       /**
        * The Credential is valid, and ready to be used by the PISP.
        */
-      status: 'VERIFIED';
+      status: "VERIFIED";
       /**
        * The challenge that has been signed by a PISP.
        */
@@ -19723,7 +19723,7 @@ export interface components {
          * account information.
          */
         accountId: string;
-        actions: ('accounts.getBalance' | 'accounts.transfer')[];
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
       /**
        * A credential used to allow a user to prove their identity and access
@@ -19742,11 +19742,11 @@ export interface components {
          * The type of the Credential.
          * - "FIDO" - A FIDO public/private keypair.
          */
-        type: 'FIDO';
+        type: "FIDO";
         /**
          * The Credential is valid, and ready to be used by the PISP.
          */
-        status: 'VERIFIED';
+        status: "VERIFIED";
         /**
          * The challenge that has been signed by a PISP.
          */
@@ -19775,14 +19775,14 @@ export interface components {
        * The type of the Credential.
        * - "FIDO" - A FIDO public/private keypair.
        */
-      type: 'FIDO';
+      type: "FIDO";
     };
     /**
      * This is a variant based on FSPIOP `PartyIdType` specification.
      * This validation interface should be use by `POST /thirdpartyRequests/transactions`
      * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
      */
-    PartyIdTypeTPLink: 'THIRD_PARTY_LINK';
+    PartyIdTypeTPLink: "THIRD_PARTY_LINK";
     /**
      * Data model for the complex type PartyIdInfo.
      */
@@ -19792,7 +19792,7 @@ export interface components {
        * This validation interface should be use by `POST /thirdpartyRequests/transactions`
        * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
        */
-      partyIdType: 'THIRD_PARTY_LINK';
+      partyIdType: "THIRD_PARTY_LINK";
       /**
        * Identifier of the Party.
        */
@@ -19846,168 +19846,168 @@ export interface components {
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
           currency:
-          | 'AED'
-          | 'AFN'
-          | 'ALL'
-          | 'AMD'
-          | 'ANG'
-          | 'AOA'
-          | 'ARS'
-          | 'AUD'
-          | 'AWG'
-          | 'AZN'
-          | 'BAM'
-          | 'BBD'
-          | 'BDT'
-          | 'BGN'
-          | 'BHD'
-          | 'BIF'
-          | 'BMD'
-          | 'BND'
-          | 'BOB'
-          | 'BRL'
-          | 'BSD'
-          | 'BTN'
-          | 'BWP'
-          | 'BYN'
-          | 'BZD'
-          | 'CAD'
-          | 'CDF'
-          | 'CHF'
-          | 'CLP'
-          | 'CNY'
-          | 'COP'
-          | 'CRC'
-          | 'CUC'
-          | 'CUP'
-          | 'CVE'
-          | 'CZK'
-          | 'DJF'
-          | 'DKK'
-          | 'DOP'
-          | 'DZD'
-          | 'EGP'
-          | 'ERN'
-          | 'ETB'
-          | 'EUR'
-          | 'FJD'
-          | 'FKP'
-          | 'GBP'
-          | 'GEL'
-          | 'GGP'
-          | 'GHS'
-          | 'GIP'
-          | 'GMD'
-          | 'GNF'
-          | 'GTQ'
-          | 'GYD'
-          | 'HKD'
-          | 'HNL'
-          | 'HRK'
-          | 'HTG'
-          | 'HUF'
-          | 'IDR'
-          | 'ILS'
-          | 'IMP'
-          | 'INR'
-          | 'IQD'
-          | 'IRR'
-          | 'ISK'
-          | 'JEP'
-          | 'JMD'
-          | 'JOD'
-          | 'JPY'
-          | 'KES'
-          | 'KGS'
-          | 'KHR'
-          | 'KMF'
-          | 'KPW'
-          | 'KRW'
-          | 'KWD'
-          | 'KYD'
-          | 'KZT'
-          | 'LAK'
-          | 'LBP'
-          | 'LKR'
-          | 'LRD'
-          | 'LSL'
-          | 'LYD'
-          | 'MAD'
-          | 'MDL'
-          | 'MGA'
-          | 'MKD'
-          | 'MMK'
-          | 'MNT'
-          | 'MOP'
-          | 'MRO'
-          | 'MUR'
-          | 'MVR'
-          | 'MWK'
-          | 'MXN'
-          | 'MYR'
-          | 'MZN'
-          | 'NAD'
-          | 'NGN'
-          | 'NIO'
-          | 'NOK'
-          | 'NPR'
-          | 'NZD'
-          | 'OMR'
-          | 'PAB'
-          | 'PEN'
-          | 'PGK'
-          | 'PHP'
-          | 'PKR'
-          | 'PLN'
-          | 'PYG'
-          | 'QAR'
-          | 'RON'
-          | 'RSD'
-          | 'RUB'
-          | 'RWF'
-          | 'SAR'
-          | 'SBD'
-          | 'SCR'
-          | 'SDG'
-          | 'SEK'
-          | 'SGD'
-          | 'SHP'
-          | 'SLL'
-          | 'SOS'
-          | 'SPL'
-          | 'SRD'
-          | 'STD'
-          | 'SVC'
-          | 'SYP'
-          | 'SZL'
-          | 'THB'
-          | 'TJS'
-          | 'TMT'
-          | 'TND'
-          | 'TOP'
-          | 'TRY'
-          | 'TTD'
-          | 'TVD'
-          | 'TWD'
-          | 'TZS'
-          | 'UAH'
-          | 'UGX'
-          | 'USD'
-          | 'UYU'
-          | 'UZS'
-          | 'VEF'
-          | 'VND'
-          | 'VUV'
-          | 'WST'
-          | 'XAF'
-          | 'XCD'
-          | 'XDR'
-          | 'XOF'
-          | 'XPF'
-          | 'YER'
-          | 'ZAR'
-          | 'ZMW'
-          | 'ZWD';
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
           /**
            * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
            *
@@ -20027,7 +20027,7 @@ export interface components {
          * This validation interface should be use by `POST /thirdpartyRequests/transactions`
          * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
          */
-        partyIdType: 'THIRD_PARTY_LINK';
+        partyIdType: "THIRD_PARTY_LINK";
         /**
          * Identifier of the Party.
          */
@@ -20099,7 +20099,7 @@ export interface components {
      * - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
      * - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
      */
-    AmountType: 'SEND' | 'RECEIVE';
+    AmountType: "SEND" | "RECEIVE";
     /**
      * The object sent in the POST /thirdpartyRequests/transactions request.
      */
@@ -20130,168 +20130,168 @@ export interface components {
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
             currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
             /**
              * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
              *
@@ -20349,16 +20349,16 @@ export interface components {
            * - THIRD_PARTY_LINK - TBD
            */
           partyIdType:
-          | 'MSISDN'
-          | 'EMAIL'
-          | 'PERSONAL_ID'
-          | 'BUSINESS'
-          | 'DEVICE'
-          | 'ACCOUNT_ID'
-          | 'IBAN'
-          | 'ALIAS'
-          | 'CONSENT'
-          | 'THIRD_PARTY_LINK';
+            | "MSISDN"
+            | "EMAIL"
+            | "PERSONAL_ID"
+            | "BUSINESS"
+            | "DEVICE"
+            | "ACCOUNT_ID"
+            | "IBAN"
+            | "ALIAS"
+            | "CONSENT"
+            | "THIRD_PARTY_LINK";
           /**
            * Identifier of the Party.
            */
@@ -20447,168 +20447,168 @@ export interface components {
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
             currency:
-            | 'AED'
-            | 'AFN'
-            | 'ALL'
-            | 'AMD'
-            | 'ANG'
-            | 'AOA'
-            | 'ARS'
-            | 'AUD'
-            | 'AWG'
-            | 'AZN'
-            | 'BAM'
-            | 'BBD'
-            | 'BDT'
-            | 'BGN'
-            | 'BHD'
-            | 'BIF'
-            | 'BMD'
-            | 'BND'
-            | 'BOB'
-            | 'BRL'
-            | 'BSD'
-            | 'BTN'
-            | 'BWP'
-            | 'BYN'
-            | 'BZD'
-            | 'CAD'
-            | 'CDF'
-            | 'CHF'
-            | 'CLP'
-            | 'CNY'
-            | 'COP'
-            | 'CRC'
-            | 'CUC'
-            | 'CUP'
-            | 'CVE'
-            | 'CZK'
-            | 'DJF'
-            | 'DKK'
-            | 'DOP'
-            | 'DZD'
-            | 'EGP'
-            | 'ERN'
-            | 'ETB'
-            | 'EUR'
-            | 'FJD'
-            | 'FKP'
-            | 'GBP'
-            | 'GEL'
-            | 'GGP'
-            | 'GHS'
-            | 'GIP'
-            | 'GMD'
-            | 'GNF'
-            | 'GTQ'
-            | 'GYD'
-            | 'HKD'
-            | 'HNL'
-            | 'HRK'
-            | 'HTG'
-            | 'HUF'
-            | 'IDR'
-            | 'ILS'
-            | 'IMP'
-            | 'INR'
-            | 'IQD'
-            | 'IRR'
-            | 'ISK'
-            | 'JEP'
-            | 'JMD'
-            | 'JOD'
-            | 'JPY'
-            | 'KES'
-            | 'KGS'
-            | 'KHR'
-            | 'KMF'
-            | 'KPW'
-            | 'KRW'
-            | 'KWD'
-            | 'KYD'
-            | 'KZT'
-            | 'LAK'
-            | 'LBP'
-            | 'LKR'
-            | 'LRD'
-            | 'LSL'
-            | 'LYD'
-            | 'MAD'
-            | 'MDL'
-            | 'MGA'
-            | 'MKD'
-            | 'MMK'
-            | 'MNT'
-            | 'MOP'
-            | 'MRO'
-            | 'MUR'
-            | 'MVR'
-            | 'MWK'
-            | 'MXN'
-            | 'MYR'
-            | 'MZN'
-            | 'NAD'
-            | 'NGN'
-            | 'NIO'
-            | 'NOK'
-            | 'NPR'
-            | 'NZD'
-            | 'OMR'
-            | 'PAB'
-            | 'PEN'
-            | 'PGK'
-            | 'PHP'
-            | 'PKR'
-            | 'PLN'
-            | 'PYG'
-            | 'QAR'
-            | 'RON'
-            | 'RSD'
-            | 'RUB'
-            | 'RWF'
-            | 'SAR'
-            | 'SBD'
-            | 'SCR'
-            | 'SDG'
-            | 'SEK'
-            | 'SGD'
-            | 'SHP'
-            | 'SLL'
-            | 'SOS'
-            | 'SPL'
-            | 'SRD'
-            | 'STD'
-            | 'SVC'
-            | 'SYP'
-            | 'SZL'
-            | 'THB'
-            | 'TJS'
-            | 'TMT'
-            | 'TND'
-            | 'TOP'
-            | 'TRY'
-            | 'TTD'
-            | 'TVD'
-            | 'TWD'
-            | 'TZS'
-            | 'UAH'
-            | 'UGX'
-            | 'USD'
-            | 'UYU'
-            | 'UZS'
-            | 'VEF'
-            | 'VND'
-            | 'VUV'
-            | 'WST'
-            | 'XAF'
-            | 'XCD'
-            | 'XDR'
-            | 'XOF'
-            | 'XPF'
-            | 'YER'
-            | 'ZAR'
-            | 'ZMW'
-            | 'ZWD';
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
             /**
              * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
              *
@@ -20628,7 +20628,7 @@ export interface components {
            * This validation interface should be use by `POST /thirdpartyRequests/transactions`
            * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
            */
-          partyIdType: 'THIRD_PARTY_LINK';
+          partyIdType: "THIRD_PARTY_LINK";
           /**
            * Identifier of the Party.
            */
@@ -20698,7 +20698,7 @@ export interface components {
       /**
        * SEND for sendAmount, RECEIVE for receiveAmount.
        */
-      amountType: 'SEND' | 'RECEIVE';
+      amountType: "SEND" | "RECEIVE";
       /**
        * Requested amount to be transferred from the Payer to Payee.
        */
@@ -20707,168 +20707,168 @@ export interface components {
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
         currency:
-        | 'AED'
-        | 'AFN'
-        | 'ALL'
-        | 'AMD'
-        | 'ANG'
-        | 'AOA'
-        | 'ARS'
-        | 'AUD'
-        | 'AWG'
-        | 'AZN'
-        | 'BAM'
-        | 'BBD'
-        | 'BDT'
-        | 'BGN'
-        | 'BHD'
-        | 'BIF'
-        | 'BMD'
-        | 'BND'
-        | 'BOB'
-        | 'BRL'
-        | 'BSD'
-        | 'BTN'
-        | 'BWP'
-        | 'BYN'
-        | 'BZD'
-        | 'CAD'
-        | 'CDF'
-        | 'CHF'
-        | 'CLP'
-        | 'CNY'
-        | 'COP'
-        | 'CRC'
-        | 'CUC'
-        | 'CUP'
-        | 'CVE'
-        | 'CZK'
-        | 'DJF'
-        | 'DKK'
-        | 'DOP'
-        | 'DZD'
-        | 'EGP'
-        | 'ERN'
-        | 'ETB'
-        | 'EUR'
-        | 'FJD'
-        | 'FKP'
-        | 'GBP'
-        | 'GEL'
-        | 'GGP'
-        | 'GHS'
-        | 'GIP'
-        | 'GMD'
-        | 'GNF'
-        | 'GTQ'
-        | 'GYD'
-        | 'HKD'
-        | 'HNL'
-        | 'HRK'
-        | 'HTG'
-        | 'HUF'
-        | 'IDR'
-        | 'ILS'
-        | 'IMP'
-        | 'INR'
-        | 'IQD'
-        | 'IRR'
-        | 'ISK'
-        | 'JEP'
-        | 'JMD'
-        | 'JOD'
-        | 'JPY'
-        | 'KES'
-        | 'KGS'
-        | 'KHR'
-        | 'KMF'
-        | 'KPW'
-        | 'KRW'
-        | 'KWD'
-        | 'KYD'
-        | 'KZT'
-        | 'LAK'
-        | 'LBP'
-        | 'LKR'
-        | 'LRD'
-        | 'LSL'
-        | 'LYD'
-        | 'MAD'
-        | 'MDL'
-        | 'MGA'
-        | 'MKD'
-        | 'MMK'
-        | 'MNT'
-        | 'MOP'
-        | 'MRO'
-        | 'MUR'
-        | 'MVR'
-        | 'MWK'
-        | 'MXN'
-        | 'MYR'
-        | 'MZN'
-        | 'NAD'
-        | 'NGN'
-        | 'NIO'
-        | 'NOK'
-        | 'NPR'
-        | 'NZD'
-        | 'OMR'
-        | 'PAB'
-        | 'PEN'
-        | 'PGK'
-        | 'PHP'
-        | 'PKR'
-        | 'PLN'
-        | 'PYG'
-        | 'QAR'
-        | 'RON'
-        | 'RSD'
-        | 'RUB'
-        | 'RWF'
-        | 'SAR'
-        | 'SBD'
-        | 'SCR'
-        | 'SDG'
-        | 'SEK'
-        | 'SGD'
-        | 'SHP'
-        | 'SLL'
-        | 'SOS'
-        | 'SPL'
-        | 'SRD'
-        | 'STD'
-        | 'SVC'
-        | 'SYP'
-        | 'SZL'
-        | 'THB'
-        | 'TJS'
-        | 'TMT'
-        | 'TND'
-        | 'TOP'
-        | 'TRY'
-        | 'TTD'
-        | 'TVD'
-        | 'TWD'
-        | 'TZS'
-        | 'UAH'
-        | 'UGX'
-        | 'USD'
-        | 'UYU'
-        | 'UZS'
-        | 'VEF'
-        | 'VND'
-        | 'VUV'
-        | 'WST'
-        | 'XAF'
-        | 'XCD'
-        | 'XDR'
-        | 'XOF'
-        | 'XPF'
-        | 'YER'
-        | 'ZAR'
-        | 'ZMW'
-        | 'ZWD';
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
         /**
          * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
          */
@@ -20886,7 +20886,7 @@ export interface components {
          * - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
          * - REFUND - Used for performing a refund of transaction.
          */
-        scenario: 'DEPOSIT' | 'WITHDRAWAL' | 'TRANSFER' | 'PAYMENT' | 'REFUND';
+        scenario: "DEPOSIT" | "WITHDRAWAL" | "TRANSFER" | "PAYMENT" | "REFUND";
         /**
          * Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
          */
@@ -20896,7 +20896,7 @@ export interface components {
          * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
          * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
          */
-        initiator: 'PAYER' | 'PAYEE';
+        initiator: "PAYER" | "PAYEE";
         /**
          * Below are the allowed values for the enumeration.
          * - CONSUMER - Consumer is the initiator of the transaction.
@@ -20904,7 +20904,7 @@ export interface components {
          * - BUSINESS - Business is the initiator of the transaction.
          * - DEVICE - Device is the initiator of the transaction.
          */
-        initiatorType: 'CONSUMER' | 'AGENT' | 'BUSINESS' | 'DEVICE';
+        initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
         /**
          * Data model for the complex type Refund.
          */
@@ -20943,7 +20943,7 @@ export interface components {
        * - ACCEPTED - Payer has approved the transaction.
        * - REJECTED - Payer has rejected the transaction.
        */
-      transactionRequestState: 'RECEIVED' | 'PENDING' | 'ACCEPTED' | 'REJECTED';
+      transactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
     };
     /**
      * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
@@ -20972,7 +20972,7 @@ export interface components {
       /**
        * The status of the authorization. This value must be `VERIFIED` for a PUT request.
        */
-      status: 'VERIFIED';
+      status: "VERIFIED";
     };
     /**
      * The object sent in the POST /thirdpartyRequests/transactions/{id}/authorizations request.
@@ -20997,49 +20997,49 @@ export interface components {
       /**
        * The status of the authorization. This MUST be PENDING for a POST request
        */
-      status: 'PENDING';
+      status: "PENDING";
     };
   };
   responses: {
     /**
      * OK
      */
-    '200': { [key: string]: any };
+    "200": { [key: string]: any };
     /**
      * Accepted
      */
-    '202': { [key: string]: any };
+    "202": { [key: string]: any };
     /**
      * Bad Request
      */
-    '400': { [key: string]: any };
+    "400": { [key: string]: any };
     /**
      * Unauthorized
      */
-    '401': { [key: string]: any };
+    "401": { [key: string]: any };
     /**
      * Forbidden
      */
-    '403': { [key: string]: any };
+    "403": { [key: string]: any };
     /**
      * Not Found
      */
-    '404': { [key: string]: any };
+    "404": { [key: string]: any };
     /**
      * Method Not Allowed
      */
-    '405': { [key: string]: any };
+    "405": { [key: string]: any };
     /**
      * Not Acceptable
      */
-    '406': { [key: string]: any };
+    "406": { [key: string]: any };
     /**
      * Not Implemented
      */
-    '501': { [key: string]: any };
+    "501": { [key: string]: any };
     /**
      * Service Unavailable
      */
-    '503': { [key: string]: any };
+    "503": { [key: string]: any };
   };
 }

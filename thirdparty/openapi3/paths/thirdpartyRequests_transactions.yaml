@@ -20,8 +20,6 @@ post:
           $ref: ../components/schemas/ThirdpartyRequestsTransactionsPostRequest.yaml
         example:
           transactionRequestId: '8d34f91d-d078-4077-8263-2c047876fcf6'
-          sourceAccountId: 'dfspa.alice.1234'
-          consentId: '111'
           payee:
             partyIdInfo:
               partyIdType: 'MSISDN'
@@ -33,8 +31,8 @@ post:
                 firstName: 'Alice'
                 lastName: 'K'
             partyIdInfo:
-              partyIdType: 'MSISDN'
-              partyIdentifier: '+44 8765 4321'
+              partyIdType: 'THIRD_PARTY_LINK'
+              partyIdentifier: 'qwerty-123456'
               fspId: 'dfspa'
           amountType: 'SEND'
           amount:
