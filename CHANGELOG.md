@@ -1,4 +1,6 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.1.3](https://github.com/mojaloop/api-snippets/compare/v12.1.2...v12.1.3) (2021-03-25)
+
 ### [12.1.2](https://github.com/mojaloop/api-snippets/compare/v12.1.1...v12.1.2) (2021-03-23)
 
 
