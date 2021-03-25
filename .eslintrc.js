@@ -27,7 +27,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-var-requires': 'error',
     'no-console': 'off',
-    quotes: ['error', 'single'],
+    quotes: ['off', 'single'], // generated code contains double quotes
     'linebreak-style': ['error', 'unix'],
     semi: ['error', 'never'],
     'cucumber/async-then': 2,
@@ -36,7 +36,8 @@ module.exports = {
     'cucumber/no-arrow-functions': 2,
     'import/default': 'warn',
     'import/extensions': 'off',
-    'max-len': ['warn', { code: 120 }]
+    'max-len': 'off', // there are very long machine generate lines
+    'no-use-before-define': 'warn' // generated code brakes this rule
   },
   settings: {
     'import/resolver': {
