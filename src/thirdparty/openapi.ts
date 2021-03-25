@@ -9012,7 +9012,7 @@ export interface operations {
     };
   };
   /**
-   * The HTTP request `DELETE /consents/{ID}` is used to delete a previously created consent.
+   * The HTTP request `DELETE /consents/{ID}` is used to mark as deleted a previously created consent.
    *
    * - Called by a PISP when a user wants to remove their consent.
    */

@@ -3886,8 +3886,8 @@ paths:
           headers: *ref_34
     delete:
       description: >
-        The HTTP request `DELETE /consents/{ID}` is used to delete a previously
-        created consent.
+        The HTTP request `DELETE /consents/{ID}` is used to mark as deleted a
+        previously created consent.
 
 
         - Called by a PISP when a user wants to remove their consent.
@@ -4403,8 +4403,6 @@ paths:
                 - expiration
             example:
               transactionRequestId: 8d34f91d-d078-4077-8263-2c047876fcf6
-              sourceAccountId: dfspa.alice.1234
-              consentId: '111'
               payee:
                 partyIdInfo:
                   partyIdType: MSISDN
@@ -4416,8 +4414,8 @@ paths:
                     firstName: Alice
                     lastName: K
                 partyIdInfo:
-                  partyIdType: MSISDN
-                  partyIdentifier: +44 8765 4321
+                  partyIdType: THIRD_PARTY_LINK
+                  partyIdentifier: qwerty-123456
                   fspId: dfspa
               amountType: SEND
               amount:
