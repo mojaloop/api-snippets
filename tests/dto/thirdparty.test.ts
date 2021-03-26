@@ -107,12 +107,6 @@ describe('thirdparty', () => {
     name,
     personalInfo: partyPersonalInfo
   }
-  const partyTPLink: Schemas.PartyTPLink = {
-    partyIdInfo: partyIdInfoTPLink,
-    merchantClassificationCode,
-    name,
-    personalInfo: partyPersonalInfo
-  }
   const partyIdTypeEMAIL: Schemas.PartyIdType = 'EMAIL'
   const signedCredential: Schemas.SignedCredential = {
     id: 'credential-id',
@@ -511,7 +505,7 @@ describe('thirdparty', () => {
     const thirdpartyRequestsTransactionsPostRequest: Schemas.ThirdpartyRequestsTransactionsPostRequest = {
       transactionRequestId: correlationId,
       payee: party,
-      payer: partyTPLink,
+      payer: partyIdInfoTPLink,
       amountType: 'SEND',
       amount: money,
       transactionType,
