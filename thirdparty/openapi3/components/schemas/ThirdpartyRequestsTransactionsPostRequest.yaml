@@ -15,7 +15,7 @@ properties:
     description: Information about the Payee in the proposed financial transaction.
   payer:
     allOf:
-      - $ref: ./PartyTPLink.yaml
+      - $ref: ./PartyIdInfoTPLink.yaml
     description: Information about the Payer in the proposed financial transaction.
   amountType:
     allOf:

@@ -26,14 +26,9 @@ post:
               partyIdentifier: '+44 1234 5678'
               fspId: 'dfspb'
           payer:
-            personalInfo:
-              complexName:
-                firstName: 'Alice'
-                lastName: 'K'
-            partyIdInfo:
-              partyIdType: 'THIRD_PARTY_LINK'
-              partyIdentifier: 'qwerty-123456'
-              fspId: 'dfspa'
+            partyIdType: 'THIRD_PARTY_LINK'
+            partyIdentifier: 'qwerty-123456'
+            fspId: 'dfspa'
           amountType: 'SEND'
           amount:
             amount: '100'

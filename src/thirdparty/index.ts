@@ -67,7 +67,6 @@ export namespace Schemas {
   export type ParticipantsPostRequest = components['schemas']['ParticipantsPostRequest']
   export type PartiesTypeIDPutResponse = components['schemas']['PartiesTypeIDPutResponse']
   export type Party = components['schemas']['Party']
-  export type PartyTPLink = components['schemas']['PartyTPLink']
   export type PartyComplexName = components['schemas']['PartyComplexName']
   export type PartyIdentifier = components['schemas']['PartyIdentifier']
   export type PartyIdInfo = components['schemas']['PartyIdInfo']
