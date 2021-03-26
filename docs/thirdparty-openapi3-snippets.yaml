@@ -31,7 +31,7 @@ paths:
               oneOf:
                 - title: AuthorizationChannelType
                   type: string
-                  enum: &ref_68
+                  enum: &ref_65
                     - OTP
                     - QRCODE
                     - U2F
@@ -54,7 +54,7 @@ paths:
 
                     resend of the authentication value.
                   type: string
-                  enum: &ref_69
+                  enum: &ref_66
                     - ENTERED
                     - REJECTED
                     - RESEND
@@ -318,7 +318,7 @@ paths:
                       title: QuotesIDPutResponse
                       type: object
                       description: 'The object sent in the PUT /quotes/{ID} callback.'
-                      properties: &ref_72
+                      properties: &ref_69
                         transferAmount:
                           title: Money
                           type: object
@@ -424,7 +424,7 @@ paths:
                                 title: Extension
                                 type: object
                                 description: Data model for the complex type Extension.
-                                properties: &ref_70
+                                properties: &ref_67
                                   key:
                                     title: ExtensionKey
                                     type: string
@@ -437,7 +437,7 @@ paths:
                                     minLength: 1
                                     maxLength: 128
                                     description: Extension value.
-                                required: &ref_71
+                                required: &ref_68
                                   - key
                                   - value
                               minItems: 1
@@ -445,7 +445,7 @@ paths:
                               description: Number of Extension elements.
                           required: &ref_4
                             - extension
-                      required: &ref_73
+                      required: &ref_70
                         - transferAmount
                         - expiration
                         - ilpPacket
@@ -464,7 +464,7 @@ paths:
 
                     Sent to both the PISP and DFSP when a consent is revoked.
                   type: object
-                  properties: &ref_74
+                  properties: &ref_71
                     status:
                       title: ConsentStatusType
                       type: string
@@ -493,7 +493,7 @@ paths:
                         "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time
                         zone, same as UTC).
                       example: '2016-05-24T08:38:08.699-04:00'
-                  required: &ref_75
+                  required: &ref_72
                     - status
                     - revokedAt
                 - title: ConsentStatusType
@@ -521,7 +521,7 @@ paths:
                 - title: PartyResult
                   type: object
                   description: Data model for the complex type PartyResult.
-                  properties: &ref_77
+                  properties: &ref_74
                     partyId:
                       description: Data model for the complex type PartyIdInfo.
                       title: PartyIdInfo
@@ -530,7 +530,7 @@ paths:
                         partyIdType:
                           title: PartyIdType
                           type: string
-                          enum: &ref_76
+                          enum: &ref_73
                             - MSISDN
                             - EMAIL
                             - PERSONAL_ID
@@ -721,12 +721,12 @@ paths:
                       required: &ref_15
                         - errorCode
                         - errorDescription
-                  required: &ref_78
+                  required: &ref_75
                     - partyId
                 - title: ParticipantsPostRequest
                   type: object
                   description: The object sent in the POST /participants request.
-                  properties: &ref_79
+                  properties: &ref_76
                     requestId:
                       title: CorrelationId
                       type: string
@@ -768,7 +768,7 @@ paths:
                       minLength: 3
                       maxLength: 3
                       enum: *ref_7
-                  required: &ref_80
+                  required: &ref_77
                     - requestId
                     - partyList
                 - title: PartiesTypeIDPutResponse
@@ -794,14 +794,14 @@ paths:
                           title: AccountList
                           type: object
                           description: Data model for the complex type AccountList.
-                          properties: &ref_58
+                          properties: &ref_80
                             account:
                               type: array
                               items:
                                 title: Account
                                 type: object
                                 description: Data model for the complex type Account.
-                                properties: &ref_81
+                                properties: &ref_78
                                   address:
                                     title: AccountAddress
                                     type: string
@@ -854,12 +854,12 @@ paths:
                                       enabled. For example, if Java is used, the
                                       flag UNICODE_CHARACTER_CLASS must be
                                       enabled to allow Unicode characters.
-                                required: &ref_82
+                                required: &ref_79
                                   - currency
                               minItems: 1
                               maxItems: 32
                               description: Accounts associated with the Party.
-                          required: &ref_59
+                          required: &ref_81
                             - account
                         partyIdInfo:
                           title: PartyIdInfo
@@ -888,14 +888,14 @@ paths:
                           title: PartyPersonalInfo
                           type: object
                           description: Data model for the complex type PartyPersonalInfo.
-                          properties: &ref_60
+                          properties: &ref_83
                             complexName:
                               title: PartyComplexName
                               type: object
                               description: >-
                                 Data model for the complex type
                                 PartyComplexName.
-                              properties: &ref_83
+                              properties: &ref_82
                                 firstName:
                                   title: FirstName
                                   type: string
@@ -955,7 +955,7 @@ paths:
                     transactionRequestState:
                       title: TransactionRequestState
                       type: string
-                      enum: &ref_65
+                      enum: &ref_62
                         - RECEIVED
                         - PENDING
                         - ACCEPTED
@@ -1040,7 +1040,7 @@ paths:
                       title: TransactionType
                       type: object
                       description: Data model for the complex type TransactionType.
-                      properties: &ref_61
+                      properties: &ref_58
                         scenario:
                           title: TransactionScenario
                           type: string
@@ -1172,7 +1172,7 @@ paths:
                             digits only. Negative numbers are not allowed. A
                             leading zero is not allowed.
                           example: '123'
-                      required: &ref_62
+                      required: &ref_59
                         - scenario
                         - initiator
                         - initiatorType
@@ -4224,7 +4224,7 @@ paths:
               description: >-
                 The object sent in the POST /thirdpartyRequests/transactions
                 request.
-              properties: &ref_63
+              properties: &ref_60
                 transactionRequestId:
                   allOf:
                     - title: CorrelationId
@@ -4258,95 +4258,59 @@ paths:
                     transaction.
                 payer:
                   allOf:
-                    - title: Party
+                    - title: PartyIdInfo
                       type: object
-                      description: Data model for the complex type Party.
-                      properties: &ref_139
-                        accounts:
-                          title: AccountList
-                          type: object
-                          description: Data model for the complex type AccountList.
-                          properties: *ref_58
-                          required: *ref_59
-                        partyIdInfo:
-                          title: PartyIdInfo
-                          type: object
-                          description: Data model for the complex type PartyIdInfo.
-                          properties: &ref_137
-                            partyIdType:
-                              title: PartyIdTypeTPLink
-                              type: string
-                              enum: &ref_136
-                                - THIRD_PARTY_LINK
-                              description: >
-                                This is a variant based on FSPIOP `PartyIdType`
-                                specification.
-
-                                This validation interface should be use by `POST
-                                /thirdpartyRequests/transactions`
-
-                                - THIRD_PARTY_LINK - is the DFSP's internal
-                                reference which allows DFSP to find out the
-                                corresponding consent
-                              example: PERSONAL_ID
-                            partyIdentifier:
-                              title: PartyIdentifier
-                              type: string
-                              minLength: 1
-                              maxLength: 128
-                              description: Identifier of the Party.
-                              example: '16135551212'
-                            partySubIdOrType:
-                              title: PartySubIdOrType
-                              type: string
-                              minLength: 1
-                              maxLength: 128
-                              description: >-
-                                Either a sub-identifier of a PartyIdentifier, or
-                                a sub-type of the PartyIdType, normally a
-                                PersonalIdentifierType.
-                            fspId:
-                              title: FspId
-                              type: string
-                              minLength: 1
-                              maxLength: 32
-                              description: FSP identifier.
-                            extensionList:
-                              title: ExtensionList
-                              type: object
-                              description: >-
-                                Data model for the complex type ExtensionList.
-                                An optional list of extensions, specific to
-                                deployment.
-                              properties: *ref_3
-                              required: *ref_4
-                          required: &ref_138
-                            - partyIdType
-                            - partyIdentifier
-                        merchantClassificationCode:
-                          title: MerchantClassificationCode
+                      description: Data model for the complex type PartyIdInfo.
+                      properties: &ref_137
+                        partyIdType:
+                          title: PartyIdTypeTPLink
                           type: string
-                          pattern: '^[\d]{1,4}$'
-                          description: >-
-                            A limited set of pre-defined numbers. This list
-                            would be a limited set of numbers identifying a set
-                            of popular merchant types like School Fees, Pubs and
-                            Restaurants, Groceries, etc.
-                        name:
-                          title: PartyName
+                          enum: &ref_136
+                            - THIRD_PARTY_LINK
+                          description: >
+                            This is a variant based on FSPIOP `PartyIdType`
+                            specification.
+
+                            This validation interface should be use by `POST
+                            /thirdpartyRequests/transactions`
+
+                            - THIRD_PARTY_LINK - is the DFSP's internal
+                            reference which allows DFSP to find out the
+                            corresponding consent
+                          example: PERSONAL_ID
+                        partyIdentifier:
+                          title: PartyIdentifier
+                          type: string
+                          minLength: 1
+                          maxLength: 128
+                          description: Identifier of the Party.
+                          example: '16135551212'
+                        partySubIdOrType:
+                          title: PartySubIdOrType
                           type: string
                           minLength: 1
                           maxLength: 128
                           description: >-
-                            Name of the Party. Could be a real name or a
-                            nickname.
-                        personalInfo:
-                          title: PartyPersonalInfo
+                            Either a sub-identifier of a PartyIdentifier, or a
+                            sub-type of the PartyIdType, normally a
+                            PersonalIdentifierType.
+                        fspId:
+                          title: FspId
+                          type: string
+                          minLength: 1
+                          maxLength: 32
+                          description: FSP identifier.
+                        extensionList:
+                          title: ExtensionList
                           type: object
-                          description: Data model for the complex type PartyPersonalInfo.
-                          properties: *ref_60
-                      required: &ref_140
-                        - partyIdInfo
+                          description: >-
+                            Data model for the complex type ExtensionList. An
+                            optional list of extensions, specific to deployment.
+                          properties: *ref_3
+                          required: *ref_4
+                      required: &ref_138
+                        - partyIdType
+                        - partyIdentifier
                   description: >-
                     Information about the Payer in the proposed financial
                     transaction.
@@ -4354,7 +4318,7 @@ paths:
                   allOf:
                     - title: AmountType
                       type: string
-                      enum: &ref_141
+                      enum: &ref_139
                         - SEND
                         - RECEIVE
                       description: >-
@@ -4383,8 +4347,8 @@ paths:
                     - title: TransactionType
                       type: object
                       description: Data model for the complex type TransactionType.
-                      properties: *ref_61
-                      required: *ref_62
+                      properties: *ref_58
+                      required: *ref_59
                   description: Type of transaction.
                 expiration:
                   type: string
@@ -4393,7 +4357,7 @@ paths:
                     It can be set to get a quick failure in case the peer FSP
                     takes too long to respond.
                   example: '2016-05-24T08:38:08.699-04:00'
-              required: &ref_64
+              required: &ref_61
                 - transactionRequestId
                 - payee
                 - payer
@@ -4409,14 +4373,9 @@ paths:
                   partyIdentifier: +44 1234 5678
                   fspId: dfspb
               payer:
-                personalInfo:
-                  complexName:
-                    firstName: Alice
-                    lastName: K
-                partyIdInfo:
-                  partyIdType: THIRD_PARTY_LINK
-                  partyIdentifier: qwerty-123456
-                  fspId: dfspa
+                partyIdType: THIRD_PARTY_LINK
+                partyIdentifier: qwerty-123456
+                fspId: dfspa
               amountType: SEND
               amount:
                 amount: '100'
@@ -4482,8 +4441,8 @@ paths:
               description: >-
                 The object sent in the POST /thirdpartyRequests/transactions
                 request.
-              properties: *ref_63
-              required: *ref_64
+              properties: *ref_60
+              required: *ref_61
             example:
               transactionRequestId: 8d34f91d-d078-4077-8263-2c047876fcf6
               payee:
@@ -4731,7 +4690,7 @@ paths:
               description: >-
                 The object sent in the PUT /thirdPartyRequests/transactions/{ID}
                 request.
-              properties: &ref_66
+              properties: &ref_63
                 transactionId:
                   title: CorrelationId
                   type: string
@@ -4749,7 +4708,7 @@ paths:
                 transactionRequestState:
                   title: TransactionRequestState
                   type: string
-                  enum: *ref_65
+                  enum: *ref_62
                   description: >-
                     Below are the allowed values for the enumeration.
 
@@ -4763,7 +4722,7 @@ paths:
 
                     - REJECTED - Payer has rejected the transaction.
                   example: RECEIVED
-              required: &ref_67
+              required: &ref_64
                 - transactionId
                 - transactionRequestState
       responses:
@@ -4843,8 +4802,8 @@ paths:
               description: >-
                 The object sent in the PUT /thirdPartyRequests/transactions/{ID}
                 request.
-              properties: *ref_66
-              required: *ref_67
+              properties: *ref_63
+              required: *ref_64
       responses:
         '200':
           description: OK
@@ -5178,7 +5137,7 @@ paths:
               description: >-
                 The object sent in the POST
                 /thirdpartyRequests/transactions/{id}/authorizations request.
-              properties: &ref_144
+              properties: &ref_142
                 challenge:
                   type: string
                   description: Base64 encoded binary string - the original challenge.
@@ -5237,7 +5196,7 @@ paths:
                   description: >-
                     The status of the authorization. This MUST be PENDING for a
                     POST request
-              required: &ref_145
+              required: &ref_143
                 - challenge
                 - value
                 - consentId
@@ -5310,7 +5269,7 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/transactions/{id}/authorizations request.
-              properties: &ref_142
+              properties: &ref_140
                 challenge:
                   type: string
                   description: Base64 encoded binary string - the original challenge.
@@ -5369,7 +5328,7 @@ paths:
                   description: >-
                     The status of the authorization. This value must be
                     `VERIFIED` for a PUT request.
-              required: &ref_143
+              required: &ref_141
                 - challenge
                 - value
                 - consentId
@@ -5421,7 +5380,7 @@ components:
     AuthorizationChannelType:
       title: AuthorizationChannelType
       type: string
-      enum: *ref_68
+      enum: *ref_65
       description: >
         Below are the allowed values for the enumeration
         AuthorizationChannelType.
@@ -5438,7 +5397,7 @@ components:
         authentication value, rejected the transaction, or requested a
         resend of the authentication value.
       type: string
-      enum: *ref_69
+      enum: *ref_66
     AuthenticationType:
       title: AuthenticationType
       type: string
@@ -5570,8 +5529,8 @@ components:
       title: Extension
       type: object
       description: Data model for the complex type Extension.
-      properties: *ref_70
-      required: *ref_71
+      properties: *ref_67
+      required: *ref_68
     ExtensionList:
       title: ExtensionList
       type: object
@@ -5584,8 +5543,8 @@ components:
       title: QuotesIDPutResponse
       type: object
       description: 'The object sent in the PUT /quotes/{ID} callback.'
-      properties: *ref_72
-      required: *ref_73
+      properties: *ref_69
+      required: *ref_70
     AuthorizationsPostRequest:
       title: AuthorizationsPostRequest
       description: POST /authorizations request object.
@@ -5607,8 +5566,8 @@ components:
 
         Sent to both the PISP and DFSP when a consent is revoked.
       type: object
-      properties: *ref_74
-      required: *ref_75
+      properties: *ref_71
+      required: *ref_72
     IlpFulfilment:
       title: IlpFulfilment
       type: string
@@ -5626,7 +5585,7 @@ components:
     PartyIdType:
       title: PartyIdType
       type: string
-      enum: *ref_76
+      enum: *ref_73
       description: >
         This is a variant based on FSPIOP `PartyIdType` specification.
 
@@ -5780,14 +5739,14 @@ components:
       title: PartyResult
       type: object
       description: Data model for the complex type PartyResult.
-      properties: *ref_77
-      required: *ref_78
+      properties: *ref_74
+      required: *ref_75
     ParticipantsPostRequest:
       title: ParticipantsPostRequest
       type: object
       description: The object sent in the POST /participants request.
-      properties: *ref_79
-      required: *ref_80
+      properties: *ref_76
+      required: *ref_77
     AccountAddress:
       title: AccountAddress
       type: string
@@ -5824,14 +5783,14 @@ components:
       title: Account
       type: object
       description: Data model for the complex type Account.
-      properties: *ref_81
-      required: *ref_82
+      properties: *ref_78
+      required: *ref_79
     AccountList:
       title: AccountList
       type: object
       description: Data model for the complex type AccountList.
-      properties: *ref_58
-      required: *ref_59
+      properties: *ref_80
+      required: *ref_81
     MerchantClassificationCode:
       title: MerchantClassificationCode
       type: string
@@ -5874,7 +5833,7 @@ components:
       title: PartyComplexName
       type: object
       description: Data model for the complex type PartyComplexName.
-      properties: *ref_83
+      properties: *ref_82
     DateOfBirth:
       title: DateofBirth (type Date)
       type: string
@@ -5886,7 +5845,7 @@ components:
       title: PartyPersonalInfo
       type: object
       description: Data model for the complex type PartyPersonalInfo.
-      properties: *ref_60
+      properties: *ref_83
     Party:
       title: Party
       type: object
@@ -5911,7 +5870,7 @@ components:
     TransactionRequestState:
       title: TransactionRequestState
       type: string
-      enum: *ref_65
+      enum: *ref_62
       description: |-
         Below are the allowed values for the enumeration.
         - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
@@ -6028,8 +5987,8 @@ components:
       title: TransactionType
       type: object
       description: Data model for the complex type TransactionType.
-      properties: *ref_61
-      required: *ref_62
+      properties: *ref_58
+      required: *ref_59
     TransactionRequestsPostRequest:
       title: TransactionRequestsPostRequest
       type: object
@@ -6382,16 +6341,10 @@ components:
       description: Data model for the complex type PartyIdInfo.
       properties: *ref_137
       required: *ref_138
-    PartyTPLink:
-      title: Party
-      type: object
-      description: Data model for the complex type Party.
-      properties: *ref_139
-      required: *ref_140
     AmountType:
       title: AmountType
       type: string
-      enum: *ref_141
+      enum: *ref_139
       description: >-
         Below are the allowed values for the enumeration AmountType.
 
@@ -6405,16 +6358,16 @@ components:
       title: ThirdpartyRequestsTransactionsPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/transactions request.
-      properties: *ref_63
-      required: *ref_64
+      properties: *ref_60
+      required: *ref_61
     ThirdpartyRequestsTransactionsIDPutResponse:
       title: ThirdpartyRequestsTransactionsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdPartyRequests/transactions/{ID}
         request.
-      properties: *ref_66
-      required: *ref_67
+      properties: *ref_63
+      required: *ref_64
     BinaryString:
       type: string
       pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
@@ -6430,16 +6383,16 @@ components:
       description: >-
         The object sent in the PUT
         /thirdpartyRequests/transactions/{id}/authorizations request.
-      properties: *ref_142
-      required: *ref_143
+      properties: *ref_140
+      required: *ref_141
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
       title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object
       description: >-
         The object sent in the POST
         /thirdpartyRequests/transactions/{id}/authorizations request.
-      properties: *ref_144
-      required: *ref_145
+      properties: *ref_142
+      required: *ref_143
   parameters:
     ID:
       name: ID
