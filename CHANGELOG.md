@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [12.2.0](https://github.com/mojaloop/api-snippets/compare/v12.1.3...v12.2.0) (2021-03-26)
+
+
+### Features
+
+* 2060 - use newest payload for POST /thirdpartyRequests/transact… ([#68](https://github.com/mojaloop/api-snippets/issues/68)) ([727740d](https://github.com/mojaloop/api-snippets/commit/727740df6a6c2ea12e04ebc46fe91cbd92351fec))
+
 ### [12.1.3](https://github.com/mojaloop/api-snippets/compare/v12.1.2...v12.1.3) (2021-03-25)
 
 ### [12.1.2](https://github.com/mojaloop/api-snippets/compare/v12.1.1...v12.1.2) (2021-03-23)
