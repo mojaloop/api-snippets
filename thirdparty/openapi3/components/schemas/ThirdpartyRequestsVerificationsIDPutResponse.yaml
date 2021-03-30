@@ -9,3 +9,4 @@ properties:
     description: 'The verification passed'
 required:
   - authenticationResponse
+  

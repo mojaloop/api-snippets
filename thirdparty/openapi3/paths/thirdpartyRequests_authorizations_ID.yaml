@@ -34,7 +34,12 @@ put:
           schema: 
             $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponse.yaml'
           example:
-          # TODO!
+            authenticationInfo:
+              authentication: 'U2F'
+              authenticationValue:
+                pinValue: '<base64 encoded binary - the signed challenge'
+                counter: 1
+            responseType: 'ENTERED'
     400:
       $ref: ../components/responses/400.yaml
     401:

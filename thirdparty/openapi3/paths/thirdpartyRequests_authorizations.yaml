@@ -26,7 +26,26 @@ post:
         schema:
           $ref: ../components/schemas/ThirdpartyRequestsAuthorizationsPostRequest.yaml
         example:
-          # TODO!!
+          authorizationRequestId: 33333333-0000-0000-0000-000000000000
+          transactionRequestId: '00000000-0000-0000-0000-000000000000'
+          challenge: '<base64 encoded binary - the encoded challenge>'
+          quote: 
+            transferAmount:
+              amount: "100"
+              currency: "USD"
+            payeeReceiveAmount:
+              amount: "99"
+              currency: "USD" 
+            payeeFspFee: 
+              amount: "1"
+              currency: "USD"
+            expiration: "2020-06-15T12:00:00.000"
+            ilpPacket: "..."
+            condition: "..."
+          transactionType: 
+            scenario: "TRANSFER"
+            initiator: "PAYER"
+            initiatorType: "CONSUMER"
   responses:
     202:
       $ref: ../components/responses/202.yaml

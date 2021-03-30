@@ -52,11 +52,13 @@ paths:
   # Note: this resource is deprecated in the latest API Draft, and will
   # be removed in the next MAJOR version release of API-Snippets
   # Please use /thirdpartyRequests/authorizations instead
+  # TODO: remove in next major version release
   /authorizations:
     $ref: paths/authorizations.yaml
   # Note: this resource is deprecated in the latest API Draft, and will
   # be removed in the next MAJOR version release of API-Snippets
   # Please use /thirdpartyRequests/authorizations/{ID} instead
+  # TODO: remove in next major version release
   /authorizations/{ID}:
     $ref: paths/authorizations_ID.yaml
   /health:
@@ -75,6 +77,7 @@ paths:
     $ref: paths/consents_ID.yaml
   # Note: this resource is deprecated in the latest API Draft, and will
   # be removed in the next MAJOR version release of API-Snippets
+  # TODO: remove in next major version release
   /consents/{ID}/generateChallenge:
     $ref: paths/consents_ID_generateChallenge.yaml
   /thirdpartyRequests/transactions:
@@ -87,6 +90,7 @@ paths:
     $ref: paths/thirdpartyRequests_transactions_ID_error.yaml
   # Note: this resource is deprecated in the latest API Draft, and will
   # be removed in the next MAJOR version release of API-Snippets
+  # TODO: remove in next major version release
   /thirdpartyRequests/transactions/{ID}/authorizations:
       $ref: paths/thirdpartyRequests_transactions_ID_authz.yaml
   /thirdpartyRequests/authorizations:
