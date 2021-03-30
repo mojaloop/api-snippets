@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [12.3.0](https://github.com/mojaloop/api-snippets/compare/v12.2.0...v12.3.0) (2021-03-30)
+
+
+### Features
+
+* **swagger:** transfer changes for draft v3 ([#69](https://github.com/mojaloop/api-snippets/issues/69)) ([f8384bc](https://github.com/mojaloop/api-snippets/commit/f8384bc26b391be9d07610a71003ea801ade495d))
+
 ## [12.2.0](https://github.com/mojaloop/api-snippets/compare/v12.1.3...v12.2.0) (2021-03-26)
 
 
