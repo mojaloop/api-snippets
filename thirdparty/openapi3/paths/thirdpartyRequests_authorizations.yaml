@@ -1,10 +1,6 @@
-# Note: this resource is deprecated in the latest API Draft, and will
-# be removed in the next MAJOR version release of API-Snippets
-# Please use /thirdpartyRequests/authorizations/{ID} instead
-
 # todo: uncomment parameters after header middleware similar to 
 # `sdk-scheme-adapter` is implemented in `thirdparty-scheme-adapter`
-# parameters:
+#parameters:
 # - $ref: ../components/parameters/ID.yaml
 # - $ref: ../components/parameters/Content-Type.yaml
 # - $ref: ../components/parameters/Date.yaml
@@ -15,28 +11,24 @@
 # - $ref: ../components/parameters/FSPIOP-Signature.yaml
 # - $ref: ../components/parameters/FSPIOP-URI.yaml
 # - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
-put:
-  description: |
-    The callback PUT /authorizations/ is used to inform the client of the
-    result of a previously-requested authorization. The ID in the URI should
-    contain the one that was used in the POST /authorizations/ requestBody.transactionRequestId @ OUTBOUND
-  operationId: InboundAuthorizationsIDPutResponse
+post:
+  description:  >
+    The HTTP request `POST /thirdpartyRequests/authorizations` is used to request the Payer to enter the
+    applicable credentials in the PISP system.
+  operationId: AuthorizationsPostRequest
   tags:
     - authorizations
-  parameters:
-    - name: ID
-      in: path
-      required: true
-      schema:
-        type: string
+  requestBody:
+    description: Authorization request details
+    required: true
+    content:
+      application/json:
+        schema:
+          # TODO: update this schema
+          $ref: ../components/schemas/AuthorizationsPostRequest.yaml
   responses:
-    200:
-      description: |
-        information about result of required (via POST) /authorization
-      content:
-        application/json:
-          schema: 
-            $ref: '../components/schemas/AuthorizationsIDPutResponse.yaml'
+    202:
+      $ref: ../components/responses/202.yaml
     400:
       $ref: ../components/responses/400.yaml
     401:

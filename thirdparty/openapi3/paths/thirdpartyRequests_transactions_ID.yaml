@@ -19,7 +19,7 @@ get:
   summary: GetThirdpartyTransactionRequests
   description: |
     The HTTP request `GET /thirdpartyRequests/transactions/{ID}` is used to request the 
-    retrieval of a third party transaction.
+    retrieval of a third party transaction request.
   responses:
     202:
       $ref: ../components/responses/202.yaml
@@ -47,8 +47,8 @@ put:
   operationId: UpdateThirdPartyTransactionRequests
   summary: UpdateThirdPartyTransactionRequests
   description: |
-    The HTTP request `PUT /thirdpartyRequests/transactions/{ID}` is used to inform the client about
-    status of a previously requested thirdparty transaction.
+    The HTTP request `PUT /thirdpartyRequests/transactions/{ID}` is used by the DFSP to inform the client about
+    the status of a previously requested thirdparty transaction request.
 
     Switch(Thirdparty API Adapter) -> PISP
   parameters:
@@ -61,6 +61,9 @@ put:
       application/json:
         schema:
           $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDPutResponse.yaml
+        example:
+          transactionId: '11111111-0000-0000-0000-000000000000'
+          transactionRequestState: 'RECEIVED'
   responses:
     200:
       $ref: ../components/responses/200.yaml
@@ -100,9 +103,11 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDPutResponse.yaml
-          # TODO: ThirdpartyRequestsTransactionsIDPatchResponse has extra field transactionState, 
-          # which is not used as per existing local definition 
+          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDPatchResponse.yaml
+        example:
+          transactionId: '11111111-0000-0000-0000-000000000000'
+          transactionRequestState: 'ACCEPTED'
+          transactionState: 'COMMITTED'
   responses:
     200:
       $ref: ../components/responses/200.yaml

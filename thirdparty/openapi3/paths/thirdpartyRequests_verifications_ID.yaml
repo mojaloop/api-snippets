@@ -1,0 +1,57 @@
+parameters:
+  #Path
+  - $ref: ../components/parameters/ID.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Length.yaml
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+put:
+  tags:
+    - thirdpartyRequests
+    - sampled
+  operationId: UpdateThirdpartyRequestVerification
+  summary: UpdateThirdpartyRequestVerification
+  description: |
+    The HTTP request `PUT /thirdpartyRequests/verifications/{ID}` is used by the Auth-Service to inform
+    the DFSP of a successful result in validating the verification of a Thirdparty Transaction Request.
+
+    If the validation fails, The Auth-Service MUST use `PUT /thirdpartyRequests/verifications/{ID}/error`
+    instead.
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    description: The result of validating the Thirdparty Transaction Request
+    required: true
+    content:
+      application/json:
+        schema:
+        # TODO: update me!
+          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest.yaml
+        example:
+          authenticationResponse: 'VERIFIED'
+  responses:
+    200:
+      $ref: ../components/responses/200.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml

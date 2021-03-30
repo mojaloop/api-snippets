@@ -65,6 +65,6 @@ post:
       $ref: ../components/responses/503.yaml
   operationId: ThirdpartyRequestsTransactionsPost
   summary: ThirdpartyRequestsTransactionsPost
-  description: The HTTP request POST `/thirdpartyRequests/transactions` is used to create a transaction.
+  description: The HTTP request POST `/thirdpartyRequests/transactions` is used by a PISP to initiate a 3rd party Transaction request with a DFSP
   tags:
     - thirdpartyRequests

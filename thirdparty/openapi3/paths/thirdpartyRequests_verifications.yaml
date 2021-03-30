@@ -1,0 +1,62 @@
+parameters:
+  #Path
+  - $ref: ../components/parameters/ID.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Length.yaml
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+post:
+  tags:
+    - thirdpartyRequests
+    - sampled
+  operationId: VerifyThirdPartyRequest
+  summary: VerifyThirdPartyRequest
+  description: |
+    The HTTP request `POST /thirdpartyRequests/verifications` is used by the DFSP to verify a third party authorization.
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  requestBody:
+    description: The thirdparty authorization details to verify
+    required: true
+    content:
+      application/json:
+        schema:
+        # TODO: update me!
+          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest.yaml
+        example:
+          verificationRequestId: '44444444-0000-0000-0000-000000000000'
+          challenge: '<base64 encoded binary - the encoded challenge>'
+          value: 
+            authenticationInfo:
+              authentication: 'U2F'
+              authenticationValue:
+                pinValue: '<base64 encoded binary - the signed challenge>'
+                counter: '1'
+            responseType: 'ENTERED'
+          consentId: '8d34f91d-d078-4077-8263-2c0498dhbjr'
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
