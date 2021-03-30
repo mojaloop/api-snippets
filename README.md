@@ -1,5 +1,7 @@
 # api-snippets
 
+API Snippets makes it easy to work with Mojaloop's APIs, by breaking down the definitions into reusable, composable chunks.
+
 ## Swagger UI Api Preview
 
 https://docs.mojaloop.io/api-snippets/

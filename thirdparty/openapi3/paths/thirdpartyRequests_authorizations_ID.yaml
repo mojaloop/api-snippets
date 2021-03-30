@@ -1,11 +1,6 @@
-# Note: this resource is deprecated in the latest API Draft, and will
-# be removed in the next MAJOR version release of API-Snippets
-# Please use /thirdpartyRequests/authorizations instead
-# TODO: remove in next major version release
-
 # todo: uncomment parameters after header middleware similar to 
 # `sdk-scheme-adapter` is implemented in `thirdparty-scheme-adapter`
-#parameters:
+# parameters:
 # - $ref: ../components/parameters/ID.yaml
 # - $ref: ../components/parameters/Content-Type.yaml
 # - $ref: ../components/parameters/Date.yaml
@@ -16,23 +11,36 @@
 # - $ref: ../components/parameters/FSPIOP-Signature.yaml
 # - $ref: ../components/parameters/FSPIOP-URI.yaml
 # - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
-post:
-  description:  >
-    The HTTP request `POST /authorizations` is used to request the Payer to enter the
-    applicable credentials in the PISP system.
-  operationId: AuthorizationsPostRequest
+put:
+  description: |
+    The callback PUT /thirdpartyRequests/authorizations/{ID} is used to inform the client of the
+    result of a previously-requested authorization. The ID in the URI should
+    contain the one that was used in the POST /authorizations/ requestBody.transactionRequestId @ OUTBOUND
+  operationId: PutThirdpartyRequestsAuthorizationsById
+  summary: PutThirdpartyRequestsAuthorizationsById
   tags:
     - authorizations
-  requestBody:
-    description: Authorization request details
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: ../components/schemas/AuthorizationsPostRequest.yaml
+  parameters:
+    - name: ID
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
-    202:
-      $ref: ../components/responses/202.yaml
+    200:
+      description: |
+        information about result of required (via POST) /authorization
+      content:
+        application/json:
+          schema: 
+            $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponse.yaml'
+          example:
+            authenticationInfo:
+              authentication: 'U2F'
+              authenticationValue:
+                pinValue: '<base64 encoded binary - the signed challenge'
+                counter: 1
+            responseType: 'ENTERED'
     400:
       $ref: ../components/responses/400.yaml
     401:

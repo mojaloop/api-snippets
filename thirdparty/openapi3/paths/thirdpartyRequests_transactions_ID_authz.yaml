@@ -1,3 +1,5 @@
+# Note: this resource is deprecated in the latest API Draft, and will
+# be removed in the next MAJOR version release of API-Snippets
 parameters:
   #Path
   - $ref: ../components/parameters/ID.yaml
