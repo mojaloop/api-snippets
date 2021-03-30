@@ -19,8 +19,14 @@ put:
   operationId: ThirdpartyRequestVerificationError
   summary: ThirdpartyRequestVerificationError
   description: |
-    The HTTP request `PUT /thirdpartyRequests/verifications/{ID}/error` is used by the Auth-Service to inform
-    the DFSP of a failure in validating or looking up the verification of a Thirdparty Transaction Request.
+    The HTTP request `PUT /thirdpartyRequests/authorizations/{ID}/error` is used by the DFSP or PISP to inform
+    the other party that something went wrong with a Thirdparty Tranasction Authorization Request.
+
+    The PISP may use this to tell the DFSP that the Thirdparty Tranasction Authorization Request is invalid or doesn't
+    match a `transactionRequestId`.
+
+    The DFSP may use this to tell the PISP that the signed challenge returned in `PUT /thirdpartyRequest/authorizations/{ID}`
+    was invalid.
 
   parameters:
     - $ref: ../components/parameters/Accept.yaml
