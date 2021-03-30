@@ -16,8 +16,8 @@ put:
   tags:
     - thirdpartyRequests
     - sampled
-  operationId: ThirdpartyRequestVerificationError
-  summary: ThirdpartyRequestVerificationError
+  operationId: PutThirdpartyRequestsAuthorizationsByIdAndError
+  summary: PutThirdpartyRequestsAuthorizationsByIdAndError
   description: |
     The HTTP request `PUT /thirdpartyRequests/authorizations/{ID}/error` is used by the DFSP or PISP to inform
     the other party that something went wrong with a Thirdparty Tranasction Authorization Request.

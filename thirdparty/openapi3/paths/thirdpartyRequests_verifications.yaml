@@ -16,8 +16,8 @@ post:
   tags:
     - thirdpartyRequests
     - sampled
-  operationId: VerifyThirdPartyRequest
-  summary: VerifyThirdPartyRequest
+  operationId: PutThirdpartyRequestsVerifications
+  summary: PutThirdpartyRequestsVerifications
   description: |
     The HTTP request `POST /thirdpartyRequests/verifications` is used by the DFSP to verify a third party authorization.
   parameters:

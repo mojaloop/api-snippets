@@ -16,8 +16,8 @@ put:
   tags:
     - thirdpartyRequests
     - sampled
-  operationId: ThirdpartyRequestVerificationError
-  summary: ThirdpartyRequestVerificationError
+  operationId: PutThirdpartyRequestsVerificationsByIdAndError
+  summary: PutThirdpartyRequestsVerificationsByIdAndError
   description: |
     The HTTP request `PUT /thirdpartyRequests/verifications/{ID}/error` is used by the Auth-Service to inform
     the DFSP of a failure in validating or looking up the verification of a Thirdparty Transaction Request.

@@ -15,7 +15,8 @@ post:
   description:  >
     The HTTP request `POST /thirdpartyRequests/authorizations` is used to request the Payer to enter the
     applicable credentials in the PISP system.
-  operationId: AuthorizationsPostRequest
+  operationId: PostThirdpartyRequestsAutorizations
+  summary: PostThirdpartyRequestsAutorizations
   tags:
     - authorizations
   requestBody:

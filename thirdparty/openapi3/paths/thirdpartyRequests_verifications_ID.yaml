@@ -16,8 +16,8 @@ put:
   tags:
     - thirdpartyRequests
     - sampled
-  operationId: UpdateThirdpartyRequestVerification
-  summary: UpdateThirdpartyRequestVerification
+  operationId: PutThirdpartyRequestsVerificationsById
+  summary: PutThirdpartyRequestsVerificationsById
   description: |
     The HTTP request `PUT /thirdpartyRequests/verifications/{ID}` is used by the Auth-Service to inform
     the DFSP of a successful result in validating the verification of a Thirdparty Transaction Request.

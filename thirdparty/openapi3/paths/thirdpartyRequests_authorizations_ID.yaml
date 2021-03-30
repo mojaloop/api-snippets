@@ -16,7 +16,8 @@ put:
     The callback PUT /thirdpartyRequests/authorizations/{ID} is used to inform the client of the
     result of a previously-requested authorization. The ID in the URI should
     contain the one that was used in the POST /authorizations/ requestBody.transactionRequestId @ OUTBOUND
-  operationId: InboundAuthorizationsIDPutResponse
+  operationId: PutThirdpartyRequestsAuthorizationsById
+  summary: PutThirdpartyRequestsAuthorizationsById
   tags:
     - authorizations
   parameters:
