@@ -32,8 +32,9 @@ put:
       content:
         application/json:
           schema: 
-          # TODO: update schema?
-            $ref: '../components/schemas/AuthorizationsIDPutResponse.yaml'
+            $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponse.yaml'
+          example:
+          # TODO!
     400:
       $ref: ../components/responses/400.yaml
     401:

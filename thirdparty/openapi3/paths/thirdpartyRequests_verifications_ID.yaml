@@ -32,8 +32,7 @@ put:
     content:
       application/json:
         schema:
-        # TODO: update me!
-          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest.yaml
+          $ref: ../components/schemas/ThirdpartyRequestsVerificationsIDPutResponse.yaml
         example:
           authenticationResponse: 'VERIFIED'
   responses:

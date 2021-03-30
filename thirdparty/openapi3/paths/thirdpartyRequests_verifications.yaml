@@ -28,8 +28,7 @@ post:
     content:
       application/json:
         schema:
-        # TODO: update me!
-          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest.yaml
+          $ref: ../components/schemas/ThirdpartyRequestsVerificationsPostRequest.yaml
         example:
           verificationRequestId: '44444444-0000-0000-0000-000000000000'
           challenge: '<base64 encoded binary - the encoded challenge>'

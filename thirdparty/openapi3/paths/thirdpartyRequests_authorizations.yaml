@@ -24,8 +24,9 @@ post:
     content:
       application/json:
         schema:
-          # TODO: update this schema
-          $ref: ../components/schemas/AuthorizationsPostRequest.yaml
+          $ref: ../components/schemas/ThirdpartyRequestsAuthorizationsPostRequest.yaml
+        example:
+          # TODO!!
   responses:
     202:
       $ref: ../components/responses/202.yaml
