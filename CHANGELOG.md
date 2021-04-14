@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.1](https://github.com/mojaloop/api-snippets/compare/v12.3.0...v12.3.1) (2021-04-14)
+
+
+### Maintenance
+
+* **deps:** bump djv from 2.1.2 to 2.1.4 ([#71](https://github.com/mojaloop/api-snippets/issues/71)) ([4ee649d](https://github.com/mojaloop/api-snippets/commit/4ee649d90700a4ea6b4d6f99910194c3d1a5c22a))
+
 ## [12.3.0](https://github.com/mojaloop/api-snippets/compare/v12.2.0...v12.3.0) (2021-03-30)
 
 
