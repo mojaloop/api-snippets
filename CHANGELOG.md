@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.2](https://github.com/mojaloop/api-snippets/compare/v12.3.1...v12.3.2) (2021-04-26)
+
+
+### Maintenance
+
+* add consents/{ID}/error snippet ([#73](https://github.com/mojaloop/api-snippets/issues/73)) ([730ee86](https://github.com/mojaloop/api-snippets/commit/730ee869dbb1bc12ac5580470701380f380097cc))
+
 ### [12.3.1](https://github.com/mojaloop/api-snippets/compare/v12.3.0...v12.3.1) (2021-04-14)
 
 
