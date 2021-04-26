@@ -1,6 +1,6 @@
 {
   "name": "@mojaloop/api-snippets",
-  "version": "12.3.1",
+  "version": "12.3.2",
   "description": "Mojaloop API specification reusable snippets",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

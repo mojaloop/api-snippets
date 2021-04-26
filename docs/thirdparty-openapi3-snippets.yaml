@@ -4008,6 +4008,166 @@ paths:
           description: Service Unavailable
           content: *ref_33
           headers: *ref_34
+  '/consents/{ID}/error':
+    put:
+      tags:
+        - consents
+      operationId: NotifyErrorConsents
+      summary: NotifyErrorConsents
+      description: >
+        DFSP responds to the PISP if something went wrong with validating or
+        storing consent.
+      parameters:
+        - name: ID
+          in: path
+          required: true
+          schema: *ref_35
+          description: The identifier value.
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_36
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
+        - name: Content-Type
+          in: header
+          schema: *ref_37
+          required: true
+          description: >-
+            The `Content-Type` header indicates the specific version of the API
+            used to send the payload body.
+        - name: Date
+          in: header
+          schema: *ref_38
+          required: true
+          description: >-
+            The `Date` header field indicates the date when the request was
+            sent.
+        - name: X-Forwarded-For
+          in: header
+          schema: *ref_39
+          required: false
+          description: >-
+            The `X-Forwarded-For` header field is an unofficially accepted
+            standard used for informational purposes of the originating client
+            IP address, as a request might pass multiple proxies, firewalls, and
+            so on. Multiple `X-Forwarded-For` values should be expected and
+            supported by implementers of the API.
+
+
+            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+            7239](https://tools.ietf.org/html/rfc7239). However, to this point
+            RFC 7239 is less-used and supported than `X-Forwarded-For`.
+        - name: FSPIOP-Source
+          in: header
+          schema: *ref_40
+          required: true
+          description: >-
+            The `FSPIOP-Source` header field is a non-HTTP standard field used
+            by the API for identifying the sender of the HTTP request. The field
+            should be set by the original sender of the request. Required for
+            routing and signature verification (see header field
+            `FSPIOP-Signature`).
+        - name: FSPIOP-Destination
+          in: header
+          schema: *ref_41
+          required: false
+          description: >-
+            The `FSPIOP-Destination` header field is a non-HTTP standard field
+            used by the API for HTTP header based routing of requests and
+            responses to the destination. The field must be set by the original
+            sender of the request if the destination is known (valid for all
+            services except GET /parties) so that any entities between the
+            client and the server do not need to parse the payload for routing
+            purposes. If the destination is not known (valid for service GET
+            /parties), the field should be left empty.
+        - name: FSPIOP-Encryption
+          in: header
+          schema: *ref_42
+          required: false
+          description: >-
+            The `FSPIOP-Encryption` header field is a non-HTTP standard field
+            used by the API for applying end-to-end encryption of the request.
+        - name: FSPIOP-Signature
+          in: header
+          schema: *ref_43
+          required: false
+          description: >-
+            The `FSPIOP-Signature` header field is a non-HTTP standard field
+            used by the API for applying an end-to-end request signature.
+        - name: FSPIOP-URI
+          in: header
+          schema: *ref_44
+          required: false
+          description: >-
+            The `FSPIOP-URI` header field is a non-HTTP standard field used by
+            the API for signature verification, should contain the service URI.
+            Required if signature verification is used, for more information,
+            see [the API Signature
+            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+        - name: FSPIOP-HTTP-Method
+          in: header
+          schema: *ref_45
+          required: false
+          description: >-
+            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+            used by the API for signature verification, should contain the
+            service HTTP method. Required if signature verification is used, for
+            more information, see [the API Signature
+            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      requestBody:
+        description: Error information returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              title: ErrorInformationObject
+              type: object
+              description: >-
+                Data model for the complex type object that contains
+                ErrorInformation.
+              properties: *ref_53
+              required: *ref_54
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content: *ref_19
+          headers: *ref_20
+        '401':
+          description: Unauthorized
+          content: *ref_21
+          headers: *ref_22
+        '403':
+          description: Forbidden
+          content: *ref_23
+          headers: *ref_24
+        '404':
+          description: Not Found
+          content: *ref_25
+          headers: *ref_26
+        '405':
+          description: Method Not Allowed
+          content: *ref_27
+          headers: *ref_28
+        '406':
+          description: Not Acceptable
+          content: *ref_29
+          headers: *ref_30
+        '501':
+          description: Not Implemented
+          content: *ref_31
+          headers: *ref_32
+        '503':
+          description: Service Unavailable
+          content: *ref_33
+          headers: *ref_34
   '/consents/{ID}/generateChallenge':
     post:
       tags:
