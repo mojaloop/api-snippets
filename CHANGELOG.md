@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.3](https://github.com/mojaloop/api-snippets/compare/v12.3.2...v12.3.3) (2021-04-26)
+
+
+### Maintenance
+
+* add consents/{ID} patch path snippet for unlinking slow ([#74](https://github.com/mojaloop/api-snippets/issues/74)) ([ef6eb66](https://github.com/mojaloop/api-snippets/commit/ef6eb66dd9589b0b6f02fdb67f66c2853a4de032))
+
 ### [12.3.2](https://github.com/mojaloop/api-snippets/compare/v12.3.1...v12.3.2) (2021-04-26)
 
 
