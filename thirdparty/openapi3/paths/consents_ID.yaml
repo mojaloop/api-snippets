@@ -42,6 +42,47 @@ get:
       $ref: ../components/responses/501.yaml
     503:
       $ref: ../components/responses/503.yaml
+patch:
+  description: |
+    The HTTP request `PATCH /consents/{ID}` is used in account unlinking
+    by a hub hosted auth service and by DFSPs in non-hub hosted scenarios
+    to notify participants of a consent being revoked.
+
+    - Called by a `auth-service` to notify a PISP and DFSP of consent status in hub hosted scenario.
+    - Called by a `DFSP` to notify a PISP of consent status in non-hub hosted scenario.
+  tags:
+    - consents
+    - sampled
+  operationId: PatchConsent
+  summary: PatchConsent
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ConsentsIDPatchResponse.yaml
+  parameters:
+    #Headers
+    - $ref: ../components/parameters/Content-Length.yaml
+  responses:
+    200:
+      $ref: ../components/responses/200.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
 put:
   description: |
     The HTTP request `PUT /consents/{ID}` is used by the PISP and Auth Service.
@@ -87,7 +128,7 @@ put:
       $ref: ../components/responses/501.yaml
     503:
       $ref: ../components/responses/503.yaml
-delete: 
+delete:
   description: |
     The HTTP request `DELETE /consents/{ID}` is used to mark as deleted a previously created consent.
 
