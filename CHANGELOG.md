@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.4](https://github.com/mojaloop/api-snippets/compare/v12.3.3...v12.3.4) (2021-05-03)
+
+
+### Maintenance
+
+* **deps:** bump y18n from 4.0.0 to 4.0.3 ([#72](https://github.com/mojaloop/api-snippets/issues/72)) ([9cf4409](https://github.com/mojaloop/api-snippets/commit/9cf4409fd0abe725e94afe71283647f24eef8663))
+
 ### [12.3.3](https://github.com/mojaloop/api-snippets/compare/v12.3.2...v12.3.3) (2021-04-26)
 
 
