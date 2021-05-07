@@ -10396,7 +10396,7 @@ export interface operations {
       };
     };
     requestBody: {
-      "application/json": { providers: string[] }[];
+      "application/json": { providers: string[] };
     };
     responses: {
       /**
@@ -23608,7 +23608,10 @@ export interface components {
        */
       type: "FIDO";
     };
-    ServicesServiceTypePutResponse: { providers: string[] }[];
+    /**
+     * The object sent in a `PUT /services/{ServiceType}` request.
+     */
+    ServicesServiceTypePutResponse: { providers: string[] };
     /**
      * This is a variant based on FSPIOP `PartyIdType` specification.
      * This validation interface should be use by `POST /thirdpartyRequests/transactions`

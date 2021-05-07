@@ -4292,22 +4292,19 @@ paths:
           application/json:
             schema:
               title: ServicesServiceTypePutResponse
-              type: array
-              items: &ref_136
-                type: object
-                description: |
-                  The object sent in a `PUT /services/{ServiceType}` request.
-                properties:
-                  providers:
-                    type: array
-                    items:
-                      title: FspId
-                      type: string
-                      minLength: 1
-                      maxLength: 32
-                      description: FSP identifier.
-                required:
-                  - providers
+              type: object
+              description: 'The object sent in a `PUT /services/{ServiceType}` request.'
+              properties: &ref_136
+                providers:
+                  type: array
+                  items:
+                    title: FspId
+                    type: string
+                    minLength: 1
+                    maxLength: 32
+                    description: FSP identifier.
+              required: &ref_137
+                - providers
       responses:
         '200':
           description: OK
@@ -4655,11 +4652,11 @@ paths:
                     - title: PartyIdInfo
                       type: object
                       description: Data model for the complex type PartyIdInfo.
-                      properties: &ref_138
+                      properties: &ref_139
                         partyIdType:
                           title: PartyIdTypeTPLink
                           type: string
-                          enum: &ref_137
+                          enum: &ref_138
                             - THIRD_PARTY_LINK
                           description: >
                             This is a variant based on FSPIOP `PartyIdType`
@@ -4702,7 +4699,7 @@ paths:
                             optional list of extensions, specific to deployment.
                           properties: *ref_3
                           required: *ref_4
-                      required: &ref_139
+                      required: &ref_140
                         - partyIdType
                         - partyIdentifier
                   description: >-
@@ -4712,7 +4709,7 @@ paths:
                   allOf:
                     - title: AmountType
                       type: string
-                      enum: &ref_140
+                      enum: &ref_141
                         - SEND
                         - RECEIVE
                       description: >-
@@ -5084,7 +5081,7 @@ paths:
               description: >-
                 The object sent in the PUT /thirdPartyRequests/transactions/{ID}
                 request.
-              properties: &ref_141
+              properties: &ref_142
                 transactionId:
                   title: CorrelationId
                   type: string
@@ -5116,7 +5113,7 @@ paths:
 
                     - REJECTED - Payer has rejected the transaction.
                   example: RECEIVED
-              required: &ref_142
+              required: &ref_143
                 - transactionId
                 - transactionRequestState
             example:
@@ -5540,7 +5537,7 @@ paths:
               description: >-
                 The object sent in the POST
                 /thirdpartyRequests/transactions/{id}/authorizations request.
-              properties: &ref_145
+              properties: &ref_146
                 challenge:
                   type: string
                   description: Base64 encoded binary string - the original challenge.
@@ -5599,7 +5596,7 @@ paths:
                   description: >-
                     The status of the authorization. This MUST be PENDING for a
                     POST request
-              required: &ref_146
+              required: &ref_147
                 - challenge
                 - value
                 - consentId
@@ -5672,7 +5669,7 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/transactions/{id}/authorizations request.
-              properties: &ref_143
+              properties: &ref_144
                 challenge:
                   type: string
                   description: Base64 encoded binary string - the original challenge.
@@ -5731,7 +5728,7 @@ paths:
                   description: >-
                     The status of the authorization. This value must be
                     `VERIFIED` for a PUT request.
-              required: &ref_144
+              required: &ref_145
                 - challenge
                 - value
                 - consentId
@@ -5797,7 +5794,7 @@ paths:
               title: ThirdpartyRequestsAuthorizationsPostRequest
               description: POST /thirdpartyRequests/authorizations request object.
               type: object
-              properties: &ref_147
+              properties: &ref_148
                 authorizationRequestId:
                   title: CorrelationId
                   type: string
@@ -5841,7 +5838,7 @@ paths:
                   description: Data model for the complex type TransactionType.
                   properties: *ref_59
                   required: *ref_60
-              required: &ref_148
+              required: &ref_149
                 - authorizationRequestId
                 - transactionRequestId
                 - challenge
@@ -5936,7 +5933,7 @@ paths:
                 description: >-
                   The object sent in the PUT
                   /thirdpartyRequests/authorizations/{ID} callback.
-                properties: &ref_149
+                properties: &ref_150
                   authenticationInfo:
                     title: AuthenticationInfo
                     type: object
@@ -5957,7 +5954,7 @@ paths:
                       - RESEND - Consumer requested to resend the authentication
                       value.
                     example: ENTERED
-                required: &ref_150
+                required: &ref_151
                   - authenticationInfo
                   - responseType
               example:
@@ -6311,7 +6308,7 @@ paths:
               description: >-
                 The object sent in the POST /thirdpartyRequests/verifications
                 request.
-              properties: &ref_151
+              properties: &ref_152
                 verificationRequestId:
                   allOf:
                     - title: CorrelationId
@@ -6375,7 +6372,7 @@ paths:
                     credential with which to verify
 
                     the signed challenge against.
-              required: &ref_152
+              required: &ref_153
                 - verificationRequestId
                 - challenge
                 - value
@@ -6565,13 +6562,13 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/verifications/{ID} request.
-              properties: &ref_153
+              properties: &ref_154
                 authenticationResponse:
                   type: string
                   enum:
                     - VERIFIED
                   description: The verification passed
-              required: &ref_154
+              required: &ref_155
                 - authenticationResponse
             example:
               authenticationResponse: VERIFIED
@@ -7738,12 +7735,14 @@ components:
       required: *ref_135
     ServicesServiceTypePutResponse:
       title: ServicesServiceTypePutResponse
-      type: array
-      items: *ref_136
+      type: object
+      description: 'The object sent in a `PUT /services/{ServiceType}` request.'
+      properties: *ref_136
+      required: *ref_137
     PartyIdTypeTPLink:
       title: PartyIdTypeTPLink
       type: string
-      enum: *ref_137
+      enum: *ref_138
       description: >
         This is a variant based on FSPIOP `PartyIdType` specification.
 
@@ -7757,12 +7756,12 @@ components:
       title: PartyIdInfo
       type: object
       description: Data model for the complex type PartyIdInfo.
-      properties: *ref_138
-      required: *ref_139
+      properties: *ref_139
+      required: *ref_140
     AmountType:
       title: AmountType
       type: string
-      enum: *ref_140
+      enum: *ref_141
       description: >-
         Below are the allowed values for the enumeration AmountType.
 
@@ -7784,8 +7783,8 @@ components:
       description: >-
         The object sent in the PUT /thirdPartyRequests/transactions/{ID}
         request.
-      properties: *ref_141
-      required: *ref_142
+      properties: *ref_142
+      required: *ref_143
     BinaryString:
       type: string
       pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
@@ -7801,22 +7800,22 @@ components:
       description: >-
         The object sent in the PUT
         /thirdpartyRequests/transactions/{id}/authorizations request.
-      properties: *ref_143
-      required: *ref_144
+      properties: *ref_144
+      required: *ref_145
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
       title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object
       description: >-
         The object sent in the POST
         /thirdpartyRequests/transactions/{id}/authorizations request.
-      properties: *ref_145
-      required: *ref_146
+      properties: *ref_146
+      required: *ref_147
     ThirdpartyRequestsAuthorizationsPostRequest:
       title: ThirdpartyRequestsAuthorizationsPostRequest
       description: POST /thirdpartyRequests/authorizations request object.
       type: object
-      properties: *ref_147
-      required: *ref_148
+      properties: *ref_148
+      required: *ref_149
       additionalProperties: false
     ThirdpartyRequestsAuthorizationsIDPutResponse:
       title: ThirdpartyRequestsAuthorizationsIDPutResponse
@@ -7824,22 +7823,22 @@ components:
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
-      properties: *ref_149
-      required: *ref_150
+      properties: *ref_150
+      required: *ref_151
     ThirdpartyRequestsVerificationsPostRequest:
       title: ThirdpartyRequestsVerificationsPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/verifications request.
-      properties: *ref_151
-      required: *ref_152
+      properties: *ref_152
+      required: *ref_153
     ThirdpartyRequestsVerificationsIDPutResponse:
       title: ThirdpartyRequestsVerificationsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/verifications/{ID}
         request.
-      properties: *ref_153
-      required: *ref_154
+      properties: *ref_154
+      required: *ref_155
   parameters:
     ID:
       name: ID

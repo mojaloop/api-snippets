@@ -143,6 +143,8 @@ describe('thirdparty', () => {
   const partyName: Schemas.PartyName = 'party-name'
   const partySubIdOrType: Schemas.PartySubIdOrType = 'party-sub-id-or-type'
 
+  const serviceType: Schemas.ServiceType = 'THIRD_PARTY_DFSP'
+
   test('Account', () => {
     expect(account).toBeDefined()
   })
@@ -464,6 +466,17 @@ describe('thirdparty', () => {
 
   test('Scope', () => {
     expect(scope).toBeDefined()
+  })
+
+  test('ServicesServiceTypePutResponse', () => {
+    const servicesServiceTypePutResponse: Schemas.ServicesServiceTypePutResponse = {
+      providers: ['dfspa', 'dfspb']
+    }
+    expect(servicesServiceTypePutResponse).toBeDefined()
+  })
+
+  test('ServiceType', () => {
+    expect(serviceType).toBeDefined()
   })
 
   test('SignedCredential', () => {
