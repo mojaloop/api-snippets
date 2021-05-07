@@ -1,0 +1,10 @@
+title: ServicesServiceTypePutResponse
+type: object
+description: The object sent in a `PUT /services/{ServiceType}` request.
+properties:
+  providers:
+    type: array
+    items:
+      $ref: ./FspId.yaml
+required:
+  - providers

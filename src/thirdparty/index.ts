@@ -81,6 +81,8 @@ export namespace Schemas {
   export type Refund = components['schemas']['Refund']
   export type RefundReason = components['schemas']['RefundReason']
   export type Scope = components['schemas']['Scope']
+  export type ServicesServiceTypePutResponse = components['schemas']['ServicesServiceTypePutResponse']
+  export type ServiceType = components['schemas']['ServiceType']
   export type SignedCredential = components['schemas']['SignedCredential']
   export type ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest = components['schemas']['ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest']
   export type ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse = components['schemas']['ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse']

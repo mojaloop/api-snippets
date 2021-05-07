@@ -1,0 +1,6 @@
+name: ServiceType
+in: path
+required: true
+schema:
+  type: string
+description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
