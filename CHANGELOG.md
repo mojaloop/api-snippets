@@ -1,4 +1,25 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.4](https://github.com/mojaloop/api-snippets/compare/v12.3.3...v12.3.4) (2021-05-03)
+
+
+### Maintenance
+
+* **deps:** bump y18n from 4.0.0 to 4.0.3 ([#72](https://github.com/mojaloop/api-snippets/issues/72)) ([9cf4409](https://github.com/mojaloop/api-snippets/commit/9cf4409fd0abe725e94afe71283647f24eef8663))
+
+### [12.3.3](https://github.com/mojaloop/api-snippets/compare/v12.3.2...v12.3.3) (2021-04-26)
+
+
+### Maintenance
+
+* add consents/{ID} patch path snippet for unlinking slow ([#74](https://github.com/mojaloop/api-snippets/issues/74)) ([ef6eb66](https://github.com/mojaloop/api-snippets/commit/ef6eb66dd9589b0b6f02fdb67f66c2853a4de032))
+
+### [12.3.2](https://github.com/mojaloop/api-snippets/compare/v12.3.1...v12.3.2) (2021-04-26)
+
+
+### Maintenance
+
+* add consents/{ID}/error snippet ([#73](https://github.com/mojaloop/api-snippets/issues/73)) ([730ee86](https://github.com/mojaloop/api-snippets/commit/730ee869dbb1bc12ac5580470701380f380097cc))
+
 ### [12.3.1](https://github.com/mojaloop/api-snippets/compare/v12.3.0...v12.3.1) (2021-04-14)
 
 

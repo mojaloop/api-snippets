@@ -76,6 +76,8 @@ paths:
     $ref: paths/consents.yaml
   /consents/{ID}:
     $ref: paths/consents_ID.yaml
+  /consents/{ID}/error:
+    $ref: paths/consents_ID_error.yaml
   # Note: this resource is deprecated in the latest API Draft, and will
   # be removed in the next MAJOR version release of API-Snippets
   # TODO: remove in next major version release
