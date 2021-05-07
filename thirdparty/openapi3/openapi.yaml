@@ -39,6 +39,7 @@ paths:
                 - $ref: './components/schemas/PartyResult.yaml'
                 - $ref: './components/schemas/ParticipantsPostRequest.yaml'
                 - $ref: './components/schemas/PartiesTypeIDPutResponse.yaml'
+                - $ref: './components/schemas/ServiceType.yaml'
                 - $ref: './components/schemas/ThirdpartyRequestsTransactionsIDPatchResponse.yaml'
                 - $ref: './components/schemas/TransactionRequestsPostRequest.yaml'
                 - $ref: './components/schemas/TransactionState.yaml'
@@ -80,6 +81,10 @@ paths:
   # TODO: remove in next major version release
   /consents/{ID}/generateChallenge:
     $ref: paths/consents_ID_generateChallenge.yaml
+  /services/{ServiceType}:
+    $ref: paths/services_ServiceType.yaml
+  /services/{ServiceType}/error:
+    $ref: paths/services_ServiceType_error.yaml
   /thirdpartyRequests/transactions:
     $ref: paths/thirdpartyRequests_transactions.yaml
   /thirdpartyRequests/transactions-tsa:

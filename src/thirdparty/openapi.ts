@@ -247,6 +247,111 @@ export interface paths {
   "/consents/{ID}/generateChallenge": {
     post: operations["GenerateChallengeRequest"];
   };
+  "/services/{ServiceType}": {
+    get: operations["GetServicesByServiceType"];
+    put: operations["PutServicesByServiceType"];
+    parameters: {
+      path: {
+        /**
+         * The type of the service identifier. For example, `THIRD_PARTY_DFSP`
+         */
+        ServiceType: string;
+      };
+      header: {
+        /**
+         * The `Date` header field indicates the date when the request was sent.
+         */
+        Date: string;
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: string;
+        /**
+         * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
+         */
+        "FSPIOP-Source": string;
+        /**
+         * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
+         */
+        "FSPIOP-Destination"?: string;
+        /**
+         * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
+         */
+        "FSPIOP-Encryption"?: string;
+        /**
+         * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
+         */
+        "FSPIOP-Signature"?: string;
+        /**
+         * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+         */
+        "FSPIOP-URI"?: string;
+        /**
+         * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+         */
+        "FSPIOP-HTTP-Method"?: string;
+      };
+    };
+  };
+  "/services/{ServiceType}/error": {
+    put: operations["PutServicesByIdAndError"];
+    parameters: {
+      path: {
+        /**
+         * The type of the service identifier. For example, `THIRD_PARTY_DFSP`
+         */
+        ServiceType: string;
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: number;
+        /**
+         * The `Content-Type` header indicates the specific version of the API used to send the payload body.
+         */
+        "Content-Type": string;
+        /**
+         * The `Date` header field indicates the date when the request was sent.
+         */
+        Date: string;
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: string;
+        /**
+         * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
+         */
+        "FSPIOP-Source": string;
+        /**
+         * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
+         */
+        "FSPIOP-Destination"?: string;
+        /**
+         * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
+         */
+        "FSPIOP-Encryption"?: string;
+        /**
+         * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
+         */
+        "FSPIOP-Signature"?: string;
+        /**
+         * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+         */
+        "FSPIOP-URI"?: string;
+        /**
+         * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+         */
+        "FSPIOP-HTTP-Method"?: string;
+      };
+    };
+  };
   "/thirdpartyRequests/transactions": {
     post: operations["CreateThirdpartyTransactionRequests"];
     parameters: {
@@ -2323,6 +2428,7 @@ export interface operations {
           };
         };
       }
+      | "THIRD_PARTY_DFSP"
       | {
         /**
              * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
@@ -9947,6 +10053,1013 @@ export interface operations {
     };
   };
   /**
+   * The HTTP request `GET /services/{ServiceType}` is used to retrieve the list of participants
+   * that support a specified service.
+   */
+  GetServicesByServiceType: {
+    parameters: {
+      header: {
+        /**
+         * The `Accept` header field indicates the version of the API the client would like the server to use.
+         */
+        Accept: string;
+      };
+    };
+    responses: {
+      /**
+       * Accepted
+       */
+      "202": unknown;
+      /**
+       * Bad Request
+       */
+      "400": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Unauthorized
+       */
+      "401": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Forbidden
+       */
+      "403": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Found
+       */
+      "404": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Method Not Allowed
+       */
+      "405": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Acceptable
+       */
+      "406": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Implemented
+       */
+      "501": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Service Unavailable
+       */
+      "503": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+    };
+  };
+  /**
+   * The HTTP request `PUT /services/{ServiceType}` is used to return list of participants
+   * that support a specified service.
+   */
+  PutServicesByServiceType: {
+    parameters: {
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: number;
+        /**
+         * The `Content-Type` header indicates the specific version of the API used to send the payload body.
+         */
+        "Content-Type": string;
+      };
+    };
+    requestBody: {
+      "application/json": { providers: string[] }[];
+    };
+    responses: {
+      /**
+       * OK
+       */
+      "200": unknown;
+      /**
+       * Bad Request
+       */
+      "400": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Unauthorized
+       */
+      "401": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Forbidden
+       */
+      "403": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Found
+       */
+      "404": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Method Not Allowed
+       */
+      "405": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Acceptable
+       */
+      "406": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Implemented
+       */
+      "501": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Service Unavailable
+       */
+      "503": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+    };
+  };
+  /**
+   * The HTTP request `PUT /services/{ServiceType}/error` is used to return error information
+   */
+  PutServicesByIdAndError: {
+    requestBody: {
+      "application/json": {
+        /**
+         * Data model for the complex type ErrorInformation.
+         */
+        errorInformation: {
+          /**
+           * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+           */
+          errorCode: string;
+          /**
+           * Error description string.
+           */
+          errorDescription: string;
+          /**
+           * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+           */
+          extensionList?: {
+            /**
+             * Number of Extension elements.
+             */
+            extension: {
+              /**
+               * Extension key.
+               */
+              key: string;
+              /**
+               * Extension value.
+               */
+              value: string;
+            }[];
+          };
+        };
+      };
+    };
+    responses: {
+      /**
+       * OK
+       */
+      "200": unknown;
+      /**
+       * Bad Request
+       */
+      "400": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Unauthorized
+       */
+      "401": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Forbidden
+       */
+      "403": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Found
+       */
+      "404": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Method Not Allowed
+       */
+      "405": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Acceptable
+       */
+      "406": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Implemented
+       */
+      "501": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Service Unavailable
+       */
+      "503": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+    };
+  };
+  /**
    * The HTTP request POST `/thirdpartyRequests/transactions` is used by a PISP to initiate a 3rd party Transaction request with a DFSP
    */
   CreateThirdpartyTransactionRequests: {
@@ -16884,6 +17997,10 @@ export interface components {
      * The `Content-Type` header indicates the specific version of the API used to send the payload body.
      */
     "Content-Type": string;
+    /**
+     * The type of the service identifier. For example, `THIRD_PARTY_DFSP`
+     */
+    ServiceType: string;
   };
   schemas: {
     /**
@@ -20735,6 +21852,11 @@ export interface components {
       };
     };
     /**
+     * Below are the allowed values for the enumeration ServiceType
+     * - THIRD_PARTY_DFSP - Enum used to query for DFSP's that have thirdparty features enabled
+     */
+    ServiceType: "THIRD_PARTY_DFSP";
+    /**
      * Below are the allowed values for the enumeration.
      * - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
      * - PENDING - Payer FSP has sent the transaction request to the Payer.
@@ -22486,6 +23608,7 @@ export interface components {
        */
       type: "FIDO";
     };
+    ServicesServiceTypePutResponse: { providers: string[] }[];
     /**
      * This is a variant based on FSPIOP `PartyIdType` specification.
      * This validation interface should be use by `POST /thirdpartyRequests/transactions`

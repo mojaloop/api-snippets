@@ -148,6 +148,10 @@ QuotesPostRequest:
   $ref: ./QuotesPostRequest.yaml
 Scope:
   $ref: ./Scope.yaml
+ServicesServiceTypePutResponse:
+  $ref: ./ServicesServiceTypePutResponse.yaml
+ServiceType:
+  $ref: ./ServiceType.yaml
 SignedCredential:
   $ref: ./SignedCredential.yaml
 ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
