@@ -7,6 +7,23 @@
     "1523|json-refs>lodash": {
       "decision": "fix",
       "madeAt": 1594874545630
+    },
+    "1673|json-refs>graphlib>lodash": {
+      "decision": "fix",
+      "madeAt": 1620349428789
+    },
+    "1673|json-refs>lodash": {
+      "decision": "fix",
+      "madeAt": 1620349428789
+    },
+    "1677|openapi-typescript>meow>normalize-package-data>hosted-git-info": {
+      "decision": "fix",
+      "madeAt": 1620349441428
+    },
+    "1677|openapi-typescript>meow>read-pkg-up>read-pkg>normalize-package-data>hosted-git-info": {
+      "decision": "ignore",
+      "madeAt": 1620349449282,
+      "expiresAt": 1622941416241
     }
   },
   "rules": {},
