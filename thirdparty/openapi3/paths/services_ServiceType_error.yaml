@@ -13,7 +13,7 @@ parameters:
 put:
   description: |
     The HTTP request `PUT /services/{ServiceType}/error` is used to return error information
-  operationId: PutServicesByIdAndError
+  operationId: PutServicesByServiceTypeAndError
   summary: PutServicesByServiceTypeAndError
   tags:
     - services
