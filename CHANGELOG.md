@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.7](https://github.com/mojaloop/api-snippets/compare/v12.3.6...v12.3.7) (2021-05-13)
+
+
+### Maintenance
+
+* fix operation id ([#79](https://github.com/mojaloop/api-snippets/issues/79)) ([0e394c0](https://github.com/mojaloop/api-snippets/commit/0e394c00cae7c87fab9cf340cbe5cc10048d8216))
+
 ### [12.3.6](https://github.com/mojaloop/api-snippets/compare/v12.3.5...v12.3.6) (2021-05-13)
 
 
