@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.9](https://github.com/mojaloop/api-snippets/compare/v12.3.8...v12.3.9) (2021-05-14)
+
+
+### Maintenance
+
+* remove pattern from AuthenticationValue ([#80](https://github.com/mojaloop/api-snippets/issues/80)) ([0402bc6](https://github.com/mojaloop/api-snippets/commit/0402bc6416cf56c75d751a7c815b68589ba8d182))
+
 ### [12.3.8](https://github.com/mojaloop/api-snippets/compare/v12.3.7...v12.3.8) (2021-05-13)
 
 
