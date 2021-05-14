@@ -2070,7 +2070,6 @@ paths:
                             required: &ref_100
                               - pinValue
                               - counter
-                        pattern: '^\d{3,10}$|^\S{1,64}$'
                         description: >-
                           Contains the authentication value. The format depends
                           on the authentication type used in the
@@ -7696,7 +7695,6 @@ components:
     AuthenticationValue:
       title: AuthenticationValue
       anyOf: *ref_101
-      pattern: '^\d{3,10}$|^\S{1,64}$'
       description: >-
         Contains the authentication value. The format depends on the
         authentication type used in the AuthenticationInfo complex type.
