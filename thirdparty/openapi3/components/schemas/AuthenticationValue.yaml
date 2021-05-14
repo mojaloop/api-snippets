@@ -1,6 +1,6 @@
 title: AuthenticationValue
 anyOf:
-  - $ref: '../../../../fspiop/v1_0/openapi3/components/schemas/OtpValue.yaml'
+  - $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/OtpValue.yaml'
   - $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/QRCODE.yaml'
   - $ref: ./U2FPinValue.yaml
 description: >-
