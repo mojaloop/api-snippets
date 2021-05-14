@@ -1,4 +1,26 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.8](https://github.com/mojaloop/api-snippets/compare/v12.3.7...v12.3.8) (2021-05-13)
+
+
+### Maintenance
+
+* **deps:** bump handlebars from 4.7.6 to 4.7.7 ([#76](https://github.com/mojaloop/api-snippets/issues/76)) ([ff723b6](https://github.com/mojaloop/api-snippets/commit/ff723b6a3f9e3cfa689e41efe23284b133596224))
+* **deps:** bump lodash from 4.17.19 to 4.17.21 ([#77](https://github.com/mojaloop/api-snippets/issues/77)) ([14fe815](https://github.com/mojaloop/api-snippets/commit/14fe81562d868f3b5750473aa703bf4cf3944e5f))
+
+### [12.3.7](https://github.com/mojaloop/api-snippets/compare/v12.3.6...v12.3.7) (2021-05-13)
+
+
+### Maintenance
+
+* fix operation id ([#79](https://github.com/mojaloop/api-snippets/issues/79)) ([0e394c0](https://github.com/mojaloop/api-snippets/commit/0e394c00cae7c87fab9cf340cbe5cc10048d8216))
+
+### [12.3.6](https://github.com/mojaloop/api-snippets/compare/v12.3.5...v12.3.6) (2021-05-13)
+
+
+### Maintenance
+
+* fix operation id ([#78](https://github.com/mojaloop/api-snippets/issues/78)) ([0333ac2](https://github.com/mojaloop/api-snippets/commit/0333ac2386a1e9f383ae7215bce95829aedadc31))
+
 ### [12.3.5](https://github.com/mojaloop/api-snippets/compare/v12.3.4...v12.3.5) (2021-05-07)
 
 
