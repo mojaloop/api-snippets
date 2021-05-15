@@ -1711,7 +1711,7 @@ paths:
                       - id
                       - currency
               required: &ref_99
-                - providers
+                - accounts
             example:
               - accountNickname: dfspa.user.nickname1
                 id: dfspa.username.1234

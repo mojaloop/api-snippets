@@ -3497,7 +3497,7 @@ export interface operations {
     };
     requestBody: {
       "application/json": {
-        accounts?: {
+        accounts: {
           /**
            * A long-lived unique account identifier provided by the DFSP. This MUST NOT
            * be Bank Account Number or anything that may expose a User's private bank
@@ -23476,7 +23476,7 @@ export interface components {
      * The object sent in a `PUT /accounts/{ID}` request.
      */
     AccountsIDPutResponse: {
-      accounts?: {
+      accounts: {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
          * be Bank Account Number or anything that may expose a User's private bank

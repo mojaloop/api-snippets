@@ -20,4 +20,4 @@ properties:
         - id
         - currency
 required:
-  - providers
+  - accounts
