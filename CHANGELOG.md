@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.10](https://github.com/mojaloop/api-snippets/compare/v12.3.9...v12.3.10) (2021-05-17)
+
+
+### Code Refactor
+
+* change response away from flat array ([#81](https://github.com/mojaloop/api-snippets/issues/81)) ([7bf201c](https://github.com/mojaloop/api-snippets/commit/7bf201c0e40972f92fbd1177b906fde146a3107c))
+
 ### [12.3.9](https://github.com/mojaloop/api-snippets/compare/v12.3.8...v12.3.9) (2021-05-14)
 
 
