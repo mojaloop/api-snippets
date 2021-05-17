@@ -1,17 +1,23 @@
 title: AccountsIDPutResponse
-type: array
-items:
-  type: object
-  description: |
-    The object sent in a `PUT /accounts/{ID}` request.
-  properties:
-    accountNickname:
-      $ref: ./AccountAddress.yaml
-    id:
-      $ref: ./AccountAddress.yaml
-    currency:
-      $ref: ./Currency.yaml
-  required:
-    - accountNickname
-    - id
-    - currency
+type: object
+description: The object sent in a `PUT /accounts/{ID}` request.
+properties:
+  accounts:
+    type: array
+    items:
+      type: object
+      description: |
+        The object sent in a `PUT /accounts/{ID}` request.
+      properties:
+        accountNickname:
+          $ref: ./AccountAddress.yaml
+        id:
+          $ref: ./AccountAddress.yaml
+        currency:
+          $ref: ./Currency.yaml
+      required:
+        - accountNickname
+        - id
+        - currency
+required:
+  - accounts
