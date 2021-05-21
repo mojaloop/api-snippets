@@ -6651,11 +6651,11 @@ export interface operations {
         /**
          * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
          */
-        id: string;
+        consentRequestId: string;
         /**
-         * The id of the PISP who will initiate transactions on a user's behalf.
+         * ID used to associate request with GET /accounts request.
          */
-        initiatorId: string;
+        userId: string;
         scopes: {
           /**
            * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -6994,9 +6994,9 @@ export interface operations {
       "application/json":
       | {
         /**
-             * The id of the PISP who will initiate transactions on a user's behalf.
+             * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
              */
-        initiatorId: string;
+        consentRequestId: string;
         scopes: {
           /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -7018,37 +7018,9 @@ export interface operations {
       }
       | {
         /**
-             * The id of the PISP who will initiate transactions on a user's behalf.
+             * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
              */
-        initiatorId: string;
-        scopes: {
-          /**
-               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-               * be Bank Account Number or anything that may expose a User's private bank
-               * account information.
-               */
-          accountId: string;
-          actions: ("accounts.getBalance" | "accounts.transfer")[];
-        }[];
-        authChannels: "WEB"[];
-        /**
-             * The callback uri that the user will be redirected to after completing the WEB auth channel.
-             */
-        callbackUri: string;
-        /**
-             * The callback uri that the pisp app redirects to for user to complete their login.
-             */
-        authUri: string;
-        /**
-             * The Auth token from the OTP or redirect to pisp app.
-             */
-        authToken: string;
-      }
-      | {
-        /**
-             * The id of the PISP who will initiate transactions on a user's behalf.
-             */
-        initiatorId: string;
+        consentRequestId: string;
         scopes: {
           /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -7063,30 +7035,6 @@ export interface operations {
              * The callback uri that the user will be redirected to after completing the WEB auth channel.
              */
         callbackUri: string;
-      }
-      | {
-        /**
-             * The id of the PISP who will initiate transactions on a user's behalf.
-             */
-        initiatorId: string;
-        scopes: {
-          /**
-               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-               * be Bank Account Number or anything that may expose a User's private bank
-               * account information.
-               */
-          accountId: string;
-          actions: ("accounts.getBalance" | "accounts.transfer")[];
-        }[];
-        authChannels: "OTP"[];
-        /**
-             * The callback uri that the user will be redirected to after completing the WEB auth channel.
-             */
-        callbackUri: string;
-        /**
-             * The Auth token from the OTP or redirect to pisp app.
-             */
-        authToken: string;
       };
     };
     responses: {
@@ -7405,12 +7353,7 @@ export interface operations {
    */
   PatchConsentRequest: {
     requestBody: {
-      "application/json": {
-        /**
-         * The API data type OtpValue is a JSON String of 3 to 10 characters, consisting of digits only. Negative numbers are not allowed. One or more leading zeros are allowed.
-         */
-        authToken: string;
-      };
+      "application/json": { authToken: string };
     };
     responses: {
       /**
@@ -23837,11 +23780,11 @@ export interface components {
       /**
        * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
        */
-      id: string;
+      consentRequestId: string;
       /**
-       * The id of the PISP who will initiate transactions on a user's behalf.
+       * ID used to associate request with GET /accounts request.
        */
-      initiatorId: string;
+      userId: string;
       scopes: {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -23871,9 +23814,9 @@ export interface components {
      */
     ConsentRequestsIDPutResponseWeb: {
       /**
-       * The id of the PISP who will initiate transactions on a user's behalf.
+       * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
        */
-      initiatorId: string;
+      consentRequestId: string;
       scopes: {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -23892,41 +23835,6 @@ export interface components {
        * The callback uri that the pisp app redirects to for user to complete their login.
        */
       authUri: string;
-    };
-    /**
-     * The object sent in a `PUT /consentRequests/{ID}` request.
-     *
-     * Schema used in the authentication phase of the account linking flow,
-     * the user is expected to prove their identity to the DFSP by passing a OTP
-     * or secret to the PISP.
-     */
-    ConsentRequestsIDPutResponseWebAuth: {
-      /**
-       * The id of the PISP who will initiate transactions on a user's behalf.
-       */
-      initiatorId: string;
-      scopes: {
-        /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
-         */
-        accountId: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
-      }[];
-      authChannels: "WEB"[];
-      /**
-       * The callback uri that the user will be redirected to after completing the WEB auth channel.
-       */
-      callbackUri: string;
-      /**
-       * The callback uri that the pisp app redirects to for user to complete their login.
-       */
-      authUri: string;
-      /**
-       * The Auth token from the OTP or redirect to pisp app.
-       */
-      authToken: string;
     };
     /**
      * The OTP auth channel being used for PUT consentRequest/{ID} request.
@@ -23939,9 +23847,9 @@ export interface components {
      */
     ConsentRequestsIDPutResponseOTP: {
       /**
-       * The id of the PISP who will initiate transactions on a user's behalf.
+       * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
        */
-      initiatorId: string;
+      consentRequestId: string;
       scopes: {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -23956,47 +23864,11 @@ export interface components {
        * The callback uri that the user will be redirected to after completing the WEB auth channel.
        */
       callbackUri: string;
-    };
-    /**
-     * The object sent in a `PUT /consentRequests/{ID}` request.
-     *
-     * Schema used in the authentication phase of the account linking flow,
-     * the user is expected to prove their identity to the DFSP by passing a OTP
-     * or secret to the PISP.
-     */
-    ConsentRequestsIDPutResponseOTPAuth: {
-      /**
-       * The id of the PISP who will initiate transactions on a user's behalf.
-       */
-      initiatorId: string;
-      scopes: {
-        /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
-         */
-        accountId: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
-      }[];
-      authChannels: "OTP"[];
-      /**
-       * The callback uri that the user will be redirected to after completing the WEB auth channel.
-       */
-      callbackUri: string;
-      /**
-       * The Auth token from the OTP or redirect to pisp app.
-       */
-      authToken: string;
     };
     /**
      * The object sent in a `PATCH /consentRequests/{ID}` request.
      */
-    ConsentRequestsIDPatchRequest: {
-      /**
-       * The API data type OtpValue is a JSON String of 3 to 10 characters, consisting of digits only. Negative numbers are not allowed. One or more leading zeros are allowed.
-       */
-      authToken: string;
-    };
+    ConsentRequestsIDPatchRequest: { authToken: string };
     /**
      * The object sent in a `POST /consents` request.
      */

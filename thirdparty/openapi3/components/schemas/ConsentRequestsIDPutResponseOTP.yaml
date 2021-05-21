@@ -5,9 +5,8 @@ description: |
 
   Schema used in the request consent phase of the account linking OTP/SMS flow.
 properties:
-  initiatorId:
-    type: string
-    description: The id of the PISP who will initiate transactions on a user's behalf.
+  consentRequestId:
+    $ref: ./CorrelationId.yaml
   scopes:
     type: array
     items:
@@ -22,7 +21,7 @@ properties:
       The callback uri that the user will be redirected to after completing the
       WEB auth channel.
 required:
-  - initiatorId
+  - consentRequestId
   - scopes
   - authChannels
   - callbackUri
