@@ -44,23 +44,30 @@ get:
       $ref: ../components/responses/503.yaml
 patch:
   description: |
-    The HTTP request `PATCH /consents/{ID}` is used in account unlinking
-    by a hub hosted auth service and by DFSPs in non-hub hosted scenarios
-    to notify participants of a consent being revoked.
+    The HTTP request `PATCH /consents/{ID}` is used
 
-    - Called by a `auth-service` to notify a PISP and DFSP of consent status in hub hosted scenario.
-    - Called by a `DFSP` to notify a PISP of consent status in non-hub hosted scenario.
+    - In account linking in the Credential Registration phase. Used by a DFSP
+      to notify a PISP a credential has been verified and registered with an
+      Auth service.
+
+    - In account unlinking by a hub hosted auth service and by DFSPs
+      in non-hub hosted scenarios to notify participants of a consent being revoked.
+
+      Called by a `auth-service` to notify a PISP and DFSP of consent status in hub hosted scenario.
+      Called by a `DFSP` to notify a PISP of consent status in non-hub hosted scenario.
   tags:
     - consents
     - sampled
-  operationId: PatchConsent
-  summary: PatchConsent
+  operationId: PatchConsentByID
+  summary: PatchConsentByID
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/ConsentsIDPatchResponse.yaml
+          oneOf:
+            - $ref: ../components/schemas/ConsentsIDPatchResponseVerified.yaml
+            - $ref: ../components/schemas/ConsentsIDPatchResponseRevoked.yaml
   parameters:
     #Headers
     - $ref: ../components/parameters/Content-Length.yaml
