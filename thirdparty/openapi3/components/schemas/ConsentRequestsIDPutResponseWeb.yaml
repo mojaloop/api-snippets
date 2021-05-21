@@ -8,9 +8,8 @@ description: |
   supposed user should be redirected. This URL should be a place where
   the user can prove their identity (e.g., by logging in).
 properties:
-  initiatorId:
-    type: string
-    description: The id of the PISP who will initiate transactions on a user's behalf.
+  consentRequestId:
+    $ref: ./CorrelationId.yaml
   scopes:
     type: array
     items:
@@ -30,7 +29,7 @@ properties:
       The callback uri that the pisp app redirects to for user to complete their
       login.
 required:
-  - initiatorId
+  - consentRequestId
   - scopes
   - authChannels
   - callbackUri

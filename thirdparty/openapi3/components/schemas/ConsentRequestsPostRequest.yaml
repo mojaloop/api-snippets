@@ -2,11 +2,11 @@ title: ConsentRequestsPostRequest
 type: object
 description: The object sent in a `POST /consentRequests` request.
 properties:
-  id:
+  consentRequestId:
     $ref: ./CorrelationId.yaml
-  initiatorId:
+  userId:
     type: string
-    description: The id of the PISP who will initiate transactions on a user's behalf.
+    description: ID used to associate request with GET /accounts request.
   scopes:
     type: array
     items:
@@ -21,8 +21,8 @@ properties:
       The callback uri that the user will be redirected to after completing the
       WEB auth channel.
 required:
-  - id
-  - initiatorId
+  - consentRequestId
+  - userId
   - scopes
   - authChannels
   - callbackUri

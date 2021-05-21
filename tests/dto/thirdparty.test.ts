@@ -72,7 +72,8 @@ describe('thirdparty', () => {
     payload: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
     signature: 'signature'
   }
-  const consentStatusTypeREVOKED: Schemas.ConsentStatusType = 'REVOKED'
+  const consentStatusTypeREVOKED: Schemas.ConsentStatusTypeRevoked = 'REVOKED'
+  const consentStatusTypeVERIFIED: Schemas.ConsentStatusTypeVerified = 'VERIFIED'
   const fspId: Schemas.FspId = 'fsp-id'
   const firstName: Schemas.FirstName = 'John'
   const lastName: Schemas.LastName = 'Doe'
@@ -198,7 +199,7 @@ describe('thirdparty', () => {
 
   test('ConsentRequestsIDPutResponseOTP', () => {
     const consentRequestsIDPutResponseOTP: Schemas.ConsentRequestsIDPutResponseOTP = {
-      initiatorId: 'pisp-id',
+      consentRequestId: 'pisp-id',
       scopes: [scope],
       authChannels: [consentRequestChannelTypeOTP],
       callbackUri: 'https://fspiId/callback'
@@ -206,20 +207,9 @@ describe('thirdparty', () => {
     expect(consentRequestsIDPutResponseOTP).toBeDefined()
   })
 
-  test('ConsentRequestsIDPutResponseOTPAuth', () => {
-    const consentRequestsIDPutResponseOTPAuth: Schemas.ConsentRequestsIDPutResponseOTPAuth = {
-      initiatorId: 'pisp-id',
-      scopes: [scope],
-      authChannels: [consentRequestChannelTypeOTP],
-      callbackUri: 'https://fspiId/callback',
-      authToken: 'abcdefghijklmnopqrstuvxyz'
-    }
-    expect(consentRequestsIDPutResponseOTPAuth).toBeDefined()
-  })
-
   test('ConsentRequestsIDPutResponseWeb', () => {
     const consentRequestsIDPutResponseWeb: Schemas.ConsentRequestsIDPutResponseWeb = {
-      initiatorId: 'pisp-id',
+      consentRequestId: 'pisp-id',
       scopes: [scope],
       authChannels: [consentRequestChannelTypeWeb],
       callbackUri: 'https://fspiId/callback',
@@ -228,22 +218,10 @@ describe('thirdparty', () => {
     expect(consentRequestsIDPutResponseWeb).toBeDefined()
   })
 
-  test('ConsentRequestsIDPutResponseWebAuth', () => {
-    const consentRequestsIDPutResponseWebAuth: Schemas.ConsentRequestsIDPutResponseWebAuth = {
-      initiatorId: 'pisp-id',
-      scopes: [scope],
-      authChannels: [consentRequestChannelTypeWeb],
-      callbackUri: 'https://fspiId/callback',
-      authUri: 'https://fspId/auth',
-      authToken: 'abcdefghijklmnopqrstuvxyz'
-    }
-    expect(consentRequestsIDPutResponseWebAuth).toBeDefined()
-  })
-
   test('ConsentRequestsPostRequest', () => {
     const consentRequestsPostRequest: Schemas.ConsentRequestsPostRequest = {
-      id: correlationId,
-      initiatorId: 'pisp-id',
+      consentRequestId: 'pisp-id',
+      userId: 'pisp-id-user',
       scopes: [scope],
       authChannels: [consentRequestChannelType],
       callbackUri: 'https://fspiId/callback'
@@ -263,10 +241,19 @@ describe('thirdparty', () => {
     expect(consentsIDGenerateChallengePostRequest).toBeDefined()
   })
 
-  test('ConsentsIDPatchResponse', () => {
-    const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponse = {
+  test('ConsentsIDPatchResponseRevoked', () => {
+    const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponseRevoked = {
       status: consentStatusTypeREVOKED,
       revokedAt: dateTime
+    }
+    expect(consentsIDPatchResponse).toBeDefined()
+  })
+
+  test('ConsentsIDPatchResponseVerified', () => {
+    const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponseVerified = {
+      credential: {
+        status: consentStatusTypeVERIFIED
+      }
     }
     expect(consentsIDPatchResponse).toBeDefined()
   })
