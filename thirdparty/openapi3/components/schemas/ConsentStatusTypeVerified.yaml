@@ -1,0 +1,7 @@
+title: ConsentStatusType
+type: string
+enum:
+  - VERIFIED
+description: |
+  The status of the Consent.
+  - "VERIFIED" - The Consent is valid and verified.

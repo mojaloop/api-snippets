@@ -73,7 +73,8 @@ describe('thirdparty', () => {
     payload: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
     signature: 'signature'
   }
-  const consentStatusTypeREVOKED: Schemas.ConsentStatusType = 'REVOKED'
+  const consentStatusTypeREVOKED: Schemas.ConsentStatusTypeRevoked = 'REVOKED'
+  const consentStatusTypeVERIFIED: Schemas.ConsentStatusTypeVerified = 'VERIFIED'
   const fspId: Schemas.FspId = 'fsp-id'
   const firstName: Schemas.FirstName = 'John'
   const lastName: Schemas.LastName = 'Doe'
@@ -241,10 +242,19 @@ describe('thirdparty', () => {
     expect(consentsIDGenerateChallengePostRequest).toBeDefined()
   })
 
-  test('ConsentsIDPatchResponse', () => {
-    const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponse = {
+  test('ConsentsIDPatchResponseRevoked', () => {
+    const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponseRevoked = {
       status: consentStatusTypeREVOKED,
       revokedAt: dateTime
+    }
+    expect(consentsIDPatchResponse).toBeDefined()
+  })
+
+  test('ConsentsIDPatchResponseVerified', () => {
+    const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponseVerified = {
+      credential: {
+        status: consentStatusTypeVERIFIED
+      }
     }
     expect(consentsIDPatchResponse).toBeDefined()
   })

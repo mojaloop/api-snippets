@@ -42,8 +42,10 @@ ConsentScopeType:
   $ref: ./ConsentScopeType.yaml
 ConsentsIDGenerateChallengePostRequest:
   $ref: ./ConsentsIDGenerateChallengePostRequest.yaml
-ConsentsIDPatchResponse:
-  $ref: ./ConsentsIDPatchResponse.yaml
+ConsentsIDPatchResponseRevoked:
+  $ref: ./ConsentsIDPatchResponseRevoked.yaml
+ConsentsIDPatchResponseVerified:
+  $ref: ./ConsentsIDPatchResponseVerified.yaml
 ConsentsIDPutResponseSigned:
   $ref: ./ConsentsIDPutResponseSigned.yaml
 ConsentsIDPutResponseUnsigned:
@@ -52,8 +54,10 @@ ConsentsIDPutResponseVerified:
   $ref: ./ConsentsIDPutResponseVerified.yaml
 ConsentsPostRequest:
   $ref: ./ConsentsPostRequest.yaml
-ConsentStatusType:
-  $ref: ./ConsentStatusType.yaml
+ConsentStatusTypeRevoked:
+  $ref: ./ConsentStatusTypeRevoked.yaml
+ConsentStatusTypeVerified:
+  $ref: ./ConsentStatusTypeVerified.yaml
 CorrelationId:
   $ref: ./CorrelationId.yaml
 Currency:
