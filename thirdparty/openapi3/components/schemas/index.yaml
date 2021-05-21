@@ -1,7 +1,7 @@
 Account:
   $ref: ./Account.yaml
-AccountAddress:
-  $ref: ./AccountAddress.yaml
+AccountId:
+  $ref: ./AccountId.yaml
 AccountList:
   $ref: ./AccountList.yaml
 AccountsIDPutResponse:

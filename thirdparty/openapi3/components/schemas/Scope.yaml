@@ -8,7 +8,7 @@ example: |
   }
 properties:
   accountId:
-    $ref: ./AccountAddress.yaml
+    $ref: ./AccountId.yaml
   actions:
     type: array
     items:

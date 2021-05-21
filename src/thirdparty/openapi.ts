@@ -2127,11 +2127,19 @@ export interface operations {
                  */
             account: {
               /**
+                   * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+                   *
+                   * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+                   *
+                   * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+                   */
+              accountNickname?: string;
+              /**
                    * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                    * be Bank Account Number or anything that may expose a User's private bank
                    * account information.
                    */
-              address?: string;
+              id?: string;
               /**
                    * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                    */
@@ -2298,14 +2306,6 @@ export interface operations {
               | "ZAR"
               | "ZMW"
               | "ZWD";
-              /**
-                   * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-                   *
-                   * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-                   *
-                   * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-                   */
-              description?: string;
             }[];
           };
           /**
@@ -2477,11 +2477,19 @@ export interface operations {
                  */
             account: {
               /**
+                   * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+                   *
+                   * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+                   *
+                   * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+                   */
+              accountNickname?: string;
+              /**
                    * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                    * be Bank Account Number or anything that may expose a User's private bank
                    * account information.
                    */
-              address?: string;
+              id?: string;
               /**
                    * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                    */
@@ -2648,14 +2656,6 @@ export interface operations {
               | "ZAR"
               | "ZMW"
               | "ZWD";
-              /**
-                   * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-                   *
-                   * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-                   *
-                   * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-                   */
-              description?: string;
             }[];
           };
           /**
@@ -3497,186 +3497,196 @@ export interface operations {
     };
     requestBody: {
       "application/json": {
+        /**
+         * Data model for the complex type AccountList.
+         */
         accounts: {
           /**
-           * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-           * be Bank Account Number or anything that may expose a User's private bank
-           * account information.
+           * Accounts associated with the Party.
            */
-          accountNickname: string;
-          /**
-           * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-           * be Bank Account Number or anything that may expose a User's private bank
-           * account information.
-           */
-          id: string;
-          /**
-           * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-           */
-          currency:
-          | "AED"
-          | "AFN"
-          | "ALL"
-          | "AMD"
-          | "ANG"
-          | "AOA"
-          | "ARS"
-          | "AUD"
-          | "AWG"
-          | "AZN"
-          | "BAM"
-          | "BBD"
-          | "BDT"
-          | "BGN"
-          | "BHD"
-          | "BIF"
-          | "BMD"
-          | "BND"
-          | "BOB"
-          | "BRL"
-          | "BSD"
-          | "BTN"
-          | "BWP"
-          | "BYN"
-          | "BZD"
-          | "CAD"
-          | "CDF"
-          | "CHF"
-          | "CLP"
-          | "CNY"
-          | "COP"
-          | "CRC"
-          | "CUC"
-          | "CUP"
-          | "CVE"
-          | "CZK"
-          | "DJF"
-          | "DKK"
-          | "DOP"
-          | "DZD"
-          | "EGP"
-          | "ERN"
-          | "ETB"
-          | "EUR"
-          | "FJD"
-          | "FKP"
-          | "GBP"
-          | "GEL"
-          | "GGP"
-          | "GHS"
-          | "GIP"
-          | "GMD"
-          | "GNF"
-          | "GTQ"
-          | "GYD"
-          | "HKD"
-          | "HNL"
-          | "HRK"
-          | "HTG"
-          | "HUF"
-          | "IDR"
-          | "ILS"
-          | "IMP"
-          | "INR"
-          | "IQD"
-          | "IRR"
-          | "ISK"
-          | "JEP"
-          | "JMD"
-          | "JOD"
-          | "JPY"
-          | "KES"
-          | "KGS"
-          | "KHR"
-          | "KMF"
-          | "KPW"
-          | "KRW"
-          | "KWD"
-          | "KYD"
-          | "KZT"
-          | "LAK"
-          | "LBP"
-          | "LKR"
-          | "LRD"
-          | "LSL"
-          | "LYD"
-          | "MAD"
-          | "MDL"
-          | "MGA"
-          | "MKD"
-          | "MMK"
-          | "MNT"
-          | "MOP"
-          | "MRO"
-          | "MUR"
-          | "MVR"
-          | "MWK"
-          | "MXN"
-          | "MYR"
-          | "MZN"
-          | "NAD"
-          | "NGN"
-          | "NIO"
-          | "NOK"
-          | "NPR"
-          | "NZD"
-          | "OMR"
-          | "PAB"
-          | "PEN"
-          | "PGK"
-          | "PHP"
-          | "PKR"
-          | "PLN"
-          | "PYG"
-          | "QAR"
-          | "RON"
-          | "RSD"
-          | "RUB"
-          | "RWF"
-          | "SAR"
-          | "SBD"
-          | "SCR"
-          | "SDG"
-          | "SEK"
-          | "SGD"
-          | "SHP"
-          | "SLL"
-          | "SOS"
-          | "SPL"
-          | "SRD"
-          | "STD"
-          | "SVC"
-          | "SYP"
-          | "SZL"
-          | "THB"
-          | "TJS"
-          | "TMT"
-          | "TND"
-          | "TOP"
-          | "TRY"
-          | "TTD"
-          | "TVD"
-          | "TWD"
-          | "TZS"
-          | "UAH"
-          | "UGX"
-          | "USD"
-          | "UYU"
-          | "UZS"
-          | "VEF"
-          | "VND"
-          | "VUV"
-          | "WST"
-          | "XAF"
-          | "XCD"
-          | "XDR"
-          | "XOF"
-          | "XPF"
-          | "YER"
-          | "ZAR"
-          | "ZMW"
-          | "ZWD";
-        }[];
+          account: {
+            /**
+             * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+             *
+             * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+             *
+             * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+             */
+            accountNickname?: string;
+            /**
+             * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+             * be Bank Account Number or anything that may expose a User's private bank
+             * account information.
+             */
+            id?: string;
+            /**
+             * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+             */
+            currency:
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
+          }[];
+        };
       };
     };
     responses: {
@@ -11835,11 +11845,19 @@ export interface operations {
              */
             account: {
               /**
+               * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+               *
+               * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+               *
+               * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+               */
+              accountNickname?: string;
+              /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-              address?: string;
+              id?: string;
               /**
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
@@ -12006,14 +12024,6 @@ export interface operations {
               | "ZAR"
               | "ZMW"
               | "ZWD";
-              /**
-               * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-               *
-               * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-               *
-               * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-               */
-              description?: string;
             }[];
           };
           /**
@@ -12753,11 +12763,19 @@ export interface operations {
              */
             account: {
               /**
+               * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+               *
+               * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+               *
+               * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+               */
+              accountNickname?: string;
+              /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-              address?: string;
+              id?: string;
               /**
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
@@ -12924,14 +12942,6 @@ export interface operations {
               | "ZAR"
               | "ZMW"
               | "ZWD";
-              /**
-               * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-               *
-               * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-               *
-               * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-               */
-              description?: string;
             }[];
           };
           /**
@@ -21506,12 +21516,6 @@ export interface components {
       | "ZWD";
     };
     /**
-     * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-     * be Bank Account Number or anything that may expose a User's private bank
-     * account information.
-     */
-    AccountAddress: string;
-    /**
      * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
      *
      * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
@@ -21520,15 +21524,29 @@ export interface components {
      */
     Name: string;
     /**
+     * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+     * be Bank Account Number or anything that may expose a User's private bank
+     * account information.
+     */
+    AccountId: string;
+    /**
      * Data model for the complex type Account.
      */
     Account: {
+      /**
+       * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+       *
+       * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+       *
+       * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+       */
+      accountNickname?: string;
       /**
        * A long-lived unique account identifier provided by the DFSP. This MUST NOT
        * be Bank Account Number or anything that may expose a User's private bank
        * account information.
        */
-      address?: string;
+      id?: string;
       /**
        * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
        */
@@ -21695,14 +21713,6 @@ export interface components {
       | "ZAR"
       | "ZMW"
       | "ZWD";
-      /**
-       * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-       *
-       * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-       *
-       * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-       */
-      description?: string;
     };
     /**
      * Data model for the complex type AccountList.
@@ -21713,11 +21723,19 @@ export interface components {
        */
       account: {
         /**
+         * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+         *
+         * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+         *
+         * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+         */
+        accountNickname?: string;
+        /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
          * be Bank Account Number or anything that may expose a User's private bank
          * account information.
          */
-        address?: string;
+        id?: string;
         /**
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
@@ -21884,14 +21902,6 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-        /**
-         * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-         *
-         * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-         *
-         * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-         */
-        description?: string;
       }[];
     };
     /**
@@ -21974,11 +21984,19 @@ export interface components {
          */
         account: {
           /**
+           * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+           *
+           * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+           *
+           * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+           */
+          accountNickname?: string;
+          /**
            * A long-lived unique account identifier provided by the DFSP. This MUST NOT
            * be Bank Account Number or anything that may expose a User's private bank
            * account information.
            */
-          address?: string;
+          id?: string;
           /**
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
@@ -22145,14 +22163,6 @@ export interface components {
           | "ZAR"
           | "ZMW"
           | "ZWD";
-          /**
-           * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-           *
-           * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-           *
-           * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-           */
-          description?: string;
         }[];
       };
       /**
@@ -22299,11 +22309,19 @@ export interface components {
            */
           account: {
             /**
+             * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+             *
+             * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+             *
+             * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+             */
+            accountNickname?: string;
+            /**
              * A long-lived unique account identifier provided by the DFSP. This MUST NOT
              * be Bank Account Number or anything that may expose a User's private bank
              * account information.
              */
-            address?: string;
+            id?: string;
             /**
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
@@ -22470,14 +22488,6 @@ export interface components {
             | "ZAR"
             | "ZMW"
             | "ZWD";
-            /**
-             * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-             *
-             * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-             *
-             * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-             */
-            description?: string;
           }[];
         };
         /**
@@ -22773,11 +22783,19 @@ export interface components {
            */
           account: {
             /**
+             * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+             *
+             * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+             *
+             * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+             */
+            accountNickname?: string;
+            /**
              * A long-lived unique account identifier provided by the DFSP. This MUST NOT
              * be Bank Account Number or anything that may expose a User's private bank
              * account information.
              */
-            address?: string;
+            id?: string;
             /**
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
@@ -22944,14 +22962,6 @@ export interface components {
             | "ZAR"
             | "ZMW"
             | "ZWD";
-            /**
-             * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-             *
-             * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-             *
-             * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-             */
-            description?: string;
           }[];
         };
         /**
@@ -23476,186 +23486,196 @@ export interface components {
      * The object sent in a `PUT /accounts/{ID}` request.
      */
     AccountsIDPutResponse: {
+      /**
+       * Data model for the complex type AccountList.
+       */
       accounts: {
         /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
+         * Accounts associated with the Party.
          */
-        accountNickname: string;
-        /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
-         */
-        id: string;
-        /**
-         * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-         */
-        currency:
-        | "AED"
-        | "AFN"
-        | "ALL"
-        | "AMD"
-        | "ANG"
-        | "AOA"
-        | "ARS"
-        | "AUD"
-        | "AWG"
-        | "AZN"
-        | "BAM"
-        | "BBD"
-        | "BDT"
-        | "BGN"
-        | "BHD"
-        | "BIF"
-        | "BMD"
-        | "BND"
-        | "BOB"
-        | "BRL"
-        | "BSD"
-        | "BTN"
-        | "BWP"
-        | "BYN"
-        | "BZD"
-        | "CAD"
-        | "CDF"
-        | "CHF"
-        | "CLP"
-        | "CNY"
-        | "COP"
-        | "CRC"
-        | "CUC"
-        | "CUP"
-        | "CVE"
-        | "CZK"
-        | "DJF"
-        | "DKK"
-        | "DOP"
-        | "DZD"
-        | "EGP"
-        | "ERN"
-        | "ETB"
-        | "EUR"
-        | "FJD"
-        | "FKP"
-        | "GBP"
-        | "GEL"
-        | "GGP"
-        | "GHS"
-        | "GIP"
-        | "GMD"
-        | "GNF"
-        | "GTQ"
-        | "GYD"
-        | "HKD"
-        | "HNL"
-        | "HRK"
-        | "HTG"
-        | "HUF"
-        | "IDR"
-        | "ILS"
-        | "IMP"
-        | "INR"
-        | "IQD"
-        | "IRR"
-        | "ISK"
-        | "JEP"
-        | "JMD"
-        | "JOD"
-        | "JPY"
-        | "KES"
-        | "KGS"
-        | "KHR"
-        | "KMF"
-        | "KPW"
-        | "KRW"
-        | "KWD"
-        | "KYD"
-        | "KZT"
-        | "LAK"
-        | "LBP"
-        | "LKR"
-        | "LRD"
-        | "LSL"
-        | "LYD"
-        | "MAD"
-        | "MDL"
-        | "MGA"
-        | "MKD"
-        | "MMK"
-        | "MNT"
-        | "MOP"
-        | "MRO"
-        | "MUR"
-        | "MVR"
-        | "MWK"
-        | "MXN"
-        | "MYR"
-        | "MZN"
-        | "NAD"
-        | "NGN"
-        | "NIO"
-        | "NOK"
-        | "NPR"
-        | "NZD"
-        | "OMR"
-        | "PAB"
-        | "PEN"
-        | "PGK"
-        | "PHP"
-        | "PKR"
-        | "PLN"
-        | "PYG"
-        | "QAR"
-        | "RON"
-        | "RSD"
-        | "RUB"
-        | "RWF"
-        | "SAR"
-        | "SBD"
-        | "SCR"
-        | "SDG"
-        | "SEK"
-        | "SGD"
-        | "SHP"
-        | "SLL"
-        | "SOS"
-        | "SPL"
-        | "SRD"
-        | "STD"
-        | "SVC"
-        | "SYP"
-        | "SZL"
-        | "THB"
-        | "TJS"
-        | "TMT"
-        | "TND"
-        | "TOP"
-        | "TRY"
-        | "TTD"
-        | "TVD"
-        | "TWD"
-        | "TZS"
-        | "UAH"
-        | "UGX"
-        | "USD"
-        | "UYU"
-        | "UZS"
-        | "VEF"
-        | "VND"
-        | "VUV"
-        | "WST"
-        | "XAF"
-        | "XCD"
-        | "XDR"
-        | "XOF"
-        | "XPF"
-        | "YER"
-        | "ZAR"
-        | "ZMW"
-        | "ZWD";
-      }[];
+        account: {
+          /**
+           * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+           *
+           * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+           *
+           * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+           */
+          accountNickname?: string;
+          /**
+           * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+           * be Bank Account Number or anything that may expose a User's private bank
+           * account information.
+           */
+          id?: string;
+          /**
+           * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+           */
+          currency:
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
+        }[];
+      };
     };
     /**
      * Data model for the complex type object that contains ErrorInformation.
@@ -24444,11 +24464,19 @@ export interface components {
            */
           account: {
             /**
+             * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+             *
+             * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+             *
+             * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+             */
+            accountNickname?: string;
+            /**
              * A long-lived unique account identifier provided by the DFSP. This MUST NOT
              * be Bank Account Number or anything that may expose a User's private bank
              * account information.
              */
-            address?: string;
+            id?: string;
             /**
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
@@ -24615,14 +24643,6 @@ export interface components {
             | "ZAR"
             | "ZMW"
             | "ZWD";
-            /**
-             * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-             *
-             * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-             *
-             * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-             */
-            description?: string;
           }[];
         };
         /**
