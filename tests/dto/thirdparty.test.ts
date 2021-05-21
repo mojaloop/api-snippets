@@ -1,7 +1,7 @@
 import { Schemas } from '../../lib/thirdparty'
 
 describe('thirdparty', () => {
-  const accountId: Schemas.AccountId = 'account-address'
+  const accountId: Schemas.AccountId = 'account-id'
   const authenticationTypeQRCODE: Schemas.AuthenticationType = 'QRCODE'
   const currency: Schemas.Currency = 'USD'
   const name: Schemas.Name = 'name'
