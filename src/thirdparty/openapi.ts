@@ -193,7 +193,7 @@ export interface paths {
   };
   "/consents/{ID}": {
     get: operations["GetConsent"];
-    patch: operations["PatchConsent"];
+    patch: operations["PatchConsentByID"];
     put: operations["UpdateConsent"];
     delete: operations["DeleteConsentByID"];
     parameters: {
@@ -1717,18 +1717,6 @@ export interface operations {
           };
         };
       }
-      | {
-        /**
-             * The status of the Consent.
-             * - "REVOKED" - The Consent is no longer valid and has been revoked.
-             */
-        status: "REVOKED";
-        /**
-             * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
-             */
-        revokedAt: string;
-      }
-      | "REVOKED"
       | string
       | string
       | {
@@ -8842,14 +8830,19 @@ export interface operations {
     };
   };
   /**
-   * The HTTP request `PATCH /consents/{ID}` is used in account unlinking
-   * by a hub hosted auth service and by DFSPs in non-hub hosted scenarios
-   * to notify participants of a consent being revoked.
+   * The HTTP request `PATCH /consents/{ID}` is used
    *
-   * - Called by a `auth-service` to notify a PISP and DFSP of consent status in hub hosted scenario.
-   * - Called by a `DFSP` to notify a PISP of consent status in non-hub hosted scenario.
+   * - In account linking in the Credential Registration phase. Used by a DFSP
+   *   to notify a PISP a credential has been verified and registered with an
+   *   Auth service.
+   *
+   * - In account unlinking by a hub hosted auth service and by DFSPs
+   *   in non-hub hosted scenarios to notify participants of a consent being revoked.
+   *
+   *   Called by a `auth-service` to notify a PISP and DFSP of consent status in hub hosted scenario.
+   *   Called by a `DFSP` to notify a PISP of consent status in non-hub hosted scenario.
    */
-  PatchConsent: {
+  PatchConsentByID: {
     parameters: {
       header: {
         /**
@@ -8861,15 +8854,25 @@ export interface operations {
       };
     };
     requestBody: {
-      "application/json": {
+      "application/json":
+      | {
+        credential: {
+          /**
+               * The status of the Consent.
+               * - "VERIFIED" - The Consent is valid and verified.
+               */
+          status: "VERIFIED";
+        };
+      }
+      | {
         /**
-         * The status of the Consent.
-         * - "REVOKED" - The Consent is no longer valid and has been revoked.
-         */
+             * The status of the Consent.
+             * - "REVOKED" - The Consent is no longer valid and has been revoked.
+             */
         status: "REVOKED";
         /**
-         * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
-         */
+             * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
+             */
         revokedAt: string;
       };
     };
@@ -20897,27 +20900,6 @@ export interface components {
       };
     };
     /**
-     * The status of the Consent.
-     * - "REVOKED" - The Consent is no longer valid and has been revoked.
-     */
-    ConsentStatusType: "REVOKED";
-    /**
-     * PATCH /consents/{ID} request object.
-     *
-     * Sent to both the PISP and DFSP when a consent is revoked.
-     */
-    ConsentsIDPatchResponse: {
-      /**
-       * The status of the Consent.
-       * - "REVOKED" - The Consent is no longer valid and has been revoked.
-       */
-      status: "REVOKED";
-      /**
-       * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
-       */
-      revokedAt: string;
-    };
-    /**
      * Fulfilment that must be attached to the transfer by the Payee.
      */
     IlpFulfilment: string;
@@ -24354,6 +24336,48 @@ export interface components {
          */
         payload?: string;
       };
+    };
+    /**
+     * The status of the Consent.
+     * - "VERIFIED" - The Consent is valid and verified.
+     */
+    ConsentStatusTypeVerified: "VERIFIED";
+    /**
+     * PATCH /consents/{ID} request object.
+     *
+     * Sent by the DFSP to the PISP when a consent is verified.
+     * Used in the "Register Credential" part of the Account linking flow.
+     */
+    ConsentsIDPatchResponseVerified: {
+      credential: {
+        /**
+         * The status of the Consent.
+         * - "VERIFIED" - The Consent is valid and verified.
+         */
+        status: "VERIFIED";
+      };
+    };
+    /**
+     * The status of the Consent.
+     * - "REVOKED" - The Consent is no longer valid and has been revoked.
+     */
+    ConsentStatusTypeRevoked: "REVOKED";
+    /**
+     * PATCH /consents/{ID} request object.
+     *
+     * Sent to both the PISP and DFSP when a consent is revoked.
+     * Used in the "Unlinking" part of the Account Unlinking flow.
+     */
+    ConsentsIDPatchResponseRevoked: {
+      /**
+       * The status of the Consent.
+       * - "REVOKED" - The Consent is no longer valid and has been revoked.
+       */
+      status: "REVOKED";
+      /**
+       * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
+       */
+      revokedAt: string;
     };
     /**
      * A credential used to allow a user to prove their identity

@@ -32,8 +32,6 @@ paths:
                 - $ref: './components/schemas/AuthorizationChannelType.yaml'
                 - $ref: './components/schemas/AuthorizationResponseType.yaml'
                 - $ref: './components/schemas/AuthorizationsPostRequest.yaml'
-                - $ref: './components/schemas/ConsentsIDPatchResponse.yaml'
-                - $ref: './components/schemas/ConsentStatusType.yaml'
                 - $ref: './components/schemas/IlpFulfilment.yaml'
                 - $ref: './components/schemas/Note.yaml'
                 - $ref: './components/schemas/PartyResult.yaml'
