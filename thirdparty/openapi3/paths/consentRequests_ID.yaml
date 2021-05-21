@@ -30,9 +30,7 @@ put:
         schema:
           oneOf:
             - $ref: ../components/schemas/ConsentRequestsIDPutResponseWeb.yaml
-            - $ref: ../components/schemas/ConsentRequestsIDPutResponseWebAuth.yaml
             - $ref: ../components/schemas/ConsentRequestsIDPutResponseOTP.yaml
-            - $ref: ../components/schemas/ConsentRequestsIDPutResponseOTPAuth.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml

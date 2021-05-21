@@ -200,7 +200,7 @@ describe('thirdparty', () => {
 
   test('ConsentRequestsIDPutResponseOTP', () => {
     const consentRequestsIDPutResponseOTP: Schemas.ConsentRequestsIDPutResponseOTP = {
-      initiatorId: 'pisp-id',
+      consentRequestId: 'pisp-id',
       scopes: [scope],
       authChannels: [consentRequestChannelTypeOTP],
       callbackUri: 'https://fspiId/callback'
@@ -208,20 +208,9 @@ describe('thirdparty', () => {
     expect(consentRequestsIDPutResponseOTP).toBeDefined()
   })
 
-  test('ConsentRequestsIDPutResponseOTPAuth', () => {
-    const consentRequestsIDPutResponseOTPAuth: Schemas.ConsentRequestsIDPutResponseOTPAuth = {
-      initiatorId: 'pisp-id',
-      scopes: [scope],
-      authChannels: [consentRequestChannelTypeOTP],
-      callbackUri: 'https://fspiId/callback',
-      authToken: 'abcdefghijklmnopqrstuvxyz'
-    }
-    expect(consentRequestsIDPutResponseOTPAuth).toBeDefined()
-  })
-
   test('ConsentRequestsIDPutResponseWeb', () => {
     const consentRequestsIDPutResponseWeb: Schemas.ConsentRequestsIDPutResponseWeb = {
-      initiatorId: 'pisp-id',
+      consentRequestId: 'pisp-id',
       scopes: [scope],
       authChannels: [consentRequestChannelTypeWeb],
       callbackUri: 'https://fspiId/callback',
@@ -230,22 +219,10 @@ describe('thirdparty', () => {
     expect(consentRequestsIDPutResponseWeb).toBeDefined()
   })
 
-  test('ConsentRequestsIDPutResponseWebAuth', () => {
-    const consentRequestsIDPutResponseWebAuth: Schemas.ConsentRequestsIDPutResponseWebAuth = {
-      initiatorId: 'pisp-id',
-      scopes: [scope],
-      authChannels: [consentRequestChannelTypeWeb],
-      callbackUri: 'https://fspiId/callback',
-      authUri: 'https://fspId/auth',
-      authToken: 'abcdefghijklmnopqrstuvxyz'
-    }
-    expect(consentRequestsIDPutResponseWebAuth).toBeDefined()
-  })
-
   test('ConsentRequestsPostRequest', () => {
     const consentRequestsPostRequest: Schemas.ConsentRequestsPostRequest = {
-      id: correlationId,
-      initiatorId: 'pisp-id',
+      consentRequestId: 'pisp-id',
+      userId: 'pisp-id-user',
       scopes: [scope],
       authChannels: [consentRequestChannelType],
       callbackUri: 'https://fspiId/callback'

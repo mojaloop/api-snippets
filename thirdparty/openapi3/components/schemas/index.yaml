@@ -34,12 +34,8 @@ ConsentRequestsIDPatchRequest:
   $ref: ./ConsentRequestsIDPatchRequest.yaml
 ConsentRequestsIDPutResponseOTP:
   $ref: ./ConsentRequestsIDPutResponseOTP.yaml
-ConsentRequestsIDPutResponseOTPAuth:
-  $ref: ./ConsentRequestsIDPutResponseOTPAuth.yaml
 ConsentRequestsIDPutResponseWeb:
   $ref: ./ConsentRequestsIDPutResponseWeb.yaml
-ConsentRequestsIDPutResponseWebAuth:
-  $ref: ./ConsentRequestsIDPutResponseWebAuth.yaml
 ConsentRequestsPostRequest:
   $ref: ./ConsentRequestsPostRequest.yaml
 ConsentScopeType:
