@@ -1,15 +1,14 @@
 import { Schemas } from '../../lib/thirdparty'
 
 describe('thirdparty', () => {
-  const accountAddress: Schemas.AccountAddress = 'account-address'
+  const accountId: Schemas.AccountId = 'account-id'
   const authenticationTypeQRCODE: Schemas.AuthenticationType = 'QRCODE'
   const currency: Schemas.Currency = 'USD'
   const name: Schemas.Name = 'name'
   const account: Schemas.Account = {
-    address: accountAddress,
-    currency,
-    description: name
-
+    accountNickname: name,
+    id: accountId,
+    currency
   }
   const authorizationChannelTypeU2F: Schemas.AuthorizationChannelType = 'U2F'
   const authorizationResponseTypeENTERED: Schemas.AuthorizationResponseType = 'ENTERED'
@@ -62,7 +61,7 @@ describe('thirdparty', () => {
   const consentScopeTypeGetBalance: Schemas.ConsentScopeType = 'accounts.getBalance'
   const consentScopeTypeTransfer: Schemas.ConsentScopeType = 'accounts.transfer'
   const scope: Schemas.Scope = {
-    accountId: accountAddress,
+    accountId: accountId,
     actions: [consentScopeTypeGetBalance, consentScopeTypeTransfer]
   }
   const credentialTypeFIDO: Schemas.CredentialType = 'FIDO'
@@ -150,8 +149,8 @@ describe('thirdparty', () => {
     expect(account).toBeDefined()
   })
 
-  test('AccountAddress', () => {
-    expect(accountAddress).toBeDefined()
+  test('accountId', () => {
+    expect(accountId).toBeDefined()
   })
 
   test('AccountList', () => {
@@ -475,7 +474,7 @@ describe('thirdparty', () => {
       challenge: 'the-challenge',
       value: 'signed-challenge',
       consentId: correlationId,
-      sourceAccountId: accountAddress,
+      sourceAccountId: accountId,
       status: 'PENDING'
     }
     expect(thirdpartyRequestsTransactionsIDAuthorizationsPostRequest).toBeDefined()
@@ -486,7 +485,7 @@ describe('thirdparty', () => {
       challenge: 'the-challenge',
       value: 'signed-challenge',
       consentId: correlationId,
-      sourceAccountId: accountAddress,
+      sourceAccountId: accountId,
       status: 'VERIFIED'
     }
     expect(thirdpartyRequestsTransactionsIDAuthorizationsPutResponse).toBeDefined()

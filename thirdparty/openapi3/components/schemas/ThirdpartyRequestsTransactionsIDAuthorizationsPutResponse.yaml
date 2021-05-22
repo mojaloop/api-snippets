@@ -19,7 +19,7 @@ properties:
       and auth-service which consent allows the PISP to initiate transaction.
   sourceAccountId:
     allOf:
-      - $ref: ./AccountAddress.yaml
+      - $ref: ./AccountId.yaml
     description: 'DFSP specific account identifiers, e.g. `dfspa.alice.1234`'
   status:
     type: string

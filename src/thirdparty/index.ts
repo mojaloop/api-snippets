@@ -5,7 +5,7 @@ export * as openapi from './openapi'
 
 export namespace Schemas {
   export type Account = components['schemas']['Account']
-  export type AccountAddress = components['schemas']['AccountAddress']
+  export type AccountId = components['schemas']['AccountId']
   export type AccountList = components['schemas']['AccountList']
   export type AccountsIDPutResponse = components['schemas']['AccountsIDPutResponse']
   export type Amount = components['schemas']['Amount']

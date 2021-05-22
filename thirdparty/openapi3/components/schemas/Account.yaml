@@ -2,11 +2,11 @@ title: Account
 type: object
 description: Data model for the complex type Account.
 properties:
-  address:
-    $ref: ./AccountAddress.yaml
+  accountNickname:
+    $ref: ./Name.yaml
+  id:
+    $ref: ./AccountId.yaml
   currency:
     $ref: ./Currency.yaml
-  description:
-    $ref: ./Name.yaml
 required:
   - currency
