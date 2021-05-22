@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.12](https://github.com/mojaloop/api-snippets/compare/v12.3.11...v12.3.12) (2021-05-22)
+
+
+### Maintenance
+
+* update Accounts component ([#84](https://github.com/mojaloop/api-snippets/issues/84)) ([ee9838f](https://github.com/mojaloop/api-snippets/commit/ee9838fd7cb59a9fe36a3fb6cfe7550450ace73b))
+
 ### [12.3.11](https://github.com/mojaloop/api-snippets/compare/v12.3.10...v12.3.11) (2021-05-21)
 
 
