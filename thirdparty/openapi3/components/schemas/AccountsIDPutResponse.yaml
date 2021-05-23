@@ -3,6 +3,21 @@ type: object
 description: The object sent in a `PUT /accounts/{ID}` request.
 properties:
   accounts:
-    $ref: './AccountList.yaml'
+    type: array
+    items:
+      type: object
+      description: |
+        The object sent in a `PUT /accounts/{ID}` request.
+      properties:
+        accountNickname:
+          $ref: ./Name.yaml
+        id:
+          $ref: ./AccountId.yaml
+        currency:
+          $ref: ./Currency.yaml
+      required:
+        - accountNickname
+        - id
+        - currency
 required:
   - accounts
