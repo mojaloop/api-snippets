@@ -747,7 +747,12 @@ paths:
                         accounts:
                           title: AccountList
                           type: object
-                          description: Data model for the complex type AccountList.
+                          description: >
+                            Data model for the complex type AccountList.
+
+                            TODO: This component is outdated. Need flatten
+                            object and remove `account`.
+                                  Not sure what will break so leaving this for now.
                           properties: &ref_79
                             account:
                               type: array
@@ -3343,21 +3348,21 @@ paths:
                     Used in the "Register Credential" part of the Account
                     linking flow.
                   type: object
-                  properties: &ref_129
+                  properties: &ref_123
                     credential:
                       type: object
                       properties:
                         status:
                           title: ConsentStatusType
                           type: string
-                          enum: &ref_128
+                          enum: &ref_122
                             - VERIFIED
                           description: |
                             The status of the Consent.
                             - "VERIFIED" - The Consent is valid and verified.
                       required:
                         - status
-                  required: &ref_130
+                  required: &ref_124
                     - credential
                 - title: ConsentsIDPatchResponseRevoked
                   description: |
@@ -3366,11 +3371,11 @@ paths:
                     Sent to both the PISP and DFSP when a consent is revoked.
                     Used in the "Unlinking" part of the Account Unlinking flow.
                   type: object
-                  properties: &ref_132
+                  properties: &ref_126
                     status:
                       title: ConsentStatusType
                       type: string
-                      enum: &ref_131
+                      enum: &ref_125
                         - REVOKED
                       description: >
                         The status of the Consent.
@@ -3395,7 +3400,7 @@ paths:
                         "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time
                         zone, same as UTC).
                       example: '2016-05-24T08:38:08.699-04:00'
-                  required: &ref_133
+                  required: &ref_127
                     - status
                     - revokedAt
       parameters:
@@ -3451,19 +3456,16 @@ paths:
         Service.
 
 
-        - Called by a `auth-service` to request PISP to add the credential
-        details.
+        - Called by a `PISP` to after signing a challenge. Sent to an DFSP for
+        verification.
 
-        - Called by a `PISP` to after signing a challenge. Sent to an
-        `auth-service` for verification.
-
-        - Called by a `auth-service` to notify a DFSP and PISP that a credential
-        has been verified and registered.
+        - Called by a `auth-service` to notify a DFSP that a credential has been
+        verified and registered.
       tags:
         - consents
         - sampled
-      operationId: UpdateConsent
-      summary: UpdateConsent
+      operationId: PutConsentByID
+      summary: PutConsentByID
       requestBody:
         required: true
         content:
@@ -3474,50 +3476,12 @@ paths:
                   type: object
                   description: >
                     The HTTP request `PUT /consents/{ID}` is used by the PISP to
-                    update a Consent
+                    update a Consent with a signed challenge and register a
+                    credential.
 
-                    with a signed challenge and register a credential.
-
-
-                    Called by a `PISP` to after signing a challenge. Sent to an
-                    `auth-service` for verification.
+                    Called by a `PISP` to after signing a challenge. Sent to a
+                    DFSP for verification.
                   properties: &ref_116
-                    requestId:
-                      allOf:
-                        - title: CorrelationId
-                          type: string
-                          pattern: >-
-                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                          description: >-
-                            Identifier that correlates all messages of the same
-                            sequence. The API data type UUID (Universally Unique
-                            Identifier) is a JSON String in canonical format,
-                            conforming to [RFC
-                            4122](https://tools.ietf.org/html/rfc4122), that is
-                            restricted by a regular expression for
-                            interoperability reasons. A UUID is always 36
-                            characters long, 32 hexadecimal symbols and 4 dashes
-                            (‘-‘).
-                          example: b51ec534-ee48-4575-b6a9-ead2955b8069
-                      description: >
-                        The id of the ConsentRequest that was used to initiate
-                        the
-
-                        creation of this Consent.
-                    participantId:
-                      title: FspId
-                      type: string
-                      minLength: 1
-                      maxLength: 32
-                      description: FSP identifier.
-                    initiatorId:
-                      allOf:
-                        - title: FspId
-                          type: string
-                          minLength: 1
-                          maxLength: 32
-                          description: FSP identifier.
-                      description: PISP identifier who uses this Consent.
                     scopes:
                       type: array
                       items:
@@ -3545,14 +3509,11 @@ paths:
                         credential to allow us to be
 
                         more explicit about the `status` field - it should only
-                        ever be PENDING when updating
+                        ever be PENDING when
 
-                        a credential.
+                        updating a credential.
                       properties: &ref_114
-                        id:
-                          type: string
-                          description: The id of a Credential.
-                        type:
+                        credentialType:
                           title: CredentialType
                           type: string
                           enum: &ref_52
@@ -3565,213 +3526,46 @@ paths:
                           enum:
                             - PENDING
                           description: The challenge has signed but not yet verified.
-                        challenge:
-                          title: CredentialChallengeSigned
-                          type: object
-                          description: |
-                            The challenge that has been signed by a PISP.
-                          properties: &ref_53
-                            payload:
-                              type: string
-                              description: >-
-                                Base64 encoded binary of the challenge that must
-                                be answered by the PISP.
-                            signature:
-                              type: string
-                              description: >-
-                                Base64 encoded binary string or result of the
-                                payload signed by the PISP using the private
-                                key.
-                          required: &ref_54
-                            - payload
-                            - signature
-                          additionalProperties: false
                         payload:
-                          type: string
-                          description: >-
-                            Base64 encoded bytes - The public key of the
-                            Public/Private keypair.
+                          title: PublicKeyCredential
+                          type: object
+                          description: >
+                            An object sent in a `PUT /consents/{ID}` request.
+
+                            Based on
+                            https://w3c.github.io/webauthn/#iface-pkcredential
+                          properties: &ref_53
+                            id:
+                              type: string
+                              description: TBD
+                            response:
+                              properties:
+                                clientDataJSON:
+                                  type: string
+                                  description: TBD
+                              required:
+                                - clientDataJSON
+                          required: &ref_54
+                            - id
+                            - response
                       required: &ref_115
-                        - id
-                        - type
+                        - credentialType
                         - status
-                        - challenge
                         - payload
                       additionalProperties: false
                   required: &ref_117
-                    - requestId
-                    - participantId
-                    - initiatorId
-                    - scopes
-                    - credential
-                - title: ConsentsIDPutResponseUnsigned
-                  type: object
-                  description: >
-                    The HTTP request `PUT /consents/{ID}` is used to request a
-                    PISP to sign a challenge.
-
-                    The `{ID}` in the URI should contain the `{ID}` that was
-                    used in the `POST /consents`.
-
-
-                    Called by a `auth-service` to request PISP to add the
-                    credential details.
-                  properties: &ref_122
-                    requestId:
-                      allOf:
-                        - title: CorrelationId
-                          type: string
-                          pattern: >-
-                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                          description: >-
-                            Identifier that correlates all messages of the same
-                            sequence. The API data type UUID (Universally Unique
-                            Identifier) is a JSON String in canonical format,
-                            conforming to [RFC
-                            4122](https://tools.ietf.org/html/rfc4122), that is
-                            restricted by a regular expression for
-                            interoperability reasons. A UUID is always 36
-                            characters long, 32 hexadecimal symbols and 4 dashes
-                            (‘-‘).
-                          example: b51ec534-ee48-4575-b6a9-ead2955b8069
-                      description: >
-                        The id of the ConsentRequest that was used to initiate
-                        the
-
-                        creation of this Consent.
-                    participantId:
-                      title: FspId
-                      type: string
-                      minLength: 1
-                      maxLength: 32
-                      description: FSP identifier.
-                    initiatorId:
-                      allOf:
-                        - title: FspId
-                          type: string
-                          minLength: 1
-                          maxLength: 32
-                          description: FSP identifier.
-                      description: PISP identifier who uses this Consent.
-                    scopes:
-                      type: array
-                      items:
-                        title: Scope
-                        type: object
-                        description: Scope + Account Identifier mapping for a Consent.
-                        example: |
-                          {
-                            accountId: "dfsp.username.5678",
-                            actions: [ "accounts.transfer", "accounts.getBalance" ]
-                          }
-                        properties: *ref_48
-                        required: *ref_49
-                    credential:
-                      title: UnsignedCredential
-                      type: object
-                      description: >
-                        A credential used to allow a user to prove their
-                        identity and access
-
-                        to an account with a DFSP.
-
-
-                        UnsignedCredential is a special formatting of the
-                        credential to allow us to be
-
-                        more explicit about the `status` field - it should only
-                        ever be PENDING when updating
-
-                        a credential.
-                      properties: &ref_120
-                        type:
-                          title: CredentialType
-                          type: string
-                          enum: *ref_52
-                          description: |
-                            The type of the Credential.
-                            - "FIDO" - A FIDO public/private keypair.
-                        status:
-                          type: string
-                          enum:
-                            - PENDING
-                          description: >-
-                            The challenge has initialized but not yet answered
-                            by the PISP.
-                        challenge:
-                          title: CredentialChallengeSigned
-                          type: object
-                          description: >
-                            The challenge issued by a DFSP that must be answered
-                            by the PISP.
-                          properties: &ref_118
-                            payload:
-                              type: string
-                              description: >-
-                                Base64 encoded binary of the challenge that must
-                                be answered by the PISP.
-                          required: &ref_119
-                            - payload
-                          additionalProperties: false
-                      required: &ref_121
-                        - type
-                        - status
-                        - challenge
-                      additionalProperties: false
-                  required: &ref_123
-                    - requestId
-                    - participantId
-                    - initiatorId
                     - scopes
                     - credential
                 - title: ConsentsIDPutResponseVerified
                   type: object
                   description: >
                     The HTTP request `PUT /consents/{ID}` is used by the DFSP or
-                    Auth-Service to
+                    Auth-Service to update a Consent object once it has been
+                    Verified.
 
-                    update a Consent object once it has been Verified.
-
-
-                    Called by a `auth-service` to notify a DFSP and PISP that a
+                    Called by a `auth-service` to notify a DFSP that a
                     credential has been verified and registered.
-                  properties: &ref_126
-                    requestId:
-                      allOf:
-                        - title: CorrelationId
-                          type: string
-                          pattern: >-
-                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                          description: >-
-                            Identifier that correlates all messages of the same
-                            sequence. The API data type UUID (Universally Unique
-                            Identifier) is a JSON String in canonical format,
-                            conforming to [RFC
-                            4122](https://tools.ietf.org/html/rfc4122), that is
-                            restricted by a regular expression for
-                            interoperability reasons. A UUID is always 36
-                            characters long, 32 hexadecimal symbols and 4 dashes
-                            (‘-‘).
-                          example: b51ec534-ee48-4575-b6a9-ead2955b8069
-                      description: >
-                        The id of the ConsentRequest that was used to initiate
-                        the
-
-                        creation of this Consent.
-                    participantId:
-                      title: FspId
-                      type: string
-                      minLength: 1
-                      maxLength: 32
-                      description: FSP identifier.
-                    initiatorId:
-                      allOf:
-                        - title: FspId
-                          type: string
-                          minLength: 1
-                          maxLength: 32
-                          description: FSP identifier.
-                      description: PISP identifier who uses this Consent.
+                  properties: &ref_120
                     scopes:
                       type: array
                       items:
@@ -3799,14 +3593,11 @@ paths:
                         credential to allow us to be
 
                         more explicit about the `status` field - it should only
-                        ever be VERIFIED when updating
+                        ever be VERIFIED when
 
-                        a credential.
-                      properties: &ref_124
-                        id:
-                          type: string
-                          description: The id of a Credential.
-                        type:
+                        updating a credential.
+                      properties: &ref_118
+                        credentialType:
                           title: CredentialType
                           type: string
                           enum: *ref_52
@@ -3820,28 +3611,22 @@ paths:
                           description: >-
                             The Credential is valid, and ready to be used by the
                             PISP.
-                        challenge:
-                          title: CredentialChallengeSigned
+                        payload:
+                          title: PublicKeyCredential
                           type: object
-                          description: |
-                            The challenge that has been signed by a PISP.
+                          description: >
+                            An object sent in a `PUT /consents/{ID}` request.
+
+                            Based on
+                            https://w3c.github.io/webauthn/#iface-pkcredential
                           properties: *ref_53
                           required: *ref_54
-                          additionalProperties: false
-                        payload:
-                          type: string
-                          description: >-
-                            Base64 encoded bytes - The public key of the
-                            Public/Private keypair.
-                      required: &ref_125
-                        - type
+                      required: &ref_119
+                        - credentialType
                         - status
-                        - challenge
+                        - payload
                       additionalProperties: false
-                  required: &ref_127
-                    - requestId
-                    - participantId
-                    - initiatorId
+                  required: &ref_121
                     - scopes
                     - credential
       parameters:
@@ -4230,7 +4015,7 @@ paths:
               description: |
                 A credential used to allow a user to prove their identity
                 and access to an account with a DFSP.
-              properties: &ref_134
+              properties: &ref_128
                 type:
                   title: CredentialType
                   type: string
@@ -4238,7 +4023,7 @@ paths:
                   description: |
                     The type of the Credential.
                     - "FIDO" - A FIDO public/private keypair.
-              required: &ref_135
+              required: &ref_129
                 - type
             example:
               type: FIDO
@@ -4454,7 +4239,7 @@ paths:
               title: ServicesServiceTypePutResponse
               type: object
               description: 'The object sent in a `PUT /services/{ServiceType}` request.'
-              properties: &ref_136
+              properties: &ref_130
                 providers:
                   type: array
                   items:
@@ -4463,7 +4248,7 @@ paths:
                     minLength: 1
                     maxLength: 32
                     description: FSP identifier.
-              required: &ref_137
+              required: &ref_131
                 - providers
       responses:
         '200':
@@ -4812,11 +4597,11 @@ paths:
                     - title: PartyIdInfo
                       type: object
                       description: Data model for the complex type PartyIdInfo.
-                      properties: &ref_139
+                      properties: &ref_133
                         partyIdType:
                           title: PartyIdTypeTPLink
                           type: string
-                          enum: &ref_138
+                          enum: &ref_132
                             - THIRD_PARTY_LINK
                           description: >
                             This is a variant based on FSPIOP `PartyIdType`
@@ -4859,7 +4644,7 @@ paths:
                             optional list of extensions, specific to deployment.
                           properties: *ref_2
                           required: *ref_3
-                      required: &ref_140
+                      required: &ref_134
                         - partyIdType
                         - partyIdentifier
                   description: >-
@@ -4869,7 +4654,7 @@ paths:
                   allOf:
                     - title: AmountType
                       type: string
-                      enum: &ref_141
+                      enum: &ref_135
                         - SEND
                         - RECEIVE
                       description: >-
@@ -5241,7 +5026,7 @@ paths:
               description: >-
                 The object sent in the PUT /thirdPartyRequests/transactions/{ID}
                 request.
-              properties: &ref_142
+              properties: &ref_136
                 transactionId:
                   title: CorrelationId
                   type: string
@@ -5273,7 +5058,7 @@ paths:
 
                     - REJECTED - Payer has rejected the transaction.
                   example: RECEIVED
-              required: &ref_143
+              required: &ref_137
                 - transactionId
                 - transactionRequestState
             example:
@@ -5697,7 +5482,7 @@ paths:
               description: >-
                 The object sent in the POST
                 /thirdpartyRequests/transactions/{id}/authorizations request.
-              properties: &ref_146
+              properties: &ref_140
                 challenge:
                   type: string
                   description: Base64 encoded binary string - the original challenge.
@@ -5756,7 +5541,7 @@ paths:
                   description: >-
                     The status of the authorization. This MUST be PENDING for a
                     POST request
-              required: &ref_147
+              required: &ref_141
                 - challenge
                 - value
                 - consentId
@@ -5829,7 +5614,7 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/transactions/{id}/authorizations request.
-              properties: &ref_144
+              properties: &ref_138
                 challenge:
                   type: string
                   description: Base64 encoded binary string - the original challenge.
@@ -5888,7 +5673,7 @@ paths:
                   description: >-
                     The status of the authorization. This value must be
                     `VERIFIED` for a PUT request.
-              required: &ref_145
+              required: &ref_139
                 - challenge
                 - value
                 - consentId
@@ -5954,7 +5739,7 @@ paths:
               title: ThirdpartyRequestsAuthorizationsPostRequest
               description: POST /thirdpartyRequests/authorizations request object.
               type: object
-              properties: &ref_148
+              properties: &ref_142
                 authorizationRequestId:
                   title: CorrelationId
                   type: string
@@ -5998,7 +5783,7 @@ paths:
                   description: Data model for the complex type TransactionType.
                   properties: *ref_56
                   required: *ref_57
-              required: &ref_149
+              required: &ref_143
                 - authorizationRequestId
                 - transactionRequestId
                 - challenge
@@ -6093,7 +5878,7 @@ paths:
                 description: >-
                   The object sent in the PUT
                   /thirdpartyRequests/authorizations/{ID} callback.
-                properties: &ref_150
+                properties: &ref_144
                   authenticationInfo:
                     title: AuthenticationInfo
                     type: object
@@ -6114,7 +5899,7 @@ paths:
                       - RESEND - Consumer requested to resend the authentication
                       value.
                     example: ENTERED
-                required: &ref_151
+                required: &ref_145
                   - authenticationInfo
                   - responseType
               example:
@@ -6468,7 +6253,7 @@ paths:
               description: >-
                 The object sent in the POST /thirdpartyRequests/verifications
                 request.
-              properties: &ref_152
+              properties: &ref_146
                 verificationRequestId:
                   allOf:
                     - title: CorrelationId
@@ -6532,7 +6317,7 @@ paths:
                     credential with which to verify
 
                     the signed challenge against.
-              required: &ref_153
+              required: &ref_147
                 - verificationRequestId
                 - challenge
                 - value
@@ -6722,13 +6507,13 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/verifications/{ID} request.
-              properties: &ref_154
+              properties: &ref_148
                 authenticationResponse:
                   type: string
                   enum:
                     - VERIFIED
                   description: The verification passed
-              required: &ref_155
+              required: &ref_149
                 - authenticationResponse
             example:
               authenticationResponse: VERIFIED
@@ -7334,7 +7119,12 @@ components:
     AccountList:
       title: AccountList
       type: object
-      description: Data model for the complex type AccountList.
+      description: >
+        Data model for the complex type AccountList.
+
+        TODO: This component is outdated. Need flatten object and remove
+        `account`.
+              Not sure what will break so leaving this for now.
       properties: *ref_79
       required: *ref_80
     MerchantClassificationCode:
@@ -7722,14 +7512,14 @@ components:
       description: |
         The type of the Credential.
         - "FIDO" - A FIDO public/private keypair.
-    CredentialChallengeSigned:
-      title: CredentialChallengeSigned
+    PublicKeyCredential:
+      title: PublicKeyCredential
       type: object
       description: |
-        The challenge that has been signed by a PISP.
+        An object sent in a `PUT /consents/{ID}` request.
+        Based on https://w3c.github.io/webauthn/#iface-pkcredential
       properties: *ref_53
       required: *ref_54
-      additionalProperties: false
     SignedCredential:
       title: SignedCredential
       type: object
@@ -7743,9 +7533,9 @@ components:
         to be
 
         more explicit about the `status` field - it should only ever be PENDING
-        when updating
+        when
 
-        a credential.
+        updating a credential.
       properties: *ref_114
       required: *ref_115
       additionalProperties: false
@@ -7754,57 +7544,12 @@ components:
       type: object
       description: >
         The HTTP request `PUT /consents/{ID}` is used by the PISP to update a
-        Consent
+        Consent with a signed challenge and register a credential.
 
-        with a signed challenge and register a credential.
-
-
-        Called by a `PISP` to after signing a challenge. Sent to an
-        `auth-service` for verification.
+        Called by a `PISP` to after signing a challenge. Sent to a DFSP for
+        verification.
       properties: *ref_116
       required: *ref_117
-    CredentialChallengeUnsigned:
-      title: CredentialChallengeSigned
-      type: object
-      description: |
-        The challenge issued by a DFSP that must be answered by the PISP.
-      properties: *ref_118
-      required: *ref_119
-      additionalProperties: false
-    UnsignedCredential:
-      title: UnsignedCredential
-      type: object
-      description: >
-        A credential used to allow a user to prove their identity and access
-
-        to an account with a DFSP.
-
-
-        UnsignedCredential is a special formatting of the credential to allow us
-        to be
-
-        more explicit about the `status` field - it should only ever be PENDING
-        when updating
-
-        a credential.
-      properties: *ref_120
-      required: *ref_121
-      additionalProperties: false
-    ConsentsIDPutResponseUnsigned:
-      title: ConsentsIDPutResponseUnsigned
-      type: object
-      description: >
-        The HTTP request `PUT /consents/{ID}` is used to request a PISP to sign
-        a challenge.
-
-        The `{ID}` in the URI should contain the `{ID}` that was used in the
-        `POST /consents`.
-
-
-        Called by a `auth-service` to request PISP to add the credential
-        details.
-      properties: *ref_122
-      required: *ref_123
     VerifiedCredential:
       title: VerifiedCredential
       type: object
@@ -7818,30 +7563,27 @@ components:
         to be
 
         more explicit about the `status` field - it should only ever be VERIFIED
-        when updating
+        when
 
-        a credential.
-      properties: *ref_124
-      required: *ref_125
+        updating a credential.
+      properties: *ref_118
+      required: *ref_119
       additionalProperties: false
     ConsentsIDPutResponseVerified:
       title: ConsentsIDPutResponseVerified
       type: object
       description: >
         The HTTP request `PUT /consents/{ID}` is used by the DFSP or
-        Auth-Service to
+        Auth-Service to update a Consent object once it has been Verified.
 
-        update a Consent object once it has been Verified.
-
-
-        Called by a `auth-service` to notify a DFSP and PISP that a credential
-        has been verified and registered.
-      properties: *ref_126
-      required: *ref_127
+        Called by a `auth-service` to notify a DFSP that a credential has been
+        verified and registered.
+      properties: *ref_120
+      required: *ref_121
     ConsentStatusTypeVerified:
       title: ConsentStatusType
       type: string
-      enum: *ref_128
+      enum: *ref_122
       description: |
         The status of the Consent.
         - "VERIFIED" - The Consent is valid and verified.
@@ -7853,12 +7595,12 @@ components:
         Sent by the DFSP to the PISP when a consent is verified.
         Used in the "Register Credential" part of the Account linking flow.
       type: object
-      properties: *ref_129
-      required: *ref_130
+      properties: *ref_123
+      required: *ref_124
     ConsentStatusTypeRevoked:
       title: ConsentStatusType
       type: string
-      enum: *ref_131
+      enum: *ref_125
       description: |
         The status of the Consent.
         - "REVOKED" - The Consent is no longer valid and has been revoked.
@@ -7870,26 +7612,26 @@ components:
         Sent to both the PISP and DFSP when a consent is revoked.
         Used in the "Unlinking" part of the Account Unlinking flow.
       type: object
-      properties: *ref_132
-      required: *ref_133
+      properties: *ref_126
+      required: *ref_127
     ConsentsIDGenerateChallengePostRequest:
       title: ConsentsIDGenerateChallengePostRequest
       type: object
       description: |
         A credential used to allow a user to prove their identity
         and access to an account with a DFSP.
-      properties: *ref_134
-      required: *ref_135
+      properties: *ref_128
+      required: *ref_129
     ServicesServiceTypePutResponse:
       title: ServicesServiceTypePutResponse
       type: object
       description: 'The object sent in a `PUT /services/{ServiceType}` request.'
-      properties: *ref_136
-      required: *ref_137
+      properties: *ref_130
+      required: *ref_131
     PartyIdTypeTPLink:
       title: PartyIdTypeTPLink
       type: string
-      enum: *ref_138
+      enum: *ref_132
       description: >
         This is a variant based on FSPIOP `PartyIdType` specification.
 
@@ -7903,12 +7645,12 @@ components:
       title: PartyIdInfo
       type: object
       description: Data model for the complex type PartyIdInfo.
-      properties: *ref_139
-      required: *ref_140
+      properties: *ref_133
+      required: *ref_134
     AmountType:
       title: AmountType
       type: string
-      enum: *ref_141
+      enum: *ref_135
       description: >-
         Below are the allowed values for the enumeration AmountType.
 
@@ -7930,8 +7672,8 @@ components:
       description: >-
         The object sent in the PUT /thirdPartyRequests/transactions/{ID}
         request.
-      properties: *ref_142
-      required: *ref_143
+      properties: *ref_136
+      required: *ref_137
     BinaryString:
       type: string
       pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
@@ -7947,22 +7689,22 @@ components:
       description: >-
         The object sent in the PUT
         /thirdpartyRequests/transactions/{id}/authorizations request.
-      properties: *ref_144
-      required: *ref_145
+      properties: *ref_138
+      required: *ref_139
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
       title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object
       description: >-
         The object sent in the POST
         /thirdpartyRequests/transactions/{id}/authorizations request.
-      properties: *ref_146
-      required: *ref_147
+      properties: *ref_140
+      required: *ref_141
     ThirdpartyRequestsAuthorizationsPostRequest:
       title: ThirdpartyRequestsAuthorizationsPostRequest
       description: POST /thirdpartyRequests/authorizations request object.
       type: object
-      properties: *ref_148
-      required: *ref_149
+      properties: *ref_142
+      required: *ref_143
       additionalProperties: false
     ThirdpartyRequestsAuthorizationsIDPutResponse:
       title: ThirdpartyRequestsAuthorizationsIDPutResponse
@@ -7970,22 +7712,22 @@ components:
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
-      properties: *ref_150
-      required: *ref_151
+      properties: *ref_144
+      required: *ref_145
     ThirdpartyRequestsVerificationsPostRequest:
       title: ThirdpartyRequestsVerificationsPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/verifications request.
-      properties: *ref_152
-      required: *ref_153
+      properties: *ref_146
+      required: *ref_147
     ThirdpartyRequestsVerificationsIDPutResponse:
       title: ThirdpartyRequestsVerificationsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/verifications/{ID}
         request.
-      properties: *ref_154
-      required: *ref_155
+      properties: *ref_148
+      required: *ref_149
   parameters:
     ID:
       name: ID

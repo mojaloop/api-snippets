@@ -48,8 +48,6 @@ ConsentsIDPatchResponseVerified:
   $ref: ./ConsentsIDPatchResponseVerified.yaml
 ConsentsIDPutResponseSigned:
   $ref: ./ConsentsIDPutResponseSigned.yaml
-ConsentsIDPutResponseUnsigned:
-  $ref: ./ConsentsIDPutResponseUnsigned.yaml
 ConsentsIDPutResponseVerified:
   $ref: ./ConsentsIDPutResponseVerified.yaml
 ConsentsPostRequest:

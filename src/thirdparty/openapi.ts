@@ -194,7 +194,7 @@ export interface paths {
   "/consents/{ID}": {
     get: operations["GetConsent"];
     patch: operations["PatchConsentByID"];
-    put: operations["UpdateConsent"];
+    put: operations["PutConsentByID"];
     delete: operations["DeleteConsentByID"];
     parameters: {
       path: {
@@ -2108,6 +2108,8 @@ export interface operations {
         party: {
           /**
                * Data model for the complex type AccountList.
+               * TODO: This component is outdated. Need flatten object and remove `account`.
+               *       Not sure what will break so leaving this for now.
                */
           accounts?: {
             /**
@@ -2458,6 +2460,8 @@ export interface operations {
         payee: {
           /**
                * Data model for the complex type AccountList.
+               * TODO: This component is outdated. Need flatten object and remove `account`.
+               *       Not sure what will break so leaving this for now.
                */
           accounts?: {
             /**
@@ -9135,11 +9139,10 @@ export interface operations {
   /**
    * The HTTP request `PUT /consents/{ID}` is used by the PISP and Auth Service.
    *
-   * - Called by a `auth-service` to request PISP to add the credential details.
-   * - Called by a `PISP` to after signing a challenge. Sent to an `auth-service` for verification.
-   * - Called by a `auth-service` to notify a DFSP and PISP that a credential has been verified and registered.
+   * - Called by a `PISP` to after signing a challenge. Sent to an DFSP for verification.
+   * - Called by a `auth-service` to notify a DFSP that a credential has been verified and registered.
    */
-  UpdateConsent: {
+  PutConsentByID: {
     parameters: {
       header: {
         /**
@@ -9153,19 +9156,6 @@ export interface operations {
     requestBody: {
       "application/json":
       | {
-        /**
-             * The id of the ConsentRequest that was used to initiate the
-             * creation of this Consent.
-             */
-        requestId: string;
-        /**
-             * FSP identifier.
-             */
-        participantId: string;
-        /**
-             * PISP identifier who uses this Consent.
-             */
-        initiatorId: string;
         scopes: {
           /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -9180,108 +9170,38 @@ export interface operations {
              * to an account with a DFSP.
              *
              * SignedCredential is a special formatting of the credential to allow us to be
-             * more explicit about the `status` field - it should only ever be PENDING when updating
-             * a credential.
+             * more explicit about the `status` field - it should only ever be PENDING when
+             * updating a credential.
              */
         credential: {
-          /**
-               * The id of a Credential.
-               */
-          id: string;
           /**
                * The type of the Credential.
                * - "FIDO" - A FIDO public/private keypair.
                */
-          type: "FIDO";
+          credentialType: "FIDO";
           /**
                * The challenge has signed but not yet verified.
                */
           status: "PENDING";
           /**
-               * The challenge that has been signed by a PISP.
+               * An object sent in a `PUT /consents/{ID}` request.
+               * Based on https://w3c.github.io/webauthn/#iface-pkcredential
                */
-          challenge: {
+          payload: {
             /**
-                 * Base64 encoded binary of the challenge that must be answered by the PISP.
+                 * TBD
                  */
-            payload: string;
-            /**
-                 * Base64 encoded binary string or result of the payload signed by the PISP using the private key.
-                 */
-            signature: string;
-          };
-          /**
-               * Base64 encoded bytes - The public key of the Public/Private keypair.
-               */
-          payload: string;
-        };
-      }
-      | {
-        /**
-             * The id of the ConsentRequest that was used to initiate the
-             * creation of this Consent.
-             */
-        requestId: string;
-        /**
-             * FSP identifier.
-             */
-        participantId: string;
-        /**
-             * PISP identifier who uses this Consent.
-             */
-        initiatorId: string;
-        scopes: {
-          /**
-               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-               * be Bank Account Number or anything that may expose a User's private bank
-               * account information.
-               */
-          accountId: string;
-          actions: ("accounts.getBalance" | "accounts.transfer")[];
-        }[];
-        /**
-             * A credential used to allow a user to prove their identity and access
-             * to an account with a DFSP.
-             *
-             * UnsignedCredential is a special formatting of the credential to allow us to be
-             * more explicit about the `status` field - it should only ever be PENDING when updating
-             * a credential.
-             */
-        credential: {
-          /**
-               * The type of the Credential.
-               * - "FIDO" - A FIDO public/private keypair.
-               */
-          type: "FIDO";
-          /**
-               * The challenge has initialized but not yet answered by the PISP.
-               */
-          status: "PENDING";
-          /**
-               * The challenge issued by a DFSP that must be answered by the PISP.
-               */
-          challenge: {
-            /**
-                 * Base64 encoded binary of the challenge that must be answered by the PISP.
-                 */
-            payload: string;
+            id: string;
+            response: {
+              /**
+                   * TBD
+                   */
+              clientDataJSON: string;
+            };
           };
         };
       }
       | {
-        /**
-             * The id of the ConsentRequest that was used to initiate the
-             * creation of this Consent.
-             */
-        requestId: string;
-        /**
-             * FSP identifier.
-             */
-        participantId: string;
-        /**
-             * PISP identifier who uses this Consent.
-             */
-        initiatorId: string;
         scopes: {
           /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -9296,40 +9216,35 @@ export interface operations {
              * to an account with a DFSP.
              *
              * VerifiedCredential is a special formatting of the credential to allow us to be
-             * more explicit about the `status` field - it should only ever be VERIFIED when updating
-             * a credential.
+             * more explicit about the `status` field - it should only ever be VERIFIED when
+             * updating a credential.
              */
         credential: {
-          /**
-               * The id of a Credential.
-               */
-          id?: string;
           /**
                * The type of the Credential.
                * - "FIDO" - A FIDO public/private keypair.
                */
-          type: "FIDO";
+          credentialType: "FIDO";
           /**
                * The Credential is valid, and ready to be used by the PISP.
                */
           status: "VERIFIED";
           /**
-               * The challenge that has been signed by a PISP.
+               * An object sent in a `PUT /consents/{ID}` request.
+               * Based on https://w3c.github.io/webauthn/#iface-pkcredential
                */
-          challenge: {
+          payload: {
             /**
-                 * Base64 encoded binary of the challenge that must be answered by the PISP.
+                 * TBD
                  */
-            payload: string;
-            /**
-                 * Base64 encoded binary string or result of the payload signed by the PISP using the private key.
-                 */
-            signature: string;
+            id: string;
+            response: {
+              /**
+                   * TBD
+                   */
+              clientDataJSON: string;
+            };
           };
-          /**
-               * Base64 encoded bytes - The public key of the Public/Private keypair.
-               */
-          payload?: string;
         };
       };
     };
@@ -11776,6 +11691,8 @@ export interface operations {
         payee: {
           /**
            * Data model for the complex type AccountList.
+           * TODO: This component is outdated. Need flatten object and remove `account`.
+           *       Not sure what will break so leaving this for now.
            */
           accounts?: {
             /**
@@ -12694,6 +12611,8 @@ export interface operations {
         payee: {
           /**
            * Data model for the complex type AccountList.
+           * TODO: This component is outdated. Need flatten object and remove `account`.
+           *       Not sure what will break so leaving this for now.
            */
           accounts?: {
             /**
@@ -21633,6 +21552,8 @@ export interface components {
     };
     /**
      * Data model for the complex type AccountList.
+     * TODO: This component is outdated. Need flatten object and remove `account`.
+     *       Not sure what will break so leaving this for now.
      */
     AccountList: {
       /**
@@ -21894,6 +21815,8 @@ export interface components {
     Party: {
       /**
        * Data model for the complex type AccountList.
+       * TODO: This component is outdated. Need flatten object and remove `account`.
+       *       Not sure what will break so leaving this for now.
        */
       accounts?: {
         /**
@@ -22219,6 +22142,8 @@ export interface components {
       party: {
         /**
          * Data model for the complex type AccountList.
+         * TODO: This component is outdated. Need flatten object and remove `account`.
+         *       Not sure what will break so leaving this for now.
          */
         accounts?: {
           /**
@@ -22693,6 +22618,8 @@ export interface components {
       payee: {
         /**
          * Data model for the complex type AccountList.
+         * TODO: This component is outdated. Need flatten object and remove `account`.
+         *       Not sure what will break so leaving this for now.
          */
         accounts?: {
           /**
@@ -23886,78 +23813,61 @@ export interface components {
      */
     CredentialType: "FIDO";
     /**
-     * The challenge that has been signed by a PISP.
+     * An object sent in a `PUT /consents/{ID}` request.
+     * Based on https://w3c.github.io/webauthn/#iface-pkcredential
      */
-    CredentialChallengeSigned: {
+    PublicKeyCredential: {
       /**
-       * Base64 encoded binary of the challenge that must be answered by the PISP.
+       * TBD
        */
-      payload: string;
-      /**
-       * Base64 encoded binary string or result of the payload signed by the PISP using the private key.
-       */
-      signature: string;
+      id: string;
+      response: {
+        /**
+         * TBD
+         */
+        clientDataJSON: string;
+      };
     };
     /**
      * A credential used to allow a user to prove their identity and access
      * to an account with a DFSP.
      *
      * SignedCredential is a special formatting of the credential to allow us to be
-     * more explicit about the `status` field - it should only ever be PENDING when updating
-     * a credential.
+     * more explicit about the `status` field - it should only ever be PENDING when
+     * updating a credential.
      */
     SignedCredential: {
-      /**
-       * The id of a Credential.
-       */
-      id: string;
       /**
        * The type of the Credential.
        * - "FIDO" - A FIDO public/private keypair.
        */
-      type: "FIDO";
+      credentialType: "FIDO";
       /**
        * The challenge has signed but not yet verified.
        */
       status: "PENDING";
       /**
-       * The challenge that has been signed by a PISP.
+       * An object sent in a `PUT /consents/{ID}` request.
+       * Based on https://w3c.github.io/webauthn/#iface-pkcredential
        */
-      challenge: {
+      payload: {
         /**
-         * Base64 encoded binary of the challenge that must be answered by the PISP.
+         * TBD
          */
-        payload: string;
-        /**
-         * Base64 encoded binary string or result of the payload signed by the PISP using the private key.
-         */
-        signature: string;
+        id: string;
+        response: {
+          /**
+           * TBD
+           */
+          clientDataJSON: string;
+        };
       };
-      /**
-       * Base64 encoded bytes - The public key of the Public/Private keypair.
-       */
-      payload: string;
     };
     /**
-     * The HTTP request `PUT /consents/{ID}` is used by the PISP to update a Consent
-     * with a signed challenge and register a credential.
-     *
-     * Called by a `PISP` to after signing a challenge. Sent to an `auth-service` for verification.
+     * The HTTP request `PUT /consents/{ID}` is used by the PISP to update a Consent with a signed challenge and register a credential.
+     * Called by a `PISP` to after signing a challenge. Sent to a DFSP for verification.
      */
     ConsentsIDPutResponseSigned: {
-      /**
-       * The id of the ConsentRequest that was used to initiate the
-       * creation of this Consent.
-       */
-      requestId: string;
-      /**
-       * FSP identifier.
-       */
-      participantId: string;
-      /**
-       * PISP identifier who uses this Consent.
-       */
-      initiatorId: string;
       scopes: {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -23972,134 +23882,34 @@ export interface components {
        * to an account with a DFSP.
        *
        * SignedCredential is a special formatting of the credential to allow us to be
-       * more explicit about the `status` field - it should only ever be PENDING when updating
-       * a credential.
+       * more explicit about the `status` field - it should only ever be PENDING when
+       * updating a credential.
        */
       credential: {
-        /**
-         * The id of a Credential.
-         */
-        id: string;
         /**
          * The type of the Credential.
          * - "FIDO" - A FIDO public/private keypair.
          */
-        type: "FIDO";
+        credentialType: "FIDO";
         /**
          * The challenge has signed but not yet verified.
          */
         status: "PENDING";
         /**
-         * The challenge that has been signed by a PISP.
+         * An object sent in a `PUT /consents/{ID}` request.
+         * Based on https://w3c.github.io/webauthn/#iface-pkcredential
          */
-        challenge: {
+        payload: {
           /**
-           * Base64 encoded binary of the challenge that must be answered by the PISP.
+           * TBD
            */
-          payload: string;
-          /**
-           * Base64 encoded binary string or result of the payload signed by the PISP using the private key.
-           */
-          signature: string;
-        };
-        /**
-         * Base64 encoded bytes - The public key of the Public/Private keypair.
-         */
-        payload: string;
-      };
-    };
-    /**
-     * The challenge issued by a DFSP that must be answered by the PISP.
-     */
-    CredentialChallengeUnsigned: {
-      /**
-       * Base64 encoded binary of the challenge that must be answered by the PISP.
-       */
-      payload: string;
-    };
-    /**
-     * A credential used to allow a user to prove their identity and access
-     * to an account with a DFSP.
-     *
-     * UnsignedCredential is a special formatting of the credential to allow us to be
-     * more explicit about the `status` field - it should only ever be PENDING when updating
-     * a credential.
-     */
-    UnsignedCredential: {
-      /**
-       * The type of the Credential.
-       * - "FIDO" - A FIDO public/private keypair.
-       */
-      type: "FIDO";
-      /**
-       * The challenge has initialized but not yet answered by the PISP.
-       */
-      status: "PENDING";
-      /**
-       * The challenge issued by a DFSP that must be answered by the PISP.
-       */
-      challenge: {
-        /**
-         * Base64 encoded binary of the challenge that must be answered by the PISP.
-         */
-        payload: string;
-      };
-    };
-    /**
-     * The HTTP request `PUT /consents/{ID}` is used to request a PISP to sign a challenge.
-     * The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
-     *
-     * Called by a `auth-service` to request PISP to add the credential details.
-     */
-    ConsentsIDPutResponseUnsigned: {
-      /**
-       * The id of the ConsentRequest that was used to initiate the
-       * creation of this Consent.
-       */
-      requestId: string;
-      /**
-       * FSP identifier.
-       */
-      participantId: string;
-      /**
-       * PISP identifier who uses this Consent.
-       */
-      initiatorId: string;
-      scopes: {
-        /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
-         */
-        accountId: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
-      }[];
-      /**
-       * A credential used to allow a user to prove their identity and access
-       * to an account with a DFSP.
-       *
-       * UnsignedCredential is a special formatting of the credential to allow us to be
-       * more explicit about the `status` field - it should only ever be PENDING when updating
-       * a credential.
-       */
-      credential: {
-        /**
-         * The type of the Credential.
-         * - "FIDO" - A FIDO public/private keypair.
-         */
-        type: "FIDO";
-        /**
-         * The challenge has initialized but not yet answered by the PISP.
-         */
-        status: "PENDING";
-        /**
-         * The challenge issued by a DFSP that must be answered by the PISP.
-         */
-        challenge: {
-          /**
-           * Base64 encoded binary of the challenge that must be answered by the PISP.
-           */
-          payload: string;
+          id: string;
+          response: {
+            /**
+             * TBD
+             */
+            clientDataJSON: string;
+          };
         };
       };
     };
@@ -24108,61 +23918,41 @@ export interface components {
      * to an account with a DFSP.
      *
      * VerifiedCredential is a special formatting of the credential to allow us to be
-     * more explicit about the `status` field - it should only ever be VERIFIED when updating
-     * a credential.
+     * more explicit about the `status` field - it should only ever be VERIFIED when
+     * updating a credential.
      */
     VerifiedCredential: {
-      /**
-       * The id of a Credential.
-       */
-      id?: string;
       /**
        * The type of the Credential.
        * - "FIDO" - A FIDO public/private keypair.
        */
-      type: "FIDO";
+      credentialType: "FIDO";
       /**
        * The Credential is valid, and ready to be used by the PISP.
        */
       status: "VERIFIED";
       /**
-       * The challenge that has been signed by a PISP.
+       * An object sent in a `PUT /consents/{ID}` request.
+       * Based on https://w3c.github.io/webauthn/#iface-pkcredential
        */
-      challenge: {
+      payload: {
         /**
-         * Base64 encoded binary of the challenge that must be answered by the PISP.
+         * TBD
          */
-        payload: string;
-        /**
-         * Base64 encoded binary string or result of the payload signed by the PISP using the private key.
-         */
-        signature: string;
+        id: string;
+        response: {
+          /**
+           * TBD
+           */
+          clientDataJSON: string;
+        };
       };
-      /**
-       * Base64 encoded bytes - The public key of the Public/Private keypair.
-       */
-      payload?: string;
     };
     /**
-     * The HTTP request `PUT /consents/{ID}` is used by the DFSP or Auth-Service to
-     * update a Consent object once it has been Verified.
-     *
-     * Called by a `auth-service` to notify a DFSP and PISP that a credential has been verified and registered.
+     * The HTTP request `PUT /consents/{ID}` is used by the DFSP or Auth-Service to update a Consent object once it has been Verified.
+     * Called by a `auth-service` to notify a DFSP that a credential has been verified and registered.
      */
     ConsentsIDPutResponseVerified: {
-      /**
-       * The id of the ConsentRequest that was used to initiate the
-       * creation of this Consent.
-       */
-      requestId: string;
-      /**
-       * FSP identifier.
-       */
-      participantId: string;
-      /**
-       * PISP identifier who uses this Consent.
-       */
-      initiatorId: string;
       scopes: {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -24177,40 +23967,35 @@ export interface components {
        * to an account with a DFSP.
        *
        * VerifiedCredential is a special formatting of the credential to allow us to be
-       * more explicit about the `status` field - it should only ever be VERIFIED when updating
-       * a credential.
+       * more explicit about the `status` field - it should only ever be VERIFIED when
+       * updating a credential.
        */
       credential: {
-        /**
-         * The id of a Credential.
-         */
-        id?: string;
         /**
          * The type of the Credential.
          * - "FIDO" - A FIDO public/private keypair.
          */
-        type: "FIDO";
+        credentialType: "FIDO";
         /**
          * The Credential is valid, and ready to be used by the PISP.
          */
         status: "VERIFIED";
         /**
-         * The challenge that has been signed by a PISP.
+         * An object sent in a `PUT /consents/{ID}` request.
+         * Based on https://w3c.github.io/webauthn/#iface-pkcredential
          */
-        challenge: {
+        payload: {
           /**
-           * Base64 encoded binary of the challenge that must be answered by the PISP.
+           * TBD
            */
-          payload: string;
-          /**
-           * Base64 encoded binary string or result of the payload signed by the PISP using the private key.
-           */
-          signature: string;
+          id: string;
+          response: {
+            /**
+             * TBD
+             */
+            clientDataJSON: string;
+          };
         };
-        /**
-         * Base64 encoded bytes - The public key of the Public/Private keypair.
-         */
-        payload?: string;
       };
     };
     /**
@@ -24337,6 +24122,8 @@ export interface components {
       payee: {
         /**
          * Data model for the complex type AccountList.
+         * TODO: This component is outdated. Need flatten object and remove `account`.
+         *       Not sure what will break so leaving this for now.
          */
         accounts?: {
           /**
