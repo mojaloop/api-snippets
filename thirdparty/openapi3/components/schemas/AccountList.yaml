@@ -1,6 +1,9 @@
 title: AccountList
 type: object
-description: Data model for the complex type AccountList.
+description: |
+  Data model for the complex type AccountList.
+  TODO: This component is outdated. Need flatten object and remove `account`.
+        Not sure what will break so leaving this for now.
 properties:
   account:
     type: array

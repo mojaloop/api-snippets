@@ -65,13 +65,6 @@ describe('thirdparty', () => {
     actions: [consentScopeTypeGetBalance, consentScopeTypeTransfer]
   }
   const credentialTypeFIDO: Schemas.CredentialType = 'FIDO'
-  const credentialChallengeUnsigned: Schemas.CredentialChallengeUnsigned = {
-    payload: 'base64-encoded-binary-challenge'
-  }
-  const credentialChallengeSigned: Schemas.CredentialChallengeSigned = {
-    payload: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
-    signature: 'signature'
-  }
   const consentStatusTypeREVOKED: Schemas.ConsentStatusTypeRevoked = 'REVOKED'
   const consentStatusTypeVERIFIED: Schemas.ConsentStatusTypeVerified = 'VERIFIED'
   const fspId: Schemas.FspId = 'fsp-id'
@@ -108,24 +101,22 @@ describe('thirdparty', () => {
     personalInfo: partyPersonalInfo
   }
   const partyIdTypeEMAIL: Schemas.PartyIdType = 'EMAIL'
+  const publicKeyCredential: Schemas.PublicKeyCredential = {
+    id: 'some-id',
+    response: {
+      clientDataJSON: 'client-data'
+    }
+  }
   const signedCredential: Schemas.SignedCredential = {
-    id: 'credential-id',
-    type: credentialTypeFIDO,
+    credentialType: credentialTypeFIDO,
     status: 'PENDING',
-    challenge: credentialChallengeSigned,
-    payload: 'base64-encoded-public-key'
+    payload: publicKeyCredential
   }
-  const unsignedCredential: Schemas.UnsignedCredential = {
-    type: credentialTypeFIDO,
-    status: 'PENDING',
-    challenge: credentialChallengeUnsigned
-  }
+
   const verifiedCredential: Schemas.VerifiedCredential = {
-    id: 'credential-id',
-    type: credentialTypeFIDO,
+    credentialType: credentialTypeFIDO,
     status: 'VERIFIED',
-    challenge: credentialChallengeSigned,
-    payload: 'base64-encoded-public-key'
+    payload: publicKeyCredential
   }
 
   const transactionType: Schemas.TransactionType = {
@@ -260,31 +251,14 @@ describe('thirdparty', () => {
 
   test('ConsentsIDPutResponseSigned', () => {
     const consentsIDPutResponseSigned: Schemas.ConsentsIDPutResponseSigned = {
-      requestId: correlationId,
-      participantId: fspId,
-      initiatorId: 'pisp-id',
       scopes: [scope],
       credential: signedCredential
     }
     expect(consentsIDPutResponseSigned).toBeDefined()
   })
 
-  test('ConsentsIDPutResponseUnsigned', () => {
-    const consentsIDPutResponseUnsigned: Schemas.ConsentsIDPutResponseUnsigned = {
-      requestId: correlationId,
-      participantId: fspId,
-      initiatorId: 'pisp-id',
-      scopes: [scope],
-      credential: unsignedCredential
-    }
-    expect(consentsIDPutResponseUnsigned).toBeDefined()
-  })
-
   test('ConsentsIDPutResponseVerified', () => {
     const consentsIDPutResponseVerified: Schemas.ConsentsIDPutResponseVerified = {
-      requestId: correlationId,
-      participantId: fspId,
-      initiatorId: 'pisp-id',
       scopes: [scope],
       credential: verifiedCredential
     }
@@ -310,10 +284,6 @@ describe('thirdparty', () => {
 
   test('Currency', () => {
     expect(currency).toBeDefined()
-  })
-
-  test('CredentialChallengeSigned', () => {
-    expect(credentialChallengeSigned).toBeDefined()
   })
 
   test('DateTime', () => {
@@ -435,6 +405,16 @@ describe('thirdparty', () => {
     expect(partyPersonalInfo).toBeDefined()
   })
 
+  test('PublicKeyCredential', () => {
+    const publicKeyCredential: Schemas.PublicKeyCredential = {
+      id: 'some-id',
+      response: {
+        clientDataJSON: 'client-data'
+      }
+    }
+    expect(publicKeyCredential).toBeDefined()
+  })
+
   test('QuotesIDPutResponse', () => {
     const quotesIDPutResponse: Schemas.QuotesIDPutResponse = {
       transferAmount: money,
@@ -541,10 +521,6 @@ describe('thirdparty', () => {
       extensionList
     }
     expect(transactionRequestsPostRequest).toBeDefined()
-  })
-
-  test('UnsignedCredential', () => {
-    expect(unsignedCredential).toBeDefined()
   })
 
   test('VerifiedCredential', () => {

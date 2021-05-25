@@ -94,14 +94,13 @@ put:
   description: |
     The HTTP request `PUT /consents/{ID}` is used by the PISP and Auth Service.
 
-    - Called by a `auth-service` to request PISP to add the credential details.
-    - Called by a `PISP` to after signing a challenge. Sent to an `auth-service` for verification.
-    - Called by a `auth-service` to notify a DFSP and PISP that a credential has been verified and registered.
+    - Called by a `PISP` to after signing a challenge. Sent to an DFSP for verification.
+    - Called by a `auth-service` to notify a DFSP that a credential has been verified and registered.
   tags:
     - consents
     - sampled
-  operationId: UpdateConsent
-  summary: UpdateConsent
+  operationId: PutConsentByID
+  summary: PutConsentByID
   requestBody:
     required: true
     content:
@@ -109,7 +108,6 @@ put:
         schema:
           oneOf:
             - $ref: ../components/schemas/ConsentsIDPutResponseSigned.yaml
-            - $ref: ../components/schemas/ConsentsIDPutResponseUnsigned.yaml
             - $ref: ../components/schemas/ConsentsIDPutResponseVerified.yaml
   parameters:
     #Headers
