@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.13](https://github.com/mojaloop/api-snippets/compare/v12.3.12...v12.3.13) (2021-05-25)
+
+
+### Maintenance
+
+* fix PUT /accounts/{ID} response and update credential snippets ([#85](https://github.com/mojaloop/api-snippets/issues/85)) ([2af6604](https://github.com/mojaloop/api-snippets/commit/2af660467526b27693d3ea892004fea080652333))
+
 ### [12.3.12](https://github.com/mojaloop/api-snippets/compare/v12.3.11...v12.3.12) (2021-05-22)
 
 
