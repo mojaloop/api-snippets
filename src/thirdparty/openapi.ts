@@ -2123,13 +2123,13 @@ export interface operations {
                    *
                    * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
                    */
-              accountNickname?: string;
+              accountNickname: string;
               /**
                    * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                    * be Bank Account Number or anything that may expose a User's private bank
                    * account information.
                    */
-              id?: string;
+              id: string;
               /**
                    * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                    */
@@ -2475,13 +2475,13 @@ export interface operations {
                    *
                    * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
                    */
-              accountNickname?: string;
+              accountNickname: string;
               /**
                    * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                    * be Bank Account Number or anything that may expose a User's private bank
                    * account information.
                    */
-              id?: string;
+              id: string;
               /**
                    * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                    */
@@ -11706,13 +11706,13 @@ export interface operations {
                *
                * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
                */
-              accountNickname?: string;
+              accountNickname: string;
               /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-              id?: string;
+              id: string;
               /**
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
@@ -12626,13 +12626,13 @@ export interface operations {
                *
                * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
                */
-              accountNickname?: string;
+              accountNickname: string;
               /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
                * be Bank Account Number or anything that may expose a User's private bank
                * account information.
                */
-              id?: string;
+              id: string;
               /**
                * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
                */
@@ -21376,13 +21376,13 @@ export interface components {
        *
        * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
        */
-      accountNickname?: string;
+      accountNickname: string;
       /**
        * A long-lived unique account identifier provided by the DFSP. This MUST NOT
        * be Bank Account Number or anything that may expose a User's private bank
        * account information.
        */
-      id?: string;
+      id: string;
       /**
        * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
        */
@@ -21567,13 +21567,13 @@ export interface components {
          *
          * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
          */
-        accountNickname?: string;
+        accountNickname: string;
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
          * be Bank Account Number or anything that may expose a User's private bank
          * account information.
          */
-        id?: string;
+        id: string;
         /**
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
@@ -21830,13 +21830,13 @@ export interface components {
            *
            * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
            */
-          accountNickname?: string;
+          accountNickname: string;
           /**
            * A long-lived unique account identifier provided by the DFSP. This MUST NOT
            * be Bank Account Number or anything that may expose a User's private bank
            * account information.
            */
-          id?: string;
+          id: string;
           /**
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
@@ -22157,13 +22157,13 @@ export interface components {
              *
              * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
              */
-            accountNickname?: string;
+            accountNickname: string;
             /**
              * A long-lived unique account identifier provided by the DFSP. This MUST NOT
              * be Bank Account Number or anything that may expose a User's private bank
              * account information.
              */
-            id?: string;
+            id: string;
             /**
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
@@ -22633,13 +22633,13 @@ export interface components {
              *
              * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
              */
-            accountNickname?: string;
+            accountNickname: string;
             /**
              * A long-lived unique account identifier provided by the DFSP. This MUST NOT
              * be Bank Account Number or anything that may expose a User's private bank
              * account information.
              */
-            id?: string;
+            id: string;
             /**
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
@@ -24137,13 +24137,13 @@ export interface components {
              *
              * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
              */
-            accountNickname?: string;
+            accountNickname: string;
             /**
              * A long-lived unique account identifier provided by the DFSP. This MUST NOT
              * be Bank Account Number or anything that may expose a User's private bank
              * account information.
              */
-            id?: string;
+            id: string;
             /**
              * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
              */
