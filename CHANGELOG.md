@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.14](https://github.com/mojaloop/api-snippets/compare/v12.3.13...v12.3.14) (2021-05-27)
+
+
+### Maintenance
+
+* fix account fields and remove yarn.lock ([#87](https://github.com/mojaloop/api-snippets/issues/87)) ([42dadad](https://github.com/mojaloop/api-snippets/commit/42dadadca045510e859ff96ef774f61881a75916))
+
 ### [12.3.13](https://github.com/mojaloop/api-snippets/compare/v12.3.12...v12.3.13) (2021-05-25)
 
 
