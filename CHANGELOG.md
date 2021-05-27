@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.15](https://github.com/mojaloop/api-snippets/compare/v12.3.14...v12.3.15) (2021-05-27)
+
+
+### Maintenance
+
+* remove accounts property from Party ([#88](https://github.com/mojaloop/api-snippets/issues/88)) ([85e44ce](https://github.com/mojaloop/api-snippets/commit/85e44cebf62646a2bf3eb4759afb7a3d0744f801))
+
 ### [12.3.14](https://github.com/mojaloop/api-snippets/compare/v12.3.13...v12.3.14) (2021-05-27)
 
 
