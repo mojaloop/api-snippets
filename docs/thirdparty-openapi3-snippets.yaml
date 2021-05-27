@@ -31,7 +31,7 @@ paths:
               oneOf:
                 - title: AuthorizationChannelType
                   type: string
-                  enum: &ref_70
+                  enum: &ref_68
                     - OTP
                     - QRCODE
                     - U2F
@@ -54,14 +54,14 @@ paths:
 
                     resend of the authentication value.
                   type: string
-                  enum: &ref_71
+                  enum: &ref_69
                     - ENTERED
                     - REJECTED
                     - RESEND
                 - title: AuthorizationsPostRequest
                   description: POST /authorizations request object.
                   type: object
-                  properties: &ref_47
+                  properties: &ref_45
                     authenticationType:
                       title: AuthenticationType
                       type: string
@@ -318,7 +318,7 @@ paths:
                       title: QuotesIDPutResponse
                       type: object
                       description: 'The object sent in the PUT /quotes/{ID} callback.'
-                      properties: &ref_65
+                      properties: &ref_63
                         transferAmount:
                           title: Money
                           type: object
@@ -424,7 +424,7 @@ paths:
                                 title: Extension
                                 type: object
                                 description: Data model for the complex type Extension.
-                                properties: &ref_72
+                                properties: &ref_70
                                   key:
                                     title: ExtensionKey
                                     type: string
@@ -437,7 +437,7 @@ paths:
                                     minLength: 1
                                     maxLength: 128
                                     description: Extension value.
-                                required: &ref_73
+                                required: &ref_71
                                   - key
                                   - value
                               minItems: 1
@@ -445,12 +445,12 @@ paths:
                               description: Number of Extension elements.
                           required: &ref_3
                             - extension
-                      required: &ref_66
+                      required: &ref_64
                         - transferAmount
                         - expiration
                         - ilpPacket
                         - condition
-                  required: &ref_48
+                  required: &ref_46
                     - authenticationType
                     - retriesLeft
                     - amount
@@ -475,7 +475,7 @@ paths:
                 - title: PartyResult
                   type: object
                   description: Data model for the complex type PartyResult.
-                  properties: &ref_75
+                  properties: &ref_73
                     partyId:
                       description: Data model for the complex type PartyIdInfo.
                       title: PartyIdInfo
@@ -484,7 +484,7 @@ paths:
                         partyIdType:
                           title: PartyIdType
                           type: string
-                          enum: &ref_74
+                          enum: &ref_72
                             - MSISDN
                             - EMAIL
                             - PERSONAL_ID
@@ -675,12 +675,12 @@ paths:
                       required: &ref_14
                         - errorCode
                         - errorDescription
-                  required: &ref_76
+                  required: &ref_74
                     - partyId
                 - title: ParticipantsPostRequest
                   type: object
                   description: The object sent in the POST /participants request.
-                  properties: &ref_77
+                  properties: &ref_75
                     requestId:
                       title: CorrelationId
                       type: string
@@ -722,7 +722,7 @@ paths:
                       minLength: 3
                       maxLength: 3
                       enum: *ref_6
-                  required: &ref_78
+                  required: &ref_76
                     - requestId
                     - partyList
                 - title: PartiesTypeIDPutResponse
@@ -738,90 +738,12 @@ paths:
                     newly added
 
                     `accounts` property.
-                  properties: &ref_83
+                  properties: &ref_79
                     party:
                       title: Party
                       type: object
                       description: Data model for the complex type Party.
                       properties: &ref_7
-                        accounts:
-                          title: AccountList
-                          type: object
-                          description: >
-                            Data model for the complex type AccountList.
-
-                            TODO: This component is outdated. Need flatten
-                            object and remove `account`.
-                                  Not sure what will break so leaving this for now.
-                          properties: &ref_79
-                            account:
-                              type: array
-                              items:
-                                title: Account
-                                type: object
-                                description: Data model for the complex type Account.
-                                properties: &ref_18
-                                  accountNickname:
-                                    title: Name
-                                    type: string
-                                    pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-                                    description: >-
-                                      The API data type Name is a JSON String,
-                                      restricted by a regular expression to
-                                      avoid characters which are generally not
-                                      used in a name.
-
-
-                                      Regular Expression - The regular
-                                      expression for restricting the Name type
-                                      is "^(?!\s*$)[\w .,'-]{1,128}$". The
-                                      restriction does not allow a string
-                                      consisting of whitespace only, all Unicode
-                                      characters are allowed, as well as the
-                                      period (.) (apostrophe (‘), dash (-),
-                                      comma (,) and space characters ( ).
-
-
-                                      **Note:** In some programming languages,
-                                      Unicode support must be specifically
-                                      enabled. For example, if Java is used, the
-                                      flag UNICODE_CHARACTER_CLASS must be
-                                      enabled to allow Unicode characters.
-                                  id:
-                                    title: AccountId
-                                    type: string
-                                    description: >
-                                      A long-lived unique account identifier
-                                      provided by the DFSP. This MUST NOT
-
-                                      be Bank Account Number or anything that
-                                      may expose a User's private bank
-
-                                      account information.
-                                    pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
-                                    minLength: 1
-                                    maxLength: 1023
-                                  currency:
-                                    title: Currency
-                                    description: >-
-                                      The currency codes defined in [ISO
-                                      4217](https://www.iso.org/iso-4217-currency-codes.html)
-                                      as three-letter alphabetic codes are used
-                                      as the standard naming representation for
-                                      currencies.
-                                    type: string
-                                    minLength: 3
-                                    maxLength: 3
-                                    enum: *ref_6
-                                required: &ref_19
-                                  - accountNickname
-                                  - id
-                                  - currency
-                              minItems: 1
-                              maxItems: 32
-                              description: Accounts associated with the Party.
-                          required: &ref_80
-                            - account
                         partyIdInfo:
                           title: PartyIdInfo
                           type: object
@@ -849,14 +771,14 @@ paths:
                           title: PartyPersonalInfo
                           type: object
                           description: Data model for the complex type PartyPersonalInfo.
-                          properties: &ref_82
+                          properties: &ref_78
                             complexName:
                               title: PartyComplexName
                               type: object
                               description: >-
                                 Data model for the complex type
                                 PartyComplexName.
-                              properties: &ref_81
+                              properties: &ref_77
                                 firstName:
                                   title: FirstName
                                   type: string
@@ -890,11 +812,11 @@ paths:
                               example: '1966-06-16'
                       required: &ref_8
                         - partyIdInfo
-                  required: &ref_84
+                  required: &ref_80
                     - party
                 - title: ServiceType
                   type: string
-                  enum: &ref_85
+                  enum: &ref_81
                     - THIRD_PARTY_DFSP
                   description: >-
                     Below are the allowed values for the enumeration ServiceType
@@ -906,7 +828,7 @@ paths:
                   description: >-
                     The object sent in the PATCH
                     /thirdpartyRequests/transactions/{ID} callback.
-                  properties: &ref_63
+                  properties: &ref_61
                     transactionId:
                       title: CorrelationId
                       type: string
@@ -925,7 +847,7 @@ paths:
                     transactionRequestState:
                       title: TransactionRequestState
                       type: string
-                      enum: &ref_62
+                      enum: &ref_60
                         - RECEIVED
                         - PENDING
                         - ACCEPTED
@@ -965,14 +887,14 @@ paths:
                         - REJECTED - Payee FSP has failed to perform the
                         transaction.
                       example: RECEIVED
-                  required: &ref_64
+                  required: &ref_62
                     - transactionId
                     - transactionRequestState
                     - transactionState
                 - title: TransactionRequestsPostRequest
                   type: object
                   description: The object sent in the POST /transactionRequests request.
-                  properties: &ref_91
+                  properties: &ref_87
                     transactionRequestId:
                       title: CorrelationId
                       type: string
@@ -1010,11 +932,11 @@ paths:
                       title: TransactionType
                       type: object
                       description: Data model for the complex type TransactionType.
-                      properties: &ref_58
+                      properties: &ref_56
                         scenario:
                           title: TransactionScenario
                           type: string
-                          enum: &ref_86
+                          enum: &ref_82
                             - DEPOSIT
                             - WITHDRAWAL
                             - TRANSFER
@@ -1061,7 +983,7 @@ paths:
                         initiator:
                           title: TransactionInitiator
                           type: string
-                          enum: &ref_87
+                          enum: &ref_83
                             - PAYER
                             - PAYEE
                           description: >-
@@ -1082,7 +1004,7 @@ paths:
                         initiatorType:
                           title: TransactionInitiatorType
                           type: string
-                          enum: &ref_88
+                          enum: &ref_84
                             - CONSUMER
                             - AGENT
                             - BUSINESS
@@ -1105,7 +1027,7 @@ paths:
                           title: Refund
                           type: object
                           description: Data model for the complex type Refund.
-                          properties: &ref_89
+                          properties: &ref_85
                             originalTransactionId:
                               title: CorrelationId
                               type: string
@@ -1129,7 +1051,7 @@ paths:
                               maxLength: 128
                               description: Reason for the refund.
                               example: Free text indicating reason for the refund.
-                          required: &ref_90
+                          required: &ref_86
                             - originalTransactionId
                         balanceOfPayments:
                           title: BalanceOfPayments
@@ -1142,7 +1064,7 @@ paths:
                             digits only. Negative numbers are not allowed. A
                             leading zero is not allowed.
                           example: '123'
-                      required: &ref_59
+                      required: &ref_57
                         - scenario
                         - initiator
                         - initiatorType
@@ -1202,7 +1124,7 @@ paths:
                         optional list of extensions, specific to deployment.
                       properties: *ref_2
                       required: *ref_3
-                  required: &ref_92
+                  required: &ref_88
                     - transactionRequestId
                     - payee
                     - payer
@@ -1233,18 +1155,18 @@ paths:
       - name: ID
         in: path
         required: true
-        schema: &ref_36
+        schema: &ref_34
           type: string
         description: The identifier value.
       - name: Date
         in: header
-        schema: &ref_39
+        schema: &ref_37
           type: string
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: &ref_40
+        schema: &ref_38
           type: string
         required: false
         description: >-
@@ -1260,7 +1182,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: &ref_41
+        schema: &ref_39
           type: string
         required: true
         description: >-
@@ -1271,7 +1193,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: &ref_42
+        schema: &ref_40
           type: string
         required: false
         description: >-
@@ -1285,7 +1207,7 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: &ref_43
+        schema: &ref_41
           type: string
         required: false
         description: >-
@@ -1293,7 +1215,7 @@ paths:
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: &ref_44
+        schema: &ref_42
           type: string
         required: false
         description: >-
@@ -1301,7 +1223,7 @@ paths:
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: &ref_45
+        schema: &ref_43
           type: string
         required: false
         description: >-
@@ -1312,7 +1234,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: &ref_46
+        schema: &ref_44
           type: string
         required: false
         description: >-
@@ -1334,7 +1256,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: &ref_49
+          schema: &ref_47
             type: string
           description: >-
             The `Accept` header field indicates the version of the API the
@@ -1344,7 +1266,7 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: &ref_20
+          content: &ref_18
             application/json:
               schema:
                 title: ErrorInformationResponse
@@ -1360,7 +1282,7 @@ paths:
                     description: Data model for the complex type ErrorInformation.
                     properties: *ref_13
                     required: *ref_14
-          headers: &ref_21
+          headers: &ref_19
             Content-Length:
               required: false
               schema: &ref_16
@@ -1381,6 +1303,35 @@ paths:
                 API used to send the payload body.
         '401':
           description: Unauthorized
+          content: &ref_20
+            application/json:
+              schema:
+                title: ErrorInformationResponse
+                type: object
+                description: >-
+                  Data model for the complex type object that contains an
+                  optional element ErrorInformation used along with 4xx and 5xx
+                  responses.
+                properties: *ref_15
+          headers: &ref_21
+            Content-Length:
+              required: false
+              schema: *ref_16
+              description: >-
+                The `Content-Length` header field indicates the anticipated size
+                of the payload body. Only sent if there is a body.
+
+
+                **Note:** The API supports a maximum size of 5242880 bytes (5
+                Megabytes).
+            Content-Type:
+              schema: *ref_17
+              required: true
+              description: >-
+                The `Content-Type` header indicates the specific version of the
+                API used to send the payload body.
+        '403':
+          description: Forbidden
           content: &ref_22
             application/json:
               schema:
@@ -1408,8 +1359,8 @@ paths:
               description: >-
                 The `Content-Type` header indicates the specific version of the
                 API used to send the payload body.
-        '403':
-          description: Forbidden
+        '404':
+          description: Not Found
           content: &ref_24
             application/json:
               schema:
@@ -1437,8 +1388,8 @@ paths:
               description: >-
                 The `Content-Type` header indicates the specific version of the
                 API used to send the payload body.
-        '404':
-          description: Not Found
+        '405':
+          description: Method Not Allowed
           content: &ref_26
             application/json:
               schema:
@@ -1466,8 +1417,8 @@ paths:
               description: >-
                 The `Content-Type` header indicates the specific version of the
                 API used to send the payload body.
-        '405':
-          description: Method Not Allowed
+        '406':
+          description: Not Acceptable
           content: &ref_28
             application/json:
               schema:
@@ -1495,8 +1446,8 @@ paths:
               description: >-
                 The `Content-Type` header indicates the specific version of the
                 API used to send the payload body.
-        '406':
-          description: Not Acceptable
+        '501':
+          description: Not Implemented
           content: &ref_30
             application/json:
               schema:
@@ -1524,8 +1475,8 @@ paths:
               description: >-
                 The `Content-Type` header indicates the specific version of the
                 API used to send the payload body.
-        '501':
-          description: Not Implemented
+        '503':
+          description: Service Unavailable
           content: &ref_32
             application/json:
               schema:
@@ -1537,35 +1488,6 @@ paths:
                   responses.
                 properties: *ref_15
           headers: &ref_33
-            Content-Length:
-              required: false
-              schema: *ref_16
-              description: >-
-                The `Content-Length` header field indicates the anticipated size
-                of the payload body. Only sent if there is a body.
-
-
-                **Note:** The API supports a maximum size of 5242880 bytes (5
-                Megabytes).
-            Content-Type:
-              schema: *ref_17
-              required: true
-              description: >-
-                The `Content-Type` header indicates the specific version of the
-                API used to send the payload body.
-        '503':
-          description: Service Unavailable
-          content: &ref_34
-            application/json:
-              schema:
-                title: ErrorInformationResponse
-                type: object
-                description: >-
-                  Data model for the complex type object that contains an
-                  optional element ErrorInformation used along with 4xx and 5xx
-                  responses.
-                properties: *ref_15
-          headers: &ref_35
             Content-Length:
               required: false
               schema: *ref_16
@@ -1595,7 +1517,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: &ref_37
+          schema: &ref_35
             type: integer
           description: >-
             The `Content-Length` header field indicates the anticipated size of
@@ -1606,7 +1528,7 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: &ref_38
+          schema: &ref_36
             type: string
           required: true
           description: >-
@@ -1620,16 +1542,67 @@ paths:
               title: AccountsIDPutResponse
               type: object
               description: 'The object sent in a `PUT /accounts/{ID}` request.'
-              properties: &ref_93
+              properties: &ref_91
                 accounts:
                   type: array
                   items:
                     title: Account
                     type: object
                     description: Data model for the complex type Account.
-                    properties: *ref_18
-                    required: *ref_19
-              required: &ref_94
+                    properties: &ref_89
+                      accountNickname:
+                        title: Name
+                        type: string
+                        pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+                        description: >-
+                          The API data type Name is a JSON String, restricted by
+                          a regular expression to avoid characters which are
+                          generally not used in a name.
+
+
+                          Regular Expression - The regular expression for
+                          restricting the Name type is "^(?!\s*$)[\w
+                          .,'-]{1,128}$". The restriction does not allow a
+                          string consisting of whitespace only, all Unicode
+                          characters are allowed, as well as the period (.)
+                          (apostrophe (‘), dash (-), comma (,) and space
+                          characters ( ).
+
+
+                          **Note:** In some programming languages, Unicode
+                          support must be specifically enabled. For example, if
+                          Java is used, the flag UNICODE_CHARACTER_CLASS must be
+                          enabled to allow Unicode characters.
+                      id:
+                        title: AccountId
+                        type: string
+                        description: >
+                          A long-lived unique account identifier provided by the
+                          DFSP. This MUST NOT
+
+                          be Bank Account Number or anything that may expose a
+                          User's private bank
+
+                          account information.
+                        pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
+                        minLength: 1
+                        maxLength: 1023
+                      currency:
+                        title: Currency
+                        description: >-
+                          The currency codes defined in [ISO
+                          4217](https://www.iso.org/iso-4217-currency-codes.html)
+                          as three-letter alphabetic codes are used as the
+                          standard naming representation for currencies.
+                        type: string
+                        minLength: 3
+                        maxLength: 3
+                        enum: *ref_6
+                    required: &ref_90
+                      - accountNickname
+                      - id
+                      - currency
+              required: &ref_92
                 - accounts
             example:
               - accountNickname: dfspa.user.nickname1
@@ -1643,47 +1616,47 @@ paths:
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/accounts/{ID}/error':
     parameters:
       - name: ID
         in: path
         required: true
-        schema: *ref_36
+        schema: *ref_34
         description: The identifier value.
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_35
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -1693,19 +1666,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -1720,7 +1693,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -1730,7 +1703,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -1743,21 +1716,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -1767,7 +1740,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -1795,50 +1768,50 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: &ref_52
+              properties: &ref_50
                 errorInformation:
                   title: ErrorInformation
                   type: object
                   description: Data model for the complex type ErrorInformation.
                   properties: *ref_13
                   required: *ref_14
-              required: &ref_53
+              required: &ref_51
                 - errorInformation
       responses:
         '200':
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   /authorizations:
     post:
       description: >
@@ -1856,44 +1829,44 @@ paths:
               title: AuthorizationsPostRequest
               description: POST /authorizations request object.
               type: object
-              properties: *ref_47
-              required: *ref_48
+              properties: *ref_45
+              required: *ref_46
               additionalProperties: false
       responses:
         '202':
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/authorizations/{ID}':
     put:
       description: >
@@ -1922,12 +1895,12 @@ paths:
                 title: AuthorizationsIDPutResponse
                 type: object
                 description: 'The object sent in the PUT /authorizations/{ID} callback.'
-                properties: &ref_98
+                properties: &ref_96
                   authenticationInfo:
                     title: AuthenticationInfo
                     type: object
                     description: Data model for the complex type AuthenticationInfo.
-                    properties: &ref_67
+                    properties: &ref_65
                       authentication:
                         title: AuthenticationType
                         type: string
@@ -1944,7 +1917,7 @@ paths:
                           stream.
                       authenticationValue:
                         title: AuthenticationValue
-                        anyOf: &ref_97
+                        anyOf: &ref_95
                           - title: OtpValue
                             type: string
                             pattern: '^\d{3,10}$'
@@ -1964,7 +1937,7 @@ paths:
                               U2F challenge-response, where payer FSP verifies
                               if the response provided by end-user device
                               matches the previously registered key.
-                            properties: &ref_95
+                            properties: &ref_93
                               pinValue:
                                 allOf:
                                   - title: U2FPIN
@@ -1992,20 +1965,20 @@ paths:
                                 description: >-
                                   Sequential counter used for cloning detection.
                                   Present only for U2F authentication.
-                            required: &ref_96
+                            required: &ref_94
                               - pinValue
                               - counter
                         description: >-
                           Contains the authentication value. The format depends
                           on the authentication type used in the
                           AuthenticationInfo complex type.
-                    required: &ref_68
+                    required: &ref_66
                       - authentication
                       - authenticationValue
                   responseType:
                     title: AuthorizationResponse
                     type: string
-                    enum: &ref_69
+                    enum: &ref_67
                       - ENTERED
                       - REJECTED
                       - RESEND
@@ -2019,40 +1992,40 @@ paths:
                       - RESEND - Consumer requested to resend the authentication
                       value.
                     example: ENTERED
-                required: &ref_99
+                required: &ref_97
                   - responseType
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   /health:
     get:
       tags:
@@ -2062,36 +2035,36 @@ paths:
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
       operationId: HealthGet
       summary: Health check endpoint
       description: >-
@@ -2106,36 +2079,36 @@ paths:
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
       operationId: MetricsGet
       summary: Prometheus metrics endpoint
       description: The HTTP request GET /metrics is used to return metrics for the API.
@@ -2153,14 +2126,14 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -2170,21 +2143,21 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_36
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
             used to send the payload body.
         - name: Date
           in: header
-          schema: *ref_39
+          schema: *ref_37
           required: true
           description: >-
             The `Date` header field indicates the date when the request was
             sent.
         - name: X-Forwarded-For
           in: header
-          schema: *ref_40
+          schema: *ref_38
           required: false
           description: >-
             The `X-Forwarded-For` header field is an unofficially accepted
@@ -2199,7 +2172,7 @@ paths:
             RFC 7239 is less-used and supported than `X-Forwarded-For`.
         - name: FSPIOP-Source
           in: header
-          schema: *ref_41
+          schema: *ref_39
           required: true
           description: >-
             The `FSPIOP-Source` header field is a non-HTTP standard field used
@@ -2209,7 +2182,7 @@ paths:
             `FSPIOP-Signature`).
         - name: FSPIOP-Destination
           in: header
-          schema: *ref_42
+          schema: *ref_40
           required: false
           description: >-
             The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -2222,21 +2195,21 @@ paths:
             /parties), the field should be left empty.
         - name: FSPIOP-Encryption
           in: header
-          schema: *ref_43
+          schema: *ref_41
           required: false
           description: >-
             The `FSPIOP-Encryption` header field is a non-HTTP standard field
             used by the API for applying end-to-end encryption of the request.
         - name: FSPIOP-Signature
           in: header
-          schema: *ref_44
+          schema: *ref_42
           required: false
           description: >-
             The `FSPIOP-Signature` header field is a non-HTTP standard field
             used by the API for applying an end-to-end request signature.
         - name: FSPIOP-URI
           in: header
-          schema: *ref_45
+          schema: *ref_43
           required: false
           description: >-
             The `FSPIOP-URI` header field is a non-HTTP standard field used by
@@ -2246,7 +2219,7 @@ paths:
             document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
         - name: FSPIOP-HTTP-Method
           in: header
-          schema: *ref_46
+          schema: *ref_44
           required: false
           description: >-
             The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -2263,7 +2236,7 @@ paths:
               title: ConsentRequestsPostRequest
               type: object
               description: The object sent in a `POST /consentRequests` request.
-              properties: &ref_102
+              properties: &ref_100
                 consentRequestId:
                   title: CorrelationId
                   type: string
@@ -2292,7 +2265,7 @@ paths:
                         accountId: "dfsp.username.5678",
                         actions: [ "accounts.transfer", "accounts.getBalance" ]
                       }
-                    properties: &ref_50
+                    properties: &ref_48
                       accountId:
                         title: AccountId
                         type: string
@@ -2312,7 +2285,7 @@ paths:
                         items:
                           title: ConsentScopeType
                           type: string
-                          enum: &ref_100
+                          enum: &ref_98
                             - accounts.getBalance
                             - accounts.transfer
                           description: >
@@ -2323,7 +2296,7 @@ paths:
 
                             - "accounts.transfer" - Initiate a transfer from an
                             account.
-                    required: &ref_51
+                    required: &ref_49
                       - accountId
                       - actions
                 authChannels:
@@ -2331,7 +2304,7 @@ paths:
                   items:
                     title: ConsentRequestChannelType
                     type: string
-                    enum: &ref_101
+                    enum: &ref_99
                       - WEB
                       - OTP
                     description: |
@@ -2343,7 +2316,7 @@ paths:
                   description: >-
                     The callback uri that the user will be redirected to after
                     completing the WEB auth channel.
-              required: &ref_103
+              required: &ref_101
                 - consentRequestId
                 - userId
                 - scopes
@@ -2370,47 +2343,47 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/consentRequests/{ID}':
     parameters:
       - name: ID
         in: path
         required: true
-        schema: *ref_36
+        schema: *ref_34
         description: The identifier value.
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_35
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -2420,19 +2393,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -2447,7 +2420,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -2457,7 +2430,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -2470,21 +2443,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -2494,7 +2467,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -2539,7 +2512,7 @@ paths:
                     place where
 
                     the user can prove their identity (e.g., by logging in).
-                  properties: &ref_105
+                  properties: &ref_103
                     consentRequestId:
                       title: CorrelationId
                       type: string
@@ -2566,14 +2539,14 @@ paths:
                             accountId: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
+                        properties: *ref_48
+                        required: *ref_49
                     authChannels:
                       type: array
                       items:
                         title: ConsentRequestChannelTypeWeb
                         type: string
-                        enum: &ref_104
+                        enum: &ref_102
                           - WEB
                         description: >
                           The web auth channel being used for PUT
@@ -2588,7 +2561,7 @@ paths:
                       description: >-
                         The callback uri that the pisp app redirects to for user
                         to complete their login.
-                  required: &ref_106
+                  required: &ref_104
                     - consentRequestId
                     - scopes
                     - authChannels
@@ -2603,7 +2576,7 @@ paths:
 
                     Schema used in the request consent phase of the account
                     linking OTP/SMS flow.
-                  properties: &ref_108
+                  properties: &ref_106
                     consentRequestId:
                       title: CorrelationId
                       type: string
@@ -2630,14 +2603,14 @@ paths:
                             accountId: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
+                        properties: *ref_48
+                        required: *ref_49
                     authChannels:
                       type: array
                       items:
                         title: ConsentRequestChannelTypeOTP
                         type: string
-                        enum: &ref_107
+                        enum: &ref_105
                           - OTP
                         description: >
                           The OTP auth channel being used for PUT
@@ -2647,7 +2620,7 @@ paths:
                       description: >-
                         The callback uri that the user will be redirected to
                         after completing the WEB auth channel.
-                  required: &ref_109
+                  required: &ref_107
                     - consentRequestId
                     - scopes
                     - authChannels
@@ -2658,36 +2631,36 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
     patch:
       tags:
         - consentRequests
@@ -2705,46 +2678,46 @@ paths:
               title: ConsentRequestsIDPatchRequest
               type: object
               description: 'The object sent in a `PATCH /consentRequests/{ID}` request.'
-              properties: &ref_110
+              properties: &ref_108
                 authToken:
                   type: string
-              required: &ref_111
+              required: &ref_109
                 - authToken
       responses:
         '202':
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/consentRequests/{ID}/error':
     put:
       tags:
@@ -2758,12 +2731,12 @@ paths:
         - name: ID
           in: path
           required: true
-          schema: *ref_36
+          schema: *ref_34
           description: The identifier value.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -2773,21 +2746,21 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_36
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
             used to send the payload body.
         - name: Date
           in: header
-          schema: *ref_39
+          schema: *ref_37
           required: true
           description: >-
             The `Date` header field indicates the date when the request was
             sent.
         - name: X-Forwarded-For
           in: header
-          schema: *ref_40
+          schema: *ref_38
           required: false
           description: >-
             The `X-Forwarded-For` header field is an unofficially accepted
@@ -2802,7 +2775,7 @@ paths:
             RFC 7239 is less-used and supported than `X-Forwarded-For`.
         - name: FSPIOP-Source
           in: header
-          schema: *ref_41
+          schema: *ref_39
           required: true
           description: >-
             The `FSPIOP-Source` header field is a non-HTTP standard field used
@@ -2812,7 +2785,7 @@ paths:
             `FSPIOP-Signature`).
         - name: FSPIOP-Destination
           in: header
-          schema: *ref_42
+          schema: *ref_40
           required: false
           description: >-
             The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -2825,21 +2798,21 @@ paths:
             /parties), the field should be left empty.
         - name: FSPIOP-Encryption
           in: header
-          schema: *ref_43
+          schema: *ref_41
           required: false
           description: >-
             The `FSPIOP-Encryption` header field is a non-HTTP standard field
             used by the API for applying end-to-end encryption of the request.
         - name: FSPIOP-Signature
           in: header
-          schema: *ref_44
+          schema: *ref_42
           required: false
           description: >-
             The `FSPIOP-Signature` header field is a non-HTTP standard field
             used by the API for applying an end-to-end request signature.
         - name: FSPIOP-URI
           in: header
-          schema: *ref_45
+          schema: *ref_43
           required: false
           description: >-
             The `FSPIOP-URI` header field is a non-HTTP standard field used by
@@ -2849,7 +2822,7 @@ paths:
             document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
         - name: FSPIOP-HTTP-Method
           in: header
-          schema: *ref_46
+          schema: *ref_44
           required: false
           description: >-
             The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -2868,43 +2841,43 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   /consents:
     post:
       tags:
@@ -2918,14 +2891,14 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -2935,21 +2908,21 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_36
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
             used to send the payload body.
         - name: Date
           in: header
-          schema: *ref_39
+          schema: *ref_37
           required: true
           description: >-
             The `Date` header field indicates the date when the request was
             sent.
         - name: X-Forwarded-For
           in: header
-          schema: *ref_40
+          schema: *ref_38
           required: false
           description: >-
             The `X-Forwarded-For` header field is an unofficially accepted
@@ -2964,7 +2937,7 @@ paths:
             RFC 7239 is less-used and supported than `X-Forwarded-For`.
         - name: FSPIOP-Source
           in: header
-          schema: *ref_41
+          schema: *ref_39
           required: true
           description: >-
             The `FSPIOP-Source` header field is a non-HTTP standard field used
@@ -2974,7 +2947,7 @@ paths:
             `FSPIOP-Signature`).
         - name: FSPIOP-Destination
           in: header
-          schema: *ref_42
+          schema: *ref_40
           required: false
           description: >-
             The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -2987,21 +2960,21 @@ paths:
             /parties), the field should be left empty.
         - name: FSPIOP-Encryption
           in: header
-          schema: *ref_43
+          schema: *ref_41
           required: false
           description: >-
             The `FSPIOP-Encryption` header field is a non-HTTP standard field
             used by the API for applying end-to-end encryption of the request.
         - name: FSPIOP-Signature
           in: header
-          schema: *ref_44
+          schema: *ref_42
           required: false
           description: >-
             The `FSPIOP-Signature` header field is a non-HTTP standard field
             used by the API for applying an end-to-end request signature.
         - name: FSPIOP-URI
           in: header
-          schema: *ref_45
+          schema: *ref_43
           required: false
           description: >-
             The `FSPIOP-URI` header field is a non-HTTP standard field used by
@@ -3011,7 +2984,7 @@ paths:
             document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
         - name: FSPIOP-HTTP-Method
           in: header
-          schema: *ref_46
+          schema: *ref_44
           required: false
           description: >-
             The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -3027,7 +3000,7 @@ paths:
               title: ConsentPostRequest
               type: object
               description: The object sent in a `POST /consents` request.
-              properties: &ref_112
+              properties: &ref_110
                 consentId:
                   allOf:
                     - title: CorrelationId
@@ -3078,9 +3051,9 @@ paths:
                         accountId: "dfsp.username.5678",
                         actions: [ "accounts.transfer", "accounts.getBalance" ]
                       }
-                    properties: *ref_50
-                    required: *ref_51
-              required: &ref_113
+                    properties: *ref_48
+                    required: *ref_49
+              required: &ref_111
                 - consentId
                 - consentRequestId
                 - scopes
@@ -3089,58 +3062,58 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/consents/{ID}':
     parameters:
       - name: ID
         in: path
         required: true
-        schema: *ref_36
+        schema: *ref_34
         description: The identifier value.
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -3155,7 +3128,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -3165,7 +3138,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -3178,21 +3151,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -3202,7 +3175,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -3224,7 +3197,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -3233,36 +3206,36 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
     patch:
       description: >
         The HTTP request `PATCH /consents/{ID}` is used
@@ -3299,21 +3272,21 @@ paths:
                     Used in the "Register Credential" part of the Account
                     linking flow.
                   type: object
-                  properties: &ref_123
+                  properties: &ref_121
                     credential:
                       type: object
                       properties:
                         status:
                           title: ConsentStatusType
                           type: string
-                          enum: &ref_122
+                          enum: &ref_120
                             - VERIFIED
                           description: |
                             The status of the Consent.
                             - "VERIFIED" - The Consent is valid and verified.
                       required:
                         - status
-                  required: &ref_124
+                  required: &ref_122
                     - credential
                 - title: ConsentsIDPatchResponseRevoked
                   description: |
@@ -3322,11 +3295,11 @@ paths:
                     Sent to both the PISP and DFSP when a consent is revoked.
                     Used in the "Unlinking" part of the Account Unlinking flow.
                   type: object
-                  properties: &ref_126
+                  properties: &ref_124
                     status:
                       title: ConsentStatusType
                       type: string
-                      enum: &ref_125
+                      enum: &ref_123
                         - REVOKED
                       description: >
                         The status of the Consent.
@@ -3351,14 +3324,14 @@ paths:
                         "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time
                         zone, same as UTC).
                       example: '2016-05-24T08:38:08.699-04:00'
-                  required: &ref_127
+                  required: &ref_125
                     - status
                     - revokedAt
       parameters:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -3371,36 +3344,36 @@ paths:
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
     put:
       description: >
         The HTTP request `PUT /consents/{ID}` is used by the PISP and Auth
@@ -3432,7 +3405,7 @@ paths:
 
                     Called by a `PISP` to after signing a challenge. Sent to a
                     DFSP for verification.
-                  properties: &ref_116
+                  properties: &ref_114
                     scopes:
                       type: array
                       items:
@@ -3444,8 +3417,8 @@ paths:
                             accountId: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
+                        properties: *ref_48
+                        required: *ref_49
                     credential:
                       title: SignedCredential
                       type: object
@@ -3463,11 +3436,11 @@ paths:
                         ever be PENDING when
 
                         updating a credential.
-                      properties: &ref_114
+                      properties: &ref_112
                         credentialType:
                           title: CredentialType
                           type: string
-                          enum: &ref_54
+                          enum: &ref_52
                             - FIDO
                           description: |
                             The type of the Credential.
@@ -3485,7 +3458,7 @@ paths:
 
                             Based on
                             https://w3c.github.io/webauthn/#iface-pkcredential
-                          properties: &ref_55
+                          properties: &ref_53
                             id:
                               type: string
                               description: TBD
@@ -3497,15 +3470,15 @@ paths:
                                   description: TBD
                               required:
                                 - clientDataJSON
-                          required: &ref_56
+                          required: &ref_54
                             - id
                             - response
-                      required: &ref_115
+                      required: &ref_113
                         - credentialType
                         - status
                         - payload
                       additionalProperties: false
-                  required: &ref_117
+                  required: &ref_115
                     - scopes
                     - credential
                 - title: ConsentsIDPutResponseVerified
@@ -3517,7 +3490,7 @@ paths:
 
                     Called by a `auth-service` to notify a DFSP that a
                     credential has been verified and registered.
-                  properties: &ref_120
+                  properties: &ref_118
                     scopes:
                       type: array
                       items:
@@ -3529,8 +3502,8 @@ paths:
                             accountId: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
+                        properties: *ref_48
+                        required: *ref_49
                     credential:
                       title: VerifiedCredential
                       type: object
@@ -3548,11 +3521,11 @@ paths:
                         ever be VERIFIED when
 
                         updating a credential.
-                      properties: &ref_118
+                      properties: &ref_116
                         credentialType:
                           title: CredentialType
                           type: string
-                          enum: *ref_54
+                          enum: *ref_52
                           description: |
                             The type of the Credential.
                             - "FIDO" - A FIDO public/private keypair.
@@ -3571,21 +3544,21 @@ paths:
 
                             Based on
                             https://w3c.github.io/webauthn/#iface-pkcredential
-                          properties: *ref_55
-                          required: *ref_56
-                      required: &ref_119
+                          properties: *ref_53
+                          required: *ref_54
+                      required: &ref_117
                         - credentialType
                         - status
                         - payload
                       additionalProperties: false
-                  required: &ref_121
+                  required: &ref_119
                     - scopes
                     - credential
       parameters:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -3600,36 +3573,36 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
     delete:
       description: >
         The HTTP request `DELETE /consents/{ID}` is used to mark as deleted a
@@ -3645,36 +3618,36 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/consents/{ID}/error':
     put:
       tags:
@@ -3688,12 +3661,12 @@ paths:
         - name: ID
           in: path
           required: true
-          schema: *ref_36
+          schema: *ref_34
           description: The identifier value.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -3703,21 +3676,21 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_36
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
             used to send the payload body.
         - name: Date
           in: header
-          schema: *ref_39
+          schema: *ref_37
           required: true
           description: >-
             The `Date` header field indicates the date when the request was
             sent.
         - name: X-Forwarded-For
           in: header
-          schema: *ref_40
+          schema: *ref_38
           required: false
           description: >-
             The `X-Forwarded-For` header field is an unofficially accepted
@@ -3732,7 +3705,7 @@ paths:
             RFC 7239 is less-used and supported than `X-Forwarded-For`.
         - name: FSPIOP-Source
           in: header
-          schema: *ref_41
+          schema: *ref_39
           required: true
           description: >-
             The `FSPIOP-Source` header field is a non-HTTP standard field used
@@ -3742,7 +3715,7 @@ paths:
             `FSPIOP-Signature`).
         - name: FSPIOP-Destination
           in: header
-          schema: *ref_42
+          schema: *ref_40
           required: false
           description: >-
             The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -3755,21 +3728,21 @@ paths:
             /parties), the field should be left empty.
         - name: FSPIOP-Encryption
           in: header
-          schema: *ref_43
+          schema: *ref_41
           required: false
           description: >-
             The `FSPIOP-Encryption` header field is a non-HTTP standard field
             used by the API for applying end-to-end encryption of the request.
         - name: FSPIOP-Signature
           in: header
-          schema: *ref_44
+          schema: *ref_42
           required: false
           description: >-
             The `FSPIOP-Signature` header field is a non-HTTP standard field
             used by the API for applying an end-to-end request signature.
         - name: FSPIOP-URI
           in: header
-          schema: *ref_45
+          schema: *ref_43
           required: false
           description: >-
             The `FSPIOP-URI` header field is a non-HTTP standard field used by
@@ -3779,7 +3752,7 @@ paths:
             document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
         - name: FSPIOP-HTTP-Method
           in: header
-          schema: *ref_46
+          schema: *ref_44
           required: false
           description: >-
             The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -3798,43 +3771,43 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/consents/{ID}/generateChallenge':
     post:
       tags:
@@ -3850,19 +3823,19 @@ paths:
         - name: ID
           in: path
           required: true
-          schema: *ref_36
+          schema: *ref_34
           description: The identifier value.
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -3872,21 +3845,21 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_36
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
             used to send the payload body.
         - name: Date
           in: header
-          schema: *ref_39
+          schema: *ref_37
           required: true
           description: >-
             The `Date` header field indicates the date when the request was
             sent.
         - name: X-Forwarded-For
           in: header
-          schema: *ref_40
+          schema: *ref_38
           required: false
           description: >-
             The `X-Forwarded-For` header field is an unofficially accepted
@@ -3901,7 +3874,7 @@ paths:
             RFC 7239 is less-used and supported than `X-Forwarded-For`.
         - name: FSPIOP-Source
           in: header
-          schema: *ref_41
+          schema: *ref_39
           required: true
           description: >-
             The `FSPIOP-Source` header field is a non-HTTP standard field used
@@ -3911,7 +3884,7 @@ paths:
             `FSPIOP-Signature`).
         - name: FSPIOP-Destination
           in: header
-          schema: *ref_42
+          schema: *ref_40
           required: false
           description: >-
             The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -3924,21 +3897,21 @@ paths:
             /parties), the field should be left empty.
         - name: FSPIOP-Encryption
           in: header
-          schema: *ref_43
+          schema: *ref_41
           required: false
           description: >-
             The `FSPIOP-Encryption` header field is a non-HTTP standard field
             used by the API for applying end-to-end encryption of the request.
         - name: FSPIOP-Signature
           in: header
-          schema: *ref_44
+          schema: *ref_42
           required: false
           description: >-
             The `FSPIOP-Signature` header field is a non-HTTP standard field
             used by the API for applying an end-to-end request signature.
         - name: FSPIOP-URI
           in: header
-          schema: *ref_45
+          schema: *ref_43
           required: false
           description: >-
             The `FSPIOP-URI` header field is a non-HTTP standard field used by
@@ -3948,7 +3921,7 @@ paths:
             document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
         - name: FSPIOP-HTTP-Method
           in: header
-          schema: *ref_46
+          schema: *ref_44
           required: false
           description: >-
             The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -3967,15 +3940,15 @@ paths:
               description: |
                 A credential used to allow a user to prove their identity
                 and access to an account with a DFSP.
-              properties: &ref_128
+              properties: &ref_126
                 type:
                   title: CredentialType
                   type: string
-                  enum: *ref_54
+                  enum: *ref_52
                   description: |
                     The type of the Credential.
                     - "FIDO" - A FIDO public/private keypair.
-              required: &ref_129
+              required: &ref_127
                 - type
             example:
               type: FIDO
@@ -3984,52 +3957,52 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/services/{ServiceType}':
     parameters:
       - name: ServiceType
         in: path
         required: true
-        schema: &ref_57
+        schema: &ref_55
           type: string
         description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -4044,7 +4017,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -4054,7 +4027,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -4067,21 +4040,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -4091,7 +4064,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -4111,7 +4084,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -4123,36 +4096,36 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
     put:
       description: >
         The HTTP request `PUT /services/{ServiceType}` is used to return list of
@@ -4168,7 +4141,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -4178,7 +4151,7 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_36
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
@@ -4191,7 +4164,7 @@ paths:
               title: ServicesServiceTypePutResponse
               type: object
               description: 'The object sent in a `PUT /services/{ServiceType}` request.'
-              properties: &ref_130
+              properties: &ref_128
                 providers:
                   type: array
                   items:
@@ -4200,54 +4173,54 @@ paths:
                     minLength: 1
                     maxLength: 32
                     description: FSP identifier.
-              required: &ref_131
+              required: &ref_129
                 - providers
       responses:
         '200':
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/services/{ServiceType}/error':
     parameters:
       - name: ServiceType
         in: path
         required: true
-        schema: *ref_57
+        schema: *ref_55
         description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_35
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -4257,19 +4230,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -4284,7 +4257,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -4294,7 +4267,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -4307,21 +4280,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -4331,7 +4304,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -4359,56 +4332,56 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   /thirdpartyRequests/transactions:
     parameters:
       - name: Accept
         in: header
         required: true
-        schema: *ref_49
+        schema: *ref_47
         description: >-
           The `Accept` header field indicates the version of the API the client
           would like the server to use.
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_35
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -4418,19 +4391,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -4445,7 +4418,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -4455,7 +4428,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -4468,21 +4441,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -4492,7 +4465,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -4512,7 +4485,7 @@ paths:
               description: >-
                 The object sent in the POST /thirdpartyRequests/transactions
                 request.
-              properties: &ref_60
+              properties: &ref_58
                 transactionRequestId:
                   allOf:
                     - title: CorrelationId
@@ -4549,11 +4522,11 @@ paths:
                     - title: PartyIdInfo
                       type: object
                       description: Data model for the complex type PartyIdInfo.
-                      properties: &ref_133
+                      properties: &ref_131
                         partyIdType:
                           title: PartyIdTypeTPLink
                           type: string
-                          enum: &ref_132
+                          enum: &ref_130
                             - THIRD_PARTY_LINK
                           description: >
                             This is a variant based on FSPIOP `PartyIdType`
@@ -4596,7 +4569,7 @@ paths:
                             optional list of extensions, specific to deployment.
                           properties: *ref_2
                           required: *ref_3
-                      required: &ref_134
+                      required: &ref_132
                         - partyIdType
                         - partyIdentifier
                   description: >-
@@ -4606,7 +4579,7 @@ paths:
                   allOf:
                     - title: AmountType
                       type: string
-                      enum: &ref_135
+                      enum: &ref_133
                         - SEND
                         - RECEIVE
                       description: >-
@@ -4635,8 +4608,8 @@ paths:
                     - title: TransactionType
                       type: object
                       description: Data model for the complex type TransactionType.
-                      properties: *ref_58
-                      required: *ref_59
+                      properties: *ref_56
+                      required: *ref_57
                   description: Type of transaction.
                 expiration:
                   type: string
@@ -4645,7 +4618,7 @@ paths:
                     It can be set to get a quick failure in case the peer FSP
                     takes too long to respond.
                   example: '2016-05-24T08:38:08.699-04:00'
-              required: &ref_61
+              required: &ref_59
                 - transactionRequestId
                 - payee
                 - payer
@@ -4678,36 +4651,36 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
       operationId: CreateThirdpartyTransactionRequests
       summary: CreateThirdpartyTransactionRequests
       description: >-
@@ -4729,8 +4702,8 @@ paths:
               description: >-
                 The object sent in the POST /thirdpartyRequests/transactions
                 request.
-              properties: *ref_60
-              required: *ref_61
+              properties: *ref_58
+              required: *ref_59
             example:
               transactionRequestId: 8d34f91d-d078-4077-8263-2c047876fcf6
               payee:
@@ -4761,36 +4734,36 @@ paths:
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
       operationId: ThirdpartyRequestsTransactionsPost
       summary: ThirdpartyRequestsTransactionsPost
       description: >-
@@ -4803,23 +4776,23 @@ paths:
       - name: ID
         in: path
         required: true
-        schema: *ref_36
+        schema: *ref_34
         description: The identifier value.
       - name: Accept
         in: header
         required: true
-        schema: *ref_49
+        schema: *ref_47
         description: >-
           The `Accept` header field indicates the version of the API the client
           would like the server to use.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -4834,7 +4807,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -4844,7 +4817,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -4857,21 +4830,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -4881,7 +4854,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -4905,36 +4878,36 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
     put:
       tags:
         - thirdpartyRequests
@@ -4953,7 +4926,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -4963,7 +4936,7 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_36
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
@@ -4978,7 +4951,7 @@ paths:
               description: >-
                 The object sent in the PUT /thirdPartyRequests/transactions/{ID}
                 request.
-              properties: &ref_136
+              properties: &ref_134
                 transactionId:
                   title: CorrelationId
                   type: string
@@ -4996,7 +4969,7 @@ paths:
                 transactionRequestState:
                   title: TransactionRequestState
                   type: string
-                  enum: *ref_62
+                  enum: *ref_60
                   description: >-
                     Below are the allowed values for the enumeration.
 
@@ -5010,7 +4983,7 @@ paths:
 
                     - REJECTED - Payer has rejected the transaction.
                   example: RECEIVED
-              required: &ref_137
+              required: &ref_135
                 - transactionId
                 - transactionRequestState
             example:
@@ -5021,36 +4994,36 @@ paths:
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
     patch:
       operationId: NotifyThirdpartyTransactionRequests
       summary: NotifyThirdpartyTransactionRequests
@@ -5068,7 +5041,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -5078,7 +5051,7 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_36
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
@@ -5093,8 +5066,8 @@ paths:
               description: >-
                 The object sent in the PATCH
                 /thirdpartyRequests/transactions/{ID} callback.
-              properties: *ref_63
-              required: *ref_64
+              properties: *ref_61
+              required: *ref_62
             example:
               transactionId: 11111111-0000-0000-0000-000000000000
               transactionRequestState: ACCEPTED
@@ -5104,36 +5077,36 @@ paths:
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/thirdpartyRequests/transactions/{ID}/error':
     put:
       tags:
@@ -5156,12 +5129,12 @@ paths:
         - name: ID
           in: path
           required: true
-          schema: *ref_36
+          schema: *ref_34
           description: The identifier value.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_35
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -5171,21 +5144,21 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_36
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
             used to send the payload body.
         - name: Date
           in: header
-          schema: *ref_39
+          schema: *ref_37
           required: true
           description: >-
             The `Date` header field indicates the date when the request was
             sent.
         - name: X-Forwarded-For
           in: header
-          schema: *ref_40
+          schema: *ref_38
           required: false
           description: >-
             The `X-Forwarded-For` header field is an unofficially accepted
@@ -5200,7 +5173,7 @@ paths:
             RFC 7239 is less-used and supported than `X-Forwarded-For`.
         - name: FSPIOP-Source
           in: header
-          schema: *ref_41
+          schema: *ref_39
           required: true
           description: >-
             The `FSPIOP-Source` header field is a non-HTTP standard field used
@@ -5210,7 +5183,7 @@ paths:
             `FSPIOP-Signature`).
         - name: FSPIOP-Destination
           in: header
-          schema: *ref_42
+          schema: *ref_40
           required: false
           description: >-
             The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -5223,21 +5196,21 @@ paths:
             /parties), the field should be left empty.
         - name: FSPIOP-Encryption
           in: header
-          schema: *ref_43
+          schema: *ref_41
           required: false
           description: >-
             The `FSPIOP-Encryption` header field is a non-HTTP standard field
             used by the API for applying end-to-end encryption of the request.
         - name: FSPIOP-Signature
           in: header
-          schema: *ref_44
+          schema: *ref_42
           required: false
           description: >-
             The `FSPIOP-Signature` header field is a non-HTTP standard field
             used by the API for applying an end-to-end request signature.
         - name: FSPIOP-URI
           in: header
-          schema: *ref_45
+          schema: *ref_43
           required: false
           description: >-
             The `FSPIOP-URI` header field is a non-HTTP standard field used by
@@ -5247,7 +5220,7 @@ paths:
             document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
         - name: FSPIOP-HTTP-Method
           in: header
-          schema: *ref_46
+          schema: *ref_44
           required: false
           description: >-
             The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -5266,54 +5239,54 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/thirdpartyRequests/transactions/{ID}/authorizations':
     parameters:
       - name: ID
         in: path
         required: true
-        schema: *ref_36
+        schema: *ref_34
         description: The identifier value.
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_35
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -5323,19 +5296,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -5350,7 +5323,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -5360,7 +5333,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -5373,21 +5346,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -5397,7 +5370,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -5419,7 +5392,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -5434,7 +5407,7 @@ paths:
               description: >-
                 The object sent in the POST
                 /thirdpartyRequests/transactions/{id}/authorizations request.
-              properties: &ref_140
+              properties: &ref_138
                 challenge:
                   type: string
                   description: Base64 encoded binary string - the original challenge.
@@ -5493,7 +5466,7 @@ paths:
                   description: >-
                     The status of the authorization. This MUST be PENDING for a
                     POST request
-              required: &ref_141
+              required: &ref_139
                 - challenge
                 - value
                 - consentId
@@ -5510,36 +5483,36 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
     put:
       operationId: UpdateThirdpartyAuthorization
       summary: UpdateThirdpartyAuthorization
@@ -5566,7 +5539,7 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/transactions/{id}/authorizations request.
-              properties: &ref_138
+              properties: &ref_136
                 challenge:
                   type: string
                   description: Base64 encoded binary string - the original challenge.
@@ -5625,7 +5598,7 @@ paths:
                   description: >-
                     The status of the authorization. This value must be
                     `VERIFIED` for a PUT request.
-              required: &ref_139
+              required: &ref_137
                 - challenge
                 - value
                 - consentId
@@ -5642,36 +5615,36 @@ paths:
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   /thirdpartyRequests/authorizations:
     post:
       description: >
@@ -5691,7 +5664,7 @@ paths:
               title: ThirdpartyRequestsAuthorizationsPostRequest
               description: POST /thirdpartyRequests/authorizations request object.
               type: object
-              properties: &ref_142
+              properties: &ref_140
                 authorizationRequestId:
                   title: CorrelationId
                   type: string
@@ -5727,15 +5700,15 @@ paths:
                   title: QuotesIDPutResponse
                   type: object
                   description: 'The object sent in the PUT /quotes/{ID} callback.'
-                  properties: *ref_65
-                  required: *ref_66
+                  properties: *ref_63
+                  required: *ref_64
                 transactionType:
                   title: TransactionType
                   type: object
                   description: Data model for the complex type TransactionType.
-                  properties: *ref_58
-                  required: *ref_59
-              required: &ref_143
+                  properties: *ref_56
+                  required: *ref_57
+              required: &ref_141
                 - authorizationRequestId
                 - transactionRequestId
                 - challenge
@@ -5768,36 +5741,36 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/thirdpartyRequests/authorizations/{ID}':
     put:
       description: >
@@ -5830,17 +5803,17 @@ paths:
                 description: >-
                   The object sent in the PUT
                   /thirdpartyRequests/authorizations/{ID} callback.
-                properties: &ref_144
+                properties: &ref_142
                   authenticationInfo:
                     title: AuthenticationInfo
                     type: object
                     description: Data model for the complex type AuthenticationInfo.
-                    properties: *ref_67
-                    required: *ref_68
+                    properties: *ref_65
+                    required: *ref_66
                   responseType:
                     title: AuthorizationResponse
                     type: string
-                    enum: *ref_69
+                    enum: *ref_67
                     description: >-
                       Below are the allowed values for the enumeration.
 
@@ -5851,7 +5824,7 @@ paths:
                       - RESEND - Consumer requested to resend the authentication
                       value.
                     example: ENTERED
-                required: &ref_145
+                required: &ref_143
                   - authenticationInfo
                   - responseType
               example:
@@ -5863,47 +5836,47 @@ paths:
                 responseType: ENTERED
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/thirdpartyRequests/authorizations/{ID}/error':
     parameters:
       - name: ID
         in: path
         required: true
-        schema: *ref_36
+        schema: *ref_34
         description: The identifier value.
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_35
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -5913,19 +5886,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -5940,7 +5913,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -5950,7 +5923,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -5963,21 +5936,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -5987,7 +5960,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -6023,7 +5996,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -6038,54 +6011,54 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   /thirdpartyRequests/verifications:
     parameters:
       - name: ID
         in: path
         required: true
-        schema: *ref_36
+        schema: *ref_34
         description: The identifier value.
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_35
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -6095,19 +6068,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -6122,7 +6095,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -6132,7 +6105,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -6145,21 +6118,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -6169,7 +6142,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -6190,7 +6163,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -6205,7 +6178,7 @@ paths:
               description: >-
                 The object sent in the POST /thirdpartyRequests/verifications
                 request.
-              properties: &ref_146
+              properties: &ref_144
                 verificationRequestId:
                   allOf:
                     - title: CorrelationId
@@ -6232,12 +6205,12 @@ paths:
                       title: AuthenticationInfo
                       type: object
                       description: Data model for the complex type AuthenticationInfo.
-                      properties: *ref_67
-                      required: *ref_68
+                      properties: *ref_65
+                      required: *ref_66
                     responseType:
                       title: AuthorizationResponse
                       type: string
-                      enum: *ref_69
+                      enum: *ref_67
                       description: >-
                         Below are the allowed values for the enumeration.
 
@@ -6269,7 +6242,7 @@ paths:
                     credential with which to verify
 
                     the signed challenge against.
-              required: &ref_147
+              required: &ref_145
                 - verificationRequestId
                 - challenge
                 - value
@@ -6290,47 +6263,47 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/thirdpartyRequests/verifications/{ID}':
     parameters:
       - name: ID
         in: path
         required: true
-        schema: *ref_36
+        schema: *ref_34
         description: The identifier value.
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_35
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -6340,19 +6313,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -6367,7 +6340,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -6377,7 +6350,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -6390,21 +6363,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -6414,7 +6387,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -6444,7 +6417,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -6459,13 +6432,13 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/verifications/{ID} request.
-              properties: &ref_148
+              properties: &ref_146
                 authenticationResponse:
                   type: string
                   enum:
                     - VERIFIED
                   description: The verification passed
-              required: &ref_149
+              required: &ref_147
                 - authenticationResponse
             example:
               authenticationResponse: VERIFIED
@@ -6474,47 +6447,47 @@ paths:
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
   '/thirdpartyRequests/verifications/{ID}/error':
     parameters:
       - name: ID
         in: path
         required: true
-        schema: *ref_36
+        schema: *ref_34
         description: The identifier value.
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_35
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -6524,19 +6497,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_36
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_37
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_38
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -6551,7 +6524,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_39
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -6561,7 +6534,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_40
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -6574,21 +6547,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -6598,7 +6571,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -6622,7 +6595,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -6637,49 +6610,49 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
         '400':
           description: Bad Request
-          content: *ref_20
-          headers: *ref_21
+          content: *ref_18
+          headers: *ref_19
         '401':
           description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
+          content: *ref_20
+          headers: *ref_21
         '403':
           description: Forbidden
-          content: *ref_24
-          headers: *ref_25
+          content: *ref_22
+          headers: *ref_23
         '404':
           description: Not Found
-          content: *ref_26
-          headers: *ref_27
+          content: *ref_24
+          headers: *ref_25
         '405':
           description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
+          content: *ref_26
+          headers: *ref_27
         '406':
           description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
+          content: *ref_28
+          headers: *ref_29
         '501':
           description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
+          content: *ref_30
+          headers: *ref_31
         '503':
           description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
+          content: *ref_32
+          headers: *ref_33
 components:
   schemas:
     AuthorizationChannelType:
       title: AuthorizationChannelType
       type: string
-      enum: *ref_70
+      enum: *ref_68
       description: >
         Below are the allowed values for the enumeration
         AuthorizationChannelType.
@@ -6696,7 +6669,7 @@ components:
         authentication value, rejected the transaction, or requested a
         resend of the authentication value.
       type: string
-      enum: *ref_71
+      enum: *ref_69
     AuthenticationType:
       title: AuthenticationType
       type: string
@@ -6828,8 +6801,8 @@ components:
       title: Extension
       type: object
       description: Data model for the complex type Extension.
-      properties: *ref_72
-      required: *ref_73
+      properties: *ref_70
+      required: *ref_71
     ExtensionList:
       title: ExtensionList
       type: object
@@ -6842,14 +6815,14 @@ components:
       title: QuotesIDPutResponse
       type: object
       description: 'The object sent in the PUT /quotes/{ID} callback.'
-      properties: *ref_65
-      required: *ref_66
+      properties: *ref_63
+      required: *ref_64
     AuthorizationsPostRequest:
       title: AuthorizationsPostRequest
       description: POST /authorizations request object.
       type: object
-      properties: *ref_47
-      required: *ref_48
+      properties: *ref_45
+      required: *ref_46
       additionalProperties: false
     IlpFulfilment:
       title: IlpFulfilment
@@ -6868,7 +6841,7 @@ components:
     PartyIdType:
       title: PartyIdType
       type: string
-      enum: *ref_74
+      enum: *ref_72
       description: >
         This is a variant based on FSPIOP `PartyIdType` specification.
 
@@ -7022,63 +6995,14 @@ components:
       title: PartyResult
       type: object
       description: Data model for the complex type PartyResult.
-      properties: *ref_75
-      required: *ref_76
+      properties: *ref_73
+      required: *ref_74
     ParticipantsPostRequest:
       title: ParticipantsPostRequest
       type: object
       description: The object sent in the POST /participants request.
-      properties: *ref_77
-      required: *ref_78
-    Name:
-      title: Name
-      type: string
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
-      description: >-
-        The API data type Name is a JSON String, restricted by a regular
-        expression to avoid characters which are generally not used in a name.
-
-
-        Regular Expression - The regular expression for restricting the Name
-        type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a
-        string consisting of whitespace only, all Unicode characters are
-        allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,)
-        and space characters ( ).
-
-
-        **Note:** In some programming languages, Unicode support must be
-        specifically enabled. For example, if Java is used, the flag
-        UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-    AccountId:
-      title: AccountId
-      type: string
-      description: >
-        A long-lived unique account identifier provided by the DFSP. This MUST
-        NOT
-
-        be Bank Account Number or anything that may expose a User's private bank
-
-        account information.
-      pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
-      minLength: 1
-      maxLength: 1023
-    Account:
-      title: Account
-      type: object
-      description: Data model for the complex type Account.
-      properties: *ref_18
-      required: *ref_19
-    AccountList:
-      title: AccountList
-      type: object
-      description: >
-        Data model for the complex type AccountList.
-
-        TODO: This component is outdated. Need flatten object and remove
-        `account`.
-              Not sure what will break so leaving this for now.
-      properties: *ref_79
-      required: *ref_80
+      properties: *ref_75
+      required: *ref_76
     MerchantClassificationCode:
       title: MerchantClassificationCode
       type: string
@@ -7121,7 +7045,7 @@ components:
       title: PartyComplexName
       type: object
       description: Data model for the complex type PartyComplexName.
-      properties: *ref_81
+      properties: *ref_77
     DateOfBirth:
       title: DateofBirth (type Date)
       type: string
@@ -7133,7 +7057,7 @@ components:
       title: PartyPersonalInfo
       type: object
       description: Data model for the complex type PartyPersonalInfo.
-      properties: *ref_82
+      properties: *ref_78
     Party:
       title: Party
       type: object
@@ -7153,12 +7077,12 @@ components:
         Main difference being that it returns a `Party` with the newly added
 
         `accounts` property.
-      properties: *ref_83
-      required: *ref_84
+      properties: *ref_79
+      required: *ref_80
     ServiceType:
       title: ServiceType
       type: string
-      enum: *ref_85
+      enum: *ref_81
       description: >-
         Below are the allowed values for the enumeration ServiceType
 
@@ -7167,7 +7091,7 @@ components:
     TransactionRequestState:
       title: TransactionRequestState
       type: string
-      enum: *ref_62
+      enum: *ref_60
       description: |-
         Below are the allowed values for the enumeration.
         - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
@@ -7192,12 +7116,12 @@ components:
       description: >-
         The object sent in the PATCH /thirdpartyRequests/transactions/{ID}
         callback.
-      properties: *ref_63
-      required: *ref_64
+      properties: *ref_61
+      required: *ref_62
     TransactionScenario:
       title: TransactionScenario
       type: string
-      enum: *ref_86
+      enum: *ref_82
       description: >-
         Below are the allowed values for the enumeration.
 
@@ -7233,7 +7157,7 @@ components:
     TransactionInitiator:
       title: TransactionInitiator
       type: string
-      enum: *ref_87
+      enum: *ref_83
       description: >-
         Below are the allowed values for the enumeration.
 
@@ -7249,7 +7173,7 @@ components:
     TransactionInitiatorType:
       title: TransactionInitiatorType
       type: string
-      enum: *ref_88
+      enum: *ref_84
       description: |-
         Below are the allowed values for the enumeration.
         - CONSUMER - Consumer is the initiator of the transaction.
@@ -7268,8 +7192,8 @@ components:
       title: Refund
       type: object
       description: Data model for the complex type Refund.
-      properties: *ref_89
-      required: *ref_90
+      properties: *ref_85
+      required: *ref_86
     BalanceOfPayments:
       title: BalanceOfPayments
       type: string
@@ -7284,14 +7208,14 @@ components:
       title: TransactionType
       type: object
       description: Data model for the complex type TransactionType.
-      properties: *ref_58
-      required: *ref_59
+      properties: *ref_56
+      required: *ref_57
     TransactionRequestsPostRequest:
       title: TransactionRequestsPostRequest
       type: object
       description: The object sent in the POST /transactionRequests request.
-      properties: *ref_91
-      required: *ref_92
+      properties: *ref_87
+      required: *ref_88
     ErrorInformationResponse:
       title: ErrorInformationResponse
       type: object
@@ -7299,18 +7223,56 @@ components:
         Data model for the complex type object that contains an optional element
         ErrorInformation used along with 4xx and 5xx responses.
       properties: *ref_15
+    Name:
+      title: Name
+      type: string
+      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      description: >-
+        The API data type Name is a JSON String, restricted by a regular
+        expression to avoid characters which are generally not used in a name.
+
+
+        Regular Expression - The regular expression for restricting the Name
+        type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a
+        string consisting of whitespace only, all Unicode characters are
+        allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,)
+        and space characters ( ).
+
+
+        **Note:** In some programming languages, Unicode support must be
+        specifically enabled. For example, if Java is used, the flag
+        UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+    AccountId:
+      title: AccountId
+      type: string
+      description: >
+        A long-lived unique account identifier provided by the DFSP. This MUST
+        NOT
+
+        be Bank Account Number or anything that may expose a User's private bank
+
+        account information.
+      pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
+      minLength: 1
+      maxLength: 1023
+    Account:
+      title: Account
+      type: object
+      description: Data model for the complex type Account.
+      properties: *ref_89
+      required: *ref_90
     AccountsIDPutResponse:
       title: AccountsIDPutResponse
       type: object
       description: 'The object sent in a `PUT /accounts/{ID}` request.'
-      properties: *ref_93
-      required: *ref_94
+      properties: *ref_91
+      required: *ref_92
     ErrorInformationObject:
       title: ErrorInformationObject
       type: object
       description: Data model for the complex type object that contains ErrorInformation.
-      properties: *ref_52
-      required: *ref_53
+      properties: *ref_50
+      required: *ref_51
     OtpValue:
       title: OtpValue
       type: string
@@ -7340,11 +7302,11 @@ components:
       description: >
         U2F challenge-response, where payer FSP verifies if the response
         provided by end-user device matches the previously registered key.
-      properties: *ref_95
-      required: *ref_96
+      properties: *ref_93
+      required: *ref_94
     AuthenticationValue:
       title: AuthenticationValue
-      anyOf: *ref_97
+      anyOf: *ref_95
       description: >-
         Contains the authentication value. The format depends on the
         authentication type used in the AuthenticationInfo complex type.
@@ -7352,12 +7314,12 @@ components:
       title: AuthenticationInfo
       type: object
       description: Data model for the complex type AuthenticationInfo.
-      properties: *ref_67
-      required: *ref_68
+      properties: *ref_65
+      required: *ref_66
     AuthorizationResponse:
       title: AuthorizationResponse
       type: string
-      enum: *ref_69
+      enum: *ref_67
       description: |-
         Below are the allowed values for the enumeration.
         - ENTERED - Consumer entered the authentication value.
@@ -7368,12 +7330,12 @@ components:
       title: AuthorizationsIDPutResponse
       type: object
       description: 'The object sent in the PUT /authorizations/{ID} callback.'
-      properties: *ref_98
-      required: *ref_99
+      properties: *ref_96
+      required: *ref_97
     ConsentScopeType:
       title: ConsentScopeType
       type: string
-      enum: *ref_100
+      enum: *ref_98
       description: |
         The scopes requested for a ConsentRequest.
         - "accounts.getBalance" - Get the balance of a given account.
@@ -7387,12 +7349,12 @@ components:
           accountId: "dfsp.username.5678",
           actions: [ "accounts.transfer", "accounts.getBalance" ]
         }
-      properties: *ref_50
-      required: *ref_51
+      properties: *ref_48
+      required: *ref_49
     ConsentRequestChannelType:
       title: ConsentRequestChannelType
       type: string
-      enum: *ref_101
+      enum: *ref_99
       description: |
         The auth channel being used for the consentRequest.
         - "WEB" - The Web auth channel.
@@ -7401,12 +7363,12 @@ components:
       title: ConsentRequestsPostRequest
       type: object
       description: The object sent in a `POST /consentRequests` request.
-      properties: *ref_102
-      required: *ref_103
+      properties: *ref_100
+      required: *ref_101
     ConsentRequestChannelTypeWeb:
       title: ConsentRequestChannelTypeWeb
       type: string
-      enum: *ref_104
+      enum: *ref_102
       description: |
         The web auth channel being used for PUT consentRequest/{ID} request.
     ConsentRequestsIDPutResponseWeb:
@@ -7424,13 +7386,13 @@ components:
         supposed user should be redirected. This URL should be a place where
 
         the user can prove their identity (e.g., by logging in).
-      properties: *ref_105
-      required: *ref_106
+      properties: *ref_103
+      required: *ref_104
       additionalProperties: false
     ConsentRequestChannelTypeOTP:
       title: ConsentRequestChannelTypeOTP
       type: string
-      enum: *ref_107
+      enum: *ref_105
       description: |
         The OTP auth channel being used for PUT consentRequest/{ID} request.
     ConsentRequestsIDPutResponseOTP:
@@ -7442,25 +7404,25 @@ components:
 
         Schema used in the request consent phase of the account linking OTP/SMS
         flow.
-      properties: *ref_108
-      required: *ref_109
+      properties: *ref_106
+      required: *ref_107
       additionalProperties: false
     ConsentRequestsIDPatchRequest:
       title: ConsentRequestsIDPatchRequest
       type: object
       description: 'The object sent in a `PATCH /consentRequests/{ID}` request.'
-      properties: *ref_110
-      required: *ref_111
+      properties: *ref_108
+      required: *ref_109
     ConsentsPostRequest:
       title: ConsentPostRequest
       type: object
       description: The object sent in a `POST /consents` request.
-      properties: *ref_112
-      required: *ref_113
+      properties: *ref_110
+      required: *ref_111
     CredentialType:
       title: CredentialType
       type: string
-      enum: *ref_54
+      enum: *ref_52
       description: |
         The type of the Credential.
         - "FIDO" - A FIDO public/private keypair.
@@ -7470,8 +7432,8 @@ components:
       description: |
         An object sent in a `PUT /consents/{ID}` request.
         Based on https://w3c.github.io/webauthn/#iface-pkcredential
-      properties: *ref_55
-      required: *ref_56
+      properties: *ref_53
+      required: *ref_54
     SignedCredential:
       title: SignedCredential
       type: object
@@ -7488,8 +7450,8 @@ components:
         when
 
         updating a credential.
-      properties: *ref_114
-      required: *ref_115
+      properties: *ref_112
+      required: *ref_113
       additionalProperties: false
     ConsentsIDPutResponseSigned:
       title: ConsentsIDPutResponseSigned
@@ -7500,8 +7462,8 @@ components:
 
         Called by a `PISP` to after signing a challenge. Sent to a DFSP for
         verification.
-      properties: *ref_116
-      required: *ref_117
+      properties: *ref_114
+      required: *ref_115
     VerifiedCredential:
       title: VerifiedCredential
       type: object
@@ -7518,8 +7480,8 @@ components:
         when
 
         updating a credential.
-      properties: *ref_118
-      required: *ref_119
+      properties: *ref_116
+      required: *ref_117
       additionalProperties: false
     ConsentsIDPutResponseVerified:
       title: ConsentsIDPutResponseVerified
@@ -7530,12 +7492,12 @@ components:
 
         Called by a `auth-service` to notify a DFSP that a credential has been
         verified and registered.
-      properties: *ref_120
-      required: *ref_121
+      properties: *ref_118
+      required: *ref_119
     ConsentStatusTypeVerified:
       title: ConsentStatusType
       type: string
-      enum: *ref_122
+      enum: *ref_120
       description: |
         The status of the Consent.
         - "VERIFIED" - The Consent is valid and verified.
@@ -7547,12 +7509,12 @@ components:
         Sent by the DFSP to the PISP when a consent is verified.
         Used in the "Register Credential" part of the Account linking flow.
       type: object
-      properties: *ref_123
-      required: *ref_124
+      properties: *ref_121
+      required: *ref_122
     ConsentStatusTypeRevoked:
       title: ConsentStatusType
       type: string
-      enum: *ref_125
+      enum: *ref_123
       description: |
         The status of the Consent.
         - "REVOKED" - The Consent is no longer valid and has been revoked.
@@ -7564,26 +7526,26 @@ components:
         Sent to both the PISP and DFSP when a consent is revoked.
         Used in the "Unlinking" part of the Account Unlinking flow.
       type: object
-      properties: *ref_126
-      required: *ref_127
+      properties: *ref_124
+      required: *ref_125
     ConsentsIDGenerateChallengePostRequest:
       title: ConsentsIDGenerateChallengePostRequest
       type: object
       description: |
         A credential used to allow a user to prove their identity
         and access to an account with a DFSP.
-      properties: *ref_128
-      required: *ref_129
+      properties: *ref_126
+      required: *ref_127
     ServicesServiceTypePutResponse:
       title: ServicesServiceTypePutResponse
       type: object
       description: 'The object sent in a `PUT /services/{ServiceType}` request.'
-      properties: *ref_130
-      required: *ref_131
+      properties: *ref_128
+      required: *ref_129
     PartyIdTypeTPLink:
       title: PartyIdTypeTPLink
       type: string
-      enum: *ref_132
+      enum: *ref_130
       description: >
         This is a variant based on FSPIOP `PartyIdType` specification.
 
@@ -7597,12 +7559,12 @@ components:
       title: PartyIdInfo
       type: object
       description: Data model for the complex type PartyIdInfo.
-      properties: *ref_133
-      required: *ref_134
+      properties: *ref_131
+      required: *ref_132
     AmountType:
       title: AmountType
       type: string
-      enum: *ref_135
+      enum: *ref_133
       description: >-
         Below are the allowed values for the enumeration AmountType.
 
@@ -7616,16 +7578,16 @@ components:
       title: ThirdpartyRequestsTransactionsPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/transactions request.
-      properties: *ref_60
-      required: *ref_61
+      properties: *ref_58
+      required: *ref_59
     ThirdpartyRequestsTransactionsIDPutResponse:
       title: ThirdpartyRequestsTransactionsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdPartyRequests/transactions/{ID}
         request.
-      properties: *ref_136
-      required: *ref_137
+      properties: *ref_134
+      required: *ref_135
     BinaryString:
       type: string
       pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
@@ -7641,22 +7603,22 @@ components:
       description: >-
         The object sent in the PUT
         /thirdpartyRequests/transactions/{id}/authorizations request.
-      properties: *ref_138
-      required: *ref_139
+      properties: *ref_136
+      required: *ref_137
     ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest:
       title: ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest
       type: object
       description: >-
         The object sent in the POST
         /thirdpartyRequests/transactions/{id}/authorizations request.
-      properties: *ref_140
-      required: *ref_141
+      properties: *ref_138
+      required: *ref_139
     ThirdpartyRequestsAuthorizationsPostRequest:
       title: ThirdpartyRequestsAuthorizationsPostRequest
       description: POST /thirdpartyRequests/authorizations request object.
       type: object
-      properties: *ref_142
-      required: *ref_143
+      properties: *ref_140
+      required: *ref_141
       additionalProperties: false
     ThirdpartyRequestsAuthorizationsIDPutResponse:
       title: ThirdpartyRequestsAuthorizationsIDPutResponse
@@ -7664,39 +7626,39 @@ components:
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
-      properties: *ref_144
-      required: *ref_145
+      properties: *ref_142
+      required: *ref_143
     ThirdpartyRequestsVerificationsPostRequest:
       title: ThirdpartyRequestsVerificationsPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/verifications request.
-      properties: *ref_146
-      required: *ref_147
+      properties: *ref_144
+      required: *ref_145
     ThirdpartyRequestsVerificationsIDPutResponse:
       title: ThirdpartyRequestsVerificationsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/verifications/{ID}
         request.
-      properties: *ref_148
-      required: *ref_149
+      properties: *ref_146
+      required: *ref_147
   parameters:
     ID:
       name: ID
       in: path
       required: true
-      schema: *ref_36
+      schema: *ref_34
       description: The identifier value.
     Date:
       name: Date
       in: header
-      schema: *ref_39
+      schema: *ref_37
       required: true
       description: The `Date` header field indicates the date when the request was sent.
     X-Forwarded-For:
       name: X-Forwarded-For
       in: header
-      schema: *ref_40
+      schema: *ref_38
       required: false
       description: >-
         The `X-Forwarded-For` header field is an unofficially accepted standard
@@ -7712,7 +7674,7 @@ components:
     FSPIOP-Source:
       name: FSPIOP-Source
       in: header
-      schema: *ref_41
+      schema: *ref_39
       required: true
       description: >-
         The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -7722,7 +7684,7 @@ components:
     FSPIOP-Destination:
       name: FSPIOP-Destination
       in: header
-      schema: *ref_42
+      schema: *ref_40
       required: false
       description: >-
         The `FSPIOP-Destination` header field is a non-HTTP standard field used
@@ -7736,7 +7698,7 @@ components:
     FSPIOP-Encryption:
       name: FSPIOP-Encryption
       in: header
-      schema: *ref_43
+      schema: *ref_41
       required: false
       description: >-
         The `FSPIOP-Encryption` header field is a non-HTTP standard field used
@@ -7744,7 +7706,7 @@ components:
     FSPIOP-Signature:
       name: FSPIOP-Signature
       in: header
-      schema: *ref_44
+      schema: *ref_42
       required: false
       description: >-
         The `FSPIOP-Signature` header field is a non-HTTP standard field used by
@@ -7752,7 +7714,7 @@ components:
     FSPIOP-URI:
       name: FSPIOP-URI
       in: header
-      schema: *ref_45
+      schema: *ref_43
       required: false
       description: >-
         The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -7763,7 +7725,7 @@ components:
     FSPIOP-HTTP-Method:
       name: FSPIOP-HTTP-Method
       in: header
-      schema: *ref_46
+      schema: *ref_44
       required: false
       description: >-
         The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used
@@ -7775,7 +7737,7 @@ components:
       name: Accept
       in: header
       required: true
-      schema: *ref_49
+      schema: *ref_47
       description: >-
         The `Accept` header field indicates the version of the API the client
         would like the server to use.
@@ -7783,7 +7745,7 @@ components:
       name: Content-Length
       in: header
       required: false
-      schema: *ref_37
+      schema: *ref_35
       description: >-
         The `Content-Length` header field indicates the anticipated size of the
         payload body. Only sent if there is a body.
@@ -7794,7 +7756,7 @@ components:
     Content-Type:
       name: Content-Type
       in: header
-      schema: *ref_38
+      schema: *ref_36
       required: true
       description: >-
         The `Content-Type` header indicates the specific version of the API used
@@ -7803,7 +7765,7 @@ components:
       name: ServiceType
       in: path
       required: true
-      schema: *ref_57
+      schema: *ref_55
       description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
   responses:
     '200':
@@ -7812,36 +7774,36 @@ components:
       description: Accepted
     '400':
       description: Bad Request
-      content: *ref_20
-      headers: *ref_21
+      content: *ref_18
+      headers: *ref_19
     '401':
       description: Unauthorized
-      content: *ref_22
-      headers: *ref_23
+      content: *ref_20
+      headers: *ref_21
     '403':
       description: Forbidden
-      content: *ref_24
-      headers: *ref_25
+      content: *ref_22
+      headers: *ref_23
     '404':
       description: Not Found
-      content: *ref_26
-      headers: *ref_27
+      content: *ref_24
+      headers: *ref_25
     '405':
       description: Method Not Allowed
-      content: *ref_28
-      headers: *ref_29
+      content: *ref_26
+      headers: *ref_27
     '406':
       description: Not Acceptable
-      content: *ref_30
-      headers: *ref_31
+      content: *ref_28
+      headers: *ref_29
     '501':
       description: Not Implemented
-      content: *ref_32
-      headers: *ref_33
+      content: *ref_30
+      headers: *ref_31
     '503':
       description: Service Unavailable
-      content: *ref_34
-      headers: *ref_35
+      content: *ref_32
+      headers: *ref_33
   headers:
     Content-Length:
       required: false

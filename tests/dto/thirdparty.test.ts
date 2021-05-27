@@ -144,13 +144,6 @@ describe('thirdparty', () => {
     expect(accountId).toBeDefined()
   })
 
-  test('AccountList', () => {
-    const accountList: Schemas.AccountList = {
-      account: [account]
-    }
-    expect(accountList).toBeDefined()
-  })
-
   test('AuthorizationChannelType', () => {
     expect(authorizationChannelTypeU2F).toBeDefined()
   })

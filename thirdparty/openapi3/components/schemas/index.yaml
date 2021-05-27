@@ -2,8 +2,6 @@ Account:
   $ref: ./Account.yaml
 AccountId:
   $ref: ./AccountId.yaml
-AccountList:
-  $ref: ./AccountList.yaml
 AccountsIDPutResponse:
   $ref: ./AccountsIDPutResponse.yaml
 Amount:

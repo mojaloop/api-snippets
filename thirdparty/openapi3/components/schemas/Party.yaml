@@ -2,8 +2,6 @@ title: Party
 type: object
 description: Data model for the complex type Party.
 properties:
-  accounts:
-    $ref: './AccountList.yaml'
   partyIdInfo:
     $ref: ./PartyIdInfo.yaml
   merchantClassificationCode:
