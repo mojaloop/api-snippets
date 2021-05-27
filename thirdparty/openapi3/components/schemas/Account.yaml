@@ -9,4 +9,6 @@ properties:
   currency:
     $ref: ./Currency.yaml
 required:
+  - accountNickname
+  - id
   - currency
