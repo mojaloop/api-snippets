@@ -3490,6 +3490,7 @@ paths:
                               type: string
                               description: TBD
                             response:
+                              type: object
                               properties:
                                 clientDataJSON:
                                   type: string
