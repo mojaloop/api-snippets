@@ -7681,7 +7681,7 @@ export interface operations {
     };
   };
   /**
-   * DFSP sends this request to the PISP after granting consent.
+   * DFSP sends this request to the PISP after granting consent. DFSP sends this request to an Auth service to validate a signed consent.
    */
   PostConsents: {
     parameters: {
@@ -7748,7 +7748,42 @@ export interface operations {
          * The id of the ConsentRequest that was used to initiate the
          * creation of this Consent.
          */
-        consentRequestId: string;
+        consentRequestId?: string;
+        /**
+         * A credential used to allow a user to prove their identity and access
+         * to an account with a DFSP.
+         *
+         * SignedCredential is a special formatting of the credential to allow us to be
+         * more explicit about the `status` field - it should only ever be PENDING when
+         * updating a credential.
+         */
+        credential?: {
+          /**
+           * The type of the Credential.
+           * - "FIDO" - A FIDO public/private keypair.
+           */
+          credentialType: "FIDO";
+          /**
+           * The challenge has signed but not yet verified.
+           */
+          status: "PENDING";
+          /**
+           * An object sent in a `PUT /consents/{ID}` request.
+           * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+           */
+          payload: {
+            /**
+             * TBD
+             */
+            id: string;
+            response: {
+              /**
+               * TBD
+               */
+              clientDataJSON: string;
+            };
+          };
+        };
         scopes: {
           /**
            * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -22247,31 +22282,6 @@ export interface components {
      */
     ConsentRequestsIDPatchRequest: { authToken: string };
     /**
-     * The object sent in a `POST /consents` request.
-     */
-    ConsentsPostRequest: {
-      /**
-       * Common ID between the PISP and FSP for the Consent object
-       * decided by the DFSP who creates the Consent
-       * This field is REQUIRED for POST /consent.
-       */
-      consentId: string;
-      /**
-       * The id of the ConsentRequest that was used to initiate the
-       * creation of this Consent.
-       */
-      consentRequestId: string;
-      scopes: {
-        /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
-         */
-        accountId: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
-      }[];
-    };
-    /**
      * The type of the Credential.
      * - "FIDO" - A FIDO public/private keypair.
      */
@@ -22326,6 +22336,66 @@ export interface components {
           clientDataJSON: string;
         };
       };
+    };
+    /**
+     * The object sent in a `POST /consents` request.
+     */
+    ConsentsPostRequest: {
+      /**
+       * Common ID between the PISP and FSP for the Consent object
+       * decided by the DFSP who creates the Consent
+       * This field is REQUIRED for POST /consent.
+       */
+      consentId: string;
+      /**
+       * The id of the ConsentRequest that was used to initiate the
+       * creation of this Consent.
+       */
+      consentRequestId?: string;
+      /**
+       * A credential used to allow a user to prove their identity and access
+       * to an account with a DFSP.
+       *
+       * SignedCredential is a special formatting of the credential to allow us to be
+       * more explicit about the `status` field - it should only ever be PENDING when
+       * updating a credential.
+       */
+      credential?: {
+        /**
+         * The type of the Credential.
+         * - "FIDO" - A FIDO public/private keypair.
+         */
+        credentialType: "FIDO";
+        /**
+         * The challenge has signed but not yet verified.
+         */
+        status: "PENDING";
+        /**
+         * An object sent in a `PUT /consents/{ID}` request.
+         * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+         */
+        payload: {
+          /**
+           * TBD
+           */
+          id: string;
+          response: {
+            /**
+             * TBD
+             */
+            clientDataJSON: string;
+          };
+        };
+      };
+      scopes: {
+        /**
+         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+         * be Bank Account Number or anything that may expose a User's private bank
+         * account information.
+         */
+        accountId: string;
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
+      }[];
     };
     /**
      * The HTTP request `PUT /consents/{ID}` is used by the PISP to update a Consent with a signed challenge and register a credential.

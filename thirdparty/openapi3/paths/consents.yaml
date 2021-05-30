@@ -6,6 +6,7 @@ post:
   summary: PostConsents
   description: >
     DFSP sends this request to the PISP after granting consent.
+    DFSP sends this request to an Auth service to validate a signed consent.
   parameters:
     #Headers
     - $ref: ../components/parameters/Accept.yaml
