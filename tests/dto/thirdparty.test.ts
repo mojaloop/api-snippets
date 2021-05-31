@@ -342,6 +342,15 @@ describe('thirdparty', () => {
     expect(note).toBeDefined()
   })
 
+  test('ParticipantsIDPutResponse', () => {
+    const participantsIDPutResponse: Schemas.ParticipantsIDPutResponse = {
+      partyList: [
+        { partyId: partyIdInfo }
+      ]
+    }
+    expect(participantsIDPutResponse).toBeDefined()
+  })
+
   test('ParticipantsPostRequest', () => {
     const participantsPostRequest: Schemas.ParticipantsPostRequest = {
       requestId: correlationId,

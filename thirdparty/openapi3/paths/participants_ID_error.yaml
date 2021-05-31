@@ -1,15 +1,16 @@
-post:
+put:
+  description: >-
+    If there is an error during FSP information creation in the server, the
+    error callback `PUT /participants/{ID}/error` is used. The `{ID}` in the URI
+    should contain the requestId that was used for the creation of the
+    participant information.
+  summary: Return bulk participant information error
   tags:
-    - consents
+    - participants
     - sampled
-  operationId: PostConsents
-  summary: PostConsents
-  description: >
-    DFSP sends this request to the PISP after granting consent.
-    DFSP sends this request to an Auth service to validate a signed consent.
+  operationId: PutParticipantsByIDAndError
   parameters:
-    #Headers
-    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/ID.yaml
     - $ref: ../components/parameters/Content-Length.yaml
     - $ref: ../components/parameters/Content-Type.yaml
     - $ref: ../components/parameters/Date.yaml
@@ -21,27 +22,28 @@ post:
     - $ref: ../components/parameters/FSPIOP-URI.yaml
     - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
   requestBody:
+    description: Details of the error returned.
     required: true
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/ConsentsPostRequest.yaml
+          $ref: ../components/schemas/ErrorInformationObject.yaml
   responses:
-    202:
-      $ref: ../components/responses/202.yaml
-    400:
+    '200':
+      $ref: ../components/responses/200.yaml
+    '400':
       $ref: ../components/responses/400.yaml
-    401:
+    '401':
       $ref: ../components/responses/401.yaml
-    403:
+    '403':
       $ref: ../components/responses/403.yaml
-    404:
+    '404':
       $ref: ../components/responses/404.yaml
-    405:
+    '405':
       $ref: ../components/responses/405.yaml
-    406:
+    '406':
       $ref: ../components/responses/406.yaml
-    501:
+    '501':
       $ref: ../components/responses/501.yaml
-    503:
+    '503':
       $ref: ../components/responses/503.yaml
