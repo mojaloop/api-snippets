@@ -360,6 +360,20 @@ describe('thirdparty', () => {
     expect(participantsPostRequest).toBeDefined()
   })
 
+  test('ParticipantsPostRequest', () => {
+    const participantsTypeIDPutResponse: Schemas.ParticipantsTypeIDPutResponse = {
+      fspId
+    }
+    expect(participantsTypeIDPutResponse).toBeDefined()
+  })
+
+  test('ParticipantsTypeIDSubIDPostRequest', () => {
+    const participantsTypeIDSubIDPostRequest: Schemas.ParticipantsTypeIDSubIDPostRequest = {
+      fspId
+    }
+    expect(participantsTypeIDSubIDPostRequest).toBeDefined()
+  })
+
   test('PartiesTypeIDPutResponse', () => {
     const partiesTypeIDPutResponse: Schemas.PartiesTypeIDPutResponse = {
       party

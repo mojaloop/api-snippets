@@ -1,15 +1,15 @@
 put:
   description: >-
-    If there is an error during FSP information creation in the server, the
-    error callback `PUT /participants/{ID}/error` is used. The `{ID}` in the URI
-    should contain the requestId that was used for the creation of the
-    participant information.
-  summary: Return bulk participant information error
+    If the server is unable to find, create or delete the associated FSP of the
+    provided identity, or another processing error occurred, the error callback
+    `PUT /participants/{Type}/{ID}/error` (or `PUT
+    /participants/{Type}/{ID}/{SubId}/error`) is used.
+  summary: Return participant information error
   tags:
     - participants
-    - sampled
-  operationId: PutParticipantsByIDAndError
+  operationId: ParticipantsErrorByTypeAndID
   parameters:
+    - $ref: ../components/parameters/Type.yaml
     - $ref: ../components/parameters/ID.yaml
     - $ref: ../components/parameters/Content-Length.yaml
     - $ref: ../components/parameters/Content-Type.yaml

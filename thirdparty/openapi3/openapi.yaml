@@ -82,6 +82,16 @@ paths:
   # TODO: remove in next major version release
   /consents/{ID}/generateChallenge:
     $ref: paths/consents_ID_generateChallenge.yaml
+  /participants:
+    $ref: paths/participants.yaml
+  /participants/{ID}:
+    $ref: paths/participants_ID.yaml
+  /participants/{ID}/error:
+    $ref: paths/participants_ID_error.yaml
+  /participants/{Type}/{ID}:
+    $ref: paths/participants_Type_ID.yaml
+  /participants/{Type}/{ID}/error:
+    $ref: paths/participants_Type_ID_error.yaml
   /services/{ServiceType}:
     $ref: paths/services_ServiceType.yaml
   /services/{ServiceType}/error:

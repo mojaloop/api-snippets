@@ -1,16 +1,16 @@
-put:
+post:
   description: >-
-    If there is an error during FSP information creation in the server, the
-    error callback `PUT /participants/{ID}/error` is used. The `{ID}` in the URI
-    should contain the requestId that was used for the creation of the
-    participant information.
-  summary: Return bulk participant information error
+    The HTTP request `POST /participants` is used to create information in the
+    server regarding the provided list of identities. This request should be
+    used for bulk creation of FSP information for more than one Party. The
+    optional currency parameter should indicate that each provided Party
+    supports the currency.
+  summary: Create bulk participant information
   tags:
     - participants
-    - sampled
-  operationId: PutParticipantsByIDAndError
+  operationId: Participants1
   parameters:
-    - $ref: ../components/parameters/ID.yaml
+    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
     - $ref: ../components/parameters/Content-Type.yaml
     - $ref: ../components/parameters/Date.yaml
@@ -22,15 +22,15 @@ put:
     - $ref: ../components/parameters/FSPIOP-URI.yaml
     - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
   requestBody:
-    description: Details of the error returned.
+    description: Participant information to be created.
     required: true
     content:
       application/json:
         schema:
-          $ref: ../../../fspiop/v1_1/openapi3/components/schemas/ErrorInformationObject.yaml
+          $ref: ../components/schemas/ParticipantsPostRequest.yaml
   responses:
-    '200':
-      $ref: ../components/responses/200.yaml
+    '202':
+      $ref: ../components/responses/202.yaml
     '400':
       $ref: ../components/responses/400.yaml
     '401':
