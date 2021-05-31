@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.17](https://github.com/mojaloop/api-snippets/compare/v12.3.16...v12.3.17) (2021-05-31)
+
+
+### Maintenance
+
+* **deps:** bump ws from 7.4.2 to 7.4.6 ([#90](https://github.com/mojaloop/api-snippets/issues/90)) ([0aad83e](https://github.com/mojaloop/api-snippets/commit/0aad83e9225d12091100a0942aaddb75bbc5c072))
+
 ### [12.3.16](https://github.com/mojaloop/api-snippets/compare/v12.3.15...v12.3.16) (2021-05-31)
 
 
