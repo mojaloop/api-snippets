@@ -116,6 +116,8 @@ Name:
   $ref: ./Name.yaml
 Note:
   $ref: ./Note.yaml
+ParticipantsIDPutResponse:
+  $ref: ./ParticipantsIDPutResponse.yaml
 ParticipantsPostRequest:
   $ref: ./ParticipantsPostRequest.yaml
 PartiesTypeIDPutResponse:

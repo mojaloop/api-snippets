@@ -60,6 +60,7 @@ export namespace Schemas {
   export type Money = components['schemas']['Money']
   export type Name = components['schemas']['Name']
   export type Note = components['schemas']['Note']
+  export type ParticipantsIDPutResponse = components['schemas']['ParticipantsIDPutResponse']
   export type ParticipantsPostRequest = components['schemas']['ParticipantsPostRequest']
   export type PartiesTypeIDPutResponse = components['schemas']['PartiesTypeIDPutResponse']
   export type Party = components['schemas']['Party']

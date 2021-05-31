@@ -35,6 +35,7 @@ paths:
                 - $ref: './components/schemas/IlpFulfilment.yaml'
                 - $ref: './components/schemas/Note.yaml'
                 - $ref: './components/schemas/PartyResult.yaml'
+                - $ref: './components/schemas/ParticipantsIDPutResponse.yaml'
                 - $ref: './components/schemas/ParticipantsPostRequest.yaml'
                 - $ref: './components/schemas/PartiesTypeIDPutResponse.yaml'
                 - $ref: './components/schemas/ServiceType.yaml'
