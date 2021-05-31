@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.16](https://github.com/mojaloop/api-snippets/compare/v12.3.15...v12.3.16) (2021-05-31)
+
+
+### Maintenance
+
+* update POST /consents and add participant endpoints to support bulk create ([#89](https://github.com/mojaloop/api-snippets/issues/89)) ([7d9069d](https://github.com/mojaloop/api-snippets/commit/7d9069dcf898b045bcd95ca3c6e8b73b717e0c94))
+
 ### [12.3.15](https://github.com/mojaloop/api-snippets/compare/v12.3.14...v12.3.15) (2021-05-27)
 
 
