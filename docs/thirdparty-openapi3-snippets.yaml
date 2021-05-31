@@ -477,9 +477,9 @@ paths:
                   description: Data model for the complex type PartyResult.
                   properties: &ref_4
                     partyId:
-                      description: Data model for the complex type PartyIdInfo.
                       title: PartyIdInfo
                       type: object
+                      description: Data model for the complex type PartyIdInfo.
                       properties: &ref_7
                         partyIdType:
                           title: PartyIdType
@@ -638,9 +638,9 @@ paths:
                         - partyIdType
                         - partyIdentifier
                     errorInformation:
-                      description: Data model for the complex type ErrorInformation.
                       title: ErrorInformation
                       type: object
+                      description: Data model for the complex type ErrorInformation.
                       properties: &ref_15
                         errorCode:
                           title: ErrorCode
