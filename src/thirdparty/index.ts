@@ -62,6 +62,8 @@ export namespace Schemas {
   export type Note = components['schemas']['Note']
   export type ParticipantsIDPutResponse = components['schemas']['ParticipantsIDPutResponse']
   export type ParticipantsPostRequest = components['schemas']['ParticipantsPostRequest']
+  export type ParticipantsTypeIDPutResponse = components['schemas']['ParticipantsTypeIDPutResponse']
+  export type ParticipantsTypeIDSubIDPostRequest = components['schemas']['ParticipantsTypeIDSubIDPostRequest']
   export type PartiesTypeIDPutResponse = components['schemas']['PartiesTypeIDPutResponse']
   export type Party = components['schemas']['Party']
   export type PartyComplexName = components['schemas']['PartyComplexName']
