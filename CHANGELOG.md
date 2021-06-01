@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.3.18](https://github.com/mojaloop/api-snippets/compare/v12.3.17...v12.3.18) (2021-06-01)
+
+
+### Maintenance
+
+* more participant snippets and add paths ([#91](https://github.com/mojaloop/api-snippets/issues/91)) ([722af76](https://github.com/mojaloop/api-snippets/commit/722af76b12da0908bce8682fc74d154e7eb2f33b))
+
 ### [12.3.17](https://github.com/mojaloop/api-snippets/compare/v12.3.16...v12.3.17) (2021-05-31)
 
 
