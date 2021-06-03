@@ -12,6 +12,10 @@ properties:
       decided by the DFSP who creates the Consent
       This field is REQUIRED for POST /consent.
       creation of this Consent.
+  scopes:
+    type: array
+    items:
+      $ref: ./Scope.yaml
   credential:
     allOf:
       - $ref: ./SignedCredential.yaml

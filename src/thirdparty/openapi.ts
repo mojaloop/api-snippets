@@ -8108,6 +8108,15 @@ export interface operations {
              * creation of this Consent.
              */
         consentId: string;
+        scopes: {
+          /**
+               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+               * be Bank Account Number or anything that may expose a User's private bank
+               * account information.
+               */
+          accountId: string;
+          actions: ("accounts.getBalance" | "accounts.transfer")[];
+        }[];
         credential: {
           /**
                * The type of the Credential.
@@ -26899,6 +26908,15 @@ export interface components {
        * creation of this Consent.
        */
       consentId: string;
+      scopes: {
+        /**
+         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+         * be Bank Account Number or anything that may expose a User's private bank
+         * account information.
+         */
+        accountId: string;
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
+      }[];
       credential: {
         /**
          * The type of the Credential.

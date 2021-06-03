@@ -3065,6 +3065,19 @@ paths:
                         This field is REQUIRED for POST /consent.
 
                         creation of this Consent.
+                    scopes:
+                      type: array
+                      items:
+                        title: Scope
+                        type: object
+                        description: Scope + Account Identifier mapping for a Consent.
+                        example: |
+                          {
+                            accountId: "dfsp.username.5678",
+                            actions: [ "accounts.transfer", "accounts.getBalance" ]
+                          }
+                        properties: *ref_50
+                        required: *ref_51
                     credential:
                       allOf:
                         - title: SignedCredential
