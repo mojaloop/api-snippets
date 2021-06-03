@@ -8099,59 +8099,126 @@ export interface operations {
       };
     };
     requestBody: {
-      "application/json": {
+      "application/json":
+      | {
         /**
-         * Common ID between the PISP and FSP for the Consent object
-         * decided by the DFSP who creates the Consent
-         * This field is REQUIRED for POST /consent.
-         */
+             * Common ID between the PISP and FSP for the Consent object
+             * decided by the DFSP who creates the Consent
+             * This field is REQUIRED for POST /consent.
+             * creation of this Consent.
+             */
         consentId: string;
-        /**
-         * The id of the ConsentRequest that was used to initiate the
-         * creation of this Consent.
-         */
-        consentRequestId?: string;
-        /**
-         * A credential used to allow a user to prove their identity and access
-         * to an account with a DFSP.
-         *
-         * SignedCredential is a special formatting of the credential to allow us to be
-         * more explicit about the `status` field - it should only ever be PENDING when
-         * updating a credential.
-         */
-        credential?: {
+        scopes: {
           /**
-           * The type of the Credential.
-           * - "FIDO" - A FIDO public/private keypair.
-           */
+               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+               * be Bank Account Number or anything that may expose a User's private bank
+               * account information.
+               */
+          accountId: string;
+          actions: ("accounts.getBalance" | "accounts.transfer")[];
+        }[];
+        credential: {
+          /**
+               * The type of the Credential.
+               * - "FIDO" - A FIDO public/private keypair
+               */
           credentialType: "FIDO";
           /**
-           * The challenge has signed but not yet verified.
-           */
+               * The challenge has signed but not yet verified.
+               */
           status: "PENDING";
           /**
-           * An object sent in a `PUT /consents/{ID}` request.
-           * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-           */
+               * An object sent in a `PUT /consents/{ID}` request.
+               * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+               * and mostly on: https://webauthn.guide/#registration
+               * AuthenticatorAttestationResponse
+               * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
+               */
           payload: {
             /**
-             * TBD
-             */
+                 * credential id: identifier of pair of keys, base64 encoded
+                 * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+                 */
             id: string;
+            /**
+                 * AuthenticatorAttestationResponse
+                 */
             response: {
               /**
-               * TBD
-               */
-              clientDataJSON: string;
+                   * parsed AuthenticatorAttestationResponse.clientDataJSON
+                   * client data used to create credential
+                   * https://webauthn.guide/#registration
+                   */
+              clientData: {
+                /**
+                     * the challenge used to create credential
+                     */
+                challenge: string;
+                /**
+                     * the origin used to create credential
+                     */
+                origin: string;
+                /**
+                     * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+                     * In such case OpenAPI framework will send back the status 400
+                     */
+                type: "webauthn.create";
+              };
+              /**
+                   * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
+                   * https://webauthn.guide/#registration
+                   */
+              attestation: {
+                /**
+                     * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+                     * parsing example can be found here:
+                     * https://webauthn.guide/#registration
+                     */
+                authData?: string;
+                /**
+                     * attestation statement format
+                     * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+                     * https://webauthn.guide/#registration
+                     */
+                format?: "fido-u2f";
+                /**
+                     * The FIDO statement format when `format: 'fido-u2f'` only!
+                     * It can differ when other format types are enabled!
+                     */
+                statement?: {
+                  /**
+                       * signature
+                       * base64 encoded Uint8Array(70)
+                       */
+                  sig: string;
+                  /**
+                       * attestation certificate in X.509 format
+                       */
+                  x5c: string;
+                };
+              };
             };
           };
         };
+      }
+      | {
+        /**
+             * Common ID between the PISP and FSP for the Consent object
+             * decided by the DFSP who creates the Consent
+             * This field is REQUIRED for POST /consent.
+             */
+        consentId: string;
+        /**
+             * The id of the ConsentRequest that was used to initiate the
+             * creation of this Consent.
+             */
+        consentRequestId: string;
         scopes: {
           /**
-           * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-           * be Bank Account Number or anything that may expose a User's private bank
-           * account information.
-           */
+               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+               * be Bank Account Number or anything that may expose a User's private bank
+               * account information.
+               */
           accountId: string;
           actions: ("accounts.getBalance" | "accounts.transfer")[];
         }[];
@@ -9189,7 +9256,7 @@ export interface operations {
         credential: {
           /**
                * The type of the Credential.
-               * - "FIDO" - A FIDO public/private keypair.
+               * - "FIDO" - A FIDO public/private keypair
                */
           credentialType: "FIDO";
           /**
@@ -9199,17 +9266,73 @@ export interface operations {
           /**
                * An object sent in a `PUT /consents/{ID}` request.
                * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+               * and mostly on: https://webauthn.guide/#registration
+               * AuthenticatorAttestationResponse
+               * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
                */
           payload: {
             /**
-                 * TBD
+                 * credential id: identifier of pair of keys, base64 encoded
+                 * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
                  */
             id: string;
+            /**
+                 * AuthenticatorAttestationResponse
+                 */
             response: {
               /**
-                   * TBD
+                   * parsed AuthenticatorAttestationResponse.clientDataJSON
+                   * client data used to create credential
+                   * https://webauthn.guide/#registration
                    */
-              clientDataJSON: string;
+              clientData: {
+                /**
+                     * the challenge used to create credential
+                     */
+                challenge: string;
+                /**
+                     * the origin used to create credential
+                     */
+                origin: string;
+                /**
+                     * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+                     * In such case OpenAPI framework will send back the status 400
+                     */
+                type: "webauthn.create";
+              };
+              /**
+                   * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
+                   * https://webauthn.guide/#registration
+                   */
+              attestation: {
+                /**
+                     * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+                     * parsing example can be found here:
+                     * https://webauthn.guide/#registration
+                     */
+                authData?: string;
+                /**
+                     * attestation statement format
+                     * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+                     * https://webauthn.guide/#registration
+                     */
+                format?: "fido-u2f";
+                /**
+                     * The FIDO statement format when `format: 'fido-u2f'` only!
+                     * It can differ when other format types are enabled!
+                     */
+                statement?: {
+                  /**
+                       * signature
+                       * base64 encoded Uint8Array(70)
+                       */
+                  sig: string;
+                  /**
+                       * attestation certificate in X.509 format
+                       */
+                  x5c: string;
+                };
+              };
             };
           };
         };
@@ -9235,7 +9358,7 @@ export interface operations {
         credential: {
           /**
                * The type of the Credential.
-               * - "FIDO" - A FIDO public/private keypair.
+               * - "FIDO" - A FIDO public/private keypair
                */
           credentialType: "FIDO";
           /**
@@ -9245,17 +9368,73 @@ export interface operations {
           /**
                * An object sent in a `PUT /consents/{ID}` request.
                * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+               * and mostly on: https://webauthn.guide/#registration
+               * AuthenticatorAttestationResponse
+               * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
                */
           payload: {
             /**
-                 * TBD
+                 * credential id: identifier of pair of keys, base64 encoded
+                 * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
                  */
             id: string;
+            /**
+                 * AuthenticatorAttestationResponse
+                 */
             response: {
               /**
-                   * TBD
+                   * parsed AuthenticatorAttestationResponse.clientDataJSON
+                   * client data used to create credential
+                   * https://webauthn.guide/#registration
                    */
-              clientDataJSON: string;
+              clientData: {
+                /**
+                     * the challenge used to create credential
+                     */
+                challenge: string;
+                /**
+                     * the origin used to create credential
+                     */
+                origin: string;
+                /**
+                     * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+                     * In such case OpenAPI framework will send back the status 400
+                     */
+                type: "webauthn.create";
+              };
+              /**
+                   * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
+                   * https://webauthn.guide/#registration
+                   */
+              attestation: {
+                /**
+                     * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+                     * parsing example can be found here:
+                     * https://webauthn.guide/#registration
+                     */
+                authData?: string;
+                /**
+                     * attestation statement format
+                     * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+                     * https://webauthn.guide/#registration
+                     */
+                format?: "fido-u2f";
+                /**
+                     * The FIDO statement format when `format: 'fido-u2f'` only!
+                     * It can differ when other format types are enabled!
+                     */
+                statement?: {
+                  /**
+                       * signature
+                       * base64 encoded Uint8Array(70)
+                       */
+                  sig: string;
+                  /**
+                       * attestation certificate in X.509 format
+                       */
+                  x5c: string;
+                };
+              };
             };
           };
         };
@@ -10365,7 +10544,7 @@ export interface operations {
       "application/json": {
         /**
          * The type of the Credential.
-         * - "FIDO" - A FIDO public/private keypair.
+         * - "FIDO" - A FIDO public/private keypair
          */
         type: "FIDO";
       };
@@ -26551,23 +26730,79 @@ export interface components {
     ConsentRequestsIDPatchRequest: { authToken: string };
     /**
      * The type of the Credential.
-     * - "FIDO" - A FIDO public/private keypair.
+     * - "FIDO" - A FIDO public/private keypair
      */
     CredentialType: "FIDO";
     /**
      * An object sent in a `PUT /consents/{ID}` request.
      * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+     * and mostly on: https://webauthn.guide/#registration
+     * AuthenticatorAttestationResponse
+     * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
      */
-    PublicKeyCredential: {
+    FIDOPublicKeyCredential: {
       /**
-       * TBD
+       * credential id: identifier of pair of keys, base64 encoded
+       * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
        */
       id: string;
+      /**
+       * AuthenticatorAttestationResponse
+       */
       response: {
         /**
-         * TBD
+         * parsed AuthenticatorAttestationResponse.clientDataJSON
+         * client data used to create credential
+         * https://webauthn.guide/#registration
          */
-        clientDataJSON: string;
+        clientData: {
+          /**
+           * the challenge used to create credential
+           */
+          challenge: string;
+          /**
+           * the origin used to create credential
+           */
+          origin: string;
+          /**
+           * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+           * In such case OpenAPI framework will send back the status 400
+           */
+          type: "webauthn.create";
+        };
+        /**
+         * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
+         * https://webauthn.guide/#registration
+         */
+        attestation: {
+          /**
+           * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+           * parsing example can be found here:
+           * https://webauthn.guide/#registration
+           */
+          authData?: string;
+          /**
+           * attestation statement format
+           * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+           * https://webauthn.guide/#registration
+           */
+          format?: "fido-u2f";
+          /**
+           * The FIDO statement format when `format: 'fido-u2f'` only!
+           * It can differ when other format types are enabled!
+           */
+          statement?: {
+            /**
+             * signature
+             * base64 encoded Uint8Array(70)
+             */
+            sig: string;
+            /**
+             * attestation certificate in X.509 format
+             */
+            x5c: string;
+          };
+        };
       };
     };
     /**
@@ -26581,7 +26816,7 @@ export interface components {
     SignedCredential: {
       /**
        * The type of the Credential.
-       * - "FIDO" - A FIDO public/private keypair.
+       * - "FIDO" - A FIDO public/private keypair
        */
       credentialType: "FIDO";
       /**
@@ -26591,24 +26826,185 @@ export interface components {
       /**
        * An object sent in a `PUT /consents/{ID}` request.
        * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+       * and mostly on: https://webauthn.guide/#registration
+       * AuthenticatorAttestationResponse
+       * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
        */
       payload: {
         /**
-         * TBD
+         * credential id: identifier of pair of keys, base64 encoded
+         * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
          */
         id: string;
+        /**
+         * AuthenticatorAttestationResponse
+         */
         response: {
           /**
-           * TBD
+           * parsed AuthenticatorAttestationResponse.clientDataJSON
+           * client data used to create credential
+           * https://webauthn.guide/#registration
            */
-          clientDataJSON: string;
+          clientData: {
+            /**
+             * the challenge used to create credential
+             */
+            challenge: string;
+            /**
+             * the origin used to create credential
+             */
+            origin: string;
+            /**
+             * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+             * In such case OpenAPI framework will send back the status 400
+             */
+            type: "webauthn.create";
+          };
+          /**
+           * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
+           * https://webauthn.guide/#registration
+           */
+          attestation: {
+            /**
+             * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+             * parsing example can be found here:
+             * https://webauthn.guide/#registration
+             */
+            authData?: string;
+            /**
+             * attestation statement format
+             * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+             * https://webauthn.guide/#registration
+             */
+            format?: "fido-u2f";
+            /**
+             * The FIDO statement format when `format: 'fido-u2f'` only!
+             * It can differ when other format types are enabled!
+             */
+            statement?: {
+              /**
+               * signature
+               * base64 encoded Uint8Array(70)
+               */
+              sig: string;
+              /**
+               * attestation certificate in X.509 format
+               */
+              x5c: string;
+            };
+          };
         };
       };
     };
     /**
-     * The object sent in a `POST /consents` request.
+     * The object sent in a `POST /consents` request to AUTH-SERVICE by DFSP to store registered consent with PublicKey
+     * and whatever needed to perform authorization validation later
      */
-    ConsentsPostRequest: {
+    ConsentsPostRequestAUTH: {
+      /**
+       * Common ID between the PISP and FSP for the Consent object
+       * decided by the DFSP who creates the Consent
+       * This field is REQUIRED for POST /consent.
+       * creation of this Consent.
+       */
+      consentId: string;
+      scopes: {
+        /**
+         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+         * be Bank Account Number or anything that may expose a User's private bank
+         * account information.
+         */
+        accountId: string;
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
+      }[];
+      credential: {
+        /**
+         * The type of the Credential.
+         * - "FIDO" - A FIDO public/private keypair
+         */
+        credentialType: "FIDO";
+        /**
+         * The challenge has signed but not yet verified.
+         */
+        status: "PENDING";
+        /**
+         * An object sent in a `PUT /consents/{ID}` request.
+         * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+         * and mostly on: https://webauthn.guide/#registration
+         * AuthenticatorAttestationResponse
+         * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
+         */
+        payload: {
+          /**
+           * credential id: identifier of pair of keys, base64 encoded
+           * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+           */
+          id: string;
+          /**
+           * AuthenticatorAttestationResponse
+           */
+          response: {
+            /**
+             * parsed AuthenticatorAttestationResponse.clientDataJSON
+             * client data used to create credential
+             * https://webauthn.guide/#registration
+             */
+            clientData: {
+              /**
+               * the challenge used to create credential
+               */
+              challenge: string;
+              /**
+               * the origin used to create credential
+               */
+              origin: string;
+              /**
+               * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+               * In such case OpenAPI framework will send back the status 400
+               */
+              type: "webauthn.create";
+            };
+            /**
+             * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
+             * https://webauthn.guide/#registration
+             */
+            attestation: {
+              /**
+               * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+               * parsing example can be found here:
+               * https://webauthn.guide/#registration
+               */
+              authData?: string;
+              /**
+               * attestation statement format
+               * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+               * https://webauthn.guide/#registration
+               */
+              format?: "fido-u2f";
+              /**
+               * The FIDO statement format when `format: 'fido-u2f'` only!
+               * It can differ when other format types are enabled!
+               */
+              statement?: {
+                /**
+                 * signature
+                 * base64 encoded Uint8Array(70)
+                 */
+                sig: string;
+                /**
+                 * attestation certificate in X.509 format
+                 */
+                x5c: string;
+              };
+            };
+          };
+        };
+      };
+    };
+    /**
+     * The object sent in a `POST /consents` request to PISP by DFSP to ask for delivering the credential object.
+     */
+    ConsentsPostRequestPISP: {
       /**
        * Common ID between the PISP and FSP for the Consent object
        * decided by the DFSP who creates the Consent
@@ -26619,42 +27015,7 @@ export interface components {
        * The id of the ConsentRequest that was used to initiate the
        * creation of this Consent.
        */
-      consentRequestId?: string;
-      /**
-       * A credential used to allow a user to prove their identity and access
-       * to an account with a DFSP.
-       *
-       * SignedCredential is a special formatting of the credential to allow us to be
-       * more explicit about the `status` field - it should only ever be PENDING when
-       * updating a credential.
-       */
-      credential?: {
-        /**
-         * The type of the Credential.
-         * - "FIDO" - A FIDO public/private keypair.
-         */
-        credentialType: "FIDO";
-        /**
-         * The challenge has signed but not yet verified.
-         */
-        status: "PENDING";
-        /**
-         * An object sent in a `PUT /consents/{ID}` request.
-         * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-         */
-        payload: {
-          /**
-           * TBD
-           */
-          id: string;
-          response: {
-            /**
-             * TBD
-             */
-            clientDataJSON: string;
-          };
-        };
-      };
+      consentRequestId: string;
       scopes: {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -26690,7 +27051,7 @@ export interface components {
       credential: {
         /**
          * The type of the Credential.
-         * - "FIDO" - A FIDO public/private keypair.
+         * - "FIDO" - A FIDO public/private keypair
          */
         credentialType: "FIDO";
         /**
@@ -26700,17 +27061,73 @@ export interface components {
         /**
          * An object sent in a `PUT /consents/{ID}` request.
          * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+         * and mostly on: https://webauthn.guide/#registration
+         * AuthenticatorAttestationResponse
+         * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
          */
         payload: {
           /**
-           * TBD
+           * credential id: identifier of pair of keys, base64 encoded
+           * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
            */
           id: string;
+          /**
+           * AuthenticatorAttestationResponse
+           */
           response: {
             /**
-             * TBD
+             * parsed AuthenticatorAttestationResponse.clientDataJSON
+             * client data used to create credential
+             * https://webauthn.guide/#registration
              */
-            clientDataJSON: string;
+            clientData: {
+              /**
+               * the challenge used to create credential
+               */
+              challenge: string;
+              /**
+               * the origin used to create credential
+               */
+              origin: string;
+              /**
+               * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+               * In such case OpenAPI framework will send back the status 400
+               */
+              type: "webauthn.create";
+            };
+            /**
+             * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
+             * https://webauthn.guide/#registration
+             */
+            attestation: {
+              /**
+               * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+               * parsing example can be found here:
+               * https://webauthn.guide/#registration
+               */
+              authData?: string;
+              /**
+               * attestation statement format
+               * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+               * https://webauthn.guide/#registration
+               */
+              format?: "fido-u2f";
+              /**
+               * The FIDO statement format when `format: 'fido-u2f'` only!
+               * It can differ when other format types are enabled!
+               */
+              statement?: {
+                /**
+                 * signature
+                 * base64 encoded Uint8Array(70)
+                 */
+                sig: string;
+                /**
+                 * attestation certificate in X.509 format
+                 */
+                x5c: string;
+              };
+            };
           };
         };
       };
@@ -26726,7 +27143,7 @@ export interface components {
     VerifiedCredential: {
       /**
        * The type of the Credential.
-       * - "FIDO" - A FIDO public/private keypair.
+       * - "FIDO" - A FIDO public/private keypair
        */
       credentialType: "FIDO";
       /**
@@ -26736,17 +27153,73 @@ export interface components {
       /**
        * An object sent in a `PUT /consents/{ID}` request.
        * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+       * and mostly on: https://webauthn.guide/#registration
+       * AuthenticatorAttestationResponse
+       * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
        */
       payload: {
         /**
-         * TBD
+         * credential id: identifier of pair of keys, base64 encoded
+         * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
          */
         id: string;
+        /**
+         * AuthenticatorAttestationResponse
+         */
         response: {
           /**
-           * TBD
+           * parsed AuthenticatorAttestationResponse.clientDataJSON
+           * client data used to create credential
+           * https://webauthn.guide/#registration
            */
-          clientDataJSON: string;
+          clientData: {
+            /**
+             * the challenge used to create credential
+             */
+            challenge: string;
+            /**
+             * the origin used to create credential
+             */
+            origin: string;
+            /**
+             * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+             * In such case OpenAPI framework will send back the status 400
+             */
+            type: "webauthn.create";
+          };
+          /**
+           * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
+           * https://webauthn.guide/#registration
+           */
+          attestation: {
+            /**
+             * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+             * parsing example can be found here:
+             * https://webauthn.guide/#registration
+             */
+            authData?: string;
+            /**
+             * attestation statement format
+             * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+             * https://webauthn.guide/#registration
+             */
+            format?: "fido-u2f";
+            /**
+             * The FIDO statement format when `format: 'fido-u2f'` only!
+             * It can differ when other format types are enabled!
+             */
+            statement?: {
+              /**
+               * signature
+               * base64 encoded Uint8Array(70)
+               */
+              sig: string;
+              /**
+               * attestation certificate in X.509 format
+               */
+              x5c: string;
+            };
+          };
         };
       };
     };
@@ -26775,7 +27248,7 @@ export interface components {
       credential: {
         /**
          * The type of the Credential.
-         * - "FIDO" - A FIDO public/private keypair.
+         * - "FIDO" - A FIDO public/private keypair
          */
         credentialType: "FIDO";
         /**
@@ -26785,17 +27258,73 @@ export interface components {
         /**
          * An object sent in a `PUT /consents/{ID}` request.
          * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+         * and mostly on: https://webauthn.guide/#registration
+         * AuthenticatorAttestationResponse
+         * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
          */
         payload: {
           /**
-           * TBD
+           * credential id: identifier of pair of keys, base64 encoded
+           * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
            */
           id: string;
+          /**
+           * AuthenticatorAttestationResponse
+           */
           response: {
             /**
-             * TBD
+             * parsed AuthenticatorAttestationResponse.clientDataJSON
+             * client data used to create credential
+             * https://webauthn.guide/#registration
              */
-            clientDataJSON: string;
+            clientData: {
+              /**
+               * the challenge used to create credential
+               */
+              challenge: string;
+              /**
+               * the origin used to create credential
+               */
+              origin: string;
+              /**
+               * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+               * In such case OpenAPI framework will send back the status 400
+               */
+              type: "webauthn.create";
+            };
+            /**
+             * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
+             * https://webauthn.guide/#registration
+             */
+            attestation: {
+              /**
+               * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+               * parsing example can be found here:
+               * https://webauthn.guide/#registration
+               */
+              authData?: string;
+              /**
+               * attestation statement format
+               * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+               * https://webauthn.guide/#registration
+               */
+              format?: "fido-u2f";
+              /**
+               * The FIDO statement format when `format: 'fido-u2f'` only!
+               * It can differ when other format types are enabled!
+               */
+              statement?: {
+                /**
+                 * signature
+                 * base64 encoded Uint8Array(70)
+                 */
+                sig: string;
+                /**
+                 * attestation certificate in X.509 format
+                 */
+                x5c: string;
+              };
+            };
           };
         };
       };
@@ -26849,7 +27378,7 @@ export interface components {
     ConsentsIDGenerateChallengePostRequest: {
       /**
        * The type of the Credential.
-       * - "FIDO" - A FIDO public/private keypair.
+       * - "FIDO" - A FIDO public/private keypair
        */
       type: "FIDO";
     };

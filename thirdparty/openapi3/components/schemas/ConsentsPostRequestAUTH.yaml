@@ -1,6 +1,8 @@
-title: ConsentPostRequest
+title: ConsentPostRequestAUTH
 type: object
-description: The object sent in a `POST /consents` request.
+description: |
+  The object sent in a `POST /consents` request to AUTH-SERVICE by DFSP to store registered consent with PublicKey
+  and whatever needed to perform authorization validation later
 properties:
   consentId:
     allOf:
@@ -9,18 +11,16 @@ properties:
       Common ID between the PISP and FSP for the Consent object
       decided by the DFSP who creates the Consent
       This field is REQUIRED for POST /consent.
-  consentRequestId:
-    allOf:
-      - $ref: ./CorrelationId.yaml
-    description: |
-      The id of the ConsentRequest that was used to initiate the
       creation of this Consent.
-  credential:
-    $ref: ./SignedCredential.yaml
   scopes:
     type: array
     items:
       $ref: ./Scope.yaml
+  credential:
+    allOf:
+      - $ref: ./SignedCredential.yaml
 required:
   - consentId
   - scopes
+  - credential 
+additionalProperties: false

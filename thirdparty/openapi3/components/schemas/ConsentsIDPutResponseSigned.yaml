@@ -16,3 +16,4 @@ properties:
 required:
   - scopes
   - credential
+additionalProperties: false
