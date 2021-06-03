@@ -8099,24 +8099,114 @@ export interface operations {
       };
     };
     requestBody: {
-      "application/json": {
+      "application/json":
+      | {
         /**
-         * Common ID between the PISP and FSP for the Consent object
-         * decided by the DFSP who creates the Consent
-         * This field is REQUIRED for POST /consent.
-         */
+             * Common ID between the PISP and FSP for the Consent object
+             * decided by the DFSP who creates the Consent
+             * This field is REQUIRED for POST /consent.
+             * creation of this Consent.
+             */
+        consentId: string;
+        credential: {
+          /**
+               * The type of the Credential.
+               * - "FIDO" - A FIDO public/private keypair
+               */
+          credentialType: "FIDO";
+          /**
+               * The challenge has signed but not yet verified.
+               */
+          status: "PENDING";
+          /**
+               * An object sent in a `PUT /consents/{ID}` request.
+               * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+               * and mostly on: https://webauthn.guide/#registration
+               */
+          payload: {
+            /**
+                 * credential id: identifier of pair of keys, base64 encoded
+                 * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+                 */
+            id: string;
+            /**
+                 * AuthenticatorAttestationResponse
+                 */
+            response: {
+              /**
+                   * client data used to create credential
+                   * https://webauthn.guide/#registration
+                   */
+              clientData: {
+                /**
+                     * the challenge used to create credential
+                     */
+                challenge: string;
+                /**
+                     * the origin used to create credential
+                     */
+                origin: string;
+                /**
+                     * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+                     * In such case OpenAPI framework will send back the status 400
+                     */
+                type: "webauthn.create";
+              };
+              /**
+                   * CBOR.Decoded attestation object
+                   * https://webauthn.guide/#registration
+                   */
+              attestation: {
+                /**
+                     * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+                     * parsing example can be found here:
+                     * https://webauthn.guide/#registration
+                     */
+                authData?: string;
+                /**
+                     * attestation statement format
+                     * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+                     * https://webauthn.guide/#registration
+                     */
+                format?: "fido-u2f";
+                /**
+                     * The FIDO statement format when `format: 'fido-u2f'` only!
+                     * It can differ when other format types are enabled!
+                     */
+                statement?: {
+                  /**
+                       * signature
+                       * base64 encoded Uint8Array(70)
+                       */
+                  sig: string;
+                  /**
+                       * attestation certificate in X.509 format
+                       */
+                  x5c: string;
+                };
+              };
+            };
+          };
+        };
+      }
+      | {
+        /**
+             * Common ID between the PISP and FSP for the Consent object
+             * decided by the DFSP who creates the Consent
+             * This field is REQUIRED for POST /consent.
+             */
         consentId: string;
         /**
-         * The id of the ConsentRequest that was used to initiate the
-         * creation of this Consent.
-         */
+             * The id of the ConsentRequest that was used to initiate the
+             * creation of this Consent.
+             */
         consentRequestId: string;
         scopes: {
           /**
-           * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-           * be Bank Account Number or anything that may expose a User's private bank
-           * account information.
-           */
+               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+               * be Bank Account Number or anything that may expose a User's private bank
+               * account information.
+               */
           accountId: string;
           actions: ("accounts.getBalance" | "accounts.transfer")[];
         }[];
@@ -26621,31 +26711,6 @@ export interface components {
      */
     ConsentRequestsIDPatchRequest: { authToken: string };
     /**
-     * The object sent in a `POST /consents` request.
-     */
-    ConsentsPostRequest: {
-      /**
-       * Common ID between the PISP and FSP for the Consent object
-       * decided by the DFSP who creates the Consent
-       * This field is REQUIRED for POST /consent.
-       */
-      consentId: string;
-      /**
-       * The id of the ConsentRequest that was used to initiate the
-       * creation of this Consent.
-       */
-      consentRequestId: string;
-      scopes: {
-        /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
-         */
-        accountId: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
-      }[];
-    };
-    /**
      * The type of the Credential.
      * - "FIDO" - A FIDO public/private keypair
      */
@@ -26806,6 +26871,124 @@ export interface components {
           };
         };
       };
+    };
+    /**
+     * The object sent in a `POST /consents` request to AUTH-SERVICE by DFSP to store registered consent with PublicKey
+     * and whatever needed to perform authorization validation later
+     */
+    ConsentsPostRequestAUTH: {
+      /**
+       * Common ID between the PISP and FSP for the Consent object
+       * decided by the DFSP who creates the Consent
+       * This field is REQUIRED for POST /consent.
+       * creation of this Consent.
+       */
+      consentId: string;
+      credential: {
+        /**
+         * The type of the Credential.
+         * - "FIDO" - A FIDO public/private keypair
+         */
+        credentialType: "FIDO";
+        /**
+         * The challenge has signed but not yet verified.
+         */
+        status: "PENDING";
+        /**
+         * An object sent in a `PUT /consents/{ID}` request.
+         * Based on https://w3c.github.io/webauthn/#iface-pkcredential
+         * and mostly on: https://webauthn.guide/#registration
+         */
+        payload: {
+          /**
+           * credential id: identifier of pair of keys, base64 encoded
+           * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+           */
+          id: string;
+          /**
+           * AuthenticatorAttestationResponse
+           */
+          response: {
+            /**
+             * client data used to create credential
+             * https://webauthn.guide/#registration
+             */
+            clientData: {
+              /**
+               * the challenge used to create credential
+               */
+              challenge: string;
+              /**
+               * the origin used to create credential
+               */
+              origin: string;
+              /**
+               * If another string is provided, it indicates that the authenticator performed an incorrect operation.
+               * In such case OpenAPI framework will send back the status 400
+               */
+              type: "webauthn.create";
+            };
+            /**
+             * CBOR.Decoded attestation object
+             * https://webauthn.guide/#registration
+             */
+            attestation: {
+              /**
+               * base64 encoded byte array Uint8Array(196) with publicKey and metadata
+               * parsing example can be found here:
+               * https://webauthn.guide/#registration
+               */
+              authData?: string;
+              /**
+               * attestation statement format
+               * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
+               * https://webauthn.guide/#registration
+               */
+              format?: "fido-u2f";
+              /**
+               * The FIDO statement format when `format: 'fido-u2f'` only!
+               * It can differ when other format types are enabled!
+               */
+              statement?: {
+                /**
+                 * signature
+                 * base64 encoded Uint8Array(70)
+                 */
+                sig: string;
+                /**
+                 * attestation certificate in X.509 format
+                 */
+                x5c: string;
+              };
+            };
+          };
+        };
+      };
+    };
+    /**
+     * The object sent in a `POST /consents` request to PISP by DFSP to ask for delivering the credential object.
+     */
+    ConsentsPostRequestPISP: {
+      /**
+       * Common ID between the PISP and FSP for the Consent object
+       * decided by the DFSP who creates the Consent
+       * This field is REQUIRED for POST /consent.
+       */
+      consentId: string;
+      /**
+       * The id of the ConsentRequest that was used to initiate the
+       * creation of this Consent.
+       */
+      consentRequestId: string;
+      scopes: {
+        /**
+         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
+         * be Bank Account Number or anything that may expose a User's private bank
+         * account information.
+         */
+        accountId: string;
+        actions: ("accounts.getBalance" | "accounts.transfer")[];
+      }[];
     };
     /**
      * The HTTP request `PUT /consents/{ID}` is used by the PISP to update a Consent with a signed challenge and register a credential.
