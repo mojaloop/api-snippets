@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [12.4.0](https://github.com/mojaloop/api-snippets/compare/v12.3.18...v12.4.0) (2021-06-03)
+
+
+### Features
+
+* **consents:** registration for FIDO flow ([#92](https://github.com/mojaloop/api-snippets/issues/92)) ([fc8de6a](https://github.com/mojaloop/api-snippets/commit/fc8de6acd7f676bf94061829dcb9bfcbe7636b31))
+
 ### [12.3.18](https://github.com/mojaloop/api-snippets/compare/v12.3.17...v12.3.18) (2021-06-01)
 
 
