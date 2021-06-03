@@ -101,22 +101,34 @@ describe('thirdparty', () => {
     personalInfo: partyPersonalInfo
   }
   const partyIdTypeEMAIL: Schemas.PartyIdType = 'EMAIL'
-  const publicKeyCredential: Schemas.PublicKeyCredential = {
-    id: 'some-id',
+  const fidoPublicKeyCredential: Schemas.FIDOPublicKeyCredential = {
+    id: 'some-credential-id',
     response: {
-      clientDataJSON: 'client-data'
+      clientData: {
+        challenge: 'the-challenge',
+        origin: 'pisp.mojaloop.io',
+        type: 'webauthn.create'
+      },
+      attestation: {
+        authData: 'some-auth-data-with-PublicKey-and-some-metadata',
+        format: 'fido-u2f',
+        statement: {
+          sig: 'signature',
+          x5c: 'x.509 certificate'
+        }
+      }
     }
   }
   const signedCredential: Schemas.SignedCredential = {
     credentialType: credentialTypeFIDO,
     status: 'PENDING',
-    payload: publicKeyCredential
+    payload: fidoPublicKeyCredential
   }
 
   const verifiedCredential: Schemas.VerifiedCredential = {
     credentialType: credentialTypeFIDO,
     status: 'VERIFIED',
-    payload: publicKeyCredential
+    payload: fidoPublicKeyCredential
   }
 
   const transactionType: Schemas.TransactionType = {
@@ -422,13 +434,25 @@ describe('thirdparty', () => {
   })
 
   test('PublicKeyCredential', () => {
-    const publicKeyCredential: Schemas.PublicKeyCredential = {
-      id: 'some-id',
+    const fidoPublicKeyCredential: Schemas.FIDOPublicKeyCredential = {
+      id: 'some-credential-id',
       response: {
-        clientDataJSON: 'client-data'
+        clientData: {
+          challenge: 'the-challenge',
+          origin: 'pisp.mojaloop.io',
+          type: 'webauthn.create'
+        },
+        attestation: {
+          authData: 'some-auth-data-with-PublicKey-and-some-metadata',
+          format: 'fido-u2f',
+          statement: {
+            sig: 'signature',
+            x5c: 'x.509 certificate'
+          }
+        }
       }
     }
-    expect(publicKeyCredential).toBeDefined()
+    expect(fidoPublicKeyCredential).toBeDefined()
   })
 
   test('QuotesIDPutResponse', () => {

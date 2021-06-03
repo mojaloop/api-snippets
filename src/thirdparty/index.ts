@@ -73,7 +73,7 @@ export namespace Schemas {
   export type PartyIdType = components['schemas']['PartyIdType']
   export type PartyIdTypeTPLink = components['schemas']['PartyIdTypeTPLink']
   export type PartyName = components['schemas']['PartyName']
-  export type PublicKeyCredential = components['schemas']['PublicKeyCredential']
+  export type FIDOPublicKeyCredential = components['schemas']['FIDOPublicKeyCredential']
   export type PartyPersonalInfo = components['schemas']['PartyPersonalInfo']
   export type PartyResult = components['schemas']['PartyResult']
   export type PartySubIdOrType = components['schemas']['PartySubIdOrType']

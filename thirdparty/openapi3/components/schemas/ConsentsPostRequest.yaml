@@ -15,8 +15,7 @@ properties:
     description: |
       The id of the ConsentRequest that was used to initiate the
       creation of this Consent.
-  credential:
-    $ref: ./SignedCredential.yaml
+  
   scopes:
     type: array
     items:
@@ -24,3 +23,4 @@ properties:
 required:
   - consentId
   - scopes
+  - consentRequestId  # we need to obligatory store the reference to request process
