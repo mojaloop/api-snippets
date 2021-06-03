@@ -279,6 +279,14 @@ describe('thirdparty', () => {
     expect(consentsPostRequest).toBeDefined()
   })
 
+  test('ConsentsPostRequestAUTH', () => {
+    const consentsPostRequest: Schemas.ConsentsPostRequestAUTH = {
+      consentId: correlationId,
+      scopes: [scope],
+      credential: signedCredential
+    }
+    expect(consentsPostRequest).toBeDefined()
+  })
   test('ConsentStatusType', () => {
     expect(consentStatusTypeREVOKED).toBeDefined()
   })
