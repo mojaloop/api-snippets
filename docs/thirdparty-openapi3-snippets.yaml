@@ -3109,6 +3109,10 @@ paths:
 
                                 and mostly on:
                                 https://webauthn.guide/#registration
+
+                                AuthenticatorAttestationResponse
+
+                                https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
                               properties: &ref_57
                                 id:
                                   type: string
@@ -3124,8 +3128,12 @@ paths:
                                   properties:
                                     clientData:
                                       type: object
-                                      description: |
+                                      description: >
+                                        parsed
+                                        AuthenticatorAttestationResponse.clientDataJSON
+
                                         client data used to create credential
+
                                         https://webauthn.guide/#registration
                                       properties:
                                         challenge:
@@ -3152,8 +3160,10 @@ paths:
                                       additionalProperties: false
                                     attestation:
                                       type: object
-                                      description: |
-                                        CBOR.Decoded attestation object
+                                      description: >
+                                        CBOR.Decoded
+                                        AuthenticatorAttestationResponse.attestationObject
+
                                         https://webauthn.guide/#registration
                                       properties:
                                         authData:
@@ -3745,6 +3755,10 @@ paths:
                             https://w3c.github.io/webauthn/#iface-pkcredential
 
                             and mostly on: https://webauthn.guide/#registration
+
+                            AuthenticatorAttestationResponse
+
+                            https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
                           properties: *ref_57
                           required: *ref_58
                           additionalProperties: false
@@ -8687,10 +8701,16 @@ components:
     FIDOPublicKeyCredential:
       title: FIDOPublicKeyCredential
       type: object
-      description: |
+      description: >
         An object sent in a `PUT /consents/{ID}` request.
+
         Based on https://w3c.github.io/webauthn/#iface-pkcredential
+
         and mostly on: https://webauthn.guide/#registration
+
+        AuthenticatorAttestationResponse
+
+        https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
       properties: *ref_57
       required: *ref_58
       additionalProperties: false

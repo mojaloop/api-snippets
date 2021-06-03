@@ -8122,6 +8122,8 @@ export interface operations {
                * An object sent in a `PUT /consents/{ID}` request.
                * Based on https://w3c.github.io/webauthn/#iface-pkcredential
                * and mostly on: https://webauthn.guide/#registration
+               * AuthenticatorAttestationResponse
+               * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
                */
           payload: {
             /**
@@ -8134,6 +8136,7 @@ export interface operations {
                  */
             response: {
               /**
+                   * parsed AuthenticatorAttestationResponse.clientDataJSON
                    * client data used to create credential
                    * https://webauthn.guide/#registration
                    */
@@ -8153,7 +8156,7 @@ export interface operations {
                 type: "webauthn.create";
               };
               /**
-                   * CBOR.Decoded attestation object
+                   * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
                    * https://webauthn.guide/#registration
                    */
               attestation: {
@@ -9255,6 +9258,8 @@ export interface operations {
                * An object sent in a `PUT /consents/{ID}` request.
                * Based on https://w3c.github.io/webauthn/#iface-pkcredential
                * and mostly on: https://webauthn.guide/#registration
+               * AuthenticatorAttestationResponse
+               * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
                */
           payload: {
             /**
@@ -9267,6 +9272,7 @@ export interface operations {
                  */
             response: {
               /**
+                   * parsed AuthenticatorAttestationResponse.clientDataJSON
                    * client data used to create credential
                    * https://webauthn.guide/#registration
                    */
@@ -9286,7 +9292,7 @@ export interface operations {
                 type: "webauthn.create";
               };
               /**
-                   * CBOR.Decoded attestation object
+                   * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
                    * https://webauthn.guide/#registration
                    */
               attestation: {
@@ -9354,6 +9360,8 @@ export interface operations {
                * An object sent in a `PUT /consents/{ID}` request.
                * Based on https://w3c.github.io/webauthn/#iface-pkcredential
                * and mostly on: https://webauthn.guide/#registration
+               * AuthenticatorAttestationResponse
+               * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
                */
           payload: {
             /**
@@ -9366,6 +9374,7 @@ export interface operations {
                  */
             response: {
               /**
+                   * parsed AuthenticatorAttestationResponse.clientDataJSON
                    * client data used to create credential
                    * https://webauthn.guide/#registration
                    */
@@ -9385,7 +9394,7 @@ export interface operations {
                 type: "webauthn.create";
               };
               /**
-                   * CBOR.Decoded attestation object
+                   * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
                    * https://webauthn.guide/#registration
                    */
               attestation: {
@@ -26719,6 +26728,8 @@ export interface components {
      * An object sent in a `PUT /consents/{ID}` request.
      * Based on https://w3c.github.io/webauthn/#iface-pkcredential
      * and mostly on: https://webauthn.guide/#registration
+     * AuthenticatorAttestationResponse
+     * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
      */
     FIDOPublicKeyCredential: {
       /**
@@ -26731,6 +26742,7 @@ export interface components {
        */
       response: {
         /**
+         * parsed AuthenticatorAttestationResponse.clientDataJSON
          * client data used to create credential
          * https://webauthn.guide/#registration
          */
@@ -26750,7 +26762,7 @@ export interface components {
           type: "webauthn.create";
         };
         /**
-         * CBOR.Decoded attestation object
+         * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
          * https://webauthn.guide/#registration
          */
         attestation: {
@@ -26806,6 +26818,8 @@ export interface components {
        * An object sent in a `PUT /consents/{ID}` request.
        * Based on https://w3c.github.io/webauthn/#iface-pkcredential
        * and mostly on: https://webauthn.guide/#registration
+       * AuthenticatorAttestationResponse
+       * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
        */
       payload: {
         /**
@@ -26818,6 +26832,7 @@ export interface components {
          */
         response: {
           /**
+           * parsed AuthenticatorAttestationResponse.clientDataJSON
            * client data used to create credential
            * https://webauthn.guide/#registration
            */
@@ -26837,7 +26852,7 @@ export interface components {
             type: "webauthn.create";
           };
           /**
-           * CBOR.Decoded attestation object
+           * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
            * https://webauthn.guide/#registration
            */
           attestation: {
@@ -26898,6 +26913,8 @@ export interface components {
          * An object sent in a `PUT /consents/{ID}` request.
          * Based on https://w3c.github.io/webauthn/#iface-pkcredential
          * and mostly on: https://webauthn.guide/#registration
+         * AuthenticatorAttestationResponse
+         * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
          */
         payload: {
           /**
@@ -26910,6 +26927,7 @@ export interface components {
            */
           response: {
             /**
+             * parsed AuthenticatorAttestationResponse.clientDataJSON
              * client data used to create credential
              * https://webauthn.guide/#registration
              */
@@ -26929,7 +26947,7 @@ export interface components {
               type: "webauthn.create";
             };
             /**
-             * CBOR.Decoded attestation object
+             * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
              * https://webauthn.guide/#registration
              */
             attestation: {
@@ -27026,6 +27044,8 @@ export interface components {
          * An object sent in a `PUT /consents/{ID}` request.
          * Based on https://w3c.github.io/webauthn/#iface-pkcredential
          * and mostly on: https://webauthn.guide/#registration
+         * AuthenticatorAttestationResponse
+         * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
          */
         payload: {
           /**
@@ -27038,6 +27058,7 @@ export interface components {
            */
           response: {
             /**
+             * parsed AuthenticatorAttestationResponse.clientDataJSON
              * client data used to create credential
              * https://webauthn.guide/#registration
              */
@@ -27057,7 +27078,7 @@ export interface components {
               type: "webauthn.create";
             };
             /**
-             * CBOR.Decoded attestation object
+             * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
              * https://webauthn.guide/#registration
              */
             attestation: {
@@ -27115,6 +27136,8 @@ export interface components {
        * An object sent in a `PUT /consents/{ID}` request.
        * Based on https://w3c.github.io/webauthn/#iface-pkcredential
        * and mostly on: https://webauthn.guide/#registration
+       * AuthenticatorAttestationResponse
+       * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
        */
       payload: {
         /**
@@ -27127,6 +27150,7 @@ export interface components {
          */
         response: {
           /**
+           * parsed AuthenticatorAttestationResponse.clientDataJSON
            * client data used to create credential
            * https://webauthn.guide/#registration
            */
@@ -27146,7 +27170,7 @@ export interface components {
             type: "webauthn.create";
           };
           /**
-           * CBOR.Decoded attestation object
+           * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
            * https://webauthn.guide/#registration
            */
           attestation: {
@@ -27217,6 +27241,8 @@ export interface components {
          * An object sent in a `PUT /consents/{ID}` request.
          * Based on https://w3c.github.io/webauthn/#iface-pkcredential
          * and mostly on: https://webauthn.guide/#registration
+         * AuthenticatorAttestationResponse
+         * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
          */
         payload: {
           /**
@@ -27229,6 +27255,7 @@ export interface components {
            */
           response: {
             /**
+             * parsed AuthenticatorAttestationResponse.clientDataJSON
              * client data used to create credential
              * https://webauthn.guide/#registration
              */
@@ -27248,7 +27275,7 @@ export interface components {
               type: "webauthn.create";
             };
             /**
-             * CBOR.Decoded attestation object
+             * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
              * https://webauthn.guide/#registration
              */
             attestation: {
