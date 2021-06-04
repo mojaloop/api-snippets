@@ -103,21 +103,16 @@ describe('thirdparty', () => {
   const partyIdTypeEMAIL: Schemas.PartyIdType = 'EMAIL'
   const fidoPublicKeyCredential: Schemas.FIDOPublicKeyCredential = {
     id: 'some-credential-id',
+    rawId: 'some-raw-id',
     response: {
-      clientData: {
+      clientDataJSON: JSON.stringify({
         challenge: 'the-challenge',
         origin: 'pisp.mojaloop.io',
         type: 'webauthn.create'
-      },
-      attestation: {
-        authData: 'some-auth-data-with-PublicKey-and-some-metadata',
-        format: 'fido-u2f',
-        statement: {
-          sig: 'signature',
-          x5c: 'x.509 certificate'
-        }
-      }
-    }
+      }),
+      attestationObject: "some-attestation"
+    },
+    type: 'public-key'
   }
   const signedCredential: Schemas.SignedCredential = {
     credentialType: credentialTypeFIDO,
@@ -444,21 +439,16 @@ describe('thirdparty', () => {
   test('PublicKeyCredential', () => {
     const fidoPublicKeyCredential: Schemas.FIDOPublicKeyCredential = {
       id: 'some-credential-id',
+      rawId: 'some-raw-id',
       response: {
-        clientData: {
+        clientDataJSON: JSON.stringify({
           challenge: 'the-challenge',
           origin: 'pisp.mojaloop.io',
           type: 'webauthn.create'
-        },
-        attestation: {
-          authData: 'some-auth-data-with-PublicKey-and-some-metadata',
-          format: 'fido-u2f',
-          statement: {
-            sig: 'signature',
-            x5c: 'x.509 certificate'
-          }
-        }
-      }
+        }),
+        attestationObject: "some-attestation"
+      },
+      type: 'public-key'
     }
     expect(fidoPublicKeyCredential).toBeDefined()
   })

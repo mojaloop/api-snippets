@@ -8141,63 +8141,26 @@ export interface operations {
                  */
             id: string;
             /**
+                 * raw credential id: identifier of pair of keys, base64 encoded
+                 */
+            rawId: string;
+            /**
                  * AuthenticatorAttestationResponse
                  */
             response: {
               /**
-                   * parsed AuthenticatorAttestationResponse.clientDataJSON
-                   * client data used to create credential
-                   * https://webauthn.guide/#registration
+                   * JSON string with client data
                    */
-              clientData: {
-                /**
-                     * the challenge used to create credential
-                     */
-                challenge: string;
-                /**
-                     * the origin used to create credential
-                     */
-                origin: string;
-                /**
-                     * If another string is provided, it indicates that the authenticator performed an incorrect operation.
-                     * In such case OpenAPI framework will send back the status 400
-                     */
-                type: "webauthn.create";
-              };
+              clientDataJSON: string;
               /**
-                   * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
-                   * https://webauthn.guide/#registration
+                   * CBOR.encoded attestation object
                    */
-              attestation: {
-                /**
-                     * base64 encoded byte array Uint8Array(196) with publicKey and metadata
-                     * parsing example can be found here:
-                     * https://webauthn.guide/#registration
-                     */
-                authData?: string;
-                /**
-                     * attestation statement format
-                     * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
-                     * https://webauthn.guide/#registration
-                     */
-                format?: "fido-u2f";
-                /**
-                     * The FIDO statement format when `format: 'fido-u2f'` only!
-                     * It can differ when other format types are enabled!
-                     */
-                statement?: {
-                  /**
-                       * signature
-                       * base64 encoded Uint8Array(70)
-                       */
-                  sig: string;
-                  /**
-                       * attestation certificate in X.509 format
-                       */
-                  x5c: string;
-                };
-              };
+              attestationObject: string;
             };
+            /**
+                 * response type, we need only the type of public-key
+                 */
+            type: "public-key";
           };
         };
       }
@@ -9277,63 +9240,26 @@ export interface operations {
                  */
             id: string;
             /**
+                 * raw credential id: identifier of pair of keys, base64 encoded
+                 */
+            rawId: string;
+            /**
                  * AuthenticatorAttestationResponse
                  */
             response: {
               /**
-                   * parsed AuthenticatorAttestationResponse.clientDataJSON
-                   * client data used to create credential
-                   * https://webauthn.guide/#registration
+                   * JSON string with client data
                    */
-              clientData: {
-                /**
-                     * the challenge used to create credential
-                     */
-                challenge: string;
-                /**
-                     * the origin used to create credential
-                     */
-                origin: string;
-                /**
-                     * If another string is provided, it indicates that the authenticator performed an incorrect operation.
-                     * In such case OpenAPI framework will send back the status 400
-                     */
-                type: "webauthn.create";
-              };
+              clientDataJSON: string;
               /**
-                   * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
-                   * https://webauthn.guide/#registration
+                   * CBOR.encoded attestation object
                    */
-              attestation: {
-                /**
-                     * base64 encoded byte array Uint8Array(196) with publicKey and metadata
-                     * parsing example can be found here:
-                     * https://webauthn.guide/#registration
-                     */
-                authData?: string;
-                /**
-                     * attestation statement format
-                     * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
-                     * https://webauthn.guide/#registration
-                     */
-                format?: "fido-u2f";
-                /**
-                     * The FIDO statement format when `format: 'fido-u2f'` only!
-                     * It can differ when other format types are enabled!
-                     */
-                statement?: {
-                  /**
-                       * signature
-                       * base64 encoded Uint8Array(70)
-                       */
-                  sig: string;
-                  /**
-                       * attestation certificate in X.509 format
-                       */
-                  x5c: string;
-                };
-              };
+              attestationObject: string;
             };
+            /**
+                 * response type, we need only the type of public-key
+                 */
+            type: "public-key";
           };
         };
       }
@@ -9379,63 +9305,26 @@ export interface operations {
                  */
             id: string;
             /**
+                 * raw credential id: identifier of pair of keys, base64 encoded
+                 */
+            rawId: string;
+            /**
                  * AuthenticatorAttestationResponse
                  */
             response: {
               /**
-                   * parsed AuthenticatorAttestationResponse.clientDataJSON
-                   * client data used to create credential
-                   * https://webauthn.guide/#registration
+                   * JSON string with client data
                    */
-              clientData: {
-                /**
-                     * the challenge used to create credential
-                     */
-                challenge: string;
-                /**
-                     * the origin used to create credential
-                     */
-                origin: string;
-                /**
-                     * If another string is provided, it indicates that the authenticator performed an incorrect operation.
-                     * In such case OpenAPI framework will send back the status 400
-                     */
-                type: "webauthn.create";
-              };
+              clientDataJSON: string;
               /**
-                   * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
-                   * https://webauthn.guide/#registration
+                   * CBOR.encoded attestation object
                    */
-              attestation: {
-                /**
-                     * base64 encoded byte array Uint8Array(196) with publicKey and metadata
-                     * parsing example can be found here:
-                     * https://webauthn.guide/#registration
-                     */
-                authData?: string;
-                /**
-                     * attestation statement format
-                     * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
-                     * https://webauthn.guide/#registration
-                     */
-                format?: "fido-u2f";
-                /**
-                     * The FIDO statement format when `format: 'fido-u2f'` only!
-                     * It can differ when other format types are enabled!
-                     */
-                statement?: {
-                  /**
-                       * signature
-                       * base64 encoded Uint8Array(70)
-                       */
-                  sig: string;
-                  /**
-                       * attestation certificate in X.509 format
-                       */
-                  x5c: string;
-                };
-              };
+              attestationObject: string;
             };
+            /**
+                 * response type, we need only the type of public-key
+                 */
+            type: "public-key";
           };
         };
       };
@@ -26747,63 +26636,26 @@ export interface components {
        */
       id: string;
       /**
+       * raw credential id: identifier of pair of keys, base64 encoded
+       */
+      rawId: string;
+      /**
        * AuthenticatorAttestationResponse
        */
       response: {
         /**
-         * parsed AuthenticatorAttestationResponse.clientDataJSON
-         * client data used to create credential
-         * https://webauthn.guide/#registration
+         * JSON string with client data
          */
-        clientData: {
-          /**
-           * the challenge used to create credential
-           */
-          challenge: string;
-          /**
-           * the origin used to create credential
-           */
-          origin: string;
-          /**
-           * If another string is provided, it indicates that the authenticator performed an incorrect operation.
-           * In such case OpenAPI framework will send back the status 400
-           */
-          type: "webauthn.create";
-        };
+        clientDataJSON: string;
         /**
-         * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
-         * https://webauthn.guide/#registration
+         * CBOR.encoded attestation object
          */
-        attestation: {
-          /**
-           * base64 encoded byte array Uint8Array(196) with publicKey and metadata
-           * parsing example can be found here:
-           * https://webauthn.guide/#registration
-           */
-          authData?: string;
-          /**
-           * attestation statement format
-           * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
-           * https://webauthn.guide/#registration
-           */
-          format?: "fido-u2f";
-          /**
-           * The FIDO statement format when `format: 'fido-u2f'` only!
-           * It can differ when other format types are enabled!
-           */
-          statement?: {
-            /**
-             * signature
-             * base64 encoded Uint8Array(70)
-             */
-            sig: string;
-            /**
-             * attestation certificate in X.509 format
-             */
-            x5c: string;
-          };
-        };
+        attestationObject: string;
       };
+      /**
+       * response type, we need only the type of public-key
+       */
+      type: "public-key";
     };
     /**
      * A credential used to allow a user to prove their identity and access
@@ -26837,63 +26689,26 @@ export interface components {
          */
         id: string;
         /**
+         * raw credential id: identifier of pair of keys, base64 encoded
+         */
+        rawId: string;
+        /**
          * AuthenticatorAttestationResponse
          */
         response: {
           /**
-           * parsed AuthenticatorAttestationResponse.clientDataJSON
-           * client data used to create credential
-           * https://webauthn.guide/#registration
+           * JSON string with client data
            */
-          clientData: {
-            /**
-             * the challenge used to create credential
-             */
-            challenge: string;
-            /**
-             * the origin used to create credential
-             */
-            origin: string;
-            /**
-             * If another string is provided, it indicates that the authenticator performed an incorrect operation.
-             * In such case OpenAPI framework will send back the status 400
-             */
-            type: "webauthn.create";
-          };
+          clientDataJSON: string;
           /**
-           * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
-           * https://webauthn.guide/#registration
+           * CBOR.encoded attestation object
            */
-          attestation: {
-            /**
-             * base64 encoded byte array Uint8Array(196) with publicKey and metadata
-             * parsing example can be found here:
-             * https://webauthn.guide/#registration
-             */
-            authData?: string;
-            /**
-             * attestation statement format
-             * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
-             * https://webauthn.guide/#registration
-             */
-            format?: "fido-u2f";
-            /**
-             * The FIDO statement format when `format: 'fido-u2f'` only!
-             * It can differ when other format types are enabled!
-             */
-            statement?: {
-              /**
-               * signature
-               * base64 encoded Uint8Array(70)
-               */
-              sig: string;
-              /**
-               * attestation certificate in X.509 format
-               */
-              x5c: string;
-            };
-          };
+          attestationObject: string;
         };
+        /**
+         * response type, we need only the type of public-key
+         */
+        type: "public-key";
       };
     };
     /**
@@ -26941,63 +26756,26 @@ export interface components {
            */
           id: string;
           /**
+           * raw credential id: identifier of pair of keys, base64 encoded
+           */
+          rawId: string;
+          /**
            * AuthenticatorAttestationResponse
            */
           response: {
             /**
-             * parsed AuthenticatorAttestationResponse.clientDataJSON
-             * client data used to create credential
-             * https://webauthn.guide/#registration
+             * JSON string with client data
              */
-            clientData: {
-              /**
-               * the challenge used to create credential
-               */
-              challenge: string;
-              /**
-               * the origin used to create credential
-               */
-              origin: string;
-              /**
-               * If another string is provided, it indicates that the authenticator performed an incorrect operation.
-               * In such case OpenAPI framework will send back the status 400
-               */
-              type: "webauthn.create";
-            };
+            clientDataJSON: string;
             /**
-             * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
-             * https://webauthn.guide/#registration
+             * CBOR.encoded attestation object
              */
-            attestation: {
-              /**
-               * base64 encoded byte array Uint8Array(196) with publicKey and metadata
-               * parsing example can be found here:
-               * https://webauthn.guide/#registration
-               */
-              authData?: string;
-              /**
-               * attestation statement format
-               * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
-               * https://webauthn.guide/#registration
-               */
-              format?: "fido-u2f";
-              /**
-               * The FIDO statement format when `format: 'fido-u2f'` only!
-               * It can differ when other format types are enabled!
-               */
-              statement?: {
-                /**
-                 * signature
-                 * base64 encoded Uint8Array(70)
-                 */
-                sig: string;
-                /**
-                 * attestation certificate in X.509 format
-                 */
-                x5c: string;
-              };
-            };
+            attestationObject: string;
           };
+          /**
+           * response type, we need only the type of public-key
+           */
+          type: "public-key";
         };
       };
     };
@@ -27072,63 +26850,26 @@ export interface components {
            */
           id: string;
           /**
+           * raw credential id: identifier of pair of keys, base64 encoded
+           */
+          rawId: string;
+          /**
            * AuthenticatorAttestationResponse
            */
           response: {
             /**
-             * parsed AuthenticatorAttestationResponse.clientDataJSON
-             * client data used to create credential
-             * https://webauthn.guide/#registration
+             * JSON string with client data
              */
-            clientData: {
-              /**
-               * the challenge used to create credential
-               */
-              challenge: string;
-              /**
-               * the origin used to create credential
-               */
-              origin: string;
-              /**
-               * If another string is provided, it indicates that the authenticator performed an incorrect operation.
-               * In such case OpenAPI framework will send back the status 400
-               */
-              type: "webauthn.create";
-            };
+            clientDataJSON: string;
             /**
-             * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
-             * https://webauthn.guide/#registration
+             * CBOR.encoded attestation object
              */
-            attestation: {
-              /**
-               * base64 encoded byte array Uint8Array(196) with publicKey and metadata
-               * parsing example can be found here:
-               * https://webauthn.guide/#registration
-               */
-              authData?: string;
-              /**
-               * attestation statement format
-               * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
-               * https://webauthn.guide/#registration
-               */
-              format?: "fido-u2f";
-              /**
-               * The FIDO statement format when `format: 'fido-u2f'` only!
-               * It can differ when other format types are enabled!
-               */
-              statement?: {
-                /**
-                 * signature
-                 * base64 encoded Uint8Array(70)
-                 */
-                sig: string;
-                /**
-                 * attestation certificate in X.509 format
-                 */
-                x5c: string;
-              };
-            };
+            attestationObject: string;
           };
+          /**
+           * response type, we need only the type of public-key
+           */
+          type: "public-key";
         };
       };
     };
@@ -27164,63 +26905,26 @@ export interface components {
          */
         id: string;
         /**
+         * raw credential id: identifier of pair of keys, base64 encoded
+         */
+        rawId: string;
+        /**
          * AuthenticatorAttestationResponse
          */
         response: {
           /**
-           * parsed AuthenticatorAttestationResponse.clientDataJSON
-           * client data used to create credential
-           * https://webauthn.guide/#registration
+           * JSON string with client data
            */
-          clientData: {
-            /**
-             * the challenge used to create credential
-             */
-            challenge: string;
-            /**
-             * the origin used to create credential
-             */
-            origin: string;
-            /**
-             * If another string is provided, it indicates that the authenticator performed an incorrect operation.
-             * In such case OpenAPI framework will send back the status 400
-             */
-            type: "webauthn.create";
-          };
+          clientDataJSON: string;
           /**
-           * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
-           * https://webauthn.guide/#registration
+           * CBOR.encoded attestation object
            */
-          attestation: {
-            /**
-             * base64 encoded byte array Uint8Array(196) with publicKey and metadata
-             * parsing example can be found here:
-             * https://webauthn.guide/#registration
-             */
-            authData?: string;
-            /**
-             * attestation statement format
-             * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
-             * https://webauthn.guide/#registration
-             */
-            format?: "fido-u2f";
-            /**
-             * The FIDO statement format when `format: 'fido-u2f'` only!
-             * It can differ when other format types are enabled!
-             */
-            statement?: {
-              /**
-               * signature
-               * base64 encoded Uint8Array(70)
-               */
-              sig: string;
-              /**
-               * attestation certificate in X.509 format
-               */
-              x5c: string;
-            };
-          };
+          attestationObject: string;
         };
+        /**
+         * response type, we need only the type of public-key
+         */
+        type: "public-key";
       };
     };
     /**
@@ -27269,63 +26973,26 @@ export interface components {
            */
           id: string;
           /**
+           * raw credential id: identifier of pair of keys, base64 encoded
+           */
+          rawId: string;
+          /**
            * AuthenticatorAttestationResponse
            */
           response: {
             /**
-             * parsed AuthenticatorAttestationResponse.clientDataJSON
-             * client data used to create credential
-             * https://webauthn.guide/#registration
+             * JSON string with client data
              */
-            clientData: {
-              /**
-               * the challenge used to create credential
-               */
-              challenge: string;
-              /**
-               * the origin used to create credential
-               */
-              origin: string;
-              /**
-               * If another string is provided, it indicates that the authenticator performed an incorrect operation.
-               * In such case OpenAPI framework will send back the status 400
-               */
-              type: "webauthn.create";
-            };
+            clientDataJSON: string;
             /**
-             * CBOR.Decoded AuthenticatorAttestationResponse.attestationObject
-             * https://webauthn.guide/#registration
+             * CBOR.encoded attestation object
              */
-            attestation: {
-              /**
-               * base64 encoded byte array Uint8Array(196) with publicKey and metadata
-               * parsing example can be found here:
-               * https://webauthn.guide/#registration
-               */
-              authData?: string;
-              /**
-               * attestation statement format
-               * Authenticators can provide attestation data in a number of ways; this indicates how the server should parse and validate the attestation data
-               * https://webauthn.guide/#registration
-               */
-              format?: "fido-u2f";
-              /**
-               * The FIDO statement format when `format: 'fido-u2f'` only!
-               * It can differ when other format types are enabled!
-               */
-              statement?: {
-                /**
-                 * signature
-                 * base64 encoded Uint8Array(70)
-                 */
-                sig: string;
-                /**
-                 * attestation certificate in X.509 format
-                 */
-                x5c: string;
-              };
-            };
+            attestationObject: string;
           };
+          /**
+           * response type, we need only the type of public-key
+           */
+          type: "public-key";
         };
       };
     };
