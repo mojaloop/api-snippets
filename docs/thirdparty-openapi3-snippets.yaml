@@ -3153,7 +3153,7 @@ paths:
                                       description: |
                                         JSON string with client data
                                       minLength: 121
-                                      maxLength: 242
+                                      maxLength: 512
                                     attestationObject:
                                       type: string
                                       description: |
