@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.4.2](https://github.com/mojaloop/api-snippets/compare/v12.4.1...v12.4.2) (2021-06-04)
+
+
+### Bug Fixes
+
+* use proper maxLength for credential.clientDataJSON ([#94](https://github.com/mojaloop/api-snippets/issues/94)) ([ab245ea](https://github.com/mojaloop/api-snippets/commit/ab245ea51e72299fb9e16448ed1f37bd712cbd1c))
+
 ### [12.4.1](https://github.com/mojaloop/api-snippets/compare/v12.4.0...v12.4.1) (2021-06-04)
 
 
