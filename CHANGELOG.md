@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.4.1](https://github.com/mojaloop/api-snippets/compare/v12.4.0...v12.4.1) (2021-06-04)
+
+
+### Code Refactor
+
+* **consent:** use schema from Webauthn browser create api ([#93](https://github.com/mojaloop/api-snippets/issues/93)) ([172f802](https://github.com/mojaloop/api-snippets/commit/172f8028fa2265e63b3a6ed9c1b74c173c1b09bd))
+
 ## [12.4.0](https://github.com/mojaloop/api-snippets/compare/v12.3.18...v12.4.0) (2021-06-03)
 
 
