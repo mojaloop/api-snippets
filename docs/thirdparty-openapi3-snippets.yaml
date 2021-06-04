@@ -3159,7 +3159,7 @@ paths:
                                       description: |
                                         CBOR.encoded attestation object
                                       minLength: 306
-                                      maxLength: 712
+                                      maxLength: 2048
                                   required:
                                     - clientDataJSON
                                     - attestationObject
