@@ -1,4 +1,12 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.4.3](https://github.com/mojaloop/api-snippets/compare/v12.4.2...v12.4.3) (2021-06-17)
+
+
+### Maintenance
+
+* **deps:** bump glob-parent from 5.1.1 to 5.1.2 ([#95](https://github.com/mojaloop/api-snippets/issues/95)) ([09eafc1](https://github.com/mojaloop/api-snippets/commit/09eafc19c133cb27656d3cd2a2c1a9f2346fe838))
+* address vulnerabilities ([#96](https://github.com/mojaloop/api-snippets/issues/96)) ([4b04883](https://github.com/mojaloop/api-snippets/commit/4b04883e4c31b4e5581135e1b533bd0e05ce21ea))
+
 ### [12.4.2](https://github.com/mojaloop/api-snippets/compare/v12.4.1...v12.4.2) (2021-06-04)
 
 
