@@ -1,3 +1,16 @@
+parameters:
+  #Path
+  - $ref: ../components/parameters/ID.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 put:
   tags:
     - thirdpartyRequests
@@ -7,23 +20,11 @@ put:
   description: |
     If the server is unable to find the transaction request, or another processing error occurs,
     the error callback `PUT /thirdpartyRequests/transactions/{ID}/error` is used.
-    The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of 
+    The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of
     the thirdparty transaction request.
-
   parameters:
-    #Path
-    - $ref: ../components/parameters/ID.yaml
     #Headers
     - $ref: ../components/parameters/Content-Length.yaml
-    - $ref: ../components/parameters/Content-Type.yaml
-    - $ref: ../components/parameters/Date.yaml
-    - $ref: ../components/parameters/X-Forwarded-For.yaml
-    - $ref: ../components/parameters/FSPIOP-Source.yaml
-    - $ref: ../components/parameters/FSPIOP-Destination.yaml
-    - $ref: ../components/parameters/FSPIOP-Encryption.yaml
-    - $ref: ../components/parameters/FSPIOP-Signature.yaml
-    - $ref: ../components/parameters/FSPIOP-URI.yaml
-    - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
   requestBody:
     description: Error information returned.
     required: true

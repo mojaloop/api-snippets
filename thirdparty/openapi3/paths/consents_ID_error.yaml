@@ -1,15 +1,7 @@
-put:
-  tags:
-    - consents
-  operationId: NotifyErrorConsents
-  summary: NotifyErrorConsents
-  description: |
-    DFSP responds to the PISP if something went wrong with validating or storing consent.
-  parameters:
+parameters:
     #Path
     - $ref: ../components/parameters/ID.yaml
     #Headers
-    - $ref: ../components/parameters/Content-Length.yaml
     - $ref: ../components/parameters/Content-Type.yaml
     - $ref: ../components/parameters/Date.yaml
     - $ref: ../components/parameters/X-Forwarded-For.yaml
@@ -19,6 +11,15 @@ put:
     - $ref: ../components/parameters/FSPIOP-Signature.yaml
     - $ref: ../components/parameters/FSPIOP-URI.yaml
     - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+put:
+  tags:
+    - consents
+  operationId: NotifyErrorConsents
+  summary: NotifyErrorConsents
+  description: |
+    DFSP responds to the PISP if something went wrong with validating or storing consent.
+  parameters:
+    - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
     description: Error information returned.
     required: true

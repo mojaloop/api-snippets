@@ -139,6 +139,8 @@ delete:
 
     - Called by a PISP when a user wants to remove their consent.
   operationId: DeleteConsentByID
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
   tags:
     - consents
   responses:
