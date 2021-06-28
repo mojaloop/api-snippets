@@ -1,3 +1,14 @@
+parameters:
+  #Headers
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 post:
   tags:
     - consents
@@ -8,18 +19,8 @@ post:
     DFSP sends this request to the PISP after granting consent.
     DFSP sends this request to an Auth service to validate a signed consent.
   parameters:
-    #Headers
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
-    - $ref: ../components/parameters/Content-Type.yaml
-    - $ref: ../components/parameters/Date.yaml
-    - $ref: ../components/parameters/X-Forwarded-For.yaml
-    - $ref: ../components/parameters/FSPIOP-Source.yaml
-    - $ref: ../components/parameters/FSPIOP-Destination.yaml
-    - $ref: ../components/parameters/FSPIOP-Encryption.yaml
-    - $ref: ../components/parameters/FSPIOP-Signature.yaml
-    - $ref: ../components/parameters/FSPIOP-URI.yaml
-    - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
   requestBody:
     required: true
     content:

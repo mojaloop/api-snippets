@@ -1,6 +1,8 @@
 parameters:
+  #Path
   - $ref: ../components/parameters/Type.yaml
   - $ref: ../components/parameters/ID.yaml
+  #Headers
   - $ref: ../components/parameters/Content-Type.yaml
   - $ref: ../components/parameters/Date.yaml
   - $ref: ../components/parameters/X-Forwarded-For.yaml

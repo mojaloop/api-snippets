@@ -1,16 +1,16 @@
-# todo: uncomment parameters after header middleware similar to 
-# `sdk-scheme-adapter` is implemented in `thirdparty-scheme-adapter`
-# parameters:
-# - $ref: ../components/parameters/ID.yaml
-# - $ref: ../components/parameters/Content-Type.yaml
-# - $ref: ../components/parameters/Date.yaml
-# - $ref: ../components/parameters/X-Forwarded-For.yaml
-# - $ref: ../components/parameters/FSPIOP-Source.yaml
-# - $ref: ../components/parameters/FSPIOP-Destination.yaml
-# - $ref: ../components/parameters/FSPIOP-Encryption.yaml
-# - $ref: ../components/parameters/FSPIOP-Signature.yaml
-# - $ref: ../components/parameters/FSPIOP-URI.yaml
-# - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+parameters:
+  #Path
+  - $ref: ../components/parameters/ID.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 put:
   description: |
     The callback PUT /thirdpartyRequests/authorizations/{ID} is used to inform the client of the
@@ -21,18 +21,14 @@ put:
   tags:
     - authorizations
   parameters:
-    - name: ID
-      in: path
-      required: true
-      schema:
-        type: string
+    - $ref: ../components/parameters/Content-Length.yaml
   responses:
     200:
       description: |
         information about result of required (via POST) /authorization
       content:
         application/json:
-          schema: 
+          schema:
             $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponse.yaml'
           example:
             authenticationInfo:

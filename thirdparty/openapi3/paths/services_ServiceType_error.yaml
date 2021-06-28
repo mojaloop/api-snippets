@@ -1,15 +1,17 @@
 parameters:
-- $ref: ../components/parameters/ServiceType.yaml
-- $ref: ../components/parameters/Content-Length.yaml
-- $ref: ../components/parameters/Content-Type.yaml
-- $ref: ../components/parameters/Date.yaml
-- $ref: ../components/parameters/X-Forwarded-For.yaml
-- $ref: ../components/parameters/FSPIOP-Source.yaml
-- $ref: ../components/parameters/FSPIOP-Destination.yaml
-- $ref: ../components/parameters/FSPIOP-Encryption.yaml
-- $ref: ../components/parameters/FSPIOP-Signature.yaml
-- $ref: ../components/parameters/FSPIOP-URI.yaml
-- $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+  #Path
+  - $ref: ../components/parameters/ServiceType.yaml
+  #Headers
+
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 put:
   description: |
     The HTTP request `PUT /services/{ServiceType}/error` is used to return error information
@@ -18,6 +20,8 @@ put:
   tags:
     - services
     - sampled
+  parameters:
+    - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
     description: Details of the error returned.
     required: true

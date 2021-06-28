@@ -2,7 +2,7 @@ parameters:
   #Path
   - $ref: ../components/parameters/ID.yaml
   #Headers
-  - $ref: ../components/parameters/Accept.yaml
+  - $ref: ../components/parameters/Content-Type.yaml
   - $ref: ../components/parameters/Date.yaml
   - $ref: ../components/parameters/X-Forwarded-For.yaml
   - $ref: ../components/parameters/FSPIOP-Source.yaml
@@ -18,8 +18,11 @@ get:
   operationId: GetThirdpartyTransactionRequests
   summary: GetThirdpartyTransactionRequests
   description: |
-    The HTTP request `GET /thirdpartyRequests/transactions/{ID}` is used to request the 
+    The HTTP request `GET /thirdpartyRequests/transactions/{ID}` is used to request the
     retrieval of a third party transaction request.
+  parameters:
+    #Headers
+    - $ref: ../components/parameters/Accept.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml
@@ -54,7 +57,6 @@ put:
   parameters:
     #Headers
     - $ref: ../components/parameters/Content-Length.yaml
-    - $ref: ../components/parameters/Content-Type.yaml
   requestBody:
     required: true
     content:
@@ -95,9 +97,8 @@ patch:
   tags:
     - thirdpartyRequests
   parameters:
-    #Headers
+    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
-    - $ref: ../components/parameters/Content-Type.yaml
   requestBody:
     required: true
     content:

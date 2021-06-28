@@ -2,7 +2,6 @@ parameters:
   #Path
   - $ref: ../components/parameters/ID.yaml
   #Headers
-  - $ref: ../components/parameters/Content-Length.yaml
   - $ref: ../components/parameters/Content-Type.yaml
   - $ref: ../components/parameters/Date.yaml
   - $ref: ../components/parameters/X-Forwarded-For.yaml
@@ -20,16 +19,15 @@ put:
   summary: PutThirdpartyRequestsAuthorizationsByIdAndError
   description: |
     The HTTP request `PUT /thirdpartyRequests/authorizations/{ID}/error` is used by the DFSP or PISP to inform
-    the other party that something went wrong with a Thirdparty Tranasction Authorization Request.
+    the other party that something went wrong with a Thirdparty Transaction Authorization Request.
 
-    The PISP may use this to tell the DFSP that the Thirdparty Tranasction Authorization Request is invalid or doesn't
+    The PISP may use this to tell the DFSP that the Thirdparty Transaction Authorization Request is invalid or doesn't
     match a `transactionRequestId`.
 
     The DFSP may use this to tell the PISP that the signed challenge returned in `PUT /thirdpartyRequest/authorizations/{ID}`
     was invalid.
-
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
     description: Error information returned.
     required: true

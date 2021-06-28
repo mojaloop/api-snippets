@@ -1188,15 +1188,23 @@ paths:
         schema: &ref_36
           type: string
         description: The identifier value.
+      - name: Content-Type
+        in: header
+        schema: &ref_37
+          type: string
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
       - name: Date
         in: header
-        schema: &ref_39
+        schema: &ref_38
           type: string
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: &ref_40
+        schema: &ref_39
           type: string
         required: false
         description: >-
@@ -1212,7 +1220,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: &ref_41
+        schema: &ref_40
           type: string
         required: true
         description: >-
@@ -1223,7 +1231,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: &ref_42
+        schema: &ref_41
           type: string
         required: false
         description: >-
@@ -1237,7 +1245,7 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: &ref_43
+        schema: &ref_42
           type: string
         required: false
         description: >-
@@ -1245,7 +1253,7 @@ paths:
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: &ref_44
+        schema: &ref_43
           type: string
         required: false
         description: >-
@@ -1253,7 +1261,7 @@ paths:
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: &ref_45
+        schema: &ref_44
           type: string
         required: false
         description: >-
@@ -1264,7 +1272,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: &ref_46
+        schema: &ref_45
           type: string
         required: false
         description: >-
@@ -1547,7 +1555,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: &ref_37
+          schema: &ref_46
             type: integer
           description: >-
             The `Content-Length` header field indicates the anticipated size of
@@ -1556,14 +1564,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: &ref_38
-            type: string
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
       requestBody:
         required: true
         content:
@@ -1683,32 +1683,21 @@ paths:
         required: true
         schema: *ref_36
         description: The identifier value.
-      - name: Content-Length
-        in: header
-        required: false
-        schema: *ref_37
-        description: >-
-          The `Content-Length` header field indicates the anticipated size of
-          the payload body. Only sent if there is a body.
-
-
-          **Note:** The API supports a maximum size of 5242880 bytes (5
-          Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -1723,7 +1712,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -1733,7 +1722,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -1746,21 +1735,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -1770,7 +1759,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -1787,6 +1776,18 @@ paths:
       tags:
         - accounts
         - sampled
+      parameters:
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_46
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         description: Details of the error returned.
         required: true
@@ -2143,6 +2144,91 @@ paths:
       summary: Prometheus metrics endpoint
       description: The HTTP request GET /metrics is used to return metrics for the API.
   /consentRequests:
+    parameters:
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     post:
       tags:
         - consentRequests
@@ -2163,7 +2249,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -2171,92 +2257,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
-        - name: Date
-          in: header
-          schema: *ref_39
-          required: true
-          description: >-
-            The `Date` header field indicates the date when the request was
-            sent.
-        - name: X-Forwarded-For
-          in: header
-          schema: *ref_40
-          required: false
-          description: >-
-            The `X-Forwarded-For` header field is an unofficially accepted
-            standard used for informational purposes of the originating client
-            IP address, as a request might pass multiple proxies, firewalls, and
-            so on. Multiple `X-Forwarded-For` values should be expected and
-            supported by implementers of the API.
-
-
-            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-            7239](https://tools.ietf.org/html/rfc7239). However, to this point
-            RFC 7239 is less-used and supported than `X-Forwarded-For`.
-        - name: FSPIOP-Source
-          in: header
-          schema: *ref_41
-          required: true
-          description: >-
-            The `FSPIOP-Source` header field is a non-HTTP standard field used
-            by the API for identifying the sender of the HTTP request. The field
-            should be set by the original sender of the request. Required for
-            routing and signature verification (see header field
-            `FSPIOP-Signature`).
-        - name: FSPIOP-Destination
-          in: header
-          schema: *ref_42
-          required: false
-          description: >-
-            The `FSPIOP-Destination` header field is a non-HTTP standard field
-            used by the API for HTTP header based routing of requests and
-            responses to the destination. The field must be set by the original
-            sender of the request if the destination is known (valid for all
-            services except GET /parties) so that any entities between the
-            client and the server do not need to parse the payload for routing
-            purposes. If the destination is not known (valid for service GET
-            /parties), the field should be left empty.
-        - name: FSPIOP-Encryption
-          in: header
-          schema: *ref_43
-          required: false
-          description: >-
-            The `FSPIOP-Encryption` header field is a non-HTTP standard field
-            used by the API for applying end-to-end encryption of the request.
-        - name: FSPIOP-Signature
-          in: header
-          schema: *ref_44
-          required: false
-          description: >-
-            The `FSPIOP-Signature` header field is a non-HTTP standard field
-            used by the API for applying an end-to-end request signature.
-        - name: FSPIOP-URI
-          in: header
-          schema: *ref_45
-          required: false
-          description: >-
-            The `FSPIOP-URI` header field is a non-HTTP standard field used by
-            the API for signature verification, should contain the service URI.
-            Required if signature verification is used, for more information,
-            see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-        - name: FSPIOP-HTTP-Method
-          in: header
-          schema: *ref_46
-          required: false
-          description: >-
-            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-            used by the API for signature verification, should contain the
-            service HTTP method. Required if signature verification is used, for
-            more information, see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       requestBody:
         description: The consentRequest to create
         required: true
@@ -2410,32 +2410,21 @@ paths:
         required: true
         schema: *ref_36
         description: The identifier value.
-      - name: Content-Length
-        in: header
-        required: false
-        schema: *ref_37
-        description: >-
-          The `Content-Length` header field indicates the anticipated size of
-          the payload body. Only sent if there is a body.
-
-
-          **Note:** The API supports a maximum size of 5242880 bytes (5
-          Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -2450,7 +2439,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -2460,7 +2449,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -2473,21 +2462,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -2497,7 +2486,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -2520,6 +2509,18 @@ paths:
         their user,
 
         which the DFSP is to then verify.
+      parameters:
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_46
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         required: true
         content:
@@ -2700,6 +2701,25 @@ paths:
       description: >
         PISP sends user's OTP token to a DFSP to verify user trusts
         aforementioned PISP
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_46
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         required: true
         content:
@@ -2749,6 +2769,96 @@ paths:
           content: *ref_34
           headers: *ref_35
   '/consentRequests/{ID}/error':
+    parameters:
+      - name: ID
+        in: path
+        required: true
+        schema: *ref_36
+        description: The identifier value.
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     put:
       tags:
         - consentRequests
@@ -2758,15 +2868,10 @@ paths:
         DFSP responds to the PISP if something went wrong with validating an OTP
         or secret.
       parameters:
-        - name: ID
-          in: path
-          required: true
-          schema: *ref_36
-          description: The identifier value.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -2774,92 +2879,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
-        - name: Date
-          in: header
-          schema: *ref_39
-          required: true
-          description: >-
-            The `Date` header field indicates the date when the request was
-            sent.
-        - name: X-Forwarded-For
-          in: header
-          schema: *ref_40
-          required: false
-          description: >-
-            The `X-Forwarded-For` header field is an unofficially accepted
-            standard used for informational purposes of the originating client
-            IP address, as a request might pass multiple proxies, firewalls, and
-            so on. Multiple `X-Forwarded-For` values should be expected and
-            supported by implementers of the API.
-
-
-            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-            7239](https://tools.ietf.org/html/rfc7239). However, to this point
-            RFC 7239 is less-used and supported than `X-Forwarded-For`.
-        - name: FSPIOP-Source
-          in: header
-          schema: *ref_41
-          required: true
-          description: >-
-            The `FSPIOP-Source` header field is a non-HTTP standard field used
-            by the API for identifying the sender of the HTTP request. The field
-            should be set by the original sender of the request. Required for
-            routing and signature verification (see header field
-            `FSPIOP-Signature`).
-        - name: FSPIOP-Destination
-          in: header
-          schema: *ref_42
-          required: false
-          description: >-
-            The `FSPIOP-Destination` header field is a non-HTTP standard field
-            used by the API for HTTP header based routing of requests and
-            responses to the destination. The field must be set by the original
-            sender of the request if the destination is known (valid for all
-            services except GET /parties) so that any entities between the
-            client and the server do not need to parse the payload for routing
-            purposes. If the destination is not known (valid for service GET
-            /parties), the field should be left empty.
-        - name: FSPIOP-Encryption
-          in: header
-          schema: *ref_43
-          required: false
-          description: >-
-            The `FSPIOP-Encryption` header field is a non-HTTP standard field
-            used by the API for applying end-to-end encryption of the request.
-        - name: FSPIOP-Signature
-          in: header
-          schema: *ref_44
-          required: false
-          description: >-
-            The `FSPIOP-Signature` header field is a non-HTTP standard field
-            used by the API for applying an end-to-end request signature.
-        - name: FSPIOP-URI
-          in: header
-          schema: *ref_45
-          required: false
-          description: >-
-            The `FSPIOP-URI` header field is a non-HTTP standard field used by
-            the API for signature verification, should contain the service URI.
-            Required if signature verification is used, for more information,
-            see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-        - name: FSPIOP-HTTP-Method
-          in: header
-          schema: *ref_46
-          required: false
-          description: >-
-            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-            used by the API for signature verification, should contain the
-            service HTTP method. Required if signature verification is used, for
-            more information, see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       requestBody:
         description: Error information returned.
         required: true
@@ -2909,6 +2928,91 @@ paths:
           content: *ref_34
           headers: *ref_35
   /consents:
+    parameters:
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     post:
       tags:
         - consents
@@ -2929,7 +3033,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -2937,92 +3041,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
-        - name: Date
-          in: header
-          schema: *ref_39
-          required: true
-          description: >-
-            The `Date` header field indicates the date when the request was
-            sent.
-        - name: X-Forwarded-For
-          in: header
-          schema: *ref_40
-          required: false
-          description: >-
-            The `X-Forwarded-For` header field is an unofficially accepted
-            standard used for informational purposes of the originating client
-            IP address, as a request might pass multiple proxies, firewalls, and
-            so on. Multiple `X-Forwarded-For` values should be expected and
-            supported by implementers of the API.
-
-
-            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-            7239](https://tools.ietf.org/html/rfc7239). However, to this point
-            RFC 7239 is less-used and supported than `X-Forwarded-For`.
-        - name: FSPIOP-Source
-          in: header
-          schema: *ref_41
-          required: true
-          description: >-
-            The `FSPIOP-Source` header field is a non-HTTP standard field used
-            by the API for identifying the sender of the HTTP request. The field
-            should be set by the original sender of the request. Required for
-            routing and signature verification (see header field
-            `FSPIOP-Signature`).
-        - name: FSPIOP-Destination
-          in: header
-          schema: *ref_42
-          required: false
-          description: >-
-            The `FSPIOP-Destination` header field is a non-HTTP standard field
-            used by the API for HTTP header based routing of requests and
-            responses to the destination. The field must be set by the original
-            sender of the request if the destination is known (valid for all
-            services except GET /parties) so that any entities between the
-            client and the server do not need to parse the payload for routing
-            purposes. If the destination is not known (valid for service GET
-            /parties), the field should be left empty.
-        - name: FSPIOP-Encryption
-          in: header
-          schema: *ref_43
-          required: false
-          description: >-
-            The `FSPIOP-Encryption` header field is a non-HTTP standard field
-            used by the API for applying end-to-end encryption of the request.
-        - name: FSPIOP-Signature
-          in: header
-          schema: *ref_44
-          required: false
-          description: >-
-            The `FSPIOP-Signature` header field is a non-HTTP standard field
-            used by the API for applying an end-to-end request signature.
-        - name: FSPIOP-URI
-          in: header
-          schema: *ref_45
-          required: false
-          description: >-
-            The `FSPIOP-URI` header field is a non-HTTP standard field used by
-            the API for signature verification, should contain the service URI.
-            Required if signature verification is used, for more information,
-            see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-        - name: FSPIOP-HTTP-Method
-          in: header
-          schema: *ref_46
-          required: false
-          description: >-
-            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-            used by the API for signature verification, should contain the
-            service HTTP method. Required if signature verification is used, for
-            more information, see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       requestBody:
         required: true
         content:
@@ -3300,19 +3318,19 @@ paths:
         description: The identifier value.
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -3327,7 +3345,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -3337,7 +3355,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -3350,21 +3368,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -3374,7 +3392,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -3527,10 +3545,17 @@ paths:
                     - status
                     - revokedAt
       parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -3727,7 +3752,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -3780,6 +3805,14 @@ paths:
 
         - Called by a PISP when a user wants to remove their consent.
       operationId: DeleteConsentByID
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
       tags:
         - consents
       responses:
@@ -3818,6 +3851,96 @@ paths:
           content: *ref_34
           headers: *ref_35
   '/consents/{ID}/error':
+    parameters:
+      - name: ID
+        in: path
+        required: true
+        schema: *ref_36
+        description: The identifier value.
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     put:
       tags:
         - consents
@@ -3827,15 +3950,10 @@ paths:
         DFSP responds to the PISP if something went wrong with validating or
         storing consent.
       parameters:
-        - name: ID
-          in: path
-          required: true
-          schema: *ref_36
-          description: The identifier value.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -3843,92 +3961,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
-        - name: Date
-          in: header
-          schema: *ref_39
-          required: true
-          description: >-
-            The `Date` header field indicates the date when the request was
-            sent.
-        - name: X-Forwarded-For
-          in: header
-          schema: *ref_40
-          required: false
-          description: >-
-            The `X-Forwarded-For` header field is an unofficially accepted
-            standard used for informational purposes of the originating client
-            IP address, as a request might pass multiple proxies, firewalls, and
-            so on. Multiple `X-Forwarded-For` values should be expected and
-            supported by implementers of the API.
-
-
-            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-            7239](https://tools.ietf.org/html/rfc7239). However, to this point
-            RFC 7239 is less-used and supported than `X-Forwarded-For`.
-        - name: FSPIOP-Source
-          in: header
-          schema: *ref_41
-          required: true
-          description: >-
-            The `FSPIOP-Source` header field is a non-HTTP standard field used
-            by the API for identifying the sender of the HTTP request. The field
-            should be set by the original sender of the request. Required for
-            routing and signature verification (see header field
-            `FSPIOP-Signature`).
-        - name: FSPIOP-Destination
-          in: header
-          schema: *ref_42
-          required: false
-          description: >-
-            The `FSPIOP-Destination` header field is a non-HTTP standard field
-            used by the API for HTTP header based routing of requests and
-            responses to the destination. The field must be set by the original
-            sender of the request if the destination is known (valid for all
-            services except GET /parties) so that any entities between the
-            client and the server do not need to parse the payload for routing
-            purposes. If the destination is not known (valid for service GET
-            /parties), the field should be left empty.
-        - name: FSPIOP-Encryption
-          in: header
-          schema: *ref_43
-          required: false
-          description: >-
-            The `FSPIOP-Encryption` header field is a non-HTTP standard field
-            used by the API for applying end-to-end encryption of the request.
-        - name: FSPIOP-Signature
-          in: header
-          schema: *ref_44
-          required: false
-          description: >-
-            The `FSPIOP-Signature` header field is a non-HTTP standard field
-            used by the API for applying an end-to-end request signature.
-        - name: FSPIOP-URI
-          in: header
-          schema: *ref_45
-          required: false
-          description: >-
-            The `FSPIOP-URI` header field is a non-HTTP standard field used by
-            the API for signature verification, should contain the service URI.
-            Required if signature verification is used, for more information,
-            see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-        - name: FSPIOP-HTTP-Method
-          in: header
-          schema: *ref_46
-          required: false
-          description: >-
-            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-            used by the API for signature verification, should contain the
-            service HTTP method. Required if signature verification is used, for
-            more information, see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       requestBody:
         description: Error information returned.
         required: true
@@ -4004,7 +4036,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -4014,21 +4046,21 @@ paths:
             Megabytes).
         - name: Content-Type
           in: header
-          schema: *ref_38
+          schema: *ref_37
           required: true
           description: >-
             The `Content-Type` header indicates the specific version of the API
             used to send the payload body.
         - name: Date
           in: header
-          schema: *ref_39
+          schema: *ref_38
           required: true
           description: >-
             The `Date` header field indicates the date when the request was
             sent.
         - name: X-Forwarded-For
           in: header
-          schema: *ref_40
+          schema: *ref_39
           required: false
           description: >-
             The `X-Forwarded-For` header field is an unofficially accepted
@@ -4043,7 +4075,7 @@ paths:
             RFC 7239 is less-used and supported than `X-Forwarded-For`.
         - name: FSPIOP-Source
           in: header
-          schema: *ref_41
+          schema: *ref_40
           required: true
           description: >-
             The `FSPIOP-Source` header field is a non-HTTP standard field used
@@ -4053,7 +4085,7 @@ paths:
             `FSPIOP-Signature`).
         - name: FSPIOP-Destination
           in: header
-          schema: *ref_42
+          schema: *ref_41
           required: false
           description: >-
             The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -4066,21 +4098,21 @@ paths:
             /parties), the field should be left empty.
         - name: FSPIOP-Encryption
           in: header
-          schema: *ref_43
+          schema: *ref_42
           required: false
           description: >-
             The `FSPIOP-Encryption` header field is a non-HTTP standard field
             used by the API for applying end-to-end encryption of the request.
         - name: FSPIOP-Signature
           in: header
-          schema: *ref_44
+          schema: *ref_43
           required: false
           description: >-
             The `FSPIOP-Signature` header field is a non-HTTP standard field
             used by the API for applying an end-to-end request signature.
         - name: FSPIOP-URI
           in: header
-          schema: *ref_45
+          schema: *ref_44
           required: false
           description: >-
             The `FSPIOP-URI` header field is a non-HTTP standard field used by
@@ -4090,7 +4122,7 @@ paths:
             document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
         - name: FSPIOP-HTTP-Method
           in: header
-          schema: *ref_46
+          schema: *ref_45
           required: false
           description: >-
             The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -4157,6 +4189,91 @@ paths:
           content: *ref_34
           headers: *ref_35
   /participants:
+    parameters:
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     post:
       description: >-
         The HTTP request `POST /participants` is used to create information in
@@ -4179,7 +4296,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -4187,92 +4304,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
-        - name: Date
-          in: header
-          schema: *ref_39
-          required: true
-          description: >-
-            The `Date` header field indicates the date when the request was
-            sent.
-        - name: X-Forwarded-For
-          in: header
-          schema: *ref_40
-          required: false
-          description: >-
-            The `X-Forwarded-For` header field is an unofficially accepted
-            standard used for informational purposes of the originating client
-            IP address, as a request might pass multiple proxies, firewalls, and
-            so on. Multiple `X-Forwarded-For` values should be expected and
-            supported by implementers of the API.
-
-
-            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-            7239](https://tools.ietf.org/html/rfc7239). However, to this point
-            RFC 7239 is less-used and supported than `X-Forwarded-For`.
-        - name: FSPIOP-Source
-          in: header
-          schema: *ref_41
-          required: true
-          description: >-
-            The `FSPIOP-Source` header field is a non-HTTP standard field used
-            by the API for identifying the sender of the HTTP request. The field
-            should be set by the original sender of the request. Required for
-            routing and signature verification (see header field
-            `FSPIOP-Signature`).
-        - name: FSPIOP-Destination
-          in: header
-          schema: *ref_42
-          required: false
-          description: >-
-            The `FSPIOP-Destination` header field is a non-HTTP standard field
-            used by the API for HTTP header based routing of requests and
-            responses to the destination. The field must be set by the original
-            sender of the request if the destination is known (valid for all
-            services except GET /parties) so that any entities between the
-            client and the server do not need to parse the payload for routing
-            purposes. If the destination is not known (valid for service GET
-            /parties), the field should be left empty.
-        - name: FSPIOP-Encryption
-          in: header
-          schema: *ref_43
-          required: false
-          description: >-
-            The `FSPIOP-Encryption` header field is a non-HTTP standard field
-            used by the API for applying end-to-end encryption of the request.
-        - name: FSPIOP-Signature
-          in: header
-          schema: *ref_44
-          required: false
-          description: >-
-            The `FSPIOP-Signature` header field is a non-HTTP standard field
-            used by the API for applying an end-to-end request signature.
-        - name: FSPIOP-URI
-          in: header
-          schema: *ref_45
-          required: false
-          description: >-
-            The `FSPIOP-URI` header field is a non-HTTP standard field used by
-            the API for signature verification, should contain the service URI.
-            Required if signature verification is used, for more information,
-            see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-        - name: FSPIOP-HTTP-Method
-          in: header
-          schema: *ref_46
-          required: false
-          description: >-
-            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-            used by the API for signature verification, should contain the
-            service HTTP method. Required if signature verification is used, for
-            more information, see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       requestBody:
         description: Participant information to be created.
         required: true
@@ -4320,6 +4351,96 @@ paths:
           content: *ref_34
           headers: *ref_35
   '/participants/{ID}':
+    parameters:
+      - name: ID
+        in: path
+        required: true
+        schema: *ref_36
+        description: The identifier value.
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     put:
       description: >-
         The callback `PUT /participants/{ID}` is used to inform the client of
@@ -4330,15 +4451,10 @@ paths:
         - sampled
       operationId: PutParticipantsByID
       parameters:
-        - name: ID
-          in: path
-          required: true
-          schema: *ref_36
-          description: The identifier value.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -4346,92 +4462,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
-        - name: Date
-          in: header
-          schema: *ref_39
-          required: true
-          description: >-
-            The `Date` header field indicates the date when the request was
-            sent.
-        - name: X-Forwarded-For
-          in: header
-          schema: *ref_40
-          required: false
-          description: >-
-            The `X-Forwarded-For` header field is an unofficially accepted
-            standard used for informational purposes of the originating client
-            IP address, as a request might pass multiple proxies, firewalls, and
-            so on. Multiple `X-Forwarded-For` values should be expected and
-            supported by implementers of the API.
-
-
-            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-            7239](https://tools.ietf.org/html/rfc7239). However, to this point
-            RFC 7239 is less-used and supported than `X-Forwarded-For`.
-        - name: FSPIOP-Source
-          in: header
-          schema: *ref_41
-          required: true
-          description: >-
-            The `FSPIOP-Source` header field is a non-HTTP standard field used
-            by the API for identifying the sender of the HTTP request. The field
-            should be set by the original sender of the request. Required for
-            routing and signature verification (see header field
-            `FSPIOP-Signature`).
-        - name: FSPIOP-Destination
-          in: header
-          schema: *ref_42
-          required: false
-          description: >-
-            The `FSPIOP-Destination` header field is a non-HTTP standard field
-            used by the API for HTTP header based routing of requests and
-            responses to the destination. The field must be set by the original
-            sender of the request if the destination is known (valid for all
-            services except GET /parties) so that any entities between the
-            client and the server do not need to parse the payload for routing
-            purposes. If the destination is not known (valid for service GET
-            /parties), the field should be left empty.
-        - name: FSPIOP-Encryption
-          in: header
-          schema: *ref_43
-          required: false
-          description: >-
-            The `FSPIOP-Encryption` header field is a non-HTTP standard field
-            used by the API for applying end-to-end encryption of the request.
-        - name: FSPIOP-Signature
-          in: header
-          schema: *ref_44
-          required: false
-          description: >-
-            The `FSPIOP-Signature` header field is a non-HTTP standard field
-            used by the API for applying an end-to-end request signature.
-        - name: FSPIOP-URI
-          in: header
-          schema: *ref_45
-          required: false
-          description: >-
-            The `FSPIOP-URI` header field is a non-HTTP standard field used by
-            the API for signature verification, should contain the service URI.
-            Required if signature verification is used, for more information,
-            see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-        - name: FSPIOP-HTTP-Method
-          in: header
-          schema: *ref_46
-          required: false
-          description: >-
-            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-            used by the API for signature verification, should contain the
-            service HTTP method. Required if signature verification is used, for
-            more information, see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       requestBody:
         description: Participant information returned.
         required: true
@@ -4479,6 +4509,96 @@ paths:
           content: *ref_34
           headers: *ref_35
   '/participants/{ID}/error':
+    parameters:
+      - name: ID
+        in: path
+        required: true
+        schema: *ref_36
+        description: The identifier value.
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     put:
       description: >-
         If there is an error during FSP information creation in the server, the
@@ -4491,15 +4611,10 @@ paths:
         - sampled
       operationId: PutParticipantsByIDAndError
       parameters:
-        - name: ID
-          in: path
-          required: true
-          schema: *ref_36
-          description: The identifier value.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -4507,92 +4622,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
-        - name: Date
-          in: header
-          schema: *ref_39
-          required: true
-          description: >-
-            The `Date` header field indicates the date when the request was
-            sent.
-        - name: X-Forwarded-For
-          in: header
-          schema: *ref_40
-          required: false
-          description: >-
-            The `X-Forwarded-For` header field is an unofficially accepted
-            standard used for informational purposes of the originating client
-            IP address, as a request might pass multiple proxies, firewalls, and
-            so on. Multiple `X-Forwarded-For` values should be expected and
-            supported by implementers of the API.
-
-
-            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-            7239](https://tools.ietf.org/html/rfc7239). However, to this point
-            RFC 7239 is less-used and supported than `X-Forwarded-For`.
-        - name: FSPIOP-Source
-          in: header
-          schema: *ref_41
-          required: true
-          description: >-
-            The `FSPIOP-Source` header field is a non-HTTP standard field used
-            by the API for identifying the sender of the HTTP request. The field
-            should be set by the original sender of the request. Required for
-            routing and signature verification (see header field
-            `FSPIOP-Signature`).
-        - name: FSPIOP-Destination
-          in: header
-          schema: *ref_42
-          required: false
-          description: >-
-            The `FSPIOP-Destination` header field is a non-HTTP standard field
-            used by the API for HTTP header based routing of requests and
-            responses to the destination. The field must be set by the original
-            sender of the request if the destination is known (valid for all
-            services except GET /parties) so that any entities between the
-            client and the server do not need to parse the payload for routing
-            purposes. If the destination is not known (valid for service GET
-            /parties), the field should be left empty.
-        - name: FSPIOP-Encryption
-          in: header
-          schema: *ref_43
-          required: false
-          description: >-
-            The `FSPIOP-Encryption` header field is a non-HTTP standard field
-            used by the API for applying end-to-end encryption of the request.
-        - name: FSPIOP-Signature
-          in: header
-          schema: *ref_44
-          required: false
-          description: >-
-            The `FSPIOP-Signature` header field is a non-HTTP standard field
-            used by the API for applying an end-to-end request signature.
-        - name: FSPIOP-URI
-          in: header
-          schema: *ref_45
-          required: false
-          description: >-
-            The `FSPIOP-URI` header field is a non-HTTP standard field used by
-            the API for signature verification, should contain the service URI.
-            Required if signature verification is used, for more information,
-            see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-        - name: FSPIOP-HTTP-Method
-          in: header
-          schema: *ref_46
-          required: false
-          description: >-
-            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-            used by the API for signature verification, should contain the
-            service HTTP method. Required if signature verification is used, for
-            more information, see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       requestBody:
         description: Details of the error returned.
         required: true
@@ -4658,19 +4687,19 @@ paths:
         description: The identifier value.
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -4685,7 +4714,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -4695,7 +4724,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -4708,21 +4737,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -4732,7 +4761,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -4763,7 +4792,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -4919,7 +4948,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -5043,6 +5072,103 @@ paths:
           content: *ref_34
           headers: *ref_35
   '/participants/{Type}/{ID}/error':
+    parameters:
+      - name: Type
+        in: path
+        required: true
+        schema: *ref_63
+        description: >-
+          The type of the party identifier. For example, `MSISDN`,
+          `PERSONAL_ID`.
+      - name: ID
+        in: path
+        required: true
+        schema: *ref_36
+        description: The identifier value.
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     put:
       description: >-
         If the server is unable to find, create or delete the associated FSP of
@@ -5054,22 +5180,10 @@ paths:
         - participants
       operationId: ParticipantsErrorByTypeAndID
       parameters:
-        - name: Type
-          in: path
-          required: true
-          schema: *ref_63
-          description: >-
-            The type of the party identifier. For example, `MSISDN`,
-            `PERSONAL_ID`.
-        - name: ID
-          in: path
-          required: true
-          schema: *ref_36
-          description: The identifier value.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -5077,92 +5191,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
-        - name: Date
-          in: header
-          schema: *ref_39
-          required: true
-          description: >-
-            The `Date` header field indicates the date when the request was
-            sent.
-        - name: X-Forwarded-For
-          in: header
-          schema: *ref_40
-          required: false
-          description: >-
-            The `X-Forwarded-For` header field is an unofficially accepted
-            standard used for informational purposes of the originating client
-            IP address, as a request might pass multiple proxies, firewalls, and
-            so on. Multiple `X-Forwarded-For` values should be expected and
-            supported by implementers of the API.
-
-
-            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-            7239](https://tools.ietf.org/html/rfc7239). However, to this point
-            RFC 7239 is less-used and supported than `X-Forwarded-For`.
-        - name: FSPIOP-Source
-          in: header
-          schema: *ref_41
-          required: true
-          description: >-
-            The `FSPIOP-Source` header field is a non-HTTP standard field used
-            by the API for identifying the sender of the HTTP request. The field
-            should be set by the original sender of the request. Required for
-            routing and signature verification (see header field
-            `FSPIOP-Signature`).
-        - name: FSPIOP-Destination
-          in: header
-          schema: *ref_42
-          required: false
-          description: >-
-            The `FSPIOP-Destination` header field is a non-HTTP standard field
-            used by the API for HTTP header based routing of requests and
-            responses to the destination. The field must be set by the original
-            sender of the request if the destination is known (valid for all
-            services except GET /parties) so that any entities between the
-            client and the server do not need to parse the payload for routing
-            purposes. If the destination is not known (valid for service GET
-            /parties), the field should be left empty.
-        - name: FSPIOP-Encryption
-          in: header
-          schema: *ref_43
-          required: false
-          description: >-
-            The `FSPIOP-Encryption` header field is a non-HTTP standard field
-            used by the API for applying end-to-end encryption of the request.
-        - name: FSPIOP-Signature
-          in: header
-          schema: *ref_44
-          required: false
-          description: >-
-            The `FSPIOP-Signature` header field is a non-HTTP standard field
-            used by the API for applying an end-to-end request signature.
-        - name: FSPIOP-URI
-          in: header
-          schema: *ref_45
-          required: false
-          description: >-
-            The `FSPIOP-URI` header field is a non-HTTP standard field used by
-            the API for signature verification, should contain the service URI.
-            Required if signature verification is used, for more information,
-            see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-        - name: FSPIOP-HTTP-Method
-          in: header
-          schema: *ref_46
-          required: false
-          description: >-
-            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-            used by the API for signature verification, should contain the
-            service HTTP method. Required if signature verification is used, for
-            more information, see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       requestBody:
         description: Details of the error returned.
         required: true
@@ -5219,14 +5247,21 @@ paths:
         schema: &ref_64
           type: string
         description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -5241,7 +5276,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -5251,7 +5286,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -5264,21 +5299,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -5288,7 +5323,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -5365,7 +5400,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -5373,13 +5408,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
       requestBody:
         required: true
         content:
@@ -5441,32 +5469,21 @@ paths:
         required: true
         schema: *ref_64
         description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
-      - name: Content-Length
-        in: header
-        required: false
-        schema: *ref_37
-        description: >-
-          The `Content-Length` header field indicates the anticipated size of
-          the payload body. Only sent if there is a body.
-
-
-          **Note:** The API supports a maximum size of 5242880 bytes (5
-          Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -5481,7 +5498,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -5491,7 +5508,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -5504,21 +5521,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -5528,7 +5545,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -5545,6 +5562,18 @@ paths:
       tags:
         - services
         - sampled
+      parameters:
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_46
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         description: Details of the error returned.
         required: true
@@ -5595,39 +5624,21 @@ paths:
           headers: *ref_35
   /thirdpartyRequests/transactions:
     parameters:
-      - name: Accept
-        in: header
-        required: true
-        schema: *ref_49
-        description: >-
-          The `Accept` header field indicates the version of the API the client
-          would like the server to use.
-      - name: Content-Length
-        in: header
-        required: false
-        schema: *ref_37
-        description: >-
-          The `Content-Length` header field indicates the anticipated size of
-          the payload body. Only sent if there is a body.
-
-
-          **Note:** The API supports a maximum size of 5242880 bytes (5
-          Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -5642,7 +5653,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -5652,7 +5663,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -5665,21 +5676,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -5689,7 +5700,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -5698,6 +5709,25 @@ paths:
           information, see [the API Signature
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     post:
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_46
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         description: Transaction request to be created.
         required: true
@@ -5914,7 +5944,118 @@ paths:
         - thirdpartyRequests
         - sampled
   /thirdpartyRequests/transactions-tsa:
+    parameters:
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     post:
+      operationId: ThirdpartyRequestsTransactionsPost
+      summary: ThirdpartyRequestsTransactionsPost
+      description: >-
+        The HTTP request POST `/thirdpartyRequests/transactions` is used by a
+        PISP to initiate a 3rd party Transaction request with a DFSP
+      tags:
+        - thirdpartyRequests
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_46
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         description: Transaction request to be created.
         required: true
@@ -5988,13 +6129,6 @@ paths:
           description: Service Unavailable
           content: *ref_34
           headers: *ref_35
-      operationId: ThirdpartyRequestsTransactionsPost
-      summary: ThirdpartyRequestsTransactionsPost
-      description: >-
-        The HTTP request POST `/thirdpartyRequests/transactions` is used by a
-        PISP to initiate a 3rd party Transaction request with a DFSP
-      tags:
-        - thirdpartyRequests
   '/thirdpartyRequests/transactions/{ID}':
     parameters:
       - name: ID
@@ -6002,21 +6136,21 @@ paths:
         required: true
         schema: *ref_36
         description: The identifier value.
-      - name: Accept
+      - name: Content-Type
         in: header
+        schema: *ref_37
         required: true
-        schema: *ref_49
         description: >-
-          The `Accept` header field indicates the version of the API the client
-          would like the server to use.
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -6031,7 +6165,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -6041,7 +6175,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -6054,21 +6188,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -6078,7 +6212,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -6094,9 +6228,17 @@ paths:
       summary: GetThirdpartyTransactionRequests
       description: >
         The HTTP request `GET /thirdpartyRequests/transactions/{ID}` is used to
-        request the 
+        request the
 
         retrieval of a third party transaction request.
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
       responses:
         '202':
           description: Accepted
@@ -6150,7 +6292,7 @@ paths:
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -6158,13 +6300,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
       requestBody:
         required: true
         content:
@@ -6262,10 +6397,17 @@ paths:
       tags:
         - thirdpartyRequests
       parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -6273,13 +6415,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
       requestBody:
         required: true
         content:
@@ -6332,6 +6467,96 @@ paths:
           content: *ref_34
           headers: *ref_35
   '/thirdpartyRequests/transactions/{ID}/error':
+    parameters:
+      - name: ID
+        in: path
+        required: true
+        schema: *ref_36
+        description: The identifier value.
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     put:
       tags:
         - thirdpartyRequests
@@ -6346,19 +6571,14 @@ paths:
         used.
 
         The `{ID}` in the URI should contain the `transactionRequestId` that was
-        used for the creation of 
+        used for the creation of
 
         the thirdparty transaction request.
       parameters:
-        - name: ID
-          in: path
-          required: true
-          schema: *ref_36
-          description: The identifier value.
         - name: Content-Length
           in: header
           required: false
-          schema: *ref_37
+          schema: *ref_46
           description: >-
             The `Content-Length` header field indicates the anticipated size of
             the payload body. Only sent if there is a body.
@@ -6366,92 +6586,6 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
-        - name: Content-Type
-          in: header
-          schema: *ref_38
-          required: true
-          description: >-
-            The `Content-Type` header indicates the specific version of the API
-            used to send the payload body.
-        - name: Date
-          in: header
-          schema: *ref_39
-          required: true
-          description: >-
-            The `Date` header field indicates the date when the request was
-            sent.
-        - name: X-Forwarded-For
-          in: header
-          schema: *ref_40
-          required: false
-          description: >-
-            The `X-Forwarded-For` header field is an unofficially accepted
-            standard used for informational purposes of the originating client
-            IP address, as a request might pass multiple proxies, firewalls, and
-            so on. Multiple `X-Forwarded-For` values should be expected and
-            supported by implementers of the API.
-
-
-            **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-            7239](https://tools.ietf.org/html/rfc7239). However, to this point
-            RFC 7239 is less-used and supported than `X-Forwarded-For`.
-        - name: FSPIOP-Source
-          in: header
-          schema: *ref_41
-          required: true
-          description: >-
-            The `FSPIOP-Source` header field is a non-HTTP standard field used
-            by the API for identifying the sender of the HTTP request. The field
-            should be set by the original sender of the request. Required for
-            routing and signature verification (see header field
-            `FSPIOP-Signature`).
-        - name: FSPIOP-Destination
-          in: header
-          schema: *ref_42
-          required: false
-          description: >-
-            The `FSPIOP-Destination` header field is a non-HTTP standard field
-            used by the API for HTTP header based routing of requests and
-            responses to the destination. The field must be set by the original
-            sender of the request if the destination is known (valid for all
-            services except GET /parties) so that any entities between the
-            client and the server do not need to parse the payload for routing
-            purposes. If the destination is not known (valid for service GET
-            /parties), the field should be left empty.
-        - name: FSPIOP-Encryption
-          in: header
-          schema: *ref_43
-          required: false
-          description: >-
-            The `FSPIOP-Encryption` header field is a non-HTTP standard field
-            used by the API for applying end-to-end encryption of the request.
-        - name: FSPIOP-Signature
-          in: header
-          schema: *ref_44
-          required: false
-          description: >-
-            The `FSPIOP-Signature` header field is a non-HTTP standard field
-            used by the API for applying an end-to-end request signature.
-        - name: FSPIOP-URI
-          in: header
-          schema: *ref_45
-          required: false
-          description: >-
-            The `FSPIOP-URI` header field is a non-HTTP standard field used by
-            the API for signature verification, should contain the service URI.
-            Required if signature verification is used, for more information,
-            see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-        - name: FSPIOP-HTTP-Method
-          in: header
-          schema: *ref_46
-          required: false
-          description: >-
-            The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-            used by the API for signature verification, should contain the
-            service HTTP method. Required if signature verification is used, for
-            more information, see [the API Signature
-            document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       requestBody:
         description: Error information returned.
         required: true
@@ -6510,7 +6644,7 @@ paths:
       - name: Content-Length
         in: header
         required: false
-        schema: *ref_37
+        schema: *ref_46
         description: >-
           The `Content-Length` header field indicates the anticipated size of
           the payload body. Only sent if there is a body.
@@ -6520,19 +6654,19 @@ paths:
           Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -6547,7 +6681,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -6557,7 +6691,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -6570,21 +6704,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -6594,7 +6728,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -6870,15 +7004,119 @@ paths:
           content: *ref_34
           headers: *ref_35
   /thirdpartyRequests/authorizations:
+    parameters:
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     post:
       description: >
         The HTTP request `POST /thirdpartyRequests/authorizations` is used to
         request the Payer to enter the applicable credentials in the PISP
         system.
-      operationId: PostThirdpartyRequestsAutorizations
-      summary: PostThirdpartyRequestsAutorizations
+      operationId: PostThirdpartyRequestsAuthorizations
+      summary: PostThirdpartyRequestsAuthorizations
       tags:
         - authorizations
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_46
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         description: Authorization request details
         required: true
@@ -6996,6 +7234,96 @@ paths:
           content: *ref_34
           headers: *ref_35
   '/thirdpartyRequests/authorizations/{ID}':
+    parameters:
+      - name: ID
+        in: path
+        required: true
+        schema: *ref_36
+        description: The identifier value.
+      - name: Content-Type
+        in: header
+        schema: *ref_37
+        required: true
+        description: >-
+          The `Content-Type` header indicates the specific version of the API
+          used to send the payload body.
+      - name: Date
+        in: header
+        schema: *ref_38
+        required: true
+        description: The `Date` header field indicates the date when the request was sent.
+      - name: X-Forwarded-For
+        in: header
+        schema: *ref_39
+        required: false
+        description: >-
+          The `X-Forwarded-For` header field is an unofficially accepted
+          standard used for informational purposes of the originating client IP
+          address, as a request might pass multiple proxies, firewalls, and so
+          on. Multiple `X-Forwarded-For` values should be expected and supported
+          by implementers of the API.
+
+
+          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+          7239 is less-used and supported than `X-Forwarded-For`.
+      - name: FSPIOP-Source
+        in: header
+        schema: *ref_40
+        required: true
+        description: >-
+          The `FSPIOP-Source` header field is a non-HTTP standard field used by
+          the API for identifying the sender of the HTTP request. The field
+          should be set by the original sender of the request. Required for
+          routing and signature verification (see header field
+          `FSPIOP-Signature`).
+      - name: FSPIOP-Destination
+        in: header
+        schema: *ref_41
+        required: false
+        description: >-
+          The `FSPIOP-Destination` header field is a non-HTTP standard field
+          used by the API for HTTP header based routing of requests and
+          responses to the destination. The field must be set by the original
+          sender of the request if the destination is known (valid for all
+          services except GET /parties) so that any entities between the client
+          and the server do not need to parse the payload for routing purposes.
+          If the destination is not known (valid for service GET /parties), the
+          field should be left empty.
+      - name: FSPIOP-Encryption
+        in: header
+        schema: *ref_42
+        required: false
+        description: >-
+          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+          by the API for applying end-to-end encryption of the request.
+      - name: FSPIOP-Signature
+        in: header
+        schema: *ref_43
+        required: false
+        description: >-
+          The `FSPIOP-Signature` header field is a non-HTTP standard field used
+          by the API for applying an end-to-end request signature.
+      - name: FSPIOP-URI
+        in: header
+        schema: *ref_44
+        required: false
+        description: >-
+          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+          API for signature verification, should contain the service URI.
+          Required if signature verification is used, for more information, see
+          [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+      - name: FSPIOP-HTTP-Method
+        in: header
+        schema: *ref_45
+        required: false
+        description: >-
+          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
+          used by the API for signature verification, should contain the service
+          HTTP method. Required if signature verification is used, for more
+          information, see [the API Signature
+          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     put:
       description: >
         The callback PUT /thirdpartyRequests/authorizations/{ID} is used to
@@ -7010,11 +7338,17 @@ paths:
       tags:
         - authorizations
       parameters:
-        - name: ID
-          in: path
-          required: true
-          schema:
-            type: string
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_46
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       responses:
         '200':
           description: |
@@ -7097,32 +7431,21 @@ paths:
         required: true
         schema: *ref_36
         description: The identifier value.
-      - name: Content-Length
-        in: header
-        required: false
-        schema: *ref_37
-        description: >-
-          The `Content-Length` header field indicates the anticipated size of
-          the payload body. Only sent if there is a body.
-
-
-          **Note:** The API supports a maximum size of 5242880 bytes (5
-          Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -7137,7 +7460,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -7147,7 +7470,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -7160,21 +7483,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -7184,7 +7507,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -7202,11 +7525,11 @@ paths:
         The HTTP request `PUT /thirdpartyRequests/authorizations/{ID}/error` is
         used by the DFSP or PISP to inform
 
-        the other party that something went wrong with a Thirdparty Tranasction
+        the other party that something went wrong with a Thirdparty Transaction
         Authorization Request.
 
 
-        The PISP may use this to tell the DFSP that the Thirdparty Tranasction
+        The PISP may use this to tell the DFSP that the Thirdparty Transaction
         Authorization Request is invalid or doesn't
 
         match a `transactionRequestId`.
@@ -7217,13 +7540,17 @@ paths:
 
         was invalid.
       parameters:
-        - name: Accept
+        - name: Content-Length
           in: header
-          required: true
-          schema: *ref_49
+          required: false
+          schema: *ref_46
           description: >-
-            The `Accept` header field indicates the version of the API the
-            client would like the server to use.
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         description: Error information returned.
         required: true
@@ -7279,32 +7606,21 @@ paths:
         required: true
         schema: *ref_36
         description: The identifier value.
-      - name: Content-Length
-        in: header
-        required: false
-        schema: *ref_37
-        description: >-
-          The `Content-Length` header field indicates the anticipated size of
-          the payload body. Only sent if there is a body.
-
-
-          **Note:** The API supports a maximum size of 5242880 bytes (5
-          Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -7319,7 +7635,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -7329,7 +7645,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -7342,21 +7658,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -7366,7 +7682,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -7391,6 +7707,17 @@ paths:
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
+        - name: Content-Length
+          in: header
+          required: false
+          schema: *ref_46
+          description: >-
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         description: The thirdparty authorization details to verify
         required: true
@@ -7524,32 +7851,21 @@ paths:
         required: true
         schema: *ref_36
         description: The identifier value.
-      - name: Content-Length
-        in: header
-        required: false
-        schema: *ref_37
-        description: >-
-          The `Content-Length` header field indicates the anticipated size of
-          the payload body. Only sent if there is a body.
-
-
-          **Note:** The API supports a maximum size of 5242880 bytes (5
-          Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -7564,7 +7880,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -7574,7 +7890,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -7587,21 +7903,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -7611,7 +7927,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -7638,13 +7954,17 @@ paths:
 
         instead.
       parameters:
-        - name: Accept
+        - name: Content-Length
           in: header
-          required: true
-          schema: *ref_49
+          required: false
+          schema: *ref_46
           description: >-
-            The `Accept` header field indicates the version of the API the
-            client would like the server to use.
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         description: The result of validating the Thirdparty Transaction Request
         required: true
@@ -7708,32 +8028,21 @@ paths:
         required: true
         schema: *ref_36
         description: The identifier value.
-      - name: Content-Length
-        in: header
-        required: false
-        schema: *ref_37
-        description: >-
-          The `Content-Length` header field indicates the anticipated size of
-          the payload body. Only sent if there is a body.
-
-
-          **Note:** The API supports a maximum size of 5242880 bytes (5
-          Megabytes).
       - name: Content-Type
         in: header
-        schema: *ref_38
+        schema: *ref_37
         required: true
         description: >-
           The `Content-Type` header indicates the specific version of the API
           used to send the payload body.
       - name: Date
         in: header
-        schema: *ref_39
+        schema: *ref_38
         required: true
         description: The `Date` header field indicates the date when the request was sent.
       - name: X-Forwarded-For
         in: header
-        schema: *ref_40
+        schema: *ref_39
         required: false
         description: >-
           The `X-Forwarded-For` header field is an unofficially accepted
@@ -7748,7 +8057,7 @@ paths:
           7239 is less-used and supported than `X-Forwarded-For`.
       - name: FSPIOP-Source
         in: header
-        schema: *ref_41
+        schema: *ref_40
         required: true
         description: >-
           The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -7758,7 +8067,7 @@ paths:
           `FSPIOP-Signature`).
       - name: FSPIOP-Destination
         in: header
-        schema: *ref_42
+        schema: *ref_41
         required: false
         description: >-
           The `FSPIOP-Destination` header field is a non-HTTP standard field
@@ -7771,21 +8080,21 @@ paths:
           field should be left empty.
       - name: FSPIOP-Encryption
         in: header
-        schema: *ref_43
+        schema: *ref_42
         required: false
         description: >-
           The `FSPIOP-Encryption` header field is a non-HTTP standard field used
           by the API for applying end-to-end encryption of the request.
       - name: FSPIOP-Signature
         in: header
-        schema: *ref_44
+        schema: *ref_43
         required: false
         description: >-
           The `FSPIOP-Signature` header field is a non-HTTP standard field used
           by the API for applying an end-to-end request signature.
       - name: FSPIOP-URI
         in: header
-        schema: *ref_45
+        schema: *ref_44
         required: false
         description: >-
           The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -7795,7 +8104,7 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
       - name: FSPIOP-HTTP-Method
         in: header
-        schema: *ref_46
+        schema: *ref_45
         required: false
         description: >-
           The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
@@ -7816,13 +8125,17 @@ paths:
         the DFSP of a failure in validating or looking up the verification of a
         Thirdparty Transaction Request.
       parameters:
-        - name: Accept
+        - name: Content-Length
           in: header
-          required: true
-          schema: *ref_49
+          required: false
+          schema: *ref_46
           description: >-
-            The `Accept` header field indicates the version of the API the
-            client would like the server to use.
+            The `Content-Length` header field indicates the anticipated size of
+            the payload body. Only sent if there is a body.
+
+
+            **Note:** The API supports a maximum size of 5242880 bytes (5
+            Megabytes).
       requestBody:
         description: Error information returned.
         required: true
@@ -8918,16 +9231,24 @@ components:
       required: true
       schema: *ref_36
       description: The identifier value.
+    Content-Type:
+      name: Content-Type
+      in: header
+      schema: *ref_37
+      required: true
+      description: >-
+        The `Content-Type` header indicates the specific version of the API used
+        to send the payload body.
     Date:
       name: Date
       in: header
-      schema: *ref_39
+      schema: *ref_38
       required: true
       description: The `Date` header field indicates the date when the request was sent.
     X-Forwarded-For:
       name: X-Forwarded-For
       in: header
-      schema: *ref_40
+      schema: *ref_39
       required: false
       description: >-
         The `X-Forwarded-For` header field is an unofficially accepted standard
@@ -8943,7 +9264,7 @@ components:
     FSPIOP-Source:
       name: FSPIOP-Source
       in: header
-      schema: *ref_41
+      schema: *ref_40
       required: true
       description: >-
         The `FSPIOP-Source` header field is a non-HTTP standard field used by
@@ -8953,7 +9274,7 @@ components:
     FSPIOP-Destination:
       name: FSPIOP-Destination
       in: header
-      schema: *ref_42
+      schema: *ref_41
       required: false
       description: >-
         The `FSPIOP-Destination` header field is a non-HTTP standard field used
@@ -8967,7 +9288,7 @@ components:
     FSPIOP-Encryption:
       name: FSPIOP-Encryption
       in: header
-      schema: *ref_43
+      schema: *ref_42
       required: false
       description: >-
         The `FSPIOP-Encryption` header field is a non-HTTP standard field used
@@ -8975,7 +9296,7 @@ components:
     FSPIOP-Signature:
       name: FSPIOP-Signature
       in: header
-      schema: *ref_44
+      schema: *ref_43
       required: false
       description: >-
         The `FSPIOP-Signature` header field is a non-HTTP standard field used by
@@ -8983,7 +9304,7 @@ components:
     FSPIOP-URI:
       name: FSPIOP-URI
       in: header
-      schema: *ref_45
+      schema: *ref_44
       required: false
       description: >-
         The `FSPIOP-URI` header field is a non-HTTP standard field used by the
@@ -8994,7 +9315,7 @@ components:
     FSPIOP-HTTP-Method:
       name: FSPIOP-HTTP-Method
       in: header
-      schema: *ref_46
+      schema: *ref_45
       required: false
       description: >-
         The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used
@@ -9014,7 +9335,7 @@ components:
       name: Content-Length
       in: header
       required: false
-      schema: *ref_37
+      schema: *ref_46
       description: >-
         The `Content-Length` header field indicates the anticipated size of the
         payload body. Only sent if there is a body.
@@ -9022,14 +9343,6 @@ components:
 
         **Note:** The API supports a maximum size of 5242880 bytes (5
         Megabytes).
-    Content-Type:
-      name: Content-Type
-      in: header
-      schema: *ref_38
-      required: true
-      description: >-
-        The `Content-Type` header indicates the specific version of the API used
-        to send the payload body.
     Type:
       name: Type
       in: path

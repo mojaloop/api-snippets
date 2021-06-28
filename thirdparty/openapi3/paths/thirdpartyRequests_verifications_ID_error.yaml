@@ -2,7 +2,6 @@ parameters:
   #Path
   - $ref: ../components/parameters/ID.yaml
   #Headers
-  - $ref: ../components/parameters/Content-Length.yaml
   - $ref: ../components/parameters/Content-Type.yaml
   - $ref: ../components/parameters/Date.yaml
   - $ref: ../components/parameters/X-Forwarded-For.yaml
@@ -21,9 +20,8 @@ put:
   description: |
     The HTTP request `PUT /thirdpartyRequests/verifications/{ID}/error` is used by the Auth-Service to inform
     the DFSP of a failure in validating or looking up the verification of a Thirdparty Transaction Request.
-
   parameters:
-    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
     description: Error information returned.
     required: true

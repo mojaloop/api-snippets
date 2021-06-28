@@ -69,7 +69,7 @@ patch:
             - $ref: ../components/schemas/ConsentsIDPatchResponseVerified.yaml
             - $ref: ../components/schemas/ConsentsIDPatchResponseRevoked.yaml
   parameters:
-    #Headers
+    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
   responses:
     200:
@@ -139,6 +139,8 @@ delete:
 
     - Called by a PISP when a user wants to remove their consent.
   operationId: DeleteConsentByID
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
   tags:
     - consents
   responses:

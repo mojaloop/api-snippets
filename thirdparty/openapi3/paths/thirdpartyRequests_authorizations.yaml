@@ -1,24 +1,26 @@
-# todo: uncomment parameters after header middleware similar to 
-# `sdk-scheme-adapter` is implemented in `thirdparty-scheme-adapter`
-#parameters:
-# - $ref: ../components/parameters/ID.yaml
-# - $ref: ../components/parameters/Content-Type.yaml
-# - $ref: ../components/parameters/Date.yaml
-# - $ref: ../components/parameters/X-Forwarded-For.yaml
-# - $ref: ../components/parameters/FSPIOP-Source.yaml
-# - $ref: ../components/parameters/FSPIOP-Destination.yaml
-# - $ref: ../components/parameters/FSPIOP-Encryption.yaml
-# - $ref: ../components/parameters/FSPIOP-Signature.yaml
-# - $ref: ../components/parameters/FSPIOP-URI.yaml
-# - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+parameters:
+  #Headers
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 post:
   description:  >
     The HTTP request `POST /thirdpartyRequests/authorizations` is used to request the Payer to enter the
     applicable credentials in the PISP system.
-  operationId: PostThirdpartyRequestsAutorizations
-  summary: PostThirdpartyRequestsAutorizations
+  operationId: PostThirdpartyRequestsAuthorizations
+  summary: PostThirdpartyRequestsAuthorizations
   tags:
     - authorizations
+  parameters:
+    #Headers
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
     description: Authorization request details
     required: true
@@ -30,20 +32,20 @@ post:
           authorizationRequestId: 33333333-0000-0000-0000-000000000000
           transactionRequestId: '00000000-0000-0000-0000-000000000000'
           challenge: '<base64 encoded binary - the encoded challenge>'
-          quote: 
+          quote:
             transferAmount:
               amount: "100"
               currency: "USD"
             payeeReceiveAmount:
               amount: "99"
-              currency: "USD" 
-            payeeFspFee: 
+              currency: "USD"
+            payeeFspFee:
               amount: "1"
               currency: "USD"
             expiration: "2020-06-15T12:00:00.000"
             ilpPacket: "..."
             condition: "..."
-          transactionType: 
+          transactionType:
             scenario: "TRANSFER"
             initiator: "PAYER"
             initiatorType: "CONSUMER"
