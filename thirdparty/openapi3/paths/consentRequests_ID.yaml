@@ -61,6 +61,7 @@ patch:
     PISP sends user's OTP token to a DFSP to verify user trusts
     aforementioned PISP
   parameters:
+    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
     required: true

@@ -2702,6 +2702,13 @@ paths:
         PISP sends user's OTP token to a DFSP to verify user trusts
         aforementioned PISP
       parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
         - name: Content-Length
           in: header
           required: false
@@ -3538,6 +3545,13 @@ paths:
                     - status
                     - revokedAt
       parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
         - name: Content-Length
           in: header
           required: false
@@ -6383,6 +6397,13 @@ paths:
       tags:
         - thirdpartyRequests
       parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_49
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
         - name: Content-Length
           in: header
           required: false

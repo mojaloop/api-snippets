@@ -69,7 +69,7 @@ patch:
             - $ref: ../components/schemas/ConsentsIDPatchResponseVerified.yaml
             - $ref: ../components/schemas/ConsentsIDPatchResponseRevoked.yaml
   parameters:
-    #Headers
+    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
   responses:
     200:

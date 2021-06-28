@@ -97,7 +97,7 @@ patch:
   tags:
     - thirdpartyRequests
   parameters:
-    #Headers
+    - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
     required: true
