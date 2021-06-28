@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.4.4](https://github.com/mojaloop/api-snippets/compare/v12.4.3...v12.4.4) (2021-06-28)
+
+
+### Bug Fixes
+
+* **#2311:** standardize header definitions and fix some requests ([#97](https://github.com/mojaloop/api-snippets/issues/97)) ([7a196b7](https://github.com/mojaloop/api-snippets/commit/7a196b73ad87851e8ac5cf24afd6603b4cbd398b))
+
 ### [12.4.3](https://github.com/mojaloop/api-snippets/compare/v12.4.2...v12.4.3) (2021-06-17)
 
 
