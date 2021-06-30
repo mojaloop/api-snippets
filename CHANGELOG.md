@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.4.5](https://github.com/mojaloop/api-snippets/compare/v12.4.4...v12.4.5) (2021-06-30)
+
+
+### Bug Fixes
+
+* **#2316:** add temporary work around for tpr transactions requests ([#98](https://github.com/mojaloop/api-snippets/issues/98)) ([34e397f](https://github.com/mojaloop/api-snippets/commit/34e397f421b5d335811ed5a457519251d929e429)), closes [#2316](https://github.com/mojaloop/api-snippets/issues/2316)
+
 ### [12.4.4](https://github.com/mojaloop/api-snippets/compare/v12.4.3...v12.4.4) (2021-06-28)
 
 
