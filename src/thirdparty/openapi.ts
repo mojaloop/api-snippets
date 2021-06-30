@@ -3981,6 +3981,37 @@ export interface components {
       };
     };
     /**
+     * This is a variant based on FSPIOP `PartyIdType` specification.
+     * This validation interface should be use by `POST /thirdpartyRequests/transactions`
+     * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
+     */
+    PartyIdTypeTPLink: "THIRD_PARTY_LINK";
+    /** Data model for the complex type PartyIdInfo. */
+    PartyIdInfoTPLink: {
+      /**
+       * This is a variant based on FSPIOP `PartyIdType` specification.
+       * This validation interface should be use by `POST /thirdpartyRequests/transactions`
+       * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
+       */
+      partyIdType: "THIRD_PARTY_LINK";
+      /** Identifier of the Party. */
+      partyIdentifier: string;
+      /** Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType. */
+      partySubIdOrType?: string;
+      /** FSP identifier. */
+      fspId?: string;
+      /** Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment. */
+      extensionList?: {
+        /** Number of Extension elements. */
+        extension: {
+          /** Extension key. */
+          key: string;
+          /** Extension value. */
+          value: string;
+        }[];
+      };
+    };
+    /**
      * Below are the allowed values for the enumeration ServiceType
      * - THIRD_PARTY_DFSP - Enum used to query for DFSP's that have thirdparty features enabled
      */
@@ -5642,37 +5673,6 @@ export interface components {
       providers: string[];
     };
     /**
-     * This is a variant based on FSPIOP `PartyIdType` specification.
-     * This validation interface should be use by `POST /thirdpartyRequests/transactions`
-     * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
-     */
-    PartyIdTypeTPLink: "THIRD_PARTY_LINK";
-    /** Data model for the complex type PartyIdInfo. */
-    PartyIdInfoTPLink: {
-      /**
-       * This is a variant based on FSPIOP `PartyIdType` specification.
-       * This validation interface should be use by `POST /thirdpartyRequests/transactions`
-       * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
-       */
-      partyIdType: "THIRD_PARTY_LINK";
-      /** Identifier of the Party. */
-      partyIdentifier: string;
-      /** Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType. */
-      partySubIdOrType?: string;
-      /** FSP identifier. */
-      fspId?: string;
-      /** Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment. */
-      extensionList?: {
-        /** Number of Extension elements. */
-        extension: {
-          /** Extension key. */
-          key: string;
-          /** Extension value. */
-          value: string;
-        }[];
-      };
-    };
-    /**
      * Below are the allowed values for the enumeration AmountType.
      * - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
      * - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
@@ -5779,10 +5779,57 @@ export interface components {
       payer: {
         /**
          * This is a variant based on FSPIOP `PartyIdType` specification.
-         * This validation interface should be use by `POST /thirdpartyRequests/transactions`
-         * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
+         * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+         *
+         * Below are the allowed values for the enumeration.
+         * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+         * Number, that is, the phone number) is used as reference to a participant.
+         * The MSISDN identifier should be in international format according to the
+         * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+         * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+         * international prefix.
+         * - EMAIL - An email is used as reference to a
+         * participant. The format of the email should be according to the informational
+         * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+         * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+         * Examples of personal identification are passport number, birth certificate
+         * number, and national registration number. The identifier number is added in
+         * the PartyIdentifier element. The personal identifier type is added in the
+         * PartySubIdOrType element.
+         * - BUSINESS - A specific Business (for example, an organization or a company)
+         * is used as reference to a participant. The BUSINESS identifier can be in any
+         * format. To make a transaction connected to a specific username or bill number
+         * in a Business, the PartySubIdOrType element should be used.
+         * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+         * specific business or organization is used as reference to a Party.
+         * For referencing a specific device under a specific business or organization,
+         * use the PartySubIdOrType element.
+         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+         * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+         * as formats can greatly differ depending on country and FSP.
+         * - IBAN - A bank account number or FSP account ID is used as reference to a
+         * participant. The IBAN identifier can consist of up to 34 alphanumeric
+         * characters and should be entered without whitespace.
+         * - ALIAS An alias is used as reference to a participant. The alias should be
+         * created in the FSP as an alternative reference to an account owner.
+         * Another example of an alias is a username in the FSP system.
+         * The ALIAS identifier can be in any format. It is also possible to use the
+         * PartySubIdOrType element for identifying an account under an Alias defined
+         * by the PartyIdentifier.
+         * - CONSENT - TBD
+         * - THIRD_PARTY_LINK - TBD
          */
-        partyIdType: "THIRD_PARTY_LINK";
+        partyIdType:
+        | "MSISDN"
+        | "EMAIL"
+        | "PERSONAL_ID"
+        | "BUSINESS"
+        | "DEVICE"
+        | "ACCOUNT_ID"
+        | "IBAN"
+        | "ALIAS"
+        | "CONSENT"
+        | "THIRD_PARTY_LINK";
         /** Identifier of the Party. */
         partyIdentifier: string;
         /** Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType. */
@@ -8787,6 +8834,30 @@ export interface operations {
               /** Date of Birth of the Party. */
               dateOfBirth?: string;
             };
+          };
+        }
+        | {
+          /**
+               * This is a variant based on FSPIOP `PartyIdType` specification.
+               * This validation interface should be use by `POST /thirdpartyRequests/transactions`
+               * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
+               */
+          partyIdType: "THIRD_PARTY_LINK";
+          /** Identifier of the Party. */
+          partyIdentifier: string;
+          /** Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType. */
+          partySubIdOrType?: string;
+          /** FSP identifier. */
+          fspId?: string;
+          /** Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment. */
+          extensionList?: {
+            /** Number of Extension elements. */
+            extension: {
+              /** Extension key. */
+              key: string;
+              /** Extension value. */
+              value: string;
+            }[];
           };
         }
         | "THIRD_PARTY_DFSP"
@@ -20931,10 +21002,57 @@ export interface operations {
           payer: {
             /**
              * This is a variant based on FSPIOP `PartyIdType` specification.
-             * This validation interface should be use by `POST /thirdpartyRequests/transactions`
-             * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
+             * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+             *
+             * Below are the allowed values for the enumeration.
+             * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+             * Number, that is, the phone number) is used as reference to a participant.
+             * The MSISDN identifier should be in international format according to the
+             * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+             * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+             * international prefix.
+             * - EMAIL - An email is used as reference to a
+             * participant. The format of the email should be according to the informational
+             * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+             * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+             * Examples of personal identification are passport number, birth certificate
+             * number, and national registration number. The identifier number is added in
+             * the PartyIdentifier element. The personal identifier type is added in the
+             * PartySubIdOrType element.
+             * - BUSINESS - A specific Business (for example, an organization or a company)
+             * is used as reference to a participant. The BUSINESS identifier can be in any
+             * format. To make a transaction connected to a specific username or bill number
+             * in a Business, the PartySubIdOrType element should be used.
+             * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+             * specific business or organization is used as reference to a Party.
+             * For referencing a specific device under a specific business or organization,
+             * use the PartySubIdOrType element.
+             * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+             * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+             * as formats can greatly differ depending on country and FSP.
+             * - IBAN - A bank account number or FSP account ID is used as reference to a
+             * participant. The IBAN identifier can consist of up to 34 alphanumeric
+             * characters and should be entered without whitespace.
+             * - ALIAS An alias is used as reference to a participant. The alias should be
+             * created in the FSP as an alternative reference to an account owner.
+             * Another example of an alias is a username in the FSP system.
+             * The ALIAS identifier can be in any format. It is also possible to use the
+             * PartySubIdOrType element for identifying an account under an Alias defined
+             * by the PartyIdentifier.
+             * - CONSENT - TBD
+             * - THIRD_PARTY_LINK - TBD
              */
-            partyIdType: "THIRD_PARTY_LINK";
+            partyIdType:
+            | "MSISDN"
+            | "EMAIL"
+            | "PERSONAL_ID"
+            | "BUSINESS"
+            | "DEVICE"
+            | "ACCOUNT_ID"
+            | "IBAN"
+            | "ALIAS"
+            | "CONSENT"
+            | "THIRD_PARTY_LINK";
             /** Identifier of the Party. */
             partyIdentifier: string;
             /** Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType. */
@@ -21586,10 +21704,57 @@ export interface operations {
           payer: {
             /**
              * This is a variant based on FSPIOP `PartyIdType` specification.
-             * This validation interface should be use by `POST /thirdpartyRequests/transactions`
-             * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
+             * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+             *
+             * Below are the allowed values for the enumeration.
+             * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+             * Number, that is, the phone number) is used as reference to a participant.
+             * The MSISDN identifier should be in international format according to the
+             * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+             * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+             * international prefix.
+             * - EMAIL - An email is used as reference to a
+             * participant. The format of the email should be according to the informational
+             * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+             * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+             * Examples of personal identification are passport number, birth certificate
+             * number, and national registration number. The identifier number is added in
+             * the PartyIdentifier element. The personal identifier type is added in the
+             * PartySubIdOrType element.
+             * - BUSINESS - A specific Business (for example, an organization or a company)
+             * is used as reference to a participant. The BUSINESS identifier can be in any
+             * format. To make a transaction connected to a specific username or bill number
+             * in a Business, the PartySubIdOrType element should be used.
+             * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+             * specific business or organization is used as reference to a Party.
+             * For referencing a specific device under a specific business or organization,
+             * use the PartySubIdOrType element.
+             * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+             * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+             * as formats can greatly differ depending on country and FSP.
+             * - IBAN - A bank account number or FSP account ID is used as reference to a
+             * participant. The IBAN identifier can consist of up to 34 alphanumeric
+             * characters and should be entered without whitespace.
+             * - ALIAS An alias is used as reference to a participant. The alias should be
+             * created in the FSP as an alternative reference to an account owner.
+             * Another example of an alias is a username in the FSP system.
+             * The ALIAS identifier can be in any format. It is also possible to use the
+             * PartySubIdOrType element for identifying an account under an Alias defined
+             * by the PartyIdentifier.
+             * - CONSENT - TBD
+             * - THIRD_PARTY_LINK - TBD
              */
-            partyIdType: "THIRD_PARTY_LINK";
+            partyIdType:
+            | "MSISDN"
+            | "EMAIL"
+            | "PERSONAL_ID"
+            | "BUSINESS"
+            | "DEVICE"
+            | "ACCOUNT_ID"
+            | "IBAN"
+            | "ALIAS"
+            | "CONSENT"
+            | "THIRD_PARTY_LINK";
             /** Identifier of the Party. */
             partyIdentifier: string;
             /** Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType. */
