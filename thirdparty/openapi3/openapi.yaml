@@ -38,6 +38,7 @@ paths:
                 - $ref: './components/schemas/ParticipantsIDPutResponse.yaml'
                 - $ref: './components/schemas/ParticipantsPostRequest.yaml'
                 - $ref: './components/schemas/PartiesTypeIDPutResponse.yaml'
+                - $ref: './components/schemas/PartyIdInfoTPLink.yaml'
                 - $ref: './components/schemas/ServiceType.yaml'
                 - $ref: './components/schemas/ThirdpartyRequestsTransactionsIDPatchResponse.yaml'
                 - $ref: './components/schemas/TransactionRequestsPostRequest.yaml'
