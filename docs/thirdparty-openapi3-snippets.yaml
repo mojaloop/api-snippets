@@ -2051,7 +2051,7 @@ paths:
                             required: &ref_102
                               - pinValue
                               - counter
-                          - title: FIDOPublicKeyCredentialAttestation
+                          - title: FIDOPublicKeyCredentialAssertion
                             type: object
                             description: >
                               An object sent in a `PUT
@@ -8963,7 +8963,7 @@ components:
       properties: *ref_101
       required: *ref_102
     FIDOPublicKeyCredentialAssertion:
-      title: FIDOPublicKeyCredentialAttestation
+      title: FIDOPublicKeyCredentialAssertion
       type: object
       description: >
         An object sent in a `PUT /thirdpartyRequests/authorization/{ID}`
