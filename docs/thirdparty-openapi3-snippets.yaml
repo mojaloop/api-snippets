@@ -69,6 +69,7 @@ paths:
                         - OTP
                         - QRCODE
                         - U2F
+                        - PKC
                       description: >-
                         Below are the allowed values for the enumeration
                         AuthenticationType.
@@ -79,6 +80,8 @@ paths:
 
                         - U2F - U2F is a new addition isolated to Thirdparty
                         stream.
+
+                        - PKC - TBD
                     retriesLeft:
                       title: Integer
                       type: string
@@ -1180,6 +1183,8 @@ paths:
 
                         - U2F - U2F is a new addition isolated to Thirdparty
                         stream.
+
+                        - PKC - TBD
                     expiration:
                       title: DateTime
                       type: string
@@ -1998,6 +2003,8 @@ paths:
 
                           - U2F - U2F is a new addition isolated to Thirdparty
                           stream.
+
+                          - PKC - TBD
                       authenticationValue:
                         title: AuthenticationValue
                         anyOf: &ref_103
@@ -2051,6 +2058,71 @@ paths:
                             required: &ref_102
                               - pinValue
                               - counter
+                          - title: FIDOPublicKeyCredential
+                            type: object
+                            description: >
+                              An object sent in a `PUT /consents/{ID}` request.
+
+                              Based on
+                              https://w3c.github.io/webauthn/#iface-pkcredential
+
+                              and mostly on:
+                              https://webauthn.guide/#registration
+
+                              AuthenticatorAttestationResponse
+
+                              https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
+                            properties: &ref_54
+                              id:
+                                type: string
+                                description: >
+                                  credential id: identifier of pair of keys,
+                                  base64 encoded
+
+                                  https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+                                minLength: 59
+                                maxLength: 118
+                              rawId:
+                                type: string
+                                description: >
+                                  raw credential id: identifier of pair of keys,
+                                  base64 encoded
+                                minLength: 59
+                                maxLength: 118
+                              response:
+                                type: object
+                                description: |
+                                  AuthenticatorAttestationResponse
+                                properties:
+                                  clientDataJSON:
+                                    type: string
+                                    description: |
+                                      JSON string with client data
+                                    minLength: 121
+                                    maxLength: 512
+                                  attestationObject:
+                                    type: string
+                                    description: |
+                                      CBOR.encoded attestation object
+                                    minLength: 306
+                                    maxLength: 2048
+                                required:
+                                  - clientDataJSON
+                                  - attestationObject
+                                additionalProperties: false
+                              type:
+                                type: string
+                                description: >-
+                                  response type, we need only the type of
+                                  public-key
+                                enum:
+                                  - public-key
+                            required: &ref_55
+                              - id
+                              - rawId
+                              - response
+                              - type
+                            additionalProperties: false
                         description: >-
                           Contains the authentication value. The format depends
                           on the authentication type used in the
@@ -3166,11 +3238,11 @@ paths:
                             only ever be PENDING when
 
                             updating a credential.
-                          properties: &ref_54
+                          properties: &ref_56
                             credentialType:
                               title: CredentialType
                               type: string
-                              enum: &ref_56
+                              enum: &ref_58
                                 - FIDO
                               description: |
                                 The type of the Credential.
@@ -3196,58 +3268,10 @@ paths:
                                 AuthenticatorAttestationResponse
 
                                 https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-                              properties: &ref_57
-                                id:
-                                  type: string
-                                  description: >
-                                    credential id: identifier of pair of keys,
-                                    base64 encoded
-
-                                    https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-                                  minLength: 59
-                                  maxLength: 118
-                                rawId:
-                                  type: string
-                                  description: >
-                                    raw credential id: identifier of pair of
-                                    keys, base64 encoded
-                                  minLength: 59
-                                  maxLength: 118
-                                response:
-                                  type: object
-                                  description: |
-                                    AuthenticatorAttestationResponse
-                                  properties:
-                                    clientDataJSON:
-                                      type: string
-                                      description: |
-                                        JSON string with client data
-                                      minLength: 121
-                                      maxLength: 512
-                                    attestationObject:
-                                      type: string
-                                      description: |
-                                        CBOR.encoded attestation object
-                                      minLength: 306
-                                      maxLength: 2048
-                                  required:
-                                    - clientDataJSON
-                                    - attestationObject
-                                  additionalProperties: false
-                                type:
-                                  type: string
-                                  description: >-
-                                    response type, we need only the type of
-                                    public-key
-                                  enum:
-                                    - public-key
-                              required: &ref_58
-                                - id
-                                - rawId
-                                - response
-                                - type
+                              properties: *ref_54
+                              required: *ref_55
                               additionalProperties: false
-                          required: &ref_55
+                          required: &ref_57
                             - credentialType
                             - status
                             - payload
@@ -3712,8 +3736,8 @@ paths:
                         ever be PENDING when
 
                         updating a credential.
-                      properties: *ref_54
-                      required: *ref_55
+                      properties: *ref_56
+                      required: *ref_57
                       additionalProperties: false
                   required: &ref_123
                     - scopes
@@ -3763,7 +3787,7 @@ paths:
                         credentialType:
                           title: CredentialType
                           type: string
-                          enum: *ref_56
+                          enum: *ref_58
                           description: |
                             The type of the Credential.
                             - "FIDO" - A FIDO public/private keypair
@@ -3788,8 +3812,8 @@ paths:
                             AuthenticatorAttestationResponse
 
                             https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-                          properties: *ref_57
-                          required: *ref_58
+                          properties: *ref_54
+                          required: *ref_55
                           additionalProperties: false
                       required: &ref_125
                         - credentialType
@@ -4197,7 +4221,7 @@ paths:
                 type:
                   title: CredentialType
                   type: string
-                  enum: *ref_56
+                  enum: *ref_58
                   description: |
                     The type of the Credential.
                     - "FIDO" - A FIDO public/private keypair
@@ -7159,6 +7183,20 @@ paths:
                     reasons. A UUID is always 36 characters long, 32 hexadecimal
                     symbols and 4 dashes (‘-‘).
                   example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                credentialId:
+                  title: CorrelationId
+                  type: string
+                  pattern: >-
+                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                  description: >-
+                    Identifier that correlates all messages of the same
+                    sequence. The API data type UUID (Universally Unique
+                    Identifier) is a JSON String in canonical format, conforming
+                    to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is
+                    restricted by a regular expression for interoperability
+                    reasons. A UUID is always 36 characters long, 32 hexadecimal
+                    symbols and 4 dashes (‘-‘).
+                  example: b51ec534-ee48-4575-b6a9-ead2955b8069
                 challenge:
                   type: string
                   description: Base64 encoded bytes - The challenge generated by the DFSP.
@@ -8220,6 +8258,7 @@ components:
         - OTP - One-time password generated by the Payer FSP.
         - QRCODE - QR code used as One Time Password.
         - U2F - U2F is a new addition isolated to Thirdparty stream.
+        - PKC - TBD
     Integer:
       title: Integer
       type: string
@@ -8870,6 +8909,22 @@ components:
         provided by end-user device matches the previously registered key.
       properties: *ref_101
       required: *ref_102
+    FIDOPublicKeyCredential:
+      title: FIDOPublicKeyCredential
+      type: object
+      description: >
+        An object sent in a `PUT /consents/{ID}` request.
+
+        Based on https://w3c.github.io/webauthn/#iface-pkcredential
+
+        and mostly on: https://webauthn.guide/#registration
+
+        AuthenticatorAttestationResponse
+
+        https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
+      properties: *ref_54
+      required: *ref_55
+      additionalProperties: false
     AuthenticationValue:
       title: AuthenticationValue
       anyOf: *ref_103
@@ -8982,26 +9037,10 @@ components:
     CredentialType:
       title: CredentialType
       type: string
-      enum: *ref_56
+      enum: *ref_58
       description: |
         The type of the Credential.
         - "FIDO" - A FIDO public/private keypair
-    FIDOPublicKeyCredential:
-      title: FIDOPublicKeyCredential
-      type: object
-      description: >
-        An object sent in a `PUT /consents/{ID}` request.
-
-        Based on https://w3c.github.io/webauthn/#iface-pkcredential
-
-        and mostly on: https://webauthn.guide/#registration
-
-        AuthenticatorAttestationResponse
-
-        https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-      properties: *ref_57
-      required: *ref_58
-      additionalProperties: false
     SignedCredential:
       title: SignedCredential
       type: object
@@ -9018,8 +9057,8 @@ components:
         when
 
         updating a credential.
-      properties: *ref_54
-      required: *ref_55
+      properties: *ref_56
+      required: *ref_57
       additionalProperties: false
     ConsentsPostRequestAUTH:
       title: ConsentPostRequestAUTH
