@@ -4967,7 +4967,7 @@ export interface components {
       counter: string;
     };
     /**
-     * An object sent in a `POST /thirdpartyRequests/authorization` request.
+     * An object sent in a `PUT /thirdpartyRequests/authorization/{ID}` request.
      * based mostly on: https://webauthn.guide/#registration
      * AuthenticatorAssertionResponse
      */

@@ -2054,8 +2054,8 @@ paths:
                           - title: FIDOPublicKeyCredentialAttestation
                             type: object
                             description: >
-                              An object sent in a `POST
-                              /thirdpartyRequests/authorization` request.
+                              An object sent in a `PUT
+                              /thirdpartyRequests/authorization/{ID}` request.
 
                               based mostly on:
                               https://webauthn.guide/#registration
@@ -8965,9 +8965,12 @@ components:
     FIDOPublicKeyCredentialAssertion:
       title: FIDOPublicKeyCredentialAttestation
       type: object
-      description: |
-        An object sent in a `POST /thirdpartyRequests/authorization` request.
+      description: >
+        An object sent in a `PUT /thirdpartyRequests/authorization/{ID}`
+        request.
+
         based mostly on: https://webauthn.guide/#registration
+
         AuthenticatorAssertionResponse
       properties: *ref_103
       required: *ref_104
