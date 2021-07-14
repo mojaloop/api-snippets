@@ -12,6 +12,12 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "commonjs",
+    "plugins": [
+      {
+        "transform": "ts-auto-mock/transformer",
+        "cacheBetweenTests": false
+      }
+    ],
     "rootDirs": [
       "src"
     ],
