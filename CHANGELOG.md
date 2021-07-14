@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.4.6](https://github.com/mojaloop/api-snippets/compare/v12.4.5...v12.4.6) (2021-07-14)
+
+
+### Maintenance
+
+* add interface to mock object POC ([#100](https://github.com/mojaloop/api-snippets/issues/100)) ([1981842](https://github.com/mojaloop/api-snippets/commit/19818424d9a6e2b3cc2a58a29ad30973d6491565))
+
 ### [12.4.5](https://github.com/mojaloop/api-snippets/compare/v12.4.4...v12.4.5) (2021-06-30)
 
 
