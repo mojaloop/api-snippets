@@ -1186,7 +1186,7 @@ export interface paths {
     };
   };
   "/thirdpartyRequests/verifications": {
-    post: operations["PutThirdpartyRequestsVerifications"];
+    post: operations["PostThirdpartyRequestsVerifications"];
     parameters: {
       path: {
         /**
@@ -21158,7 +21158,7 @@ export interface operations {
   /**
    * The HTTP request `POST /thirdpartyRequests/verifications` is used by the DFSP to verify a third party authorization.
    */
-  PutThirdpartyRequestsVerifications: {
+  PostThirdpartyRequestsVerifications: {
     parameters: {
       header: {
         /**
