@@ -90,6 +90,8 @@ export namespace Schemas {
   export type ThirdpartyRequestsTransactionsIDPatchResponse = components['schemas']['ThirdpartyRequestsTransactionsIDPatchResponse']
   export type ThirdpartyRequestsTransactionsIDPutResponse = components['schemas']['ThirdpartyRequestsTransactionsIDPutResponse']
   export type ThirdpartyRequestsTransactionsPostRequest = components['schemas']['ThirdpartyRequestsTransactionsPostRequest']
+  export type ThirdpartyRequestsVerificationsIDPutResponse = components['schemas']['ThirdpartyRequestsVerificationsIDPutResponse']
+  export type ThirdpartyRequestsVerificationsPostRequest = components['schemas']['ThirdpartyRequestsVerificationsPostRequest']
   export type TransactionInitiator = components['schemas']['TransactionInitiator']
   export type TransactionInitiatorType = components['schemas']['TransactionInitiatorType']
   export type TransactionRequestsPostRequest = components['schemas']['TransactionRequestsPostRequest']
