@@ -10,5 +10,16 @@ module.exports = {
   // moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
   //   prefix: '<rootDir>/'
   // }),
-  reporters: ['jest-junit', 'default']
+  reporters: ['jest-junit', 'default'],
+  transform: {
+    '.(ts|tsx)': 'ts-jest'
+  },
+  globals: {
+    'ts-jest': {
+      compiler: 'ttypescript'
+    }
+  },
+  setupFiles: [
+    '<rootDir>config.ts'
+  ]
 }
