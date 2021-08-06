@@ -22,8 +22,8 @@
     },
     "1677|openapi-typescript>meow>read-pkg-up>read-pkg>normalize-package-data>hosted-git-info": {
       "decision": "ignore",
-      "madeAt": 1623946728521,
-      "expiresAt": 1626538723131
+      "madeAt": 1628212241952,
+      "expiresAt": 1630804238026
     },
     "1753|openapi-typescript>meow>trim-newlines": {
       "decision": "fix",
