@@ -101,7 +101,7 @@ describe('thirdparty', () => {
     personalInfo: partyPersonalInfo
   }
   const partyIdTypeEMAIL: Schemas.PartyIdType = 'EMAIL'
-  const fidoPublicKeyCredential: Schemas.FIDOPublicKeyCredential = {
+  const FIDOPublicKeyCredentialAttestation: Schemas.FIDOPublicKeyCredentialAttestation = {
     id: 'some-credential-id',
     rawId: 'some-raw-id',
     response: {
@@ -114,16 +114,17 @@ describe('thirdparty', () => {
     },
     type: 'public-key'
   }
+
   const signedCredential: Schemas.SignedCredential = {
     credentialType: credentialTypeFIDO,
     status: 'PENDING',
-    payload: fidoPublicKeyCredential
+    payload: FIDOPublicKeyCredentialAttestation
   }
 
   const verifiedCredential: Schemas.VerifiedCredential = {
     credentialType: credentialTypeFIDO,
     status: 'VERIFIED',
-    payload: fidoPublicKeyCredential
+    payload: FIDOPublicKeyCredentialAttestation
   }
 
   const transactionType: Schemas.TransactionType = {
@@ -436,8 +437,8 @@ describe('thirdparty', () => {
     expect(partyPersonalInfo).toBeDefined()
   })
 
-  test('PublicKeyCredential', () => {
-    const fidoPublicKeyCredential: Schemas.FIDOPublicKeyCredential = {
+  test('FIDOPublicKeyCredentialAttestation', () => {
+    const FIDOPublicKeyCredentialAttestation: Schemas.FIDOPublicKeyCredentialAttestation = {
       id: 'some-credential-id',
       rawId: 'some-raw-id',
       response: {
@@ -450,7 +451,26 @@ describe('thirdparty', () => {
       },
       type: 'public-key'
     }
-    expect(fidoPublicKeyCredential).toBeDefined()
+    expect(FIDOPublicKeyCredentialAttestation).toBeDefined()
+  })
+
+  test('FIDOPublicKeyCredentialAssertion', () => {
+    const FIDOPublicKeyCredentialAssertion: Schemas.FIDOPublicKeyCredentialAssertion = {
+      id: 'some-credential-id',
+      rawId: 'some-raw-id',
+      response: {
+        clientDataJSON: JSON.stringify({
+          challenge: 'the-challenge',
+          origin: 'pisp.mojaloop.io',
+          type: 'webauthn.create'
+        }),
+        authenticatorData: "some-data",
+        signature: "some-signature",
+        userHandle: "some-user-handle"
+      },
+      type: 'public-key'
+    }
+    expect(FIDOPublicKeyCredentialAssertion).toBeDefined()
   })
 
   test('QuotesIDPutResponse', () => {
