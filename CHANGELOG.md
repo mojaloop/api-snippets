@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [12.5.0](https://github.com/mojaloop/api-snippets/compare/v12.4.7...v12.5.0) (2021-08-09)
+
+
+### Features
+
+* **dto:** export `ThirdpartyRequestsVerifications*` types  ([#101](https://github.com/mojaloop/api-snippets/issues/101)) ([045c7a9](https://github.com/mojaloop/api-snippets/commit/045c7a92af592238291371d904f2820fb4950033))
+
 ### [12.4.7](https://github.com/mojaloop/api-snippets/compare/v12.4.6...v12.4.7) (2021-08-06)
 
 
