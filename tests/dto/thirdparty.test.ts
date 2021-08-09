@@ -581,6 +581,29 @@ describe('thirdparty', () => {
     expect(transactionRequestsPostRequest).toBeDefined()
   })
 
+  test('ThirdpartyRequestsVerificationsIDPutResponse', () => {
+    const thirdpartyRequestsVerificationsIdPutResponse: Schemas.ThirdpartyRequestsVerificationsIDPutResponse = {
+      authenticationResponse: 'VERIFIED'
+    }
+    expect(thirdpartyRequestsVerificationsIdPutResponse).toBeDefined()
+  })
+
+  test('ThirdpartyRequestsVerificationsPostRequest', () => {
+    const thirdPartyRequestsVerificationsPostRequest: Schemas.ThirdpartyRequestsVerificationsPostRequest = {
+      verificationRequestId: correlationId,
+      challenge: 'some challenge base64 encoded',
+      value: {
+        authenticationInfo: {
+          authentication: 'U2F',
+          authenticationValue: 'some signed challenge base64 encoded'
+        }
+      },
+      consentId: correlationId
+    }
+
+    expect(thirdPartyRequestsVerificationsPostRequest).toBeDefined()
+  })
+
   test('VerifiedCredential', () => {
     expect(verifiedCredential).toBeDefined()
   })
