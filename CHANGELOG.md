@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.4.7](https://github.com/mojaloop/api-snippets/compare/v12.4.6...v12.4.7) (2021-08-06)
+
+
+### Maintenance
+
+* add draft api changes for webauthn based assertion ([#99](https://github.com/mojaloop/api-snippets/issues/99)) ([8057c47](https://github.com/mojaloop/api-snippets/commit/8057c47518375f4371891dc9027f3948f7a6c6f8))
+
 ### [12.4.6](https://github.com/mojaloop/api-snippets/compare/v12.4.5...v12.4.6) (2021-07-14)
 
 
