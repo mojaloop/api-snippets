@@ -19,8 +19,6 @@ properties:
   signedPayload:
     $ref: ./SignedPayload.yaml
 required:
-
-required:
   - verificationRequestId
   - challenge
   - consentId
