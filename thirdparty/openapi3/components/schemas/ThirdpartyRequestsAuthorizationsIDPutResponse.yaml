@@ -4,8 +4,8 @@ description: 'The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
 properties:
   signedPayloadType:
     $ref: ./SignedPayloadType.yaml
-  authenticationValue:
-    $ref: ./AuthenticationValue.yaml
+  signedPayload:
+    $ref: ./SignedPayload.yaml
 required:
   - signedPayloadType
   - authenticationValue
