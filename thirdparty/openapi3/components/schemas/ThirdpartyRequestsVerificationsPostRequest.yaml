@@ -1,4 +1,4 @@
-title: ThirdpartyRequestsTransactionAuthenticationValue
+title: ThirdpartyRequestsVerificationsPostRequest
 type: object
 description: The object sent in the POST /thirdpartyRequests/verifications request.
 properties:

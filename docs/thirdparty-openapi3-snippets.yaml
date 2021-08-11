@@ -7907,7 +7907,7 @@ paths:
         content:
           application/json:
             schema:
-              title: ThirdpartyRequestsTransactionAuthenticationValue
+              title: ThirdpartyRequestsVerificationsPostRequest
               type: object
               description: >-
                 The object sent in the POST /thirdpartyRequests/verifications
@@ -9434,7 +9434,7 @@ components:
       properties: *ref_154
       required: *ref_155
     ThirdpartyRequestsVerificationsPostRequest:
-      title: ThirdpartyRequestsTransactionAuthenticationValue
+      title: ThirdpartyRequestsVerificationsPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/verifications request.
       properties: *ref_156
