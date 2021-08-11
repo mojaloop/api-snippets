@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [12.6.0](https://github.com/mojaloop/api-snippets/compare/v12.5.0...v12.6.0) (2021-08-11)
+
+
+### Features
+
+* **thirdparty:** update payloads for `authorizations` and `verifications` resources ([#102](https://github.com/mojaloop/api-snippets/issues/102)) ([6854997](https://github.com/mojaloop/api-snippets/commit/6854997b6ebae08279755836dd4d162ca63d6344))
+
 ## [12.5.0](https://github.com/mojaloop/api-snippets/compare/v12.4.7...v12.5.0) (2021-08-09)
 
 
