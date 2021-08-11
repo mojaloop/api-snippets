@@ -31,12 +31,17 @@ put:
           schema:
             $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponse.yaml'
           example:
-            authenticationInfo:
-              authentication: 'U2F'
-              authenticationValue:
-                pinValue: '<base64 encoded binary - the signed challenge'
-                counter: 1
-            responseType: 'ENTERED'
+            signedPayloadType: FIDO
+            authenticationValue:
+              id: todo
+              rawId: todo
+              response:
+                authenticatorData: 'string - base64 encoded utf-8'
+                clientDataJSON: 'string - base64 encoded utf-8'
+                signature: 'string - base64 encoded utf-8'
+                userHandle: 'string - base64 encoded utf-8'
+              type: 'public-key'
+
     400:
       $ref: ../components/responses/400.yaml
     401:
