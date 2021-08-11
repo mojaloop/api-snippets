@@ -44,7 +44,6 @@ required:
   - authorizationRequestId
   - transactionRequestId
   - challenge
-  - transactionType
   - transferAmount
   - payeeReceiveAmount
   - fees
