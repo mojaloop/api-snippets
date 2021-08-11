@@ -28,6 +28,18 @@
     "1753|openapi-typescript>meow>trim-newlines": {
       "decision": "fix",
       "madeAt": 1623946682346
+    },
+    "1773|openapi-typescript>meow>normalize-package-data>resolve>path-parse": {
+      "decision": "fix",
+      "madeAt": 1628651158363
+    },
+    "1773|openapi-typescript>meow>read-pkg-up>read-pkg>normalize-package-data>resolve>path-parse": {
+      "decision": "fix",
+      "madeAt": 1628651158363
+    },
+    "1773|ttypescript>resolve>path-parse": {
+      "decision": "fix",
+      "madeAt": 1628651158363
     }
   },
   "rules": {},

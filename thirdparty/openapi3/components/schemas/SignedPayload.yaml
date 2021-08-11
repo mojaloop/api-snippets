@@ -1,0 +1,9 @@
+title: SignedPayload
+oneOf:
+  - $ref: ./BinaryString.yaml
+  - $ref: ./FIDOPublicKeyCredentialAssertion.yaml
+description: >-
+  If the registered credential is of type `GENERIC`, this is a BinaryString 
+  representing a HMACSHA256 of the challenge + private key of the credential. If 
+  the registered credential is of type BinaryString, this is a 
+  [`FIDOPublicKeyCredentialAssertion` Object](https://w3c.github.io/webauthn/#iface-pkcredential)

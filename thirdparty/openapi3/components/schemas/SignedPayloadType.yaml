@@ -1,0 +1,9 @@
+title: SignedPayloadType
+type: string
+enum:
+  - FIDO
+  - GENERIC
+description: |-
+  Allowed values for the enumeration SignedPayloadType
+  - FIDO - describes a challenge that has been signed with FIDO Attestation flows
+  - GENERIC - describes a challenge that has been signed with a private key

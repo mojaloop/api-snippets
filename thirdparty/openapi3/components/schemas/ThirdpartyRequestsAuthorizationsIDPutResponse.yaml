@@ -2,10 +2,10 @@ title: ThirdpartyRequestsAuthorizationsIDPutResponse
 type: object
 description: 'The object sent in the PUT /thirdpartyRequests/authorizations/{ID} callback.'
 properties:
-  authenticationInfo:
-    $ref: ./AuthenticationInfo.yaml
-  responseType:
-    $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/AuthorizationResponse.yaml'
+  signedPayloadType:
+    $ref: ./SignedPayloadType.yaml
+  signedPayload:
+    $ref: ./SignedPayload.yaml
 required:
-  - authenticationInfo
-  - responseType
+  - signedPayloadType
+  - authenticationValue
