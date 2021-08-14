@@ -1,0 +1,5 @@
+title: SignedPayloadTypeFIDO
+type: string
+enum:
+  - FIDO
+description: Describes a challenge that has been signed with FIDO Attestation flows

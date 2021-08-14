@@ -1,0 +1,5 @@
+title: SignedPayloadTypeGENERIC
+type: string
+enum:
+  - GENERIC
+description: Describes a challenge that has been signed with a private key
