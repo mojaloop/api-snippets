@@ -30,7 +30,7 @@ post:
         schema:
             oneOf:
               - $ref: ../components/schemas/ThirdpartyRequestsVerificationsPostRequestFIDO.yaml
-              - $ref: ../components/schemas/ThirdpartyRequestsVerificationsPostRequestGENERIC.yaml
+              - $ref: ../components/schemas/ThirdpartyRequestsVerificationsPostRequestGeneric.yaml
         example:
           verificationRequestId: '44444444-0000-0000-0000-000000000000'
           challenge: '<base64 encoded binary - the encoded challenge>'

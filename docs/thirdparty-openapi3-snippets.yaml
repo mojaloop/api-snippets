@@ -2113,8 +2113,8 @@ paths:
                                     minLength: 1
                                     maxLength: 88
                                 required:
+                                  - authenticatorData
                                   - clientDataJSON
-                                  - attestationObject
                                   - signature
                                 additionalProperties: false
                               type:
@@ -7506,39 +7506,23 @@ paths:
           content:
             application/json:
               schema:
-                title: ThirdpartyRequestsAuthorizationsIDPutResponse
-                type: object
-                description: >-
-                  The object sent in the PUT
-                  /thirdpartyRequests/authorizations/{ID} callback.
-                properties: &ref_154
-                  signedPayloadType:
-                    title: SignedPayloadType
-                    type: string
-                    enum: &ref_74
-                      - FIDO
-                      - GENERIC
+                oneOf:
+                  - title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
+                    type: object
                     description: >-
-                      Allowed values for the enumeration SignedPayloadType
-
-                      - FIDO - describes a challenge that has been signed with
-                      FIDO Attestation flows
-
-                      - GENERIC - describes a challenge that has been signed
-                      with a private key
-                  signedPayload:
-                    title: SignedPayload
-                    oneOf: &ref_75
-                      - type: string
-                        pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                      The object sent in the PUT
+                      /thirdpartyRequests/authorizations/{ID} callback.
+                    properties: &ref_154
+                      signedPayloadType:
+                        title: SignedPayloadTypeFIDO
+                        type: string
+                        enum: &ref_74
+                          - FIDO
                         description: >-
-                          The API data type BinaryString is a JSON String. The
-                          string is a base64url  encoding of a string of raw
-                          bytes, where padding (character ‘=’) is added at the
-                          end of the data if needed to ensure that the string is
-                          a multiple of 4 characters. The length restriction
-                          indicates the allowed number of characters.
-                      - title: FIDOPublicKeyCredentialAssertion
+                          Describes a challenge that has been signed with FIDO
+                          Attestation flows
+                      signedPayload:
+                        title: FIDOPublicKeyCredentialAssertion
                         type: object
                         description: >
                           An object sent in a `PUT
@@ -7551,16 +7535,36 @@ paths:
                         properties: *ref_72
                         required: *ref_73
                         additionalProperties: false
+                    required: &ref_155
+                      - signedPayloadType
+                      - authenticationValue
+                  - title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
+                    type: object
                     description: >-
-                      If the registered credential is of type `GENERIC`, this is
-                      a BinaryString  representing a HMACSHA256 of the challenge
-                      + private key of the credential. If  the registered
-                      credential is of type BinaryString, this is a 
-                      [`FIDOPublicKeyCredentialAssertion`
-                      Object](https://w3c.github.io/webauthn/#iface-pkcredential)
-                required: &ref_155
-                  - signedPayloadType
-                  - authenticationValue
+                      The object sent in the PUT
+                      /thirdpartyRequests/authorizations/{ID} callback.
+                    properties: &ref_156
+                      signedPayloadType:
+                        title: SignedPayloadTypeGeneric
+                        type: string
+                        enum: &ref_75
+                          - GENERIC
+                        description: >-
+                          Describes a challenge that has been signed with a
+                          private key
+                      signedPayload:
+                        type: string
+                        pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                        description: >-
+                          The API data type BinaryString is a JSON String. The
+                          string is a base64url  encoding of a string of raw
+                          bytes, where padding (character ‘=’) is added at the
+                          end of the data if needed to ensure that the string is
+                          a multiple of 4 characters. The length restriction
+                          indicates the allowed number of characters.
+                    required: &ref_157
+                      - signedPayloadType
+                      - authenticationValue
               example:
                 signedPayloadType: FIDO
                 signedPayload:
@@ -7907,80 +7911,156 @@ paths:
         content:
           application/json:
             schema:
-              title: ThirdpartyRequestsVerificationsPostRequest
-              type: object
-              description: >-
-                The object sent in the POST /thirdpartyRequests/verifications
-                request.
-              properties: &ref_156
-                verificationRequestId:
-                  allOf:
-                    - title: CorrelationId
-                      type: string
-                      pattern: >-
-                        ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                      description: >-
-                        Identifier that correlates all messages of the same
-                        sequence. The API data type UUID (Universally Unique
-                        Identifier) is a JSON String in canonical format,
-                        conforming to [RFC
-                        4122](https://tools.ietf.org/html/rfc4122), that is
-                        restricted by a regular expression for interoperability
-                        reasons. A UUID is always 36 characters long, 32
-                        hexadecimal symbols and 4 dashes (‘-‘).
-                      example: b51ec534-ee48-4575-b6a9-ead2955b8069
-                challenge:
-                  type: string
-                  description: Base64 encoded bytes - The challenge generated by the DFSP.
-                consentId:
-                  allOf:
-                    - title: CorrelationId
-                      type: string
-                      pattern: >-
-                        ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                      description: >-
-                        Identifier that correlates all messages of the same
-                        sequence. The API data type UUID (Universally Unique
-                        Identifier) is a JSON String in canonical format,
-                        conforming to [RFC
-                        4122](https://tools.ietf.org/html/rfc4122), that is
-                        restricted by a regular expression for interoperability
-                        reasons. A UUID is always 36 characters long, 32
-                        hexadecimal symbols and 4 dashes (‘-‘).
-                      example: b51ec534-ee48-4575-b6a9-ead2955b8069
-                  description: >
-                    The id of the stored consent object that contains the
-                    credential with which to verify
-
-                    the signed challenge against.
-                signedPayloadType:
-                  title: SignedPayloadType
-                  type: string
-                  enum: *ref_74
+              oneOf:
+                - title: ThirdpartyRequestsVerificationsPostRequestFIDO
+                  type: object
                   description: >-
-                    Allowed values for the enumeration SignedPayloadType
+                    The object sent in the POST
+                    /thirdpartyRequests/verifications request.
+                  properties: &ref_158
+                    verificationRequestId:
+                      allOf:
+                        - title: CorrelationId
+                          type: string
+                          pattern: >-
+                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                          description: >-
+                            Identifier that correlates all messages of the same
+                            sequence. The API data type UUID (Universally Unique
+                            Identifier) is a JSON String in canonical format,
+                            conforming to [RFC
+                            4122](https://tools.ietf.org/html/rfc4122), that is
+                            restricted by a regular expression for
+                            interoperability reasons. A UUID is always 36
+                            characters long, 32 hexadecimal symbols and 4 dashes
+                            (‘-‘).
+                          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                    challenge:
+                      type: string
+                      description: >-
+                        Base64 encoded bytes - The challenge generated by the
+                        DFSP.
+                    consentId:
+                      allOf:
+                        - title: CorrelationId
+                          type: string
+                          pattern: >-
+                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                          description: >-
+                            Identifier that correlates all messages of the same
+                            sequence. The API data type UUID (Universally Unique
+                            Identifier) is a JSON String in canonical format,
+                            conforming to [RFC
+                            4122](https://tools.ietf.org/html/rfc4122), that is
+                            restricted by a regular expression for
+                            interoperability reasons. A UUID is always 36
+                            characters long, 32 hexadecimal symbols and 4 dashes
+                            (‘-‘).
+                          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                      description: >
+                        The id of the stored consent object that contains the
+                        credential with which to verify
 
-                    - FIDO - describes a challenge that has been signed with
-                    FIDO Attestation flows
+                        the signed challenge against.
+                    signedPayloadType:
+                      title: SignedPayloadTypeFIDO
+                      type: string
+                      enum: *ref_74
+                      description: >-
+                        Describes a challenge that has been signed with FIDO
+                        Attestation flows
+                    signedPayload:
+                      title: FIDOPublicKeyCredentialAssertion
+                      type: object
+                      description: >
+                        An object sent in a `PUT
+                        /thirdpartyRequests/authorization/{ID}` request.
 
-                    - GENERIC - describes a challenge that has been signed with
-                    a private key
-                signedPayload:
-                  title: SignedPayload
-                  oneOf: *ref_75
+                        based mostly on: https://webauthn.guide/#authentication
+
+                        AuthenticatorAssertionResponse
+                      properties: *ref_72
+                      required: *ref_73
+                      additionalProperties: false
+                  required: &ref_159
+                    - verificationRequestId
+                    - challenge
+                    - consentId
+                    - signedPayloadType
+                    - signedPayload
+                - title: ThirdpartyRequestsVerificationsPostRequestGeneric
+                  type: object
                   description: >-
-                    If the registered credential is of type `GENERIC`, this is a
-                    BinaryString  representing a HMACSHA256 of the challenge +
-                    private key of the credential. If  the registered credential
-                    is of type BinaryString, this is a 
-                    [`FIDOPublicKeyCredentialAssertion`
-                    Object](https://w3c.github.io/webauthn/#iface-pkcredential)
-              required: &ref_157
-                - verificationRequestId
-                - challenge
-                - consentId
-                - signedPayloadType
-                - signedPayload
+                    The object sent in the POST
+                    /thirdpartyRequests/verifications request.
+                  properties: &ref_160
+                    verificationRequestId:
+                      allOf:
+                        - title: CorrelationId
+                          type: string
+                          pattern: >-
+                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                          description: >-
+                            Identifier that correlates all messages of the same
+                            sequence. The API data type UUID (Universally Unique
+                            Identifier) is a JSON String in canonical format,
+                            conforming to [RFC
+                            4122](https://tools.ietf.org/html/rfc4122), that is
+                            restricted by a regular expression for
+                            interoperability reasons. A UUID is always 36
+                            characters long, 32 hexadecimal symbols and 4 dashes
+                            (‘-‘).
+                          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                    challenge:
+                      type: string
+                      description: >-
+                        Base64 encoded bytes - The challenge generated by the
+                        DFSP.
+                    consentId:
+                      allOf:
+                        - title: CorrelationId
+                          type: string
+                          pattern: >-
+                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                          description: >-
+                            Identifier that correlates all messages of the same
+                            sequence. The API data type UUID (Universally Unique
+                            Identifier) is a JSON String in canonical format,
+                            conforming to [RFC
+                            4122](https://tools.ietf.org/html/rfc4122), that is
+                            restricted by a regular expression for
+                            interoperability reasons. A UUID is always 36
+                            characters long, 32 hexadecimal symbols and 4 dashes
+                            (‘-‘).
+                          example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                      description: >
+                        The id of the stored consent object that contains the
+                        credential with which to verify
+
+                        the signed challenge against.
+                    signedPayloadType:
+                      title: SignedPayloadTypeGeneric
+                      type: string
+                      enum: *ref_75
+                      description: >-
+                        Describes a challenge that has been signed with a
+                        private key
+                    signedPayload:
+                      type: string
+                      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                      description: >-
+                        The API data type BinaryString is a JSON String. The
+                        string is a base64url  encoding of a string of raw
+                        bytes, where padding (character ‘=’) is added at the end
+                        of the data if needed to ensure that the string is a
+                        multiple of 4 characters. The length restriction
+                        indicates the allowed number of characters.
+                  required: &ref_161
+                    - verificationRequestId
+                    - challenge
+                    - consentId
+                    - signedPayloadType
+                    - signedPayload
             example:
               verificationRequestId: 44444444-0000-0000-0000-000000000000
               challenge: <base64 encoded binary - the encoded challenge>
@@ -8165,13 +8245,13 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/verifications/{ID} request.
-              properties: &ref_158
+              properties: &ref_162
                 authenticationResponse:
                   type: string
                   enum:
                     - VERIFIED
                   description: The verification passed
-              required: &ref_159
+              required: &ref_163
                 - authenticationResponse
             example:
               authenticationResponse: VERIFIED
@@ -9404,49 +9484,52 @@ components:
       properties: *ref_152
       required: *ref_153
       additionalProperties: false
-    SignedPayloadType:
-      title: SignedPayloadType
+    SignedPayloadTypeFIDO:
+      title: SignedPayloadTypeFIDO
       type: string
       enum: *ref_74
-      description: >-
-        Allowed values for the enumeration SignedPayloadType
-
-        - FIDO - describes a challenge that has been signed with FIDO
-        Attestation flows
-
-        - GENERIC - describes a challenge that has been signed with a private
-        key
-    SignedPayload:
-      title: SignedPayload
-      oneOf: *ref_75
-      description: >-
-        If the registered credential is of type `GENERIC`, this is a
-        BinaryString  representing a HMACSHA256 of the challenge + private key
-        of the credential. If  the registered credential is of type
-        BinaryString, this is a  [`FIDOPublicKeyCredentialAssertion`
-        Object](https://w3c.github.io/webauthn/#iface-pkcredential)
-    ThirdpartyRequestsAuthorizationsIDPutResponse:
-      title: ThirdpartyRequestsAuthorizationsIDPutResponse
+      description: Describes a challenge that has been signed with FIDO Attestation flows
+    ThirdpartyRequestsAuthorizationsIDPutResponseFIDO:
+      title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
       properties: *ref_154
       required: *ref_155
-    ThirdpartyRequestsVerificationsPostRequest:
-      title: ThirdpartyRequestsVerificationsPostRequest
+    SignedPayloadTypeGeneric:
+      title: SignedPayloadTypeGeneric
+      type: string
+      enum: *ref_75
+      description: Describes a challenge that has been signed with a private key
+    ThirdpartyRequestsAuthorizationsIDPutResponseGeneric:
+      title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
       type: object
-      description: The object sent in the POST /thirdpartyRequests/verifications request.
+      description: >-
+        The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
+        callback.
       properties: *ref_156
       required: *ref_157
+    ThirdpartyRequestsVerificationsPostRequestFIDO:
+      title: ThirdpartyRequestsVerificationsPostRequestFIDO
+      type: object
+      description: The object sent in the POST /thirdpartyRequests/verifications request.
+      properties: *ref_158
+      required: *ref_159
+    ThirdpartyRequestsVerificationsPostRequestGeneric:
+      title: ThirdpartyRequestsVerificationsPostRequestGeneric
+      type: object
+      description: The object sent in the POST /thirdpartyRequests/verifications request.
+      properties: *ref_160
+      required: *ref_161
     ThirdpartyRequestsVerificationsIDPutResponse:
       title: ThirdpartyRequestsVerificationsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/verifications/{ID}
         request.
-      properties: *ref_158
-      required: *ref_159
+      properties: *ref_162
+      required: *ref_163
   parameters:
     ID:
       name: ID

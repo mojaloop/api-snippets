@@ -29,7 +29,9 @@ put:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponse.yaml'
+            oneOf:
+              - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseFIDO.yaml'
+              - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseGeneric.yaml'
           example:
             signedPayloadType: FIDO
             signedPayload:

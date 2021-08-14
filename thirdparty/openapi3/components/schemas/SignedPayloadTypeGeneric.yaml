@@ -1,4 +1,4 @@
-title: SignedPayloadTypeGENERIC
+title: SignedPayloadTypeGeneric
 type: string
 enum:
   - GENERIC

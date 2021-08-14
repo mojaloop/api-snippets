@@ -1,4 +1,4 @@
-title: ThirdpartyRequestsVerificationsPostRequestGENERIC
+title: ThirdpartyRequestsVerificationsPostRequestGeneric
 type: object
 description: The object sent in the POST /thirdpartyRequests/verifications request.
 properties:
