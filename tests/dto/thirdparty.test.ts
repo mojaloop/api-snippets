@@ -588,7 +588,7 @@ describe('thirdparty', () => {
     expect(thirdpartyRequestsVerificationsIdPutResponse).toBeDefined()
   })
 
-  test('ThirdpartyRequestsVerificationsPostRequest', () => {
+  test('ThirdpartyRequestsVerificationsPostRequest with a FIDO payload', () => {
     const thirdPartyRequestsVerificationsPostRequest: Schemas.ThirdpartyRequestsVerificationsPostRequest = {
       verificationRequestId: correlationId,
       challenge: 'some challenge base64 encoded',
@@ -604,6 +604,18 @@ describe('thirdparty', () => {
         },
         type: 'public-key'
       }
+    }
+
+    expect(thirdPartyRequestsVerificationsPostRequest).toBeDefined()
+  })
+
+  test('ThirdpartyRequestsVerificationsPostRequest with a Generic payload', () => {
+    const thirdPartyRequestsVerificationsPostRequest: Schemas.ThirdpartyRequestsVerificationsPostRequest = {
+      verificationRequestId: correlationId,
+      challenge: 'some challenge base64 encoded',
+      consentId: '8d34f91d-d078-4077-8263-2c0498dhbjr',
+      signedPayloadType: 'GENERIC',
+      signedPayload: 'some signed payload string'
     }
 
     expect(thirdPartyRequestsVerificationsPostRequest).toBeDefined()

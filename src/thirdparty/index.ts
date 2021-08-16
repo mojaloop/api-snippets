@@ -92,7 +92,9 @@ export namespace Schemas {
   export type ThirdpartyRequestsTransactionsIDPutResponse = components['schemas']['ThirdpartyRequestsTransactionsIDPutResponse']
   export type ThirdpartyRequestsTransactionsPostRequest = components['schemas']['ThirdpartyRequestsTransactionsPostRequest']
   export type ThirdpartyRequestsVerificationsIDPutResponse = components['schemas']['ThirdpartyRequestsVerificationsIDPutResponse']
-  export type ThirdpartyRequestsVerificationsPostRequest = components['schemas']['ThirdpartyRequestsVerificationsPostRequest']
+  export type ThirdpartyRequestsVerificationsPostRequestFIDO = components['schemas']['ThirdpartyRequestsVerificationsPostRequestFIDO']
+  export type ThirdpartyRequestsVerificationsPostRequestGeneric = components['schemas']['ThirdpartyRequestsVerificationsPostRequestGeneric']
+  export type ThirdpartyRequestsVerificationsPostRequest = ThirdpartyRequestsVerificationsPostRequestFIDO | ThirdpartyRequestsVerificationsPostRequestGeneric
   export type TransactionInitiator = components['schemas']['TransactionInitiator']
   export type TransactionInitiatorType = components['schemas']['TransactionInitiatorType']
   export type TransactionRequestsPostRequest = components['schemas']['TransactionRequestsPostRequest']

@@ -1,11 +1,11 @@
-title: ThirdpartyRequestsAuthorizationsIDPutResponse
+title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
 type: object
 description: 'The object sent in the PUT /thirdpartyRequests/authorizations/{ID} callback.'
 properties:
   signedPayloadType:
-    $ref: ./SignedPayloadType.yaml
+    $ref: ./SignedPayloadTypeGeneric.yaml
   signedPayload:
-    $ref: ./SignedPayload.yaml
+    $ref: ./BinaryString.yaml
 required:
   - signedPayloadType
   - authenticationValue

@@ -1,4 +1,4 @@
-title: ThirdpartyRequestsVerificationsPostRequest
+title: ThirdpartyRequestsVerificationsPostRequestGeneric
 type: object
 description: The object sent in the POST /thirdpartyRequests/verifications request.
 properties:
@@ -15,9 +15,9 @@ properties:
       The id of the stored consent object that contains the credential with which to verify
       the signed challenge against.
   signedPayloadType:
-    $ref: ./SignedPayloadType.yaml
+    $ref: ./SignedPayloadTypeGeneric.yaml
   signedPayload:
-    $ref: ./SignedPayload.yaml
+    $ref: ./BinaryString.yaml
 required:
   - verificationRequestId
   - challenge
