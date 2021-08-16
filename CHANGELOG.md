@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.6.1](https://github.com/mojaloop/api-snippets/compare/v12.6.0...v12.6.1) (2021-08-16)
+
+
+### Bug Fixes
+
+* bad required field in `FIDOPublicKeyCredentialAssertion` ([#103](https://github.com/mojaloop/api-snippets/issues/103)) ([45865d0](https://github.com/mojaloop/api-snippets/commit/45865d0cdcc6e074fd35a38bf4af981c104646b4))
+
 ## [12.6.0](https://github.com/mojaloop/api-snippets/compare/v12.5.0...v12.6.0) (2021-08-11)
 
 
