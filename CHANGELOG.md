@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.6.2](https://github.com/mojaloop/api-snippets/compare/v12.6.1...v12.6.2) (2021-08-16)
+
+
+### Bug Fixes
+
+* remove path parameter from `POST /thirdpartyRequests/verifications` call ([#104](https://github.com/mojaloop/api-snippets/issues/104)) ([ac32761](https://github.com/mojaloop/api-snippets/commit/ac32761e5a648f883bf063a1887e536c48c9648b))
+
 ### [12.6.1](https://github.com/mojaloop/api-snippets/compare/v12.6.0...v12.6.1) (2021-08-16)
 
 
