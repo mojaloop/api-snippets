@@ -2087,7 +2087,7 @@ paths:
                                     type: string
                                     description: |
                                       Authenticator data object.
-                                    minLength: 59
+                                    minLength: 49
                                     maxLength: 256
                                   clientDataJSON:
                                     type: string
@@ -7788,11 +7788,6 @@ paths:
           headers: *ref_35
   /thirdpartyRequests/verifications:
     parameters:
-      - name: ID
-        in: path
-        required: true
-        schema: *ref_36
-        description: The identifier value.
       - name: Content-Type
         in: header
         schema: *ref_37

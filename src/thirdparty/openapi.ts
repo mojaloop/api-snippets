@@ -1188,12 +1188,6 @@ export interface paths {
   "/thirdpartyRequests/verifications": {
     post: operations["PostThirdpartyRequestsVerifications"];
     parameters: {
-      path: {
-        /**
-         * The identifier value.
-         */
-        ID: string;
-      };
       header: {
         /**
          * The `Content-Type` header indicates the specific version of the API used to send the payload body.
