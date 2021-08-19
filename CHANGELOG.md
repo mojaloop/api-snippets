@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.6.3](https://github.com/mojaloop/api-snippets/compare/v12.6.2...v12.6.3) (2021-08-19)
+
+
+### Maintenance
+
+* update regex for first, middle and last names ([#105](https://github.com/mojaloop/api-snippets/issues/105)) ([63e3751](https://github.com/mojaloop/api-snippets/commit/63e3751d924548b3aec47f91b558b5e5b6931319))
+
 ### [12.6.2](https://github.com/mojaloop/api-snippets/compare/v12.6.1...v12.6.2) (2021-08-16)
 
 
