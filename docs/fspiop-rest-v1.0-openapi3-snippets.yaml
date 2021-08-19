@@ -2522,7 +2522,9 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      pattern: >-
+        ^(?!\s*$)[\p{L}\p{gc=Mark}\p{digit}\p{gc=Connector_Punctuation}\p{Join_Control}
+        .,'-]{1,128}$
       description: First name of the Party (Name Type).
     FspId:
       title: FspId
@@ -2778,7 +2780,9 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      pattern: >-
+        ^(?!\s*$)[\p{L}\p{gc=Mark}\p{digit}\p{gc=Connector_Punctuation}\p{Join_Control}
+        .,'-]{1,128}$
       description: Last name of the Party (Name Type).
     Latitude:
       title: Latitude
@@ -2809,7 +2813,9 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      pattern: >-
+        ^(?!\s*$)[\p{L}\p{gc=Mark}\p{digit}\p{gc=Connector_Punctuation}\p{Join_Control}
+        .,'-]{1,128}$
       description: Middle name of the Party (Name Type).
     Name:
       title: Name
