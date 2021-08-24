@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.6.4](https://github.com/mojaloop/api-snippets/compare/v12.6.3...v12.6.4) (2021-08-24)
+
+
+### Maintenance
+
+* fix regex ([#106](https://github.com/mojaloop/api-snippets/issues/106)) ([acb8ed6](https://github.com/mojaloop/api-snippets/commit/acb8ed6d7e03c0f6389bf7ed757d4ec2eae2e6d0))
+
 ### [12.6.3](https://github.com/mojaloop/api-snippets/compare/v12.6.2...v12.6.3) (2021-08-19)
 
 
