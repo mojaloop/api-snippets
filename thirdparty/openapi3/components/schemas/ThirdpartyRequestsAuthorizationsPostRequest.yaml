@@ -10,17 +10,20 @@ properties:
     type: string
     description: The challenge that the PISP's client is to sign
   transferAmount:
-    $ref: ./Money.yaml
+    allOf:
+      - $ref: ./Money.yaml
     description: >-
       The amount that will be debited from the sending customer’s 
       account as a consequence of the transaction.
   payeeReceiveAmount:
-    $ref: ./Money.yaml
+    allOf:
+      - $ref: ./Money.yaml
     description: >-
       The amount that will be credited to the receiving customer’s 
       account as a consequence of the transaction.
   fees:
-    $ref: ./Money.yaml
+    allOf:
+      - $ref: ./Money.yaml
     description: >-
       The amount of fees that the paying customer will be charged
       as part of the transaction.
@@ -35,11 +38,11 @@ properties:
   transactionType:
     $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/TransactionType.yaml'
   expiration:
-    $ref: ./DateTime.yaml
+    allOf:
+      - $ref: ./DateTime.yaml
     description: The time by which the transfer must be completed, set by the payee DFSP.
   extensionList:
     $ref: ./ExtensionList.yaml
-    description: 'Optional extension, specific to deployment.'
 required:
   - authorizationRequestId
   - transactionRequestId
