@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.6.5](https://github.com/mojaloop/api-snippets/compare/v12.6.4...v12.6.5) (2021-08-25)
+
+
+### Bug Fixes
+
+* **payload:** bad use of refs in TPR Authorizations ([#107](https://github.com/mojaloop/api-snippets/issues/107)) ([3414327](https://github.com/mojaloop/api-snippets/commit/34143271c8c3b72c518ec125ece63f2f2f558cce))
+
 ### [12.6.4](https://github.com/mojaloop/api-snippets/compare/v12.6.3...v12.6.4) (2021-08-24)
 
 
