@@ -19341,7 +19341,7 @@ export interface operations {
          */
         challenge: string;
         /**
-         * Data model for the complex type Money.
+         * The amount that will be debited from the sending customer’s  account as a consequence of the transaction.
          */
         transferAmount: {
           /**
@@ -19516,7 +19516,7 @@ export interface operations {
           amount: string;
         };
         /**
-         * Data model for the complex type Money.
+         * The amount that will be credited to the receiving customer’s  account as a consequence of the transaction.
          */
         payeeReceiveAmount: {
           /**
@@ -19691,7 +19691,7 @@ export interface operations {
           amount: string;
         };
         /**
-         * Data model for the complex type Money.
+         * The amount of fees that the paying customer will be charged as part of the transaction.
          */
         fees: {
           /**
@@ -20135,7 +20135,7 @@ export interface operations {
           balanceOfPayments?: string;
         };
         /**
-         * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
+         * The time by which the transfer must be completed, set by the payee DFSP.
          */
         expiration: string;
         /**
@@ -28471,7 +28471,7 @@ export interface components {
        */
       challenge: string;
       /**
-       * Data model for the complex type Money.
+       * The amount that will be debited from the sending customer’s  account as a consequence of the transaction.
        */
       transferAmount: {
         /**
@@ -28646,7 +28646,7 @@ export interface components {
         amount: string;
       };
       /**
-       * Data model for the complex type Money.
+       * The amount that will be credited to the receiving customer’s  account as a consequence of the transaction.
        */
       payeeReceiveAmount: {
         /**
@@ -28821,7 +28821,7 @@ export interface components {
         amount: string;
       };
       /**
-       * Data model for the complex type Money.
+       * The amount of fees that the paying customer will be charged as part of the transaction.
        */
       fees: {
         /**
@@ -29260,7 +29260,7 @@ export interface components {
         balanceOfPayments?: string;
       };
       /**
-       * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
+       * The time by which the transfer must be completed, set by the payee DFSP.
        */
       expiration: string;
       /**
