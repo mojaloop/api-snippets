@@ -22,27 +22,29 @@ put:
     - authorizations
   parameters:
     - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    description: Signed authorization object
+    required: true
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseFIDO.yaml'
+            - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseGeneric.yaml'
+        example:
+          signedPayloadType: FIDO
+          signedPayload:
+            id: 45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA
+            rawId: 45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==
+            response:
+              authenticatorData: SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MBAAAACA==
+              clientDataJSON: eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUFBQUFBQUFBQUFBQUFBQUFBRUNBdyIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIxODEiLCJjcm9zc09yaWdpbiI6ZmFsc2UsIm90aGVyX2tleXNfY2FuX2JlX2FkZGVkX2hlcmUiOiJkbyBub3QgY29tcGFyZSBjbGllbnREYXRhSlNPTiBhZ2FpbnN0IGEgdGVtcGxhdGUuIFNlZSBodHRwczovL2dvby5nbC95YWJQZXgifQ==
+              signature: MEUCIDcJRBu5aOLJVc/sPyECmYi23w8xF35n3RNhyUNVwQ2nAiEA+Lnd8dBn06OKkEgAq00BVbmH87ybQHfXlf1Y4RJqwQ8=
+            type: 'public-key'
+
   responses:
     200:
-      description: |
-        information about result of required (via POST) /authorization
-      content:
-        application/json:
-          schema:
-            oneOf:
-              - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseFIDO.yaml'
-              - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseGeneric.yaml'
-          example:
-            signedPayloadType: FIDO
-            signedPayload:
-              id: 45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA
-              rawId: 45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==
-              response:
-                authenticatorData: SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MBAAAACA==
-                clientDataJSON: eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUFBQUFBQUFBQUFBQUFBQUFBRUNBdyIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIxODEiLCJjcm9zc09yaWdpbiI6ZmFsc2UsIm90aGVyX2tleXNfY2FuX2JlX2FkZGVkX2hlcmUiOiJkbyBub3QgY29tcGFyZSBjbGllbnREYXRhSlNPTiBhZ2FpbnN0IGEgdGVtcGxhdGUuIFNlZSBodHRwczovL2dvby5nbC95YWJQZXgifQ==
-                signature: MEUCIDcJRBu5aOLJVc/sPyECmYi23w8xF35n3RNhyUNVwQ2nAiEA+Lnd8dBn06OKkEgAq00BVbmH87ybQHfXlf1Y4RJqwQ8=
-              type: 'public-key'
-
+      $ref: ../components/responses/200.yaml
     400:
       $ref: ../components/responses/400.yaml
     401:

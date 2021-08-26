@@ -110,7 +110,7 @@ describe('thirdparty', () => {
         origin: 'pisp.mojaloop.io',
         type: 'webauthn.create'
       }),
-      attestationObject: "some-attestation"
+      attestationObject: 'some-attestation'
     },
     type: 'public-key'
   }
@@ -447,7 +447,7 @@ describe('thirdparty', () => {
           origin: 'pisp.mojaloop.io',
           type: 'webauthn.create'
         }),
-        attestationObject: "some-attestation"
+        attestationObject: 'some-attestation'
       },
       type: 'public-key'
     }
@@ -464,9 +464,9 @@ describe('thirdparty', () => {
           origin: 'pisp.mojaloop.io',
           type: 'webauthn.create'
         }),
-        authenticatorData: "some-data",
-        signature: "some-signature",
-        userHandle: "some-user-handle"
+        authenticatorData: 'some-data',
+        signature: 'some-signature',
+        userHandle: 'some-user-handle'
       },
       type: 'public-key'
     }
@@ -549,6 +549,70 @@ describe('thirdparty', () => {
       expiration: dateTime
     }
     expect(thirdpartyRequestsTransactionsPostRequest).toBeDefined()
+  })
+
+  test('ThirdpartyRequestsAuthorizationsPostRequest', () => {
+    const thirdpartyRequestsAuthorizationPostRequest: Schemas.ThirdpartyRequestsAuthorizationsPostRequest = {
+      authorizationRequestId: '5f8ee7f9-290f-4e03-ae1c-1e81ecf398df',
+      transactionRequestId: '2cf08eed-3540-489e-85fa-b2477838a8c5',
+      challenge: '<base64 encoded binary - the encoded challenge>',
+      transferAmount: {
+        amount: '100',
+        currency: 'USD'
+      },
+      payeeReceiveAmount: {
+        amount: '99',
+        currency: 'USD'
+      },
+      fees: {
+        amount: '1',
+        currency: 'USD'
+      },
+      payee: {
+        partyIdInfo: {
+          partyIdType: 'MSISDN',
+          partyIdentifier: '+4412345678',
+          fspId: 'dfspb'
+        }
+      },
+      payer: {
+        partyIdType: 'THIRD_PARTY_LINK',
+        partyIdentifier: 'qwerty-123456',
+        fspId: 'dfspa'
+      },
+      transactionType: {
+        scenario: 'TRANSFER',
+        initiator: 'PAYER',
+        initiatorType: 'CONSUMER'
+      },
+      expiration: '2020-06-15T12:00:00.000Z'
+    }
+    expect(thirdpartyRequestsAuthorizationPostRequest).toBeDefined()
+  })
+
+  test('ThirdpartyRequestsAuthorizationsIDPutResponseFIDO', () => {
+    const thirdpartyRequestsAuthorizationsIDPutResponseFIDO: Schemas.ThirdpartyRequestsAuthorizationsIDPutResponseFIDO = {
+      signedPayloadType: 'FIDO',
+      signedPayload: {
+        id: '45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA',
+        rawId: '45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==',
+        response: {
+          authenticatorData: 'SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MBAAAACA==',
+          clientDataJSON: 'eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUFBQUFBQUFBQUFBQUFBQUFBRUNBdyIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIxODEiLCJjcm9zc09yaWdpbiI6ZmFsc2UsIm90aGVyX2tleXNfY2FuX2JlX2FkZGVkX2hlcmUiOiJkbyBub3QgY29tcGFyZSBjbGllbnREYXRhSlNPTiBhZ2FpbnN0IGEgdGVtcGxhdGUuIFNlZSBodHRwczovL2dvby5nbC95YWJQZXgifQ==',
+          signature: 'MEUCIDcJRBu5aOLJVc/sPyECmYi23w8xF35n3RNhyUNVwQ2nAiEA+Lnd8dBn06OKkEgAq00BVbmH87ybQHfXlf1Y4RJqwQ8='
+        },
+        type: 'public-key'
+      }
+    }
+    expect(thirdpartyRequestsAuthorizationsIDPutResponseFIDO).toBeDefined()
+  })
+
+  test('ThirdpartyRequestsAuthorizationsIDPutResponseGeneric', () => {
+    const thirdpartyRequestsAuthorizationsIDPutResponseGeneric: Schemas.ThirdpartyRequestsAuthorizationsIDPutResponseGeneric = {
+      signedPayloadType: 'GENERIC',
+      signedPayload: 'some string public key',
+    }
+    expect(thirdpartyRequestsAuthorizationsIDPutResponseGeneric).toBeDefined()
   })
 
   test('TransactionRequestState', () => {

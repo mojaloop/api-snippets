@@ -7523,86 +7523,87 @@ paths:
 
             **Note:** The API supports a maximum size of 5242880 bytes (5
             Megabytes).
+      requestBody:
+        description: Signed authorization object
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
+                  type: object
+                  description: >-
+                    The object sent in the PUT
+                    /thirdpartyRequests/authorizations/{ID} callback.
+                  properties: &ref_154
+                    signedPayloadType:
+                      title: SignedPayloadTypeFIDO
+                      type: string
+                      enum: &ref_74
+                        - FIDO
+                      description: >-
+                        Describes a challenge that has been signed with FIDO
+                        Attestation flows
+                    signedPayload:
+                      title: FIDOPublicKeyCredentialAssertion
+                      type: object
+                      description: >
+                        An object sent in a `PUT
+                        /thirdpartyRequests/authorization/{ID}` request.
+
+                        based mostly on: https://webauthn.guide/#authentication
+
+                        AuthenticatorAssertionResponse
+                      properties: *ref_72
+                      required: *ref_73
+                      additionalProperties: false
+                  required: &ref_155
+                    - signedPayloadType
+                    - signedPayload
+                - title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
+                  type: object
+                  description: >-
+                    The object sent in the PUT
+                    /thirdpartyRequests/authorizations/{ID} callback.
+                  properties: &ref_156
+                    signedPayloadType:
+                      title: SignedPayloadTypeGeneric
+                      type: string
+                      enum: &ref_75
+                        - GENERIC
+                      description: >-
+                        Describes a challenge that has been signed with a
+                        private key
+                    signedPayload:
+                      type: string
+                      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                      description: >-
+                        The API data type BinaryString is a JSON String. The
+                        string is a base64url  encoding of a string of raw
+                        bytes, where padding (character ‘=’) is added at the end
+                        of the data if needed to ensure that the string is a
+                        multiple of 4 characters. The length restriction
+                        indicates the allowed number of characters.
+                  required: &ref_157
+                    - signedPayloadType
+                    - authenticationValue
+            example:
+              signedPayloadType: FIDO
+              signedPayload:
+                id: >-
+                  45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA
+                rawId: >-
+                  45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==
+                response:
+                  authenticatorData: SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MBAAAACA==
+                  clientDataJSON: >-
+                    eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUFBQUFBQUFBQUFBQUFBQUFBRUNBdyIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIxODEiLCJjcm9zc09yaWdpbiI6ZmFsc2UsIm90aGVyX2tleXNfY2FuX2JlX2FkZGVkX2hlcmUiOiJkbyBub3QgY29tcGFyZSBjbGllbnREYXRhSlNPTiBhZ2FpbnN0IGEgdGVtcGxhdGUuIFNlZSBodHRwczovL2dvby5nbC95YWJQZXgifQ==
+                  signature: >-
+                    MEUCIDcJRBu5aOLJVc/sPyECmYi23w8xF35n3RNhyUNVwQ2nAiEA+Lnd8dBn06OKkEgAq00BVbmH87ybQHfXlf1Y4RJqwQ8=
+                type: public-key
       responses:
         '200':
-          description: |
-            information about result of required (via POST) /authorization
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
-                    type: object
-                    description: >-
-                      The object sent in the PUT
-                      /thirdpartyRequests/authorizations/{ID} callback.
-                    properties: &ref_154
-                      signedPayloadType:
-                        title: SignedPayloadTypeFIDO
-                        type: string
-                        enum: &ref_74
-                          - FIDO
-                        description: >-
-                          Describes a challenge that has been signed with FIDO
-                          Attestation flows
-                      signedPayload:
-                        title: FIDOPublicKeyCredentialAssertion
-                        type: object
-                        description: >
-                          An object sent in a `PUT
-                          /thirdpartyRequests/authorization/{ID}` request.
-
-                          based mostly on:
-                          https://webauthn.guide/#authentication
-
-                          AuthenticatorAssertionResponse
-                        properties: *ref_72
-                        required: *ref_73
-                        additionalProperties: false
-                    required: &ref_155
-                      - signedPayloadType
-                      - authenticationValue
-                  - title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
-                    type: object
-                    description: >-
-                      The object sent in the PUT
-                      /thirdpartyRequests/authorizations/{ID} callback.
-                    properties: &ref_156
-                      signedPayloadType:
-                        title: SignedPayloadTypeGeneric
-                        type: string
-                        enum: &ref_75
-                          - GENERIC
-                        description: >-
-                          Describes a challenge that has been signed with a
-                          private key
-                      signedPayload:
-                        type: string
-                        pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
-                        description: >-
-                          The API data type BinaryString is a JSON String. The
-                          string is a base64url  encoding of a string of raw
-                          bytes, where padding (character ‘=’) is added at the
-                          end of the data if needed to ensure that the string is
-                          a multiple of 4 characters. The length restriction
-                          indicates the allowed number of characters.
-                    required: &ref_157
-                      - signedPayloadType
-                      - authenticationValue
-              example:
-                signedPayloadType: FIDO
-                signedPayload:
-                  id: >-
-                    45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA
-                  rawId: >-
-                    45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==
-                  response:
-                    authenticatorData: SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MBAAAACA==
-                    clientDataJSON: >-
-                      eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUFBQUFBQUFBQUFBQUFBQUFBRUNBdyIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIxODEiLCJjcm9zc09yaWdpbiI6ZmFsc2UsIm90aGVyX2tleXNfY2FuX2JlX2FkZGVkX2hlcmUiOiJkbyBub3QgY29tcGFyZSBjbGllbnREYXRhSlNPTiBhZ2FpbnN0IGEgdGVtcGxhdGUuIFNlZSBodHRwczovL2dvby5nbC95YWJQZXgifQ==
-                    signature: >-
-                      MEUCIDcJRBu5aOLJVc/sPyECmYi23w8xF35n3RNhyUNVwQ2nAiEA+Lnd8dBn06OKkEgAq00BVbmH87ybQHfXlf1Y4RJqwQ8=
-                  type: public-key
+          description: OK
         '400':
           description: Bad Request
           content: *ref_20

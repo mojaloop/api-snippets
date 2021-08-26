@@ -91,6 +91,10 @@ export namespace Schemas {
   export type ThirdpartyRequestsTransactionsIDPatchResponse = components['schemas']['ThirdpartyRequestsTransactionsIDPatchResponse']
   export type ThirdpartyRequestsTransactionsIDPutResponse = components['schemas']['ThirdpartyRequestsTransactionsIDPutResponse']
   export type ThirdpartyRequestsTransactionsPostRequest = components['schemas']['ThirdpartyRequestsTransactionsPostRequest']
+  export type ThirdpartyRequestsAuthorizationsPostRequest = components['schemas']['ThirdpartyRequestsAuthorizationsPostRequest']
+  export type ThirdpartyRequestsAuthorizationsIDPutResponseFIDO = components['schemas']['ThirdpartyRequestsAuthorizationsIDPutResponseFIDO']
+  export type ThirdpartyRequestsAuthorizationsIDPutResponseGeneric = components['schemas']['ThirdpartyRequestsAuthorizationsIDPutResponseGeneric']
+  export type ThirdpartyRequestsAuthorizationsIDPutResponse = ThirdpartyRequestsAuthorizationsIDPutResponseFIDO | ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
   export type ThirdpartyRequestsVerificationsIDPutResponse = components['schemas']['ThirdpartyRequestsVerificationsIDPutResponse']
   export type ThirdpartyRequestsVerificationsPostRequestFIDO = components['schemas']['ThirdpartyRequestsVerificationsPostRequestFIDO']
   export type ThirdpartyRequestsVerificationsPostRequestGeneric = components['schemas']['ThirdpartyRequestsVerificationsPostRequestGeneric']
