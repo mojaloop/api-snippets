@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.6.6](https://github.com/mojaloop/api-snippets/compare/v12.6.5...v12.6.6) (2021-08-26)
+
+
+### Bug Fixes
+
+* **thirdparty:** missing and invalid payloads ([#108](https://github.com/mojaloop/api-snippets/issues/108)) ([3dac4a9](https://github.com/mojaloop/api-snippets/commit/3dac4a93643c2fd31ba5db672707172e173066fe))
+
 ### [12.6.5](https://github.com/mojaloop/api-snippets/compare/v12.6.4...v12.6.5) (2021-08-25)
 
 
