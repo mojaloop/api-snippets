@@ -8,4 +8,4 @@ properties:
     $ref: ./FIDOPublicKeyCredentialAssertion.yaml
 required:
   - signedPayloadType
-  - authenticationValue
+  - signedPayload
