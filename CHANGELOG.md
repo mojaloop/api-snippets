@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [12.6.7](https://github.com/mojaloop/api-snippets/compare/v12.6.6...v12.6.7) (2021-09-22)
+
+
+### Maintenance
+
+* **deps:** bump tmpl from 1.0.4 to 1.0.5 ([#109](https://github.com/mojaloop/api-snippets/issues/109)) ([314cc5c](https://github.com/mojaloop/api-snippets/commit/314cc5c3231cc8eb4ae3b1efa8c6f90abc1f6b27))
+
 ### [12.6.6](https://github.com/mojaloop/api-snippets/compare/v12.6.5...v12.6.6) (2021-08-26)
 
 
