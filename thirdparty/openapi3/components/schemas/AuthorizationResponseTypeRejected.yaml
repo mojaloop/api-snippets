@@ -1,0 +1,6 @@
+title: AuthorizationResponseType
+description: |
+  The customer rejected the terms of the transfer.
+type: string
+enum:
+  - REJECTED
