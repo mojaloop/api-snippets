@@ -86,15 +86,14 @@ export namespace Schemas {
   export type ServicesServiceTypePutResponse = components['schemas']['ServicesServiceTypePutResponse']
   export type ServiceType = components['schemas']['ServiceType']
   export type SignedCredential = components['schemas']['SignedCredential']
-  export type ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest = components['schemas']['ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest']
-  export type ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse = components['schemas']['ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse']
   export type ThirdpartyRequestsTransactionsIDPatchResponse = components['schemas']['ThirdpartyRequestsTransactionsIDPatchResponse']
   export type ThirdpartyRequestsTransactionsIDPutResponse = components['schemas']['ThirdpartyRequestsTransactionsIDPutResponse']
   export type ThirdpartyRequestsTransactionsPostRequest = components['schemas']['ThirdpartyRequestsTransactionsPostRequest']
   export type ThirdpartyRequestsAuthorizationsPostRequest = components['schemas']['ThirdpartyRequestsAuthorizationsPostRequest']
+  export type ThirdpartyRequestsAuthorizationsIDPutResponseRejected = components['schemas']['ThirdpartyRequestsAuthorizationsIDPutResponseRejected']
   export type ThirdpartyRequestsAuthorizationsIDPutResponseFIDO = components['schemas']['ThirdpartyRequestsAuthorizationsIDPutResponseFIDO']
   export type ThirdpartyRequestsAuthorizationsIDPutResponseGeneric = components['schemas']['ThirdpartyRequestsAuthorizationsIDPutResponseGeneric']
-  export type ThirdpartyRequestsAuthorizationsIDPutResponse = ThirdpartyRequestsAuthorizationsIDPutResponseFIDO | ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
+  export type ThirdpartyRequestsAuthorizationsIDPutResponse = ThirdpartyRequestsAuthorizationsIDPutResponseRejected | ThirdpartyRequestsAuthorizationsIDPutResponseFIDO | ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
   export type ThirdpartyRequestsVerificationsIDPutResponse = components['schemas']['ThirdpartyRequestsVerificationsIDPutResponse']
   export type ThirdpartyRequestsVerificationsPostRequestFIDO = components['schemas']['ThirdpartyRequestsVerificationsPostRequestFIDO']
   export type ThirdpartyRequestsVerificationsPostRequestGeneric = components['schemas']['ThirdpartyRequestsVerificationsPostRequestGeneric']
