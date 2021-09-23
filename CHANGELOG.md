@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [12.7.0](https://github.com/mojaloop/api-snippets/compare/v12.6.7...v12.7.0) (2021-09-23)
+
+
+### Features
+
+* **thirdparty:** reject transfer ([#110](https://github.com/mojaloop/api-snippets/issues/110)) ([cb0a4d1](https://github.com/mojaloop/api-snippets/commit/cb0a4d1fea10cb2fa8d6ffed9d56949d27e4ae86))
+
 ### [12.6.7](https://github.com/mojaloop/api-snippets/compare/v12.6.6...v12.6.7) (2021-09-22)
 
 
