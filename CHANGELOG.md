@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [12.8.0](https://github.com/mojaloop/api-snippets/compare/v12.7.0...v12.8.0) (2021-09-23)
+
+
+### Features
+
+* **thirdparty:** update the PATCH /tpr/transactions body to line up with latest API draft ([#111](https://github.com/mojaloop/api-snippets/issues/111)) ([2659520](https://github.com/mojaloop/api-snippets/commit/2659520df25f9320a2772b5d13ef1b8e08317142))
+
 ## [12.7.0](https://github.com/mojaloop/api-snippets/compare/v12.6.7...v12.7.0) (2021-09-23)
 
 
