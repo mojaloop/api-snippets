@@ -913,21 +913,24 @@ paths:
                     The object sent in the PATCH
                     /thirdpartyRequests/transactions/{ID} callback.
                   properties: &ref_70
-                    transactionId:
-                      title: CorrelationId
+                    completedTimestamp:
+                      title: DateTime
                       type: string
                       pattern: >-
-                        ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                        ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
                       description: >-
-                        Identifier that correlates all messages of the same
-                        sequence. The API data type UUID (Universally Unique
-                        Identifier) is a JSON String in canonical format,
-                        conforming to [RFC
-                        4122](https://tools.ietf.org/html/rfc4122), that is
-                        restricted by a regular expression for interoperability
-                        reasons. A UUID is always 36 characters long, 32
-                        hexadecimal symbols and 4 dashes (‘-‘).
-                      example: b51ec534-ee48-4575-b6a9-ead2955b8069
+                        The API data type DateTime is a JSON String in a lexical
+                        format that is restricted by a regular expression for
+                        interoperability reasons. The format is according to
+                        [ISO
+                        8601](https://www.iso.org/iso-8601-date-and-time-format.html),
+                        expressed in a combined date, time and time zone format.
+                        A more readable version of the format is
+                        yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are
+                        "2016-05-24T08:38:08.699-04:00",
+                        "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time
+                        zone, same as UTC).
+                      example: '2016-05-24T08:38:08.699-04:00'
                     transactionRequestState:
                       title: TransactionRequestState
                       type: string
@@ -972,7 +975,6 @@ paths:
                         transaction.
                       example: RECEIVED
                   required: &ref_71
-                    - transactionId
                     - transactionRequestState
                     - transactionState
                 - title: TransactionRequestsPostRequest

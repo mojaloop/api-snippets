@@ -502,7 +502,6 @@ describe('thirdparty', () => {
 
   test('ThirdpartyRequestsTransactionsIDPatchResponse', () => {
     const thirdpartyRequestsTransactionsIDPatchResponse: Schemas.ThirdpartyRequestsTransactionsIDPatchResponse = {
-      transactionId: correlationId,
       transactionRequestState: 'ACCEPTED',
       transactionState: 'COMPLETED'
     }
