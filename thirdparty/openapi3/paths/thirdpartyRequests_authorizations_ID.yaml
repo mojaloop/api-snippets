@@ -29,6 +29,7 @@ put:
       application/json:
         schema:
           oneOf:
+            - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseRejected.yaml'
             - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseFIDO.yaml'
             - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseGeneric.yaml'
         example:

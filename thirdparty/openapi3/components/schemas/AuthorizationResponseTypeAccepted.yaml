@@ -1,0 +1,6 @@
+title: AuthorizationResponseType
+description: |
+  The customer accepted the terms of the transfer
+type: string
+enum:
+  - ACCEPTED

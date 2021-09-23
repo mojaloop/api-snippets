@@ -11,7 +11,6 @@ describe('thirdparty', () => {
     currency
   }
   const authorizationChannelTypeU2F: Schemas.AuthorizationChannelType = 'U2F'
-  const authorizationResponseTypeENTERED: Schemas.AuthorizationResponseType = 'ENTERED'
   const extensionKey: Schemas.ExtensionKey = 'key'
   const extensionValue: Schemas.ExtensionValue = 'value'
   const extension: Schemas.Extension = {
@@ -157,7 +156,8 @@ describe('thirdparty', () => {
   })
 
   test('AuthorizationResponseType', () => {
-    expect(authorizationResponseTypeENTERED).toBeDefined()
+    const authorizationResponseType: Schemas.AuthorizationResponseType = 'ACCEPTED'
+    expect(authorizationResponseType).toBeDefined()
   })
 
   test('AuthorizationsPostRequest', () => {
@@ -225,14 +225,7 @@ describe('thirdparty', () => {
     expect(consentScopeTypeGetBalance).toBeDefined()
     expect(consentScopeTypeTransfer).toBeDefined()
   })
-
-  test('ConsentsIDGenerateChallengePostRequest', () => {
-    const consentsIDGenerateChallengePostRequest: Schemas.ConsentsIDGenerateChallengePostRequest = {
-      type: credentialTypeFIDO
-    }
-    expect(consentsIDGenerateChallengePostRequest).toBeDefined()
-  })
-
+  
   test('ConsentsIDPatchResponseRevoked', () => {
     const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponseRevoked = {
       status: consentStatusTypeREVOKED,
@@ -507,28 +500,6 @@ describe('thirdparty', () => {
     expect(signedCredential).toBeDefined()
   })
 
-  test('ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest', () => {
-    const thirdpartyRequestsTransactionsIDAuthorizationsPostRequest: Schemas.ThirdpartyRequestsTransactionsIDAuthorizationsPostRequest = {
-      challenge: 'the-challenge',
-      value: 'signed-challenge',
-      consentId: correlationId,
-      sourceAccountId: accountId,
-      status: 'PENDING'
-    }
-    expect(thirdpartyRequestsTransactionsIDAuthorizationsPostRequest).toBeDefined()
-  })
-
-  test('ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse', () => {
-    const thirdpartyRequestsTransactionsIDAuthorizationsPutResponse: Schemas.ThirdpartyRequestsTransactionsIDAuthorizationsPutResponse = {
-      challenge: 'the-challenge',
-      value: 'signed-challenge',
-      consentId: correlationId,
-      sourceAccountId: accountId,
-      status: 'VERIFIED'
-    }
-    expect(thirdpartyRequestsTransactionsIDAuthorizationsPutResponse).toBeDefined()
-  })
-
   test('ThirdpartyRequestsTransactionsIDPatchResponse', () => {
     const thirdpartyRequestsTransactionsIDPatchResponse: Schemas.ThirdpartyRequestsTransactionsIDPatchResponse = {
       transactionId: correlationId,
@@ -590,18 +561,27 @@ describe('thirdparty', () => {
     expect(thirdpartyRequestsAuthorizationPostRequest).toBeDefined()
   })
 
+  test('ThirdpartyRequestsAuthorizationsIDPutResponseRejected', () => {
+    const thirdpartyRequestsAuthorizationsIDPutResponseRejected: Schemas.ThirdpartyRequestsAuthorizationsIDPutResponseRejected = {
+      responseType: 'REJECTED'
+    }
+    expect(thirdpartyRequestsAuthorizationsIDPutResponseRejected).toBeDefined()
+  })
   test('ThirdpartyRequestsAuthorizationsIDPutResponseFIDO', () => {
     const thirdpartyRequestsAuthorizationsIDPutResponseFIDO: Schemas.ThirdpartyRequestsAuthorizationsIDPutResponseFIDO = {
-      signedPayloadType: 'FIDO',
+      responseType: 'ACCEPTED',
       signedPayload: {
-        id: '45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA',
-        rawId: '45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==',
-        response: {
-          authenticatorData: 'SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MBAAAACA==',
-          clientDataJSON: 'eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUFBQUFBQUFBQUFBQUFBQUFBRUNBdyIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIxODEiLCJjcm9zc09yaWdpbiI6ZmFsc2UsIm90aGVyX2tleXNfY2FuX2JlX2FkZGVkX2hlcmUiOiJkbyBub3QgY29tcGFyZSBjbGllbnREYXRhSlNPTiBhZ2FpbnN0IGEgdGVtcGxhdGUuIFNlZSBodHRwczovL2dvby5nbC95YWJQZXgifQ==',
-          signature: 'MEUCIDcJRBu5aOLJVc/sPyECmYi23w8xF35n3RNhyUNVwQ2nAiEA+Lnd8dBn06OKkEgAq00BVbmH87ybQHfXlf1Y4RJqwQ8='
-        },
-        type: 'public-key'
+        signedPayloadType: 'FIDO',
+        value: {
+          id: '45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA',
+          rawId: '45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==',
+          response: {
+            authenticatorData: 'SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MBAAAACA==',
+            clientDataJSON: 'eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUFBQUFBQUFBQUFBQUFBQUFBRUNBdyIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIxODEiLCJjcm9zc09yaWdpbiI6ZmFsc2UsIm90aGVyX2tleXNfY2FuX2JlX2FkZGVkX2hlcmUiOiJkbyBub3QgY29tcGFyZSBjbGllbnREYXRhSlNPTiBhZ2FpbnN0IGEgdGVtcGxhdGUuIFNlZSBodHRwczovL2dvby5nbC95YWJQZXgifQ==',
+            signature: 'MEUCIDcJRBu5aOLJVc/sPyECmYi23w8xF35n3RNhyUNVwQ2nAiEA+Lnd8dBn06OKkEgAq00BVbmH87ybQHfXlf1Y4RJqwQ8='
+          },
+          type: 'public-key'
+        }
       }
     }
     expect(thirdpartyRequestsAuthorizationsIDPutResponseFIDO).toBeDefined()
@@ -609,8 +589,11 @@ describe('thirdparty', () => {
 
   test('ThirdpartyRequestsAuthorizationsIDPutResponseGeneric', () => {
     const thirdpartyRequestsAuthorizationsIDPutResponseGeneric: Schemas.ThirdpartyRequestsAuthorizationsIDPutResponseGeneric = {
-      signedPayloadType: 'GENERIC',
-      signedPayload: 'some string public key',
+      responseType: 'ACCEPTED',
+      signedPayload: {
+        signedPayloadType: 'GENERIC',
+        value: 'some signature utf-8 string',
+      }
     }
     expect(thirdpartyRequestsAuthorizationsIDPutResponseGeneric).toBeDefined()
   })
