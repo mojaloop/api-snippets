@@ -24,7 +24,6 @@ export namespace Schemas {
   export type ConsentRequestsIDPutResponseWeb = components['schemas']['ConsentRequestsIDPutResponseWeb']
   export type ConsentRequestsPostRequest = components['schemas']['ConsentRequestsPostRequest']
   export type ConsentScopeType = components['schemas']['ConsentScopeType']
-  export type ConsentsIDGenerateChallengePostRequest = components['schemas']['ConsentsIDGenerateChallengePostRequest']
   export type ConsentsIDPatchResponseRevoked = components['schemas']['ConsentsIDPatchResponseRevoked']
   export type ConsentsIDPatchResponseVerified = components['schemas']['ConsentsIDPatchResponseVerified']
   export type ConsentsIDPutResponseSigned = components['schemas']['ConsentsIDPutResponseSigned']

@@ -225,14 +225,7 @@ describe('thirdparty', () => {
     expect(consentScopeTypeGetBalance).toBeDefined()
     expect(consentScopeTypeTransfer).toBeDefined()
   })
-
-  test('ConsentsIDGenerateChallengePostRequest', () => {
-    const consentsIDGenerateChallengePostRequest: Schemas.ConsentsIDGenerateChallengePostRequest = {
-      type: credentialTypeFIDO
-    }
-    expect(consentsIDGenerateChallengePostRequest).toBeDefined()
-  })
-
+  
   test('ConsentsIDPatchResponseRevoked', () => {
     const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponseRevoked = {
       status: consentStatusTypeREVOKED,

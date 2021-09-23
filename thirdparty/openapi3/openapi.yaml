@@ -78,11 +78,6 @@ paths:
     $ref: paths/consents_ID.yaml
   /consents/{ID}/error:
     $ref: paths/consents_ID_error.yaml
-  # Note: this resource is deprecated in the latest API Draft, and will
-  # be removed in the next MAJOR version release of API-Snippets
-  # TODO: remove in next major version release
-  /consents/{ID}/generateChallenge:
-    $ref: paths/consents_ID_generateChallenge.yaml
   /participants:
     $ref: paths/participants.yaml
   /participants/{ID}:
@@ -105,11 +100,6 @@ paths:
     $ref: paths/thirdpartyRequests_transactions_ID.yaml
   /thirdpartyRequests/transactions/{ID}/error:
     $ref: paths/thirdpartyRequests_transactions_ID_error.yaml
-  # Note: this resource is deprecated in the latest API Draft, and will
-  # be removed in the next MAJOR version release of API-Snippets
-  # TODO: remove in next major version release
-  /thirdpartyRequests/transactions/{ID}/authorizations:
-      $ref: paths/thirdpartyRequests_transactions_ID_authz.yaml
   /thirdpartyRequests/authorizations:
     $ref: paths/thirdpartyRequests_authorizations.yaml
   /thirdpartyRequests/authorizations/{ID}:
