@@ -191,7 +191,6 @@ describe('thirdparty', () => {
 
   test('ConsentRequestsIDPutResponseOTP', () => {
     const consentRequestsIDPutResponseOTP: Schemas.ConsentRequestsIDPutResponseOTP = {
-      consentRequestId: 'pisp-id',
       scopes: [scope],
       authChannels: [consentRequestChannelTypeOTP],
       callbackUri: 'https://fspiId/callback'
@@ -201,7 +200,6 @@ describe('thirdparty', () => {
 
   test('ConsentRequestsIDPutResponseWeb', () => {
     const consentRequestsIDPutResponseWeb: Schemas.ConsentRequestsIDPutResponseWeb = {
-      consentRequestId: 'pisp-id',
       scopes: [scope],
       authChannels: [consentRequestChannelTypeWeb],
       callbackUri: 'https://fspiId/callback',
@@ -466,6 +464,14 @@ describe('thirdparty', () => {
     expect(FIDOPublicKeyCredentialAssertion).toBeDefined()
   })
 
+  test('GenericCredential', () => {
+    const genericCredential: Schemas.GenericCredential = {
+      publicKey: 'some-public-key',
+      signature: 'some-signed-challenge'
+    }
+    expect(genericCredential).toBeDefined()
+  })
+
   test('QuotesIDPutResponse', () => {
     const quotesIDPutResponse: Schemas.QuotesIDPutResponse = {
       transferAmount: money,
@@ -640,7 +646,7 @@ describe('thirdparty', () => {
       challenge: 'some challenge base64 encoded',
       consentId: '8d34f91d-d078-4077-8263-2c0498dhbjr',
       signedPayloadType: 'FIDO',
-      signedPayload: {
+      value: {
         id: '45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA',
         rawId: '45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==',
         response: {
@@ -661,7 +667,7 @@ describe('thirdparty', () => {
       challenge: 'some challenge base64 encoded',
       consentId: '8d34f91d-d078-4077-8263-2c0498dhbjr',
       signedPayloadType: 'GENERIC',
-      signedPayload: 'some signed payload string'
+      value: 'some signed payload string'
     }
 
     expect(thirdPartyRequestsVerificationsPostRequest).toBeDefined()

@@ -75,6 +75,7 @@ export namespace Schemas {
   export type PartyName = components['schemas']['PartyName']
   export type FIDOPublicKeyCredentialAssertion = components['schemas']['FIDOPublicKeyCredentialAssertion']
   export type FIDOPublicKeyCredentialAttestation = components['schemas']['FIDOPublicKeyCredentialAttestation']
+  export type GenericCredential = components['schemas']['GenericCredential']
   export type PartyPersonalInfo = components['schemas']['PartyPersonalInfo']
   export type PartyResult = components['schemas']['PartyResult']
   export type PartySubIdOrType = components['schemas']['PartySubIdOrType']
