@@ -2,10 +2,7 @@ title: ThirdpartyRequestsTransactionsIDPutResponse
 type: object
 description: 'The object sent in the PUT /thirdPartyRequests/transactions/{ID} request.'
 properties:
-  transactionId:
-    $ref: ./CorrelationId.yaml
   transactionRequestState:
     $ref: ./TransactionRequestState.yaml
 required:
-  - transactionId
   - transactionRequestState

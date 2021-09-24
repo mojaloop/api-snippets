@@ -8,8 +8,6 @@ description: |
   supposed user should be redirected. This URL should be a place where
   the user can prove their identity (e.g., by logging in).
 properties:
-  consentRequestId:
-    $ref: ./CorrelationId.yaml
   scopes:
     type: array
     items:
@@ -22,14 +20,14 @@ properties:
     type: string
     description: >-
       The callback uri that the user will be redirected to after completing the
-      WEB auth channel.
+      out of band WEB authentication with the DFSP. Used to allow the DFSP to
+      whitelist the PISP's url ahead of time.
   authUri:
     type: string
     description: >-
-      The callback uri that the pisp app redirects to for user to complete their
+      The callback uri that the pisp app should redirect to for user to complete their
       login.
 required:
-  - consentRequestId
   - scopes
   - authChannels
   - callbackUri

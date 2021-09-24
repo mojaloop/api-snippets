@@ -16,11 +16,11 @@ properties:
       the signed challenge against.
   signedPayloadType:
     $ref: ./SignedPayloadTypeFIDO.yaml
-  signedPayload:
+  value:
     $ref: ./FIDOPublicKeyCredentialAssertion.yaml
 required:
   - verificationRequestId
   - challenge
   - consentId
   - signedPayloadType
-  - signedPayload
+  - value

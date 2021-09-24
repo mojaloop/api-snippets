@@ -7121,7 +7121,7 @@ export interface operations {
         }[];
         authChannels: ("WEB" | "OTP")[];
         /**
-         * The callback uri that the user will be redirected to after completing the WEB auth channel.
+         * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
          */
         callbackUri: string;
       };
@@ -7457,10 +7457,6 @@ export interface operations {
     requestBody: {
       "application/json":
         | {
-            /**
-             * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-             */
-            consentRequestId: string;
             scopes: {
               /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -7472,19 +7468,15 @@ export interface operations {
             }[];
             authChannels: "WEB"[];
             /**
-             * The callback uri that the user will be redirected to after completing the WEB auth channel.
+             * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
              */
             callbackUri: string;
             /**
-             * The callback uri that the pisp app redirects to for user to complete their login.
+             * The callback uri that the pisp app should redirect to for user to complete their login.
              */
             authUri: string;
           }
         | {
-            /**
-             * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-             */
-            consentRequestId: string;
             scopes: {
               /**
                * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -7496,9 +7488,9 @@ export interface operations {
             }[];
             authChannels: "OTP"[];
             /**
-             * The callback uri that the user will be redirected to after completing the WEB auth channel.
+             * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
              */
-            callbackUri: string;
+            callbackUri?: string;
           };
     };
     responses: {
@@ -8551,41 +8543,45 @@ export interface operations {
                * The challenge has signed but not yet verified.
                */
               status: "PENDING";
-              /**
-               * An object sent in a `PUT /consents/{ID}` request.
-               * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-               * and mostly on: https://webauthn.guide/#registration
-               * AuthenticatorAttestationResponse
-               * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-               */
-              payload: {
-                /**
-                 * credential id: identifier of pair of keys, base64 encoded
-                 * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-                 */
-                id: string;
-                /**
-                 * raw credential id: identifier of pair of keys, base64 encoded
-                 */
-                rawId: string;
-                /**
-                 * AuthenticatorAttestationResponse
-                 */
-                response: {
-                  /**
-                   * JSON string with client data
-                   */
-                  clientDataJSON: string;
-                  /**
-                   * CBOR.encoded attestation object
-                   */
-                  attestationObject: string;
-                };
-                /**
-                 * response type, we need only the type of public-key
-                 */
-                type: "public-key";
-              };
+              payload:
+                | {
+                    /**
+                     * credential id: identifier of pair of keys, base64 encoded
+                     * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+                     */
+                    id: string;
+                    /**
+                     * raw credential id: identifier of pair of keys, base64 encoded
+                     */
+                    rawId: string;
+                    /**
+                     * AuthenticatorAttestationResponse
+                     */
+                    response: {
+                      /**
+                       * JSON string with client data
+                       */
+                      clientDataJSON: string;
+                      /**
+                       * CBOR.encoded attestation object
+                       */
+                      attestationObject: string;
+                    };
+                    /**
+                     * response type, we need only the type of public-key
+                     */
+                    type: "public-key";
+                  }
+                | {
+                    /**
+                     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+                     */
+                    publicKey: string;
+                    /**
+                     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+                     */
+                    signature: string;
+                  };
             };
           }
         | {
@@ -9654,41 +9650,45 @@ export interface operations {
                * The challenge has signed but not yet verified.
                */
               status: "PENDING";
-              /**
-               * An object sent in a `PUT /consents/{ID}` request.
-               * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-               * and mostly on: https://webauthn.guide/#registration
-               * AuthenticatorAttestationResponse
-               * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-               */
-              payload: {
-                /**
-                 * credential id: identifier of pair of keys, base64 encoded
-                 * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-                 */
-                id: string;
-                /**
-                 * raw credential id: identifier of pair of keys, base64 encoded
-                 */
-                rawId: string;
-                /**
-                 * AuthenticatorAttestationResponse
-                 */
-                response: {
-                  /**
-                   * JSON string with client data
-                   */
-                  clientDataJSON: string;
-                  /**
-                   * CBOR.encoded attestation object
-                   */
-                  attestationObject: string;
-                };
-                /**
-                 * response type, we need only the type of public-key
-                 */
-                type: "public-key";
-              };
+              payload:
+                | {
+                    /**
+                     * credential id: identifier of pair of keys, base64 encoded
+                     * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+                     */
+                    id: string;
+                    /**
+                     * raw credential id: identifier of pair of keys, base64 encoded
+                     */
+                    rawId: string;
+                    /**
+                     * AuthenticatorAttestationResponse
+                     */
+                    response: {
+                      /**
+                       * JSON string with client data
+                       */
+                      clientDataJSON: string;
+                      /**
+                       * CBOR.encoded attestation object
+                       */
+                      attestationObject: string;
+                    };
+                    /**
+                     * response type, we need only the type of public-key
+                     */
+                    type: "public-key";
+                  }
+                | {
+                    /**
+                     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+                     */
+                    publicKey: string;
+                    /**
+                     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+                     */
+                    signature: string;
+                  };
             };
           }
         | {
@@ -17125,10 +17125,6 @@ export interface operations {
     requestBody: {
       "application/json": {
         /**
-         * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-         */
-        transactionId: string;
-        /**
          * Below are the allowed values for the enumeration.
          * - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
          * - PENDING - Payer FSP has sent the transaction request to the Payer.
@@ -20150,7 +20146,7 @@ export interface operations {
              * based mostly on: https://webauthn.guide/#authentication
              * AuthenticatorAssertionResponse
              */
-            signedPayload: {
+            value: {
               /**
                * credential id: identifier of pair of keys, base64 encoded
                * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
@@ -20206,7 +20202,7 @@ export interface operations {
             /**
              * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
              */
-            signedPayload: string;
+            value: string;
           };
     };
     responses: {
@@ -26096,7 +26092,7 @@ export interface components {
       }[];
       authChannels: ("WEB" | "OTP")[];
       /**
-       * The callback uri that the user will be redirected to after completing the WEB auth channel.
+       * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
        */
       callbackUri: string;
     };
@@ -26113,10 +26109,6 @@ export interface components {
      * the user can prove their identity (e.g., by logging in).
      */
     ConsentRequestsIDPutResponseWeb: {
-      /**
-       * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-       */
-      consentRequestId: string;
       scopes: {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -26128,11 +26120,11 @@ export interface components {
       }[];
       authChannels: "WEB"[];
       /**
-       * The callback uri that the user will be redirected to after completing the WEB auth channel.
+       * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
        */
       callbackUri: string;
       /**
-       * The callback uri that the pisp app redirects to for user to complete their login.
+       * The callback uri that the pisp app should redirect to for user to complete their login.
        */
       authUri: string;
     };
@@ -26146,10 +26138,6 @@ export interface components {
      * Schema used in the request consent phase of the account linking OTP/SMS flow.
      */
     ConsentRequestsIDPutResponseOTP: {
-      /**
-       * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-       */
-      consentRequestId: string;
       scopes: {
         /**
          * A long-lived unique account identifier provided by the DFSP. This MUST NOT
@@ -26161,9 +26149,9 @@ export interface components {
       }[];
       authChannels: "OTP"[];
       /**
-       * The callback uri that the user will be redirected to after completing the WEB auth channel.
+       * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
        */
-      callbackUri: string;
+      callbackUri?: string;
     };
     /**
      * The object sent in a `PATCH /consentRequests/{ID}` request.
@@ -26210,6 +26198,23 @@ export interface components {
       type: "public-key";
     };
     /**
+     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+     */
+    BinaryString: string;
+    /**
+     * A publicKey + signature of a challenge for a generic public/private keypair
+     */
+    GenericCredential: {
+      /**
+       * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+       */
+      publicKey: string;
+      /**
+       * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+       */
+      signature: string;
+    };
+    /**
      * A credential used to allow a user to prove their identity and access
      * to an account with a DFSP.
      *
@@ -26227,41 +26232,45 @@ export interface components {
        * The challenge has signed but not yet verified.
        */
       status: "PENDING";
-      /**
-       * An object sent in a `PUT /consents/{ID}` request.
-       * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-       * and mostly on: https://webauthn.guide/#registration
-       * AuthenticatorAttestationResponse
-       * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-       */
-      payload: {
-        /**
-         * credential id: identifier of pair of keys, base64 encoded
-         * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-         */
-        id: string;
-        /**
-         * raw credential id: identifier of pair of keys, base64 encoded
-         */
-        rawId: string;
-        /**
-         * AuthenticatorAttestationResponse
-         */
-        response: {
-          /**
-           * JSON string with client data
-           */
-          clientDataJSON: string;
-          /**
-           * CBOR.encoded attestation object
-           */
-          attestationObject: string;
-        };
-        /**
-         * response type, we need only the type of public-key
-         */
-        type: "public-key";
-      };
+      payload:
+        | {
+            /**
+             * credential id: identifier of pair of keys, base64 encoded
+             * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+             */
+            id: string;
+            /**
+             * raw credential id: identifier of pair of keys, base64 encoded
+             */
+            rawId: string;
+            /**
+             * AuthenticatorAttestationResponse
+             */
+            response: {
+              /**
+               * JSON string with client data
+               */
+              clientDataJSON: string;
+              /**
+               * CBOR.encoded attestation object
+               */
+              attestationObject: string;
+            };
+            /**
+             * response type, we need only the type of public-key
+             */
+            type: "public-key";
+          }
+        | {
+            /**
+             * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+             */
+            publicKey: string;
+            /**
+             * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+             */
+            signature: string;
+          };
     };
     /**
      * The object sent in a `POST /consents` request to AUTH-SERVICE by DFSP to store registered consent with PublicKey
@@ -26294,41 +26303,45 @@ export interface components {
          * The challenge has signed but not yet verified.
          */
         status: "PENDING";
-        /**
-         * An object sent in a `PUT /consents/{ID}` request.
-         * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-         * and mostly on: https://webauthn.guide/#registration
-         * AuthenticatorAttestationResponse
-         * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-         */
-        payload: {
-          /**
-           * credential id: identifier of pair of keys, base64 encoded
-           * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-           */
-          id: string;
-          /**
-           * raw credential id: identifier of pair of keys, base64 encoded
-           */
-          rawId: string;
-          /**
-           * AuthenticatorAttestationResponse
-           */
-          response: {
-            /**
-             * JSON string with client data
-             */
-            clientDataJSON: string;
-            /**
-             * CBOR.encoded attestation object
-             */
-            attestationObject: string;
-          };
-          /**
-           * response type, we need only the type of public-key
-           */
-          type: "public-key";
-        };
+        payload:
+          | {
+              /**
+               * credential id: identifier of pair of keys, base64 encoded
+               * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+               */
+              id: string;
+              /**
+               * raw credential id: identifier of pair of keys, base64 encoded
+               */
+              rawId: string;
+              /**
+               * AuthenticatorAttestationResponse
+               */
+              response: {
+                /**
+                 * JSON string with client data
+                 */
+                clientDataJSON: string;
+                /**
+                 * CBOR.encoded attestation object
+                 */
+                attestationObject: string;
+              };
+              /**
+               * response type, we need only the type of public-key
+               */
+              type: "public-key";
+            }
+          | {
+              /**
+               * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+               */
+              publicKey: string;
+              /**
+               * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+               */
+              signature: string;
+            };
       };
     };
     /**
@@ -26388,41 +26401,45 @@ export interface components {
          * The challenge has signed but not yet verified.
          */
         status: "PENDING";
-        /**
-         * An object sent in a `PUT /consents/{ID}` request.
-         * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-         * and mostly on: https://webauthn.guide/#registration
-         * AuthenticatorAttestationResponse
-         * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-         */
-        payload: {
-          /**
-           * credential id: identifier of pair of keys, base64 encoded
-           * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-           */
-          id: string;
-          /**
-           * raw credential id: identifier of pair of keys, base64 encoded
-           */
-          rawId: string;
-          /**
-           * AuthenticatorAttestationResponse
-           */
-          response: {
-            /**
-             * JSON string with client data
-             */
-            clientDataJSON: string;
-            /**
-             * CBOR.encoded attestation object
-             */
-            attestationObject: string;
-          };
-          /**
-           * response type, we need only the type of public-key
-           */
-          type: "public-key";
-        };
+        payload:
+          | {
+              /**
+               * credential id: identifier of pair of keys, base64 encoded
+               * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+               */
+              id: string;
+              /**
+               * raw credential id: identifier of pair of keys, base64 encoded
+               */
+              rawId: string;
+              /**
+               * AuthenticatorAttestationResponse
+               */
+              response: {
+                /**
+                 * JSON string with client data
+                 */
+                clientDataJSON: string;
+                /**
+                 * CBOR.encoded attestation object
+                 */
+                attestationObject: string;
+              };
+              /**
+               * response type, we need only the type of public-key
+               */
+              type: "public-key";
+            }
+          | {
+              /**
+               * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+               */
+              publicKey: string;
+              /**
+               * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+               */
+              signature: string;
+            };
       };
     };
     /**
@@ -27262,10 +27279,6 @@ export interface components {
      * The object sent in the PUT /thirdPartyRequests/transactions/{ID} request.
      */
     ThirdpartyRequestsTransactionsIDPutResponse: {
-      /**
-       * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-       */
-      transactionId: string;
       /**
        * Below are the allowed values for the enumeration.
        * - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
@@ -28186,10 +28199,6 @@ export interface components {
      */
     SignedPayloadTypeGeneric: "GENERIC";
     /**
-     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-     */
-    BinaryString: string;
-    /**
      * The object sent in the PUT /thirdpartyRequests/authorizations/{ID} callback.
      */
     ThirdpartyRequestsAuthorizationsIDPutResponseGeneric: {
@@ -28231,7 +28240,7 @@ export interface components {
        * based mostly on: https://webauthn.guide/#authentication
        * AuthenticatorAssertionResponse
        */
-      signedPayload: {
+      value: {
         /**
          * credential id: identifier of pair of keys, base64 encoded
          * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
@@ -28290,7 +28299,7 @@ export interface components {
       /**
        * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
        */
-      signedPayload: string;
+      value: string;
     };
     /**
      * The object sent in the PUT /thirdpartyRequests/verifications/{ID} request.
