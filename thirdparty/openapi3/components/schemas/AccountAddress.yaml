@@ -1,11 +1,7 @@
-title: AccountId
+title: AccountAddress
 type: string
 description: |
   An address which can be used to identify the account.
-  
-  This MUST NOT
-  be Bank Account Number or anything that may expose a User's private bank
-  account information.
 pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
 minLength: 1
 maxLength: 1023

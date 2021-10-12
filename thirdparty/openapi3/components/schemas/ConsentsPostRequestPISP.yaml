@@ -20,7 +20,7 @@ properties:
     maxLength: 256
     items:
       $ref: ./Scope.yaml
-   status:
+  status:
     $ref: ConsentStatus.yaml
 required:
   - consentId

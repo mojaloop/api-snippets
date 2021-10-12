@@ -31,7 +31,7 @@ paths:
               oneOf:
                 - title: AuthorizationChannelType
                   type: string
-                  enum: &ref_77
+                  enum: &ref_75
                     - OTP
                     - QRCODE
                     - U2F
@@ -51,13 +51,13 @@ paths:
 
                     accepted the terms of the transfer, or rejected the terms.
                   type: string
-                  enum: &ref_78
+                  enum: &ref_76
                     - ACCEPTED
                     - REJECTED
                 - title: AuthorizationsPostRequest
                   description: POST /authorizations request object.
                   type: object
-                  properties: &ref_47
+                  properties: &ref_81
                     authenticationType:
                       title: AuthenticationType
                       type: string
@@ -314,7 +314,7 @@ paths:
                       title: QuotesIDPutResponse
                       type: object
                       description: 'The object sent in the PUT /quotes/{ID} callback.'
-                      properties: &ref_81
+                      properties: &ref_79
                         transferAmount:
                           title: Money
                           type: object
@@ -420,7 +420,7 @@ paths:
                                 title: Extension
                                 type: object
                                 description: Data model for the complex type Extension.
-                                properties: &ref_79
+                                properties: &ref_77
                                   key:
                                     title: ExtensionKey
                                     type: string
@@ -433,7 +433,7 @@ paths:
                                     minLength: 1
                                     maxLength: 128
                                     description: Extension value.
-                                required: &ref_80
+                                required: &ref_78
                                   - key
                                   - value
                               minItems: 1
@@ -441,12 +441,12 @@ paths:
                               description: Number of Extension elements.
                           required: &ref_3
                             - extension
-                      required: &ref_82
+                      required: &ref_80
                         - transferAmount
                         - expiration
                         - ilpPacket
                         - condition
-                  required: &ref_48
+                  required: &ref_82
                     - authenticationType
                     - retriesLeft
                     - amount
@@ -912,7 +912,7 @@ paths:
                   description: >-
                     The object sent in the PATCH
                     /thirdpartyRequests/transactions/{ID} callback.
-                  properties: &ref_70
+                  properties: &ref_68
                     completedTimestamp:
                       title: DateTime
                       type: string
@@ -934,7 +934,7 @@ paths:
                     transactionRequestState:
                       title: TransactionRequestState
                       type: string
-                      enum: &ref_69
+                      enum: &ref_67
                         - RECEIVED
                         - PENDING
                         - ACCEPTED
@@ -974,7 +974,7 @@ paths:
                         - REJECTED - Payee FSP has failed to perform the
                         transaction.
                       example: RECEIVED
-                  required: &ref_71
+                  required: &ref_69
                     - transactionRequestState
                     - transactionState
                 - title: TransactionRequestsPostRequest
@@ -1350,7 +1350,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: &ref_49
+          schema: &ref_47
             type: string
           description: >-
             The `Accept` header field indicates the version of the API the
@@ -1629,7 +1629,10 @@ paths:
               type: object
               description: 'The object sent in a `PUT /accounts/{ID}` request.'
               properties: &ref_101
-                accounts:
+                accountList:
+                  description: >-
+                    Information about the accounts that the DFSP associates with
+                    the identifier sent by the PISP
                   type: array
                   items:
                     title: Account
@@ -1659,17 +1662,11 @@ paths:
                           support must be specifically enabled. For example, if
                           Java is used, the flag UNICODE_CHARACTER_CLASS must be
                           enabled to allow Unicode characters.
-                      id:
-                        title: AccountId
+                      address:
+                        title: AccountAddress
                         type: string
-                        description: >
-                          A long-lived unique account identifier provided by the
-                          DFSP. This MUST NOT
-
-                          be Bank Account Number or anything that may expose a
-                          User's private bank
-
-                          account information.
+                        description: |
+                          An address which can be used to identify the account.
                         pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
                         minLength: 1
                         maxLength: 1023
@@ -1855,311 +1852,18 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: &ref_52
+              properties: &ref_50
                 errorInformation:
                   title: ErrorInformation
                   type: object
                   description: Data model for the complex type ErrorInformation.
                   properties: *ref_15
                   required: *ref_16
-              required: &ref_53
+              required: &ref_51
                 - errorInformation
       responses:
         '200':
           description: OK
-        '400':
-          description: Bad Request
-          content: *ref_20
-          headers: *ref_21
-        '401':
-          description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
-        '403':
-          description: Forbidden
-          content: *ref_24
-          headers: *ref_25
-        '404':
-          description: Not Found
-          content: *ref_26
-          headers: *ref_27
-        '405':
-          description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
-        '406':
-          description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
-        '501':
-          description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
-        '503':
-          description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
-  /authorizations:
-    post:
-      description: >
-        The HTTP request `POST /authorizations` is used to request the Payer to
-        enter the applicable credentials in the PISP system.
-      operationId: AuthorizationsPostRequest
-      tags:
-        - authorizations
-      requestBody:
-        description: Authorization request details
-        required: true
-        content:
-          application/json:
-            schema:
-              title: AuthorizationsPostRequest
-              description: POST /authorizations request object.
-              type: object
-              properties: *ref_47
-              required: *ref_48
-              additionalProperties: false
-      responses:
-        '202':
-          description: Accepted
-        '400':
-          description: Bad Request
-          content: *ref_20
-          headers: *ref_21
-        '401':
-          description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
-        '403':
-          description: Forbidden
-          content: *ref_24
-          headers: *ref_25
-        '404':
-          description: Not Found
-          content: *ref_26
-          headers: *ref_27
-        '405':
-          description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
-        '406':
-          description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
-        '501':
-          description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
-        '503':
-          description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
-  '/authorizations/{ID}':
-    put:
-      description: >
-        The callback PUT /authorizations/ is used to inform the client of the
-
-        result of a previously-requested authorization. The ID in the URI should
-
-        contain the one that was used in the POST /authorizations/
-        requestBody.transactionRequestId @ OUTBOUND
-      operationId: InboundAuthorizationsIDPutResponse
-      tags:
-        - authorizations
-      parameters:
-        - name: ID
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: |
-            information about result of required (via POST) /authorization
-          content:
-            application/json:
-              schema:
-                title: AuthorizationsIDPutResponse
-                type: object
-                description: 'The object sent in the PUT /authorizations/{ID} callback.'
-                properties: &ref_109
-                  authenticationInfo:
-                    title: AuthenticationInfo
-                    type: object
-                    description: Data model for the complex type AuthenticationInfo.
-                    properties: &ref_106
-                      authentication:
-                        title: AuthenticationType
-                        type: string
-                        enum: *ref_13
-                        description: >-
-                          Below are the allowed values for the enumeration
-                          AuthenticationType.
-
-                          - OTP - One-time password generated by the Payer FSP.
-
-                          - QRCODE - QR code used as One Time Password.
-
-                          - U2F - U2F is a new addition isolated to Thirdparty
-                          stream.
-                      authenticationValue:
-                        title: AuthenticationValue
-                        anyOf: &ref_105
-                          - title: OtpValue
-                            type: string
-                            pattern: '^\d{3,10}$'
-                            description: >-
-                              The API data type OtpValue is a JSON String of 3
-                              to 10 characters, consisting of digits only.
-                              Negative numbers are not allowed. One or more
-                              leading zeros are allowed.
-                          - title: QRCODE
-                            type: string
-                            minLength: 1
-                            maxLength: 64
-                            description: QR code used as a One Time Password.
-                          - title: U2FPinValue
-                            type: object
-                            description: >
-                              U2F challenge-response, where payer FSP verifies
-                              if the response provided by end-user device
-                              matches the previously registered key.
-                            properties: &ref_103
-                              pinValue:
-                                allOf:
-                                  - title: U2FPIN
-                                    type: string
-                                    pattern: '^\S{1,64}$'
-                                    minLength: 1
-                                    maxLength: 64
-                                    description: >
-                                      U2F challenge-response, where payer FSP
-                                      verifies if the response provided by
-                                      end-user device matches the previously
-                                      registered key.
-                                description: U2F challenge-response.
-                              counter:
-                                allOf:
-                                  - title: Integer
-                                    type: string
-                                    pattern: '^[1-9]\d*$'
-                                    description: >-
-                                      The API data type Integer is a JSON String
-                                      consisting of digits only. Negative
-                                      numbers and leading zeroes are not
-                                      allowed. The data type is always limited
-                                      to a specific number of digits.
-                                description: >-
-                                  Sequential counter used for cloning detection.
-                                  Present only for U2F authentication.
-                            required: &ref_104
-                              - pinValue
-                              - counter
-                          - title: FIDOPublicKeyCredentialAssertion
-                            type: object
-                            description: >
-                              An object sent in a `PUT
-                              /thirdpartyRequests/authorization/{ID}` request.
-
-                              based mostly on:
-                              https://webauthn.guide/#authentication
-
-                              AuthenticatorAssertionResponse
-                            properties: &ref_72
-                              id:
-                                type: string
-                                description: >
-                                  credential id: identifier of pair of keys,
-                                  base64 encoded
-
-                                  https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-                                minLength: 59
-                                maxLength: 118
-                              rawId:
-                                type: string
-                                description: >
-                                  raw credential id: identifier of pair of keys,
-                                  base64 encoded.
-                                minLength: 59
-                                maxLength: 118
-                              response:
-                                type: object
-                                description: |
-                                  AuthenticatorAssertionResponse
-                                properties:
-                                  authenticatorData:
-                                    type: string
-                                    description: |
-                                      Authenticator data object.
-                                    minLength: 49
-                                    maxLength: 256
-                                  clientDataJSON:
-                                    type: string
-                                    description: |
-                                      JSON string with client data.
-                                    minLength: 121
-                                    maxLength: 512
-                                  signature:
-                                    type: string
-                                    description: >
-                                      The signature generated by the private key
-                                      associated with this credential.
-                                    minLength: 59
-                                    maxLength: 256
-                                  userHandle:
-                                    type: string
-                                    description: >
-                                      This field is optionally provided by the
-                                      authenticator, and
-
-                                      represents the user.id that was supplied
-                                      during registration.
-                                    minLength: 1
-                                    maxLength: 88
-                                required:
-                                  - authenticatorData
-                                  - clientDataJSON
-                                  - signature
-                                additionalProperties: false
-                              type:
-                                type: string
-                                description: >-
-                                  response type, we need only the type of
-                                  public-key
-                                enum:
-                                  - public-key
-                            required: &ref_73
-                              - id
-                              - rawId
-                              - response
-                              - type
-                            additionalProperties: false
-                        description: >-
-                          Contains the authentication value. The format depends
-                          on the authentication type used in the
-                          AuthenticationInfo complex type.
-                    required: &ref_107
-                      - authentication
-                      - authenticationValue
-                  responseType:
-                    title: AuthorizationResponse
-                    type: string
-                    enum: &ref_108
-                      - ENTERED
-                      - REJECTED
-                      - RESEND
-                    description: >-
-                      Below are the allowed values for the enumeration.
-
-                      - ENTERED - Consumer entered the authentication value.
-
-                      - REJECTED - Consumer rejected the transaction.
-
-                      - RESEND - Consumer requested to resend the authentication
-                      value.
-                    example: ENTERED
-                required: &ref_110
-                  - responseType
         '400':
           description: Bad Request
           content: *ref_20
@@ -2371,13 +2075,16 @@ paths:
       operationId: CreateConsentRequest
       summary: CreateConsentRequest
       description: >
-        A request from a PISP to a DFSP to start the process of delegating
-        consent
+        The HTTP request **POST /consentRequests** is used to request a DFSP to
+        grant access to one or more
+
+        accounts owned by a customer of the DFSP for the PISP who sends the
+        request.
       parameters:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -2401,7 +2108,7 @@ paths:
               title: ConsentRequestsPostRequest
               type: object
               description: The object sent in a `POST /consentRequests` request.
-              properties: &ref_113
+              properties: &ref_105
                 consentRequestId:
                   title: CorrelationId
                   type: string
@@ -2418,30 +2125,31 @@ paths:
                   example: b51ec534-ee48-4575-b6a9-ead2955b8069
                 userId:
                   type: string
-                  description: ID used to associate request with GET /accounts request.
+                  description: >-
+                    The identifier used in the **GET /accounts/**_{ID}_. Used by
+                    the DFSP to correlate an account lookup to a
+                    `consentRequest`
+                  minLength: 1
+                  maxLength: 128
                 scopes:
                   type: array
+                  minLength: 1
+                  maxLength: 256
                   items:
                     title: Scope
                     type: object
                     description: Scope + Account Identifier mapping for a Consent.
                     example: |
                       {
-                        accountId: "dfsp.username.5678",
+                        address: "dfsp.username.5678",
                         actions: [ "accounts.transfer", "accounts.getBalance" ]
                       }
-                    properties: &ref_50
-                      accountId:
-                        title: AccountId
+                    properties: &ref_48
+                      address:
+                        title: AccountAddress
                         type: string
-                        description: >
-                          A long-lived unique account identifier provided by the
-                          DFSP. This MUST NOT
-
-                          be Bank Account Number or anything that may expose a
-                          User's private bank
-
-                          account information.
+                        description: |
+                          An address which can be used to identify the account.
                         pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
                         minLength: 1
                         maxLength: 1023
@@ -2450,7 +2158,7 @@ paths:
                         items:
                           title: ConsentScopeType
                           type: string
-                          enum: &ref_111
+                          enum: &ref_103
                             - accounts.getBalance
                             - accounts.transfer
                           description: >
@@ -2461,15 +2169,17 @@ paths:
 
                             - "accounts.transfer" - Initiate a transfer from an
                             account.
-                    required: &ref_51
-                      - accountId
+                    required: &ref_49
+                      - address
                       - actions
                 authChannels:
                   type: array
+                  minLength: 1
+                  maxLength: 256
                   items:
                     title: ConsentRequestChannelType
                     type: string
-                    enum: &ref_112
+                    enum: &ref_104
                       - WEB
                       - OTP
                     description: |
@@ -2477,13 +2187,16 @@ paths:
                       - "WEB" - The Web auth channel.
                       - "OTP" - The OTP auth channel.
                 callbackUri:
+                  title: Uri
                   type: string
-                  description: >-
-                    The callback uri that the user will be redirected to after
-                    completing the out of band WEB authentication with the DFSP.
-                    Used to allow the DFSP to whitelist the PISP's url ahead of
-                    time.
-              required: &ref_114
+                  pattern: '^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?'
+                  minLength: 1
+                  maxLength: 512
+                  description: >
+                    The API data type Uri is a JSON string in a canonical format
+                    that is restricted by a \ regular expression for
+                    interoperability reasons.
+              required: &ref_106
                 - consentRequestId
                 - userId
                 - scopes
@@ -2631,6 +2344,63 @@ paths:
           HTTP method. Required if signature verification is used, for more
           information, see [the API Signature
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+    get:
+      operationId: GetConsentRequestsById
+      summary: GetConsentRequestsById
+      description: >
+        The HTTP request `GET /consentRequests/{ID}` is used to get information
+        about a previously 
+
+        requested consent. The *{ID}* in the URI should contain the
+        consentRequestId that was assigned to the 
+
+        request by the PISP when the PISP originated the request.
+      tags:
+        - consentRequests
+        - sampled
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_47
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+          content: *ref_20
+          headers: *ref_21
+        '401':
+          description: Unauthorized
+          content: *ref_22
+          headers: *ref_23
+        '403':
+          description: Forbidden
+          content: *ref_24
+          headers: *ref_25
+        '404':
+          description: Not Found
+          content: *ref_26
+          headers: *ref_27
+        '405':
+          description: Method Not Allowed
+          content: *ref_28
+          headers: *ref_29
+        '406':
+          description: Not Acceptable
+          content: *ref_30
+          headers: *ref_31
+        '501':
+          description: Not Implemented
+          content: *ref_32
+          headers: *ref_33
+        '503':
+          description: Service Unavailable
+          content: *ref_34
+          headers: *ref_35
     put:
       tags:
         - consentRequests
@@ -2638,14 +2408,28 @@ paths:
       operationId: UpdateConsentRequest
       summary: UpdateConsentRequest
       description: >
-        DFSP updates auth channels and/or auth uri in response to
-        consentRequest.
+        A DFSP uses this callback to (1) inform the PISP that the consentRequest
+        has been accepted, 
+
+        and (2) communicate to the PISP which `authChannel` it should use to
+        authenticate their user
+
+        with.
 
 
-        PISP updates the consentRequest to include authorization token from
-        their user,
+        When a PISP requests a series of permissions from a DFSP on behalf of a
+        DFSP’s customer, not all 
 
-        which the DFSP is to then verify.
+        the permissions requested may be granted by the DFSP. Conversely, the
+        out-of-band authorization 
+
+        process  may result in additional privileges being granted by the
+        account holder to the PISP. The
+
+        **PUT /consentRequests/**_{ID}_ resource returns the current state of
+        the permissions relating to a 
+
+        particular authorization request.
       parameters:
         - name: Content-Length
           in: header
@@ -2680,43 +2464,57 @@ paths:
                     place where
 
                     the user can prove their identity (e.g., by logging in).
-                  properties: &ref_116
+                  properties: &ref_108
                     scopes:
                       type: array
+                      minLength: 1
+                      maxLength: 256
                       items:
                         title: Scope
                         type: object
                         description: Scope + Account Identifier mapping for a Consent.
                         example: |
                           {
-                            accountId: "dfsp.username.5678",
+                            address: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
+                        properties: *ref_48
+                        required: *ref_49
                     authChannels:
                       type: array
+                      minLength: 1
+                      maxLength: 1
                       items:
                         title: ConsentRequestChannelTypeWeb
                         type: string
-                        enum: &ref_115
+                        enum: &ref_107
                           - WEB
                         description: >
                           The web auth channel being used for PUT
                           consentRequest/{ID} request.
                     callbackUri:
+                      title: Uri
                       type: string
-                      description: >-
-                        The callback uri that the user will be redirected to
-                        after completing the out of band WEB authentication with
-                        the DFSP. Used to allow the DFSP to whitelist the PISP's
-                        url ahead of time.
+                      pattern: >-
+                        ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
+                      minLength: 1
+                      maxLength: 512
+                      description: >
+                        The API data type Uri is a JSON string in a canonical
+                        format that is restricted by a \ regular expression for
+                        interoperability reasons.
                     authUri:
+                      title: Uri
                       type: string
-                      description: >-
-                        The callback uri that the pisp app should redirect to
-                        for user to complete their login.
-                  required: &ref_117
+                      pattern: >-
+                        ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
+                      minLength: 1
+                      maxLength: 512
+                      description: >
+                        The API data type Uri is a JSON string in a canonical
+                        format that is restricted by a \ regular expression for
+                        interoperability reasons.
+                  required: &ref_109
                     - scopes
                     - authChannels
                     - callbackUri
@@ -2730,38 +2528,46 @@ paths:
 
                     Schema used in the request consent phase of the account
                     linking OTP/SMS flow.
-                  properties: &ref_119
+                  properties: &ref_111
                     scopes:
                       type: array
+                      minLength: 1
+                      maxLength: 256
                       items:
                         title: Scope
                         type: object
                         description: Scope + Account Identifier mapping for a Consent.
                         example: |
                           {
-                            accountId: "dfsp.username.5678",
+                            address: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
+                        properties: *ref_48
+                        required: *ref_49
                     authChannels:
                       type: array
+                      minLength: 1
+                      maxLength: 1
                       items:
                         title: ConsentRequestChannelTypeOTP
                         type: string
-                        enum: &ref_118
+                        enum: &ref_110
                           - OTP
                         description: >
                           The OTP auth channel being used for PUT
                           consentRequest/{ID} request.
                     callbackUri:
+                      title: Uri
                       type: string
-                      description: >-
-                        The callback uri that the user will be redirected to
-                        after completing the out of band WEB authentication with
-                        the DFSP. Used to allow the DFSP to whitelist the PISP's
-                        url ahead of time.
-                  required: &ref_120
+                      pattern: >-
+                        ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
+                      minLength: 1
+                      maxLength: 512
+                      description: >
+                        The API data type Uri is a JSON string in a canonical
+                        format that is restricted by a \ regular expression for
+                        interoperability reasons.
+                  required: &ref_112
                     - scopes
                     - authChannels
                   additionalProperties: false
@@ -2807,13 +2613,14 @@ paths:
       operationId: PatchConsentRequest
       summary: PatchConsentRequest
       description: >
-        PISP sends user's OTP token to a DFSP to verify user trusts
-        aforementioned PISP
+        After the user completes an out-of-band authorization with the DFSP, the
+        PISP will receive a token which they can use to prove to the DFSP that
+        the user trusts this PISP.
       parameters:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -2836,10 +2643,18 @@ paths:
               title: ConsentRequestsIDPatchRequest
               type: object
               description: 'The object sent in a `PATCH /consentRequests/{ID}` request.'
-              properties: &ref_121
+              properties: &ref_113
                 authToken:
                   type: string
-              required: &ref_122
+                  pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                  description: >-
+                    The API data type BinaryString is a JSON String. The string
+                    is a base64url  encoding of a string of raw bytes, where
+                    padding (character ‘=’) is added at the end of the data if
+                    needed to ensure that the string is a multiple of 4
+                    characters. The length restriction indicates the allowed
+                    number of characters.
+              required: &ref_114
                 - authToken
       responses:
         '202':
@@ -2998,8 +2813,8 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
@@ -3128,13 +2943,14 @@ paths:
       operationId: PostConsents
       summary: PostConsents
       description: >
-        DFSP sends this request to the PISP after granting consent. DFSP sends
-        this request to an Auth service to validate a signed consent.
+        The **POST /consents** request is used to request the creation of a
+        consent for interactions between a PISP and the DFSP who owns the
+        account which a PISP’s customer wants to allow the PISP access to.
       parameters:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -3164,7 +2980,7 @@ paths:
 
                     and whatever needed to perform authorization validation
                     later
-                  properties: &ref_125
+                  properties: &ref_117
                     consentId:
                       allOf:
                         - title: CorrelationId
@@ -3192,6 +3008,8 @@ paths:
 
                         creation of this Consent.
                     scopes:
+                      minLength: 1
+                      maxLength: 256
                       type: array
                       items:
                         title: Scope
@@ -3199,11 +3017,11 @@ paths:
                         description: Scope + Account Identifier mapping for a Consent.
                         example: |
                           {
-                            accountId: "dfsp.username.5678",
+                            address: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
+                        properties: *ref_48
+                        required: *ref_49
                     credential:
                       allOf:
                         - title: SignedCredential
@@ -3222,140 +3040,152 @@ paths:
                             only ever be PENDING when
 
                             updating a credential.
-                          properties: &ref_54
+                          properties: &ref_53
                             credentialType:
                               title: CredentialType
                               type: string
                               enum: &ref_56
                                 - FIDO
+                                - GENERIC
                               description: |
                                 The type of the Credential.
                                 - "FIDO" - A FIDO public/private keypair
+                                - "GENERIC" - A Generic public/private keypair
                             status:
                               type: string
                               enum:
                                 - PENDING
                               description: The challenge has signed but not yet verified.
-                            payload:
-                              oneOf:
-                                - title: FIDOPublicKeyCredentialAttestation
-                                  type: object
+                            genericPayload:
+                              title: GenericCredential
+                              type: object
+                              description: >
+                                A publicKey + signature of a challenge for a
+                                generic public/private keypair
+                              properties: &ref_115
+                                publicKey:
+                                  type: string
+                                  pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                                  description: >-
+                                    The API data type BinaryString is a JSON
+                                    String. The string is a base64url  encoding
+                                    of a string of raw bytes, where padding
+                                    (character ‘=’) is added at the end of the
+                                    data if needed to ensure that the string is
+                                    a multiple of 4 characters. The length
+                                    restriction indicates the allowed number of
+                                    characters.
+                                signature:
+                                  type: string
+                                  pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                                  description: >-
+                                    The API data type BinaryString is a JSON
+                                    String. The string is a base64url  encoding
+                                    of a string of raw bytes, where padding
+                                    (character ‘=’) is added at the end of the
+                                    data if needed to ensure that the string is
+                                    a multiple of 4 characters. The length
+                                    restriction indicates the allowed number of
+                                    characters.
+                              required: &ref_116
+                                - publicKey
+                                - signature
+                              additionalProperties: false
+                            fidoPayload:
+                              title: FIDOPublicKeyCredentialAttestation
+                              type: object
+                              description: >
+                                A data model representing a FIDO Attestation
+                                result. Derived from 
+
+                                [`PublicKeyCredential`
+                                Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+
+
+                                The `PublicKeyCredential` interface represents
+                                the below fields with
+
+                                a Type of Javascript
+                                [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+
+                                For this API, we represent ArrayBuffers as
+                                base64 encoded utf-8 strings.
+                              properties: &ref_57
+                                id:
+                                  type: string
                                   description: >
-                                    An object sent in a `PUT /consents/{ID}`
-                                    request.
+                                    credential id: identifier of pair of keys,
+                                    base64 encoded
 
-                                    Based on
-                                    https://w3c.github.io/webauthn/#iface-pkcredential
-
-                                    and mostly on:
-                                    https://webauthn.guide/#registration
-
+                                    https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+                                  minLength: 59
+                                  maxLength: 118
+                                rawId:
+                                  type: string
+                                  description: >
+                                    raw credential id: identifier of pair of
+                                    keys, base64 encoded
+                                  minLength: 59
+                                  maxLength: 118
+                                response:
+                                  type: object
+                                  description: |
                                     AuthenticatorAttestationResponse
-
-                                    https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-                                  properties: &ref_57
-                                    id:
+                                  properties:
+                                    clientDataJSON:
                                       type: string
-                                      description: >
-                                        credential id: identifier of pair of
-                                        keys, base64 encoded
-
-                                        https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-                                      minLength: 59
-                                      maxLength: 118
-                                    rawId:
-                                      type: string
-                                      description: >
-                                        raw credential id: identifier of pair of
-                                        keys, base64 encoded
-                                      minLength: 59
-                                      maxLength: 118
-                                    response:
-                                      type: object
                                       description: |
-                                        AuthenticatorAttestationResponse
-                                      properties:
-                                        clientDataJSON:
-                                          type: string
-                                          description: |
-                                            JSON string with client data
-                                          minLength: 121
-                                          maxLength: 512
-                                        attestationObject:
-                                          type: string
-                                          description: |
-                                            CBOR.encoded attestation object
-                                          minLength: 306
-                                          maxLength: 2048
-                                      required:
-                                        - clientDataJSON
-                                        - attestationObject
-                                      additionalProperties: false
-                                    type:
+                                        JSON string with client data
+                                      minLength: 121
+                                      maxLength: 512
+                                    attestationObject:
                                       type: string
-                                      description: >-
-                                        response type, we need only the type of
-                                        public-key
-                                      enum:
-                                        - public-key
-                                  required: &ref_58
-                                    - id
-                                    - rawId
-                                    - response
-                                    - type
+                                      description: |
+                                        CBOR.encoded attestation object
+                                      minLength: 306
+                                      maxLength: 2048
+                                  required:
+                                    - clientDataJSON
+                                    - attestationObject
                                   additionalProperties: false
-                                - title: GenericCredential
-                                  type: object
-                                  description: >
-                                    A publicKey + signature of a challenge for a
-                                    generic public/private keypair
-                                  properties: &ref_123
-                                    publicKey:
-                                      type: string
-                                      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
-                                      description: >-
-                                        The API data type BinaryString is a JSON
-                                        String. The string is a base64url 
-                                        encoding of a string of raw bytes, where
-                                        padding (character ‘=’) is added at the
-                                        end of the data if needed to ensure that
-                                        the string is a multiple of 4
-                                        characters. The length restriction
-                                        indicates the allowed number of
-                                        characters.
-                                    signature:
-                                      type: string
-                                      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
-                                      description: >-
-                                        The API data type BinaryString is a JSON
-                                        String. The string is a base64url 
-                                        encoding of a string of raw bytes, where
-                                        padding (character ‘=’) is added at the
-                                        end of the data if needed to ensure that
-                                        the string is a multiple of 4
-                                        characters. The length restriction
-                                        indicates the allowed number of
-                                        characters.
-                                  required: &ref_124
-                                    - publicKey
-                                    - signature
-                                  additionalProperties: false
-                          required: &ref_55
+                                type:
+                                  type: string
+                                  description: >-
+                                    response type, we need only the type of
+                                    public-key
+                                  enum:
+                                    - public-key
+                              required: &ref_58
+                                - id
+                                - response
+                                - type
+                              additionalProperties: false
+                          required: &ref_54
                             - credentialType
                             - status
-                            - payload
                           additionalProperties: false
-                  required: &ref_126
+                    status:
+                      title: ConsentStatus
+                      type: string
+                      enum: &ref_52
+                        - ISSUED
+                        - REVOKED
+                      description: |-
+                        Allowed values for the enumeration ConsentStatus
+                        - ISSUED - The consent has been issued by the DFSP
+                        - REVOKED - The consent has been revoked
+                  required: &ref_118
                     - consentId
                     - scopes
                     - credential
+                    - status
                   additionalProperties: false
                 - title: ConsentPostRequestPISP
                   type: object
                   description: >-
                     The object sent in a `POST /consents` request to PISP by
                     DFSP to ask for delivering the credential object.
-                  properties: &ref_127
+                  properties: &ref_119
                     consentId:
                       allOf:
                         - title: CorrelationId
@@ -3374,12 +3204,13 @@ paths:
                             (‘-‘).
                           example: b51ec534-ee48-4575-b6a9-ead2955b8069
                       description: >
-                        Common ID between the PISP and FSP for the Consent
-                        object
+                        Common ID between the PISP and the Payer DFSP for the
+                        consent object. The ID 
 
-                        decided by the DFSP who creates the Consent
+                        should be reused for resends of the same consent. A new
+                        ID should be generated
 
-                        This field is REQUIRED for POST /consent.
+                        for each new consent.
                     consentRequestId:
                       allOf:
                         - title: CorrelationId
@@ -3398,27 +3229,36 @@ paths:
                             (‘-‘).
                           example: b51ec534-ee48-4575-b6a9-ead2955b8069
                       description: >
-                        The id of the ConsentRequest that was used to initiate
-                        the
-
-                        creation of this Consent.
+                        The ID given to the original consent request on which
+                        this consent is based.
                     scopes:
                       type: array
+                      minLength: 1
+                      maxLength: 256
                       items:
                         title: Scope
                         type: object
                         description: Scope + Account Identifier mapping for a Consent.
                         example: |
                           {
-                            accountId: "dfsp.username.5678",
+                            address: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
-                  required: &ref_128
+                        properties: *ref_48
+                        required: *ref_49
+                    status:
+                      title: ConsentStatus
+                      type: string
+                      enum: *ref_52
+                      description: |-
+                        Allowed values for the enumeration ConsentStatus
+                        - ISSUED - The consent has been issued by the DFSP
+                        - REVOKED - The consent has been revoked
+                  required: &ref_120
                     - consentId
-                    - scopes
                     - consentRequestId
+                    - scopes
+                    - status
       responses:
         '202':
           description: Accepted
@@ -3547,10 +3387,10 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     get:
       description: >
-        The HTTP request `GET /consents/{ID}` is used to get information
-        regarding a consent object created or requested earlier. The `{ID}` in
-        the URI should contain the `{ID}` that was used in the `POST /consents`.
-        summary: GetConsent
+        The **GET /consents/**_{ID}_ resource allows a party to enquire after
+        the status of a consent. The  *{ID}* used in the URI of the request
+        should be the consent request ID which was used to identify the consent
+        when it was created.
       tags:
         - consents
       operationId: GetConsent
@@ -3559,7 +3399,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -3634,21 +3474,21 @@ paths:
                     Used in the "Register Credential" part of the Account
                     linking flow.
                   type: object
-                  properties: &ref_136
+                  properties: &ref_128
                     credential:
                       type: object
                       properties:
                         status:
-                          title: ConsentStatusType
+                          title: CredentialStatus
                           type: string
-                          enum: &ref_135
+                          enum: &ref_127
                             - VERIFIED
                           description: |
-                            The status of the Consent.
-                            - "VERIFIED" - The Consent is valid and verified.
+                            The status of the Credential.
+                            - "VERIFIED" - The Credential is valid and verified.
                       required:
                         - status
-                  required: &ref_137
+                  required: &ref_129
                     - credential
                 - title: ConsentsIDPatchResponseRevoked
                   description: |
@@ -3657,17 +3497,15 @@ paths:
                     Sent to both the PISP and DFSP when a consent is revoked.
                     Used in the "Unlinking" part of the Account Unlinking flow.
                   type: object
-                  properties: &ref_139
+                  properties: &ref_131
                     status:
-                      title: ConsentStatusType
+                      title: ConsentStatus
                       type: string
-                      enum: &ref_138
+                      enum: &ref_130
                         - REVOKED
-                      description: >
-                        The status of the Consent.
-
-                        - "REVOKED" - The Consent is no longer valid and has
-                        been revoked.
+                      description: |-
+                        Allowed values for the enumeration ConsentStatus
+                        - REVOKED - The consent has been revoked
                     revokedAt:
                       title: DateTime
                       type: string
@@ -3686,14 +3524,14 @@ paths:
                         "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time
                         zone, same as UTC).
                       example: '2016-05-24T08:38:08.699-04:00'
-                  required: &ref_140
+                  required: &ref_132
                     - status
                     - revokedAt
       parameters:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -3774,7 +3612,7 @@ paths:
 
                     Called by a `PISP` to after signing a challenge. Sent to a
                     DFSP for verification.
-                  properties: &ref_129
+                  properties: &ref_121
                     scopes:
                       type: array
                       items:
@@ -3783,11 +3621,19 @@ paths:
                         description: Scope + Account Identifier mapping for a Consent.
                         example: |
                           {
-                            accountId: "dfsp.username.5678",
+                            address: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
+                        properties: *ref_48
+                        required: *ref_49
+                    status:
+                      title: ConsentStatus
+                      type: string
+                      enum: &ref_55
+                        - ISSUED
+                      description: |-
+                        Allowed values for the enumeration ConsentStatus
+                        - ISSUED - The consent has been issued by the DFSP
                     credential:
                       title: SignedCredential
                       type: object
@@ -3805,10 +3651,10 @@ paths:
                         ever be PENDING when
 
                         updating a credential.
-                      properties: *ref_54
-                      required: *ref_55
+                      properties: *ref_53
+                      required: *ref_54
                       additionalProperties: false
-                  required: &ref_130
+                  required: &ref_122
                     - scopes
                     - credential
                   additionalProperties: false
@@ -3821,7 +3667,7 @@ paths:
 
                     Called by a `auth-service` to notify a DFSP that a
                     credential has been verified and registered.
-                  properties: &ref_133
+                  properties: &ref_125
                     scopes:
                       type: array
                       items:
@@ -3830,11 +3676,18 @@ paths:
                         description: Scope + Account Identifier mapping for a Consent.
                         example: |
                           {
-                            accountId: "dfsp.username.5678",
+                            address: "dfsp.username.5678",
                             actions: [ "accounts.transfer", "accounts.getBalance" ]
                           }
-                        properties: *ref_50
-                        required: *ref_51
+                        properties: *ref_48
+                        required: *ref_49
+                    status:
+                      title: ConsentStatus
+                      type: string
+                      enum: *ref_55
+                      description: |-
+                        Allowed values for the enumeration ConsentStatus
+                        - ISSUED - The consent has been issued by the DFSP
                     credential:
                       title: VerifiedCredential
                       type: object
@@ -3852,7 +3705,7 @@ paths:
                         ever be VERIFIED when
 
                         updating a credential.
-                      properties: &ref_131
+                      properties: &ref_123
                         credentialType:
                           title: CredentialType
                           type: string
@@ -3860,6 +3713,7 @@ paths:
                           description: |
                             The type of the Credential.
                             - "FIDO" - A FIDO public/private keypair
+                            - "GENERIC" - A Generic public/private keypair
                         status:
                           type: string
                           enum:
@@ -3871,25 +3725,30 @@ paths:
                           title: FIDOPublicKeyCredentialAttestation
                           type: object
                           description: >
-                            An object sent in a `PUT /consents/{ID}` request.
+                            A data model representing a FIDO Attestation result.
+                            Derived from 
 
-                            Based on
-                            https://w3c.github.io/webauthn/#iface-pkcredential
+                            [`PublicKeyCredential`
+                            Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
 
-                            and mostly on: https://webauthn.guide/#registration
 
-                            AuthenticatorAttestationResponse
+                            The `PublicKeyCredential` interface represents the
+                            below fields with
 
-                            https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
+                            a Type of Javascript
+                            [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+
+                            For this API, we represent ArrayBuffers as base64
+                            encoded utf-8 strings.
                           properties: *ref_57
                           required: *ref_58
                           additionalProperties: false
-                      required: &ref_132
+                      required: &ref_124
                         - credentialType
                         - status
                         - payload
                       additionalProperties: false
-                  required: &ref_134
+                  required: &ref_126
                     - scopes
                     - credential
                   additionalProperties: false
@@ -3944,17 +3803,25 @@ paths:
           headers: *ref_35
     delete:
       description: >
-        The HTTP request `DELETE /consents/{ID}` is used to mark as deleted a
-        previously created consent.
+        Used by PISP, DFSP
 
 
-        - Called by a PISP when a user wants to remove their consent.
+        The **DELETE /consents/**_{ID}_ request is used to request the
+        revocation of a previously agreed consent.
+
+        For tracing and auditing purposes, the switch should be sure not to
+        delete the consent physically; 
+
+        instead, information relating to the consent should be marked as deleted
+        and requests relating to the
+
+        consent should not be honoured.
       operationId: DeleteConsentByID
       parameters:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -4117,8 +3984,8 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
@@ -4255,7 +4122,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -4599,8 +4466,8 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
@@ -4751,7 +4618,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -4778,7 +4645,7 @@ paths:
                 The object sent in the POST /participants/{Type}/{ID}/{SubId}
                 and /participants/{Type}/{ID} requests. An additional optional
                 ExtensionList element has been added as part of v1.1 changes.
-              properties: &ref_142
+              properties: &ref_134
                 fspId:
                   title: FspId
                   type: string
@@ -4804,7 +4671,7 @@ paths:
                     list of extensions, specific to deployment.
                   properties: *ref_2
                   required: *ref_3
-              required: &ref_143
+              required: &ref_135
                 - fspId
       responses:
         '202':
@@ -4859,7 +4726,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -4933,7 +4800,7 @@ paths:
               description: >-
                 The object sent in the PUT /participants/{Type}/{ID}/{SubId} and
                 /participants/{Type}/{ID} callbacks.
-              properties: &ref_141
+              properties: &ref_133
                 fspId:
                   title: FspId
                   type: string
@@ -4998,7 +4865,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -5168,8 +5035,8 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
@@ -5309,7 +5176,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -5382,16 +5249,18 @@ paths:
               title: ServicesServiceTypePutResponse
               type: object
               description: 'The object sent in a `PUT /services/{ServiceType}` request.'
-              properties: &ref_144
+              properties: &ref_136
                 providers:
                   type: array
+                  minLength: 0
+                  maxLength: 256
                   items:
                     title: FspId
                     type: string
                     minLength: 1
                     maxLength: 32
                     description: FSP identifier.
-              required: &ref_145
+              required: &ref_137
                 - providers
       responses:
         '200':
@@ -5551,8 +5420,8 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
@@ -5675,11 +5544,18 @@ paths:
           information, see [the API Signature
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     post:
+      operationId: ThirdpartyRequestsTransactionsPost
+      summary: ThirdpartyRequestsTransactionsPost
+      description: >-
+        The HTTP request POST `/thirdpartyRequests/transactions` is used by a
+        PISP to initiate a 3rd party Transaction request with a DFSP
+      tags:
+        - thirdpartyRequests
       parameters:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -5705,7 +5581,7 @@ paths:
               description: >-
                 The object sent in the POST /thirdpartyRequests/transactions
                 request.
-              properties: &ref_67
+              properties: &ref_139
                 transactionRequestId:
                   allOf:
                     - title: CorrelationId
@@ -5723,10 +5599,10 @@ paths:
                         hexadecimal symbols and 4 dashes (‘-‘).
                       example: b51ec534-ee48-4575-b6a9-ead2955b8069
                   description: >
-                    Common ID between the FSPs for the transaction request
-                    object. The ID should be reused for resends of the same
-                    transaction request. A new ID should be generated for each
-                    new transaction request.
+                    Common ID between the PISP and the Payer DFSP for the
+                    transaction request object. The ID should be reused for
+                    resends of the same transaction request.  A new ID should be
+                    generated for each new transaction request.
                 payee:
                   allOf:
                     - title: Party
@@ -5751,7 +5627,7 @@ paths:
                   allOf:
                     - title: AmountType
                       type: string
-                      enum: &ref_146
+                      enum: &ref_138
                         - SEND
                         - RECEIVE
                       description: >-
@@ -5783,6 +5659,11 @@ paths:
                       properties: *ref_65
                       required: *ref_66
                   description: Type of transaction.
+                note:
+                  type: string
+                  minLength: 1
+                  maxLength: 256
+                  description: A memo that will be attached to the transaction.
                 expiration:
                   type: string
                   description: >
@@ -5790,7 +5671,7 @@ paths:
                     It can be set to get a quick failure in case the peer FSP
                     takes too long to respond.
                   example: '2016-05-24T08:38:08.699-04:00'
-              required: &ref_68
+              required: &ref_140
                 - transactionRequestId
                 - payee
                 - payer
@@ -5798,223 +5679,9 @@ paths:
                 - amount
                 - transactionType
                 - expiration
-            example:
-              transactionRequestId: 8d34f91d-d078-4077-8263-2c047876fcf6
-              payee:
-                partyIdInfo:
-                  partyIdType: MSISDN
-                  partyIdentifier: +44 1234 5678
-                  fspId: dfspb
-              payer:
-                partyIdType: THIRD_PARTY_LINK
-                partyIdentifier: qwerty-123456
-                fspId: dfspa
-              amountType: SEND
-              amount:
-                amount: '100'
-                currency: USD
-              transactionType:
-                scenario: TRANSFER
-                initiator: PAYER
-                initiatorType: CONSUMER
-              expiration: '2020-07-15T22:17:28.985-01:00'
       responses:
         '202':
           description: Accepted
-        '400':
-          description: Bad Request
-          content: *ref_20
-          headers: *ref_21
-        '401':
-          description: Unauthorized
-          content: *ref_22
-          headers: *ref_23
-        '403':
-          description: Forbidden
-          content: *ref_24
-          headers: *ref_25
-        '404':
-          description: Not Found
-          content: *ref_26
-          headers: *ref_27
-        '405':
-          description: Method Not Allowed
-          content: *ref_28
-          headers: *ref_29
-        '406':
-          description: Not Acceptable
-          content: *ref_30
-          headers: *ref_31
-        '501':
-          description: Not Implemented
-          content: *ref_32
-          headers: *ref_33
-        '503':
-          description: Service Unavailable
-          content: *ref_34
-          headers: *ref_35
-      operationId: CreateThirdpartyTransactionRequests
-      summary: CreateThirdpartyTransactionRequests
-      description: >-
-        The HTTP request POST `/thirdpartyRequests/transactions` is used by a
-        PISP to initiate a 3rd party Transaction request with a DFSP
-      tags:
-        - thirdpartyRequests
-        - sampled
-  /thirdpartyRequests/transactions-tsa:
-    parameters:
-      - name: Content-Type
-        in: header
-        schema: *ref_37
-        required: true
-        description: >-
-          The `Content-Type` header indicates the specific version of the API
-          used to send the payload body.
-      - name: Date
-        in: header
-        schema: *ref_38
-        required: true
-        description: The `Date` header field indicates the date when the request was sent.
-      - name: X-Forwarded-For
-        in: header
-        schema: *ref_39
-        required: false
-        description: >-
-          The `X-Forwarded-For` header field is an unofficially accepted
-          standard used for informational purposes of the originating client IP
-          address, as a request might pass multiple proxies, firewalls, and so
-          on. Multiple `X-Forwarded-For` values should be expected and supported
-          by implementers of the API.
-
-
-          **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
-          7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
-          7239 is less-used and supported than `X-Forwarded-For`.
-      - name: FSPIOP-Source
-        in: header
-        schema: *ref_40
-        required: true
-        description: >-
-          The `FSPIOP-Source` header field is a non-HTTP standard field used by
-          the API for identifying the sender of the HTTP request. The field
-          should be set by the original sender of the request. Required for
-          routing and signature verification (see header field
-          `FSPIOP-Signature`).
-      - name: FSPIOP-Destination
-        in: header
-        schema: *ref_41
-        required: false
-        description: >-
-          The `FSPIOP-Destination` header field is a non-HTTP standard field
-          used by the API for HTTP header based routing of requests and
-          responses to the destination. The field must be set by the original
-          sender of the request if the destination is known (valid for all
-          services except GET /parties) so that any entities between the client
-          and the server do not need to parse the payload for routing purposes.
-          If the destination is not known (valid for service GET /parties), the
-          field should be left empty.
-      - name: FSPIOP-Encryption
-        in: header
-        schema: *ref_42
-        required: false
-        description: >-
-          The `FSPIOP-Encryption` header field is a non-HTTP standard field used
-          by the API for applying end-to-end encryption of the request.
-      - name: FSPIOP-Signature
-        in: header
-        schema: *ref_43
-        required: false
-        description: >-
-          The `FSPIOP-Signature` header field is a non-HTTP standard field used
-          by the API for applying an end-to-end request signature.
-      - name: FSPIOP-URI
-        in: header
-        schema: *ref_44
-        required: false
-        description: >-
-          The `FSPIOP-URI` header field is a non-HTTP standard field used by the
-          API for signature verification, should contain the service URI.
-          Required if signature verification is used, for more information, see
-          [the API Signature
-          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-      - name: FSPIOP-HTTP-Method
-        in: header
-        schema: *ref_45
-        required: false
-        description: >-
-          The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field
-          used by the API for signature verification, should contain the service
-          HTTP method. Required if signature verification is used, for more
-          information, see [the API Signature
-          document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-    post:
-      operationId: ThirdpartyRequestsTransactionsPost
-      summary: ThirdpartyRequestsTransactionsPost
-      description: >-
-        The HTTP request POST `/thirdpartyRequests/transactions` is used by a
-        PISP to initiate a 3rd party Transaction request with a DFSP
-      tags:
-        - thirdpartyRequests
-      parameters:
-        - name: Accept
-          in: header
-          required: true
-          schema: *ref_49
-          description: >-
-            The `Accept` header field indicates the version of the API the
-            client would like the server to use.
-        - name: Content-Length
-          in: header
-          required: false
-          schema: *ref_46
-          description: >-
-            The `Content-Length` header field indicates the anticipated size of
-            the payload body. Only sent if there is a body.
-
-
-            **Note:** The API supports a maximum size of 5242880 bytes (5
-            Megabytes).
-      requestBody:
-        description: Transaction request to be created.
-        required: true
-        content:
-          application/json:
-            schema:
-              title: ThirdpartyRequestsTransactionsPostRequest
-              type: object
-              description: >-
-                The object sent in the POST /thirdpartyRequests/transactions
-                request.
-              properties: *ref_67
-              required: *ref_68
-            example:
-              transactionRequestId: 8d34f91d-d078-4077-8263-2c047876fcf6
-              payee:
-                partyIdInfo:
-                  partyIdType: MSISDN
-                  partyIdentifier: +44 1234 5678
-                  fspId: dfspb
-              payer:
-                personalInfo:
-                  complexName:
-                    firstName: Alice
-                    lastName: K
-                partyIdInfo:
-                  partyIdType: THIRD_PARTY_LINK
-                  partyIdentifier: qwerty-567890
-                  fspId: dfspa
-              amountType: SEND
-              amount:
-                amount: '100'
-                currency: USD
-              transactionType:
-                scenario: TRANSFER
-                initiator: PAYER
-                initiatorType: CONSUMER
-              expiration: '2020-07-15T22:17:28.985-01:00'
-      responses:
-        '200':
-          description: OK
         '400':
           description: Bad Request
           content: *ref_20
@@ -6153,7 +5820,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -6228,11 +5895,11 @@ paths:
               description: >-
                 The object sent in the PUT /thirdPartyRequests/transactions/{ID}
                 request.
-              properties: &ref_147
+              properties: &ref_141
                 transactionRequestState:
                   title: TransactionRequestState
                   type: string
-                  enum: *ref_69
+                  enum: *ref_67
                   description: >-
                     Below are the allowed values for the enumeration.
 
@@ -6246,10 +5913,9 @@ paths:
 
                     - REJECTED - Payer has rejected the transaction.
                   example: RECEIVED
-              required: &ref_148
+              required: &ref_142
                 - transactionRequestState
             example:
-              transactionId: 11111111-0000-0000-0000-000000000000
               transactionRequestState: RECEIVED
       responses:
         '200':
@@ -6303,7 +5969,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -6328,10 +5994,9 @@ paths:
               description: >-
                 The object sent in the PATCH
                 /thirdpartyRequests/transactions/{ID} callback.
-              properties: *ref_70
-              required: *ref_71
+              properties: *ref_68
+              required: *ref_69
             example:
-              transactionId: 11111111-0000-0000-0000-000000000000
               transactionRequestState: ACCEPTED
               transactionState: COMMITTED
       responses:
@@ -6500,8 +6165,8 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
@@ -6625,9 +6290,9 @@ paths:
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
     post:
       description: >
-        The HTTP request `POST /thirdpartyRequests/authorizations` is used to
-        request the Payer to enter the applicable credentials in the PISP
-        system.
+        The HTTP request **POST /thirdpartyRequests/authorizations** is used to
+        request the validation by a customer for the transfer described in the
+        request.
       operationId: PostThirdpartyRequestsAuthorizations
       summary: PostThirdpartyRequestsAuthorizations
       tags:
@@ -6636,7 +6301,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -6660,7 +6325,7 @@ paths:
               title: ThirdpartyRequestsAuthorizationsPostRequest
               description: POST /thirdpartyRequests/authorizations request object.
               type: object
-              properties: &ref_149
+              properties: &ref_143
                 authorizationRequestId:
                   title: CorrelationId
                   type: string
@@ -6778,7 +6443,7 @@ paths:
                     list of extensions, specific to deployment.
                   properties: *ref_2
                   required: *ref_3
-              required: &ref_150
+              required: &ref_144
                 - authorizationRequestId
                 - transactionRequestId
                 - challenge
@@ -6790,33 +6455,6 @@ paths:
                 - transactionType
                 - expiration
               additionalProperties: false
-            example:
-              authorizationRequestId: 33333333-0000-0000-0000-000000000000
-              transactionRequestId: 00000000-0000-0000-0000-000000000000
-              challenge: <base64 encoded binary - the encoded challenge>
-              transferAmount:
-                amount: '100'
-                currency: USD
-              payeeReceiveAmount:
-                amount: '99'
-                currency: USD
-              fees:
-                amount: '1'
-                currency: USD
-              payee:
-                partyIdInfo:
-                  partyIdType: MSISDN
-                  partyIdentifier: +44 1234 5678
-                  fspId: dfspb
-              payer:
-                partyIdType: THIRD_PARTY_LINK
-                partyIdentifier: qwerty-123456
-                fspId: dfspa
-              transactionType:
-                scenario: TRANSFER
-                initiator: PAYER
-                initiatorType: CONSUMER
-              expiration: '2020-06-15T12:00:00.000'
       responses:
         '202':
           description: Accepted
@@ -6943,15 +6581,76 @@ paths:
           HTTP method. Required if signature verification is used, for more
           information, see [the API Signature
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+    get:
+      description: >
+        The HTTP request **GET /thirdpartyRequests/authorizations/**_{ID}_ is
+        used to get information relating 
+
+        to a previously issued authorization request. The *{ID}* in the request
+        should match the 
+
+        `authorizationRequestId` which was given when the authorization request
+        was created.
+      operationId: GetThirdpartyRequestsAuthorizationsById
+      summary: GetThirdpartyRequestsAuthorizationsById
+      tags:
+        - authorizations
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_47
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+          content: *ref_20
+          headers: *ref_21
+        '401':
+          description: Unauthorized
+          content: *ref_22
+          headers: *ref_23
+        '403':
+          description: Forbidden
+          content: *ref_24
+          headers: *ref_25
+        '404':
+          description: Not Found
+          content: *ref_26
+          headers: *ref_27
+        '405':
+          description: Method Not Allowed
+          content: *ref_28
+          headers: *ref_29
+        '406':
+          description: Not Acceptable
+          content: *ref_30
+          headers: *ref_31
+        '501':
+          description: Not Implemented
+          content: *ref_32
+          headers: *ref_33
+        '503':
+          description: Service Unavailable
+          content: *ref_34
+          headers: *ref_35
     put:
       description: >
-        The callback PUT /thirdpartyRequests/authorizations/{ID} is used to
-        inform the client of the
+        After receiving the **POST /thirdpartyRequests/authorizations**, the
+        PISP will present the details of the 
 
-        result of a previously-requested authorization. The ID in the URI should
+        transaction to their user, and request that the client sign the
+        `challenge` field using the credential
 
-        contain the one that was used in the POST /authorizations/
-        requestBody.transactionRequestId @ OUTBOUND
+        they previously registered.
+
+
+        The signed challenge will be sent back by the PISP in **PUT
+        /thirdpartyRequests/authorizations/**_{ID}_:
       operationId: PutThirdpartyRequestsAuthorizationsById
       summary: PutThirdpartyRequestsAuthorizationsById
       tags:
@@ -6980,28 +6679,28 @@ paths:
                   description: >-
                     The object sent in the PUT
                     /thirdpartyRequests/authorizations/{ID} callback.
-                  properties: &ref_152
+                  properties: &ref_146
                     responseType:
                       title: AuthorizationResponseType
                       description: |
                         The customer rejected the terms of the transfer.
                       type: string
-                      enum: &ref_151
+                      enum: &ref_145
                         - REJECTED
-                  required: &ref_153
+                  required: &ref_147
                     - responseType
                 - title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
                   type: object
                   description: >-
                     The object sent in the PUT
                     /thirdpartyRequests/authorizations/{ID} callback.
-                  properties: &ref_154
+                  properties: &ref_148
                     responseType:
                       title: AuthorizationResponseType
                       description: |
                         The customer accepted the terms of the transfer
                       type: string
-                      enum: &ref_74
+                      enum: &ref_70
                         - ACCEPTED
                     signedPayload:
                       type: object
@@ -7009,12 +6708,12 @@ paths:
                         signedPayloadType:
                           title: SignedPayloadTypeFIDO
                           type: string
-                          enum: &ref_75
+                          enum: &ref_71
                             - FIDO
                           description: >-
                             Describes a challenge that has been signed with FIDO
                             Attestation flows
-                        value:
+                        fidoSignedPayload:
                           title: FIDOPublicKeyCredentialAssertion
                           type: object
                           description: >
@@ -7025,14 +6724,80 @@ paths:
                             https://webauthn.guide/#authentication
 
                             AuthenticatorAssertionResponse
-                          properties: *ref_72
-                          required: *ref_73
+                          properties: &ref_72
+                            id:
+                              type: string
+                              description: >
+                                credential id: identifier of pair of keys,
+                                base64 encoded
+
+                                https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+                              minLength: 59
+                              maxLength: 118
+                            rawId:
+                              type: string
+                              description: >
+                                raw credential id: identifier of pair of keys,
+                                base64 encoded.
+                              minLength: 59
+                              maxLength: 118
+                            response:
+                              type: object
+                              description: |
+                                AuthenticatorAssertionResponse
+                              properties:
+                                authenticatorData:
+                                  type: string
+                                  description: |
+                                    Authenticator data object.
+                                  minLength: 49
+                                  maxLength: 256
+                                clientDataJSON:
+                                  type: string
+                                  description: |
+                                    JSON string with client data.
+                                  minLength: 121
+                                  maxLength: 512
+                                signature:
+                                  type: string
+                                  description: >
+                                    The signature generated by the private key
+                                    associated with this credential.
+                                  minLength: 59
+                                  maxLength: 256
+                                userHandle:
+                                  type: string
+                                  description: >
+                                    This field is optionally provided by the
+                                    authenticator, and
+
+                                    represents the user.id that was supplied
+                                    during registration.
+                                  minLength: 1
+                                  maxLength: 88
+                              required:
+                                - authenticatorData
+                                - clientDataJSON
+                                - signature
+                              additionalProperties: false
+                            type:
+                              type: string
+                              description: >-
+                                response type, we need only the type of
+                                public-key
+                              enum:
+                                - public-key
+                          required: &ref_73
+                            - id
+                            - rawId
+                            - response
+                            - type
                           additionalProperties: false
                       required:
                         - signedPayloadType
-                        - value
+                        - fidoSignedPayload
                       additionalProperties: false
-                  required: &ref_155
+                  required: &ref_149
                     - responseType
                     - signedPayload
                   additionalProperties: false
@@ -7041,25 +6806,25 @@ paths:
                   description: >-
                     The object sent in the PUT
                     /thirdpartyRequests/authorizations/{ID} callback.
-                  properties: &ref_156
+                  properties: &ref_150
                     responseType:
                       title: AuthorizationResponseType
                       description: |
                         The customer accepted the terms of the transfer
                       type: string
-                      enum: *ref_74
+                      enum: *ref_70
                     signedPayload:
                       type: object
                       properties:
                         signedPayloadType:
                           title: SignedPayloadTypeGeneric
                           type: string
-                          enum: &ref_76
+                          enum: &ref_74
                             - GENERIC
                           description: >-
                             Describes a challenge that has been signed with a
                             private key
-                        value:
+                        genericSignedPayload:
                           type: string
                           pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
                           description: >-
@@ -7072,26 +6837,12 @@ paths:
                             characters.
                       required:
                         - signedPayloadType
-                        - value
+                        - genericSignedPayload
                       additionalProperties: false
-                  required: &ref_157
+                  required: &ref_151
                     - responseType
                     - signedPayload
                   additionalProperties: false
-            example:
-              signedPayloadType: FIDO
-              signedPayload:
-                id: >-
-                  45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA
-                rawId: >-
-                  45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==
-                response:
-                  authenticatorData: SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MBAAAACA==
-                  clientDataJSON: >-
-                    eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUFBQUFBQUFBQUFBQUFBQUFBRUNBdyIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIxODEiLCJjcm9zc09yaWdpbiI6ZmFsc2UsIm90aGVyX2tleXNfY2FuX2JlX2FkZGVkX2hlcmUiOiJkbyBub3QgY29tcGFyZSBjbGllbnREYXRhSlNPTiBhZ2FpbnN0IGEgdGVtcGxhdGUuIFNlZSBodHRwczovL2dvby5nbC95YWJQZXgifQ==
-                  signature: >-
-                    MEUCIDcJRBu5aOLJVc/sPyECmYi23w8xF35n3RNhyUNVwQ2nAiEA+Lnd8dBn06OKkEgAq00BVbmH87ybQHfXlf1Y4RJqwQ8=
-                type: public-key
       responses:
         '200':
           description: OK
@@ -7265,8 +7016,8 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
@@ -7401,7 +7152,7 @@ paths:
         - name: Accept
           in: header
           required: true
-          schema: *ref_49
+          schema: *ref_47
           description: >-
             The `Accept` header field indicates the version of the API the
             client would like the server to use.
@@ -7428,7 +7179,7 @@ paths:
                   description: >-
                     The object sent in the POST
                     /thirdpartyRequests/verifications request.
-                  properties: &ref_158
+                  properties: &ref_152
                     verificationRequestId:
                       allOf:
                         - title: CorrelationId
@@ -7476,11 +7227,11 @@ paths:
                     signedPayloadType:
                       title: SignedPayloadTypeFIDO
                       type: string
-                      enum: *ref_75
+                      enum: *ref_71
                       description: >-
                         Describes a challenge that has been signed with FIDO
                         Attestation flows
-                    value:
+                    fidoValue:
                       title: FIDOPublicKeyCredentialAssertion
                       type: object
                       description: >
@@ -7493,18 +7244,18 @@ paths:
                       properties: *ref_72
                       required: *ref_73
                       additionalProperties: false
-                  required: &ref_159
+                  required: &ref_153
                     - verificationRequestId
                     - challenge
                     - consentId
                     - signedPayloadType
-                    - value
+                    - fidoValue
                 - title: ThirdpartyRequestsVerificationsPostRequestGeneric
                   type: object
                   description: >-
                     The object sent in the POST
                     /thirdpartyRequests/verifications request.
-                  properties: &ref_160
+                  properties: &ref_154
                     verificationRequestId:
                       allOf:
                         - title: CorrelationId
@@ -7552,11 +7303,11 @@ paths:
                     signedPayloadType:
                       title: SignedPayloadTypeGeneric
                       type: string
-                      enum: *ref_76
+                      enum: *ref_74
                       description: >-
                         Describes a challenge that has been signed with a
                         private key
-                    value:
+                    genericValue:
                       type: string
                       pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
                       description: >-
@@ -7566,29 +7317,12 @@ paths:
                         of the data if needed to ensure that the string is a
                         multiple of 4 characters. The length restriction
                         indicates the allowed number of characters.
-                  required: &ref_161
+                  required: &ref_155
                     - verificationRequestId
                     - challenge
                     - consentId
                     - signedPayloadType
-                    - value
-            example:
-              verificationRequestId: 44444444-0000-0000-0000-000000000000
-              challenge: <base64 encoded binary - the encoded challenge>
-              consentId: 8d34f91d-d078-4077-8263-2c0498dhbjr
-              signedPayloadType: FIDO
-              signedPayload:
-                id: >-
-                  45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA
-                rawId: >-
-                  45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==
-                response:
-                  authenticatorData: SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MBAAAACA==
-                  clientDataJSON: >-
-                    eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQUFBQUFBQUFBQUFBQUFBQUFBRUNBdyIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIxODEiLCJjcm9zc09yaWdpbiI6ZmFsc2UsIm90aGVyX2tleXNfY2FuX2JlX2FkZGVkX2hlcmUiOiJkbyBub3QgY29tcGFyZSBjbGllbnREYXRhSlNPTiBhZ2FpbnN0IGEgdGVtcGxhdGUuIFNlZSBodHRwczovL2dvby5nbC95YWJQZXgifQ==
-                  signature: >-
-                    MEUCIDcJRBu5aOLJVc/sPyECmYi23w8xF35n3RNhyUNVwQ2nAiEA+Lnd8dBn06OKkEgAq00BVbmH87ybQHfXlf1Y4RJqwQ8=
-                type: public-key
+                    - genericValue
       responses:
         '202':
           description: Accepted
@@ -7715,6 +7449,63 @@ paths:
           HTTP method. Required if signature verification is used, for more
           information, see [the API Signature
           document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+    get:
+      tags:
+        - thirdpartyRequests
+        - sampled
+      operationId: GetThirdpartyRequestsVerificationsById
+      summary: GetThirdpartyRequestsVerificationsById
+      description: >
+        The HTTP request **/thirdpartyRequests/verifications/**_{ID}_ is used to
+        get
+
+        information regarding a previously created or requested authorization.
+        The *{ID}*
+
+        in the URI should contain the verification request ID 
+      parameters:
+        - name: Accept
+          in: header
+          required: true
+          schema: *ref_47
+          description: >-
+            The `Accept` header field indicates the version of the API the
+            client would like the server to use.
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+          content: *ref_20
+          headers: *ref_21
+        '401':
+          description: Unauthorized
+          content: *ref_22
+          headers: *ref_23
+        '403':
+          description: Forbidden
+          content: *ref_24
+          headers: *ref_25
+        '404':
+          description: Not Found
+          content: *ref_26
+          headers: *ref_27
+        '405':
+          description: Method Not Allowed
+          content: *ref_28
+          headers: *ref_29
+        '406':
+          description: Not Acceptable
+          content: *ref_30
+          headers: *ref_31
+        '501':
+          description: Not Implemented
+          content: *ref_32
+          headers: *ref_33
+        '503':
+          description: Service Unavailable
+          content: *ref_34
+          headers: *ref_35
     put:
       tags:
         - thirdpartyRequests
@@ -7756,13 +7547,13 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/verifications/{ID} request.
-              properties: &ref_162
+              properties: &ref_156
                 authenticationResponse:
                   type: string
                   enum:
                     - VERIFIED
                   description: The verification passed
-              required: &ref_163
+              required: &ref_157
                 - authenticationResponse
             example:
               authenticationResponse: VERIFIED
@@ -7927,8 +7718,8 @@ paths:
               description: >-
                 Data model for the complex type object that contains
                 ErrorInformation.
-              properties: *ref_52
-              required: *ref_53
+              properties: *ref_50
+              required: *ref_51
       responses:
         '200':
           description: OK
@@ -7969,7 +7760,7 @@ components:
     AuthorizationChannelType:
       title: AuthorizationChannelType
       type: string
-      enum: *ref_77
+      enum: *ref_75
       description: >
         Below are the allowed values for the enumeration
         AuthorizationChannelType.
@@ -7985,7 +7776,7 @@ components:
         Enum containing authorization response information; if the customer 
         accepted the terms of the transfer, or rejected the terms.
       type: string
-      enum: *ref_78
+      enum: *ref_76
     AuthenticationType:
       title: AuthenticationType
       type: string
@@ -8117,8 +7908,8 @@ components:
       title: Extension
       type: object
       description: Data model for the complex type Extension.
-      properties: *ref_79
-      required: *ref_80
+      properties: *ref_77
+      required: *ref_78
     ExtensionList:
       title: ExtensionList
       type: object
@@ -8131,14 +7922,14 @@ components:
       title: QuotesIDPutResponse
       type: object
       description: 'The object sent in the PUT /quotes/{ID} callback.'
-      properties: *ref_81
-      required: *ref_82
+      properties: *ref_79
+      required: *ref_80
     AuthorizationsPostRequest:
       title: AuthorizationsPostRequest
       description: POST /authorizations request object.
       type: object
-      properties: *ref_47
-      required: *ref_48
+      properties: *ref_81
+      required: *ref_82
       additionalProperties: false
     IlpFulfilment:
       title: IlpFulfilment
@@ -8438,7 +8229,7 @@ components:
     TransactionRequestState:
       title: TransactionRequestState
       type: string
-      enum: *ref_69
+      enum: *ref_67
       description: |-
         Below are the allowed values for the enumeration.
         - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
@@ -8463,8 +8254,8 @@ components:
       description: >-
         The object sent in the PATCH /thirdpartyRequests/transactions/{ID}
         callback.
-      properties: *ref_70
-      required: *ref_71
+      properties: *ref_68
+      required: *ref_69
     TransactionScenario:
       title: TransactionScenario
       type: string
@@ -8589,16 +8380,11 @@ components:
         **Note:** In some programming languages, Unicode support must be
         specifically enabled. For example, if Java is used, the flag
         UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-    AccountId:
-      title: AccountId
+    AccountAddress:
+      title: AccountAddress
       type: string
-      description: >
-        A long-lived unique account identifier provided by the DFSP. This MUST
-        NOT
-
-        be Bank Account Number or anything that may expose a User's private bank
-
-        account information.
+      description: |
+        An address which can be used to identify the account.
       pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
       minLength: 1
       maxLength: 1023
@@ -8618,84 +8404,12 @@ components:
       title: ErrorInformationObject
       type: object
       description: Data model for the complex type object that contains ErrorInformation.
-      properties: *ref_52
-      required: *ref_53
-    OtpValue:
-      title: OtpValue
-      type: string
-      pattern: '^\d{3,10}$'
-      description: >-
-        The API data type OtpValue is a JSON String of 3 to 10 characters,
-        consisting of digits only. Negative numbers are not allowed. One or more
-        leading zeros are allowed.
-    QRCODE:
-      title: QRCODE
-      type: string
-      minLength: 1
-      maxLength: 64
-      description: QR code used as a One Time Password.
-    U2FPIN:
-      title: U2FPIN
-      type: string
-      pattern: '^\S{1,64}$'
-      minLength: 1
-      maxLength: 64
-      description: >
-        U2F challenge-response, where payer FSP verifies if the response
-        provided by end-user device matches the previously registered key.
-    U2FPinValue:
-      title: U2FPinValue
-      type: object
-      description: >
-        U2F challenge-response, where payer FSP verifies if the response
-        provided by end-user device matches the previously registered key.
-      properties: *ref_103
-      required: *ref_104
-    FIDOPublicKeyCredentialAssertion:
-      title: FIDOPublicKeyCredentialAssertion
-      type: object
-      description: >
-        An object sent in a `PUT /thirdpartyRequests/authorization/{ID}`
-        request.
-
-        based mostly on: https://webauthn.guide/#authentication
-
-        AuthenticatorAssertionResponse
-      properties: *ref_72
-      required: *ref_73
-      additionalProperties: false
-    AuthenticationValue:
-      title: AuthenticationValue
-      anyOf: *ref_105
-      description: >-
-        Contains the authentication value. The format depends on the
-        authentication type used in the AuthenticationInfo complex type.
-    AuthenticationInfo:
-      title: AuthenticationInfo
-      type: object
-      description: Data model for the complex type AuthenticationInfo.
-      properties: *ref_106
-      required: *ref_107
-    AuthorizationResponse:
-      title: AuthorizationResponse
-      type: string
-      enum: *ref_108
-      description: |-
-        Below are the allowed values for the enumeration.
-        - ENTERED - Consumer entered the authentication value.
-        - REJECTED - Consumer rejected the transaction.
-        - RESEND - Consumer requested to resend the authentication value.
-      example: ENTERED
-    AuthorizationsIDPutResponse:
-      title: AuthorizationsIDPutResponse
-      type: object
-      description: 'The object sent in the PUT /authorizations/{ID} callback.'
-      properties: *ref_109
-      required: *ref_110
+      properties: *ref_50
+      required: *ref_51
     ConsentScopeType:
       title: ConsentScopeType
       type: string
-      enum: *ref_111
+      enum: *ref_103
       description: |
         The scopes requested for a ConsentRequest.
         - "accounts.getBalance" - Get the balance of a given account.
@@ -8706,29 +8420,38 @@ components:
       description: Scope + Account Identifier mapping for a Consent.
       example: |
         {
-          accountId: "dfsp.username.5678",
+          address: "dfsp.username.5678",
           actions: [ "accounts.transfer", "accounts.getBalance" ]
         }
-      properties: *ref_50
-      required: *ref_51
+      properties: *ref_48
+      required: *ref_49
     ConsentRequestChannelType:
       title: ConsentRequestChannelType
       type: string
-      enum: *ref_112
+      enum: *ref_104
       description: |
         The auth channel being used for the consentRequest.
         - "WEB" - The Web auth channel.
         - "OTP" - The OTP auth channel.
+    Uri:
+      title: Uri
+      type: string
+      pattern: '^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?'
+      minLength: 1
+      maxLength: 512
+      description: >
+        The API data type Uri is a JSON string in a canonical format that is
+        restricted by a \ regular expression for interoperability reasons.
     ConsentRequestsPostRequest:
       title: ConsentRequestsPostRequest
       type: object
       description: The object sent in a `POST /consentRequests` request.
-      properties: *ref_113
-      required: *ref_114
+      properties: *ref_105
+      required: *ref_106
     ConsentRequestChannelTypeWeb:
       title: ConsentRequestChannelTypeWeb
       type: string
-      enum: *ref_115
+      enum: *ref_107
       description: |
         The web auth channel being used for PUT consentRequest/{ID} request.
     ConsentRequestsIDPutResponseWeb:
@@ -8746,13 +8469,13 @@ components:
         supposed user should be redirected. This URL should be a place where
 
         the user can prove their identity (e.g., by logging in).
-      properties: *ref_116
-      required: *ref_117
+      properties: *ref_108
+      required: *ref_109
       additionalProperties: false
     ConsentRequestChannelTypeOTP:
       title: ConsentRequestChannelTypeOTP
       type: string
-      enum: *ref_118
+      enum: *ref_110
       description: |
         The OTP auth channel being used for PUT consentRequest/{ID} request.
     ConsentRequestsIDPutResponseOTP:
@@ -8764,37 +8487,8 @@ components:
 
         Schema used in the request consent phase of the account linking OTP/SMS
         flow.
-      properties: *ref_119
-      required: *ref_120
-      additionalProperties: false
-    ConsentRequestsIDPatchRequest:
-      title: ConsentRequestsIDPatchRequest
-      type: object
-      description: 'The object sent in a `PATCH /consentRequests/{ID}` request.'
-      properties: *ref_121
-      required: *ref_122
-    CredentialType:
-      title: CredentialType
-      type: string
-      enum: *ref_56
-      description: |
-        The type of the Credential.
-        - "FIDO" - A FIDO public/private keypair
-    FIDOPublicKeyCredentialAttestation:
-      title: FIDOPublicKeyCredentialAttestation
-      type: object
-      description: >
-        An object sent in a `PUT /consents/{ID}` request.
-
-        Based on https://w3c.github.io/webauthn/#iface-pkcredential
-
-        and mostly on: https://webauthn.guide/#registration
-
-        AuthenticatorAttestationResponse
-
-        https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
-      properties: *ref_57
-      required: *ref_58
+      properties: *ref_111
+      required: *ref_112
       additionalProperties: false
     BinaryString:
       type: string
@@ -8805,14 +8499,47 @@ components:
         ‘=’) is added at the end of the data if needed to ensure that the string
         is a multiple of 4 characters. The length restriction indicates the
         allowed number of characters.
+    ConsentRequestsIDPatchRequest:
+      title: ConsentRequestsIDPatchRequest
+      type: object
+      description: 'The object sent in a `PATCH /consentRequests/{ID}` request.'
+      properties: *ref_113
+      required: *ref_114
+    CredentialType:
+      title: CredentialType
+      type: string
+      enum: *ref_56
+      description: |
+        The type of the Credential.
+        - "FIDO" - A FIDO public/private keypair
+        - "GENERIC" - A Generic public/private keypair
     GenericCredential:
       title: GenericCredential
       type: object
       description: >
         A publicKey + signature of a challenge for a generic public/private
         keypair
-      properties: *ref_123
-      required: *ref_124
+      properties: *ref_115
+      required: *ref_116
+      additionalProperties: false
+    FIDOPublicKeyCredentialAttestation:
+      title: FIDOPublicKeyCredentialAttestation
+      type: object
+      description: >
+        A data model representing a FIDO Attestation result. Derived from 
+
+        [`PublicKeyCredential`
+        Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+
+
+        The `PublicKeyCredential` interface represents the below fields with
+
+        a Type of Javascript
+        [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+
+        For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
+      properties: *ref_57
+      required: *ref_58
       additionalProperties: false
     SignedCredential:
       title: SignedCredential
@@ -8830,9 +8557,17 @@ components:
         when
 
         updating a credential.
-      properties: *ref_54
-      required: *ref_55
+      properties: *ref_53
+      required: *ref_54
       additionalProperties: false
+    ConsentStatus:
+      title: ConsentStatus
+      type: string
+      enum: *ref_52
+      description: |-
+        Allowed values for the enumeration ConsentStatus
+        - ISSUED - The consent has been issued by the DFSP
+        - REVOKED - The consent has been revoked
     ConsentsPostRequestAUTH:
       title: ConsentPostRequestAUTH
       type: object
@@ -8841,8 +8576,8 @@ components:
         store registered consent with PublicKey
 
         and whatever needed to perform authorization validation later
-      properties: *ref_125
-      required: *ref_126
+      properties: *ref_117
+      required: *ref_118
       additionalProperties: false
     ConsentsPostRequestPISP:
       title: ConsentPostRequestPISP
@@ -8850,8 +8585,15 @@ components:
       description: >-
         The object sent in a `POST /consents` request to PISP by DFSP to ask for
         delivering the credential object.
-      properties: *ref_127
-      required: *ref_128
+      properties: *ref_119
+      required: *ref_120
+    ConsentStatusIssued:
+      title: ConsentStatus
+      type: string
+      enum: *ref_55
+      description: |-
+        Allowed values for the enumeration ConsentStatus
+        - ISSUED - The consent has been issued by the DFSP
     ConsentsIDPutResponseSigned:
       title: ConsentsIDPutResponseSigned
       type: object
@@ -8861,8 +8603,8 @@ components:
 
         Called by a `PISP` to after signing a challenge. Sent to a DFSP for
         verification.
-      properties: *ref_129
-      required: *ref_130
+      properties: *ref_121
+      required: *ref_122
       additionalProperties: false
     VerifiedCredential:
       title: VerifiedCredential
@@ -8880,8 +8622,8 @@ components:
         when
 
         updating a credential.
-      properties: *ref_131
-      required: *ref_132
+      properties: *ref_123
+      required: *ref_124
       additionalProperties: false
     ConsentsIDPutResponseVerified:
       title: ConsentsIDPutResponseVerified
@@ -8892,16 +8634,16 @@ components:
 
         Called by a `auth-service` to notify a DFSP that a credential has been
         verified and registered.
-      properties: *ref_133
-      required: *ref_134
+      properties: *ref_125
+      required: *ref_126
       additionalProperties: false
-    ConsentStatusTypeVerified:
-      title: ConsentStatusType
+    CredentialStatusVerified:
+      title: CredentialStatus
       type: string
-      enum: *ref_135
+      enum: *ref_127
       description: |
-        The status of the Consent.
-        - "VERIFIED" - The Consent is valid and verified.
+        The status of the Credential.
+        - "VERIFIED" - The Credential is valid and verified.
     ConsentsIDPatchResponseVerified:
       title: ConsentsIDPatchResponseVerified
       description: |
@@ -8910,15 +8652,15 @@ components:
         Sent by the DFSP to the PISP when a consent is verified.
         Used in the "Register Credential" part of the Account linking flow.
       type: object
-      properties: *ref_136
-      required: *ref_137
-    ConsentStatusTypeRevoked:
-      title: ConsentStatusType
+      properties: *ref_128
+      required: *ref_129
+    ConsentStatusRevoked:
+      title: ConsentStatus
       type: string
-      enum: *ref_138
-      description: |
-        The status of the Consent.
-        - "REVOKED" - The Consent is no longer valid and has been revoked.
+      enum: *ref_130
+      description: |-
+        Allowed values for the enumeration ConsentStatus
+        - REVOKED - The consent has been revoked
     ConsentsIDPatchResponseRevoked:
       title: ConsentsIDPatchResponseRevoked
       description: |
@@ -8927,15 +8669,15 @@ components:
         Sent to both the PISP and DFSP when a consent is revoked.
         Used in the "Unlinking" part of the Account Unlinking flow.
       type: object
-      properties: *ref_139
-      required: *ref_140
+      properties: *ref_131
+      required: *ref_132
     ParticipantsTypeIDPutResponse:
       title: ParticipantsTypeIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /participants/{Type}/{ID}/{SubId} and
         /participants/{Type}/{ID} callbacks.
-      properties: *ref_141
+      properties: *ref_133
     ParticipantsTypeIDSubIDPostRequest:
       title: ParticipantsTypeIDSubIDPostRequest
       type: object
@@ -8943,18 +8685,18 @@ components:
         The object sent in the POST /participants/{Type}/{ID}/{SubId} and
         /participants/{Type}/{ID} requests. An additional optional ExtensionList
         element has been added as part of v1.1 changes.
-      properties: *ref_142
-      required: *ref_143
+      properties: *ref_134
+      required: *ref_135
     ServicesServiceTypePutResponse:
       title: ServicesServiceTypePutResponse
       type: object
       description: 'The object sent in a `PUT /services/{ServiceType}` request.'
-      properties: *ref_144
-      required: *ref_145
+      properties: *ref_136
+      required: *ref_137
     AmountType:
       title: AmountType
       type: string
-      enum: *ref_146
+      enum: *ref_138
       description: >-
         Below are the allowed values for the enumeration AmountType.
 
@@ -8968,61 +8710,74 @@ components:
       title: ThirdpartyRequestsTransactionsPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/transactions request.
-      properties: *ref_67
-      required: *ref_68
+      properties: *ref_139
+      required: *ref_140
     ThirdpartyRequestsTransactionsIDPutResponse:
       title: ThirdpartyRequestsTransactionsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdPartyRequests/transactions/{ID}
         request.
-      properties: *ref_147
-      required: *ref_148
+      properties: *ref_141
+      required: *ref_142
     ThirdpartyRequestsAuthorizationsPostRequest:
       title: ThirdpartyRequestsAuthorizationsPostRequest
       description: POST /thirdpartyRequests/authorizations request object.
       type: object
-      properties: *ref_149
-      required: *ref_150
+      properties: *ref_143
+      required: *ref_144
       additionalProperties: false
     AuthorizationResponseTypeRejected:
       title: AuthorizationResponseType
       description: |
         The customer rejected the terms of the transfer.
       type: string
-      enum: *ref_151
+      enum: *ref_145
     ThirdpartyRequestsAuthorizationsIDPutResponseRejected:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
-      properties: *ref_152
-      required: *ref_153
+      properties: *ref_146
+      required: *ref_147
     AuthorizationResponseTypeAccepted:
       title: AuthorizationResponseType
       description: |
         The customer accepted the terms of the transfer
       type: string
-      enum: *ref_74
+      enum: *ref_70
     SignedPayloadTypeFIDO:
       title: SignedPayloadTypeFIDO
       type: string
-      enum: *ref_75
+      enum: *ref_71
       description: Describes a challenge that has been signed with FIDO Attestation flows
+    FIDOPublicKeyCredentialAssertion:
+      title: FIDOPublicKeyCredentialAssertion
+      type: object
+      description: >
+        An object sent in a `PUT /thirdpartyRequests/authorization/{ID}`
+        request.
+
+        based mostly on: https://webauthn.guide/#authentication
+
+        AuthenticatorAssertionResponse
+      properties: *ref_72
+      required: *ref_73
+      additionalProperties: false
     ThirdpartyRequestsAuthorizationsIDPutResponseFIDO:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
-      properties: *ref_154
-      required: *ref_155
+      properties: *ref_148
+      required: *ref_149
       additionalProperties: false
     SignedPayloadTypeGeneric:
       title: SignedPayloadTypeGeneric
       type: string
-      enum: *ref_76
+      enum: *ref_74
       description: Describes a challenge that has been signed with a private key
     ThirdpartyRequestsAuthorizationsIDPutResponseGeneric:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
@@ -9030,29 +8785,29 @@ components:
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
-      properties: *ref_156
-      required: *ref_157
+      properties: *ref_150
+      required: *ref_151
       additionalProperties: false
     ThirdpartyRequestsVerificationsPostRequestFIDO:
       title: ThirdpartyRequestsVerificationsPostRequestFIDO
       type: object
       description: The object sent in the POST /thirdpartyRequests/verifications request.
-      properties: *ref_158
-      required: *ref_159
+      properties: *ref_152
+      required: *ref_153
     ThirdpartyRequestsVerificationsPostRequestGeneric:
       title: ThirdpartyRequestsVerificationsPostRequestGeneric
       type: object
       description: The object sent in the POST /thirdpartyRequests/verifications request.
-      properties: *ref_160
-      required: *ref_161
+      properties: *ref_154
+      required: *ref_155
     ThirdpartyRequestsVerificationsIDPutResponse:
       title: ThirdpartyRequestsVerificationsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/verifications/{ID}
         request.
-      properties: *ref_162
-      required: *ref_163
+      properties: *ref_156
+      required: *ref_157
   parameters:
     ID:
       name: ID
@@ -9156,7 +8911,7 @@ components:
       name: Accept
       in: header
       required: true
-      schema: *ref_49
+      schema: *ref_47
       description: >-
         The `Accept` header field indicates the version of the API the client
         would like the server to use.
