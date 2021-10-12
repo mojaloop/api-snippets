@@ -57,11 +57,12 @@ describe('thirdparty', () => {
   const consentRequestChannelType: Schemas.ConsentRequestChannelType = 'WEB'
   const consentRequestChannelTypeWeb: Schemas.ConsentRequestChannelTypeWeb = 'WEB'
   const consentRequestChannelTypeOTP: Schemas.ConsentRequestChannelTypeOTP = 'OTP'
-  const consentScopeTypeGetBalance: Schemas.ConsentScopeType = 'accounts.getBalance'
-  const consentScopeTypeTransfer: Schemas.ConsentScopeType = 'accounts.transfer'
+  const scopeActionGetBalance: Schemas.ScopeAction = 'ACCOUNTS_GET_BALANCE'
+  const scopeActionTransfer: Schemas.ScopeAction = 'ACCOUNTS_TRANSFER'
+  const scopeActionStatement: Schemas.ScopeAction = 'ACCOUNTS_STATEMENT'
   const scope: Schemas.Scope = {
     address: accountAddress,
-    actions: [consentScopeTypeGetBalance, consentScopeTypeTransfer]
+    actions: [scopeActionGetBalance, scopeActionTransfer]
   }
   const credentialTypeFIDO: Schemas.CredentialType = 'FIDO'
   const consentStatusRevoked: Schemas.ConsentStatusRevoked = 'REVOKED'
@@ -221,9 +222,10 @@ describe('thirdparty', () => {
     expect(consentRequestsPostRequest).toBeDefined()
   })
 
-  test('ConsentScopeType', () => {
-    expect(consentScopeTypeGetBalance).toBeDefined()
-    expect(consentScopeTypeTransfer).toBeDefined()
+  test('ScopeActions', () => {
+    expect(scopeActionGetBalance).toBeDefined()
+    expect(scopeActionTransfer).toBeDefined()
+    expect(scopeActionStatement).toBeDefined()
   })
   
   test('ConsentsIDPatchResponseRevoked', () => {

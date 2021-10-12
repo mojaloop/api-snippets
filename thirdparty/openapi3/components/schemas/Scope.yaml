@@ -1,18 +1,15 @@
 title: Scope
 type: object
 description: Scope + Account Identifier mapping for a Consent.
-example: |
-  {
-    address: "dfsp.username.5678",
-    actions: [ "accounts.transfer", "accounts.getBalance" ]
-  }
 properties:
   address:
     $ref: ./AccountAddress.yaml
   actions:
     type: array
+    minItems: 1
+    maxItems: 32
     items:
-      $ref: ./ConsentScopeType.yaml
+      $ref: ./ScopeAction.yaml
 required:
   - address
   - actions

@@ -2139,11 +2139,6 @@ paths:
                     title: Scope
                     type: object
                     description: Scope + Account Identifier mapping for a Consent.
-                    example: |
-                      {
-                        address: "dfsp.username.5678",
-                        actions: [ "accounts.transfer", "accounts.getBalance" ]
-                      }
                     properties: &ref_48
                       address:
                         title: AccountAddress
@@ -2155,20 +2150,29 @@ paths:
                         maxLength: 1023
                       actions:
                         type: array
+                        minItems: 1
+                        maxItems: 32
                         items:
-                          title: ConsentScopeType
+                          title: ScopeAction
                           type: string
                           enum: &ref_103
-                            - accounts.getBalance
-                            - accounts.transfer
+                            - ACCOUNTS_GET_BALANCE
+                            - ACCOUNTS_TRANSFER
+                            - ACCOUNTS_STATEMENT
                           description: >
-                            The scopes requested for a ConsentRequest.
+                            The permissions allowed on a given account by a DFSP
+                            as defined in
 
-                            - "accounts.getBalance" - Get the balance of a given
-                            account.
+                            a consent object
 
-                            - "accounts.transfer" - Initiate a transfer from an
-                            account.
+                            - ACCOUNTS_GET_BALANCE: PISP can request a balance
+                            for the linked account
+
+                            - ACCOUNTS_TRANSFER: PISP can request a transfer of
+                            funds from the linked account in the DFSP
+
+                            - ACCOUNTS_STATEMENT: PISP can request a statement
+                            of individual transactions on a user’s account
                     required: &ref_49
                       - address
                       - actions
@@ -2473,11 +2477,6 @@ paths:
                         title: Scope
                         type: object
                         description: Scope + Account Identifier mapping for a Consent.
-                        example: |
-                          {
-                            address: "dfsp.username.5678",
-                            actions: [ "accounts.transfer", "accounts.getBalance" ]
-                          }
                         properties: *ref_48
                         required: *ref_49
                     authChannels:
@@ -2537,11 +2536,6 @@ paths:
                         title: Scope
                         type: object
                         description: Scope + Account Identifier mapping for a Consent.
-                        example: |
-                          {
-                            address: "dfsp.username.5678",
-                            actions: [ "accounts.transfer", "accounts.getBalance" ]
-                          }
                         properties: *ref_48
                         required: *ref_49
                     authChannels:
@@ -3015,11 +3009,6 @@ paths:
                         title: Scope
                         type: object
                         description: Scope + Account Identifier mapping for a Consent.
-                        example: |
-                          {
-                            address: "dfsp.username.5678",
-                            actions: [ "accounts.transfer", "accounts.getBalance" ]
-                          }
                         properties: *ref_48
                         required: *ref_49
                     credential:
@@ -3244,11 +3233,6 @@ paths:
                         title: Scope
                         type: object
                         description: Scope + Account Identifier mapping for a Consent.
-                        example: |
-                          {
-                            address: "dfsp.username.5678",
-                            actions: [ "accounts.transfer", "accounts.getBalance" ]
-                          }
                         properties: *ref_48
                         required: *ref_49
                     status:
@@ -3624,11 +3608,6 @@ paths:
                         title: Scope
                         type: object
                         description: Scope + Account Identifier mapping for a Consent.
-                        example: |
-                          {
-                            address: "dfsp.username.5678",
-                            actions: [ "accounts.transfer", "accounts.getBalance" ]
-                          }
                         properties: *ref_48
                         required: *ref_49
                     status:
@@ -3679,11 +3658,6 @@ paths:
                         title: Scope
                         type: object
                         description: Scope + Account Identifier mapping for a Consent.
-                        example: |
-                          {
-                            address: "dfsp.username.5678",
-                            actions: [ "accounts.transfer", "accounts.getBalance" ]
-                          }
                         properties: *ref_48
                         required: *ref_49
                     status:
@@ -8410,23 +8384,27 @@ components:
       description: Data model for the complex type object that contains ErrorInformation.
       properties: *ref_50
       required: *ref_51
-    ConsentScopeType:
-      title: ConsentScopeType
+    ScopeAction:
+      title: ScopeAction
       type: string
       enum: *ref_103
-      description: |
-        The scopes requested for a ConsentRequest.
-        - "accounts.getBalance" - Get the balance of a given account.
-        - "accounts.transfer" - Initiate a transfer from an account.
+      description: >
+        The permissions allowed on a given account by a DFSP as defined in
+
+        a consent object
+
+        - ACCOUNTS_GET_BALANCE: PISP can request a balance for the linked
+        account
+
+        - ACCOUNTS_TRANSFER: PISP can request a transfer of funds from the
+        linked account in the DFSP
+
+        - ACCOUNTS_STATEMENT: PISP can request a statement of individual
+        transactions on a user’s account
     Scope:
       title: Scope
       type: object
       description: Scope + Account Identifier mapping for a Consent.
-      example: |
-        {
-          address: "dfsp.username.5678",
-          actions: [ "accounts.transfer", "accounts.getBalance" ]
-        }
       properties: *ref_48
       required: *ref_49
     ConsentRequestChannelType:

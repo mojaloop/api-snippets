@@ -5412,7 +5412,11 @@ export interface operations {
            * An address which can be used to identify the account.
            */
           address: string;
-          actions: ("accounts.getBalance" | "accounts.transfer")[];
+          actions: (
+            | "ACCOUNTS_GET_BALANCE"
+            | "ACCOUNTS_TRANSFER"
+            | "ACCOUNTS_STATEMENT"
+          )[];
         }[];
         authChannels: ("WEB" | "OTP")[];
         /**
@@ -6087,7 +6091,11 @@ export interface operations {
                * An address which can be used to identify the account.
                */
               address: string;
-              actions: ("accounts.getBalance" | "accounts.transfer")[];
+              actions: (
+                | "ACCOUNTS_GET_BALANCE"
+                | "ACCOUNTS_TRANSFER"
+                | "ACCOUNTS_STATEMENT"
+              )[];
             }[];
             authChannels: "WEB"[];
             /**
@@ -6105,7 +6113,11 @@ export interface operations {
                * An address which can be used to identify the account.
                */
               address: string;
-              actions: ("accounts.getBalance" | "accounts.transfer")[];
+              actions: (
+                | "ACCOUNTS_GET_BALANCE"
+                | "ACCOUNTS_TRANSFER"
+                | "ACCOUNTS_STATEMENT"
+              )[];
             }[];
             authChannels: "OTP"[];
             /**
@@ -7155,7 +7167,11 @@ export interface operations {
                * An address which can be used to identify the account.
                */
               address: string;
-              actions: ("accounts.getBalance" | "accounts.transfer")[];
+              actions: (
+                | "ACCOUNTS_GET_BALANCE"
+                | "ACCOUNTS_TRANSFER"
+                | "ACCOUNTS_STATEMENT"
+              )[];
             }[];
             credential: {
               /**
@@ -7242,7 +7258,11 @@ export interface operations {
                * An address which can be used to identify the account.
                */
               address: string;
-              actions: ("accounts.getBalance" | "accounts.transfer")[];
+              actions: (
+                | "ACCOUNTS_GET_BALANCE"
+                | "ACCOUNTS_TRANSFER"
+                | "ACCOUNTS_STATEMENT"
+              )[];
             }[];
             /**
              * Allowed values for the enumeration ConsentStatus
@@ -8273,7 +8293,11 @@ export interface operations {
                * An address which can be used to identify the account.
                */
               address: string;
-              actions: ("accounts.getBalance" | "accounts.transfer")[];
+              actions: (
+                | "ACCOUNTS_GET_BALANCE"
+                | "ACCOUNTS_TRANSFER"
+                | "ACCOUNTS_STATEMENT"
+              )[];
             }[];
             /**
              * Allowed values for the enumeration ConsentStatus
@@ -8357,7 +8381,11 @@ export interface operations {
                * An address which can be used to identify the account.
                */
               address: string;
-              actions: ("accounts.getBalance" | "accounts.transfer")[];
+              actions: (
+                | "ACCOUNTS_GET_BALANCE"
+                | "ACCOUNTS_TRANSFER"
+                | "ACCOUNTS_STATEMENT"
+              )[];
             }[];
             /**
              * Allowed values for the enumeration ConsentStatus
@@ -24312,11 +24340,16 @@ export interface components {
       };
     };
     /**
-     * The scopes requested for a ConsentRequest.
-     * - "accounts.getBalance" - Get the balance of a given account.
-     * - "accounts.transfer" - Initiate a transfer from an account.
+     * The permissions allowed on a given account by a DFSP as defined in
+     * a consent object
+     * - ACCOUNTS_GET_BALANCE: PISP can request a balance for the linked account
+     * - ACCOUNTS_TRANSFER: PISP can request a transfer of funds from the linked account in the DFSP
+     * - ACCOUNTS_STATEMENT: PISP can request a statement of individual transactions on a user’s account
      */
-    ConsentScopeType: "accounts.getBalance" | "accounts.transfer";
+    ScopeAction:
+      | "ACCOUNTS_GET_BALANCE"
+      | "ACCOUNTS_TRANSFER"
+      | "ACCOUNTS_STATEMENT";
     /**
      * Scope + Account Identifier mapping for a Consent.
      */
@@ -24325,7 +24358,11 @@ export interface components {
        * An address which can be used to identify the account.
        */
       address: string;
-      actions: ("accounts.getBalance" | "accounts.transfer")[];
+      actions: (
+        | "ACCOUNTS_GET_BALANCE"
+        | "ACCOUNTS_TRANSFER"
+        | "ACCOUNTS_STATEMENT"
+      )[];
     };
     /**
      * The auth channel being used for the consentRequest.
@@ -24354,7 +24391,11 @@ export interface components {
          * An address which can be used to identify the account.
          */
         address: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
+        actions: (
+          | "ACCOUNTS_GET_BALANCE"
+          | "ACCOUNTS_TRANSFER"
+          | "ACCOUNTS_STATEMENT"
+        )[];
       }[];
       authChannels: ("WEB" | "OTP")[];
       /**
@@ -24380,7 +24421,11 @@ export interface components {
          * An address which can be used to identify the account.
          */
         address: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
+        actions: (
+          | "ACCOUNTS_GET_BALANCE"
+          | "ACCOUNTS_TRANSFER"
+          | "ACCOUNTS_STATEMENT"
+        )[];
       }[];
       authChannels: "WEB"[];
       /**
@@ -24407,7 +24452,11 @@ export interface components {
          * An address which can be used to identify the account.
          */
         address: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
+        actions: (
+          | "ACCOUNTS_GET_BALANCE"
+          | "ACCOUNTS_TRANSFER"
+          | "ACCOUNTS_STATEMENT"
+        )[];
       }[];
       authChannels: "OTP"[];
       /**
@@ -24581,7 +24630,11 @@ export interface components {
          * An address which can be used to identify the account.
          */
         address: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
+        actions: (
+          | "ACCOUNTS_GET_BALANCE"
+          | "ACCOUNTS_TRANSFER"
+          | "ACCOUNTS_STATEMENT"
+        )[];
       }[];
       credential: {
         /**
@@ -24671,7 +24724,11 @@ export interface components {
          * An address which can be used to identify the account.
          */
         address: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
+        actions: (
+          | "ACCOUNTS_GET_BALANCE"
+          | "ACCOUNTS_TRANSFER"
+          | "ACCOUNTS_STATEMENT"
+        )[];
       }[];
       /**
        * Allowed values for the enumeration ConsentStatus
@@ -24695,7 +24752,11 @@ export interface components {
          * An address which can be used to identify the account.
          */
         address: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
+        actions: (
+          | "ACCOUNTS_GET_BALANCE"
+          | "ACCOUNTS_TRANSFER"
+          | "ACCOUNTS_STATEMENT"
+        )[];
       }[];
       /**
        * Allowed values for the enumeration ConsentStatus
@@ -24839,7 +24900,11 @@ export interface components {
          * An address which can be used to identify the account.
          */
         address: string;
-        actions: ("accounts.getBalance" | "accounts.transfer")[];
+        actions: (
+          | "ACCOUNTS_GET_BALANCE"
+          | "ACCOUNTS_TRANSFER"
+          | "ACCOUNTS_STATEMENT"
+        )[];
       }[];
       /**
        * Allowed values for the enumeration ConsentStatus

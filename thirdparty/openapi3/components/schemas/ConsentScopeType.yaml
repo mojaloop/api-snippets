@@ -1,9 +1,0 @@
-title: ConsentScopeType
-type: string
-enum:
-  - accounts.getBalance
-  - accounts.transfer
-description: |
-  The scopes requested for a ConsentRequest.
-  - "accounts.getBalance" - Get the balance of a given account.
-  - "accounts.transfer" - Initiate a transfer from an account.
