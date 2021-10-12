@@ -5,7 +5,7 @@ export * as openapi from './openapi'
 
 export namespace Schemas {
   export type Account = components['schemas']['Account']
-  export type AccountId = components['schemas']['AccountId']
+  export type AccountAddress = components['schemas']['AccountAddress']
   export type AccountsIDPutResponse = components['schemas']['AccountsIDPutResponse']
   export type Amount = components['schemas']['Amount']
   export type AmountType = components['schemas']['AmountType']
@@ -19,7 +19,6 @@ export namespace Schemas {
   export type ConsentRequestChannelTypeOTP = components['schemas']['ConsentRequestChannelTypeOTP']
   export type ConsentRequestChannelTypeWeb = components['schemas']['ConsentRequestChannelTypeWeb']
   export type ConsentRequestsIDPatchRequest = components['schemas']['ConsentRequestsIDPatchRequest']
-  export type AuthorizationsIDPutResponse = components['schemas']['AuthorizationsIDPutResponse']
   export type ConsentRequestsIDPutResponseOTP = components['schemas']['ConsentRequestsIDPutResponseOTP']
   export type ConsentRequestsIDPutResponseWeb = components['schemas']['ConsentRequestsIDPutResponseWeb']
   export type ConsentRequestsPostRequest = components['schemas']['ConsentRequestsPostRequest']
@@ -30,8 +29,8 @@ export namespace Schemas {
   export type ConsentsIDPutResponseVerified = components['schemas']['ConsentsIDPutResponseVerified']
   export type ConsentsPostRequestAUTH = components['schemas']['ConsentsPostRequestAUTH']
   export type ConsentsPostRequestPISP = components['schemas']['ConsentsPostRequestPISP']
-  export type ConsentStatusTypeRevoked = components['schemas']['ConsentStatusTypeRevoked']
-  export type ConsentStatusTypeVerified = components['schemas']['ConsentStatusTypeVerified']
+  export type ConsentStatusRevoked = components['schemas']['ConsentStatusRevoked']
+  export type ConsentStatusIssued = components['schemas']['ConsentStatusIssued']
   export type CorrelationId = components['schemas']['CorrelationId']
   export type CredentialType = components['schemas']['CredentialType']
   export type Currency = components['schemas']['Currency']

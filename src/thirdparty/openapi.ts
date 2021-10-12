@@ -110,12 +110,6 @@ export interface paths {
       };
     };
   };
-  "/authorizations": {
-    post: operations["AuthorizationsPostRequest"];
-  };
-  "/authorizations/{ID}": {
-    put: operations["InboundAuthorizationsIDPutResponse"];
-  };
   "/health": {
     get: operations["HealthGet"];
   };
@@ -168,6 +162,7 @@ export interface paths {
     };
   };
   "/consentRequests/{ID}": {
+    get: operations["GetConsentRequestsById"];
     put: operations["UpdateConsentRequest"];
     patch: operations["PatchConsentRequest"];
     parameters: {
@@ -784,51 +779,6 @@ export interface paths {
     };
   };
   "/thirdpartyRequests/transactions": {
-    post: operations["CreateThirdpartyTransactionRequests"];
-    parameters: {
-      header: {
-        /**
-         * The `Content-Type` header indicates the specific version of the API used to send the payload body.
-         */
-        "Content-Type": string;
-        /**
-         * The `Date` header field indicates the date when the request was sent.
-         */
-        Date: string;
-        /**
-         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
-         *
-         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
-         */
-        "X-Forwarded-For"?: string;
-        /**
-         * The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`).
-         */
-        "FSPIOP-Source": string;
-        /**
-         * The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty.
-         */
-        "FSPIOP-Destination"?: string;
-        /**
-         * The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request.
-         */
-        "FSPIOP-Encryption"?: string;
-        /**
-         * The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature.
-         */
-        "FSPIOP-Signature"?: string;
-        /**
-         * The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-         */
-        "FSPIOP-URI"?: string;
-        /**
-         * The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
-         */
-        "FSPIOP-HTTP-Method"?: string;
-      };
-    };
-  };
-  "/thirdpartyRequests/transactions-tsa": {
     post: operations["ThirdpartyRequestsTransactionsPost"];
     parameters: {
       header: {
@@ -1023,6 +973,7 @@ export interface paths {
     };
   };
   "/thirdpartyRequests/authorizations/{ID}": {
+    get: operations["GetThirdpartyRequestsAuthorizationsById"];
     put: operations["PutThirdpartyRequestsAuthorizationsById"];
     parameters: {
       path: {
@@ -1170,6 +1121,7 @@ export interface paths {
     };
   };
   "/thirdpartyRequests/verifications/{ID}": {
+    get: operations["GetThirdpartyRequestsVerificationsById"];
     put: operations["PutThirdpartyRequestsVerificationsById"];
     parameters: {
       path: {
@@ -3940,7 +3892,10 @@ export interface operations {
     };
     requestBody: {
       "application/json": {
-        accounts: {
+        /**
+         * Information about the accounts that the DFSP associates with the identifier sent by the PISP
+         */
+        accountList?: {
           /**
            * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
            *
@@ -3950,11 +3905,9 @@ export interface operations {
            */
           accountNickname: string;
           /**
-           * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-           * be Bank Account Number or anything that may expose a User's private bank
-           * account information.
+           * An address which can be used to identify the account.
            */
-          id: string;
+          address?: string;
           /**
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
@@ -4489,1663 +4442,6 @@ export interface operations {
        * OK
        */
       "200": unknown;
-      /**
-       * Bad Request
-       */
-      "400": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Unauthorized
-       */
-      "401": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Forbidden
-       */
-      "403": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Not Found
-       */
-      "404": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Method Not Allowed
-       */
-      "405": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Not Acceptable
-       */
-      "406": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Not Implemented
-       */
-      "501": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Service Unavailable
-       */
-      "503": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-    };
-  };
-  /**
-   * The HTTP request `POST /authorizations` is used to request the Payer to enter the applicable credentials in the PISP system.
-   */
-  AuthorizationsPostRequest: {
-    requestBody: {
-      "application/json": {
-        /**
-         * Below are the allowed values for the enumeration AuthenticationType.
-         * - OTP - One-time password generated by the Payer FSP.
-         * - QRCODE - QR code used as One Time Password.
-         * - U2F - U2F is a new addition isolated to Thirdparty stream.
-         */
-        authenticationType: "OTP" | "QRCODE" | "U2F";
-        /**
-         * The API data type Integer is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited to a specific number of digits.
-         */
-        retriesLeft: string;
-        /**
-         * Data model for the complex type Money.
-         */
-        amount: {
-          /**
-           * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-           */
-          currency:
-            | "AED"
-            | "AFN"
-            | "ALL"
-            | "AMD"
-            | "ANG"
-            | "AOA"
-            | "ARS"
-            | "AUD"
-            | "AWG"
-            | "AZN"
-            | "BAM"
-            | "BBD"
-            | "BDT"
-            | "BGN"
-            | "BHD"
-            | "BIF"
-            | "BMD"
-            | "BND"
-            | "BOB"
-            | "BRL"
-            | "BSD"
-            | "BTN"
-            | "BWP"
-            | "BYN"
-            | "BZD"
-            | "CAD"
-            | "CDF"
-            | "CHF"
-            | "CLP"
-            | "CNY"
-            | "COP"
-            | "CRC"
-            | "CUC"
-            | "CUP"
-            | "CVE"
-            | "CZK"
-            | "DJF"
-            | "DKK"
-            | "DOP"
-            | "DZD"
-            | "EGP"
-            | "ERN"
-            | "ETB"
-            | "EUR"
-            | "FJD"
-            | "FKP"
-            | "GBP"
-            | "GEL"
-            | "GGP"
-            | "GHS"
-            | "GIP"
-            | "GMD"
-            | "GNF"
-            | "GTQ"
-            | "GYD"
-            | "HKD"
-            | "HNL"
-            | "HRK"
-            | "HTG"
-            | "HUF"
-            | "IDR"
-            | "ILS"
-            | "IMP"
-            | "INR"
-            | "IQD"
-            | "IRR"
-            | "ISK"
-            | "JEP"
-            | "JMD"
-            | "JOD"
-            | "JPY"
-            | "KES"
-            | "KGS"
-            | "KHR"
-            | "KMF"
-            | "KPW"
-            | "KRW"
-            | "KWD"
-            | "KYD"
-            | "KZT"
-            | "LAK"
-            | "LBP"
-            | "LKR"
-            | "LRD"
-            | "LSL"
-            | "LYD"
-            | "MAD"
-            | "MDL"
-            | "MGA"
-            | "MKD"
-            | "MMK"
-            | "MNT"
-            | "MOP"
-            | "MRO"
-            | "MUR"
-            | "MVR"
-            | "MWK"
-            | "MXN"
-            | "MYR"
-            | "MZN"
-            | "NAD"
-            | "NGN"
-            | "NIO"
-            | "NOK"
-            | "NPR"
-            | "NZD"
-            | "OMR"
-            | "PAB"
-            | "PEN"
-            | "PGK"
-            | "PHP"
-            | "PKR"
-            | "PLN"
-            | "PYG"
-            | "QAR"
-            | "RON"
-            | "RSD"
-            | "RUB"
-            | "RWF"
-            | "SAR"
-            | "SBD"
-            | "SCR"
-            | "SDG"
-            | "SEK"
-            | "SGD"
-            | "SHP"
-            | "SLL"
-            | "SOS"
-            | "SPL"
-            | "SRD"
-            | "STD"
-            | "SVC"
-            | "SYP"
-            | "SZL"
-            | "THB"
-            | "TJS"
-            | "TMT"
-            | "TND"
-            | "TOP"
-            | "TRY"
-            | "TTD"
-            | "TVD"
-            | "TWD"
-            | "TZS"
-            | "UAH"
-            | "UGX"
-            | "USD"
-            | "UYU"
-            | "UZS"
-            | "VEF"
-            | "VND"
-            | "VUV"
-            | "WST"
-            | "XAF"
-            | "XCD"
-            | "XDR"
-            | "XOF"
-            | "XPF"
-            | "YER"
-            | "ZAR"
-            | "ZMW"
-            | "ZWD";
-          /**
-           * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
-           */
-          amount: string;
-        };
-        /**
-         * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-         */
-        transactionId: string;
-        /**
-         * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-         */
-        transactionRequestId: string;
-        /**
-         * The object sent in the PUT /quotes/{ID} callback.
-         */
-        quote: {
-          /**
-           * Data model for the complex type Money.
-           */
-          transferAmount: {
-            /**
-             * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-             */
-            currency:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
-            /**
-             * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
-             */
-            amount: string;
-          };
-          /**
-           * Data model for the complex type Money.
-           */
-          payeeReceiveAmount?: {
-            /**
-             * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-             */
-            currency:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
-            /**
-             * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
-             */
-            amount: string;
-          };
-          /**
-           * Data model for the complex type Money.
-           */
-          payeeFspFee?: {
-            /**
-             * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-             */
-            currency:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
-            /**
-             * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
-             */
-            amount: string;
-          };
-          /**
-           * Data model for the complex type Money.
-           */
-          payeeFspCommission?: {
-            /**
-             * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-             */
-            currency:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
-            /**
-             * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
-             */
-            amount: string;
-          };
-          /**
-           * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
-           */
-          expiration: string;
-          /**
-           * Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
-           */
-          geoCode?: {
-            /**
-             * The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
-             */
-            latitude: string;
-            /**
-             * The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
-             */
-            longitude: string;
-          };
-          /**
-           * Information for recipient (transport layer information).
-           */
-          ilpPacket: string;
-          /**
-           * Condition that must be attached to the transfer by the Payer.
-           */
-          condition: string;
-          /**
-           * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-           */
-          extensionList?: {
-            /**
-             * Number of Extension elements.
-             */
-            extension: {
-              /**
-               * Extension key.
-               */
-              key: string;
-              /**
-               * Extension value.
-               */
-              value: string;
-            }[];
-          };
-        };
-      };
-    };
-    responses: {
-      /**
-       * Accepted
-       */
-      "202": unknown;
-      /**
-       * Bad Request
-       */
-      "400": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Unauthorized
-       */
-      "401": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Forbidden
-       */
-      "403": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Not Found
-       */
-      "404": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Method Not Allowed
-       */
-      "405": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Not Acceptable
-       */
-      "406": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Not Implemented
-       */
-      "501": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Service Unavailable
-       */
-      "503": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-    };
-  };
-  /**
-   * The callback PUT /authorizations/ is used to inform the client of the
-   * result of a previously-requested authorization. The ID in the URI should
-   * contain the one that was used in the POST /authorizations/ requestBody.transactionRequestId @ OUTBOUND
-   */
-  InboundAuthorizationsIDPutResponse: {
-    parameters: {
-      path: {
-        ID: string;
-      };
-    };
-    responses: {
-      /**
-       * information about result of required (via POST) /authorization
-       */
-      "200": {
-        "application/json": {
-          /**
-           * Data model for the complex type AuthenticationInfo.
-           */
-          authenticationInfo?: {
-            /**
-             * Below are the allowed values for the enumeration AuthenticationType.
-             * - OTP - One-time password generated by the Payer FSP.
-             * - QRCODE - QR code used as One Time Password.
-             * - U2F - U2F is a new addition isolated to Thirdparty stream.
-             */
-            authentication: "OTP" | "QRCODE" | "U2F";
-            /**
-             * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
-             */
-            authenticationValue: Partial<string> &
-              Partial<string> &
-              Partial<{
-                /**
-                 * U2F challenge-response.
-                 */
-                pinValue: string;
-                /**
-                 * Sequential counter used for cloning detection. Present only for U2F authentication.
-                 */
-                counter: string;
-              }> &
-              Partial<{
-                /**
-                 * credential id: identifier of pair of keys, base64 encoded
-                 * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-                 */
-                id: string;
-                /**
-                 * raw credential id: identifier of pair of keys, base64 encoded.
-                 */
-                rawId: string;
-                /**
-                 * AuthenticatorAssertionResponse
-                 */
-                response: {
-                  /**
-                   * Authenticator data object.
-                   */
-                  authenticatorData: string;
-                  /**
-                   * JSON string with client data.
-                   */
-                  clientDataJSON: string;
-                  /**
-                   * The signature generated by the private key associated with this credential.
-                   */
-                  signature: string;
-                  /**
-                   * This field is optionally provided by the authenticator, and
-                   * represents the user.id that was supplied during registration.
-                   */
-                  userHandle?: string;
-                };
-                /**
-                 * response type, we need only the type of public-key
-                 */
-                type: "public-key";
-              }>;
-          };
-          /**
-           * Below are the allowed values for the enumeration.
-           * - ENTERED - Consumer entered the authentication value.
-           * - REJECTED - Consumer rejected the transaction.
-           * - RESEND - Consumer requested to resend the authentication value.
-           */
-          responseType: "ENTERED" | "REJECTED" | "RESEND";
-        };
-      };
       /**
        * Bad Request
        */
@@ -7083,7 +5379,8 @@ export interface operations {
     };
   };
   /**
-   * A request from a PISP to a DFSP to start the process of delegating consent
+   * The HTTP request **POST /consentRequests** is used to request a DFSP to grant access to one or more
+   * accounts owned by a customer of the DFSP for the PISP who sends the request.
    */
   CreateConsentRequest: {
     parameters: {
@@ -7107,21 +5404,19 @@ export interface operations {
          */
         consentRequestId: string;
         /**
-         * ID used to associate request with GET /accounts request.
+         * The identifier used in the **GET /accounts/**_{ID}_. Used by the DFSP to correlate an account lookup to a `consentRequest`
          */
         userId: string;
         scopes: {
           /**
-           * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-           * be Bank Account Number or anything that may expose a User's private bank
-           * account information.
+           * An address which can be used to identify the account.
            */
-          accountId: string;
+          address: string;
           actions: ("accounts.getBalance" | "accounts.transfer")[];
         }[];
         authChannels: ("WEB" | "OTP")[];
         /**
-         * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
+         * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
          */
         callbackUri: string;
       };
@@ -7438,10 +5733,340 @@ export interface operations {
     };
   };
   /**
-   * DFSP updates auth channels and/or auth uri in response to consentRequest.
+   * The HTTP request `GET /consentRequests/{ID}` is used to get information about a previously
+   * requested consent. The *{ID}* in the URI should contain the consentRequestId that was assigned to the
+   * request by the PISP when the PISP originated the request.
+   */
+  GetConsentRequestsById: {
+    parameters: {
+      header: {
+        /**
+         * The `Accept` header field indicates the version of the API the client would like the server to use.
+         */
+        Accept: string;
+      };
+    };
+    responses: {
+      /**
+       * Accepted
+       */
+      "202": unknown;
+      /**
+       * Bad Request
+       */
+      "400": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Unauthorized
+       */
+      "401": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Forbidden
+       */
+      "403": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Found
+       */
+      "404": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Method Not Allowed
+       */
+      "405": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Acceptable
+       */
+      "406": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Implemented
+       */
+      "501": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Service Unavailable
+       */
+      "503": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+    };
+  };
+  /**
+   * A DFSP uses this callback to (1) inform the PISP that the consentRequest has been accepted,
+   * and (2) communicate to the PISP which `authChannel` it should use to authenticate their user
+   * with.
    *
-   * PISP updates the consentRequest to include authorization token from their user,
-   * which the DFSP is to then verify.
+   * When a PISP requests a series of permissions from a DFSP on behalf of a DFSP’s customer, not all
+   * the permissions requested may be granted by the DFSP. Conversely, the out-of-band authorization
+   * process  may result in additional privileges being granted by the account holder to the PISP. The
+   * **PUT /consentRequests/**_{ID}_ resource returns the current state of the permissions relating to a
+   * particular authorization request.
    */
   UpdateConsentRequest: {
     parameters: {
@@ -7459,36 +6084,32 @@ export interface operations {
         | {
             scopes: {
               /**
-               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-               * be Bank Account Number or anything that may expose a User's private bank
-               * account information.
+               * An address which can be used to identify the account.
                */
-              accountId: string;
+              address: string;
               actions: ("accounts.getBalance" | "accounts.transfer")[];
             }[];
             authChannels: "WEB"[];
             /**
-             * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
+             * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
              */
             callbackUri: string;
             /**
-             * The callback uri that the pisp app should redirect to for user to complete their login.
+             * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
              */
             authUri: string;
           }
         | {
             scopes: {
               /**
-               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-               * be Bank Account Number or anything that may expose a User's private bank
-               * account information.
+               * An address which can be used to identify the account.
                */
-              accountId: string;
+              address: string;
               actions: ("accounts.getBalance" | "accounts.transfer")[];
             }[];
             authChannels: "OTP"[];
             /**
-             * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
+             * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
              */
             callbackUri?: string;
           };
@@ -7805,7 +6426,7 @@ export interface operations {
     };
   };
   /**
-   * PISP sends user's OTP token to a DFSP to verify user trusts aforementioned PISP
+   * After the user completes an out-of-band authorization with the DFSP, the PISP will receive a token which they can use to prove to the DFSP that the user trusts this PISP.
    */
   PatchConsentRequest: {
     parameters: {
@@ -7823,7 +6444,12 @@ export interface operations {
       };
     };
     requestBody: {
-      "application/json": { authToken: string };
+      "application/json": {
+        /**
+         * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+         */
+        authToken: string;
+      };
     };
     responses: {
       /**
@@ -8497,7 +7123,7 @@ export interface operations {
     };
   };
   /**
-   * DFSP sends this request to the PISP after granting consent. DFSP sends this request to an Auth service to validate a signed consent.
+   * The **POST /consents** request is used to request the creation of a consent for interactions between a PISP and the DFSP who owns the account which a PISP’s customer wants to allow the PISP access to.
    */
   PostConsents: {
     parameters: {
@@ -8526,85 +7152,103 @@ export interface operations {
             consentId: string;
             scopes: {
               /**
-               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-               * be Bank Account Number or anything that may expose a User's private bank
-               * account information.
+               * An address which can be used to identify the account.
                */
-              accountId: string;
+              address: string;
               actions: ("accounts.getBalance" | "accounts.transfer")[];
             }[];
             credential: {
               /**
                * The type of the Credential.
                * - "FIDO" - A FIDO public/private keypair
+               * - "GENERIC" - A Generic public/private keypair
                */
-              credentialType: "FIDO";
+              credentialType: "FIDO" | "GENERIC";
               /**
                * The challenge has signed but not yet verified.
                */
               status: "PENDING";
-              payload:
-                | {
-                    /**
-                     * credential id: identifier of pair of keys, base64 encoded
-                     * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-                     */
-                    id: string;
-                    /**
-                     * raw credential id: identifier of pair of keys, base64 encoded
-                     */
-                    rawId: string;
-                    /**
-                     * AuthenticatorAttestationResponse
-                     */
-                    response: {
-                      /**
-                       * JSON string with client data
-                       */
-                      clientDataJSON: string;
-                      /**
-                       * CBOR.encoded attestation object
-                       */
-                      attestationObject: string;
-                    };
-                    /**
-                     * response type, we need only the type of public-key
-                     */
-                    type: "public-key";
-                  }
-                | {
-                    /**
-                     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-                     */
-                    publicKey: string;
-                    /**
-                     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-                     */
-                    signature: string;
-                  };
+              /**
+               * A publicKey + signature of a challenge for a generic public/private keypair
+               */
+              genericPayload?: {
+                /**
+                 * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+                 */
+                publicKey: string;
+                /**
+                 * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+                 */
+                signature: string;
+              };
+              /**
+               * A data model representing a FIDO Attestation result. Derived from
+               * [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+               *
+               * The `PublicKeyCredential` interface represents the below fields with
+               * a Type of Javascript [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+               * For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
+               */
+              fidoPayload?: {
+                /**
+                 * credential id: identifier of pair of keys, base64 encoded
+                 * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+                 */
+                id: string;
+                /**
+                 * raw credential id: identifier of pair of keys, base64 encoded
+                 */
+                rawId?: string;
+                /**
+                 * AuthenticatorAttestationResponse
+                 */
+                response: {
+                  /**
+                   * JSON string with client data
+                   */
+                  clientDataJSON: string;
+                  /**
+                   * CBOR.encoded attestation object
+                   */
+                  attestationObject: string;
+                };
+                /**
+                 * response type, we need only the type of public-key
+                 */
+                type: "public-key";
+              };
             };
+            /**
+             * Allowed values for the enumeration ConsentStatus
+             * - ISSUED - The consent has been issued by the DFSP
+             * - REVOKED - The consent has been revoked
+             */
+            status: "ISSUED" | "REVOKED";
           }
         | {
             /**
-             * Common ID between the PISP and FSP for the Consent object
-             * decided by the DFSP who creates the Consent
-             * This field is REQUIRED for POST /consent.
+             * Common ID between the PISP and the Payer DFSP for the consent object. The ID
+             * should be reused for resends of the same consent. A new ID should be generated
+             * for each new consent.
              */
             consentId: string;
             /**
-             * The id of the ConsentRequest that was used to initiate the
-             * creation of this Consent.
+             * The ID given to the original consent request on which this consent is based.
              */
             consentRequestId: string;
             scopes: {
               /**
-               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-               * be Bank Account Number or anything that may expose a User's private bank
-               * account information.
+               * An address which can be used to identify the account.
                */
-              accountId: string;
+              address: string;
               actions: ("accounts.getBalance" | "accounts.transfer")[];
             }[];
+            /**
+             * Allowed values for the enumeration ConsentStatus
+             * - ISSUED - The consent has been issued by the DFSP
+             * - REVOKED - The consent has been revoked
+             */
+            status: "ISSUED" | "REVOKED";
           };
     };
     responses: {
@@ -8919,7 +7563,7 @@ export interface operations {
     };
   };
   /**
-   * The HTTP request `GET /consents/{ID}` is used to get information regarding a consent object created or requested earlier. The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`. summary: GetConsent
+   * The **GET /consents/**_{ID}_ resource allows a party to enquire after the status of a consent. The  *{ID}* used in the URI of the request should be the consent request ID which was used to identify the consent when it was created.
    */
   GetConsent: {
     parameters: {
@@ -9274,16 +7918,16 @@ export interface operations {
         | {
             credential: {
               /**
-               * The status of the Consent.
-               * - "VERIFIED" - The Consent is valid and verified.
+               * The status of the Credential.
+               * - "VERIFIED" - The Credential is valid and verified.
                */
               status: "VERIFIED";
             };
           }
         | {
             /**
-             * The status of the Consent.
-             * - "REVOKED" - The Consent is no longer valid and has been revoked.
+             * Allowed values for the enumeration ConsentStatus
+             * - REVOKED - The consent has been revoked
              */
             status: "REVOKED";
             /**
@@ -9625,13 +8269,16 @@ export interface operations {
         | {
             scopes: {
               /**
-               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-               * be Bank Account Number or anything that may expose a User's private bank
-               * account information.
+               * An address which can be used to identify the account.
                */
-              accountId: string;
+              address: string;
               actions: ("accounts.getBalance" | "accounts.transfer")[];
             }[];
+            /**
+             * Allowed values for the enumeration ConsentStatus
+             * - ISSUED - The consent has been issued by the DFSP
+             */
+            status?: "ISSUED";
             /**
              * A credential used to allow a user to prove their identity and access
              * to an account with a DFSP.
@@ -9644,63 +8291,77 @@ export interface operations {
               /**
                * The type of the Credential.
                * - "FIDO" - A FIDO public/private keypair
+               * - "GENERIC" - A Generic public/private keypair
                */
-              credentialType: "FIDO";
+              credentialType: "FIDO" | "GENERIC";
               /**
                * The challenge has signed but not yet verified.
                */
               status: "PENDING";
-              payload:
-                | {
-                    /**
-                     * credential id: identifier of pair of keys, base64 encoded
-                     * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-                     */
-                    id: string;
-                    /**
-                     * raw credential id: identifier of pair of keys, base64 encoded
-                     */
-                    rawId: string;
-                    /**
-                     * AuthenticatorAttestationResponse
-                     */
-                    response: {
-                      /**
-                       * JSON string with client data
-                       */
-                      clientDataJSON: string;
-                      /**
-                       * CBOR.encoded attestation object
-                       */
-                      attestationObject: string;
-                    };
-                    /**
-                     * response type, we need only the type of public-key
-                     */
-                    type: "public-key";
-                  }
-                | {
-                    /**
-                     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-                     */
-                    publicKey: string;
-                    /**
-                     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-                     */
-                    signature: string;
-                  };
+              /**
+               * A publicKey + signature of a challenge for a generic public/private keypair
+               */
+              genericPayload?: {
+                /**
+                 * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+                 */
+                publicKey: string;
+                /**
+                 * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+                 */
+                signature: string;
+              };
+              /**
+               * A data model representing a FIDO Attestation result. Derived from
+               * [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+               *
+               * The `PublicKeyCredential` interface represents the below fields with
+               * a Type of Javascript [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+               * For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
+               */
+              fidoPayload?: {
+                /**
+                 * credential id: identifier of pair of keys, base64 encoded
+                 * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+                 */
+                id: string;
+                /**
+                 * raw credential id: identifier of pair of keys, base64 encoded
+                 */
+                rawId?: string;
+                /**
+                 * AuthenticatorAttestationResponse
+                 */
+                response: {
+                  /**
+                   * JSON string with client data
+                   */
+                  clientDataJSON: string;
+                  /**
+                   * CBOR.encoded attestation object
+                   */
+                  attestationObject: string;
+                };
+                /**
+                 * response type, we need only the type of public-key
+                 */
+                type: "public-key";
+              };
             };
           }
         | {
             scopes: {
               /**
-               * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-               * be Bank Account Number or anything that may expose a User's private bank
-               * account information.
+               * An address which can be used to identify the account.
                */
-              accountId: string;
+              address: string;
               actions: ("accounts.getBalance" | "accounts.transfer")[];
             }[];
+            /**
+             * Allowed values for the enumeration ConsentStatus
+             * - ISSUED - The consent has been issued by the DFSP
+             */
+            status?: "ISSUED";
             /**
              * A credential used to allow a user to prove their identity and access
              * to an account with a DFSP.
@@ -9713,18 +8374,20 @@ export interface operations {
               /**
                * The type of the Credential.
                * - "FIDO" - A FIDO public/private keypair
+               * - "GENERIC" - A Generic public/private keypair
                */
-              credentialType: "FIDO";
+              credentialType: "FIDO" | "GENERIC";
               /**
                * The Credential is valid, and ready to be used by the PISP.
                */
               status: "VERIFIED";
               /**
-               * An object sent in a `PUT /consents/{ID}` request.
-               * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-               * and mostly on: https://webauthn.guide/#registration
-               * AuthenticatorAttestationResponse
-               * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
+               * A data model representing a FIDO Attestation result. Derived from
+               * [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+               *
+               * The `PublicKeyCredential` interface represents the below fields with
+               * a Type of Javascript [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+               * For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
                */
               payload: {
                 /**
@@ -9735,7 +8398,7 @@ export interface operations {
                 /**
                  * raw credential id: identifier of pair of keys, base64 encoded
                  */
-                rawId: string;
+                rawId?: string;
                 /**
                  * AuthenticatorAttestationResponse
                  */
@@ -10073,9 +8736,12 @@ export interface operations {
     };
   };
   /**
-   * The HTTP request `DELETE /consents/{ID}` is used to mark as deleted a previously created consent.
+   * Used by PISP, DFSP
    *
-   * - Called by a PISP when a user wants to remove their consent.
+   * The **DELETE /consents/**_{ID}_ request is used to request the revocation of a previously agreed consent.
+   * For tracing and auditing purposes, the switch should be sure not to delete the consent physically;
+   * instead, information relating to the consent should be marked as deleted and requests relating to the
+   * consent should not be honoured.
    */
   DeleteConsentByID: {
     parameters: {
@@ -15206,795 +13872,6 @@ export interface operations {
   /**
    * The HTTP request POST `/thirdpartyRequests/transactions` is used by a PISP to initiate a 3rd party Transaction request with a DFSP
    */
-  CreateThirdpartyTransactionRequests: {
-    parameters: {
-      header: {
-        /**
-         * The `Accept` header field indicates the version of the API the client would like the server to use.
-         */
-        Accept: string;
-        /**
-         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
-         *
-         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
-         */
-        "Content-Length"?: number;
-      };
-    };
-    requestBody: {
-      "application/json": {
-        /**
-         * Common ID between the FSPs for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
-         */
-        transactionRequestId: string;
-        /**
-         * Information about the Payee in the proposed financial transaction.
-         */
-        payee: {
-          /**
-           * Data model for the complex type PartyIdInfo.
-           */
-          partyIdInfo: {
-            /**
-             * This is a variant based on FSPIOP `PartyIdType` specification.
-             * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-             *
-             * Below are the allowed values for the enumeration.
-             * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
-             * Number, that is, the phone number) is used as reference to a participant.
-             * The MSISDN identifier should be in international format according to the
-             * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
-             * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
-             * international prefix.
-             * - EMAIL - An email is used as reference to a
-             * participant. The format of the email should be according to the informational
-             * [RFC 3696](https://tools.ietf.org/html/rfc3696).
-             * - PERSONAL_ID - A personal identifier is used as reference to a participant.
-             * Examples of personal identification are passport number, birth certificate
-             * number, and national registration number. The identifier number is added in
-             * the PartyIdentifier element. The personal identifier type is added in the
-             * PartySubIdOrType element.
-             * - BUSINESS - A specific Business (for example, an organization or a company)
-             * is used as reference to a participant. The BUSINESS identifier can be in any
-             * format. To make a transaction connected to a specific username or bill number
-             * in a Business, the PartySubIdOrType element should be used.
-             * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
-             * specific business or organization is used as reference to a Party.
-             * For referencing a specific device under a specific business or organization,
-             * use the PartySubIdOrType element.
-             * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
-             * reference to a participant. The ACCOUNT_ID identifier can be in any format,
-             * as formats can greatly differ depending on country and FSP.
-             * - IBAN - A bank account number or FSP account ID is used as reference to a
-             * participant. The IBAN identifier can consist of up to 34 alphanumeric
-             * characters and should be entered without whitespace.
-             * - ALIAS An alias is used as reference to a participant. The alias should be
-             * created in the FSP as an alternative reference to an account owner.
-             * Another example of an alias is a username in the FSP system.
-             * The ALIAS identifier can be in any format. It is also possible to use the
-             * PartySubIdOrType element for identifying an account under an Alias defined
-             * by the PartyIdentifier.
-             * - CONSENT - TBD
-             * - THIRD_PARTY_LINK - TBD
-             */
-            partyIdType:
-              | "MSISDN"
-              | "EMAIL"
-              | "PERSONAL_ID"
-              | "BUSINESS"
-              | "DEVICE"
-              | "ACCOUNT_ID"
-              | "IBAN"
-              | "ALIAS"
-              | "CONSENT"
-              | "THIRD_PARTY_LINK";
-            /**
-             * Identifier of the Party.
-             */
-            partyIdentifier: string;
-            /**
-             * Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
-             */
-            partySubIdOrType?: string;
-            /**
-             * FSP identifier.
-             */
-            fspId?: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-          /**
-           * A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
-           */
-          merchantClassificationCode?: string;
-          /**
-           * Name of the Party. Could be a real name or a nickname.
-           */
-          name?: string;
-          /**
-           * Data model for the complex type PartyPersonalInfo.
-           */
-          personalInfo?: {
-            /**
-             * Data model for the complex type PartyComplexName.
-             */
-            complexName?: {
-              /**
-               * First name of the Party (Name Type).
-               */
-              firstName?: string;
-              /**
-               * Middle name of the Party (Name Type).
-               */
-              middleName?: string;
-              /**
-               * Last name of the Party (Name Type).
-               */
-              lastName?: string;
-            };
-            /**
-             * Date of Birth of the Party.
-             */
-            dateOfBirth?: string;
-          };
-        };
-        /**
-         * Information about the Payer in the proposed financial transaction.
-         */
-        payer: {
-          /**
-           * This is a variant based on FSPIOP `PartyIdType` specification.
-           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-           *
-           * Below are the allowed values for the enumeration.
-           * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
-           * Number, that is, the phone number) is used as reference to a participant.
-           * The MSISDN identifier should be in international format according to the
-           * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
-           * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
-           * international prefix.
-           * - EMAIL - An email is used as reference to a
-           * participant. The format of the email should be according to the informational
-           * [RFC 3696](https://tools.ietf.org/html/rfc3696).
-           * - PERSONAL_ID - A personal identifier is used as reference to a participant.
-           * Examples of personal identification are passport number, birth certificate
-           * number, and national registration number. The identifier number is added in
-           * the PartyIdentifier element. The personal identifier type is added in the
-           * PartySubIdOrType element.
-           * - BUSINESS - A specific Business (for example, an organization or a company)
-           * is used as reference to a participant. The BUSINESS identifier can be in any
-           * format. To make a transaction connected to a specific username or bill number
-           * in a Business, the PartySubIdOrType element should be used.
-           * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
-           * specific business or organization is used as reference to a Party.
-           * For referencing a specific device under a specific business or organization,
-           * use the PartySubIdOrType element.
-           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
-           * reference to a participant. The ACCOUNT_ID identifier can be in any format,
-           * as formats can greatly differ depending on country and FSP.
-           * - IBAN - A bank account number or FSP account ID is used as reference to a
-           * participant. The IBAN identifier can consist of up to 34 alphanumeric
-           * characters and should be entered without whitespace.
-           * - ALIAS An alias is used as reference to a participant. The alias should be
-           * created in the FSP as an alternative reference to an account owner.
-           * Another example of an alias is a username in the FSP system.
-           * The ALIAS identifier can be in any format. It is also possible to use the
-           * PartySubIdOrType element for identifying an account under an Alias defined
-           * by the PartyIdentifier.
-           * - CONSENT - TBD
-           * - THIRD_PARTY_LINK - TBD
-           */
-          partyIdType:
-            | "MSISDN"
-            | "EMAIL"
-            | "PERSONAL_ID"
-            | "BUSINESS"
-            | "DEVICE"
-            | "ACCOUNT_ID"
-            | "IBAN"
-            | "ALIAS"
-            | "CONSENT"
-            | "THIRD_PARTY_LINK";
-          /**
-           * Identifier of the Party.
-           */
-          partyIdentifier: string;
-          /**
-           * Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
-           */
-          partySubIdOrType?: string;
-          /**
-           * FSP identifier.
-           */
-          fspId?: string;
-          /**
-           * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-           */
-          extensionList?: {
-            /**
-             * Number of Extension elements.
-             */
-            extension: {
-              /**
-               * Extension key.
-               */
-              key: string;
-              /**
-               * Extension value.
-               */
-              value: string;
-            }[];
-          };
-        };
-        /**
-         * SEND for sendAmount, RECEIVE for receiveAmount.
-         */
-        amountType: "SEND" | "RECEIVE";
-        /**
-         * Requested amount to be transferred from the Payer to Payee.
-         */
-        amount: {
-          /**
-           * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-           */
-          currency:
-            | "AED"
-            | "AFN"
-            | "ALL"
-            | "AMD"
-            | "ANG"
-            | "AOA"
-            | "ARS"
-            | "AUD"
-            | "AWG"
-            | "AZN"
-            | "BAM"
-            | "BBD"
-            | "BDT"
-            | "BGN"
-            | "BHD"
-            | "BIF"
-            | "BMD"
-            | "BND"
-            | "BOB"
-            | "BRL"
-            | "BSD"
-            | "BTN"
-            | "BWP"
-            | "BYN"
-            | "BZD"
-            | "CAD"
-            | "CDF"
-            | "CHF"
-            | "CLP"
-            | "CNY"
-            | "COP"
-            | "CRC"
-            | "CUC"
-            | "CUP"
-            | "CVE"
-            | "CZK"
-            | "DJF"
-            | "DKK"
-            | "DOP"
-            | "DZD"
-            | "EGP"
-            | "ERN"
-            | "ETB"
-            | "EUR"
-            | "FJD"
-            | "FKP"
-            | "GBP"
-            | "GEL"
-            | "GGP"
-            | "GHS"
-            | "GIP"
-            | "GMD"
-            | "GNF"
-            | "GTQ"
-            | "GYD"
-            | "HKD"
-            | "HNL"
-            | "HRK"
-            | "HTG"
-            | "HUF"
-            | "IDR"
-            | "ILS"
-            | "IMP"
-            | "INR"
-            | "IQD"
-            | "IRR"
-            | "ISK"
-            | "JEP"
-            | "JMD"
-            | "JOD"
-            | "JPY"
-            | "KES"
-            | "KGS"
-            | "KHR"
-            | "KMF"
-            | "KPW"
-            | "KRW"
-            | "KWD"
-            | "KYD"
-            | "KZT"
-            | "LAK"
-            | "LBP"
-            | "LKR"
-            | "LRD"
-            | "LSL"
-            | "LYD"
-            | "MAD"
-            | "MDL"
-            | "MGA"
-            | "MKD"
-            | "MMK"
-            | "MNT"
-            | "MOP"
-            | "MRO"
-            | "MUR"
-            | "MVR"
-            | "MWK"
-            | "MXN"
-            | "MYR"
-            | "MZN"
-            | "NAD"
-            | "NGN"
-            | "NIO"
-            | "NOK"
-            | "NPR"
-            | "NZD"
-            | "OMR"
-            | "PAB"
-            | "PEN"
-            | "PGK"
-            | "PHP"
-            | "PKR"
-            | "PLN"
-            | "PYG"
-            | "QAR"
-            | "RON"
-            | "RSD"
-            | "RUB"
-            | "RWF"
-            | "SAR"
-            | "SBD"
-            | "SCR"
-            | "SDG"
-            | "SEK"
-            | "SGD"
-            | "SHP"
-            | "SLL"
-            | "SOS"
-            | "SPL"
-            | "SRD"
-            | "STD"
-            | "SVC"
-            | "SYP"
-            | "SZL"
-            | "THB"
-            | "TJS"
-            | "TMT"
-            | "TND"
-            | "TOP"
-            | "TRY"
-            | "TTD"
-            | "TVD"
-            | "TWD"
-            | "TZS"
-            | "UAH"
-            | "UGX"
-            | "USD"
-            | "UYU"
-            | "UZS"
-            | "VEF"
-            | "VND"
-            | "VUV"
-            | "WST"
-            | "XAF"
-            | "XCD"
-            | "XDR"
-            | "XOF"
-            | "XPF"
-            | "YER"
-            | "ZAR"
-            | "ZMW"
-            | "ZWD";
-          /**
-           * The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
-           */
-          amount: string;
-        };
-        /**
-         * Type of transaction.
-         */
-        transactionType: {
-          /**
-           * Below are the allowed values for the enumeration.
-           * - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.
-           * - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.
-           * - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.
-           * - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
-           * - REFUND - Used for performing a refund of transaction.
-           */
-          scenario:
-            | "DEPOSIT"
-            | "WITHDRAWAL"
-            | "TRANSFER"
-            | "PAYMENT"
-            | "REFUND";
-          /**
-           * Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
-           */
-          subScenario?: string;
-          /**
-           * Below are the allowed values for the enumeration.
-           * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
-           * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
-           */
-          initiator: "PAYER" | "PAYEE";
-          /**
-           * Below are the allowed values for the enumeration.
-           * - CONSUMER - Consumer is the initiator of the transaction.
-           * - AGENT - Agent is the initiator of the transaction.
-           * - BUSINESS - Business is the initiator of the transaction.
-           * - DEVICE - Device is the initiator of the transaction.
-           */
-          initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-          /**
-           * Data model for the complex type Refund.
-           */
-          refundInfo?: {
-            /**
-             * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-             */
-            originalTransactionId: string;
-            /**
-             * Reason for the refund.
-             */
-            refundReason?: string;
-          };
-          /**
-           * (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
-           */
-          balanceOfPayments?: string;
-        };
-        /**
-         * Date and time until when the transaction request is valid. It can be set to get a quick failure in case the peer FSP takes too long to respond.
-         */
-        expiration: string;
-      };
-    };
-    responses: {
-      /**
-       * Accepted
-       */
-      "202": unknown;
-      /**
-       * Bad Request
-       */
-      "400": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Unauthorized
-       */
-      "401": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Forbidden
-       */
-      "403": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Not Found
-       */
-      "404": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Method Not Allowed
-       */
-      "405": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Not Acceptable
-       */
-      "406": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Not Implemented
-       */
-      "501": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /**
-       * Service Unavailable
-       */
-      "503": {
-        "application/json": {
-          /**
-           * Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             */
-            errorCode: string;
-            /**
-             * Error description string.
-             */
-            errorDescription: string;
-            /**
-             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /**
-               * Number of Extension elements.
-               */
-              extension: {
-                /**
-                 * Extension key.
-                 */
-                key: string;
-                /**
-                 * Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-    };
-  };
-  /**
-   * The HTTP request POST `/thirdpartyRequests/transactions` is used by a PISP to initiate a 3rd party Transaction request with a DFSP
-   */
   ThirdpartyRequestsTransactionsPost: {
     parameters: {
       header: {
@@ -16013,7 +13890,7 @@ export interface operations {
     requestBody: {
       "application/json": {
         /**
-         * Common ID between the FSPs for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
+         * Common ID between the PISP and the Payer DFSP for the transaction request object. The ID should be reused for resends of the same transaction request.  A new ID should be generated for each new transaction request.
          */
         transactionRequestId: string;
         /**
@@ -16465,6 +14342,10 @@ export interface operations {
           balanceOfPayments?: string;
         };
         /**
+         * A memo that will be attached to the transaction.
+         */
+        note?: string;
+        /**
          * Date and time until when the transaction request is valid. It can be set to get a quick failure in case the peer FSP takes too long to respond.
          */
         expiration: string;
@@ -16472,9 +14353,9 @@ export interface operations {
     };
     responses: {
       /**
-       * OK
+       * Accepted
        */
-      "200": unknown;
+      "202": unknown;
       /**
        * Bad Request
        */
@@ -18173,7 +16054,7 @@ export interface operations {
     };
   };
   /**
-   * The HTTP request `POST /thirdpartyRequests/authorizations` is used to request the Payer to enter the applicable credentials in the PISP system.
+   * The HTTP request **POST /thirdpartyRequests/authorizations** is used to request the validation by a customer for the transfer described in the request.
    */
   PostThirdpartyRequestsAuthorizations: {
     parameters: {
@@ -19334,9 +17215,336 @@ export interface operations {
     };
   };
   /**
-   * The callback PUT /thirdpartyRequests/authorizations/{ID} is used to inform the client of the
-   * result of a previously-requested authorization. The ID in the URI should
-   * contain the one that was used in the POST /authorizations/ requestBody.transactionRequestId @ OUTBOUND
+   * The HTTP request **GET /thirdpartyRequests/authorizations/**_{ID}_ is used to get information relating
+   * to a previously issued authorization request. The *{ID}* in the request should match the
+   * `authorizationRequestId` which was given when the authorization request was created.
+   */
+  GetThirdpartyRequestsAuthorizationsById: {
+    parameters: {
+      header: {
+        /**
+         * The `Accept` header field indicates the version of the API the client would like the server to use.
+         */
+        Accept: string;
+      };
+    };
+    responses: {
+      /**
+       * Accepted
+       */
+      "202": unknown;
+      /**
+       * Bad Request
+       */
+      "400": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Unauthorized
+       */
+      "401": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Forbidden
+       */
+      "403": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Found
+       */
+      "404": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Method Not Allowed
+       */
+      "405": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Acceptable
+       */
+      "406": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Implemented
+       */
+      "501": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Service Unavailable
+       */
+      "503": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+    };
+  };
+  /**
+   * After receiving the **POST /thirdpartyRequests/authorizations**, the PISP will present the details of the
+   * transaction to their user, and request that the client sign the `challenge` field using the credential
+   * they previously registered.
+   *
+   * The signed challenge will be sent back by the PISP in **PUT /thirdpartyRequests/authorizations/**_{ID}_:
    */
   PutThirdpartyRequestsAuthorizationsById: {
     parameters: {
@@ -19372,7 +17580,7 @@ export interface operations {
                * based mostly on: https://webauthn.guide/#authentication
                * AuthenticatorAssertionResponse
                */
-              value: {
+              fidoSignedPayload: {
                 /**
                  * credential id: identifier of pair of keys, base64 encoded
                  * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
@@ -19424,7 +17632,7 @@ export interface operations {
               /**
                * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
                */
-              value: string;
+              genericSignedPayload: string;
             };
           };
     };
@@ -20146,7 +18354,7 @@ export interface operations {
              * based mostly on: https://webauthn.guide/#authentication
              * AuthenticatorAssertionResponse
              */
-            value: {
+            fidoValue: {
               /**
                * credential id: identifier of pair of keys, base64 encoded
                * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
@@ -20202,8 +18410,333 @@ export interface operations {
             /**
              * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
              */
-            value: string;
+            genericValue: string;
           };
+    };
+    responses: {
+      /**
+       * Accepted
+       */
+      "202": unknown;
+      /**
+       * Bad Request
+       */
+      "400": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Unauthorized
+       */
+      "401": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Forbidden
+       */
+      "403": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Found
+       */
+      "404": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Method Not Allowed
+       */
+      "405": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Acceptable
+       */
+      "406": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Not Implemented
+       */
+      "501": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      /**
+       * Service Unavailable
+       */
+      "503": {
+        "application/json": {
+          /**
+           * Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             */
+            errorCode: string;
+            /**
+             * Error description string.
+             */
+            errorDescription: string;
+            /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /**
+               * Number of Extension elements.
+               */
+              extension: {
+                /**
+                 * Extension key.
+                 */
+                key: string;
+                /**
+                 * Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+    };
+  };
+  /**
+   * The HTTP request `/thirdpartyRequests/verifications/{ID}` is used to get
+   * information regarding a previously created or requested authorization. The *{ID}*
+   * in the URI should contain the verification request ID
+   */
+  GetThirdpartyRequestsVerificationsById: {
+    parameters: {
+      header: {
+        /**
+         * The `Accept` header field indicates the version of the API the client would like the server to use.
+         */
+        Accept: string;
+      };
     };
     responses: {
       /**
@@ -25366,11 +23899,9 @@ export interface components {
      */
     Name: string;
     /**
-     * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-     * be Bank Account Number or anything that may expose a User's private bank
-     * account information.
+     * An address which can be used to identify the account.
      */
-    AccountId: string;
+    AccountAddress: string;
     /**
      * Data model for the complex type Account.
      */
@@ -25384,11 +23915,9 @@ export interface components {
        */
       accountNickname: string;
       /**
-       * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-       * be Bank Account Number or anything that may expose a User's private bank
-       * account information.
+       * An address which can be used to identify the account.
        */
-      id: string;
+      address?: string;
       /**
        * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
        */
@@ -25560,7 +24089,10 @@ export interface components {
      * The object sent in a `PUT /accounts/{ID}` request.
      */
     AccountsIDPutResponse: {
-      accounts: {
+      /**
+       * Information about the accounts that the DFSP associates with the identifier sent by the PISP
+       */
+      accountList?: {
         /**
          * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
          *
@@ -25570,11 +24102,9 @@ export interface components {
          */
         accountNickname: string;
         /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
+         * An address which can be used to identify the account.
          */
-        id: string;
+        address?: string;
         /**
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
@@ -25780,272 +24310,6 @@ export interface components {
       };
     };
     /**
-     * The API data type OtpValue is a JSON String of 3 to 10 characters, consisting of digits only. Negative numbers are not allowed. One or more leading zeros are allowed.
-     */
-    OtpValue: string;
-    /**
-     * QR code used as a One Time Password.
-     */
-    QRCODE: string;
-    /**
-     * U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.
-     */
-    U2FPIN: string;
-    /**
-     * U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.
-     */
-    U2FPinValue: {
-      /**
-       * U2F challenge-response.
-       */
-      pinValue: string;
-      /**
-       * Sequential counter used for cloning detection. Present only for U2F authentication.
-       */
-      counter: string;
-    };
-    /**
-     * An object sent in a `PUT /thirdpartyRequests/authorization/{ID}` request.
-     * based mostly on: https://webauthn.guide/#authentication
-     * AuthenticatorAssertionResponse
-     */
-    FIDOPublicKeyCredentialAssertion: {
-      /**
-       * credential id: identifier of pair of keys, base64 encoded
-       * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-       */
-      id: string;
-      /**
-       * raw credential id: identifier of pair of keys, base64 encoded.
-       */
-      rawId: string;
-      /**
-       * AuthenticatorAssertionResponse
-       */
-      response: {
-        /**
-         * Authenticator data object.
-         */
-        authenticatorData: string;
-        /**
-         * JSON string with client data.
-         */
-        clientDataJSON: string;
-        /**
-         * The signature generated by the private key associated with this credential.
-         */
-        signature: string;
-        /**
-         * This field is optionally provided by the authenticator, and
-         * represents the user.id that was supplied during registration.
-         */
-        userHandle?: string;
-      };
-      /**
-       * response type, we need only the type of public-key
-       */
-      type: "public-key";
-    };
-    /**
-     * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
-     */
-    AuthenticationValue: Partial<string> &
-      Partial<string> &
-      Partial<{
-        /**
-         * U2F challenge-response.
-         */
-        pinValue: string;
-        /**
-         * Sequential counter used for cloning detection. Present only for U2F authentication.
-         */
-        counter: string;
-      }> &
-      Partial<{
-        /**
-         * credential id: identifier of pair of keys, base64 encoded
-         * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-         */
-        id: string;
-        /**
-         * raw credential id: identifier of pair of keys, base64 encoded.
-         */
-        rawId: string;
-        /**
-         * AuthenticatorAssertionResponse
-         */
-        response: {
-          /**
-           * Authenticator data object.
-           */
-          authenticatorData: string;
-          /**
-           * JSON string with client data.
-           */
-          clientDataJSON: string;
-          /**
-           * The signature generated by the private key associated with this credential.
-           */
-          signature: string;
-          /**
-           * This field is optionally provided by the authenticator, and
-           * represents the user.id that was supplied during registration.
-           */
-          userHandle?: string;
-        };
-        /**
-         * response type, we need only the type of public-key
-         */
-        type: "public-key";
-      }>;
-    /**
-     * Data model for the complex type AuthenticationInfo.
-     */
-    AuthenticationInfo: {
-      /**
-       * Below are the allowed values for the enumeration AuthenticationType.
-       * - OTP - One-time password generated by the Payer FSP.
-       * - QRCODE - QR code used as One Time Password.
-       * - U2F - U2F is a new addition isolated to Thirdparty stream.
-       */
-      authentication: "OTP" | "QRCODE" | "U2F";
-      /**
-       * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
-       */
-      authenticationValue: Partial<string> &
-        Partial<string> &
-        Partial<{
-          /**
-           * U2F challenge-response.
-           */
-          pinValue: string;
-          /**
-           * Sequential counter used for cloning detection. Present only for U2F authentication.
-           */
-          counter: string;
-        }> &
-        Partial<{
-          /**
-           * credential id: identifier of pair of keys, base64 encoded
-           * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-           */
-          id: string;
-          /**
-           * raw credential id: identifier of pair of keys, base64 encoded.
-           */
-          rawId: string;
-          /**
-           * AuthenticatorAssertionResponse
-           */
-          response: {
-            /**
-             * Authenticator data object.
-             */
-            authenticatorData: string;
-            /**
-             * JSON string with client data.
-             */
-            clientDataJSON: string;
-            /**
-             * The signature generated by the private key associated with this credential.
-             */
-            signature: string;
-            /**
-             * This field is optionally provided by the authenticator, and
-             * represents the user.id that was supplied during registration.
-             */
-            userHandle?: string;
-          };
-          /**
-           * response type, we need only the type of public-key
-           */
-          type: "public-key";
-        }>;
-    };
-    /**
-     * Below are the allowed values for the enumeration.
-     * - ENTERED - Consumer entered the authentication value.
-     * - REJECTED - Consumer rejected the transaction.
-     * - RESEND - Consumer requested to resend the authentication value.
-     */
-    AuthorizationResponse: "ENTERED" | "REJECTED" | "RESEND";
-    /**
-     * The object sent in the PUT /authorizations/{ID} callback.
-     */
-    AuthorizationsIDPutResponse: {
-      /**
-       * Data model for the complex type AuthenticationInfo.
-       */
-      authenticationInfo?: {
-        /**
-         * Below are the allowed values for the enumeration AuthenticationType.
-         * - OTP - One-time password generated by the Payer FSP.
-         * - QRCODE - QR code used as One Time Password.
-         * - U2F - U2F is a new addition isolated to Thirdparty stream.
-         */
-        authentication: "OTP" | "QRCODE" | "U2F";
-        /**
-         * Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
-         */
-        authenticationValue: Partial<string> &
-          Partial<string> &
-          Partial<{
-            /**
-             * U2F challenge-response.
-             */
-            pinValue: string;
-            /**
-             * Sequential counter used for cloning detection. Present only for U2F authentication.
-             */
-            counter: string;
-          }> &
-          Partial<{
-            /**
-             * credential id: identifier of pair of keys, base64 encoded
-             * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-             */
-            id: string;
-            /**
-             * raw credential id: identifier of pair of keys, base64 encoded.
-             */
-            rawId: string;
-            /**
-             * AuthenticatorAssertionResponse
-             */
-            response: {
-              /**
-               * Authenticator data object.
-               */
-              authenticatorData: string;
-              /**
-               * JSON string with client data.
-               */
-              clientDataJSON: string;
-              /**
-               * The signature generated by the private key associated with this credential.
-               */
-              signature: string;
-              /**
-               * This field is optionally provided by the authenticator, and
-               * represents the user.id that was supplied during registration.
-               */
-              userHandle?: string;
-            };
-            /**
-             * response type, we need only the type of public-key
-             */
-            type: "public-key";
-          }>;
-      };
-      /**
-       * Below are the allowed values for the enumeration.
-       * - ENTERED - Consumer entered the authentication value.
-       * - REJECTED - Consumer rejected the transaction.
-       * - RESEND - Consumer requested to resend the authentication value.
-       */
-      responseType: "ENTERED" | "REJECTED" | "RESEND";
-    };
-    /**
      * The scopes requested for a ConsentRequest.
      * - "accounts.getBalance" - Get the balance of a given account.
      * - "accounts.transfer" - Initiate a transfer from an account.
@@ -26056,11 +24320,9 @@ export interface components {
      */
     Scope: {
       /**
-       * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-       * be Bank Account Number or anything that may expose a User's private bank
-       * account information.
+       * An address which can be used to identify the account.
        */
-      accountId: string;
+      address: string;
       actions: ("accounts.getBalance" | "accounts.transfer")[];
     };
     /**
@@ -26070,6 +24332,10 @@ export interface components {
      */
     ConsentRequestChannelType: "WEB" | "OTP";
     /**
+     * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+     */
+    Uri: string;
+    /**
      * The object sent in a `POST /consentRequests` request.
      */
     ConsentRequestsPostRequest: {
@@ -26078,21 +24344,19 @@ export interface components {
        */
       consentRequestId: string;
       /**
-       * ID used to associate request with GET /accounts request.
+       * The identifier used in the **GET /accounts/**_{ID}_. Used by the DFSP to correlate an account lookup to a `consentRequest`
        */
       userId: string;
       scopes: {
         /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
+         * An address which can be used to identify the account.
          */
-        accountId: string;
+        address: string;
         actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
       authChannels: ("WEB" | "OTP")[];
       /**
-       * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
+       * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
        */
       callbackUri: string;
     };
@@ -26111,20 +24375,18 @@ export interface components {
     ConsentRequestsIDPutResponseWeb: {
       scopes: {
         /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
+         * An address which can be used to identify the account.
          */
-        accountId: string;
+        address: string;
         actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
       authChannels: "WEB"[];
       /**
-       * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
+       * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
        */
       callbackUri: string;
       /**
-       * The callback uri that the pisp app should redirect to for user to complete their login.
+       * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
        */
       authUri: string;
     };
@@ -26140,34 +24402,56 @@ export interface components {
     ConsentRequestsIDPutResponseOTP: {
       scopes: {
         /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
+         * An address which can be used to identify the account.
          */
-        accountId: string;
+        address: string;
         actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
       authChannels: "OTP"[];
       /**
-       * The callback uri that the user will be redirected to after completing the out of band WEB authentication with the DFSP. Used to allow the DFSP to whitelist the PISP's url ahead of time.
+       * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
        */
       callbackUri?: string;
     };
     /**
+     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+     */
+    BinaryString: string;
+    /**
      * The object sent in a `PATCH /consentRequests/{ID}` request.
      */
-    ConsentRequestsIDPatchRequest: { authToken: string };
+    ConsentRequestsIDPatchRequest: {
+      /**
+       * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+       */
+      authToken: string;
+    };
     /**
      * The type of the Credential.
      * - "FIDO" - A FIDO public/private keypair
+     * - "GENERIC" - A Generic public/private keypair
      */
-    CredentialType: "FIDO";
+    CredentialType: "FIDO" | "GENERIC";
     /**
-     * An object sent in a `PUT /consents/{ID}` request.
-     * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-     * and mostly on: https://webauthn.guide/#registration
-     * AuthenticatorAttestationResponse
-     * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
+     * A publicKey + signature of a challenge for a generic public/private keypair
+     */
+    GenericCredential: {
+      /**
+       * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+       */
+      publicKey: string;
+      /**
+       * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+       */
+      signature: string;
+    };
+    /**
+     * A data model representing a FIDO Attestation result. Derived from
+     * [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+     *
+     * The `PublicKeyCredential` interface represents the below fields with
+     * a Type of Javascript [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+     * For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
      */
     FIDOPublicKeyCredentialAttestation: {
       /**
@@ -26178,7 +24462,7 @@ export interface components {
       /**
        * raw credential id: identifier of pair of keys, base64 encoded
        */
-      rawId: string;
+      rawId?: string;
       /**
        * AuthenticatorAttestationResponse
        */
@@ -26198,23 +24482,6 @@ export interface components {
       type: "public-key";
     };
     /**
-     * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-     */
-    BinaryString: string;
-    /**
-     * A publicKey + signature of a challenge for a generic public/private keypair
-     */
-    GenericCredential: {
-      /**
-       * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-       */
-      publicKey: string;
-      /**
-       * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-       */
-      signature: string;
-    };
-    /**
      * A credential used to allow a user to prove their identity and access
      * to an account with a DFSP.
      *
@@ -26226,52 +24493,69 @@ export interface components {
       /**
        * The type of the Credential.
        * - "FIDO" - A FIDO public/private keypair
+       * - "GENERIC" - A Generic public/private keypair
        */
-      credentialType: "FIDO";
+      credentialType: "FIDO" | "GENERIC";
       /**
        * The challenge has signed but not yet verified.
        */
       status: "PENDING";
-      payload:
-        | {
-            /**
-             * credential id: identifier of pair of keys, base64 encoded
-             * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-             */
-            id: string;
-            /**
-             * raw credential id: identifier of pair of keys, base64 encoded
-             */
-            rawId: string;
-            /**
-             * AuthenticatorAttestationResponse
-             */
-            response: {
-              /**
-               * JSON string with client data
-               */
-              clientDataJSON: string;
-              /**
-               * CBOR.encoded attestation object
-               */
-              attestationObject: string;
-            };
-            /**
-             * response type, we need only the type of public-key
-             */
-            type: "public-key";
-          }
-        | {
-            /**
-             * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-             */
-            publicKey: string;
-            /**
-             * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-             */
-            signature: string;
-          };
+      /**
+       * A publicKey + signature of a challenge for a generic public/private keypair
+       */
+      genericPayload?: {
+        /**
+         * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+         */
+        publicKey: string;
+        /**
+         * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+         */
+        signature: string;
+      };
+      /**
+       * A data model representing a FIDO Attestation result. Derived from
+       * [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+       *
+       * The `PublicKeyCredential` interface represents the below fields with
+       * a Type of Javascript [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+       * For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
+       */
+      fidoPayload?: {
+        /**
+         * credential id: identifier of pair of keys, base64 encoded
+         * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+         */
+        id: string;
+        /**
+         * raw credential id: identifier of pair of keys, base64 encoded
+         */
+        rawId?: string;
+        /**
+         * AuthenticatorAttestationResponse
+         */
+        response: {
+          /**
+           * JSON string with client data
+           */
+          clientDataJSON: string;
+          /**
+           * CBOR.encoded attestation object
+           */
+          attestationObject: string;
+        };
+        /**
+         * response type, we need only the type of public-key
+         */
+        type: "public-key";
+      };
     };
+    /**
+     * Allowed values for the enumeration ConsentStatus
+     * - ISSUED - The consent has been issued by the DFSP
+     * - REVOKED - The consent has been revoked
+     */
+    ConsentStatus: "ISSUED" | "REVOKED";
     /**
      * The object sent in a `POST /consents` request to AUTH-SERVICE by DFSP to store registered consent with PublicKey
      * and whatever needed to perform authorization validation later
@@ -26286,89 +24570,112 @@ export interface components {
       consentId: string;
       scopes: {
         /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
+         * An address which can be used to identify the account.
          */
-        accountId: string;
+        address: string;
         actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
       credential: {
         /**
          * The type of the Credential.
          * - "FIDO" - A FIDO public/private keypair
+         * - "GENERIC" - A Generic public/private keypair
          */
-        credentialType: "FIDO";
+        credentialType: "FIDO" | "GENERIC";
         /**
          * The challenge has signed but not yet verified.
          */
         status: "PENDING";
-        payload:
-          | {
-              /**
-               * credential id: identifier of pair of keys, base64 encoded
-               * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-               */
-              id: string;
-              /**
-               * raw credential id: identifier of pair of keys, base64 encoded
-               */
-              rawId: string;
-              /**
-               * AuthenticatorAttestationResponse
-               */
-              response: {
-                /**
-                 * JSON string with client data
-                 */
-                clientDataJSON: string;
-                /**
-                 * CBOR.encoded attestation object
-                 */
-                attestationObject: string;
-              };
-              /**
-               * response type, we need only the type of public-key
-               */
-              type: "public-key";
-            }
-          | {
-              /**
-               * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-               */
-              publicKey: string;
-              /**
-               * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-               */
-              signature: string;
-            };
+        /**
+         * A publicKey + signature of a challenge for a generic public/private keypair
+         */
+        genericPayload?: {
+          /**
+           * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+           */
+          publicKey: string;
+          /**
+           * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+           */
+          signature: string;
+        };
+        /**
+         * A data model representing a FIDO Attestation result. Derived from
+         * [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+         *
+         * The `PublicKeyCredential` interface represents the below fields with
+         * a Type of Javascript [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+         * For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
+         */
+        fidoPayload?: {
+          /**
+           * credential id: identifier of pair of keys, base64 encoded
+           * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+           */
+          id: string;
+          /**
+           * raw credential id: identifier of pair of keys, base64 encoded
+           */
+          rawId?: string;
+          /**
+           * AuthenticatorAttestationResponse
+           */
+          response: {
+            /**
+             * JSON string with client data
+             */
+            clientDataJSON: string;
+            /**
+             * CBOR.encoded attestation object
+             */
+            attestationObject: string;
+          };
+          /**
+           * response type, we need only the type of public-key
+           */
+          type: "public-key";
+        };
       };
+      /**
+       * Allowed values for the enumeration ConsentStatus
+       * - ISSUED - The consent has been issued by the DFSP
+       * - REVOKED - The consent has been revoked
+       */
+      status: "ISSUED" | "REVOKED";
     };
     /**
      * The object sent in a `POST /consents` request to PISP by DFSP to ask for delivering the credential object.
      */
     ConsentsPostRequestPISP: {
       /**
-       * Common ID between the PISP and FSP for the Consent object
-       * decided by the DFSP who creates the Consent
-       * This field is REQUIRED for POST /consent.
+       * Common ID between the PISP and the Payer DFSP for the consent object. The ID
+       * should be reused for resends of the same consent. A new ID should be generated
+       * for each new consent.
        */
       consentId: string;
       /**
-       * The id of the ConsentRequest that was used to initiate the
-       * creation of this Consent.
+       * The ID given to the original consent request on which this consent is based.
        */
       consentRequestId: string;
       scopes: {
         /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
+         * An address which can be used to identify the account.
          */
-        accountId: string;
+        address: string;
         actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
+      /**
+       * Allowed values for the enumeration ConsentStatus
+       * - ISSUED - The consent has been issued by the DFSP
+       * - REVOKED - The consent has been revoked
+       */
+      status: "ISSUED" | "REVOKED";
     };
+    /**
+     * Allowed values for the enumeration ConsentStatus
+     * - ISSUED - The consent has been issued by the DFSP
+     */
+    ConsentStatusIssued: "ISSUED";
     /**
      * The HTTP request `PUT /consents/{ID}` is used by the PISP to update a Consent with a signed challenge and register a credential.
      * Called by a `PISP` to after signing a challenge. Sent to a DFSP for verification.
@@ -26376,13 +24683,16 @@ export interface components {
     ConsentsIDPutResponseSigned: {
       scopes: {
         /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
+         * An address which can be used to identify the account.
          */
-        accountId: string;
+        address: string;
         actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
+      /**
+       * Allowed values for the enumeration ConsentStatus
+       * - ISSUED - The consent has been issued by the DFSP
+       */
+      status?: "ISSUED";
       /**
        * A credential used to allow a user to prove their identity and access
        * to an account with a DFSP.
@@ -26395,51 +24705,62 @@ export interface components {
         /**
          * The type of the Credential.
          * - "FIDO" - A FIDO public/private keypair
+         * - "GENERIC" - A Generic public/private keypair
          */
-        credentialType: "FIDO";
+        credentialType: "FIDO" | "GENERIC";
         /**
          * The challenge has signed but not yet verified.
          */
         status: "PENDING";
-        payload:
-          | {
-              /**
-               * credential id: identifier of pair of keys, base64 encoded
-               * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-               */
-              id: string;
-              /**
-               * raw credential id: identifier of pair of keys, base64 encoded
-               */
-              rawId: string;
-              /**
-               * AuthenticatorAttestationResponse
-               */
-              response: {
-                /**
-                 * JSON string with client data
-                 */
-                clientDataJSON: string;
-                /**
-                 * CBOR.encoded attestation object
-                 */
-                attestationObject: string;
-              };
-              /**
-               * response type, we need only the type of public-key
-               */
-              type: "public-key";
-            }
-          | {
-              /**
-               * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-               */
-              publicKey: string;
-              /**
-               * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-               */
-              signature: string;
-            };
+        /**
+         * A publicKey + signature of a challenge for a generic public/private keypair
+         */
+        genericPayload?: {
+          /**
+           * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+           */
+          publicKey: string;
+          /**
+           * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
+           */
+          signature: string;
+        };
+        /**
+         * A data model representing a FIDO Attestation result. Derived from
+         * [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+         *
+         * The `PublicKeyCredential` interface represents the below fields with
+         * a Type of Javascript [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+         * For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
+         */
+        fidoPayload?: {
+          /**
+           * credential id: identifier of pair of keys, base64 encoded
+           * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+           */
+          id: string;
+          /**
+           * raw credential id: identifier of pair of keys, base64 encoded
+           */
+          rawId?: string;
+          /**
+           * AuthenticatorAttestationResponse
+           */
+          response: {
+            /**
+             * JSON string with client data
+             */
+            clientDataJSON: string;
+            /**
+             * CBOR.encoded attestation object
+             */
+            attestationObject: string;
+          };
+          /**
+           * response type, we need only the type of public-key
+           */
+          type: "public-key";
+        };
       };
     };
     /**
@@ -26454,18 +24775,20 @@ export interface components {
       /**
        * The type of the Credential.
        * - "FIDO" - A FIDO public/private keypair
+       * - "GENERIC" - A Generic public/private keypair
        */
-      credentialType: "FIDO";
+      credentialType: "FIDO" | "GENERIC";
       /**
        * The Credential is valid, and ready to be used by the PISP.
        */
       status: "VERIFIED";
       /**
-       * An object sent in a `PUT /consents/{ID}` request.
-       * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-       * and mostly on: https://webauthn.guide/#registration
-       * AuthenticatorAttestationResponse
-       * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
+       * A data model representing a FIDO Attestation result. Derived from
+       * [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+       *
+       * The `PublicKeyCredential` interface represents the below fields with
+       * a Type of Javascript [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+       * For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
        */
       payload: {
         /**
@@ -26476,7 +24799,7 @@ export interface components {
         /**
          * raw credential id: identifier of pair of keys, base64 encoded
          */
-        rawId: string;
+        rawId?: string;
         /**
          * AuthenticatorAttestationResponse
          */
@@ -26503,13 +24826,16 @@ export interface components {
     ConsentsIDPutResponseVerified: {
       scopes: {
         /**
-         * A long-lived unique account identifier provided by the DFSP. This MUST NOT
-         * be Bank Account Number or anything that may expose a User's private bank
-         * account information.
+         * An address which can be used to identify the account.
          */
-        accountId: string;
+        address: string;
         actions: ("accounts.getBalance" | "accounts.transfer")[];
       }[];
+      /**
+       * Allowed values for the enumeration ConsentStatus
+       * - ISSUED - The consent has been issued by the DFSP
+       */
+      status?: "ISSUED";
       /**
        * A credential used to allow a user to prove their identity and access
        * to an account with a DFSP.
@@ -26522,18 +24848,20 @@ export interface components {
         /**
          * The type of the Credential.
          * - "FIDO" - A FIDO public/private keypair
+         * - "GENERIC" - A Generic public/private keypair
          */
-        credentialType: "FIDO";
+        credentialType: "FIDO" | "GENERIC";
         /**
          * The Credential is valid, and ready to be used by the PISP.
          */
         status: "VERIFIED";
         /**
-         * An object sent in a `PUT /consents/{ID}` request.
-         * Based on https://w3c.github.io/webauthn/#iface-pkcredential
-         * and mostly on: https://webauthn.guide/#registration
-         * AuthenticatorAttestationResponse
-         * https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-attestationobject
+         * A data model representing a FIDO Attestation result. Derived from
+         * [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
+         *
+         * The `PublicKeyCredential` interface represents the below fields with
+         * a Type of Javascript [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
+         * For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
          */
         payload: {
           /**
@@ -26544,7 +24872,7 @@ export interface components {
           /**
            * raw credential id: identifier of pair of keys, base64 encoded
            */
-          rawId: string;
+          rawId?: string;
           /**
            * AuthenticatorAttestationResponse
            */
@@ -26566,10 +24894,10 @@ export interface components {
       };
     };
     /**
-     * The status of the Consent.
-     * - "VERIFIED" - The Consent is valid and verified.
+     * The status of the Credential.
+     * - "VERIFIED" - The Credential is valid and verified.
      */
-    ConsentStatusTypeVerified: "VERIFIED";
+    CredentialStatusVerified: "VERIFIED";
     /**
      * PATCH /consents/{ID} request object.
      *
@@ -26579,17 +24907,17 @@ export interface components {
     ConsentsIDPatchResponseVerified: {
       credential: {
         /**
-         * The status of the Consent.
-         * - "VERIFIED" - The Consent is valid and verified.
+         * The status of the Credential.
+         * - "VERIFIED" - The Credential is valid and verified.
          */
         status: "VERIFIED";
       };
     };
     /**
-     * The status of the Consent.
-     * - "REVOKED" - The Consent is no longer valid and has been revoked.
+     * Allowed values for the enumeration ConsentStatus
+     * - REVOKED - The consent has been revoked
      */
-    ConsentStatusTypeRevoked: "REVOKED";
+    ConsentStatusRevoked: "REVOKED";
     /**
      * PATCH /consents/{ID} request object.
      *
@@ -26598,8 +24926,8 @@ export interface components {
      */
     ConsentsIDPatchResponseRevoked: {
       /**
-       * The status of the Consent.
-       * - "REVOKED" - The Consent is no longer valid and has been revoked.
+       * Allowed values for the enumeration ConsentStatus
+       * - REVOKED - The consent has been revoked
        */
       status: "REVOKED";
       /**
@@ -26824,7 +25152,7 @@ export interface components {
      */
     ThirdpartyRequestsTransactionsPostRequest: {
       /**
-       * Common ID between the FSPs for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
+       * Common ID between the PISP and the Payer DFSP for the transaction request object. The ID should be reused for resends of the same transaction request.  A new ID should be generated for each new transaction request.
        */
       transactionRequestId: string;
       /**
@@ -27270,6 +25598,10 @@ export interface components {
          */
         balanceOfPayments?: string;
       };
+      /**
+       * A memo that will be attached to the transaction.
+       */
+      note?: string;
       /**
        * Date and time until when the transaction request is valid. It can be set to get a quick failure in case the peer FSP takes too long to respond.
        */
@@ -28138,6 +26470,48 @@ export interface components {
      */
     SignedPayloadTypeFIDO: "FIDO";
     /**
+     * An object sent in a `PUT /thirdpartyRequests/authorization/{ID}` request.
+     * based mostly on: https://webauthn.guide/#authentication
+     * AuthenticatorAssertionResponse
+     */
+    FIDOPublicKeyCredentialAssertion: {
+      /**
+       * credential id: identifier of pair of keys, base64 encoded
+       * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+       */
+      id: string;
+      /**
+       * raw credential id: identifier of pair of keys, base64 encoded.
+       */
+      rawId: string;
+      /**
+       * AuthenticatorAssertionResponse
+       */
+      response: {
+        /**
+         * Authenticator data object.
+         */
+        authenticatorData: string;
+        /**
+         * JSON string with client data.
+         */
+        clientDataJSON: string;
+        /**
+         * The signature generated by the private key associated with this credential.
+         */
+        signature: string;
+        /**
+         * This field is optionally provided by the authenticator, and
+         * represents the user.id that was supplied during registration.
+         */
+        userHandle?: string;
+      };
+      /**
+       * response type, we need only the type of public-key
+       */
+      type: "public-key";
+    };
+    /**
      * The object sent in the PUT /thirdpartyRequests/authorizations/{ID} callback.
      */
     ThirdpartyRequestsAuthorizationsIDPutResponseFIDO: {
@@ -28155,7 +26529,7 @@ export interface components {
          * based mostly on: https://webauthn.guide/#authentication
          * AuthenticatorAssertionResponse
          */
-        value: {
+        fidoSignedPayload: {
           /**
            * credential id: identifier of pair of keys, base64 encoded
            * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
@@ -28214,7 +26588,7 @@ export interface components {
         /**
          * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
          */
-        value: string;
+        genericSignedPayload: string;
       };
     };
     /**
@@ -28240,7 +26614,7 @@ export interface components {
        * based mostly on: https://webauthn.guide/#authentication
        * AuthenticatorAssertionResponse
        */
-      value: {
+      fidoValue: {
         /**
          * credential id: identifier of pair of keys, base64 encoded
          * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
@@ -28299,7 +26673,7 @@ export interface components {
       /**
        * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
        */
-      value: string;
+      genericValue: string;
     };
     /**
      * The object sent in the PUT /thirdpartyRequests/verifications/{ID} request.

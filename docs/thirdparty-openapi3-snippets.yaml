@@ -7456,8 +7456,7 @@ paths:
       operationId: GetThirdpartyRequestsVerificationsById
       summary: GetThirdpartyRequestsVerificationsById
       description: >
-        The HTTP request **/thirdpartyRequests/verifications/**_{ID}_ is used to
-        get
+        The HTTP request `/thirdpartyRequests/verifications/{ID}` is used to get
 
         information regarding a previously created or requested authorization.
         The *{ID}*
