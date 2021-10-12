@@ -16,11 +16,11 @@ properties:
       the signed challenge against.
   signedPayloadType:
     $ref: ./SignedPayloadTypeGeneric.yaml
-  value:
+  genericValue:
     $ref: ./BinaryString.yaml
 required:
   - verificationRequestId
   - challenge
   - consentId
   - signedPayloadType
-  - value
+  - genericValue
