@@ -10,6 +10,11 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-URI.yaml
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 post:
+  operationId: ThirdpartyRequestsTransactionsPost
+  summary: ThirdpartyRequestsTransactionsPost
+  description: The HTTP request POST `/thirdpartyRequests/transactions` is used by a PISP to initiate a 3rd party Transaction request with a DFSP
+  tags:
+    - thirdpartyRequests
   parameters:
     #Headers
     - $ref: ../components/parameters/Accept.yaml
@@ -21,6 +26,7 @@ post:
       application/json:
         schema:
           $ref: ../components/schemas/ThirdpartyRequestsTransactionsPostRequest.yaml
+        # TODO: update example
         example:
           transactionRequestId: '8d34f91d-d078-4077-8263-2c047876fcf6'
           payee:
@@ -60,9 +66,3 @@ post:
       $ref: ../components/responses/501.yaml
     503:
       $ref: ../components/responses/503.yaml
-  operationId: CreateThirdpartyTransactionRequests
-  summary: CreateThirdpartyTransactionRequests
-  description: The HTTP request POST `/thirdpartyRequests/transactions` is used by a PISP to initiate a 3rd party Transaction request with a DFSP
-  tags:
-    - thirdpartyRequests
-    - sampled

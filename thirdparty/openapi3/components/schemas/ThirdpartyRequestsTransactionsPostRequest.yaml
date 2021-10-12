@@ -6,9 +6,9 @@ properties:
     allOf:
       - $ref: ./CorrelationId.yaml
     description: >
-      Common ID between the FSPs for the transaction request object. The ID
-      should be reused for resends of the same transaction request. A new ID
-      should be generated for each new transaction request.
+      Common ID between the PISP and the Payer DFSP for the transaction request object.
+      The ID should be reused for resends of the same transaction request. 
+      A new ID should be generated for each new transaction request.
   payee:
     allOf:
       - $ref: ./Party.yaml
@@ -29,6 +29,11 @@ properties:
     allOf:
       - $ref: ./TransactionType.yaml
     description: Type of transaction.
+  note:
+    type: string
+    minLength: 1
+    maxLength: 256
+    description: A memo that will be attached to the transaction.
   expiration:
     type: string
     description: >

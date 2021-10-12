@@ -4,6 +4,8 @@ description: The object sent in a `PUT /services/{ServiceType}` request.
 properties:
   providers:
     type: array
+    minLength: 0
+    maxLength: 256
     items:
       $ref: ./FspId.yaml
 required:

@@ -94,8 +94,6 @@ paths:
     $ref: paths/services_ServiceType_error.yaml
   /thirdpartyRequests/transactions:
     $ref: paths/thirdpartyRequests_transactions.yaml
-  /thirdpartyRequests/transactions-tsa:
-    $ref: paths/thirdpartyRequests_transactions_tsa.yaml
   /thirdpartyRequests/transactions/{ID}:
     $ref: paths/thirdpartyRequests_transactions_ID.yaml
   /thirdpartyRequests/transactions/{ID}/error:
