@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.1](https://github.com/mojaloop/api-snippets/compare/v13.0.0...v13.0.1) (2021-10-12)
+
+
+### Maintenance
+
+* **deps-dev:** bump @redocly/openapi-cli ([#114](https://github.com/mojaloop/api-snippets/issues/114)) ([3c71545](https://github.com/mojaloop/api-snippets/commit/3c71545b41315f09690443fd627435037d12f477))
+
 ## [13.0.0](https://github.com/mojaloop/api-snippets/compare/v12.8.1...v13.0.0) (2021-10-12)
 
 
