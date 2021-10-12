@@ -31,7 +31,11 @@ export namespace Schemas {
   export type ConsentsPostRequestPISP = components['schemas']['ConsentsPostRequestPISP']
   export type ConsentStatusRevoked = components['schemas']['ConsentStatusRevoked']
   export type ConsentStatusIssued = components['schemas']['ConsentStatusIssued']
+  export type ConsentStatus = ConsentStatusRevoked | ConsentStatusIssued
   export type CorrelationId = components['schemas']['CorrelationId']
+  export type CredentialStatusVerified = components['schemas']['CredentialStatusVerified']
+  export type CredentialStatusPending = components['schemas']['CredentialStatusPending']
+  export type CredentialStatus = CredentialStatusVerified | CredentialStatusPending
   export type CredentialType = components['schemas']['CredentialType']
   export type Currency = components['schemas']['Currency']
   export type DateOfBirth = components['schemas']['DateOfBirth']

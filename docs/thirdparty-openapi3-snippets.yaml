@@ -2980,7 +2980,7 @@ paths:
 
                     and whatever needed to perform authorization validation
                     later
-                  properties: &ref_117
+                  properties: &ref_118
                     consentId:
                       allOf:
                         - title: CorrelationId
@@ -3052,17 +3052,22 @@ paths:
                                 - "FIDO" - A FIDO public/private keypair
                                 - "GENERIC" - A Generic public/private keypair
                             status:
+                              title: CredentialStatus
                               type: string
-                              enum:
+                              enum: &ref_115
                                 - PENDING
-                              description: The challenge has signed but not yet verified.
+                              description: >
+                                The status of the Credential.
+
+                                - "PENDING" - The credential has been created,
+                                but has not been verified
                             genericPayload:
                               title: GenericCredential
                               type: object
                               description: >
                                 A publicKey + signature of a challenge for a
                                 generic public/private keypair
-                              properties: &ref_115
+                              properties: &ref_116
                                 publicKey:
                                   type: string
                                   pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
@@ -3087,7 +3092,7 @@ paths:
                                     a multiple of 4 characters. The length
                                     restriction indicates the allowed number of
                                     characters.
-                              required: &ref_116
+                              required: &ref_117
                                 - publicKey
                                 - signature
                               additionalProperties: false
@@ -3174,7 +3179,7 @@ paths:
                         Allowed values for the enumeration ConsentStatus
                         - ISSUED - The consent has been issued by the DFSP
                         - REVOKED - The consent has been revoked
-                  required: &ref_118
+                  required: &ref_119
                     - consentId
                     - scopes
                     - credential
@@ -3185,7 +3190,7 @@ paths:
                   description: >-
                     The object sent in a `POST /consents` request to PISP by
                     DFSP to ask for delivering the credential object.
-                  properties: &ref_119
+                  properties: &ref_120
                     consentId:
                       allOf:
                         - title: CorrelationId
@@ -3254,7 +3259,7 @@ paths:
                         Allowed values for the enumeration ConsentStatus
                         - ISSUED - The consent has been issued by the DFSP
                         - REVOKED - The consent has been revoked
-                  required: &ref_120
+                  required: &ref_121
                     - consentId
                     - consentRequestId
                     - scopes
@@ -3474,21 +3479,21 @@ paths:
                     Used in the "Register Credential" part of the Account
                     linking flow.
                   type: object
-                  properties: &ref_128
+                  properties: &ref_129
                     credential:
                       type: object
                       properties:
                         status:
                           title: CredentialStatus
                           type: string
-                          enum: &ref_127
+                          enum: &ref_128
                             - VERIFIED
                           description: |
                             The status of the Credential.
                             - "VERIFIED" - The Credential is valid and verified.
                       required:
                         - status
-                  required: &ref_129
+                  required: &ref_130
                     - credential
                 - title: ConsentsIDPatchResponseRevoked
                   description: |
@@ -3497,11 +3502,11 @@ paths:
                     Sent to both the PISP and DFSP when a consent is revoked.
                     Used in the "Unlinking" part of the Account Unlinking flow.
                   type: object
-                  properties: &ref_131
+                  properties: &ref_132
                     status:
                       title: ConsentStatus
                       type: string
-                      enum: &ref_130
+                      enum: &ref_131
                         - REVOKED
                       description: |-
                         Allowed values for the enumeration ConsentStatus
@@ -3524,7 +3529,7 @@ paths:
                         "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time
                         zone, same as UTC).
                       example: '2016-05-24T08:38:08.699-04:00'
-                  required: &ref_132
+                  required: &ref_133
                     - status
                     - revokedAt
       parameters:
@@ -3612,7 +3617,7 @@ paths:
 
                     Called by a `PISP` to after signing a challenge. Sent to a
                     DFSP for verification.
-                  properties: &ref_121
+                  properties: &ref_122
                     scopes:
                       type: array
                       items:
@@ -3654,7 +3659,7 @@ paths:
                       properties: *ref_53
                       required: *ref_54
                       additionalProperties: false
-                  required: &ref_122
+                  required: &ref_123
                     - scopes
                     - credential
                   additionalProperties: false
@@ -3667,7 +3672,7 @@ paths:
 
                     Called by a `auth-service` to notify a DFSP that a
                     credential has been verified and registered.
-                  properties: &ref_125
+                  properties: &ref_126
                     scopes:
                       type: array
                       items:
@@ -3705,7 +3710,7 @@ paths:
                         ever be VERIFIED when
 
                         updating a credential.
-                      properties: &ref_123
+                      properties: &ref_124
                         credentialType:
                           title: CredentialType
                           type: string
@@ -3743,12 +3748,12 @@ paths:
                           properties: *ref_57
                           required: *ref_58
                           additionalProperties: false
-                      required: &ref_124
+                      required: &ref_125
                         - credentialType
                         - status
                         - payload
                       additionalProperties: false
-                  required: &ref_126
+                  required: &ref_127
                     - scopes
                     - credential
                   additionalProperties: false
@@ -4645,7 +4650,7 @@ paths:
                 The object sent in the POST /participants/{Type}/{ID}/{SubId}
                 and /participants/{Type}/{ID} requests. An additional optional
                 ExtensionList element has been added as part of v1.1 changes.
-              properties: &ref_134
+              properties: &ref_135
                 fspId:
                   title: FspId
                   type: string
@@ -4671,7 +4676,7 @@ paths:
                     list of extensions, specific to deployment.
                   properties: *ref_2
                   required: *ref_3
-              required: &ref_135
+              required: &ref_136
                 - fspId
       responses:
         '202':
@@ -4800,7 +4805,7 @@ paths:
               description: >-
                 The object sent in the PUT /participants/{Type}/{ID}/{SubId} and
                 /participants/{Type}/{ID} callbacks.
-              properties: &ref_133
+              properties: &ref_134
                 fspId:
                   title: FspId
                   type: string
@@ -5249,7 +5254,7 @@ paths:
               title: ServicesServiceTypePutResponse
               type: object
               description: 'The object sent in a `PUT /services/{ServiceType}` request.'
-              properties: &ref_136
+              properties: &ref_137
                 providers:
                   type: array
                   minLength: 0
@@ -5260,7 +5265,7 @@ paths:
                     minLength: 1
                     maxLength: 32
                     description: FSP identifier.
-              required: &ref_137
+              required: &ref_138
                 - providers
       responses:
         '200':
@@ -5581,7 +5586,7 @@ paths:
               description: >-
                 The object sent in the POST /thirdpartyRequests/transactions
                 request.
-              properties: &ref_139
+              properties: &ref_140
                 transactionRequestId:
                   allOf:
                     - title: CorrelationId
@@ -5627,7 +5632,7 @@ paths:
                   allOf:
                     - title: AmountType
                       type: string
-                      enum: &ref_138
+                      enum: &ref_139
                         - SEND
                         - RECEIVE
                       description: >-
@@ -5671,7 +5676,7 @@ paths:
                     It can be set to get a quick failure in case the peer FSP
                     takes too long to respond.
                   example: '2016-05-24T08:38:08.699-04:00'
-              required: &ref_140
+              required: &ref_141
                 - transactionRequestId
                 - payee
                 - payer
@@ -5895,7 +5900,7 @@ paths:
               description: >-
                 The object sent in the PUT /thirdPartyRequests/transactions/{ID}
                 request.
-              properties: &ref_141
+              properties: &ref_142
                 transactionRequestState:
                   title: TransactionRequestState
                   type: string
@@ -5913,7 +5918,7 @@ paths:
 
                     - REJECTED - Payer has rejected the transaction.
                   example: RECEIVED
-              required: &ref_142
+              required: &ref_143
                 - transactionRequestState
             example:
               transactionRequestState: RECEIVED
@@ -6325,7 +6330,7 @@ paths:
               title: ThirdpartyRequestsAuthorizationsPostRequest
               description: POST /thirdpartyRequests/authorizations request object.
               type: object
-              properties: &ref_143
+              properties: &ref_144
                 authorizationRequestId:
                   title: CorrelationId
                   type: string
@@ -6443,7 +6448,7 @@ paths:
                     list of extensions, specific to deployment.
                   properties: *ref_2
                   required: *ref_3
-              required: &ref_144
+              required: &ref_145
                 - authorizationRequestId
                 - transactionRequestId
                 - challenge
@@ -6679,22 +6684,22 @@ paths:
                   description: >-
                     The object sent in the PUT
                     /thirdpartyRequests/authorizations/{ID} callback.
-                  properties: &ref_146
+                  properties: &ref_147
                     responseType:
                       title: AuthorizationResponseType
                       description: |
                         The customer rejected the terms of the transfer.
                       type: string
-                      enum: &ref_145
+                      enum: &ref_146
                         - REJECTED
-                  required: &ref_147
+                  required: &ref_148
                     - responseType
                 - title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
                   type: object
                   description: >-
                     The object sent in the PUT
                     /thirdpartyRequests/authorizations/{ID} callback.
-                  properties: &ref_148
+                  properties: &ref_149
                     responseType:
                       title: AuthorizationResponseType
                       description: |
@@ -6797,7 +6802,7 @@ paths:
                         - signedPayloadType
                         - fidoSignedPayload
                       additionalProperties: false
-                  required: &ref_149
+                  required: &ref_150
                     - responseType
                     - signedPayload
                   additionalProperties: false
@@ -6806,7 +6811,7 @@ paths:
                   description: >-
                     The object sent in the PUT
                     /thirdpartyRequests/authorizations/{ID} callback.
-                  properties: &ref_150
+                  properties: &ref_151
                     responseType:
                       title: AuthorizationResponseType
                       description: |
@@ -6839,7 +6844,7 @@ paths:
                         - signedPayloadType
                         - genericSignedPayload
                       additionalProperties: false
-                  required: &ref_151
+                  required: &ref_152
                     - responseType
                     - signedPayload
                   additionalProperties: false
@@ -7179,7 +7184,7 @@ paths:
                   description: >-
                     The object sent in the POST
                     /thirdpartyRequests/verifications request.
-                  properties: &ref_152
+                  properties: &ref_153
                     verificationRequestId:
                       allOf:
                         - title: CorrelationId
@@ -7231,7 +7236,7 @@ paths:
                       description: >-
                         Describes a challenge that has been signed with FIDO
                         Attestation flows
-                    fidoValue:
+                    fidoSignedPayload:
                       title: FIDOPublicKeyCredentialAssertion
                       type: object
                       description: >
@@ -7244,18 +7249,18 @@ paths:
                       properties: *ref_72
                       required: *ref_73
                       additionalProperties: false
-                  required: &ref_153
+                  required: &ref_154
                     - verificationRequestId
                     - challenge
                     - consentId
                     - signedPayloadType
-                    - fidoValue
+                    - fidoSignedPayload
                 - title: ThirdpartyRequestsVerificationsPostRequestGeneric
                   type: object
                   description: >-
                     The object sent in the POST
                     /thirdpartyRequests/verifications request.
-                  properties: &ref_154
+                  properties: &ref_155
                     verificationRequestId:
                       allOf:
                         - title: CorrelationId
@@ -7307,7 +7312,7 @@ paths:
                       description: >-
                         Describes a challenge that has been signed with a
                         private key
-                    genericValue:
+                    genericSignedPayload:
                       type: string
                       pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
                       description: >-
@@ -7317,12 +7322,12 @@ paths:
                         of the data if needed to ensure that the string is a
                         multiple of 4 characters. The length restriction
                         indicates the allowed number of characters.
-                  required: &ref_155
+                  required: &ref_156
                     - verificationRequestId
                     - challenge
                     - consentId
                     - signedPayloadType
-                    - genericValue
+                    - genericSignedPayload
       responses:
         '202':
           description: Accepted
@@ -7546,13 +7551,13 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/verifications/{ID} request.
-              properties: &ref_156
+              properties: &ref_157
                 authenticationResponse:
                   type: string
                   enum:
                     - VERIFIED
                   description: The verification passed
-              required: &ref_157
+              required: &ref_158
                 - authenticationResponse
             example:
               authenticationResponse: VERIFIED
@@ -8512,14 +8517,21 @@ components:
         The type of the Credential.
         - "FIDO" - A FIDO public/private keypair
         - "GENERIC" - A Generic public/private keypair
+    CredentialStatusPending:
+      title: CredentialStatus
+      type: string
+      enum: *ref_115
+      description: |
+        The status of the Credential.
+        - "PENDING" - The credential has been created, but has not been verified
     GenericCredential:
       title: GenericCredential
       type: object
       description: >
         A publicKey + signature of a challenge for a generic public/private
         keypair
-      properties: *ref_115
-      required: *ref_116
+      properties: *ref_116
+      required: *ref_117
       additionalProperties: false
     FIDOPublicKeyCredentialAttestation:
       title: FIDOPublicKeyCredentialAttestation
@@ -8575,8 +8587,8 @@ components:
         store registered consent with PublicKey
 
         and whatever needed to perform authorization validation later
-      properties: *ref_117
-      required: *ref_118
+      properties: *ref_118
+      required: *ref_119
       additionalProperties: false
     ConsentsPostRequestPISP:
       title: ConsentPostRequestPISP
@@ -8584,8 +8596,8 @@ components:
       description: >-
         The object sent in a `POST /consents` request to PISP by DFSP to ask for
         delivering the credential object.
-      properties: *ref_119
-      required: *ref_120
+      properties: *ref_120
+      required: *ref_121
     ConsentStatusIssued:
       title: ConsentStatus
       type: string
@@ -8602,8 +8614,8 @@ components:
 
         Called by a `PISP` to after signing a challenge. Sent to a DFSP for
         verification.
-      properties: *ref_121
-      required: *ref_122
+      properties: *ref_122
+      required: *ref_123
       additionalProperties: false
     VerifiedCredential:
       title: VerifiedCredential
@@ -8621,8 +8633,8 @@ components:
         when
 
         updating a credential.
-      properties: *ref_123
-      required: *ref_124
+      properties: *ref_124
+      required: *ref_125
       additionalProperties: false
     ConsentsIDPutResponseVerified:
       title: ConsentsIDPutResponseVerified
@@ -8633,13 +8645,13 @@ components:
 
         Called by a `auth-service` to notify a DFSP that a credential has been
         verified and registered.
-      properties: *ref_125
-      required: *ref_126
+      properties: *ref_126
+      required: *ref_127
       additionalProperties: false
     CredentialStatusVerified:
       title: CredentialStatus
       type: string
-      enum: *ref_127
+      enum: *ref_128
       description: |
         The status of the Credential.
         - "VERIFIED" - The Credential is valid and verified.
@@ -8651,12 +8663,12 @@ components:
         Sent by the DFSP to the PISP when a consent is verified.
         Used in the "Register Credential" part of the Account linking flow.
       type: object
-      properties: *ref_128
-      required: *ref_129
+      properties: *ref_129
+      required: *ref_130
     ConsentStatusRevoked:
       title: ConsentStatus
       type: string
-      enum: *ref_130
+      enum: *ref_131
       description: |-
         Allowed values for the enumeration ConsentStatus
         - REVOKED - The consent has been revoked
@@ -8668,15 +8680,15 @@ components:
         Sent to both the PISP and DFSP when a consent is revoked.
         Used in the "Unlinking" part of the Account Unlinking flow.
       type: object
-      properties: *ref_131
-      required: *ref_132
+      properties: *ref_132
+      required: *ref_133
     ParticipantsTypeIDPutResponse:
       title: ParticipantsTypeIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /participants/{Type}/{ID}/{SubId} and
         /participants/{Type}/{ID} callbacks.
-      properties: *ref_133
+      properties: *ref_134
     ParticipantsTypeIDSubIDPostRequest:
       title: ParticipantsTypeIDSubIDPostRequest
       type: object
@@ -8684,18 +8696,18 @@ components:
         The object sent in the POST /participants/{Type}/{ID}/{SubId} and
         /participants/{Type}/{ID} requests. An additional optional ExtensionList
         element has been added as part of v1.1 changes.
-      properties: *ref_134
-      required: *ref_135
+      properties: *ref_135
+      required: *ref_136
     ServicesServiceTypePutResponse:
       title: ServicesServiceTypePutResponse
       type: object
       description: 'The object sent in a `PUT /services/{ServiceType}` request.'
-      properties: *ref_136
-      required: *ref_137
+      properties: *ref_137
+      required: *ref_138
     AmountType:
       title: AmountType
       type: string
-      enum: *ref_138
+      enum: *ref_139
       description: >-
         Below are the allowed values for the enumeration AmountType.
 
@@ -8709,37 +8721,37 @@ components:
       title: ThirdpartyRequestsTransactionsPostRequest
       type: object
       description: The object sent in the POST /thirdpartyRequests/transactions request.
-      properties: *ref_139
-      required: *ref_140
+      properties: *ref_140
+      required: *ref_141
     ThirdpartyRequestsTransactionsIDPutResponse:
       title: ThirdpartyRequestsTransactionsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdPartyRequests/transactions/{ID}
         request.
-      properties: *ref_141
-      required: *ref_142
+      properties: *ref_142
+      required: *ref_143
     ThirdpartyRequestsAuthorizationsPostRequest:
       title: ThirdpartyRequestsAuthorizationsPostRequest
       description: POST /thirdpartyRequests/authorizations request object.
       type: object
-      properties: *ref_143
-      required: *ref_144
+      properties: *ref_144
+      required: *ref_145
       additionalProperties: false
     AuthorizationResponseTypeRejected:
       title: AuthorizationResponseType
       description: |
         The customer rejected the terms of the transfer.
       type: string
-      enum: *ref_145
+      enum: *ref_146
     ThirdpartyRequestsAuthorizationsIDPutResponseRejected:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
-      properties: *ref_146
-      required: *ref_147
+      properties: *ref_147
+      required: *ref_148
     AuthorizationResponseTypeAccepted:
       title: AuthorizationResponseType
       description: |
@@ -8770,8 +8782,8 @@ components:
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
-      properties: *ref_148
-      required: *ref_149
+      properties: *ref_149
+      required: *ref_150
       additionalProperties: false
     SignedPayloadTypeGeneric:
       title: SignedPayloadTypeGeneric
@@ -8784,29 +8796,29 @@ components:
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
         callback.
-      properties: *ref_150
-      required: *ref_151
+      properties: *ref_151
+      required: *ref_152
       additionalProperties: false
     ThirdpartyRequestsVerificationsPostRequestFIDO:
       title: ThirdpartyRequestsVerificationsPostRequestFIDO
       type: object
       description: The object sent in the POST /thirdpartyRequests/verifications request.
-      properties: *ref_152
-      required: *ref_153
+      properties: *ref_153
+      required: *ref_154
     ThirdpartyRequestsVerificationsPostRequestGeneric:
       title: ThirdpartyRequestsVerificationsPostRequestGeneric
       type: object
       description: The object sent in the POST /thirdpartyRequests/verifications request.
-      properties: *ref_154
-      required: *ref_155
+      properties: *ref_155
+      required: *ref_156
     ThirdpartyRequestsVerificationsIDPutResponse:
       title: ThirdpartyRequestsVerificationsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/verifications/{ID}
         request.
-      properties: *ref_156
-      required: *ref_157
+      properties: *ref_157
+      required: *ref_158
   parameters:
     ID:
       name: ID

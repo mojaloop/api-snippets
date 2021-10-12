@@ -7165,7 +7165,8 @@ export interface operations {
                */
               credentialType: "FIDO" | "GENERIC";
               /**
-               * The challenge has signed but not yet verified.
+               * The status of the Credential.
+               * - "PENDING" - The credential has been created, but has not been verified
                */
               status: "PENDING";
               /**
@@ -8295,7 +8296,8 @@ export interface operations {
                */
               credentialType: "FIDO" | "GENERIC";
               /**
-               * The challenge has signed but not yet verified.
+               * The status of the Credential.
+               * - "PENDING" - The credential has been created, but has not been verified
                */
               status: "PENDING";
               /**
@@ -18354,7 +18356,7 @@ export interface operations {
              * based mostly on: https://webauthn.guide/#authentication
              * AuthenticatorAssertionResponse
              */
-            fidoValue: {
+            fidoSignedPayload: {
               /**
                * credential id: identifier of pair of keys, base64 encoded
                * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
@@ -18410,7 +18412,7 @@ export interface operations {
             /**
              * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
              */
-            genericValue: string;
+            genericSignedPayload: string;
           };
     };
     responses: {
@@ -24433,6 +24435,11 @@ export interface components {
      */
     CredentialType: "FIDO" | "GENERIC";
     /**
+     * The status of the Credential.
+     * - "PENDING" - The credential has been created, but has not been verified
+     */
+    CredentialStatusPending: "PENDING";
+    /**
      * A publicKey + signature of a challenge for a generic public/private keypair
      */
     GenericCredential: {
@@ -24497,7 +24504,8 @@ export interface components {
        */
       credentialType: "FIDO" | "GENERIC";
       /**
-       * The challenge has signed but not yet verified.
+       * The status of the Credential.
+       * - "PENDING" - The credential has been created, but has not been verified
        */
       status: "PENDING";
       /**
@@ -24583,7 +24591,8 @@ export interface components {
          */
         credentialType: "FIDO" | "GENERIC";
         /**
-         * The challenge has signed but not yet verified.
+         * The status of the Credential.
+         * - "PENDING" - The credential has been created, but has not been verified
          */
         status: "PENDING";
         /**
@@ -24709,7 +24718,8 @@ export interface components {
          */
         credentialType: "FIDO" | "GENERIC";
         /**
-         * The challenge has signed but not yet verified.
+         * The status of the Credential.
+         * - "PENDING" - The credential has been created, but has not been verified
          */
         status: "PENDING";
         /**
@@ -26614,7 +26624,7 @@ export interface components {
        * based mostly on: https://webauthn.guide/#authentication
        * AuthenticatorAssertionResponse
        */
-      fidoValue: {
+      fidoSignedPayload: {
         /**
          * credential id: identifier of pair of keys, base64 encoded
          * https://w3c.github.io/webauthn/#ref-for-dom-credential-id
@@ -26673,7 +26683,7 @@ export interface components {
       /**
        * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
        */
-      genericValue: string;
+      genericSignedPayload: string;
     };
     /**
      * The object sent in the PUT /thirdpartyRequests/verifications/{ID} request.
