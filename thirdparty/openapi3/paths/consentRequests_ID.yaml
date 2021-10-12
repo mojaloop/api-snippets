@@ -94,8 +94,8 @@ patch:
   operationId: PatchConsentRequest
   summary: PatchConsentRequest
   description: >
-    PISP sends user's OTP token to a DFSP to verify user trusts
-    aforementioned PISP
+    After the user completes an out-of-band authorization with the DFSP, the PISP will receive
+    a token which they can use to prove to the DFSP that the user trusts this PISP.
   parameters:
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml

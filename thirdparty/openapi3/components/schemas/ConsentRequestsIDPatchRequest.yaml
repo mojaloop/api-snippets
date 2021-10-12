@@ -3,6 +3,6 @@ type: object
 description: The object sent in a `PATCH /consentRequests/{ID}` request.
 properties:
   authToken:
-    type: string
+    $ref: ./BinaryString.yaml
 required:
   - authToken

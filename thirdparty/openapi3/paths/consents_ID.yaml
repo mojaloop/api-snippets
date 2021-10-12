@@ -13,9 +13,9 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 get:
   description: >
-    The HTTP request `GET /consents/{ID}` is used to get information regarding a consent object created or requested earlier.
-    The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
-    summary: GetConsent
+    The **GET /consents/**_{ID}_ resource allows a party to enquire after the status of a consent. The 
+    *{ID}* used in the URI of the request should be the consent request ID which was used to identify
+    the consent when it was created.
   tags:
     - consents
   operationId: GetConsent

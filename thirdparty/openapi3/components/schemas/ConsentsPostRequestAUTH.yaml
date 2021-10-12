@@ -13,14 +13,19 @@ properties:
       This field is REQUIRED for POST /consent.
       creation of this Consent.
   scopes:
+    minLength: 1
+    maxLength: 256
     type: array
     items:
       $ref: ./Scope.yaml
   credential:
     allOf:
       - $ref: ./SignedCredential.yaml
+  status:
+    $ref: ConsentStatus.yaml
 required:
   - consentId
   - scopes
-  - credential 
+  - credential
+  - status 
 additionalProperties: false

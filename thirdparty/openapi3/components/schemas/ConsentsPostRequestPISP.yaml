@@ -6,20 +6,24 @@ properties:
     allOf:
       - $ref: ./CorrelationId.yaml
     description: |
-      Common ID between the PISP and FSP for the Consent object
-      decided by the DFSP who creates the Consent
-      This field is REQUIRED for POST /consent.
+      Common ID between the PISP and the Payer DFSP for the consent object. The ID 
+      should be reused for resends of the same consent. A new ID should be generated
+      for each new consent.
   consentRequestId:
     allOf:
       - $ref: ./CorrelationId.yaml
     description: |
-      The id of the ConsentRequest that was used to initiate the
-      creation of this Consent.
+      The ID given to the original consent request on which this consent is based.
   scopes:
     type: array
+    minLength: 1
+    maxLength: 256
     items:
       $ref: ./Scope.yaml
+   status:
+    $ref: ConsentStatus.yaml
 required:
   - consentId
-  - scopes
   - consentRequestId 
+  - scopes
+  - status
