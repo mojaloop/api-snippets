@@ -6,21 +6,27 @@ properties:
     $ref: ./CorrelationId.yaml
   userId:
     type: string
-    description: ID used to associate request with GET /accounts request.
+    description:  The identifier used in the **GET /accounts/**_{ID}_. Used by the DFSP to correlate an account lookup to a `consentRequest`
+    minLength: 1
+    maxLength: 128
   scopes:
     type: array
+    minLength: 1
+    maxLength: 256
     items:
       $ref: ./Scope.yaml
   authChannels:
     type: array
+    minLength: 1
+    maxLength: 256
     items:
       $ref: ./ConsentRequestChannelType.yaml
+  #   The callback uri that the user will be redirected to after completing the
+  #   out of band WEB authentication with the DFSP. Used to allow the DFSP to
+  #   whitelist the PISP's url ahead of time.
   callbackUri:
-    type: string
-    description: >-
-      The callback uri that the user will be redirected to after completing the
-      out of band WEB authentication with the DFSP. Used to allow the DFSP to
-      whitelist the PISP's url ahead of time.
+    $ref: ./Uri.yaml
+    
 required:
   - consentRequestId
   - userId

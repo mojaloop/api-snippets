@@ -16,7 +16,8 @@ post:
   operationId: CreateConsentRequest
   summary: CreateConsentRequest
   description: |
-    A request from a PISP to a DFSP to start the process of delegating consent
+    The HTTP request **POST /consentRequests** is used to request a DFSP to grant access to one or more
+    accounts owned by a customer of the DFSP for the PISP who sends the request.
   parameters:
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml

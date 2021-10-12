@@ -2,7 +2,8 @@ title: AccountsIDPutResponse
 type: object
 description: The object sent in a `PUT /accounts/{ID}` request.
 properties:
-  accounts:
+  accountList:
+    description: Information about the accounts that the DFSP associates with the identifier sent by the PISP
     type: array
     items:
       $ref: ./Account.yaml
