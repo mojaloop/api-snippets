@@ -135,9 +135,12 @@ put:
       $ref: ../components/responses/503.yaml
 delete:
   description: |
-    The HTTP request `DELETE /consents/{ID}` is used to mark as deleted a previously created consent.
+    Used by PISP, DFSP
 
-    - Called by a PISP when a user wants to remove their consent.
+    The **DELETE /consents/**_{ID}_ request is used to request the revocation of a previously agreed consent.
+    For tracing and auditing purposes, the switch should be sure not to delete the consent physically; 
+    instead, information relating to the consent should be marked as deleted and requests relating to the
+    consent should not be honoured.
   operationId: DeleteConsentByID
   parameters:
     - $ref: ../components/parameters/Accept.yaml

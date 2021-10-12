@@ -1,0 +1,9 @@
+title: ConsentStatus
+type: string
+enum:
+  - ISSUED
+  - REVOKED
+description: |-
+  Allowed values for the enumeration ConsentStatus
+  - ISSUED - The consent has been issued by the DFSP
+  - REVOKED - The consent has been revoked
