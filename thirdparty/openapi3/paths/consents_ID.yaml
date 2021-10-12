@@ -13,9 +13,9 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 get:
   description: >
-    The HTTP request `GET /consents/{ID}` is used to get information regarding a consent object created or requested earlier.
-    The `{ID}` in the URI should contain the `{ID}` that was used in the `POST /consents`.
-    summary: GetConsent
+    The **GET /consents/**_{ID}_ resource allows a party to enquire after the status of a consent. The 
+    *{ID}* used in the URI of the request should be the consent request ID which was used to identify
+    the consent when it was created.
   tags:
     - consents
   operationId: GetConsent
@@ -135,9 +135,12 @@ put:
       $ref: ../components/responses/503.yaml
 delete:
   description: |
-    The HTTP request `DELETE /consents/{ID}` is used to mark as deleted a previously created consent.
+    Used by PISP, DFSP
 
-    - Called by a PISP when a user wants to remove their consent.
+    The **DELETE /consents/**_{ID}_ request is used to request the revocation of a previously agreed consent.
+    For tracing and auditing purposes, the switch should be sure not to delete the consent physically; 
+    instead, information relating to the consent should be marked as deleted and requests relating to the
+    consent should not be honoured.
   operationId: DeleteConsentByID
   parameters:
     - $ref: ../components/parameters/Accept.yaml

@@ -10,7 +10,7 @@ properties:
     type: object
     properties:
       status:
-        $ref: ./ConsentStatusTypeVerified.yaml
+        $ref: ./CredentialStatusVerified.yaml
     required:
       - status
 required:

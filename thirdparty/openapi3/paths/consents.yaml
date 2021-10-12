@@ -16,8 +16,8 @@ post:
   operationId: PostConsents
   summary: PostConsents
   description: >
-    DFSP sends this request to the PISP after granting consent.
-    DFSP sends this request to an Auth service to validate a signed consent.
+    The **POST /consents** request is used to request the creation of a consent for interactions between
+    a PISP and the DFSP who owns the account which a PISP’s customer wants to allow the PISP access to.
   parameters:
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml

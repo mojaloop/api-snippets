@@ -1,7 +1,0 @@
-title: ConsentStatusType
-type: string
-enum:
-  - REVOKED
-description: |
-  The status of the Consent.
-  - "REVOKED" - The Consent is no longer valid and has been revoked.

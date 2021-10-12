@@ -64,7 +64,6 @@ put:
         schema:
           $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDPutResponse.yaml
         example:
-          transactionId: '11111111-0000-0000-0000-000000000000'
           transactionRequestState: 'RECEIVED'
   responses:
     200:
@@ -106,7 +105,6 @@ patch:
         schema:
           $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDPatchResponse.yaml
         example:
-          transactionId: '11111111-0000-0000-0000-000000000000'
           transactionRequestState: 'ACCEPTED'
           transactionState: 'COMMITTED'
   responses:

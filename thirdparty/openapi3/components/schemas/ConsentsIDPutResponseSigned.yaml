@@ -11,6 +11,8 @@ properties:
     type: array
     items:
       $ref: ./Scope.yaml
+  status:
+    $ref: ./ConsentStatusIssued.yaml
   credential:
     $ref: ./SignedCredential.yaml
 required:

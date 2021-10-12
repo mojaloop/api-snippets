@@ -10,23 +10,25 @@ description: |
 properties:
   scopes:
     type: array
+    minLength: 1
+    maxLength: 256
     items:
       $ref: ./Scope.yaml
   authChannels:
     type: array
+    minLength: 1
+    maxLength: 1
     items:
       $ref: ./ConsentRequestChannelTypeWeb.yaml
+  # The callback uri that the user will be redirected to after completing the
+  # out of band WEB authentication with the DFSP. Used to allow the DFSP to
+  # whitelist the PISP's url ahead of time.
   callbackUri:
-    type: string
-    description: >-
-      The callback uri that the user will be redirected to after completing the
-      out of band WEB authentication with the DFSP. Used to allow the DFSP to
-      whitelist the PISP's url ahead of time.
+    $ref: ./Uri.yaml
+  # The callback uri that the pisp app should redirect to for user to complete their
+  # login.
   authUri:
-    type: string
-    description: >-
-      The callback uri that the pisp app should redirect to for user to complete their
-      login.
+    $ref: ./Uri.yaml
 required:
   - scopes
   - authChannels

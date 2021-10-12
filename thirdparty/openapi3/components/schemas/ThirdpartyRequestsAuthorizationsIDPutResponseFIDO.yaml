@@ -9,11 +9,11 @@ properties:
     properties:
       signedPayloadType:
         $ref: ./SignedPayloadTypeFIDO.yaml
-      value:
+      fidoSignedPayload:
         $ref: ./FIDOPublicKeyCredentialAssertion.yaml
     required:
       - signedPayloadType
-      - value
+      - fidoSignedPayload
     additionalProperties: false
 required:
   - responseType

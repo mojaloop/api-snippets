@@ -11,8 +11,8 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 post:
   description:  >
-    The HTTP request `POST /thirdpartyRequests/authorizations` is used to request the Payer to enter the
-    applicable credentials in the PISP system.
+    The HTTP request **POST /thirdpartyRequests/authorizations** is used to request the validation by a
+    customer for the transfer described in the request.
   operationId: PostThirdpartyRequestsAuthorizations
   summary: PostThirdpartyRequestsAuthorizations
   tags:
@@ -28,39 +28,12 @@ post:
       application/json:
         schema:
           $ref: ../components/schemas/ThirdpartyRequestsAuthorizationsPostRequest.yaml
-        example:
-          authorizationRequestId: 33333333-0000-0000-0000-000000000000
-          transactionRequestId: '00000000-0000-0000-0000-000000000000'
-          challenge: '<base64 encoded binary - the encoded challenge>'
-          transferAmount:
-            amount: "100"
-            currency: "USD"
-          payeeReceiveAmount:
-            amount: "99"
-            currency: "USD"
-          fees:
-            amount: "1"
-            currency: "USD"
-          payee:
-            partyIdInfo:
-              partyIdType: 'MSISDN'
-              partyIdentifier: '+44 1234 5678'
-              fspId: 'dfspb'
-          payer:
-            partyIdType: 'THIRD_PARTY_LINK'
-            partyIdentifier: 'qwerty-123456'
-            fspId: 'dfspa'
-          transactionType:
-            scenario: "TRANSFER"
-            initiator: "PAYER"
-            initiatorType: "CONSUMER"
-          expiration: "2020-06-15T12:00:00.000"
   responses:
     202:
       $ref: ../components/responses/202.yaml
     400:
       $ref: ../components/responses/400.yaml
-    401:
+    401: 
       $ref: ../components/responses/401.yaml
     403:
       $ref: ../components/responses/403.yaml

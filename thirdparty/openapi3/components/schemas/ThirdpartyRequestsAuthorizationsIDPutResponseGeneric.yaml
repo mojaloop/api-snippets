@@ -9,11 +9,11 @@ properties:
     properties:
       signedPayloadType:
         $ref: ./SignedPayloadTypeGeneric.yaml
-      value:
+      genericSignedPayload:
         $ref: ./BinaryString.yaml
     required:
       - signedPayloadType
-      - value
+      - genericSignedPayload
     additionalProperties: false
 required:
   - responseType

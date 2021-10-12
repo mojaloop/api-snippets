@@ -1,13 +1,13 @@
 import { Schemas } from '../../lib/thirdparty'
 
 describe('thirdparty', () => {
-  const accountId: Schemas.AccountId = 'account-id'
+  const accountAddress: Schemas.AccountAddress = 'account-id'
   const authenticationTypeQRCODE: Schemas.AuthenticationType = 'QRCODE'
   const currency: Schemas.Currency = 'USD'
   const name: Schemas.Name = 'name'
   const account: Schemas.Account = {
     accountNickname: name,
-    id: accountId,
+    address: accountAddress,
     currency
   }
   const authorizationChannelTypeU2F: Schemas.AuthorizationChannelType = 'U2F'
@@ -57,15 +57,16 @@ describe('thirdparty', () => {
   const consentRequestChannelType: Schemas.ConsentRequestChannelType = 'WEB'
   const consentRequestChannelTypeWeb: Schemas.ConsentRequestChannelTypeWeb = 'WEB'
   const consentRequestChannelTypeOTP: Schemas.ConsentRequestChannelTypeOTP = 'OTP'
-  const consentScopeTypeGetBalance: Schemas.ConsentScopeType = 'accounts.getBalance'
-  const consentScopeTypeTransfer: Schemas.ConsentScopeType = 'accounts.transfer'
+  const scopeActionGetBalance: Schemas.ScopeAction = 'ACCOUNTS_GET_BALANCE'
+  const scopeActionTransfer: Schemas.ScopeAction = 'ACCOUNTS_TRANSFER'
+  const scopeActionStatement: Schemas.ScopeAction = 'ACCOUNTS_STATEMENT'
   const scope: Schemas.Scope = {
-    accountId: accountId,
-    actions: [consentScopeTypeGetBalance, consentScopeTypeTransfer]
+    address: accountAddress,
+    actions: [scopeActionGetBalance, scopeActionTransfer]
   }
   const credentialTypeFIDO: Schemas.CredentialType = 'FIDO'
-  const consentStatusTypeREVOKED: Schemas.ConsentStatusTypeRevoked = 'REVOKED'
-  const consentStatusTypeVERIFIED: Schemas.ConsentStatusTypeVerified = 'VERIFIED'
+  const consentStatusRevoked: Schemas.ConsentStatusRevoked = 'REVOKED'
+  const consentStatusIssued: Schemas.ConsentStatusIssued = 'ISSUED'
   const fspId: Schemas.FspId = 'fsp-id'
   const firstName: Schemas.FirstName = 'John'
   const lastName: Schemas.LastName = 'Doe'
@@ -117,7 +118,7 @@ describe('thirdparty', () => {
   const signedCredential: Schemas.SignedCredential = {
     credentialType: credentialTypeFIDO,
     status: 'PENDING',
-    payload: FIDOPublicKeyCredentialAttestation
+    fidoPayload: FIDOPublicKeyCredentialAttestation
   }
 
   const verifiedCredential: Schemas.VerifiedCredential = {
@@ -143,12 +144,14 @@ describe('thirdparty', () => {
 
   const serviceType: Schemas.ServiceType = 'THIRD_PARTY_DFSP'
 
+  const credentialStatusVerified: Schemas.CredentialStatus = 'VERIFIED'
+
   test('Account', () => {
     expect(account).toBeDefined()
   })
 
-  test('accountId', () => {
-    expect(accountId).toBeDefined()
+  test('accountAddress', () => {
+    expect(accountAddress).toBeDefined()
   })
 
   test('AuthorizationChannelType', () => {
@@ -219,14 +222,15 @@ describe('thirdparty', () => {
     expect(consentRequestsPostRequest).toBeDefined()
   })
 
-  test('ConsentScopeType', () => {
-    expect(consentScopeTypeGetBalance).toBeDefined()
-    expect(consentScopeTypeTransfer).toBeDefined()
+  test('ScopeActions', () => {
+    expect(scopeActionGetBalance).toBeDefined()
+    expect(scopeActionTransfer).toBeDefined()
+    expect(scopeActionStatement).toBeDefined()
   })
   
   test('ConsentsIDPatchResponseRevoked', () => {
     const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponseRevoked = {
-      status: consentStatusTypeREVOKED,
+      status: consentStatusRevoked,
       revokedAt: dateTime
     }
     expect(consentsIDPatchResponse).toBeDefined()
@@ -235,7 +239,7 @@ describe('thirdparty', () => {
   test('ConsentsIDPatchResponseVerified', () => {
     const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponseVerified = {
       credential: {
-        status: consentStatusTypeVERIFIED
+        status: credentialStatusVerified
       }
     }
     expect(consentsIDPatchResponse).toBeDefined()
@@ -261,7 +265,8 @@ describe('thirdparty', () => {
     const consentsPostRequest: Schemas.ConsentsPostRequestPISP = {
       consentId: correlationId,
       consentRequestId: correlationId,
-      scopes: [scope]
+      scopes: [scope],
+      status: consentStatusIssued
     }
     expect(consentsPostRequest).toBeDefined()
   })
@@ -270,12 +275,13 @@ describe('thirdparty', () => {
     const consentsPostRequest: Schemas.ConsentsPostRequestAUTH = {
       consentId: correlationId,
       scopes: [scope],
-      credential: signedCredential
+      credential: signedCredential,
+      status: consentStatusIssued
     }
     expect(consentsPostRequest).toBeDefined()
   })
   test('ConsentStatusType', () => {
-    expect(consentStatusTypeREVOKED).toBeDefined()
+    expect(consentStatusRevoked).toBeDefined()
   })
 
   test('CorrelationId', () => {
@@ -577,7 +583,7 @@ describe('thirdparty', () => {
       responseType: 'ACCEPTED',
       signedPayload: {
         signedPayloadType: 'FIDO',
-        value: {
+        fidoSignedPayload: {
           id: '45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA',
           rawId: '45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==',
           response: {
@@ -597,7 +603,7 @@ describe('thirdparty', () => {
       responseType: 'ACCEPTED',
       signedPayload: {
         signedPayloadType: 'GENERIC',
-        value: 'some signature utf-8 string',
+        genericSignedPayload: 'some signature utf-8 string',
       }
     }
     expect(thirdpartyRequestsAuthorizationsIDPutResponseGeneric).toBeDefined()
@@ -646,7 +652,7 @@ describe('thirdparty', () => {
       challenge: 'some challenge base64 encoded',
       consentId: '8d34f91d-d078-4077-8263-2c0498dhbjr',
       signedPayloadType: 'FIDO',
-      value: {
+      fidoSignedPayload: {
         id: '45c-TkfkjQovQeAWmOy-RLBHEJ_e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA',
         rawId: '45c+TkfkjQovQeAWmOy+RLBHEJ/e4jYzQYgD8VdbkePgM5d98BaAadadNYrknxgH0jQEON8zBydLgh1EqoC9DA==',
         response: {
@@ -667,7 +673,7 @@ describe('thirdparty', () => {
       challenge: 'some challenge base64 encoded',
       consentId: '8d34f91d-d078-4077-8263-2c0498dhbjr',
       signedPayloadType: 'GENERIC',
-      value: 'some signed payload string'
+      genericSignedPayload: 'some signed payload string'
     }
 
     expect(thirdPartyRequestsVerificationsPostRequest).toBeDefined()

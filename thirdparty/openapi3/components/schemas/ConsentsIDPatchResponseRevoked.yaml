@@ -7,7 +7,7 @@ description: |
 type: object
 properties:
   status:
-    $ref: ./ConsentStatusTypeRevoked.yaml
+    $ref: ./ConsentStatusRevoked.yaml
   revokedAt:
     $ref: ./DateTime.yaml
 required:

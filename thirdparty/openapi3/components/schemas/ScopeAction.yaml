@@ -1,0 +1,12 @@
+title: ScopeAction
+type: string
+enum:
+  - ACCOUNTS_GET_BALANCE
+  - ACCOUNTS_TRANSFER
+  - ACCOUNTS_STATEMENT
+description: |
+  The permissions allowed on a given account by a DFSP as defined in
+  a consent object
+  - ACCOUNTS_GET_BALANCE: PISP can request a balance for the linked account
+  - ACCOUNTS_TRANSFER: PISP can request a transfer of funds from the linked account in the DFSP
+  - ACCOUNTS_STATEMENT: PISP can request a statement of individual transactions on a user’s account

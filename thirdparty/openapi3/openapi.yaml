@@ -50,18 +50,6 @@ paths:
     $ref: paths/accounts_ID.yaml
   /accounts/{ID}/error:
     $ref: paths/accounts_ID_error.yaml
-  # Note: this resource is deprecated in the latest API Draft, and will
-  # be removed in the next MAJOR version release of API-Snippets
-  # Please use /thirdpartyRequests/authorizations instead
-  # TODO: remove in next major version release
-  /authorizations:
-    $ref: paths/authorizations.yaml
-  # Note: this resource is deprecated in the latest API Draft, and will
-  # be removed in the next MAJOR version release of API-Snippets
-  # Please use /thirdpartyRequests/authorizations/{ID} instead
-  # TODO: remove in next major version release
-  /authorizations/{ID}:
-    $ref: paths/authorizations_ID.yaml
   /health:
     $ref: paths/health.yaml
   /metrics:
@@ -94,8 +82,6 @@ paths:
     $ref: paths/services_ServiceType_error.yaml
   /thirdpartyRequests/transactions:
     $ref: paths/thirdpartyRequests_transactions.yaml
-  /thirdpartyRequests/transactions-tsa:
-    $ref: paths/thirdpartyRequests_transactions_tsa.yaml
   /thirdpartyRequests/transactions/{ID}:
     $ref: paths/thirdpartyRequests_transactions_ID.yaml
   /thirdpartyRequests/transactions/{ID}/error:

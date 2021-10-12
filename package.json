@@ -16,6 +16,8 @@
     "build:v1.0": "openapi bundle --output docs/fspiop-rest-v1.0-openapi3-snippets.yaml --ext yaml fspiop/v1_0/openapi3/openapi.yaml && swagger-cli validate docs/fspiop-rest-v1.0-openapi3-snippets.yaml",
     "build:v1.1": "openapi bundle --output docs/fspiop-rest-v1.1-openapi3-snippets.yaml --ext yaml fspiop/v1_1/openapi3/openapi.yaml && swagger-cli validate docs/fspiop-rest-v1.1-openapi3-snippets.yaml",
     "build:thirdparty": "openapi bundle --dereferenced --output docs/thirdparty-openapi3-snippets.yaml --ext yaml thirdparty/openapi3/openapi.yaml && swagger-cli validate docs/thirdparty-openapi3-snippets.yaml",
+    "build:thirdparty-dfsp": "swagger-cli bundle -o ./thirdparty/openapi3/thirdparty-dfsp-api.yaml -t yaml ./thirdparty/openapi3/thirdparty-dfsp-api.template.yaml",
+    "build:thirdparty-pisp": "swagger-cli bundle -o ./thirdparty/openapi3/thirdparty-pisp-api.yaml -t yaml ./thirdparty/openapi3/thirdparty-pisp-api.template.yaml",
     "lint": "eslint ./src/**/*.ts *.js",
     "prepare": "npm run build",
     "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",

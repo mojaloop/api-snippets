@@ -1,0 +1,8 @@
+title: Uri
+type: string
+pattern: '^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?'
+minLength: 1
+maxLength: 512
+description: >
+  The API data type Uri is a JSON string in a canonical format that is restricted by a \
+  regular expression for interoperability reasons.

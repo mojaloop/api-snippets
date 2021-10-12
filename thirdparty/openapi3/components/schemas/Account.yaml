@@ -4,8 +4,8 @@ description: Data model for the complex type Account.
 properties:
   accountNickname:
     $ref: ./Name.yaml
-  id:
-    $ref: ./AccountId.yaml
+  address:
+    $ref: ./AccountAddress.yaml
   currency:
     $ref: ./Currency.yaml
 required:
