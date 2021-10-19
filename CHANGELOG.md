@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.2](https://github.com/mojaloop/api-snippets/compare/v13.0.1...v13.0.2) (2021-10-19)
+
+
+### Bug Fixes
+
+* adding currencies xxx and xts which are part of iso 4217 ([#115](https://github.com/mojaloop/api-snippets/issues/115)) ([f09fd82](https://github.com/mojaloop/api-snippets/commit/f09fd82cecbc6b36a8eca9d1abdfb67b4c6f7f48))
+
 ### [13.0.1](https://github.com/mojaloop/api-snippets/compare/v13.0.0...v13.0.1) (2021-10-12)
 
 
