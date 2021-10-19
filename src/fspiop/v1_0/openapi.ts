@@ -1958,6 +1958,8 @@ export interface components {
       | "XDR"
       | "XOF"
       | "XPF"
+      | "XTS"
+      | "XXX"
       | "YER"
       | "ZAR"
       | "ZMW"
