@@ -1,6 +1,7 @@
 title: ConsentPostRequestPISP
 type: object
-description: The object sent in a `POST /consents` request to PISP by DFSP to ask for delivering the credential object.
+description: |
+  The provisional Consent object sent by the DFSP in `POST /consents`.
 properties:
   consentId:
     allOf:

@@ -2196,9 +2196,6 @@ export interface operations {
              */
             partyId: {
               /**
-               * This is a variant based on FSPIOP `PartyIdType` specification.
-               * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-               *
                * Below are the allowed values for the enumeration.
                * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
                * Number, that is, the phone number) is used as reference to a participant.
@@ -2234,8 +2231,14 @@ export interface operations {
                * The ALIAS identifier can be in any format. It is also possible to use the
                * PartySubIdOrType element for identifying an account under an Alias defined
                * by the PartyIdentifier.
-               * - CONSENT - TBD
-               * - THIRD_PARTY_LINK - TBD
+               * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+               * a DFSP which allows the PISP permission to perform actions on behalf of the
+               * customer. A Consent has an authoritative source: either the DFSP who issued
+               * the Consent, or an Auth Service which administers the Consent.
+               * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+               * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+               * is created by the DFSP at the time when it gives permission to the PISP for
+               * specific access to a given account.
                */
               partyIdType:
                 | "MSISDN"
@@ -2321,9 +2324,6 @@ export interface operations {
                */
               partyId: {
                 /**
-                 * This is a variant based on FSPIOP `PartyIdType` specification.
-                 * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-                 *
                  * Below are the allowed values for the enumeration.
                  * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
                  * Number, that is, the phone number) is used as reference to a participant.
@@ -2359,8 +2359,14 @@ export interface operations {
                  * The ALIAS identifier can be in any format. It is also possible to use the
                  * PartySubIdOrType element for identifying an account under an Alias defined
                  * by the PartyIdentifier.
-                 * - CONSENT - TBD
-                 * - THIRD_PARTY_LINK - TBD
+                 * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+                 * a DFSP which allows the PISP permission to perform actions on behalf of the
+                 * customer. A Consent has an authoritative source: either the DFSP who issued
+                 * the Consent, or an Auth Service which administers the Consent.
+                 * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+                 * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+                 * is created by the DFSP at the time when it gives permission to the PISP for
+                 * specific access to a given account.
                  */
                 partyIdType:
                   | "MSISDN"
@@ -2616,9 +2622,6 @@ export interface operations {
              */
             partyList: {
               /**
-               * This is a variant based on FSPIOP `PartyIdType` specification.
-               * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-               *
                * Below are the allowed values for the enumeration.
                * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
                * Number, that is, the phone number) is used as reference to a participant.
@@ -2654,8 +2657,14 @@ export interface operations {
                * The ALIAS identifier can be in any format. It is also possible to use the
                * PartySubIdOrType element for identifying an account under an Alias defined
                * by the PartyIdentifier.
-               * - CONSENT - TBD
-               * - THIRD_PARTY_LINK - TBD
+               * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+               * a DFSP which allows the PISP permission to perform actions on behalf of the
+               * customer. A Consent has an authoritative source: either the DFSP who issued
+               * the Consent, or an Auth Service which administers the Consent.
+               * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+               * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+               * is created by the DFSP at the time when it gives permission to the PISP for
+               * specific access to a given account.
                */
               partyIdType:
                 | "MSISDN"
@@ -2878,9 +2887,6 @@ export interface operations {
                */
               partyIdInfo: {
                 /**
-                 * This is a variant based on FSPIOP `PartyIdType` specification.
-                 * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-                 *
                  * Below are the allowed values for the enumeration.
                  * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
                  * Number, that is, the phone number) is used as reference to a participant.
@@ -2916,8 +2922,14 @@ export interface operations {
                  * The ALIAS identifier can be in any format. It is also possible to use the
                  * PartySubIdOrType element for identifying an account under an Alias defined
                  * by the PartyIdentifier.
-                 * - CONSENT - TBD
-                 * - THIRD_PARTY_LINK - TBD
+                 * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+                 * a DFSP which allows the PISP permission to perform actions on behalf of the
+                 * customer. A Consent has an authoritative source: either the DFSP who issued
+                 * the Consent, or an Auth Service which administers the Consent.
+                 * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+                 * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+                 * is created by the DFSP at the time when it gives permission to the PISP for
+                 * specific access to a given account.
                  */
                 partyIdType:
                   | "MSISDN"
@@ -2999,8 +3011,6 @@ export interface operations {
           }
         | {
             /**
-             * This is a variant based on FSPIOP `PartyIdType` specification.
-             * This validation interface should be use by `POST /thirdpartyRequests/transactions`
              * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
              */
             partyIdType: "THIRD_PARTY_LINK";
@@ -3076,9 +3086,6 @@ export interface operations {
                */
               partyIdInfo: {
                 /**
-                 * This is a variant based on FSPIOP `PartyIdType` specification.
-                 * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-                 *
                  * Below are the allowed values for the enumeration.
                  * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
                  * Number, that is, the phone number) is used as reference to a participant.
@@ -3114,8 +3121,14 @@ export interface operations {
                  * The ALIAS identifier can be in any format. It is also possible to use the
                  * PartySubIdOrType element for identifying an account under an Alias defined
                  * by the PartyIdentifier.
-                 * - CONSENT - TBD
-                 * - THIRD_PARTY_LINK - TBD
+                 * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+                 * a DFSP which allows the PISP permission to perform actions on behalf of the
+                 * customer. A Consent has an authoritative source: either the DFSP who issued
+                 * the Consent, or an Auth Service which administers the Consent.
+                 * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+                 * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+                 * is created by the DFSP at the time when it gives permission to the PISP for
+                 * specific access to a given account.
                  */
                 partyIdType:
                   | "MSISDN"
@@ -3199,9 +3212,6 @@ export interface operations {
              */
             payer: {
               /**
-               * This is a variant based on FSPIOP `PartyIdType` specification.
-               * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-               *
                * Below are the allowed values for the enumeration.
                * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
                * Number, that is, the phone number) is used as reference to a participant.
@@ -3237,8 +3247,14 @@ export interface operations {
                * The ALIAS identifier can be in any format. It is also possible to use the
                * PartySubIdOrType element for identifying an account under an Alias defined
                * by the PartyIdentifier.
-               * - CONSENT - TBD
-               * - THIRD_PARTY_LINK - TBD
+               * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+               * a DFSP which allows the PISP permission to perform actions on behalf of the
+               * customer. A Consent has an authoritative source: either the DFSP who issued
+               * the Consent, or an Auth Service which administers the Consent.
+               * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+               * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+               * is created by the DFSP at the time when it gives permission to the PISP for
+               * specific access to a given account.
                */
               partyIdType:
                 | "MSISDN"
@@ -5438,7 +5454,7 @@ export interface operations {
         }[];
         authChannels: ("WEB" | "OTP")[];
         /**
-         * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+         * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
          */
         callbackUri: string;
       };
@@ -6117,11 +6133,11 @@ export interface operations {
             }[];
             authChannels: "WEB"[];
             /**
-             * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+             * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
              */
             callbackUri: string;
             /**
-             * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+             * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
              */
             authUri: string;
           }
@@ -6139,7 +6155,7 @@ export interface operations {
             }[];
             authChannels: "OTP"[];
             /**
-             * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+             * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
              */
             callbackUri?: string;
           };
@@ -7175,9 +7191,7 @@ export interface operations {
         | {
             /**
              * Common ID between the PISP and FSP for the Consent object
-             * decided by the DFSP who creates the Consent
-             * This field is REQUIRED for POST /consent.
-             * creation of this Consent.
+             * determined by the DFSP who creates the Consent.
              */
             consentId: string;
             scopes: {
@@ -9501,9 +9515,6 @@ export interface operations {
          */
         partyList: {
           /**
-           * This is a variant based on FSPIOP `PartyIdType` specification.
-           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-           *
            * Below are the allowed values for the enumeration.
            * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
            * Number, that is, the phone number) is used as reference to a participant.
@@ -9539,8 +9550,14 @@ export interface operations {
            * The ALIAS identifier can be in any format. It is also possible to use the
            * PartySubIdOrType element for identifying an account under an Alias defined
            * by the PartyIdentifier.
-           * - CONSENT - TBD
-           * - THIRD_PARTY_LINK - TBD
+           * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+           * a DFSP which allows the PISP permission to perform actions on behalf of the
+           * customer. A Consent has an authoritative source: either the DFSP who issued
+           * the Consent, or an Auth Service which administers the Consent.
+           * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+           * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+           * is created by the DFSP at the time when it gives permission to the PISP for
+           * specific access to a given account.
            */
           partyIdType:
             | "MSISDN"
@@ -10090,9 +10107,6 @@ export interface operations {
            */
           partyId: {
             /**
-             * This is a variant based on FSPIOP `PartyIdType` specification.
-             * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-             *
              * Below are the allowed values for the enumeration.
              * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
              * Number, that is, the phone number) is used as reference to a participant.
@@ -10128,8 +10142,14 @@ export interface operations {
              * The ALIAS identifier can be in any format. It is also possible to use the
              * PartySubIdOrType element for identifying an account under an Alias defined
              * by the PartyIdentifier.
-             * - CONSENT - TBD
-             * - THIRD_PARTY_LINK - TBD
+             * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+             * a DFSP which allows the PISP permission to perform actions on behalf of the
+             * customer. A Consent has an authoritative source: either the DFSP who issued
+             * the Consent, or an Auth Service which administers the Consent.
+             * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+             * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+             * is created by the DFSP at the time when it gives permission to the PISP for
+             * specific access to a given account.
              */
             partyIdType:
               | "MSISDN"
@@ -13956,9 +13976,6 @@ export interface operations {
            */
           partyIdInfo: {
             /**
-             * This is a variant based on FSPIOP `PartyIdType` specification.
-             * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-             *
              * Below are the allowed values for the enumeration.
              * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
              * Number, that is, the phone number) is used as reference to a participant.
@@ -13994,8 +14011,14 @@ export interface operations {
              * The ALIAS identifier can be in any format. It is also possible to use the
              * PartySubIdOrType element for identifying an account under an Alias defined
              * by the PartyIdentifier.
-             * - CONSENT - TBD
-             * - THIRD_PARTY_LINK - TBD
+             * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+             * a DFSP which allows the PISP permission to perform actions on behalf of the
+             * customer. A Consent has an authoritative source: either the DFSP who issued
+             * the Consent, or an Auth Service which administers the Consent.
+             * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+             * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+             * is created by the DFSP at the time when it gives permission to the PISP for
+             * specific access to a given account.
              */
             partyIdType:
               | "MSISDN"
@@ -14079,9 +14102,6 @@ export interface operations {
          */
         payer: {
           /**
-           * This is a variant based on FSPIOP `PartyIdType` specification.
-           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-           *
            * Below are the allowed values for the enumeration.
            * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
            * Number, that is, the phone number) is used as reference to a participant.
@@ -14117,8 +14137,14 @@ export interface operations {
            * The ALIAS identifier can be in any format. It is also possible to use the
            * PartySubIdOrType element for identifying an account under an Alias defined
            * by the PartyIdentifier.
-           * - CONSENT - TBD
-           * - THIRD_PARTY_LINK - TBD
+           * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+           * a DFSP which allows the PISP permission to perform actions on behalf of the
+           * customer. A Consent has an authoritative source: either the DFSP who issued
+           * the Consent, or an Auth Service which administers the Consent.
+           * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+           * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+           * is created by the DFSP at the time when it gives permission to the PISP for
+           * specific access to a given account.
            */
           partyIdType:
             | "MSISDN"
@@ -16677,9 +16703,6 @@ export interface operations {
          */
         payer: {
           /**
-           * This is a variant based on FSPIOP `PartyIdType` specification.
-           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-           *
            * Below are the allowed values for the enumeration.
            * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
            * Number, that is, the phone number) is used as reference to a participant.
@@ -16715,8 +16738,14 @@ export interface operations {
            * The ALIAS identifier can be in any format. It is also possible to use the
            * PartySubIdOrType element for identifying an account under an Alias defined
            * by the PartyIdentifier.
-           * - CONSENT - TBD
-           * - THIRD_PARTY_LINK - TBD
+           * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+           * a DFSP which allows the PISP permission to perform actions on behalf of the
+           * customer. A Consent has an authoritative source: either the DFSP who issued
+           * the Consent, or an Auth Service which administers the Consent.
+           * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+           * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+           * is created by the DFSP at the time when it gives permission to the PISP for
+           * specific access to a given account.
            */
           partyIdType:
             | "MSISDN"
@@ -16769,9 +16798,6 @@ export interface operations {
            */
           partyIdInfo: {
             /**
-             * This is a variant based on FSPIOP `PartyIdType` specification.
-             * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-             *
              * Below are the allowed values for the enumeration.
              * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
              * Number, that is, the phone number) is used as reference to a participant.
@@ -16807,8 +16833,14 @@ export interface operations {
              * The ALIAS identifier can be in any format. It is also possible to use the
              * PartySubIdOrType element for identifying an account under an Alias defined
              * by the PartyIdentifier.
-             * - CONSENT - TBD
-             * - THIRD_PARTY_LINK - TBD
+             * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+             * a DFSP which allows the PISP permission to perform actions on behalf of the
+             * customer. A Consent has an authoritative source: either the DFSP who issued
+             * the Consent, or an Auth Service which administers the Consent.
+             * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+             * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+             * is created by the DFSP at the time when it gives permission to the PISP for
+             * specific access to a given account.
              */
             partyIdType:
               | "MSISDN"
@@ -22045,9 +22077,6 @@ export interface components {
      */
     Note: string;
     /**
-     * This is a variant based on FSPIOP `PartyIdType` specification.
-     * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-     *
      * Below are the allowed values for the enumeration.
      * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
      * Number, that is, the phone number) is used as reference to a participant.
@@ -22083,8 +22112,14 @@ export interface components {
      * The ALIAS identifier can be in any format. It is also possible to use the
      * PartySubIdOrType element for identifying an account under an Alias defined
      * by the PartyIdentifier.
-     * - CONSENT - TBD
-     * - THIRD_PARTY_LINK - TBD
+     * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+     * a DFSP which allows the PISP permission to perform actions on behalf of the
+     * customer. A Consent has an authoritative source: either the DFSP who issued
+     * the Consent, or an Auth Service which administers the Consent.
+     * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+     * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+     * is created by the DFSP at the time when it gives permission to the PISP for
+     * specific access to a given account.
      */
     PartyIdType:
       | "MSISDN"
@@ -22114,9 +22149,6 @@ export interface components {
      */
     PartyIdInfo: {
       /**
-       * This is a variant based on FSPIOP `PartyIdType` specification.
-       * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-       *
        * Below are the allowed values for the enumeration.
        * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
        * Number, that is, the phone number) is used as reference to a participant.
@@ -22152,8 +22184,14 @@ export interface components {
        * The ALIAS identifier can be in any format. It is also possible to use the
        * PartySubIdOrType element for identifying an account under an Alias defined
        * by the PartyIdentifier.
-       * - CONSENT - TBD
-       * - THIRD_PARTY_LINK - TBD
+       * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+       * a DFSP which allows the PISP permission to perform actions on behalf of the
+       * customer. A Consent has an authoritative source: either the DFSP who issued
+       * the Consent, or an Auth Service which administers the Consent.
+       * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+       * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+       * is created by the DFSP at the time when it gives permission to the PISP for
+       * specific access to a given account.
        */
       partyIdType:
         | "MSISDN"
@@ -22245,9 +22283,6 @@ export interface components {
        */
       partyId: {
         /**
-         * This is a variant based on FSPIOP `PartyIdType` specification.
-         * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-         *
          * Below are the allowed values for the enumeration.
          * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
          * Number, that is, the phone number) is used as reference to a participant.
@@ -22283,8 +22318,14 @@ export interface components {
          * The ALIAS identifier can be in any format. It is also possible to use the
          * PartySubIdOrType element for identifying an account under an Alias defined
          * by the PartyIdentifier.
-         * - CONSENT - TBD
-         * - THIRD_PARTY_LINK - TBD
+         * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+         * a DFSP which allows the PISP permission to perform actions on behalf of the
+         * customer. A Consent has an authoritative source: either the DFSP who issued
+         * the Consent, or an Auth Service which administers the Consent.
+         * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+         * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+         * is created by the DFSP at the time when it gives permission to the PISP for
+         * specific access to a given account.
          */
         partyIdType:
           | "MSISDN"
@@ -22373,9 +22414,6 @@ export interface components {
          */
         partyId: {
           /**
-           * This is a variant based on FSPIOP `PartyIdType` specification.
-           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-           *
            * Below are the allowed values for the enumeration.
            * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
            * Number, that is, the phone number) is used as reference to a participant.
@@ -22411,8 +22449,14 @@ export interface components {
            * The ALIAS identifier can be in any format. It is also possible to use the
            * PartySubIdOrType element for identifying an account under an Alias defined
            * by the PartyIdentifier.
-           * - CONSENT - TBD
-           * - THIRD_PARTY_LINK - TBD
+           * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+           * a DFSP which allows the PISP permission to perform actions on behalf of the
+           * customer. A Consent has an authoritative source: either the DFSP who issued
+           * the Consent, or an Auth Service which administers the Consent.
+           * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+           * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+           * is created by the DFSP at the time when it gives permission to the PISP for
+           * specific access to a given account.
            */
           partyIdType:
             | "MSISDN"
@@ -22671,9 +22715,6 @@ export interface components {
        */
       partyList: {
         /**
-         * This is a variant based on FSPIOP `PartyIdType` specification.
-         * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-         *
          * Below are the allowed values for the enumeration.
          * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
          * Number, that is, the phone number) is used as reference to a participant.
@@ -22709,8 +22750,14 @@ export interface components {
          * The ALIAS identifier can be in any format. It is also possible to use the
          * PartySubIdOrType element for identifying an account under an Alias defined
          * by the PartyIdentifier.
-         * - CONSENT - TBD
-         * - THIRD_PARTY_LINK - TBD
+         * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+         * a DFSP which allows the PISP permission to perform actions on behalf of the
+         * customer. A Consent has an authoritative source: either the DFSP who issued
+         * the Consent, or an Auth Service which administers the Consent.
+         * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+         * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+         * is created by the DFSP at the time when it gives permission to the PISP for
+         * specific access to a given account.
          */
         partyIdType:
           | "MSISDN"
@@ -22999,9 +23046,6 @@ export interface components {
        */
       partyIdInfo: {
         /**
-         * This is a variant based on FSPIOP `PartyIdType` specification.
-         * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-         *
          * Below are the allowed values for the enumeration.
          * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
          * Number, that is, the phone number) is used as reference to a participant.
@@ -23037,8 +23081,14 @@ export interface components {
          * The ALIAS identifier can be in any format. It is also possible to use the
          * PartySubIdOrType element for identifying an account under an Alias defined
          * by the PartyIdentifier.
-         * - CONSENT - TBD
-         * - THIRD_PARTY_LINK - TBD
+         * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+         * a DFSP which allows the PISP permission to perform actions on behalf of the
+         * customer. A Consent has an authoritative source: either the DFSP who issued
+         * the Consent, or an Auth Service which administers the Consent.
+         * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+         * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+         * is created by the DFSP at the time when it gives permission to the PISP for
+         * specific access to a given account.
          */
         partyIdType:
           | "MSISDN"
@@ -23134,9 +23184,6 @@ export interface components {
          */
         partyIdInfo: {
           /**
-           * This is a variant based on FSPIOP `PartyIdType` specification.
-           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-           *
            * Below are the allowed values for the enumeration.
            * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
            * Number, that is, the phone number) is used as reference to a participant.
@@ -23172,8 +23219,14 @@ export interface components {
            * The ALIAS identifier can be in any format. It is also possible to use the
            * PartySubIdOrType element for identifying an account under an Alias defined
            * by the PartyIdentifier.
-           * - CONSENT - TBD
-           * - THIRD_PARTY_LINK - TBD
+           * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+           * a DFSP which allows the PISP permission to perform actions on behalf of the
+           * customer. A Consent has an authoritative source: either the DFSP who issued
+           * the Consent, or an Auth Service which administers the Consent.
+           * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+           * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+           * is created by the DFSP at the time when it gives permission to the PISP for
+           * specific access to a given account.
            */
           partyIdType:
             | "MSISDN"
@@ -23254,8 +23307,6 @@ export interface components {
       };
     };
     /**
-     * This is a variant based on FSPIOP `PartyIdType` specification.
-     * This validation interface should be use by `POST /thirdpartyRequests/transactions`
      * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
      */
     PartyIdTypeTPLink: "THIRD_PARTY_LINK";
@@ -23264,8 +23315,6 @@ export interface components {
      */
     PartyIdInfoTPLink: {
       /**
-       * This is a variant based on FSPIOP `PartyIdType` specification.
-       * This validation interface should be use by `POST /thirdpartyRequests/transactions`
        * - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
        */
       partyIdType: "THIRD_PARTY_LINK";
@@ -23465,9 +23514,6 @@ export interface components {
          */
         partyIdInfo: {
           /**
-           * This is a variant based on FSPIOP `PartyIdType` specification.
-           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-           *
            * Below are the allowed values for the enumeration.
            * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
            * Number, that is, the phone number) is used as reference to a participant.
@@ -23503,8 +23549,14 @@ export interface components {
            * The ALIAS identifier can be in any format. It is also possible to use the
            * PartySubIdOrType element for identifying an account under an Alias defined
            * by the PartyIdentifier.
-           * - CONSENT - TBD
-           * - THIRD_PARTY_LINK - TBD
+           * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+           * a DFSP which allows the PISP permission to perform actions on behalf of the
+           * customer. A Consent has an authoritative source: either the DFSP who issued
+           * the Consent, or an Auth Service which administers the Consent.
+           * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+           * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+           * is created by the DFSP at the time when it gives permission to the PISP for
+           * specific access to a given account.
            */
           partyIdType:
             | "MSISDN"
@@ -23588,9 +23640,6 @@ export interface components {
        */
       payer: {
         /**
-         * This is a variant based on FSPIOP `PartyIdType` specification.
-         * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-         *
          * Below are the allowed values for the enumeration.
          * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
          * Number, that is, the phone number) is used as reference to a participant.
@@ -23626,8 +23675,14 @@ export interface components {
          * The ALIAS identifier can be in any format. It is also possible to use the
          * PartySubIdOrType element for identifying an account under an Alias defined
          * by the PartyIdentifier.
-         * - CONSENT - TBD
-         * - THIRD_PARTY_LINK - TBD
+         * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+         * a DFSP which allows the PISP permission to perform actions on behalf of the
+         * customer. A Consent has an authoritative source: either the DFSP who issued
+         * the Consent, or an Auth Service which administers the Consent.
+         * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+         * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+         * is created by the DFSP at the time when it gives permission to the PISP for
+         * specific access to a given account.
          */
         partyIdType:
           | "MSISDN"
@@ -24435,7 +24490,7 @@ export interface components {
      */
     ConsentRequestChannelType: "WEB" | "OTP";
     /**
-     * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+     * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
      */
     Uri: string;
     /**
@@ -24463,7 +24518,7 @@ export interface components {
       }[];
       authChannels: ("WEB" | "OTP")[];
       /**
-       * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+       * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
        */
       callbackUri: string;
     };
@@ -24493,11 +24548,11 @@ export interface components {
       }[];
       authChannels: "WEB"[];
       /**
-       * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+       * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
        */
       callbackUri: string;
       /**
-       * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+       * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
        */
       authUri: string;
     };
@@ -24524,7 +24579,7 @@ export interface components {
       }[];
       authChannels: "OTP"[];
       /**
-       * The API data type Uri is a JSON string in a canonical format that is restricted by a \ regular expression for interoperability reasons.
+       * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
        */
       callbackUri?: string;
     };
@@ -24678,15 +24733,13 @@ export interface components {
      */
     ConsentStatus: "ISSUED" | "REVOKED";
     /**
-     * The object sent in a `POST /consents` request to AUTH-SERVICE by DFSP to store registered consent with PublicKey
-     * and whatever needed to perform authorization validation later
+     * The object sent in a `POST /consents` request to the Auth-Service
+     * by a DFSP to store registered Consent and credential
      */
     ConsentsPostRequestAUTH: {
       /**
        * Common ID between the PISP and FSP for the Consent object
-       * decided by the DFSP who creates the Consent
-       * This field is REQUIRED for POST /consent.
-       * creation of this Consent.
+       * determined by the DFSP who creates the Consent.
        */
       consentId: string;
       scopes: {
@@ -24770,7 +24823,7 @@ export interface components {
       status: "ISSUED" | "REVOKED";
     };
     /**
-     * The object sent in a `POST /consents` request to PISP by DFSP to ask for delivering the credential object.
+     * The provisional Consent object sent by the DFSP in `POST /consents`.
      */
     ConsentsPostRequestPISP: {
       /**
@@ -25305,9 +25358,6 @@ export interface components {
          */
         partyIdInfo: {
           /**
-           * This is a variant based on FSPIOP `PartyIdType` specification.
-           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-           *
            * Below are the allowed values for the enumeration.
            * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
            * Number, that is, the phone number) is used as reference to a participant.
@@ -25343,8 +25393,14 @@ export interface components {
            * The ALIAS identifier can be in any format. It is also possible to use the
            * PartySubIdOrType element for identifying an account under an Alias defined
            * by the PartyIdentifier.
-           * - CONSENT - TBD
-           * - THIRD_PARTY_LINK - TBD
+           * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+           * a DFSP which allows the PISP permission to perform actions on behalf of the
+           * customer. A Consent has an authoritative source: either the DFSP who issued
+           * the Consent, or an Auth Service which administers the Consent.
+           * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+           * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+           * is created by the DFSP at the time when it gives permission to the PISP for
+           * specific access to a given account.
            */
           partyIdType:
             | "MSISDN"
@@ -25428,9 +25484,6 @@ export interface components {
        */
       payer: {
         /**
-         * This is a variant based on FSPIOP `PartyIdType` specification.
-         * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-         *
          * Below are the allowed values for the enumeration.
          * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
          * Number, that is, the phone number) is used as reference to a participant.
@@ -25466,8 +25519,14 @@ export interface components {
          * The ALIAS identifier can be in any format. It is also possible to use the
          * PartySubIdOrType element for identifying an account under an Alias defined
          * by the PartyIdentifier.
-         * - CONSENT - TBD
-         * - THIRD_PARTY_LINK - TBD
+         * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+         * a DFSP which allows the PISP permission to perform actions on behalf of the
+         * customer. A Consent has an authoritative source: either the DFSP who issued
+         * the Consent, or an Auth Service which administers the Consent.
+         * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+         * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+         * is created by the DFSP at the time when it gives permission to the PISP for
+         * specific access to a given account.
          */
         partyIdType:
           | "MSISDN"
@@ -26315,9 +26374,6 @@ export interface components {
        */
       payer: {
         /**
-         * This is a variant based on FSPIOP `PartyIdType` specification.
-         * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-         *
          * Below are the allowed values for the enumeration.
          * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
          * Number, that is, the phone number) is used as reference to a participant.
@@ -26353,8 +26409,14 @@ export interface components {
          * The ALIAS identifier can be in any format. It is also possible to use the
          * PartySubIdOrType element for identifying an account under an Alias defined
          * by the PartyIdentifier.
-         * - CONSENT - TBD
-         * - THIRD_PARTY_LINK - TBD
+         * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+         * a DFSP which allows the PISP permission to perform actions on behalf of the
+         * customer. A Consent has an authoritative source: either the DFSP who issued
+         * the Consent, or an Auth Service which administers the Consent.
+         * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+         * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+         * is created by the DFSP at the time when it gives permission to the PISP for
+         * specific access to a given account.
          */
         partyIdType:
           | "MSISDN"
@@ -26407,9 +26469,6 @@ export interface components {
          */
         partyIdInfo: {
           /**
-           * This is a variant based on FSPIOP `PartyIdType` specification.
-           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-           *
            * Below are the allowed values for the enumeration.
            * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
            * Number, that is, the phone number) is used as reference to a participant.
@@ -26445,8 +26504,14 @@ export interface components {
            * The ALIAS identifier can be in any format. It is also possible to use the
            * PartySubIdOrType element for identifying an account under an Alias defined
            * by the PartyIdentifier.
-           * - CONSENT - TBD
-           * - THIRD_PARTY_LINK - TBD
+           * - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+           * a DFSP which allows the PISP permission to perform actions on behalf of the
+           * customer. A Consent has an authoritative source: either the DFSP who issued
+           * the Consent, or an Auth Service which administers the Consent.
+           * - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+           * a DFSP, and a specific Customer's account at the DFSP. The content of the link
+           * is created by the DFSP at the time when it gives permission to the PISP for
+           * specific access to a given account.
            */
           partyIdType:
             | "MSISDN"
