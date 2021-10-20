@@ -28,20 +28,6 @@ post:
       application/json:
         schema:
           $ref: ../components/schemas/ConsentRequestsPostRequest.yaml
-        example:
-          id: '456'
-          initiatorId: 'pispA'
-          authChannels: ['WEB', 'OTP']
-          scopes:
-            - accountId: dfspa.username.1234
-              actions:
-                - accounts.transfer
-                - accounts.getBalance
-            - accountId: dfspa.username.5678
-              actions:
-                - accounts.transfer
-                - accounts.getBalance
-          callbackUri: 'pisp-app://callback.com'
   responses:
     202:
       $ref: ../components/responses/202.yaml

@@ -12,9 +12,6 @@ enum:
   - CONSENT
   - THIRD_PARTY_LINK
 description: |
-  This is a variant based on FSPIOP `PartyIdType` specification.
-  Main difference being the CONSENT and THIRD_PARTY_LINK enums.
-
   Below are the allowed values for the enumeration.
   - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
   Number, that is, the phone number) is used as reference to a participant.
@@ -27,7 +24,7 @@ description: |
   [RFC 3696](https://tools.ietf.org/html/rfc3696).
   - PERSONAL_ID - A personal identifier is used as reference to a participant.
   Examples of personal identification are passport number, birth certificate
-  number, and national registration number. The identifier number is added in
+  number, and national registration number. The identifier number is added in 
   the PartyIdentifier element. The personal identifier type is added in the
   PartySubIdOrType element.
   - BUSINESS - A specific Business (for example, an organization or a company)
@@ -50,6 +47,12 @@ description: |
   The ALIAS identifier can be in any format. It is also possible to use the
   PartySubIdOrType element for identifying an account under an Alias defined
   by the PartyIdentifier.
-  - CONSENT - TBD
-  - THIRD_PARTY_LINK - TBD
+  - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+  a DFSP which allows the PISP permission to perform actions on behalf of the 
+  customer. A Consent has an authoritative source: either the DFSP who issued 
+  the Consent, or an Auth Service which administers the Consent.
+  - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+  a DFSP, and a specific Customer's account at the DFSP. The content of the link 
+  is created by the DFSP at the time when it gives permission to the PISP for 
+  specific access to a given account.
 example: PERSONAL_ID
