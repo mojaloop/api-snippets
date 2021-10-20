@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.3](https://github.com/mojaloop/api-snippets/compare/v13.0.2...v13.0.3) (2021-10-20)
+
+
+### Maintenance
+
+* **thirdparty:** minor inline docs improvements ([#116](https://github.com/mojaloop/api-snippets/issues/116)) ([9615e66](https://github.com/mojaloop/api-snippets/commit/9615e664160249e89a4db14046ecfc9bb73664ab))
+
 ### [13.0.2](https://github.com/mojaloop/api-snippets/compare/v13.0.1...v13.0.2) (2021-10-19)
 
 
