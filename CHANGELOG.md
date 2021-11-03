@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.4](https://github.com/mojaloop/api-snippets/compare/v13.0.3...v13.0.4) (2021-11-03)
+
+
+### Bug Fixes
+
+* invalid value string examples as numbers ([#117](https://github.com/mojaloop/api-snippets/issues/117)) ([46fc9ff](https://github.com/mojaloop/api-snippets/commit/46fc9ff058be60da1bd3325924e668a8a8c3853e))
+
 ### [13.0.3](https://github.com/mojaloop/api-snippets/compare/v13.0.2...v13.0.3) (2021-10-20)
 
 
