@@ -18,7 +18,7 @@ properties:
       amount:
         type: string
         description: Amount of money.
-        example: 124.45
+        example: '124.45'
   payeeReceiveAmount:
     properties:
       currency:
@@ -28,7 +28,7 @@ properties:
       amount:
         type: string
         description: Amount of money.
-        example: 123.45
+        example: '123.45'
   payeeFspFee:
     properties:
       currency:
@@ -38,7 +38,7 @@ properties:
       amount:
         type: string
         description: Amount of money.
-        example: 1.45
+        example: '1.45'
   payeeFspCommission:
     properties:
       currency:
@@ -48,7 +48,7 @@ properties:
       amount:
         type: string
         description: Amount of money.
-        example: 1.45
+        example: '1.45'
   ilpPacket:
     type: string
     description: The ILP Packet that must be attached to the transfer by the Payer.

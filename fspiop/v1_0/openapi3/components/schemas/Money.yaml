@@ -9,7 +9,7 @@ properties:
   amount:
     type: string
     description: Amount of Money.
-    example: 123.45
+    example: '123.45'
 required:
   - currency
   - amount
