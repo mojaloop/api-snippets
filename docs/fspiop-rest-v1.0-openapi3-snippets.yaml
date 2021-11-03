@@ -2741,7 +2741,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 123.45
+              example: '123.45'
         fees:
           properties:
             currency:
@@ -2751,7 +2751,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 1.45
+              example: '1.45'
         transactionType:
           $ref: '#/components/schemas/TransactionType'
           description: Type of transaction that the quote is requested for.
@@ -3003,7 +3003,7 @@ components:
         amount:
           type: string
           description: Amount of Money.
-          example: 123.45
+          example: '123.45'
       required:
         - currency
         - amount
@@ -3564,7 +3564,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 124.45
+              example: '124.45'
         payeeReceiveAmount:
           properties:
             currency:
@@ -3574,7 +3574,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 123.45
+              example: '123.45'
         payeeFspFee:
           properties:
             currency:
@@ -3584,7 +3584,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 1.45
+              example: '1.45'
         payeeFspCommission:
           properties:
             currency:
@@ -3594,7 +3594,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 0
+              example: '0'
         expiration:
           type: string
           description: >-
@@ -3828,7 +3828,7 @@ components:
                 amount:
                   type: string
                   description: Amount of money.
-                  example: 123.45
+                  example: '123.45'
             fees:
               properties:
                 currency:
@@ -3838,7 +3838,7 @@ components:
                 amount:
                   type: string
                   description: Amount of money.
-                  example: 1.45
+                  example: '1.45'
             transactionType:
               $ref: '#/components/schemas/TransactionType'
               description: Type of transaction that the quote is requested for.
@@ -3874,7 +3874,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 124.45
+              example: '124.45'
         payeeReceiveAmount:
           properties:
             currency:
@@ -3884,7 +3884,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 123.45
+              example: '123.45'
         payeeFspFee:
           properties:
             currency:
@@ -3894,7 +3894,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 1.45
+              example: '1.45'
         payeeFspCommission:
           properties:
             currency:
@@ -3904,7 +3904,7 @@ components:
             amount:
               type: string
               description: Amount of money.
-              example: 1.45
+              example: '1.45'
         ilpPacket:
           type: string
           description: The ILP Packet that must be attached to the transfer by the Payer.

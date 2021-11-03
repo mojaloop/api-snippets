@@ -83,7 +83,7 @@ properties:
           amount:
             type: string
             description: Amount of money.
-            example: 123.45
+            example: '123.45'
       fees:
         properties:
           currency:
@@ -93,7 +93,7 @@ properties:
           amount:
             type: string
             description: Amount of money.
-            example: 1.45
+            example: '1.45'
       transactionType:
         $ref: ./TransactionType.yaml
         description: Type of transaction that the quote is requested for.
