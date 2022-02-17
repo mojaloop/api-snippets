@@ -1,4 +1,4 @@
-title: AuthorizationResponseType
+title: AuthorizationResponseTypeRejected
 description: |
   The customer rejected the terms of the transfer.
 type: string

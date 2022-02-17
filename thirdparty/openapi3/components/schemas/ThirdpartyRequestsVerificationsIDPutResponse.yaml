@@ -3,10 +3,6 @@ type: object
 description: The object sent in the PUT /thirdpartyRequests/verifications/{ID} request.
 properties:
   authenticationResponse:
-    type: string
-    enum:
-      - VERIFIED
-    description: 'The verification passed'
+    $ref: ./AuthenticationResponse.yaml
 required:
   - authenticationResponse
-  

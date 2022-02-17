@@ -19144,11 +19144,9 @@ export interface operations {
     };
   };
   /**
-   * The HTTP request `PUT /thirdpartyRequests/verifications/{ID}` is used by the Auth-Service to inform
-   * the DFSP of a successful result in validating the verification of a Thirdparty Transaction Request.
-   *
-   * If the validation fails, The Auth-Service MUST use `PUT /thirdpartyRequests/verifications/{ID}/error`
-   * instead.
+   * The HTTP request `PUT /thirdpartyRequests/verifications/{ID}` is used by the Auth-Service to inform the DFSP of a successful result in validating the verification of a Thirdparty Transaction Request.
+   * If the validation fails, the auth-service will send back `PUT /thirdpartyRequests/verifications/{ID}` with `authenticationResponse: 'REJECTED'`.
+   * In unplanned error cases the Auth-Service MUST use `PUT /thirdpartyRequests/verifications/{ID}/error`.
    */
   PutThirdpartyRequestsVerificationsById: {
     parameters: {
@@ -19164,9 +19162,11 @@ export interface operations {
     requestBody: {
       "application/json": {
         /**
-         * The verification passed
+         * Below are the allowed values for the enumeration AuthenticationResponse.
+         * - VERIFIED - The challenge was correctly signed.
+         * - REJECTED - The challenge was not correctly signed.
          */
-        authenticationResponse: "VERIFIED";
+        authenticationResponse: "VERIFIED" | "REJECTED";
       };
     };
     responses: {
@@ -26890,13 +26890,21 @@ export interface components {
       genericSignedPayload: string;
     };
     /**
+     * Below are the allowed values for the enumeration AuthenticationResponse.
+     * - VERIFIED - The challenge was correctly signed.
+     * - REJECTED - The challenge was not correctly signed.
+     */
+    AuthenticationResponse: "VERIFIED" | "REJECTED";
+    /**
      * The object sent in the PUT /thirdpartyRequests/verifications/{ID} request.
      */
     ThirdpartyRequestsVerificationsIDPutResponse: {
       /**
-       * The verification passed
+       * Below are the allowed values for the enumeration AuthenticationResponse.
+       * - VERIFIED - The challenge was correctly signed.
+       * - REJECTED - The challenge was not correctly signed.
        */
-      authenticationResponse: "VERIFIED";
+      authenticationResponse: "VERIFIED" | "REJECTED";
     };
   };
   responses: {

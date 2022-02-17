@@ -20,7 +20,7 @@ get:
   description: |
     The HTTP request `/thirdpartyRequests/verifications/{ID}` is used to get
     information regarding a previously created or requested authorization. The *{ID}*
-    in the URI should contain the verification request ID 
+    in the URI should contain the verification request ID
   parameters:
     #Headers
     - $ref: ../components/parameters/Accept.yaml
@@ -49,12 +49,14 @@ put:
     - sampled
   operationId: PutThirdpartyRequestsVerificationsById
   summary: PutThirdpartyRequestsVerificationsById
-  description: |
+  description: >-
     The HTTP request `PUT /thirdpartyRequests/verifications/{ID}` is used by the Auth-Service to inform
     the DFSP of a successful result in validating the verification of a Thirdparty Transaction Request.
 
-    If the validation fails, The Auth-Service MUST use `PUT /thirdpartyRequests/verifications/{ID}/error`
-    instead.
+    If the validation fails, the auth-service will send back `PUT /thirdpartyRequests/verifications/{ID}`
+    with `authenticationResponse: 'REJECTED'`.
+
+    In unplanned error cases the Auth-Service MUST use `PUT /thirdpartyRequests/verifications/{ID}/error`.
   parameters:
     - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
