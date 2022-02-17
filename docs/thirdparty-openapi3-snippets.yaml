@@ -3027,7 +3027,7 @@ paths:
                                 - "FIDO" - A FIDO public/private keypair
                                 - "GENERIC" - A Generic public/private keypair
                             status:
-                              title: CredentialStatus
+                              title: CredentialStatusPending
                               type: string
                               enum: &ref_115
                                 - PENDING
@@ -3454,7 +3454,7 @@ paths:
                       type: object
                       properties:
                         status:
-                          title: CredentialStatus
+                          title: CredentialStatusVerified
                           type: string
                           enum: &ref_128
                             - VERIFIED
@@ -6639,14 +6639,14 @@ paths:
           application/json:
             schema:
               oneOf:
-                - title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
+                - title: ThirdpartyRequestsAuthorizationsIDPutResponseRejected
                   type: object
                   description: >-
                     The object sent in the PUT
                     /thirdpartyRequests/authorizations/{ID} callback.
                   properties: &ref_147
                     responseType:
-                      title: AuthorizationResponseType
+                      title: AuthorizationResponseTypeRejected
                       description: |
                         The customer rejected the terms of the transfer.
                       type: string
@@ -7426,7 +7426,7 @@ paths:
         information regarding a previously created or requested authorization.
         The *{ID}*
 
-        in the URI should contain the verification request ID 
+        in the URI should contain the verification request ID
       parameters:
         - name: Accept
           in: header
@@ -7476,18 +7476,17 @@ paths:
         - sampled
       operationId: PutThirdpartyRequestsVerificationsById
       summary: PutThirdpartyRequestsVerificationsById
-      description: >
+      description: >-
         The HTTP request `PUT /thirdpartyRequests/verifications/{ID}` is used by
-        the Auth-Service to inform
+        the Auth-Service to inform the DFSP of a successful result in validating
+        the verification of a Thirdparty Transaction Request.
 
-        the DFSP of a successful result in validating the verification of a
-        Thirdparty Transaction Request.
+        If the validation fails, the auth-service will send back `PUT
+        /thirdpartyRequests/verifications/{ID}` with `authenticationResponse:
+        'REJECTED'`.
 
-
-        If the validation fails, The Auth-Service MUST use `PUT
-        /thirdpartyRequests/verifications/{ID}/error`
-
-        instead.
+        In unplanned error cases the Auth-Service MUST use `PUT
+        /thirdpartyRequests/verifications/{ID}/error`.
       parameters:
         - name: Content-Length
           in: header
@@ -7511,13 +7510,21 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/verifications/{ID} request.
-              properties: &ref_157
+              properties: &ref_158
                 authenticationResponse:
+                  title: AuthenticationResponse
                   type: string
-                  enum:
+                  enum: &ref_157
                     - VERIFIED
-                  description: The verification passed
-              required: &ref_158
+                    - REJECTED
+                  description: >-
+                    Below are the allowed values for the enumeration
+                    AuthenticationResponse.
+
+                    - VERIFIED - The challenge was correctly signed.
+
+                    - REJECTED - The challenge was not correctly signed.
+              required: &ref_159
                 - authenticationResponse
             example:
               authenticationResponse: VERIFIED
@@ -8490,7 +8497,7 @@ components:
         - "FIDO" - A FIDO public/private keypair
         - "GENERIC" - A Generic public/private keypair
     CredentialStatusPending:
-      title: CredentialStatus
+      title: CredentialStatusPending
       type: string
       enum: *ref_115
       description: |
@@ -8618,7 +8625,7 @@ components:
       required: *ref_127
       additionalProperties: false
     CredentialStatusVerified:
-      title: CredentialStatus
+      title: CredentialStatusVerified
       type: string
       enum: *ref_128
       description: |
@@ -8708,13 +8715,13 @@ components:
       required: *ref_145
       additionalProperties: false
     AuthorizationResponseTypeRejected:
-      title: AuthorizationResponseType
+      title: AuthorizationResponseTypeRejected
       description: |
         The customer rejected the terms of the transfer.
       type: string
       enum: *ref_146
     ThirdpartyRequestsAuthorizationsIDPutResponseRejected:
-      title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
+      title: ThirdpartyRequestsAuthorizationsIDPutResponseRejected
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
@@ -8780,14 +8787,22 @@ components:
       description: The object sent in the POST /thirdpartyRequests/verifications request.
       properties: *ref_155
       required: *ref_156
+    AuthenticationResponse:
+      title: AuthenticationResponse
+      type: string
+      enum: *ref_157
+      description: |-
+        Below are the allowed values for the enumeration AuthenticationResponse.
+        - VERIFIED - The challenge was correctly signed.
+        - REJECTED - The challenge was not correctly signed.
     ThirdpartyRequestsVerificationsIDPutResponse:
       title: ThirdpartyRequestsVerificationsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/verifications/{ID}
         request.
-      properties: *ref_157
-      required: *ref_158
+      properties: *ref_158
+      required: *ref_159
   parameters:
     ID:
       name: ID

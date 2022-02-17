@@ -3,6 +3,6 @@ type: object
 description: The object sent in the PUT /thirdpartyRequests/verifications/{ID} request.
 properties:
   authenticationResponse:
-    - $ref: ./AuthenticationResponse.yaml
+    $ref: ./AuthenticationResponse.yaml
 required:
   - authenticationResponse

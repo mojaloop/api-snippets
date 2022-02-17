@@ -4,6 +4,9 @@
   "description": "Mojaloop API specification reusable snippets",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
     "audit:resolve": "SHELL=sh resolve-audit --production",
     "audit:check": "SHELL=sh check-audit --production",

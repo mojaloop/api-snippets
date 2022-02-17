@@ -9,11 +9,13 @@ Amount:
 AmountType:
   $ref: ./AmountType.yaml
 AuthenticationInfo:
-   $ref: ./AuthenticationInfo.yaml
+  $ref: ./AuthenticationInfo.yaml
+AuthenticationResponse:
+  $ref: ./AuthenticationResponse.yaml
 AuthenticationType:
   $ref: ./AuthenticationType.yaml
 AuthenticationValue:
-   $ref: ./AuthenticationValue.yaml
+  $ref: ./AuthenticationValue.yaml
 AuthorizationChannelType:
   $ref: ./AuthorizationChannelType.yaml
 AuthorizationResponseType:
