@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.5](https://github.com/mojaloop/api-snippets/compare/v13.0.4...v13.0.5) (2022-02-18)
+
+
+### Bug Fixes
+
+* fix enumeration for authentication response ([#118](https://github.com/mojaloop/api-snippets/issues/118)) ([29e64f0](https://github.com/mojaloop/api-snippets/commit/29e64f07c3ac217e0676d5dd6e04bf4f13eab4c0))
+
 ### [13.0.4](https://github.com/mojaloop/api-snippets/compare/v13.0.3...v13.0.4) (2021-11-03)
 
 
