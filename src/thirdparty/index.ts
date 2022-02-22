@@ -9,6 +9,7 @@ export namespace Schemas {
   export type AccountsIDPutResponse = components['schemas']['AccountsIDPutResponse']
   export type Amount = components['schemas']['Amount']
   export type AmountType = components['schemas']['AmountType']
+  export type AuthenticationResponse = components['schemas']['AuthenticationResponse']
   export type AuthenticationType = components['schemas']['AuthenticationType']
   export type AuthorizationChannelType = components['schemas']['AuthorizationChannelType']
   export type AuthorizationResponseType = components['schemas']['AuthorizationResponseType']

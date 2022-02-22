@@ -8230,18 +8230,17 @@ paths:
         - sampled
       operationId: PutThirdpartyRequestsVerificationsById
       summary: PutThirdpartyRequestsVerificationsById
-      description: >
+      description: >-
         The HTTP request `PUT /thirdpartyRequests/verifications/{ID}` is used by
-        the Auth-Service to inform
+        the Auth-Service to inform the DFSP of a successful result in validating
+        the verification of a Thirdparty Transaction Request.
 
-        the DFSP of a successful result in validating the verification of a
-        Thirdparty Transaction Request.
+        If the validation fails, the auth-service will send back `PUT
+        /thirdpartyRequests/verifications/{ID}` with `authenticationResponse:
+        'REJECTED'`.
 
-
-        If the validation fails, The Auth-Service MUST use `PUT
-        /thirdpartyRequests/verifications/{ID}/error`
-
-        instead.
+        In unplanned error cases the Auth-Service MUST use `PUT
+        /thirdpartyRequests/verifications/{ID}/error`.
       parameters:
         - name: Content-Length
           in: header
@@ -8265,13 +8264,21 @@ paths:
               description: >-
                 The object sent in the PUT
                 /thirdpartyRequests/verifications/{ID} request.
-              properties: &ref_162
+              properties: &ref_163
                 authenticationResponse:
+                  title: AuthenticationResponse
                   type: string
-                  enum:
+                  enum: &ref_162
                     - VERIFIED
-                  description: The verification passed
-              required: &ref_163
+                    - REJECTED
+                  description: >-
+                    Below are the allowed values for the enumeration
+                    AuthenticationResponse.
+
+                    - VERIFIED - The challenge was correctly signed.
+
+                    - REJECTED - The challenge was not correctly signed.
+              required: &ref_164
                 - authenticationResponse
             example:
               authenticationResponse: VERIFIED
@@ -9548,14 +9555,22 @@ components:
       description: The object sent in the POST /thirdpartyRequests/verifications request.
       properties: *ref_160
       required: *ref_161
+    AuthenticationResponse:
+      title: AuthenticationResponse
+      type: string
+      enum: *ref_162
+      description: |-
+        Below are the allowed values for the enumeration AuthenticationResponse.
+        - VERIFIED - The challenge was correctly signed.
+        - REJECTED - The challenge was not correctly signed.
     ThirdpartyRequestsVerificationsIDPutResponse:
       title: ThirdpartyRequestsVerificationsIDPutResponse
       type: object
       description: >-
         The object sent in the PUT /thirdpartyRequests/verifications/{ID}
         request.
-      properties: *ref_162
-      required: *ref_163
+      properties: *ref_163
+      required: *ref_164
   parameters:
     ID:
       name: ID
