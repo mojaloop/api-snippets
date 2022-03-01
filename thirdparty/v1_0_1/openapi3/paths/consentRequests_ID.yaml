@@ -1,0 +1,126 @@
+parameters:
+  #Path
+  - $ref: ../components/parameters/ID.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+get:
+  operationId: GetConsentRequestsById
+  summary: GetConsentRequestsById
+  description: |
+    The HTTP request `GET /consentRequests/{ID}` is used to get information about a previously
+    requested consent. The *{ID}* in the URI should contain the consentRequestId that was assigned to the
+    request by the PISP when the PISP originated the request.
+  tags:
+    - consentRequests
+    - sampled
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
+put:
+  tags:
+    - consentRequests
+    - sampled
+  operationId: UpdateConsentRequest
+  summary: UpdateConsentRequest
+  description: |
+    A DFSP uses this callback to (1) inform the PISP that the consentRequest has been accepted,
+    and (2) communicate to the PISP which `authChannel` it should use to authenticate their user
+    with.
+
+    When a PISP requests a series of permissions from a DFSP on behalf of a DFSP’s customer, not all
+    the permissions requested may be granted by the DFSP. Conversely, the out-of-band authorization
+    process  may result in additional privileges being granted by the account holder to the PISP. The
+    **PUT /consentRequests/**_{ID}_ resource returns the current state of the permissions relating to a
+    particular authorization request.
+  parameters:
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: ../components/schemas/callbacks/ConsentRequestsIDPutResponseWeb.yaml
+            - $ref: ../components/schemas/callbacks/ConsentRequestsIDPutResponseOTP.yaml
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
+patch:
+  tags:
+    - consentRequests
+    - sampled
+  operationId: PatchConsentRequest
+  summary: PatchConsentRequest
+  description: >
+    After the user completes an out-of-band authorization with the DFSP, the PISP will receive
+    a token which they can use to prove to the DFSP that the user trusts this PISP.
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/callbacks/ConsentRequestsIDPatchResponse.yaml
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml

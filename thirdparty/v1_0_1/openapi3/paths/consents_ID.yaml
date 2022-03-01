@@ -1,0 +1,167 @@
+parameters:
+  #Path
+  - $ref: ../components/parameters/ID.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+get:
+  description: >
+    The **GET /consents/**_{ID}_ resource allows a party to enquire after the status of a consent. The
+    *{ID}* used in the URI of the request should be the consent request ID which was used to identify
+    the consent when it was created.
+  tags:
+    - consents
+  operationId: GetConsent
+  summary: GetConsent
+  parameters:
+    #Headers
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
+patch:
+  description: |
+    The HTTP request `PATCH /consents/{ID}` is used
+
+    - In account linking in the Credential Registration phase. Used by a DFSP
+      to notify a PISP a credential has been issued and registered with an
+      Auth service.
+
+    - In account unlinking by a hub hosted auth service and by DFSPs
+      in non-hub hosted scenarios to notify participants of a consent being revoked.
+
+      Called by a `auth-service` to notify a PISP and DFSP of consent status in hub hosted scenario.
+      Called by a `DFSP` to notify a PISP of consent status in non-hub hosted scenario.
+  tags:
+    - consents
+    - sampled
+  operationId: PatchConsentByID
+  summary: PatchConsentByID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: ../components/schemas/callbacks/ConsentsIDPatchResponseVerified.yaml
+            - $ref: ../components/schemas/callbacks/ConsentsIDPatchResponseRevoked.yaml
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/Content-Length.yaml
+  responses:
+    200:
+      $ref: ../components/responses/200.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
+put:
+  description: |
+    The HTTP request `PUT /consents/{ID}` is used by the PISP and Auth Service.
+
+    - Called by a `PISP` to after signing a challenge. Sent to an DFSP for verification.
+    - Called by a `auth-service` to notify a DFSP that a credential has been verified and registered.
+  tags:
+    - consents
+    - sampled
+  operationId: PutConsentByID
+  summary: PutConsentByID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: ../components/schemas/callbacks/ConsentsIDPutResponseSigned.yaml
+            - $ref: ../components/schemas/callbacks/ConsentsIDPutResponseVerified.yaml
+  parameters:
+    #Headers
+    - $ref: ../components/parameters/Content-Length.yaml
+  responses:
+    200:
+      $ref: ../components/responses/200.yaml
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
+delete:
+  description: |
+    Used by PISP, DFSP
+
+    The **DELETE /consents/**_{ID}_ request is used to request the revocation of a previously agreed consent.
+    For tracing and auditing purposes, the switch should be sure not to delete the consent physically;
+    instead, information relating to the consent should be marked as deleted and requests relating to the
+    consent should not be honoured.
+  operationId: DeleteConsentByID
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  tags:
+    - consents
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml

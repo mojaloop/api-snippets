@@ -1,0 +1,29 @@
+title: ConsentPostRequestAUTH
+type: object
+description: |
+  The object sent in a `POST /consents` request to the Auth-Service
+  by a DFSP to store registered Consent and credential
+properties:
+  consentId:
+    allOf:
+      - $ref: ../properties/CorrelationId.yaml
+    description: |
+      Common ID between the PISP and FSP for the Consent object
+      determined by the DFSP who creates the Consent.
+  scopes:
+    minLength: 1
+    maxLength: 256
+    type: array
+    items:
+      $ref: ../properties/Scope.yaml
+  credential:
+    allOf:
+      - $ref: ../properties/SignedCredential.yaml
+  status:
+    $ref: ../properties/ConsentStatus.yaml
+required:
+  - consentId
+  - scopes
+  - credential
+  - status
+additionalProperties: false

@@ -1,7 +1,0 @@
-title: AccountAddress
-type: string
-description: |
-  An address which can be used to identify the account.
-pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
-minLength: 1
-maxLength: 1023

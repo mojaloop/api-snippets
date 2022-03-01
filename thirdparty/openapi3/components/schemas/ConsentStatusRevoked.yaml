@@ -1,7 +1,0 @@
-title: ConsentStatus
-type: string
-enum:
-  - REVOKED
-description: |-
-  Allowed values for the enumeration ConsentStatus
-  - REVOKED - The consent has been revoked

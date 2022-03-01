@@ -2,7 +2,6 @@ import { Schemas } from '../../lib/thirdparty'
 
 describe('thirdparty', () => {
   const accountAddress: Schemas.AccountAddress = 'account-id'
-  const authenticationTypeQRCODE: Schemas.AuthenticationType = 'QRCODE'
   const currency: Schemas.Currency = 'USD'
   const name: Schemas.Name = 'name'
   const account: Schemas.Account = {
@@ -10,7 +9,6 @@ describe('thirdparty', () => {
     address: accountAddress,
     currency
   }
-  const authorizationChannelTypeU2F: Schemas.AuthorizationChannelType = 'U2F'
   const extensionKey: Schemas.ExtensionKey = 'key'
   const extensionValue: Schemas.ExtensionValue = 'value'
   const extension: Schemas.Extension = {
@@ -43,6 +41,7 @@ describe('thirdparty', () => {
     currency,
     amount: '1'
   }
+  /*
   const quote: Schemas.QuotesIDPutResponse = {
     transferAmount: money,
     payeeReceiveAmount: money,
@@ -54,6 +53,7 @@ describe('thirdparty', () => {
     condition: ilpCondition,
     extensionList
   }
+  */
   const consentRequestChannelType: Schemas.ConsentRequestChannelType = 'WEB'
   const consentRequestChannelTypeWeb: Schemas.ConsentRequestChannelTypeWeb = 'WEB'
   const consentRequestChannelTypeOTP: Schemas.ConsentRequestChannelTypeOTP = 'OTP'
@@ -124,7 +124,7 @@ describe('thirdparty', () => {
   const verifiedCredential: Schemas.VerifiedCredential = {
     credentialType: credentialTypeFIDO,
     status: 'VERIFIED',
-    payload: FIDOPublicKeyCredentialAttestation
+    fidoPayload: FIDOPublicKeyCredentialAttestation
   }
 
   const transactionType: Schemas.TransactionType = {
@@ -154,25 +154,9 @@ describe('thirdparty', () => {
     expect(accountAddress).toBeDefined()
   })
 
-  test('AuthorizationChannelType', () => {
-    expect(authorizationChannelTypeU2F).toBeDefined()
-  })
-
   test('AuthorizationResponseType', () => {
     const authorizationResponseType: Schemas.AuthorizationResponseType = 'ACCEPTED'
     expect(authorizationResponseType).toBeDefined()
-  })
-
-  test('AuthorizationsPostRequest', () => {
-    const authorizationsPostRequest: Schemas.AuthorizationsPostRequest = {
-      authenticationType: authorizationChannelTypeU2F,
-      retriesLeft: integer,
-      amount: money,
-      transactionId: correlationId,
-      transactionRequestId: correlationId,
-      quote
-    }
-    expect(authorizationsPostRequest).toBeDefined()
   })
 
   test('BinaryString', () => {
@@ -227,7 +211,7 @@ describe('thirdparty', () => {
     expect(scopeActionTransfer).toBeDefined()
     expect(scopeActionStatement).toBeDefined()
   })
-  
+
   test('ConsentsIDPatchResponseRevoked', () => {
     const consentsIDPatchResponse: Schemas.ConsentsIDPatchResponseRevoked = {
       status: consentStatusRevoked,
@@ -603,7 +587,7 @@ describe('thirdparty', () => {
       responseType: 'ACCEPTED',
       signedPayload: {
         signedPayloadType: 'GENERIC',
-        genericSignedPayload: 'some signature utf-8 string',
+        genericSignedPayload: 'some signature utf-8 string'
       }
     }
     expect(thirdpartyRequestsAuthorizationsIDPutResponseGeneric).toBeDefined()
@@ -621,22 +605,6 @@ describe('thirdparty', () => {
 
   test('TransactionType', () => {
     expect(transactionType).toBeDefined()
-  })
-
-  test('TransactionRequestsPostRequest', () => {
-    const transactionRequestsPostRequest: Schemas.TransactionRequestsPostRequest = {
-      transactionRequestId: correlationId,
-      payee: party,
-      payer: partyIdInfo,
-      amount: money,
-      transactionType,
-      note,
-      geoCode,
-      authenticationType: authenticationTypeQRCODE,
-      expiration: dateTime,
-      extensionList
-    }
-    expect(transactionRequestsPostRequest).toBeDefined()
   })
 
   test('ThirdpartyRequestsVerificationsIDPutResponse', () => {

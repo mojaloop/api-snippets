@@ -1,0 +1,15 @@
+title: ConsentsIDPatchResponseRevoked
+description: |
+  PATCH /consents/{ID} request object.
+
+  Sent to both the PISP and DFSP when a consent is revoked.
+  Used in the "Unlinking" part of the Account Unlinking flow.
+type: object
+properties:
+  status:
+    $ref: ../properties/ConsentStatusRevoked.yaml
+  revokedAt:
+    $ref: ../properties/DateTime.yaml
+required:
+  - status
+  - revokedAt

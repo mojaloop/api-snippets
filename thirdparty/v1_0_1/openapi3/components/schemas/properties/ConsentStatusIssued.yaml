@@ -1,0 +1,7 @@
+title: ConsentStatusIssued
+type: string
+enum:
+  - ISSUED
+description: |-
+  Allowed values for the enumeration ConsentStatus
+  - ISSUED - The consent has been issued by the DFSP

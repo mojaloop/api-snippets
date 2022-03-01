@@ -1,0 +1,9 @@
+title: ConsentRequestChannelType
+type: string
+enum:
+  - WEB
+  - OTP
+description: |
+  The auth channel being used for the consent request.
+  - WEB - DFSP can support authorization via a web-based login.
+  - OTP - DFSP can support authorization via a One Time PIN.

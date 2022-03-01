@@ -1,0 +1,19 @@
+title: ConsentsIDPutResponseSigned
+type: object
+description: >
+  The HTTP request `PUT /consents/{ID}` is used by the PISP to update a Consent
+  with a signed challenge and register a credential.
+
+  Called by a `PISP` to after signing a challenge. Sent to a DFSP for
+  verification.
+properties:
+  scopes:
+    type: array
+    items:
+      $ref: ../properties/Scope.yaml
+  credential:
+    $ref: ../properties/SignedCredential.yaml
+required:
+  - scopes
+  - credential
+additionalProperties: false

@@ -1,0 +1,12 @@
+title: AuthenticationResponse
+type: string
+enum:
+  - VERIFIED
+  - REJECTED
+description: >-
+  The AuthenticationResponse enumeration describes the result of authenticating
+  verification request.
+
+  Below are the allowed values for the enumeration AuthenticationResponse.
+  - VERIFIED - The challenge was correctly signed.
+  - REJECTED - The challenge was not correctly signed.

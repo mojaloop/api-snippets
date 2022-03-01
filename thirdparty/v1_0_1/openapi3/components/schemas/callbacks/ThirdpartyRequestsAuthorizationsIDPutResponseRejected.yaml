@@ -1,0 +1,8 @@
+title: ThirdpartyRequestsAuthorizationsIDPutResponseRejected
+type: object
+description: 'The object sent in the PUT /thirdpartyRequests/authorizations/{ID} callback.'
+properties:
+  responseType:
+    $ref: ../properties/AuthorizationResponseTypeRejected.yaml
+required:
+  - responseType

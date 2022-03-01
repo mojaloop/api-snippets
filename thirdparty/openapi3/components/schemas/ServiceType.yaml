@@ -1,7 +1,0 @@
-title: ServiceType
-type: string
-enum:
-  - THIRD_PARTY_DFSP
-description: |-
-  Below are the allowed values for the enumeration ServiceType
-  - THIRD_PARTY_DFSP - Enum used to query for DFSP's that have thirdparty features enabled

@@ -1,8 +1,0 @@
-title: ThirdpartyRequestsTransactionsIDPutResponse
-type: object
-description: 'The object sent in the PUT /thirdPartyRequests/transactions/{ID} request.'
-properties:
-  transactionRequestState:
-    $ref: ./TransactionRequestState.yaml
-required:
-  - transactionRequestState

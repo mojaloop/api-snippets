@@ -1,0 +1,219 @@
+ConsentRequestsPostRequest:
+  $ref: ./requests/ConsentRequestsPostRequest.yaml
+ConsentsPostRequestAUTH:
+  $ref: ./requests/ConsentsPostRequest/ConsentsPostRequestAUTH.yaml
+ConsentsPostRequestPISP:
+  $ref: ./requests/ConsentsPostRequest/ConsentsPostRequestPISP.yaml
+ParticipantsPostRequest:
+  $ref: ./requests/ParticipantsPostRequest.yaml
+ParticipantsTypeIDSubIDPostRequest:
+  $ref: ./requests/ParticipantsTypeIDSubIDPostRequest.yaml
+QuotesPostRequest:
+  $ref: ./requests/QuotesPostRequest.yaml
+ThirdpartyRequestsAuthorizationsPostRequest:
+  $ref: ./requests/ThirdpartyRequestsAuthorizationsPostRequest.yaml
+ThirdpartyRequestsTransactionsPostRequest:
+  $ref: ./requests/ThirdpartyRequestsTransactionsPostRequest.yaml
+ThirdpartyRequestsVerificationsPostRequestFIDO:
+  $ref: ./requests/ThirdpartyRequestsVerificationsPostRequest/ThirdpartyRequestsVerificationsPostRequestFIDO.yaml
+ThirdpartyRequestsVerificationsPostRequestGeneric:
+  $ref: ./requests/ThirdpartyRequestsVerificationsPostRequest/ThirdpartyRequestsVerificationsPostRequestGeneric.yaml
+
+
+Account:
+  $ref: ./properties/Account.yaml
+AccountAddress:
+  $ref: ./properties/AccountAddress.yaml
+AccountList:
+  $ref: ./properties/AccountList.yaml
+AuthenticationResponse:
+  $ref: ./properties/AuthenticationResponse.yaml
+AuthenticatorAssertionResponse:
+  $ref: ./properties/AuthenticatorAssertionResponse.yaml
+AuthenticatorAttestationResponse:
+  $ref: ./properties/AuthenticatorAttestationResponse.yaml
+AuthorizationResponseType:
+  $ref: ./properties/AuthorizationResponseType/AuthorizationResponseType.yaml
+AuthorizationResponseTypeAccepted:
+  $ref: ./properties/AuthorizationResponseType/AuthorizationResponseTypeAccepted.yaml
+AuthorizationResponseTypeRejected:
+  $ref: ./properties/AuthorizationResponseType/AuthorizationResponseTypeRejected.yaml
+ConsentRequestChannelType/ConsentRequestChannelType:
+  $ref: ./properties/ConsentRequestChannelType/ConsentRequestChannelType.yaml
+ConsentRequestChannelTypeOTP:
+  $ref: ./properties/ConsentRequestChannelType/ConsentRequestChannelTypeOTP.yaml
+ConsentRequestChannelTypeWeb:
+  $ref: ./properties/ConsentRequestChannelType/ConsentRequestChannelTypeWeb.yaml
+ConsentStatusType:
+  $ref: ./properties/ConsentStatusType/ConsentStatusType.yaml
+ConsentStatusTypeIssued:
+  $ref: ./properties/ConsentStatusType/ConsentStatusTypeIssued.yaml
+ConsentStatusTypeRevoked:
+  $ref: ./properties/ConsentStatusType/ConsentStatusTypeRevoked.yaml
+FIDOPublicKeyCredentialAttestation:
+  $ref: ./properties/Credential/Payload/FIDOPublicKeyCredentialAttestation.yaml
+GenericCredential:
+  $ref: ./properties/Credential/Payload/GenericCredential.yaml
+SignedCredential:
+  $ref: ./properties/Credential/SignedCredential.yaml
+VerifiedCredential:
+  $ref: ./properties/Credential/VerifiedCredential.yaml
+CredentialStatusPending:
+  $ref: ./properties/CredentialStatus/CredentialStatusPending.yaml
+CredentialStatusVerified:
+  $ref: ./properties/CredentialStatus/CredentialStatusVerified.yaml
+CredentialType:
+  $ref: ./properties/CredentialType.yaml
+FIDOPublicKeyCredentialAssertion:
+  $ref: ./properties/FIDOPublicKeyCredentialAssertion.yaml
+Party/Party:
+  $ref: ./properties/Party/Party.yaml
+Party/PartyTPLink:
+  $ref: ./properties/Party/PartyTPLink.yaml
+PartyIdInfo:
+  $ref: ./properties/PartyIdInfo/PartyIdInfo.yaml
+PartyIdInfoTPLink:
+  $ref: ./properties/PartyIdInfo/PartyIdInfoTPLink.yaml
+PartyIdType:
+  $ref: ./properties/PartyIdType/PartyIdType.yaml
+PartyIdTypeTPLink:
+  $ref: ./properties/PartyIdType/PartyIdTypeTPLink.yaml
+PartyResult:
+  $ref: ./properties/PartyResult.yaml
+Scope:
+  $ref: ./properties/Scope.yaml
+ScopeAction:
+  $ref: ./properties/ScopeAction.yaml
+ServiceType:
+  $ref: ./properties/ServiceType.yaml
+SignedPayloadFIDO:
+  $ref: ./properties/SignedPayload/SignedPayloadFIDO.yaml
+SignedPayloadGeneric:
+  $ref: ./properties/SignedPayload/SignedPayloadGeneric.yaml
+SignedPayloadType:
+  $ref: ./properties/SignedPayloadType/SignedPayloadType.yaml
+SignedPayloadTypeFIDO:
+  $ref: ./properties/SignedPayloadType/SignedPayloadTypeFIDO.yaml
+SignedPayloadTypeGeneric:
+  $ref: ./properties/SignedPayloadType/SignedPayloadTypeGeneric.yaml
+Transaction:
+  $ref: ./properties/Transaction.yaml
+Uri:
+  $ref: ./properties/Uri.yaml
+
+
+
+Amount:
+  $ref: ./properties/Amount.yaml
+AmountType:
+  $ref: ./properties/AmountType.yaml
+BinaryString:
+  $ref: ./properties/BinaryString.yaml
+CorrelationId:
+  $ref: ./properties/CorrelationId.yaml
+Currency:
+  $ref: ./properties/Currency.yaml
+DateOfBirth:
+  $ref: ./properties/DateOfBirth.yaml
+DateTime:
+  $ref: ./properties/DateTime.yaml
+ErrorCode:
+  $ref: ./properties/ErrorCode.yaml
+ErrorDescription:
+  $ref: ./properties/ErrorDescription.yaml
+ErrorInformation:
+  $ref: ./properties/ErrorInformation.yaml
+Extension:
+  $ref: ./properties/Extension.yaml
+ExtensionKey:
+  $ref: ./properties/ExtensionKey.yaml
+ExtensionList:
+  $ref: ./properties/ExtensionList.yaml
+ExtensionValue:
+  $ref: ./properties/ExtensionValue.yaml
+FirstName:
+  $ref: ./properties/FirstName.yaml
+FspId:
+  $ref: ./properties/FspId.yaml
+GeoCode:
+  $ref: ./properties/GeoCode.yaml
+IlpCondition:
+  $ref: ./properties/IlpCondition.yaml
+IlpFulfilment:
+  $ref: ./properties/IlpFulfilment.yaml
+IlpPacket:
+  $ref: ./properties/IlpPacket.yaml
+Integer:
+  $ref: ./properties/Integer.yaml
+LastName:
+  $ref: ./properties/LastName.yaml
+Latitude:
+  $ref: ./properties/Latitude.yaml
+Longitude:
+  $ref: ./properties/Longitude.yaml
+MerchantClassificationCode:
+  $ref: ./properties/MerchantClassificationCode.yaml
+MiddleName:
+  $ref: ./properties/MiddleName.yaml
+Money:
+  $ref: ./properties/Money.yaml
+Name:
+  $ref: ./properties/Name.yaml
+Note:
+  $ref: ./properties/Note.yaml
+PartyComplexName:
+  $ref: ./properties/PartyComplexName.yaml
+PartyIdentifier:
+  $ref: ./properties/PartyIdentifier.yaml
+PartyName:
+  $ref: ./properties/PartyName.yaml
+PartyPersonalInfo:
+  $ref: ./properties/PartyPersonalInfo.yaml
+PartySubIdOrType:
+  $ref: ./properties/PartySubIdOrType.yaml
+QuotesIDPutResponse:
+  $ref: ./properties/QuotesIDPutResponse.yaml
+TransactionRequestState:
+  $ref: ./properties/TransactionRequestState.yaml
+TransactionState:
+  $ref: ./properties/TransactionState.yaml
+TransactionType:
+  $ref: ./properties/TransactionType.yaml
+
+
+AccountsIDPutResponse:
+  $ref: ./callbacks/AccountsIDPutResponse.yaml
+ConsentRequestsIDPatchResponse:
+  $ref: ./callbacks/ConsentRequestsIDPatchResponse.yaml
+ConsentRequestsIDPutResponseOTP:
+  $ref: ./callbacks/ConsentRequestsIDPutResponse/ConsentRequestsIDPutResponseOTP.yaml
+ConsentRequestsIDPutResponseWeb:
+  $ref: ./callbacks/ConsentRequestsIDPutResponse/ConsentRequestsIDPutResponseWeb.yaml
+ConsentsIDPatchResponseRevoked:
+  $ref: ./callbacks/ConsentsIDPatchResponse/ConsentsIDPatchResponseRevoked.yaml
+ConsentsIDPatchResponseVerified:
+  $ref: ./callbacks/ConsentsIDPatchResponse/ConsentsIDPatchResponseVerified.yaml
+ConsentsIDPutResponseSigned:
+  $ref: ./callbacks/ConsentsIDPutResponse/ConsentsIDPutResponseSigned.yaml
+ConsentsIDPutResponseVerified:
+  $ref: ./callbacks/ConsentsIDPutResponse/ConsentsIDPutResponseVerified.yaml
+ParticipantsIDPutResponse:
+  $ref: ./callbacks/ParticipantsIDPutResponse.yaml
+ParticipantsTypeIDPutResponse:
+  $ref: ./callbacks/ParticipantsTypeIDPutResponse.yaml
+PartiesTypeIDPutResponse:
+  $ref: ./callbacks/PartiesTypeIDPutResponse.yaml
+ServicesServiceTypePutResponse:
+  $ref: ./callbacks/ServicesServiceTypePutResponse.yaml
+ThirdpartyRequestsAuthorizationsIDPutResponseFIDO:
+  $ref: ./callbacks/ThirdpartyRequestsAuthorizationsIDPutResponse/ThirdpartyRequestsAuthorizationsIDPutResponseFIDO.yaml
+ThirdpartyRequestsAuthorizationsIDPutResponseGeneric:
+  $ref: ./callbacks/ThirdpartyRequestsAuthorizationsIDPutResponse/ThirdpartyRequestsAuthorizationsIDPutResponseGeneric.yaml
+ThirdpartyRequestsAuthorizationsIDPutResponseRejected:
+  $ref: ./callbacks/ThirdpartyRequestsAuthorizationsIDPutResponse/ThirdpartyRequestsAuthorizationsIDPutResponseRejected.yaml
+ThirdpartyRequestsTransactionsIDPatchResponse:
+  $ref: ./callbacks/ThirdpartyRequestsTransactionsIDPatchResponse.yaml
+ThirdpartyRequestsTransactionsIDPutResponse:
+  $ref: ./callbacks/ThirdpartyRequestsTransactionsIDPutResponse.yaml
+ThirdpartyRequestsVerificationsIDPutResponse:
+  $ref: ./callbacks/ThirdpartyRequestsVerificationsIDPutResponse.yaml

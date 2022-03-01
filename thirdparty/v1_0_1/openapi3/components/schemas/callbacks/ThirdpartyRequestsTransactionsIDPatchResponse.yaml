@@ -1,0 +1,25 @@
+title: ThirdpartyRequestsTransactionsIDPatchResponse
+type: object
+description: >-
+  Used by: DFSP
+
+  The issuing PISP will expect a response to their request for a transfer
+  which describes the finalized state of the requested transfer.
+
+  This response will be given by a PATCH call on the
+  /thirdpartyRequests/transactions/{ID} resource.
+
+  The {ID} given in the query string should be the transactionRequestId which
+  was originally used by the PISP to identify the transaction request.
+
+  https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
+properties:
+  completedTimestamp:
+    $ref: ../properties/DateTime.yaml
+  transactionRequestState:
+    $ref: ../properties/TransactionRequestState.yaml
+  transactionState:
+    $ref: ../properties/TransactionState.yaml
+required:
+  - transactionRequestState
+  - transactionState

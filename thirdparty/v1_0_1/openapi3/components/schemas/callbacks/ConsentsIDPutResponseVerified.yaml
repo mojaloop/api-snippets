@@ -1,0 +1,19 @@
+title: ConsentsIDPutResponseVerified
+type: object
+description: >
+  The HTTP request `PUT /consents/{ID}` is used by the DFSP or Auth-Service to
+  update a Consent object once it has been Verified.
+
+  Called by a `auth-service` to notify a DFSP that a credential has
+  been verified and registered.
+properties:
+  scopes:
+    type: array
+    items:
+      $ref: ../properties/Scope.yaml
+  credential:
+    $ref: ../properties/VerifiedCredential.yaml
+required:
+  - scopes
+  - credential
+additionalProperties: false

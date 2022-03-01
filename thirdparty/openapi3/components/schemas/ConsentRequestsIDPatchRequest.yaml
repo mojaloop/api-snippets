@@ -1,8 +1,0 @@
-title: ConsentRequestsIDPatchRequest
-type: object
-description: The object sent in a `PATCH /consentRequests/{ID}` request.
-properties:
-  authToken:
-    $ref: ./BinaryString.yaml
-required:
-  - authToken
