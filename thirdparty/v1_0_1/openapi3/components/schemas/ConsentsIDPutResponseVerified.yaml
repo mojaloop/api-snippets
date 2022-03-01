@@ -8,13 +8,13 @@ description: >
   been verified and registered.
 properties:
   status:
-    $ref: ../properties/ConsentStatusIssued.yaml
+    $ref: ./ConsentStatusIssued.yaml
   scopes:
     type: array
     items:
-      $ref: ../properties/Scope.yaml
+      $ref: ./Scope.yaml
   credential:
-    $ref: ../properties/VerifiedCredential.yaml
+    $ref: ./VerifiedCredential.yaml
 required:
   - scopes
   - credential

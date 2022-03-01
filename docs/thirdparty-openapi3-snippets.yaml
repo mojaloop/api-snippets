@@ -32,7 +32,7 @@ paths:
                 - title: ParticipantsIDPutResponse
                   type: object
                   description: 'The object sent in the PUT /participants/{ID} callback.'
-                  properties: &ref_61
+                  properties: &ref_62
                     partyList:
                       type: array
                       items:
@@ -48,7 +48,7 @@ paths:
                               partyIdType:
                                 title: PartyIdType
                                 type: string
-                                enum: &ref_76
+                                enum: &ref_77
                                   - MSISDN
                                   - EMAIL
                                   - PERSONAL_ID
@@ -95,7 +95,7 @@ paths:
                                   passport number, birth certificate
 
                                   number, and national registration number. The
-                                  identifier number is added in
+                                  identifier number is added in 
 
                                   the PartyIdentifier element. The personal
                                   identifier type is added in the
@@ -164,10 +164,10 @@ paths:
                                   between a PISP, a Customer and
 
                                   a DFSP which allows the PISP permission to
-                                  perform actions on behalf of the
+                                  perform actions on behalf of the 
 
                                   customer. A Consent has an authoritative
-                                  source: either the DFSP who issued
+                                  source: either the DFSP who issued 
 
                                   the Consent, or an Auth Service which
                                   administers the Consent.
@@ -176,10 +176,10 @@ paths:
                                   represents an agreement between a PISP,
 
                                   a DFSP, and a specific Customer's account at
-                                  the DFSP. The content of the link
+                                  the DFSP. The content of the link 
 
                                   is created by the DFSP at the time when it
-                                  gives permission to the PISP for
+                                  gives permission to the PISP for 
 
                                   specific access to a given account.
                                 example: PERSONAL_ID
@@ -221,7 +221,7 @@ paths:
                                       description: >-
                                         Data model for the complex type
                                         Extension.
-                                      properties: &ref_77
+                                      properties: &ref_78
                                         key:
                                           title: ExtensionKey
                                           type: string
@@ -234,7 +234,7 @@ paths:
                                           minLength: 1
                                           maxLength: 128
                                           description: Extension value.
-                                      required: &ref_78
+                                      required: &ref_79
                                         - key
                                         - value
                                     minItems: 1
@@ -467,7 +467,7 @@ paths:
                         - ZAR
                         - ZMW
                         - ZWD
-                  required: &ref_62
+                  required: &ref_63
                     - partyList
                 - title: PartiesTypeIDPutResponse
                   type: object
@@ -482,7 +482,7 @@ paths:
                     newly added
 
                     `accounts` property.
-                  properties: &ref_81
+                  properties: &ref_82
                     party:
                       title: Party
                       type: object
@@ -515,14 +515,14 @@ paths:
                           title: PartyPersonalInfo
                           type: object
                           description: Data model for the complex type PartyPersonalInfo.
-                          properties: &ref_80
+                          properties: &ref_81
                             complexName:
                               title: PartyComplexName
                               type: object
                               description: >-
                                 Data model for the complex type
                                 PartyComplexName.
-                              properties: &ref_79
+                              properties: &ref_80
                                 firstName:
                                   title: FirstName
                                   type: string
@@ -562,12 +562,12 @@ paths:
                               example: '1966-06-16'
                       required: &ref_10
                         - partyIdInfo
-                  required: &ref_82
+                  required: &ref_83
                     - party
                 - title: QuotesIDPutResponse
                   type: object
                   description: 'The object sent in the PUT /quotes/{ID} callback.'
-                  properties: &ref_83
+                  properties: &ref_84
                     transferAmount:
                       title: Money
                       type: object
@@ -694,7 +694,7 @@ paths:
                         optional list of extensions, specific to deployment.
                       properties: *ref_0
                       required: *ref_1
-                  required: &ref_84
+                  required: &ref_85
                     - transferAmount
                     - expiration
                     - ilpPacket
@@ -709,14 +709,14 @@ paths:
                     requested transfer.
 
                     This response will be given by a PATCH call on the
-                    /thirdpartyRequests/transactions/{ID} resource.
+                    /thirdpartytransactions/{ID} resource.
 
                     The {ID} given in the query string should be the
                     transactionRequestId which was originally used by the PISP
                     to identify the transaction request.
 
                     https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
-                  properties: &ref_69
+                  properties: &ref_70
                     completedTimestamp:
                       title: DateTime
                       type: string
@@ -738,7 +738,7 @@ paths:
                     transactionRequestState:
                       title: TransactionRequestState
                       type: string
-                      enum: &ref_68
+                      enum: &ref_69
                         - RECEIVED
                         - PENDING
                         - ACCEPTED
@@ -759,7 +759,7 @@ paths:
                     transactionState:
                       title: TransactionState
                       type: string
-                      enum: &ref_85
+                      enum: &ref_86
                         - RECEIVED
                         - PENDING
                         - COMPLETED
@@ -778,22 +778,22 @@ paths:
                         - REJECTED - Payee FSP has failed to perform the
                         transaction.
                       example: RECEIVED
-                  required: &ref_70
+                  required: &ref_71
                     - transactionRequestState
                     - transactionState
                 - title: AuthorizationResponseType
                   description: >
                     Enum containing authorization response information; if the
-                    customer
+                    customer 
 
                     accepted the terms of the transfer, or rejected the terms.
                   type: string
-                  enum: &ref_86
+                  enum: &ref_87
                     - ACCEPTED
                     - REJECTED
                 - title: ConsentStatusIssued
                   type: string
-                  enum: &ref_87
+                  enum: &ref_51
                     - ISSUED
                   description: |-
                     Allowed values for the enumeration ConsentStatus
@@ -891,7 +891,7 @@ paths:
                 - title: ParticipantsPostRequest
                   type: object
                   description: The object sent in the POST /participants request.
-                  properties: &ref_59
+                  properties: &ref_60
                     requestId:
                       title: CorrelationId
                       type: string
@@ -933,7 +933,7 @@ paths:
                       minLength: 3
                       maxLength: 3
                       enum: *ref_4
-                  required: &ref_60
+                  required: &ref_61
                     - requestId
                     - partyList
                 - title: QuotesPostRequest
@@ -1012,7 +1012,7 @@ paths:
                       example: RECEIVE
                       title: AmountType
                       type: string
-                      enum: &ref_65
+                      enum: &ref_66
                         - SEND
                         - RECEIVE
                     amount:
@@ -1031,7 +1031,7 @@ paths:
                       description: Data model for the complex type TransactionType.
                       title: TransactionType
                       type: object
-                      properties: &ref_66
+                      properties: &ref_67
                         scenario:
                           title: TransactionScenario
                           type: string
@@ -1163,7 +1163,7 @@ paths:
                             digits only. Negative numbers are not allowed. A
                             leading zero is not allowed.
                           example: '123'
-                      required: &ref_67
+                      required: &ref_68
                         - scenario
                         - initiator
                         - initiatorType
@@ -1705,7 +1705,7 @@ paths:
                         enum: *ref_4
                     required: &ref_100
                       - accountNickname
-                      - id
+                      - address
                       - currency
                   minItems: 1
                   maxItems: 256
@@ -2140,8 +2140,8 @@ paths:
 
                 Callback and data model for POST /consentRequests:
 
-                Callback: PUT /consentRequests/{ID} Error callback: PUT
-                /consentRequests/{ID}/error Data model - see below
+                Callback: PUT /consent{ID} Error callback: PUT
+                /consent{ID}/error Data model - see below
               properties: &ref_106
                 consentRequestId:
                   title: CorrelationId
@@ -2506,7 +2506,7 @@ paths:
                 - title: ConsentRequestsIDPutResponseWeb
                   type: object
                   description: >
-                    The object sent in a `PUT /consentRequests/{ID}` request.
+                    The object sent in a `PUT /consent{ID}` request.
 
 
                     Schema used in the request consent phase of the account
@@ -2579,7 +2579,7 @@ paths:
                 - title: ConsentRequestsIDPutResponseOTP
                   type: object
                   description: >
-                    The object sent in a `PUT /consentRequests/{ID}` request.
+                    The object sent in a `PUT /consent{ID}` request.
 
 
                     Schema used in the request consent phase of the account
@@ -3065,6 +3065,21 @@ paths:
                         object
 
                         determined by the DFSP who creates the Consent.
+                    consentRequestId:
+                      title: CorrelationId
+                      type: string
+                      pattern: >-
+                        ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                      description: >-
+                        Identifier that correlates all messages of the same
+                        sequence. The API data type UUID (Universally Unique
+                        Identifier) is a JSON String in canonical format,
+                        conforming to [RFC
+                        4122](https://tools.ietf.org/html/rfc4122), that is
+                        restricted by a regular expression for interoperability
+                        reasons. A UUID is always 36 characters long, 32
+                        hexadecimal symbols and 4 dashes (‘-‘).
+                      example: b51ec534-ee48-4575-b6a9-ead2955b8069
                     scopes:
                       minLength: 1
                       maxLength: 256
@@ -3099,11 +3114,11 @@ paths:
                             only ever be PENDING when
 
                             updating a credential.
-                          properties: &ref_51
+                          properties: &ref_52
                             credentialType:
                               title: CredentialType
                               type: string
-                              enum: &ref_53
+                              enum: &ref_54
                                 - FIDO
                                 - GENERIC
                               description: >-
@@ -3131,7 +3146,7 @@ paths:
                               description: >
                                 A publicKey + signature of a challenge for a
                                 generic public/private keypair.
-                              properties: &ref_55
+                              properties: &ref_56
                                 publicKey:
                                   type: string
                                   pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
@@ -3156,7 +3171,7 @@ paths:
                                     a multiple of 4 characters. The length
                                     restriction indicates the allowed number of
                                     characters.
-                              required: &ref_56
+                              required: &ref_57
                                 - publicKey
                                 - signature
                               additionalProperties: false
@@ -3165,7 +3180,7 @@ paths:
                               type: object
                               description: >
                                 A data model representing a FIDO Attestation
-                                result. Derived from
+                                result. Derived from 
 
                                 [`PublicKeyCredential`
                                 Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
@@ -3179,7 +3194,7 @@ paths:
 
                                 For this API, we represent ArrayBuffers as
                                 base64 encoded utf-8 strings.
-                              properties: &ref_57
+                              properties: &ref_58
                                 id:
                                   type: string
                                   description: >
@@ -3224,12 +3239,12 @@ paths:
                                     public-key
                                   enum:
                                     - public-key
-                              required: &ref_58
+                              required: &ref_59
                                 - id
                                 - response
                                 - type
                               additionalProperties: false
-                          required: &ref_52
+                          required: &ref_53
                             - credentialType
                             - status
                           additionalProperties: false
@@ -3551,7 +3566,7 @@ paths:
                         status:
                           title: CredentialStatusVerified
                           type: string
-                          enum: &ref_54
+                          enum: &ref_55
                             - VERIFIED
                           description: |
                             The status of the Credential.
@@ -3683,6 +3698,13 @@ paths:
                     Called by a `PISP` to after signing a challenge. Sent to a
                     DFSP for verification.
                   properties: &ref_121
+                    status:
+                      title: ConsentStatusIssued
+                      type: string
+                      enum: *ref_51
+                      description: |-
+                        Allowed values for the enumeration ConsentStatus
+                        - ISSUED - The consent has been issued by the DFSP
                     scopes:
                       type: array
                       items:
@@ -3714,8 +3736,8 @@ paths:
                         ever be PENDING when
 
                         updating a credential.
-                      properties: *ref_51
-                      required: *ref_52
+                      properties: *ref_52
+                      required: *ref_53
                       additionalProperties: false
                   required: &ref_122
                     - scopes
@@ -3731,6 +3753,13 @@ paths:
                     Called by a `auth-service` to notify a DFSP that a
                     credential has been verified and registered.
                   properties: &ref_125
+                    status:
+                      title: ConsentStatusIssued
+                      type: string
+                      enum: *ref_51
+                      description: |-
+                        Allowed values for the enumeration ConsentStatus
+                        - ISSUED - The consent has been issued by the DFSP
                     scopes:
                       type: array
                       items:
@@ -3766,7 +3795,7 @@ paths:
                         credentialType:
                           title: CredentialType
                           type: string
-                          enum: *ref_53
+                          enum: *ref_54
                           description: >-
                             The type of the Credential. - "FIDO" - The
                             credential is based on a FIDO challenge. Its payload
@@ -3779,7 +3808,7 @@ paths:
                         status:
                           title: CredentialStatusVerified
                           type: string
-                          enum: *ref_54
+                          enum: *ref_55
                           description: |
                             The status of the Credential.
                             - "VERIFIED" - The Credential is valid and verified.
@@ -3789,15 +3818,15 @@ paths:
                           description: >
                             A publicKey + signature of a challenge for a generic
                             public/private keypair.
-                          properties: *ref_55
-                          required: *ref_56
+                          properties: *ref_56
+                          required: *ref_57
                           additionalProperties: false
                         fidoPayload:
                           title: FIDOPublicKeyCredentialAttestation
                           type: object
                           description: >
                             A data model representing a FIDO Attestation result.
-                            Derived from
+                            Derived from 
 
                             [`PublicKeyCredential`
                             Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
@@ -3811,8 +3840,8 @@ paths:
 
                             For this API, we represent ArrayBuffers as base64
                             encoded utf-8 strings.
-                          properties: *ref_57
-                          required: *ref_58
+                          properties: *ref_58
+                          required: *ref_59
                           additionalProperties: false
                       required: &ref_124
                         - credentialType
@@ -4216,8 +4245,8 @@ paths:
               title: ParticipantsPostRequest
               type: object
               description: The object sent in the POST /participants request.
-              properties: *ref_59
-              required: *ref_60
+              properties: *ref_60
+              required: *ref_61
       responses:
         '202':
           description: Accepted
@@ -4374,8 +4403,8 @@ paths:
               title: ParticipantsIDPutResponse
               type: object
               description: 'The object sent in the PUT /participants/{ID} callback.'
-              properties: *ref_61
-              required: *ref_62
+              properties: *ref_62
+              required: *ref_63
       responses:
         '200':
           description: OK
@@ -4578,7 +4607,7 @@ paths:
       - name: Type
         in: path
         required: true
-        schema: &ref_63
+        schema: &ref_64
           type: string
         description: >-
           The type of the party identifier. For example, `MSISDN`,
@@ -4979,7 +5008,7 @@ paths:
       - name: Type
         in: path
         required: true
-        schema: *ref_63
+        schema: *ref_64
         description: >-
           The type of the party identifier. For example, `MSISDN`,
           `PERSONAL_ID`.
@@ -5147,7 +5176,7 @@ paths:
       - name: ServiceType
         in: path
         required: true
-        schema: &ref_64
+        schema: &ref_65
           type: string
         description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
       - name: Content-Type
@@ -5384,7 +5413,7 @@ paths:
       - name: ServiceType
         in: path
         required: true
-        schema: *ref_64
+        schema: *ref_65
         description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
       - name: Content-Type
         in: header
@@ -5663,16 +5692,15 @@ paths:
               description: >-
                 Used by: PISP
 
-                The HTTP request POST /thirdpartyRequests/transactions is used
-                to request the creation of a transaction request on the server
-                for the transfer described in the request.
+                The HTTP request POST /thirdpartytransactions is used to request
+                the creation of a transaction request on the server for the
+                transfer described in the request.
 
                 Callback and data model information for POST
-                /thirdpartyRequests/transactions:
+                /thirdpartytransactions:
 
-                Callback - PUT /thirdpartyRequests/transactions/{ID} Error
-                Callback - PUT /thirdpartyRequests/transactions/{ID}/error Data
-                Model - See link below
+                Callback - PUT /thirdpartytransactions/{ID} Error Callback - PUT
+                /thirdpartytransactions/{ID}/error Data Model - See link below
 
                 https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31712-post-thirdpartyrequeststransactions
               properties: &ref_137
@@ -5721,7 +5749,7 @@ paths:
                   allOf:
                     - title: AmountType
                       type: string
-                      enum: *ref_65
+                      enum: *ref_66
                       description: >-
                         Below are the allowed values for the enumeration
                         AmountType.
@@ -5748,8 +5776,8 @@ paths:
                     - title: TransactionType
                       type: object
                       description: Data model for the complex type TransactionType.
-                      properties: *ref_66
-                      required: *ref_67
+                      properties: *ref_67
+                      required: *ref_68
                   description: Type of transaction.
                 note:
                   type: string
@@ -5988,17 +6016,16 @@ paths:
                 Used by: DFSP
 
                 After a PISP requests the creation of a Third Party Transaction
-                request (POST /thirdpartyRequests/transactions) or the status of
-                a previously created Third Party Transaction request (GET
-                /thirdpartyRequests/transactions/{ID}), the DFSP will send this
-                callback.
+                request (POST /thirdpartytransactions) or the status of a
+                previously created Third Party Transaction request (GET
+                /thirdpartytransactions/{ID}), the DFSP will send this callback.
 
                 https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31721-put-thirdpartyrequeststransactionsid
               properties: &ref_139
                 transactionRequestState:
                   title: TransactionRequestState
                   type: string
-                  enum: *ref_68
+                  enum: *ref_69
                   description: >-
                     Below are the allowed values for the enumeration.
 
@@ -6098,15 +6125,15 @@ paths:
                 transfer.
 
                 This response will be given by a PATCH call on the
-                /thirdpartyRequests/transactions/{ID} resource.
+                /thirdpartytransactions/{ID} resource.
 
                 The {ID} given in the query string should be the
                 transactionRequestId which was originally used by the PISP to
                 identify the transaction request.
 
                 https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
-              properties: *ref_69
-              required: *ref_70
+              properties: *ref_70
+              required: *ref_71
             example:
               transactionRequestState: ACCEPTED
               transactionState: COMMITTED
@@ -6437,16 +6464,16 @@ paths:
               description: >-
                 Used by: DFSP
 
-                The HTTP request POST /thirdpartyRequests/authorizations is used
-                to request the validation by a customer for the transfer
-                described in the request.
+                The HTTP request POST /thirdpartyauthorizations is used to
+                request the validation by a customer for the transfer described
+                in the request.
 
                 Callback and data model information for POST
-                /thirdpartyRequests/authorizations:
+                /thirdpartyauthorizations:
 
-                Callback - PUT /thirdpartyRequests/authorizations/{ID} Error
-                Callback - PUT /thirdpartyRequests/authorizations/{ID}/error
-                Data Model - See below url
+                Callback - PUT /thirdpartyauthorizations/{ID} Error Callback -
+                PUT /thirdpartyauthorizations/{ID}/error Data Model - See below
+                url
 
                 https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
               type: object
@@ -6536,8 +6563,8 @@ paths:
                   title: TransactionType
                   type: object
                   description: Data model for the complex type TransactionType.
-                  properties: *ref_66
-                  required: *ref_67
+                  properties: *ref_67
+                  required: *ref_68
                 expiration:
                   allOf:
                     - title: DateTime
@@ -6802,8 +6829,8 @@ paths:
                 - title: ThirdpartyRequestsAuthorizationsIDPutResponseRejected
                   type: object
                   description: >-
-                    The object sent in the PUT
-                    /thirdpartyRequests/authorizations/{ID} callback.
+                    The object sent in the PUT /thirdpartyauthorizations/{ID}
+                    callback.
                   properties: &ref_144
                     responseType:
                       title: AuthorizationResponseTypeRejected
@@ -6817,15 +6844,15 @@ paths:
                 - title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
                   type: object
                   description: >-
-                    The object sent in the PUT
-                    /thirdpartyRequests/authorizations/{ID} callback.
+                    The object sent in the PUT /thirdpartyauthorizations/{ID}
+                    callback.
                   properties: &ref_148
                     responseType:
                       title: AuthorizationResponseType
                       description: |
                         The customer accepted the terms of the transfer
                       type: string
-                      enum: &ref_71
+                      enum: &ref_72
                         - ACCEPTED
                     signedPayload:
                       title: SignedPayloadFIDO
@@ -6834,7 +6861,7 @@ paths:
                         signedPayloadType:
                           title: SignedPayloadTypeFIDO
                           type: string
-                          enum: &ref_72
+                          enum: &ref_73
                             - FIDO
                           description: >-
                             Describes a challenge that has been signed with FIDO
@@ -6859,7 +6886,7 @@ paths:
 
 
                             https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32128-fidopublickeycredentialassertion
-                          properties: &ref_73
+                          properties: &ref_74
                             id:
                               type: string
                               description: >
@@ -6922,7 +6949,7 @@ paths:
                                 public-key
                               enum:
                                 - public-key
-                          required: &ref_74
+                          required: &ref_75
                             - id
                             - rawId
                             - response
@@ -6939,15 +6966,15 @@ paths:
                 - title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
                   type: object
                   description: >-
-                    The object sent in the PUT
-                    /thirdpartyRequests/authorizations/{ID} callback.
+                    The object sent in the PUT /thirdpartyauthorizations/{ID}
+                    callback.
                   properties: &ref_152
                     responseType:
                       title: AuthorizationResponseType
                       description: |
                         The customer accepted the terms of the transfer
                       type: string
-                      enum: *ref_71
+                      enum: *ref_72
                     signedPayload:
                       title: SignedPayloadGeneric
                       type: object
@@ -6955,7 +6982,7 @@ paths:
                         signedPayloadType:
                           title: SignedPayloadTypeGeneric
                           type: string
-                          enum: &ref_75
+                          enum: &ref_76
                             - GENERIC
                           description: >-
                             Describes a challenge that has been signed with a
@@ -7313,8 +7340,8 @@ paths:
                 - title: ThirdpartyRequestsVerificationsPostRequestFIDO
                   type: object
                   description: >-
-                    The object sent in the POST
-                    /thirdpartyRequests/verifications request.
+                    The object sent in the POST /thirdpartyverifications
+                    request.
                   properties: &ref_154
                     verificationRequestId:
                       allOf:
@@ -7363,7 +7390,7 @@ paths:
                     signedPayloadType:
                       title: SignedPayloadTypeFIDO
                       type: string
-                      enum: *ref_72
+                      enum: *ref_73
                       description: >-
                         Describes a challenge that has been signed with FIDO
                         Attestation flows
@@ -7386,8 +7413,8 @@ paths:
 
 
                         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32128-fidopublickeycredentialassertion
-                      properties: *ref_73
-                      required: *ref_74
+                      properties: *ref_74
+                      required: *ref_75
                       additionalProperties: false
                   required: &ref_155
                     - verificationRequestId
@@ -7398,8 +7425,8 @@ paths:
                 - title: ThirdpartyRequestsVerificationsPostRequestGeneric
                   type: object
                   description: >-
-                    The object sent in the POST
-                    /thirdpartyRequests/verifications request.
+                    The object sent in the POST /thirdpartyverifications
+                    request.
                   properties: &ref_156
                     verificationRequestId:
                       allOf:
@@ -7448,7 +7475,7 @@ paths:
                     signedPayloadType:
                       title: SignedPayloadTypeGeneric
                       type: string
-                      enum: *ref_75
+                      enum: *ref_76
                       description: >-
                         Describes a challenge that has been signed with a
                         private key
@@ -7690,11 +7717,11 @@ paths:
               description: >-
                 Used by: Auth Service
 
-                The callback PUT /thirdpartyRequests/verifications/{ID} is used
-                to inform the client of the result of an authorization check.
-                The {ID} in the URI should contain the authorizationRequestId
-                which was used to request the check, or the {ID} that was used
-                in the GET /thirdpartyRequests/verifications/{ID}.
+                The callback PUT /thirdpartyverifications/{ID} is used to inform
+                the client of the result of an authorization check. The {ID} in
+                the URI should contain the authorizationRequestId which was used
+                to request the check, or the {ID} that was used in the GET
+                /thirdpartyverifications/{ID}.
 
                 https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31821-put-thirdpartyrequestsverificationsid
               properties: &ref_159
@@ -7919,7 +7946,7 @@ components:
     PartyIdType:
       title: PartyIdType
       type: string
-      enum: *ref_76
+      enum: *ref_77
       description: >
         Below are the allowed values for the enumeration.
 
@@ -7951,7 +7978,7 @@ components:
         certificate
 
         number, and national registration number. The identifier number is added
-        in
+        in 
 
         the PartyIdentifier element. The personal identifier type is added in
         the
@@ -8012,10 +8039,10 @@ components:
         and
 
         a DFSP which allows the PISP permission to perform actions on behalf of
-        the
+        the 
 
         customer. A Consent has an authoritative source: either the DFSP who
-        issued
+        issued 
 
         the Consent, or an Auth Service which administers the Consent.
 
@@ -8023,10 +8050,10 @@ components:
         a PISP,
 
         a DFSP, and a specific Customer's account at the DFSP. The content of
-        the link
+        the link 
 
         is created by the DFSP at the time when it gives permission to the PISP
-        for
+        for 
 
         specific access to a given account.
       example: PERSONAL_ID
@@ -8067,8 +8094,8 @@ components:
       title: Extension
       type: object
       description: Data model for the complex type Extension.
-      properties: *ref_77
-      required: *ref_78
+      properties: *ref_78
+      required: *ref_79
     ExtensionList:
       title: ExtensionList
       type: object
@@ -8129,8 +8156,8 @@ components:
       title: ParticipantsIDPutResponse
       type: object
       description: 'The object sent in the PUT /participants/{ID} callback.'
-      properties: *ref_61
-      required: *ref_62
+      properties: *ref_62
+      required: *ref_63
     MerchantClassificationCode:
       title: MerchantClassificationCode
       type: string
@@ -8179,7 +8206,7 @@ components:
       title: PartyComplexName
       type: object
       description: Data model for the complex type PartyComplexName.
-      properties: *ref_79
+      properties: *ref_80
     DateOfBirth:
       title: DateofBirth (type Date)
       type: string
@@ -8191,7 +8218,7 @@ components:
       title: PartyPersonalInfo
       type: object
       description: Data model for the complex type PartyPersonalInfo.
-      properties: *ref_80
+      properties: *ref_81
     Party:
       title: Party
       type: object
@@ -8211,8 +8238,8 @@ components:
         Main difference being that it returns a `Party` with the newly added
 
         `accounts` property.
-      properties: *ref_81
-      required: *ref_82
+      properties: *ref_82
+      required: *ref_83
     Amount:
       title: Amount
       type: string
@@ -8291,12 +8318,12 @@ components:
       title: QuotesIDPutResponse
       type: object
       description: 'The object sent in the PUT /quotes/{ID} callback.'
-      properties: *ref_83
-      required: *ref_84
+      properties: *ref_84
+      required: *ref_85
     TransactionRequestState:
       title: TransactionRequestState
       type: string
-      enum: *ref_68
+      enum: *ref_69
       description: |-
         Below are the allowed values for the enumeration.
         - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
@@ -8307,7 +8334,7 @@ components:
     TransactionState:
       title: TransactionState
       type: string
-      enum: *ref_85
+      enum: *ref_86
       description: |-
         Below are the allowed values for the enumeration.
         - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
@@ -8325,26 +8352,26 @@ components:
         which describes the finalized state of the requested transfer.
 
         This response will be given by a PATCH call on the
-        /thirdpartyRequests/transactions/{ID} resource.
+        /thirdpartytransactions/{ID} resource.
 
         The {ID} given in the query string should be the transactionRequestId
         which was originally used by the PISP to identify the transaction
         request.
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
-      properties: *ref_69
-      required: *ref_70
+      properties: *ref_70
+      required: *ref_71
     AuthorizationResponseType:
       title: AuthorizationResponseType
       description: |
-        Enum containing authorization response information; if the customer
+        Enum containing authorization response information; if the customer 
         accepted the terms of the transfer, or rejected the terms.
       type: string
-      enum: *ref_86
+      enum: *ref_87
     ConsentStatusIssued:
       title: ConsentStatusIssued
       type: string
-      enum: *ref_87
+      enum: *ref_51
       description: |-
         Allowed values for the enumeration ConsentStatus
         - ISSUED - The consent has been issued by the DFSP
@@ -8415,12 +8442,12 @@ components:
       title: ParticipantsPostRequest
       type: object
       description: The object sent in the POST /participants request.
-      properties: *ref_59
-      required: *ref_60
+      properties: *ref_60
+      required: *ref_61
     AmountType:
       title: AmountType
       type: string
-      enum: *ref_65
+      enum: *ref_66
       description: >-
         Below are the allowed values for the enumeration AmountType.
 
@@ -8520,8 +8547,8 @@ components:
       title: TransactionType
       type: object
       description: Data model for the complex type TransactionType.
-      properties: *ref_66
-      required: *ref_67
+      properties: *ref_67
+      required: *ref_68
     QuotesPostRequest:
       title: QuotesPostRequest
       type: object
@@ -8683,8 +8710,8 @@ components:
 
         Callback and data model for POST /consentRequests:
 
-        Callback: PUT /consentRequests/{ID} Error callback: PUT
-        /consentRequests/{ID}/error Data model - see below
+        Callback: PUT /consent{ID} Error callback: PUT /consent{ID}/error Data
+        model - see below
       properties: *ref_106
       required: *ref_107
     ConsentRequestChannelTypeWeb:
@@ -8697,7 +8724,7 @@ components:
       title: ConsentRequestsIDPutResponseWeb
       type: object
       description: >
-        The object sent in a `PUT /consentRequests/{ID}` request.
+        The object sent in a `PUT /consent{ID}` request.
 
 
         Schema used in the request consent phase of the account linking web
@@ -8721,7 +8748,7 @@ components:
       title: ConsentRequestsIDPutResponseOTP
       type: object
       description: >
-        The object sent in a `PUT /consentRequests/{ID}` request.
+        The object sent in a `PUT /consent{ID}` request.
 
 
         Schema used in the request consent phase of the account linking OTP/SMS
@@ -8754,7 +8781,7 @@ components:
     CredentialType:
       title: CredentialType
       type: string
-      enum: *ref_53
+      enum: *ref_54
       description: >-
         The type of the Credential. - "FIDO" - The credential is based on a FIDO
         challenge. Its payload is a FIDOPublicKeyCredentialAttestation object. -
@@ -8775,14 +8802,14 @@ components:
       description: >
         A publicKey + signature of a challenge for a generic public/private
         keypair.
-      properties: *ref_55
-      required: *ref_56
+      properties: *ref_56
+      required: *ref_57
       additionalProperties: false
     FIDOPublicKeyCredentialAttestation:
       title: FIDOPublicKeyCredentialAttestation
       type: object
       description: >
-        A data model representing a FIDO Attestation result. Derived from
+        A data model representing a FIDO Attestation result. Derived from 
 
         [`PublicKeyCredential`
         Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
@@ -8794,8 +8821,8 @@ components:
         [ArrayBuffer](https://heycam.github.io/webidl/#idl-ArrayBuffer).
 
         For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
-      properties: *ref_57
-      required: *ref_58
+      properties: *ref_58
+      required: *ref_59
       additionalProperties: false
     SignedCredential:
       title: SignedCredential
@@ -8813,8 +8840,8 @@ components:
         when
 
         updating a credential.
-      properties: *ref_51
-      required: *ref_52
+      properties: *ref_52
+      required: *ref_53
       additionalProperties: false
     ConsentStatus:
       title: ConsentStatus
@@ -8855,7 +8882,7 @@ components:
     CredentialStatusVerified:
       title: CredentialStatusVerified
       type: string
-      enum: *ref_54
+      enum: *ref_55
       description: |
         The status of the Credential.
         - "VERIFIED" - The Credential is valid and verified.
@@ -8956,16 +8983,14 @@ components:
       description: >-
         Used by: PISP
 
-        The HTTP request POST /thirdpartyRequests/transactions is used to
-        request the creation of a transaction request on the server for the
-        transfer described in the request.
+        The HTTP request POST /thirdpartytransactions is used to request the
+        creation of a transaction request on the server for the transfer
+        described in the request.
 
-        Callback and data model information for POST
-        /thirdpartyRequests/transactions:
+        Callback and data model information for POST /thirdpartytransactions:
 
-        Callback - PUT /thirdpartyRequests/transactions/{ID} Error Callback -
-        PUT /thirdpartyRequests/transactions/{ID}/error Data Model - See link
-        below
+        Callback - PUT /thirdpartytransactions/{ID} Error Callback - PUT
+        /thirdpartytransactions/{ID}/error Data Model - See link below
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31712-post-thirdpartyrequeststransactions
       properties: *ref_137
@@ -8977,10 +9002,9 @@ components:
         Used by: DFSP
 
         After a PISP requests the creation of a Third Party Transaction request
-        (POST /thirdpartyRequests/transactions) or the status of a previously
-        created Third Party Transaction request (GET
-        /thirdpartyRequests/transactions/{ID}), the DFSP will send this
-        callback.
+        (POST /thirdpartytransactions) or the status of a previously created
+        Third Party Transaction request (GET /thirdpartytransactions/{ID}), the
+        DFSP will send this callback.
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31721-put-thirdpartyrequeststransactionsid
       properties: *ref_139
@@ -8990,16 +9014,13 @@ components:
       description: >-
         Used by: DFSP
 
-        The HTTP request POST /thirdpartyRequests/authorizations is used to
-        request the validation by a customer for the transfer described in the
-        request.
+        The HTTP request POST /thirdpartyauthorizations is used to request the
+        validation by a customer for the transfer described in the request.
 
-        Callback and data model information for POST
-        /thirdpartyRequests/authorizations:
+        Callback and data model information for POST /thirdpartyauthorizations:
 
-        Callback - PUT /thirdpartyRequests/authorizations/{ID} Error Callback -
-        PUT /thirdpartyRequests/authorizations/{ID}/error Data Model - See below
-        url
+        Callback - PUT /thirdpartyauthorizations/{ID} Error Callback - PUT
+        /thirdpartyauthorizations/{ID}/error Data Model - See below url
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
       type: object
@@ -9015,9 +9036,7 @@ components:
     ThirdpartyRequestsAuthorizationsIDPutResponseRejected:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseRejected
       type: object
-      description: >-
-        The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
-        callback.
+      description: 'The object sent in the PUT /thirdpartyauthorizations/{ID} callback.'
       properties: *ref_144
       required: *ref_145
     AuthorizationResponseTypeAccepted:
@@ -9025,11 +9044,11 @@ components:
       description: |
         The customer accepted the terms of the transfer
       type: string
-      enum: *ref_71
+      enum: *ref_72
     SignedPayloadTypeFIDO:
       title: SignedPayloadTypeFIDO
       type: string
-      enum: *ref_72
+      enum: *ref_73
       description: Describes a challenge that has been signed with FIDO Attestation flows
     FIDOPublicKeyCredentialAssertion:
       title: FIDOPublicKeyCredentialAssertion
@@ -9049,8 +9068,8 @@ components:
 
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32128-fidopublickeycredentialassertion
-      properties: *ref_73
-      required: *ref_74
+      properties: *ref_74
+      required: *ref_75
       additionalProperties: false
     SignedPayloadFIDO:
       title: SignedPayloadFIDO
@@ -9061,16 +9080,14 @@ components:
     ThirdpartyRequestsAuthorizationsIDPutResponseFIDO:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
       type: object
-      description: >-
-        The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
-        callback.
+      description: 'The object sent in the PUT /thirdpartyauthorizations/{ID} callback.'
       properties: *ref_148
       required: *ref_149
       additionalProperties: false
     SignedPayloadTypeGeneric:
       title: SignedPayloadTypeGeneric
       type: string
-      enum: *ref_75
+      enum: *ref_76
       description: Describes a challenge that has been signed with a private key
     SignedPayloadGeneric:
       title: SignedPayloadGeneric
@@ -9081,22 +9098,20 @@ components:
     ThirdpartyRequestsAuthorizationsIDPutResponseGeneric:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
       type: object
-      description: >-
-        The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
-        callback.
+      description: 'The object sent in the PUT /thirdpartyauthorizations/{ID} callback.'
       properties: *ref_152
       required: *ref_153
       additionalProperties: false
     ThirdpartyRequestsVerificationsPostRequestFIDO:
       title: ThirdpartyRequestsVerificationsPostRequestFIDO
       type: object
-      description: The object sent in the POST /thirdpartyRequests/verifications request.
+      description: The object sent in the POST /thirdpartyverifications request.
       properties: *ref_154
       required: *ref_155
     ThirdpartyRequestsVerificationsPostRequestGeneric:
       title: ThirdpartyRequestsVerificationsPostRequestGeneric
       type: object
-      description: The object sent in the POST /thirdpartyRequests/verifications request.
+      description: The object sent in the POST /thirdpartyverifications request.
       properties: *ref_156
       required: *ref_157
     AuthenticationResponse:
@@ -9116,11 +9131,11 @@ components:
       description: >-
         Used by: Auth Service
 
-        The callback PUT /thirdpartyRequests/verifications/{ID} is used to
-        inform the client of the result of an authorization check. The {ID} in
-        the URI should contain the authorizationRequestId which was used to
-        request the check, or the {ID} that was used in the GET
-        /thirdpartyRequests/verifications/{ID}.
+        The callback PUT /thirdpartyverifications/{ID} is used to inform the
+        client of the result of an authorization check. The {ID} in the URI
+        should contain the authorizationRequestId which was used to request the
+        check, or the {ID} that was used in the GET
+        /thirdpartyverifications/{ID}.
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31821-put-thirdpartyrequestsverificationsid
       properties: *ref_159
@@ -9248,13 +9263,13 @@ components:
       name: Type
       in: path
       required: true
-      schema: *ref_63
+      schema: *ref_64
       description: 'The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.'
     ServiceType:
       name: ServiceType
       in: path
       required: true
-      schema: *ref_64
+      schema: *ref_65
       description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
   responses:
     '200':

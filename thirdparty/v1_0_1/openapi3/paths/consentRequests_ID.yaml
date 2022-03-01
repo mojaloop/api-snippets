@@ -66,8 +66,8 @@ put:
       application/json:
         schema:
           oneOf:
-            - $ref: ../components/schemas/callbacks/ConsentRequestsIDPutResponseWeb.yaml
-            - $ref: ../components/schemas/callbacks/ConsentRequestsIDPutResponseOTP.yaml
+            - $ref: ../components/schemas/ConsentRequestsIDPutResponseWeb.yaml
+            - $ref: ../components/schemas/ConsentRequestsIDPutResponseOTP.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml
@@ -104,7 +104,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/callbacks/ConsentRequestsIDPatchRequest.yaml
+          $ref: ../components/schemas/ConsentRequestsIDPatchRequest.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml

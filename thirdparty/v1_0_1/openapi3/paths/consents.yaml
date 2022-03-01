@@ -27,8 +27,8 @@ post:
       application/json:
         schema:
           oneOf:
-            - $ref: ../components/schemas/requests/ConsentsPostRequestAUTH.yaml
-            - $ref: ../components/schemas/requests/ConsentsPostRequestPISP.yaml
+            - $ref: ../components/schemas/ConsentsPostRequestAUTH.yaml
+            - $ref: ../components/schemas/ConsentsPostRequestPISP.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml

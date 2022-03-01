@@ -57,7 +57,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/callbacks/ServicesServiceTypePutResponse.yaml
+          $ref: ../components/schemas/ServicesServiceTypePutResponse.yaml
   responses:
     200:
       $ref: ../components/responses/200.yaml

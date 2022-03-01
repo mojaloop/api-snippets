@@ -65,7 +65,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/callbacks/ThirdpartyRequestsVerificationsIDPutResponse.yaml
+          $ref: ../components/schemas/ThirdpartyRequestsVerificationsIDPutResponse.yaml
         example:
           authenticationResponse: 'VERIFIED'
   responses:

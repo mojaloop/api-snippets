@@ -27,8 +27,8 @@ post:
       application/json:
         schema:
             oneOf:
-              - $ref: ../components/schemas/requests/ThirdpartyRequestsVerificationsPostRequestFIDO.yaml
-              - $ref: ../components/schemas/requests/ThirdpartyRequestsVerificationsPostRequestGeneric.yaml
+              - $ref: ../components/schemas/ThirdpartyRequestsVerificationsPostRequestFIDO.yaml
+              - $ref: ../components/schemas/ThirdpartyRequestsVerificationsPostRequestGeneric.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml

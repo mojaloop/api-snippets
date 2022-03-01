@@ -8,6 +8,6 @@ description: |
   `accounts` property.
 properties:
   party:
-    $ref: ../properties/Party.yaml
+    $ref: ./Party.yaml
 required:
   - party

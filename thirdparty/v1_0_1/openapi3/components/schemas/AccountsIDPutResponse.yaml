@@ -14,6 +14,6 @@ description: >-
   https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31121--put-accountsid
 properties:
   accountList:
-    $ref: ../properties/AccountList.yaml
+    $ref: ./AccountList.yaml
 required:
   - accounts

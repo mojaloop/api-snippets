@@ -28,7 +28,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/callbacks/ParticipantsIDPutResponse.yaml
+          $ref: ../components/schemas/ParticipantsIDPutResponse.yaml
   responses:
     '200':
       $ref: ../components/responses/200.yaml

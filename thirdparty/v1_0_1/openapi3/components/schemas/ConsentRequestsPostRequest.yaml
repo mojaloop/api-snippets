@@ -9,12 +9,12 @@ description: >-
 
   Callback and data model for POST /consentRequests:
 
-  Callback: PUT /consentRequests/{ID}
-  Error callback: PUT /consentRequests/{ID}/error
+  Callback: PUT /consent{ID}
+  Error callback: PUT /consent{ID}/error
   Data model - see below
 properties:
   consentRequestId:
-    $ref: ../properties/CorrelationId.yaml
+    $ref: ./CorrelationId.yaml
   userId:
     type: string
     description: >-
@@ -27,18 +27,18 @@ properties:
     minLength: 1
     maxLength: 256
     items:
-      $ref: ../properties/Scope.yaml
+      $ref: ./Scope.yaml
   authChannels:
     type: array
     minLength: 1
     maxLength: 256
     items:
-      $ref: ../properties/ConsentRequestChannelType.yaml
+      $ref: ./ConsentRequestChannelType.yaml
   #   The callback uri that the user will be redirected to after completing the
   #   out of band WEB authentication with the DFSP. Used to allow the DFSP to
   #   whitelist the PISP's url ahead of time.
   callbackUri:
-    $ref: ../properties/Uri.yaml
+    $ref: ./Uri.yaml
 
 required:
   - consentRequestId

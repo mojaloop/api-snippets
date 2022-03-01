@@ -62,7 +62,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/callbacks/ThirdpartyRequestsTransactionsIDPutResponse.yaml
+          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDPutResponse.yaml
         example:
           transactionRequestState: 'RECEIVED'
   responses:
@@ -103,7 +103,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/callbacks/ThirdpartyRequestsTransactionsIDPatchResponse.yaml
+          $ref: ../components/schemas/ThirdpartyRequestsTransactionsIDPatchResponse.yaml
         example:
           transactionRequestState: 'ACCEPTED'
           transactionState: 'COMMITTED'

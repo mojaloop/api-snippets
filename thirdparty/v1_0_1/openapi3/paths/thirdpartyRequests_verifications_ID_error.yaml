@@ -28,7 +28,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: '../../../fspiop/v1_1/openapi3/components/schemas/ErrorInformationObject.yaml'
+          $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/ErrorInformationObject.yaml'
   responses:
     200:
       $ref: ../components/responses/200.yaml

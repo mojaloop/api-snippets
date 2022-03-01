@@ -28,7 +28,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/requests/ParticipantsPostRequest.yaml
+          $ref: ../components/schemas/ParticipantsPostRequest.yaml
   responses:
     '202':
       $ref: ../components/responses/202.yaml

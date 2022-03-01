@@ -5,4 +5,4 @@ description: >-
   /participants/{Type}/{ID} callbacks.
 properties:
   fspId:
-    $ref: ../properties/FspId.yaml
+    $ref: ./FspId.yaml

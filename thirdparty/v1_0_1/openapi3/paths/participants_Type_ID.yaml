@@ -33,7 +33,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/requests/ParticipantsTypeIDSubIDPostRequest.yaml
+          $ref: ../components/schemas/ParticipantsTypeIDSubIDPostRequest.yaml
   responses:
     '202':
       $ref: ../components/responses/202.yaml
@@ -108,7 +108,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/callbacks/ParticipantsTypeIDPutResponse.yaml
+          $ref: ../components/schemas/ParticipantsTypeIDPutResponse.yaml
   responses:
     '200':
       $ref: ../components/responses/200.yaml

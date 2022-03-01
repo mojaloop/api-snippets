@@ -27,7 +27,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/requests/ConsentRequestsPostRequest.yaml
+          $ref: ../components/schemas/ConsentRequestsPostRequest.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml

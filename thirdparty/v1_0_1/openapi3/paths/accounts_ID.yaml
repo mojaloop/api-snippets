@@ -55,7 +55,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/callbacks/AccountsIDPutResponse.yaml
+          $ref: ../components/schemas/AccountsIDPutResponse.yaml
         example:
         -
           accountNickname: 'dfspa.user.nickname1'

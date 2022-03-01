@@ -90,7 +90,7 @@ paths:
 
                           **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
                       address:
-                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/scopes/items/properties/address'
+                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/scopes/items/address'
                       currency:
                         title: Currency
                         description: 'The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.'
@@ -344,7 +344,7 @@ paths:
                       maxLength: 128
                       description: Error description string.
                     extensionList:
-                      $ref: '#/paths/~1thirdpartyRequests~1authorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
+                      $ref: '#/paths/~1thirdpartyRequests~1authorizations/post/requestBody/content/application~1json/schema/extensionList'
                   required:
                     - errorCode
                     - errorDescription
@@ -513,8 +513,8 @@ paths:
       operationId: GetConsentRequestsById
       summary: GetConsentRequestsById
       description: |
-        The HTTP request `GET /consentRequests/{ID}` is used to get information about a previously 
-        requested consent. The *{ID}* in the URI should contain the consentRequestId that was assigned to the 
+        The HTTP request `GET /consentRequests/{ID}` is used to get information about a previously
+        requested consent. The *{ID}* in the URI should contain the consentRequestId that was assigned to the
         request by the PISP when the PISP originated the request.
       tags:
         - consentRequests
@@ -547,14 +547,14 @@ paths:
       operationId: UpdateConsentRequest
       summary: UpdateConsentRequest
       description: |
-        A DFSP uses this callback to (1) inform the PISP that the consentRequest has been accepted, 
+        A DFSP uses this callback to (1) inform the PISP that the consentRequest has been accepted,
         and (2) communicate to the PISP which `authChannel` it should use to authenticate their user
         with.
 
-        When a PISP requests a series of permissions from a DFSP on behalf of a DFSP’s customer, not all 
-        the permissions requested may be granted by the DFSP. Conversely, the out-of-band authorization 
+        When a PISP requests a series of permissions from a DFSP on behalf of a DFSP’s customer, not all
+        the permissions requested may be granted by the DFSP. Conversely, the out-of-band authorization
         process  may result in additional privileges being granted by the account holder to the PISP. The
-        **PUT /consentRequests/**_{ID}_ resource returns the current state of the permissions relating to a 
+        **PUT /consentRequests/**_{ID}_ resource returns the current state of the permissions relating to a
         particular authorization request.
       parameters:
         - $ref: '#/paths/~1parties~1%7BType%7D~1%7BID%7D/put/parameters/0'
@@ -579,7 +579,7 @@ paths:
                       minLength: 1
                       maxLength: 256
                       items:
-                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/scopes/items'
+                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/scopes/items'
                     authChannels:
                       type: array
                       minLength: 1
@@ -592,9 +592,9 @@ paths:
                         description: |
                           The web auth channel being used for PUT consentRequest/{ID} request.
                     callbackUri:
-                      $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/callbackUri'
+                      $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/callbackUri'
                     authUri:
-                      $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/callbackUri'
+                      $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/callbackUri'
                   required:
                     - scopes
                     - authChannels
@@ -613,7 +613,7 @@ paths:
                       minLength: 1
                       maxLength: 256
                       items:
-                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/scopes/items'
+                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/scopes/items'
                     authChannels:
                       type: array
                       minLength: 1
@@ -626,7 +626,7 @@ paths:
                         description: |
                           The OTP auth channel being used for PUT consentRequest/{ID} request.
                     callbackUri:
-                      $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/callbackUri'
+                      $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/callbackUri'
                   required:
                     - scopes
                     - authChannels
@@ -778,7 +778,7 @@ paths:
                   properties:
                     consentId:
                       allOf:
-                        - $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/consentRequestId'
+                        - $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/consentRequestId'
                       description: |
                         Common ID between the PISP and FSP for the Consent object
                         determined by the DFSP who creates the Consent.
@@ -787,10 +787,10 @@ paths:
                       maxLength: 256
                       type: array
                       items:
-                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/scopes/items'
+                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/scopes/items'
                     credential:
                       allOf:
-                        - $ref: '#/paths/~1consents~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/0/properties/credential'
+                        - $ref: '#/paths/~1consents~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/0/credential'
                     status:
                       title: ConsentStatus
                       type: string
@@ -814,14 +814,14 @@ paths:
                   properties:
                     consentId:
                       allOf:
-                        - $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/consentRequestId'
+                        - $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/consentRequestId'
                       description: |
-                        Common ID between the PISP and the Payer DFSP for the consent object. The ID 
+                        Common ID between the PISP and the Payer DFSP for the consent object. The ID
                         should be reused for resends of the same consent. A new ID should be generated
                         for each new consent.
                     consentRequestId:
                       allOf:
-                        - $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/consentRequestId'
+                        - $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/consentRequestId'
                       description: |
                         The ID given to the original consent request on which this consent is based.
                     scopes:
@@ -829,9 +829,9 @@ paths:
                       minLength: 1
                       maxLength: 256
                       items:
-                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/scopes/items'
+                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/scopes/items'
                     status:
-                      $ref: '#/paths/~1consents/post/requestBody/content/application~1json/schema/oneOf/0/properties/status'
+                      $ref: '#/paths/~1consents/post/requestBody/content/application~1json/schema/oneOf/0/status'
                   required:
                     - consentId
                     - consentRequestId
@@ -960,7 +960,7 @@ paths:
                         Allowed values for the enumeration ConsentStatus
                         - REVOKED - The consent has been revoked
                     revokedAt:
-                      $ref: '#/paths/~1thirdpartyRequests~1transactions~1%7BID%7D/patch/requestBody/content/application~1json/schema/properties/completedTimestamp'
+                      $ref: '#/paths/~1thirdpartyRequests~1transactions~1%7BID%7D/patch/requestBody/content/application~1json/schema/completedTimestamp'
                   required:
                     - status
                     - revokedAt
@@ -1012,7 +1012,7 @@ paths:
                     scopes:
                       type: array
                       items:
-                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/scopes/items'
+                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/scopes/items'
                     status:
                       title: ConsentStatus
                       type: string
@@ -1057,15 +1057,15 @@ paths:
                             A publicKey + signature of a challenge for a generic public/private keypair
                           properties:
                             publicKey:
-                              $ref: '#/paths/~1consentRequests~1%7BID%7D/patch/requestBody/content/application~1json/schema/properties/authToken'
+                              $ref: '#/paths/~1consentRequests~1%7BID%7D/patch/requestBody/content/application~1json/schema/authToken'
                             signature:
-                              $ref: '#/paths/~1consentRequests~1%7BID%7D/patch/requestBody/content/application~1json/schema/properties/authToken'
+                              $ref: '#/paths/~1consentRequests~1%7BID%7D/patch/requestBody/content/application~1json/schema/authToken'
                           required:
                             - publicKey
                             - signature
                           additionalProperties: false
                         fidoPayload:
-                          $ref: '#/paths/~1consents~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/1/properties/credential/properties/payload'
+                          $ref: '#/paths/~1consents~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/1/credential/payload'
                       required:
                         - credentialType
                         - status
@@ -1083,9 +1083,9 @@ paths:
                     scopes:
                       type: array
                       items:
-                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/scopes/items'
+                        $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/scopes/items'
                     status:
-                      $ref: '#/paths/~1consents~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/0/properties/status'
+                      $ref: '#/paths/~1consents~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/0/status'
                     credential:
                       title: VerifiedCredential
                       type: object
@@ -1098,7 +1098,7 @@ paths:
                         updating a credential.
                       properties:
                         credentialType:
-                          $ref: '#/paths/~1consents~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/0/properties/credential/properties/credentialType'
+                          $ref: '#/paths/~1consents~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/0/credential/credentialType'
                         status:
                           type: string
                           enum:
@@ -1108,7 +1108,7 @@ paths:
                           title: FIDOPublicKeyCredentialAttestation
                           type: object
                           description: |
-                            A data model representing a FIDO Attestation result. Derived from 
+                            A data model representing a FIDO Attestation result. Derived from
                             [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
 
                             The `PublicKeyCredential` interface represents the below fields with
@@ -1196,7 +1196,7 @@ paths:
         Used by PISP, DFSP
 
         The **DELETE /consents/**_{ID}_ request is used to request the revocation of a previously agreed consent.
-        For tracing and auditing purposes, the switch should be sure not to delete the consent physically; 
+        For tracing and auditing purposes, the switch should be sure not to delete the consent physically;
         instead, information relating to the consent should be marked as deleted and requests relating to the
         consent should not be honoured.
       operationId: DeleteConsentByID
@@ -1302,31 +1302,31 @@ paths:
               type: object
               properties:
                 authorizationRequestId:
-                  $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/consentRequestId'
+                  $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/consentRequestId'
                 transactionRequestId:
-                  $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/consentRequestId'
+                  $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/consentRequestId'
                 challenge:
                   type: string
                   description: The challenge that the PISP's client is to sign
                 transferAmount:
                   allOf:
-                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/properties/amount/allOf/0'
+                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/amount/allOf/0'
                   description: The amount that will be debited from the sending customer’s  account as a consequence of the transaction.
                 payeeReceiveAmount:
                   allOf:
-                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/properties/amount/allOf/0'
+                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/amount/allOf/0'
                   description: The amount that will be credited to the receiving customer’s  account as a consequence of the transaction.
                 fees:
                   allOf:
-                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/properties/amount/allOf/0'
+                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/amount/allOf/0'
                   description: The amount of fees that the paying customer will be charged as part of the transaction.
                 payer:
                   allOf:
-                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/properties/payer/allOf/0'
+                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/payer/allOf/0'
                   description: 'Information about the Payer type, id, sub-type/id, FSP Id in the proposed financial transaction.'
                 payee:
                   allOf:
-                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/properties/payee/allOf/0'
+                    - $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/payee/allOf/0'
                   description: Information about the Payee in the proposed financial transaction.
                 transactionType:
                   title: TransactionType
@@ -1388,7 +1388,7 @@ paths:
                       description: Data model for the complex type Refund.
                       properties:
                         originalTransactionId:
-                          $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/consentRequestId'
+                          $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/consentRequestId'
                         refundReason:
                           title: RefundReason
                           type: string
@@ -1410,7 +1410,7 @@ paths:
                     - initiatorType
                 expiration:
                   allOf:
-                    - $ref: '#/paths/~1thirdpartyRequests~1transactions~1%7BID%7D/patch/requestBody/content/application~1json/schema/properties/completedTimestamp'
+                    - $ref: '#/paths/~1thirdpartyRequests~1transactions~1%7BID%7D/patch/requestBody/content/application~1json/schema/completedTimestamp'
                   description: 'The time by which the transfer must be completed, set by the payee DFSP.'
                 extensionList:
                   title: ExtensionList
@@ -1489,8 +1489,8 @@ paths:
       - $ref: '#/paths/~1parties~1%7BType%7D~1%7BID%7D/parameters/10'
     get:
       description: |
-        The HTTP request **GET /thirdpartyRequests/authorizations/**_{ID}_ is used to get information relating 
-        to a previously issued authorization request. The *{ID}* in the request should match the 
+        The HTTP request **GET /thirdpartyRequests/authorizations/**_{ID}_ is used to get information relating
+        to a previously issued authorization request. The *{ID}* in the request should match the
         `authorizationRequestId` which was given when the authorization request was created.
       operationId: GetThirdpartyRequestsAuthorizationsById
       summary: GetThirdpartyRequestsAuthorizationsById
@@ -1519,7 +1519,7 @@ paths:
           $ref: '#/paths/~1parties~1%7BType%7D~1%7BID%7D/get/responses/503'
     put:
       description: |
-        After receiving the **POST /thirdpartyRequests/authorizations**, the PISP will present the details of the 
+        After receiving the **POST /thirdpartyRequests/authorizations**, the PISP will present the details of the
         transaction to their user, and request that the client sign the `challenge` field using the credential
         they previously registered.
 
@@ -1650,7 +1650,7 @@ paths:
                   description: 'The object sent in the PUT /thirdpartyRequests/authorizations/{ID} callback.'
                   properties:
                     responseType:
-                      $ref: '#/paths/~1thirdpartyRequests~1authorizations~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/1/properties/responseType'
+                      $ref: '#/paths/~1thirdpartyRequests~1authorizations~1%7BID%7D/put/requestBody/content/application~1json/schema/oneOf/1/responseType'
                     signedPayload:
                       type: object
                       properties:
@@ -1661,7 +1661,7 @@ paths:
                             - GENERIC
                           description: Describes a challenge that has been signed with a private key
                         genericSignedPayload:
-                          $ref: '#/paths/~1consentRequests~1%7BID%7D/patch/requestBody/content/application~1json/schema/properties/authToken'
+                          $ref: '#/paths/~1consentRequests~1%7BID%7D/patch/requestBody/content/application~1json/schema/authToken'
                       required:
                         - signedPayloadType
                         - genericSignedPayload
@@ -1776,7 +1776,7 @@ paths:
               properties:
                 transactionRequestId:
                   allOf:
-                    - $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/properties/consentRequestId'
+                    - $ref: '#/paths/~1consentRequests/post/requestBody/content/application~1json/schema/consentRequestId'
                   description: |
                     Common ID between the PISP and the Payer DFSP for the transaction request object. The ID should be reused for resends of the same transaction request.  A new ID should be generated for each new transaction request.
                 payee:
@@ -1786,13 +1786,13 @@ paths:
                       description: Data model for the complex type Party.
                       properties:
                         partyIdInfo:
-                          $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/properties/payer/allOf/0'
+                          $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/payer/allOf/0'
                         merchantClassificationCode:
-                          $ref: '#/paths/~1parties~1%7BType%7D~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/party/properties/merchantClassificationCode'
+                          $ref: '#/paths/~1parties~1%7BType%7D~1%7BID%7D/put/requestBody/content/application~1json/schema/party/merchantClassificationCode'
                         name:
-                          $ref: '#/paths/~1parties~1%7BType%7D~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/party/properties/name'
+                          $ref: '#/paths/~1parties~1%7BType%7D~1%7BID%7D/put/requestBody/content/application~1json/schema/party/name'
                         personalInfo:
-                          $ref: '#/paths/~1parties~1%7BType%7D~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/party/properties/personalInfo'
+                          $ref: '#/paths/~1parties~1%7BType%7D~1%7BID%7D/put/requestBody/content/application~1json/schema/party/personalInfo'
                       required:
                         - partyIdInfo
                   description: Information about the Payee in the proposed financial transaction.
@@ -1829,7 +1829,7 @@ paths:
                             [RFC 3696](https://tools.ietf.org/html/rfc3696).
                             - PERSONAL_ID - A personal identifier is used as reference to a participant.
                             Examples of personal identification are passport number, birth certificate
-                            number, and national registration number. The identifier number is added in 
+                            number, and national registration number. The identifier number is added in
                             the PartyIdentifier element. The personal identifier type is added in the
                             PartySubIdOrType element.
                             - BUSINESS - A specific Business (for example, an organization or a company)
@@ -1853,12 +1853,12 @@ paths:
                             PartySubIdOrType element for identifying an account under an Alias defined
                             by the PartyIdentifier.
                             - CONSENT - A Consent represents an agreement between a PISP, a Customer and
-                            a DFSP which allows the PISP permission to perform actions on behalf of the 
-                            customer. A Consent has an authoritative source: either the DFSP who issued 
+                            a DFSP which allows the PISP permission to perform actions on behalf of the
+                            customer. A Consent has an authoritative source: either the DFSP who issued
                             the Consent, or an Auth Service which administers the Consent.
                             - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
-                            a DFSP, and a specific Customer's account at the DFSP. The content of the link 
-                            is created by the DFSP at the time when it gives permission to the PISP for 
+                            a DFSP, and a specific Customer's account at the DFSP. The content of the link
+                            is created by the DFSP at the time when it gives permission to the PISP for
                             specific access to a given account.
                           example: PERSONAL_ID
                         partyIdentifier:
@@ -1875,9 +1875,9 @@ paths:
                           maxLength: 128
                           description: 'Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.'
                         fspId:
-                          $ref: '#/paths/~1services~1%7BServiceType%7D/put/requestBody/content/application~1json/schema/properties/providers/items'
+                          $ref: '#/paths/~1services~1%7BServiceType%7D/put/requestBody/content/application~1json/schema/providers/items'
                         extensionList:
-                          $ref: '#/paths/~1thirdpartyRequests~1authorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
+                          $ref: '#/paths/~1thirdpartyRequests~1authorizations/post/requestBody/content/application~1json/schema/extensionList'
                       required:
                         - partyIdType
                         - partyIdentifier
@@ -1902,7 +1902,7 @@ paths:
                       description: Data model for the complex type Money.
                       properties:
                         currency:
-                          $ref: '#/paths/~1accounts~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/accountList/items/properties/currency'
+                          $ref: '#/paths/~1accounts~1%7BID%7D/put/requestBody/content/application~1json/schema/accountList/items/currency'
                         amount:
                           title: Amount
                           type: string
@@ -1915,7 +1915,7 @@ paths:
                   description: Requested amount to be transferred from the Payer to Payee.
                 transactionType:
                   allOf:
-                    - $ref: '#/paths/~1thirdpartyRequests~1authorizations/post/requestBody/content/application~1json/schema/properties/transactionType'
+                    - $ref: '#/paths/~1thirdpartyRequests~1authorizations/post/requestBody/content/application~1json/schema/transactionType'
                   description: Type of transaction.
                 note:
                   type: string
@@ -2085,7 +2085,7 @@ paths:
                   description: 'The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).'
                   example: '2016-05-24T08:38:08.699-04:00'
                 transactionRequestState:
-                  $ref: '#/paths/~1thirdpartyRequests~1transactions~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/transactionRequestState'
+                  $ref: '#/paths/~1thirdpartyRequests~1transactions~1%7BID%7D/put/requestBody/content/application~1json/schema/transactionRequestState'
                 transactionState:
                   title: TransactionState
                   type: string
@@ -2274,7 +2274,7 @@ paths:
                 description: Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
                 properties:
                   errorInformation:
-                    $ref: '#/paths/~1accounts~1%7BID%7D~1error/put/requestBody/content/application~1json/schema/properties/errorInformation'
+                    $ref: '#/paths/~1accounts~1%7BID%7D~1error/put/requestBody/content/application~1json/schema/errorInformation'
           headers:
             Content-Length:
               required: false
@@ -2425,13 +2425,13 @@ paths:
                             - IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.
                             - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.
                         partyIdentifier:
-                          $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/properties/payer/allOf/0/properties/partyIdentifier'
+                          $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/payer/allOf/0/partyIdentifier'
                         partySubIdOrType:
-                          $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/properties/payer/allOf/0/properties/partySubIdOrType'
+                          $ref: '#/paths/~1thirdpartyRequests~1transactions/post/requestBody/content/application~1json/schema/payer/allOf/0/partySubIdOrType'
                         fspId:
-                          $ref: '#/paths/~1services~1%7BServiceType%7D/put/requestBody/content/application~1json/schema/properties/providers/items'
+                          $ref: '#/paths/~1services~1%7BServiceType%7D/put/requestBody/content/application~1json/schema/providers/items'
                         extensionList:
-                          $ref: '#/paths/~1thirdpartyRequests~1authorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
+                          $ref: '#/paths/~1thirdpartyRequests~1authorizations/post/requestBody/content/application~1json/schema/extensionList'
                       required:
                         - partyIdType
                         - partyIdentifier

@@ -3,14 +3,14 @@ type: object
 description: The object sent in the POST /quotes request.
 properties:
   quoteId:
-    $ref: ../properties/CorrelationId.yaml
+    $ref: ./CorrelationId.yaml
     description: >-
       Common ID between the FSPs for the quote object, decided by the Payer FSP.
       The ID should be reused for resends of the same quote for a transaction. A
       new ID should be generated for each new quote for a transaction.
     example: b51ec534-ee48-4575-b6a9-ead2955b8069
   transactionId:
-    $ref: ../properties/CorrelationId.yaml
+    $ref: ./CorrelationId.yaml
     description: >-
       Common ID (decided by the Payer FSP) between the FSPs for the future
       transaction object. The actual transaction will be created as part of a
@@ -19,21 +19,21 @@ properties:
       quote for a transaction.
     example: a8323bc6-c228-4df2-ae82-e5a997baf899
   transactionRequestId:
-    $ref: ../properties/CorrelationId.yaml
+    $ref: ./CorrelationId.yaml
     description: Identifies an optional previously-sent transaction request.
     example: a8323bc6-c228-4df2-ae82-e5a997baf890
   payee:
-    $ref: ../properties/Party.yaml
+    $ref: ./Party.yaml
     description: Information about the Payee in the proposed financial transaction.
   payer:
-    $ref: ../properties/Party.yaml
+    $ref: ./Party.yaml
     description: Information about the Payer in the proposed financial transaction.
   amountType:
-    $ref: ../properties/AmountType.yaml
+    $ref: ./AmountType.yaml
     description: 'SEND for send amount, RECEIVE for receive amount.'
     example: SEND
   amount:
-    $ref: ../properties/Money.yaml
+    $ref: ./Money.yaml
     description: >-
       Depending on amountType - If SEND - The amount the Payer would like to
       send, that is, the amount that should be withdrawn from the Payer account
@@ -42,32 +42,32 @@ properties:
       is, the amount that should be sent to the receiver exclusive any fees. The
       amount is not updated by any of the participating entities.
   fees:
-    $ref: ../properties/Money.yaml
+    $ref: ./Money.yaml
     description: >-
       The fees in the transaction. The fees element should be empty if fees
       should be non-disclosed. The fees element should be non-empty if fees
       should be disclosed.
   transactionType:
-    $ref: ../properties/TransactionType.yaml
+    $ref: ./TransactionType.yaml
     description: Type of transaction for which the quote is requested.
   geoCode:
-    $ref: ../properties/GeoCode.yaml
+    $ref: ./GeoCode.yaml
     description: >-
       Longitude and Latitude of the initiating Party. Can be used to detect
       fraud.
   note:
-    $ref: ../properties/Note.yaml
+    $ref: ./Note.yaml
     description: A memo that will be attached to the transaction.
     example: Free-text memo.
   expiration:
-    $ref: ../properties/DateTime.yaml
+    $ref: ./DateTime.yaml
     description: >-
       Expiration is optional. It can be set to get a quick failure in case the
       peer FSP takes too long to respond. Also, it may be beneficial for
       Consumer, Agent, and Merchant to know that their request has a time limit.
     example: '2016-05-24T08:38:08.699-04:00'
   extensionList:
-    $ref: ../properties/ExtensionList.yaml
+    $ref: ./ExtensionList.yaml
     description: 'Optional extension, specific to deployment.'
 required:
   - quoteId

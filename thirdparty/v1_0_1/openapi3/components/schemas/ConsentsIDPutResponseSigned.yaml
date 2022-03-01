@@ -8,13 +8,13 @@ description: >
   verification.
 properties:
   status:
-    $ref: ../properties/ConsentStatusIssued.yaml
+    $ref: ./ConsentStatusIssued.yaml
   scopes:
     type: array
     items:
-      $ref: ../properties/Scope.yaml
+      $ref: ./Scope.yaml
   credential:
-    $ref: ../properties/SignedCredential.yaml
+    $ref: ./SignedCredential.yaml
 required:
   - scopes
   - credential

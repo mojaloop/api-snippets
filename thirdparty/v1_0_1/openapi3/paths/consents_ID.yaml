@@ -66,8 +66,8 @@ patch:
       application/json:
         schema:
           oneOf:
-            - $ref: ../components/schemas/callbacks/ConsentsIDPatchResponseVerified.yaml
-            - $ref: ../components/schemas/callbacks/ConsentsIDPatchResponseRevoked.yaml
+            - $ref: ../components/schemas/ConsentsIDPatchResponseVerified.yaml
+            - $ref: ../components/schemas/ConsentsIDPatchResponseRevoked.yaml
   parameters:
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
@@ -107,8 +107,8 @@ put:
       application/json:
         schema:
           oneOf:
-            - $ref: ../components/schemas/callbacks/ConsentsIDPutResponseSigned.yaml
-            - $ref: ../components/schemas/callbacks/ConsentsIDPutResponseVerified.yaml
+            - $ref: ../components/schemas/ConsentsIDPutResponseSigned.yaml
+            - $ref: ../components/schemas/ConsentsIDPutResponseVerified.yaml
   parameters:
     #Headers
     - $ref: ../components/parameters/Content-Length.yaml

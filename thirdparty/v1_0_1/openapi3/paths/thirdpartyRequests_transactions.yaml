@@ -25,7 +25,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/requests/ThirdpartyRequestsTransactionsPostRequest.yaml
+          $ref: ../components/schemas/ThirdpartyRequestsTransactionsPostRequest.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml

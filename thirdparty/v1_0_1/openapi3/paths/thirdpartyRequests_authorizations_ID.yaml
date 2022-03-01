@@ -62,9 +62,9 @@ put:
       application/json:
         schema:
           oneOf:
-            - $ref: '../components/schemas/callbacks/ThirdpartyRequestsAuthorizationsIDPutResponseRejected.yaml'
-            - $ref: '../components/schemas/callbacks/ThirdpartyRequestsAuthorizationsIDPutResponseFIDO.yaml'
-            - $ref: '../components/schemas/callbacks/ThirdpartyRequestsAuthorizationsIDPutResponseGeneric.yaml'
+            - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseRejected.yaml'
+            - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseFIDO.yaml'
+            - $ref: '../components/schemas/ThirdpartyRequestsAuthorizationsIDPutResponseGeneric.yaml'
   responses:
     200:
       $ref: ../components/responses/200.yaml

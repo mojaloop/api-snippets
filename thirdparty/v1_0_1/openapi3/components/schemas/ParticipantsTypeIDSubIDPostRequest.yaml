@@ -6,10 +6,10 @@ description: >-
   element has been added as part of v1.1 changes.
 properties:
   fspId:
-    $ref: ../properties/FspId.yaml
+    $ref: ./FspId.yaml
   currency:
-    $ref: ../properties/Currency.yaml
+    $ref: ./Currency.yaml
   extensionList:
-    $ref: ../properties/ExtensionList.yaml
+    $ref: ./ExtensionList.yaml
 required:
   - fspId
