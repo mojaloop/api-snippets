@@ -183,8 +183,8 @@ TransactionType:
 
 AccountsIDPutResponse:
   $ref: ./callbacks/AccountsIDPutResponse.yaml
-ConsentRequestsIDPatchResponse:
-  $ref: ./callbacks/ConsentRequestsIDPatchResponse.yaml
+ConsentRequestsIDPatchRequest:
+  $ref: ./callbacks/ConsentRequestsIDPatchRequest.yaml
 ConsentRequestsIDPutResponseOTP:
   $ref: ./callbacks/ConsentRequestsIDPutResponse/ConsentRequestsIDPutResponseOTP.yaml
 ConsentRequestsIDPutResponseWeb:

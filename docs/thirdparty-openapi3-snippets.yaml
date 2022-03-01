@@ -8738,7 +8738,7 @@ components:
         ‘=’) is added at the end of the data if needed to ensure that the string
         is a multiple of 4 characters. The length restriction indicates the
         allowed number of characters.
-    ConsentRequestsIDPatchResponse:
+    ConsentRequestsIDPatchRequest:
       title: ConsentRequestsIDPatchRequest
       type: object
       description: >-

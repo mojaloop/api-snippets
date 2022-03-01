@@ -104,7 +104,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/callbacks/ConsentRequestsIDPatchResponse.yaml
+          $ref: ../components/schemas/callbacks/ConsentRequestsIDPatchRequest.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml

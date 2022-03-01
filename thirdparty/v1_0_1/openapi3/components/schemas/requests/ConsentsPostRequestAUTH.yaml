@@ -10,6 +10,8 @@ properties:
     description: |
       Common ID between the PISP and FSP for the Consent object
       determined by the DFSP who creates the Consent.
+  consentRequestId:
+    - $ref: ../properties/CorrelationId.yaml
   scopes:
     minLength: 1
     maxLength: 256

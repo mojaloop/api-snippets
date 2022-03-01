@@ -13,5 +13,5 @@ properties:
     $ref: ./Currency.yaml
 required:
   - accountNickname
-  - id
+  - address
   - currency

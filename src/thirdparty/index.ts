@@ -16,7 +16,7 @@ export namespace Schemas {
   export type ConsentRequestChannelType = components['schemas']['ConsentRequestChannelType']
   export type ConsentRequestChannelTypeOTP = components['schemas']['ConsentRequestChannelTypeOTP']
   export type ConsentRequestChannelTypeWeb = components['schemas']['ConsentRequestChannelTypeWeb']
-  export type ConsentRequestsIDPatchResponse = components['schemas']['ConsentRequestsIDPatchResponse']
+  export type ConsentRequestsIDPatchRequest = components['schemas']['ConsentRequestsIDPatchRequest']
   export type ConsentRequestsIDPutResponseOTP = components['schemas']['ConsentRequestsIDPutResponseOTP']
   export type ConsentRequestsIDPutResponseWeb = components['schemas']['ConsentRequestsIDPutResponseWeb']
   export type ConsentRequestsPostRequest = components['schemas']['ConsentRequestsPostRequest']

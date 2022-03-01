@@ -7,6 +7,8 @@ description: >
   Called by a `PISP` to after signing a challenge. Sent to a DFSP for
   verification.
 properties:
+  status:
+    $ref: ../properties/ConsentStatusIssued.yaml
   scopes:
     type: array
     items:
