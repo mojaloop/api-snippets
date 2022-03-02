@@ -41,19 +41,7 @@ describe('thirdparty', () => {
     currency,
     amount: '1'
   }
-  /*
-  const quote: Schemas.QuotesIDPutResponse = {
-    transferAmount: money,
-    payeeReceiveAmount: money,
-    payeeFspFee: money,
-    payeeFspCommission: money,
-    expiration: dateTime,
-    geoCode,
-    ilpPacket,
-    condition: ilpCondition,
-    extensionList
-  }
-  */
+
   const consentRequestChannelType: Schemas.ConsentRequestChannelType = 'WEB'
   const consentRequestChannelTypeWeb: Schemas.ConsentRequestChannelTypeWeb = 'WEB'
   const consentRequestChannelTypeOTP: Schemas.ConsentRequestChannelTypeOTP = 'OTP'

@@ -1,6 +1,6 @@
 title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
 type: object
-description: 'The object sent in the PUT /thirdpartyauthorizations/{ID} callback.'
+description: 'The object sent in the PUT /thirdpartyRequests/authorizations/{ID} callback.'
 properties:
   responseType:
     $ref: ./AuthorizationResponseTypeAccepted.yaml

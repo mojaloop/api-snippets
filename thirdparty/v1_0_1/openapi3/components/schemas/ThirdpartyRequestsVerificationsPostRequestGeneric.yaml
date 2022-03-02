@@ -1,6 +1,6 @@
 title: ThirdpartyRequestsVerificationsPostRequestGeneric
 type: object
-description: The object sent in the POST /thirdpartyverifications request.
+description: The object sent in the POST /thirdpartyRequests/verifications request.
 properties:
   verificationRequestId:
     allOf:

@@ -7,7 +7,7 @@ description: >-
   which describes the finalized state of the requested transfer.
 
   This response will be given by a PATCH call on the
-  /thirdpartytransactions/{ID} resource.
+  /thirdpartyRequests/transactions/{ID} resource.
 
   The {ID} given in the query string should be the transactionRequestId which
   was originally used by the PISP to identify the transaction request.

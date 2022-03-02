@@ -2,7 +2,7 @@ title: ConsentsIDPatchResponseVerified
 description: |
   PATCH /consents/{ID} request object.
 
-  Sent by the DFSP to the PISP when a consent is issued.
+  Sent by the DFSP to the PISP when a consent is issued and verified.
   Used in the "Register Credential" part of the Account linking flow.
 type: object
 properties:
