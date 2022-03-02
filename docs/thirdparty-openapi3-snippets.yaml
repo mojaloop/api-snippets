@@ -709,7 +709,7 @@ paths:
                     requested transfer.
 
                     This response will be given by a PATCH call on the
-                    /thirdpartytransactions/{ID} resource.
+                    /thirdpartyRequests/transactions/{ID} resource.
 
                     The {ID} given in the query string should be the
                     transactionRequestId which was originally used by the PISP
@@ -3554,7 +3554,8 @@ paths:
                     PATCH /consents/{ID} request object.
 
 
-                    Sent by the DFSP to the PISP when a consent is issued.
+                    Sent by the DFSP to the PISP when a consent is issued and
+                    verified.
 
                     Used in the "Register Credential" part of the Account
                     linking flow.
@@ -5692,15 +5693,16 @@ paths:
               description: >-
                 Used by: PISP
 
-                The HTTP request POST /thirdpartytransactions is used to request
-                the creation of a transaction request on the server for the
-                transfer described in the request.
+                The HTTP request POST /thirdpartyRequests/transactions is used
+                to request the creation of a transaction request on the server
+                for the transfer described in the request.
 
                 Callback and data model information for POST
-                /thirdpartytransactions:
+                /thirdpartyRequests/transactions:
 
-                Callback - PUT /thirdpartytransactions/{ID} Error Callback - PUT
-                /thirdpartytransactions/{ID}/error Data Model - See link below
+                Callback - PUT /thirdpartyRequests/transactions/{ID} Error
+                Callback - PUT /thirdpartyRequests/transactions/{ID}/error Data
+                Model - See link below
 
                 https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31712-post-thirdpartyrequeststransactions
               properties: &ref_137
@@ -6016,9 +6018,10 @@ paths:
                 Used by: DFSP
 
                 After a PISP requests the creation of a Third Party Transaction
-                request (POST /thirdpartytransactions) or the status of a
-                previously created Third Party Transaction request (GET
-                /thirdpartytransactions/{ID}), the DFSP will send this callback.
+                request (POST /thirdpartyRequests/transactions) or the status of
+                a previously created Third Party Transaction request (GET
+                /thirdpartyRequests/transactions/{ID}), the DFSP will send this
+                callback.
 
                 https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31721-put-thirdpartyrequeststransactionsid
               properties: &ref_139
@@ -6125,7 +6128,7 @@ paths:
                 transfer.
 
                 This response will be given by a PATCH call on the
-                /thirdpartytransactions/{ID} resource.
+                /thirdpartyRequests/transactions/{ID} resource.
 
                 The {ID} given in the query string should be the
                 transactionRequestId which was originally used by the PISP to
@@ -6464,16 +6467,16 @@ paths:
               description: >-
                 Used by: DFSP
 
-                The HTTP request POST /thirdpartyauthorizations is used to
-                request the validation by a customer for the transfer described
-                in the request.
+                The HTTP request POST /thirdpartyRequests/authorizations is used
+                to request the validation by a customer for the transfer
+                described in the request.
 
                 Callback and data model information for POST
-                /thirdpartyauthorizations:
+                /thirdpartyRequests/authorizations:
 
-                Callback - PUT /thirdpartyauthorizations/{ID} Error Callback -
-                PUT /thirdpartyauthorizations/{ID}/error Data Model - See below
-                url
+                Callback - PUT /thirdpartyRequests/authorizations/{ID} Error
+                Callback - PUT /thirdpartyRequests/authorizations/{ID}/error
+                Data Model - See below url
 
                 https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
               type: object
@@ -6829,8 +6832,8 @@ paths:
                 - title: ThirdpartyRequestsAuthorizationsIDPutResponseRejected
                   type: object
                   description: >-
-                    The object sent in the PUT /thirdpartyauthorizations/{ID}
-                    callback.
+                    The object sent in the PUT
+                    /thirdpartyRequests/authorizations/{ID} callback.
                   properties: &ref_144
                     responseType:
                       title: AuthorizationResponseTypeRejected
@@ -6844,8 +6847,8 @@ paths:
                 - title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
                   type: object
                   description: >-
-                    The object sent in the PUT /thirdpartyauthorizations/{ID}
-                    callback.
+                    The object sent in the PUT
+                    /thirdpartyRequests/authorizations/{ID} callback.
                   properties: &ref_148
                     responseType:
                       title: AuthorizationResponseType
@@ -6966,8 +6969,8 @@ paths:
                 - title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
                   type: object
                   description: >-
-                    The object sent in the PUT /thirdpartyauthorizations/{ID}
-                    callback.
+                    The object sent in the PUT
+                    /thirdpartyRequests/authorizations/{ID} callback.
                   properties: &ref_152
                     responseType:
                       title: AuthorizationResponseType
@@ -7340,8 +7343,8 @@ paths:
                 - title: ThirdpartyRequestsVerificationsPostRequestFIDO
                   type: object
                   description: >-
-                    The object sent in the POST /thirdpartyverifications
-                    request.
+                    The object sent in the POST
+                    /thirdpartyRequests/verifications request.
                   properties: &ref_154
                     verificationRequestId:
                       allOf:
@@ -7425,8 +7428,8 @@ paths:
                 - title: ThirdpartyRequestsVerificationsPostRequestGeneric
                   type: object
                   description: >-
-                    The object sent in the POST /thirdpartyverifications
-                    request.
+                    The object sent in the POST
+                    /thirdpartyRequests/verifications request.
                   properties: &ref_156
                     verificationRequestId:
                       allOf:
@@ -7717,11 +7720,11 @@ paths:
               description: >-
                 Used by: Auth Service
 
-                The callback PUT /thirdpartyverifications/{ID} is used to inform
-                the client of the result of an authorization check. The {ID} in
-                the URI should contain the authorizationRequestId which was used
-                to request the check, or the {ID} that was used in the GET
-                /thirdpartyverifications/{ID}.
+                The callback PUT /thirdpartyRequests/verifications/{ID} is used
+                to inform the client of the result of an authorization check.
+                The {ID} in the URI should contain the authorizationRequestId
+                which was used to request the check, or the {ID} that was used
+                in the GET /thirdpartyRequests/verifications/{ID}.
 
                 https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31821-put-thirdpartyrequestsverificationsid
               properties: &ref_159
@@ -8352,7 +8355,7 @@ components:
         which describes the finalized state of the requested transfer.
 
         This response will be given by a PATCH call on the
-        /thirdpartytransactions/{ID} resource.
+        /thirdpartyRequests/transactions/{ID} resource.
 
         The {ID} given in the query string should be the transactionRequestId
         which was originally used by the PISP to identify the transaction
@@ -8922,7 +8925,7 @@ components:
       description: |
         PATCH /consents/{ID} request object.
 
-        Sent by the DFSP to the PISP when a consent is issued.
+        Sent by the DFSP to the PISP when a consent is issued and verified.
         Used in the "Register Credential" part of the Account linking flow.
       type: object
       properties: *ref_127
@@ -8983,14 +8986,16 @@ components:
       description: >-
         Used by: PISP
 
-        The HTTP request POST /thirdpartytransactions is used to request the
-        creation of a transaction request on the server for the transfer
-        described in the request.
+        The HTTP request POST /thirdpartyRequests/transactions is used to
+        request the creation of a transaction request on the server for the
+        transfer described in the request.
 
-        Callback and data model information for POST /thirdpartytransactions:
+        Callback and data model information for POST
+        /thirdpartyRequests/transactions:
 
-        Callback - PUT /thirdpartytransactions/{ID} Error Callback - PUT
-        /thirdpartytransactions/{ID}/error Data Model - See link below
+        Callback - PUT /thirdpartyRequests/transactions/{ID} Error Callback -
+        PUT /thirdpartyRequests/transactions/{ID}/error Data Model - See link
+        below
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31712-post-thirdpartyrequeststransactions
       properties: *ref_137
@@ -9002,9 +9007,10 @@ components:
         Used by: DFSP
 
         After a PISP requests the creation of a Third Party Transaction request
-        (POST /thirdpartytransactions) or the status of a previously created
-        Third Party Transaction request (GET /thirdpartytransactions/{ID}), the
-        DFSP will send this callback.
+        (POST /thirdpartyRequests/transactions) or the status of a previously
+        created Third Party Transaction request (GET
+        /thirdpartyRequests/transactions/{ID}), the DFSP will send this
+        callback.
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31721-put-thirdpartyrequeststransactionsid
       properties: *ref_139
@@ -9014,13 +9020,16 @@ components:
       description: >-
         Used by: DFSP
 
-        The HTTP request POST /thirdpartyauthorizations is used to request the
-        validation by a customer for the transfer described in the request.
+        The HTTP request POST /thirdpartyRequests/authorizations is used to
+        request the validation by a customer for the transfer described in the
+        request.
 
-        Callback and data model information for POST /thirdpartyauthorizations:
+        Callback and data model information for POST
+        /thirdpartyRequests/authorizations:
 
-        Callback - PUT /thirdpartyauthorizations/{ID} Error Callback - PUT
-        /thirdpartyauthorizations/{ID}/error Data Model - See below url
+        Callback - PUT /thirdpartyRequests/authorizations/{ID} Error Callback -
+        PUT /thirdpartyRequests/authorizations/{ID}/error Data Model - See below
+        url
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
       type: object
@@ -9036,7 +9045,9 @@ components:
     ThirdpartyRequestsAuthorizationsIDPutResponseRejected:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseRejected
       type: object
-      description: 'The object sent in the PUT /thirdpartyauthorizations/{ID} callback.'
+      description: >-
+        The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
+        callback.
       properties: *ref_144
       required: *ref_145
     AuthorizationResponseTypeAccepted:
@@ -9080,7 +9091,9 @@ components:
     ThirdpartyRequestsAuthorizationsIDPutResponseFIDO:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
       type: object
-      description: 'The object sent in the PUT /thirdpartyauthorizations/{ID} callback.'
+      description: >-
+        The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
+        callback.
       properties: *ref_148
       required: *ref_149
       additionalProperties: false
@@ -9098,20 +9111,22 @@ components:
     ThirdpartyRequestsAuthorizationsIDPutResponseGeneric:
       title: ThirdpartyRequestsAuthorizationsIDPutResponseGeneric
       type: object
-      description: 'The object sent in the PUT /thirdpartyauthorizations/{ID} callback.'
+      description: >-
+        The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
+        callback.
       properties: *ref_152
       required: *ref_153
       additionalProperties: false
     ThirdpartyRequestsVerificationsPostRequestFIDO:
       title: ThirdpartyRequestsVerificationsPostRequestFIDO
       type: object
-      description: The object sent in the POST /thirdpartyverifications request.
+      description: The object sent in the POST /thirdpartyRequests/verifications request.
       properties: *ref_154
       required: *ref_155
     ThirdpartyRequestsVerificationsPostRequestGeneric:
       title: ThirdpartyRequestsVerificationsPostRequestGeneric
       type: object
-      description: The object sent in the POST /thirdpartyverifications request.
+      description: The object sent in the POST /thirdpartyRequests/verifications request.
       properties: *ref_156
       required: *ref_157
     AuthenticationResponse:
@@ -9131,11 +9146,11 @@ components:
       description: >-
         Used by: Auth Service
 
-        The callback PUT /thirdpartyverifications/{ID} is used to inform the
-        client of the result of an authorization check. The {ID} in the URI
-        should contain the authorizationRequestId which was used to request the
-        check, or the {ID} that was used in the GET
-        /thirdpartyverifications/{ID}.
+        The callback PUT /thirdpartyRequests/verifications/{ID} is used to
+        inform the client of the result of an authorization check. The {ID} in
+        the URI should contain the authorizationRequestId which was used to
+        request the check, or the {ID} that was used in the GET
+        /thirdpartyRequests/verifications/{ID}.
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31821-put-thirdpartyrequestsverificationsid
       properties: *ref_159

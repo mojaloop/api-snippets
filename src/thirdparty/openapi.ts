@@ -3967,7 +3967,7 @@ export interface operations {
            * IMPORTANT: The policy for defining addresses and the life-cycle of these is at the discretion of the address space owner (the payer DFSP in this case).
            * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
            */
-          address?: string;
+          address: string;
           /**
            * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
            */
@@ -7237,6 +7237,10 @@ export interface operations {
              * determined by the DFSP who creates the Consent.
              */
         consentId: string;
+        /**
+             * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+             */
+        consentRequestId?: string;
         scopes: {
           /**
                * The AccountAddress data type is a variable length string with a maximum size of 1023 characters and consists of:
@@ -8372,6 +8376,11 @@ export interface operations {
     requestBody: {
       "application/json":
       | {
+        /**
+             * Allowed values for the enumeration ConsentStatus
+             * - ISSUED - The consent has been issued by the DFSP
+             */
+        status?: "ISSUED";
         scopes: {
           /**
                * The AccountAddress data type is a variable length string with a maximum size of 1023 characters and consists of:
@@ -8459,6 +8468,11 @@ export interface operations {
         };
       }
       | {
+        /**
+             * Allowed values for the enumeration ConsentStatus
+             * - ISSUED - The consent has been issued by the DFSP
+             */
+        status?: "ISSUED";
         scopes: {
           /**
                * The AccountAddress data type is a variable length string with a maximum size of 1023 characters and consists of:
@@ -23414,7 +23428,7 @@ export interface components {
        * IMPORTANT: The policy for defining addresses and the life-cycle of these is at the discretion of the address space owner (the payer DFSP in this case).
        * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
        */
-      address?: string;
+      address: string;
       /**
        * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
        */
@@ -23605,7 +23619,7 @@ export interface components {
        * IMPORTANT: The policy for defining addresses and the life-cycle of these is at the discretion of the address space owner (the payer DFSP in this case).
        * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
        */
-      address?: string;
+      address: string;
       /**
        * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
        */
@@ -23803,7 +23817,7 @@ export interface components {
          * IMPORTANT: The policy for defining addresses and the life-cycle of these is at the discretion of the address space owner (the payer DFSP in this case).
          * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
          */
-        address?: string;
+        address: string;
         /**
          * The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
          */
@@ -24057,7 +24071,7 @@ export interface components {
      * Used by: PISP
      * The HTTP request POST /consentRequests is used to request a DFSP to grant access to one or more accounts owned by a customer of the DFSP for the PISP who sends the request.
      * Callback and data model for POST /consentRequests:
-     * Callback: PUT /consentRequests/{ID} Error callback: PUT /consentRequests/{ID}/error Data model - see below
+     * Callback: PUT /consent{ID} Error callback: PUT /consent{ID}/error Data model - see below
      */
     ConsentRequestsPostRequest: {
       /**
@@ -24095,7 +24109,7 @@ export interface components {
      */
     ConsentRequestChannelTypeWeb: "WEB";
     /**
-     * The object sent in a `PUT /consentRequests/{ID}` request.
+     * The object sent in a `PUT /consent{ID}` request.
      *
      * Schema used in the request consent phase of the account linking web flow,
      * the result is the PISP being instructed on a specific URL where this
@@ -24134,7 +24148,7 @@ export interface components {
      */
     ConsentRequestChannelTypeOTP: "OTP";
     /**
-     * The object sent in a `PUT /consentRequests/{ID}` request.
+     * The object sent in a `PUT /consent{ID}` request.
      *
      * Schema used in the request consent phase of the account linking OTP/SMS flow.
      */
@@ -24320,6 +24334,10 @@ export interface components {
        * determined by the DFSP who creates the Consent.
        */
       consentId: string;
+      /**
+       * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+       */
+      consentRequestId?: string;
       scopes: {
         /**
          * The AccountAddress data type is a variable length string with a maximum size of 1023 characters and consists of:
@@ -24446,6 +24464,11 @@ export interface components {
      * Called by a `PISP` to after signing a challenge. Sent to a DFSP for verification.
      */
     ConsentsIDPutResponseSigned: {
+      /**
+       * Allowed values for the enumeration ConsentStatus
+       * - ISSUED - The consent has been issued by the DFSP
+       */
+      status?: "ISSUED";
       scopes: {
         /**
          * The AccountAddress data type is a variable length string with a maximum size of 1023 characters and consists of:
@@ -24611,6 +24634,11 @@ export interface components {
      * Called by a `auth-service` to notify a DFSP that a credential has been verified and registered.
      */
     ConsentsIDPutResponseVerified: {
+      /**
+       * Allowed values for the enumeration ConsentStatus
+       * - ISSUED - The consent has been issued by the DFSP
+       */
+      status?: "ISSUED";
       scopes: {
         /**
          * The AccountAddress data type is a variable length string with a maximum size of 1023 characters and consists of:
@@ -24700,7 +24728,7 @@ export interface components {
     /**
      * PATCH /consents/{ID} request object.
      *
-     * Sent by the DFSP to the PISP when a consent is issued.
+     * Sent by the DFSP to the PISP when a consent is issued and verified.
      * Used in the "Register Credential" part of the Account linking flow.
      */
     ConsentsIDPatchResponseVerified: {
