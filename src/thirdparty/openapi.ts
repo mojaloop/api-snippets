@@ -7998,7 +7998,7 @@ export interface operations {
    * The HTTP request `PATCH /consents/{ID}` is used
    *
    * - In account linking in the Credential Registration phase. Used by a DFSP
-   *   to notify a PISP a credential has been issued and registered with an
+   *   to notify a PISP a credential has been verified and registered with an
    *   Auth service.
    *
    * - In account unlinking by a hub hosted auth service and by DFSPs
@@ -24071,7 +24071,7 @@ export interface components {
      * Used by: PISP
      * The HTTP request POST /consentRequests is used to request a DFSP to grant access to one or more accounts owned by a customer of the DFSP for the PISP who sends the request.
      * Callback and data model for POST /consentRequests:
-     * Callback: PUT /consent{ID} Error callback: PUT /consent{ID}/error Data model - see below
+     * Callback: PUT /consentRequests/{ID} Error callback: PUT /consentRequests/{ID}/error Data model - see below
      */
     ConsentRequestsPostRequest: {
       /**
@@ -24105,11 +24105,11 @@ export interface components {
       callbackUri: string;
     };
     /**
-     * The web auth channel being used for PUT consentRequest/{ID} request.
+     * The web auth channel being used for `PUT /consentRequest/{ID}` request.
      */
     ConsentRequestChannelTypeWeb: "WEB";
     /**
-     * The object sent in a `PUT /consent{ID}` request.
+     * The object sent in a `PUT /consentRequests/{ID}` request.
      *
      * Schema used in the request consent phase of the account linking web flow,
      * the result is the PISP being instructed on a specific URL where this
@@ -24144,11 +24144,11 @@ export interface components {
       authUri: string;
     };
     /**
-     * The OTP auth channel being used for PUT consentRequest/{ID} request.
+     * The OTP auth channel being used for `PUT /consentRequests/{ID}` request.
      */
     ConsentRequestChannelTypeOTP: "OTP";
     /**
-     * The object sent in a `PUT /consent{ID}` request.
+     * The object sent in a `PUT /consentRequests/{ID}` request.
      *
      * Schema used in the request consent phase of the account linking OTP/SMS flow.
      */

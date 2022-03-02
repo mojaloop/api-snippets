@@ -47,7 +47,7 @@ patch:
     The HTTP request `PATCH /consents/{ID}` is used
 
     - In account linking in the Credential Registration phase. Used by a DFSP
-      to notify a PISP a credential has been issued and registered with an
+      to notify a PISP a credential has been verified and registered with an
       Auth service.
 
     - In account unlinking by a hub hosted auth service and by DFSPs

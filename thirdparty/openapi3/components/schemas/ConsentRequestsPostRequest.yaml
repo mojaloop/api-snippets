@@ -9,8 +9,8 @@ description: >-
 
   Callback and data model for POST /consentRequests:
 
-  Callback: PUT /consent{ID}
-  Error callback: PUT /consent{ID}/error
+  Callback: PUT /consentRequests/{ID}
+  Error callback: PUT /consentRequests/{ID}/error
   Data model - see below
 properties:
   consentRequestId:

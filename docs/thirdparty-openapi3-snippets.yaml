@@ -2140,8 +2140,8 @@ paths:
 
                 Callback and data model for POST /consentRequests:
 
-                Callback: PUT /consent{ID} Error callback: PUT
-                /consent{ID}/error Data model - see below
+                Callback: PUT /consentRequests/{ID} Error callback: PUT
+                /consentRequests/{ID}/error Data model - see below
               properties: &ref_106
                 consentRequestId:
                   title: CorrelationId
@@ -2506,7 +2506,7 @@ paths:
                 - title: ConsentRequestsIDPutResponseWeb
                   type: object
                   description: >
-                    The object sent in a `PUT /consent{ID}` request.
+                    The object sent in a `PUT /consentRequests/{ID}` request.
 
 
                     Schema used in the request consent phase of the account
@@ -2546,8 +2546,8 @@ paths:
                         enum: &ref_108
                           - WEB
                         description: >
-                          The web auth channel being used for PUT
-                          consentRequest/{ID} request.
+                          The web auth channel being used for `PUT
+                          /consentRequest/{ID}` request.
                     callbackUri:
                       title: Uri
                       type: string
@@ -2579,7 +2579,7 @@ paths:
                 - title: ConsentRequestsIDPutResponseOTP
                   type: object
                   description: >
-                    The object sent in a `PUT /consent{ID}` request.
+                    The object sent in a `PUT /consentRequests/{ID}` request.
 
 
                     Schema used in the request consent phase of the account
@@ -2611,8 +2611,8 @@ paths:
                         enum: &ref_111
                           - OTP
                         description: >
-                          The OTP auth channel being used for PUT
-                          consentRequest/{ID} request.
+                          The OTP auth channel being used for `PUT
+                          /consentRequests/{ID}` request.
                     callbackUri:
                       title: Uri
                       type: string
@@ -3530,7 +3530,7 @@ paths:
 
         - In account linking in the Credential Registration phase. Used by a
         DFSP
-          to notify a PISP a credential has been issued and registered with an
+          to notify a PISP a credential has been verified and registered with an
           Auth service.
 
         - In account unlinking by a hub hosted auth service and by DFSPs
@@ -8713,8 +8713,8 @@ components:
 
         Callback and data model for POST /consentRequests:
 
-        Callback: PUT /consent{ID} Error callback: PUT /consent{ID}/error Data
-        model - see below
+        Callback: PUT /consentRequests/{ID} Error callback: PUT
+        /consentRequests/{ID}/error Data model - see below
       properties: *ref_106
       required: *ref_107
     ConsentRequestChannelTypeWeb:
@@ -8722,12 +8722,12 @@ components:
       type: string
       enum: *ref_108
       description: |
-        The web auth channel being used for PUT consentRequest/{ID} request.
+        The web auth channel being used for `PUT /consentRequest/{ID}` request.
     ConsentRequestsIDPutResponseWeb:
       title: ConsentRequestsIDPutResponseWeb
       type: object
       description: >
-        The object sent in a `PUT /consent{ID}` request.
+        The object sent in a `PUT /consentRequests/{ID}` request.
 
 
         Schema used in the request consent phase of the account linking web
@@ -8746,12 +8746,12 @@ components:
       type: string
       enum: *ref_111
       description: |
-        The OTP auth channel being used for PUT consentRequest/{ID} request.
+        The OTP auth channel being used for `PUT /consentRequests/{ID}` request.
     ConsentRequestsIDPutResponseOTP:
       title: ConsentRequestsIDPutResponseOTP
       type: object
       description: >
-        The object sent in a `PUT /consent{ID}` request.
+        The object sent in a `PUT /consentRequests/{ID}` request.
 
 
         Schema used in the request consent phase of the account linking OTP/SMS
