@@ -23,6 +23,8 @@ properties:
       $ref: ./Scope.yaml
   status:
     $ref: ./ConsentStatus.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - consentId
   - consentRequestId

@@ -12,5 +12,7 @@ description: >-
 properties:
   transactionRequestState:
     $ref: ./TransactionRequestState.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - transactionRequestState

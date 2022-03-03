@@ -25,13 +25,13 @@ properties:
     allOf:
       - $ref: ./Money.yaml
     description: >-
-      The amount that will be debited from the sending customer’s
+      The amount that will be debited from the sending customer's
       account as a consequence of the transaction.
   payeeReceiveAmount:
     allOf:
       - $ref: ./Money.yaml
     description: >-
-      The amount that will be credited to the receiving customer’s
+      The amount that will be credited to the receiving customer's
       account as a consequence of the transaction.
   fees:
     allOf:

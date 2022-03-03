@@ -15,5 +15,7 @@ description: >-
 properties:
   accountList:
     $ref: ./AccountList.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - accounts

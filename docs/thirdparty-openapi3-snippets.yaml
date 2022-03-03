@@ -778,6 +778,14 @@ paths:
                         - REJECTED - Payee FSP has failed to perform the
                         transaction.
                       example: RECEIVED
+                    extensionList:
+                      title: ExtensionList
+                      type: object
+                      description: >-
+                        Data model for the complex type ExtensionList. An
+                        optional list of extensions, specific to deployment.
+                      properties: *ref_0
+                      required: *ref_1
                   required: &ref_71
                     - transactionRequestState
                     - transactionState
@@ -1709,6 +1717,14 @@ paths:
                       - currency
                   minItems: 1
                   maxItems: 256
+                extensionList:
+                  title: ExtensionList
+                  type: object
+                  description: >-
+                    Data model for the complex type ExtensionList. An optional
+                    list of extensions, specific to deployment.
+                  properties: *ref_0
+                  required: *ref_1
               required: &ref_103
                 - accounts
             example:
@@ -2141,7 +2157,9 @@ paths:
                 Callback and data model for POST /consentRequests:
 
                 Callback: PUT /consentRequests/{ID} Error callback: PUT
-                /consentRequests/{ID}/error Data model - see below
+                /consentRequests/{ID}/error Data model - see below url
+
+                https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31212-post-consentrequests
               properties: &ref_106
                 consentRequestId:
                   title: CorrelationId
@@ -3258,6 +3276,14 @@ paths:
                         Allowed values for the enumeration ConsentStatus
                         - ISSUED - The consent has been issued by the DFSP
                         - REVOKED - The consent has been revoked
+                    extensionList:
+                      title: ExtensionList
+                      type: object
+                      description: >-
+                        Data model for the complex type ExtensionList. An
+                        optional list of extensions, specific to deployment.
+                      properties: *ref_0
+                      required: *ref_1
                   required: &ref_118
                     - consentId
                     - scopes
@@ -3339,6 +3365,14 @@ paths:
                         Allowed values for the enumeration ConsentStatus
                         - ISSUED - The consent has been issued by the DFSP
                         - REVOKED - The consent has been revoked
+                    extensionList:
+                      title: ExtensionList
+                      type: object
+                      description: >-
+                        Data model for the complex type ExtensionList. An
+                        optional list of extensions, specific to deployment.
+                      properties: *ref_0
+                      required: *ref_1
                   required: &ref_120
                     - consentId
                     - consentRequestId
@@ -3574,6 +3608,14 @@ paths:
                             - "VERIFIED" - The Credential is valid and verified.
                       required:
                         - status
+                    extensionList:
+                      title: ExtensionList
+                      type: object
+                      description: >-
+                        Data model for the complex type ExtensionList. An
+                        optional list of extensions, specific to deployment.
+                      properties: *ref_0
+                      required: *ref_1
                   required: &ref_128
                     - credential
                 - title: ConsentsIDPatchResponseRevoked
@@ -3610,6 +3652,14 @@ paths:
                         "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time
                         zone, same as UTC).
                       example: '2016-05-24T08:38:08.699-04:00'
+                    extensionList:
+                      title: ExtensionList
+                      type: object
+                      description: >-
+                        Data model for the complex type ExtensionList. An
+                        optional list of extensions, specific to deployment.
+                      properties: *ref_0
+                      required: *ref_1
                   required: &ref_131
                     - status
                     - revokedAt
@@ -3740,6 +3790,14 @@ paths:
                       properties: *ref_52
                       required: *ref_53
                       additionalProperties: false
+                    extensionList:
+                      title: ExtensionList
+                      type: object
+                      description: >-
+                        Data model for the complex type ExtensionList. An
+                        optional list of extensions, specific to deployment.
+                      properties: *ref_0
+                      required: *ref_1
                   required: &ref_122
                     - scopes
                     - credential
@@ -3848,6 +3906,14 @@ paths:
                         - credentialType
                         - status
                       additionalProperties: false
+                    extensionList:
+                      title: ExtensionList
+                      type: object
+                      description: >-
+                        Data model for the complex type ExtensionList. An
+                        optional list of extensions, specific to deployment.
+                      properties: *ref_0
+                      required: *ref_1
                   required: &ref_126
                     - scopes
                     - credential
@@ -5793,6 +5859,14 @@ paths:
                     It can be set to get a quick failure in case the peer FSP
                     takes too long to respond.
                   example: '2016-05-24T08:38:08.699-04:00'
+                extensionList:
+                  title: ExtensionList
+                  type: object
+                  description: >-
+                    Data model for the complex type ExtensionList. An optional
+                    list of extensions, specific to deployment.
+                  properties: *ref_0
+                  required: *ref_1
               required: &ref_138
                 - transactionRequestId
                 - payee
@@ -6042,6 +6116,14 @@ paths:
 
                     - REJECTED - Payer has rejected the transaction.
                   example: RECEIVED
+                extensionList:
+                  title: ExtensionList
+                  type: object
+                  description: >-
+                    Data model for the complex type ExtensionList. An optional
+                    list of extensions, specific to deployment.
+                  properties: *ref_0
+                  required: *ref_1
               required: &ref_140
                 - transactionRequestState
             example:
@@ -6520,7 +6602,7 @@ paths:
                       properties: *ref_5
                       required: *ref_6
                   description: >-
-                    The amount that will be debited from the sending customer’s
+                    The amount that will be debited from the sending customer's
                     account as a consequence of the transaction.
                 payeeReceiveAmount:
                   allOf:
@@ -6530,7 +6612,7 @@ paths:
                       properties: *ref_5
                       required: *ref_6
                   description: >-
-                    The amount that will be credited to the receiving customer’s
+                    The amount that will be credited to the receiving customer's
                     account as a consequence of the transaction.
                 fees:
                   allOf:
@@ -8714,7 +8796,9 @@ components:
         Callback and data model for POST /consentRequests:
 
         Callback: PUT /consentRequests/{ID} Error callback: PUT
-        /consentRequests/{ID}/error Data model - see below
+        /consentRequests/{ID}/error Data model - see below url
+
+        https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31212-post-consentrequests
       properties: *ref_106
       required: *ref_107
     ConsentRequestChannelTypeWeb:

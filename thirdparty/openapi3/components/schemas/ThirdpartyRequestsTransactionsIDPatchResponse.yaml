@@ -20,6 +20,8 @@ properties:
     $ref: ./TransactionRequestState.yaml
   transactionState:
     $ref: ./TransactionState.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - transactionRequestState
   - transactionState

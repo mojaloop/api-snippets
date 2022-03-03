@@ -51,6 +51,8 @@ properties:
       Date and time until when the transaction request is valid. It can be set
       to get a quick failure in case the peer FSP takes too long to respond.
     example: '2016-05-24T08:38:08.699-04:00'
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - transactionRequestId
   - payee

@@ -2439,6 +2439,24 @@ export interface operations {
              * - REJECTED - Payee FSP has failed to perform the transaction.
              */
         transactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       }
       | ("ACCEPTED" | "REJECTED")
       | "ISSUED"
@@ -4137,6 +4155,24 @@ export interface operations {
           | "ZMW"
           | "ZWD";
         }[];
+        /**
+         * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /**
+           * Number of Extension elements.
+           */
+          extension: {
+            /**
+             * Extension key.
+             */
+            key: string;
+            /**
+             * Extension value.
+             */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -7324,6 +7360,24 @@ export interface operations {
              * - REVOKED - The consent has been revoked
              */
         status: "ISSUED" | "REVOKED";
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       }
       | {
         /**
@@ -7358,6 +7412,24 @@ export interface operations {
              * - REVOKED - The consent has been revoked
              */
         status: "ISSUED" | "REVOKED";
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -8032,6 +8104,24 @@ export interface operations {
                */
           status: "VERIFIED";
         };
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       }
       | {
         /**
@@ -8043,6 +8133,24 @@ export interface operations {
              * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
              */
         revokedAt: string;
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -8466,6 +8574,24 @@ export interface operations {
             type: "public-key";
           };
         };
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       }
       | {
         /**
@@ -8557,6 +8683,24 @@ export interface operations {
                  */
             type: "public-key";
           };
+        };
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
         };
       };
     };
@@ -14509,6 +14653,24 @@ export interface operations {
          * Date and time until when the transaction request is valid. It can be set to get a quick failure in case the peer FSP takes too long to respond.
          */
         expiration: string;
+        /**
+         * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /**
+           * Number of Extension elements.
+           */
+          extension: {
+            /**
+             * Extension key.
+             */
+            key: string;
+            /**
+             * Extension value.
+             */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -15177,6 +15339,24 @@ export interface operations {
         | "PENDING"
         | "ACCEPTED"
         | "REJECTED";
+        /**
+         * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /**
+           * Number of Extension elements.
+           */
+          extension: {
+            /**
+             * Extension key.
+             */
+            key: string;
+            /**
+             * Extension value.
+             */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -15537,6 +15717,24 @@ export interface operations {
          * - REJECTED - Payee FSP has failed to perform the transaction.
          */
         transactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
+        /**
+         * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /**
+           * Number of Extension elements.
+           */
+          extension: {
+            /**
+             * Extension key.
+             */
+            key: string;
+            /**
+             * Extension value.
+             */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -16246,7 +16444,7 @@ export interface operations {
          */
         challenge: string;
         /**
-         * The amount that will be debited from the sending customer’s account as a consequence of the transaction.
+         * The amount that will be debited from the sending customer's account as a consequence of the transaction.
          */
         transferAmount: {
           /**
@@ -16423,7 +16621,7 @@ export interface operations {
           amount: string;
         };
         /**
-         * The amount that will be credited to the receiving customer’s account as a consequence of the transaction.
+         * The amount that will be credited to the receiving customer's account as a consequence of the transaction.
          */
         payeeReceiveAmount: {
           /**
@@ -22176,6 +22374,24 @@ export interface components {
        * - REJECTED - Payee FSP has failed to perform the transaction.
        */
       transactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * Enum containing authorization response information; if the customer
@@ -23987,6 +24203,24 @@ export interface components {
         | "ZMW"
         | "ZWD";
       }[];
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * Data model for the complex type object that contains ErrorInformation.
@@ -24071,7 +24305,8 @@ export interface components {
      * Used by: PISP
      * The HTTP request POST /consentRequests is used to request a DFSP to grant access to one or more accounts owned by a customer of the DFSP for the PISP who sends the request.
      * Callback and data model for POST /consentRequests:
-     * Callback: PUT /consentRequests/{ID} Error callback: PUT /consentRequests/{ID}/error Data model - see below
+     * Callback: PUT /consentRequests/{ID} Error callback: PUT /consentRequests/{ID}/error Data model - see below url
+     * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31212-post-consentrequests
      */
     ConsentRequestsPostRequest: {
       /**
@@ -24421,6 +24656,24 @@ export interface components {
        * - REVOKED - The consent has been revoked
        */
       status: "ISSUED" | "REVOKED";
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The provisional Consent object sent by the DFSP in `POST /consents`.
@@ -24458,6 +24711,24 @@ export interface components {
        * - REVOKED - The consent has been revoked
        */
       status: "ISSUED" | "REVOKED";
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The HTTP request `PUT /consents/{ID}` is used by the PISP to update a Consent with a signed challenge and register a credential.
@@ -24553,6 +24824,24 @@ export interface components {
            */
           type: "public-key";
         };
+      };
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
       };
     };
     /**
@@ -24724,6 +25013,24 @@ export interface components {
           type: "public-key";
         };
       };
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * PATCH /consents/{ID} request object.
@@ -24738,6 +25045,24 @@ export interface components {
          * - "VERIFIED" - The Credential is valid and verified.
          */
         status: "VERIFIED";
+      };
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
       };
     };
     /**
@@ -24761,6 +25086,24 @@ export interface components {
        * The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
        */
       revokedAt: string;
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The object sent in the PUT /participants/{Type}/{ID}/{SubId} and /participants/{Type}/{ID} callbacks.
@@ -25445,6 +25788,24 @@ export interface components {
        * Date and time until when the transaction request is valid. It can be set to get a quick failure in case the peer FSP takes too long to respond.
        */
       expiration: string;
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * Used by: DFSP
@@ -25460,6 +25821,24 @@ export interface components {
        * - REJECTED - Payer has rejected the transaction.
        */
       transactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * Used by: DFSP
@@ -25482,7 +25861,7 @@ export interface components {
        */
       challenge: string;
       /**
-       * The amount that will be debited from the sending customer’s account as a consequence of the transaction.
+       * The amount that will be debited from the sending customer's account as a consequence of the transaction.
        */
       transferAmount: {
         /**
@@ -25659,7 +26038,7 @@ export interface components {
         amount: string;
       };
       /**
-       * The amount that will be credited to the receiving customer’s account as a consequence of the transaction.
+       * The amount that will be credited to the receiving customer's account as a consequence of the transaction.
        */
       payeeReceiveAmount: {
         /**
