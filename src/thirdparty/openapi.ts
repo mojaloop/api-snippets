@@ -19449,9 +19449,9 @@ export interface operations {
       "application/json": {
         /**
          * The AuthenticationResponse enumeration describes the result of authenticating verification request.
-         * Below are the allowed values for the enumeration AuthenticationResponse. - VERIFIED - The challenge was correctly signed. - REJECTED - The challenge was not correctly signed.
+         * Below are the allowed values for the enumeration AuthenticationResponse. - VERIFIED - The challenge was correctly signed.
          */
-        authenticationResponse: "VERIFIED" | "REJECTED";
+        authenticationResponse: "VERIFIED";
       };
     };
     responses: {
@@ -26991,9 +26991,9 @@ export interface components {
     };
     /**
      * The AuthenticationResponse enumeration describes the result of authenticating verification request.
-     * Below are the allowed values for the enumeration AuthenticationResponse. - VERIFIED - The challenge was correctly signed. - REJECTED - The challenge was not correctly signed.
+     * Below are the allowed values for the enumeration AuthenticationResponse. - VERIFIED - The challenge was correctly signed.
      */
-    AuthenticationResponse: "VERIFIED" | "REJECTED";
+    AuthenticationResponse: "VERIFIED";
     /**
      * Used by: Auth Service
      * The callback PUT /thirdpartyRequests/verifications/{ID} is used to inform the client of the result of an authorization check. The {ID} in the URI should contain the authorizationRequestId which was used to request the check, or the {ID} that was used in the GET /thirdpartyRequests/verifications/{ID}.
@@ -27002,9 +27002,9 @@ export interface components {
     ThirdpartyRequestsVerificationsIDPutResponse: {
       /**
        * The AuthenticationResponse enumeration describes the result of authenticating verification request.
-       * Below are the allowed values for the enumeration AuthenticationResponse. - VERIFIED - The challenge was correctly signed. - REJECTED - The challenge was not correctly signed.
+       * Below are the allowed values for the enumeration AuthenticationResponse. - VERIFIED - The challenge was correctly signed.
        */
-      authenticationResponse: "VERIFIED" | "REJECTED";
+      authenticationResponse: "VERIFIED";
     };
   };
   responses: {

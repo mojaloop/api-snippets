@@ -7815,14 +7815,12 @@ paths:
                   type: string
                   enum: &ref_158
                     - VERIFIED
-                    - REJECTED
                   description: >-
                     The AuthenticationResponse enumeration describes the result
                     of authenticating verification request.
 
                     Below are the allowed values for the enumeration
                     AuthenticationResponse. - VERIFIED - The challenge was
-                    correctly signed. - REJECTED - The challenge was not
                     correctly signed.
               required: &ref_160
                 - authenticationResponse
@@ -9222,8 +9220,7 @@ components:
         authenticating verification request.
 
         Below are the allowed values for the enumeration AuthenticationResponse.
-        - VERIFIED - The challenge was correctly signed. - REJECTED - The
-        challenge was not correctly signed.
+        - VERIFIED - The challenge was correctly signed.
     ThirdpartyRequestsVerificationsIDPutResponse:
       title: ThirdpartyRequestsVerificationsIDPutResponse
       type: object
