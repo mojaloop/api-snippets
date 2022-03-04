@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.6](https://github.com/mojaloop/api-snippets/compare/v13.0.5...v13.0.6) (2022-03-03)
+
+
+### Maintenance
+
+* **deps:** bump hosted-git-info from 2.8.8 to 2.8.9 ([#121](https://github.com/mojaloop/api-snippets/issues/121)) ([e5c8460](https://github.com/mojaloop/api-snippets/commit/e5c84605ecb5753dcec3656325b9262c837a476e))
+
 ### [13.0.5](https://github.com/mojaloop/api-snippets/compare/v13.0.4...v13.0.5) (2022-02-18)
 
 
