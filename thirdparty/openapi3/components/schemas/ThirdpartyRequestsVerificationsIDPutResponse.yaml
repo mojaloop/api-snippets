@@ -13,5 +13,7 @@ description: >-
 properties:
   authenticationResponse:
     $ref: ./AuthenticationResponse.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - authenticationResponse

@@ -18,6 +18,8 @@ properties:
     $ref: ./SignedPayloadTypeGeneric.yaml
   genericSignedPayload:
     $ref: ./BinaryString.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - verificationRequestId
   - challenge

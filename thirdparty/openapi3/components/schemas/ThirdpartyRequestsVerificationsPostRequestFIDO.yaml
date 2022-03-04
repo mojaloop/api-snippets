@@ -18,6 +18,8 @@ properties:
     $ref: ./SignedPayloadTypeFIDO.yaml
   fidoSignedPayload:
     $ref: ./FIDOPublicKeyCredentialAssertion.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - verificationRequestId
   - challenge

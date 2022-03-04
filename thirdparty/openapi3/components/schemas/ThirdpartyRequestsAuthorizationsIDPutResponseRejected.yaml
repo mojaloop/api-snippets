@@ -4,5 +4,7 @@ description: 'The object sent in the PUT /thirdpartyRequests/authorizations/{ID}
 properties:
   responseType:
     $ref: ./AuthorizationResponseTypeRejected.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - responseType

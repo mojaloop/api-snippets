@@ -6,6 +6,8 @@ properties:
     $ref: ./AuthorizationResponseTypeAccepted.yaml
   signedPayload:
     $ref: ./SignedPayloadGeneric.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - responseType
   - signedPayload

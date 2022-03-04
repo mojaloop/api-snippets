@@ -20,5 +20,7 @@ properties:
     maxLength: 256
     items:
       $ref: ./FspId.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - providers

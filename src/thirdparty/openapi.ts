@@ -5526,6 +5526,24 @@ export interface operations {
          * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
          */
         callbackUri: string;
+        /**
+         * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /**
+           * Number of Extension elements.
+           */
+          extension: {
+            /**
+             * Extension key.
+             */
+            key: string;
+            /**
+             * Extension value.
+             */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -6214,6 +6232,24 @@ export interface operations {
              * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
              */
         authUri: string;
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       }
       | {
         scopes: {
@@ -6237,6 +6273,24 @@ export interface operations {
              * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
              */
         callbackUri?: string;
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -6574,6 +6628,24 @@ export interface operations {
          * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
          */
         authToken: string;
+        /**
+         * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /**
+           * Number of Extension elements.
+           */
+          extension: {
+            /**
+             * Extension key.
+             */
+            key: string;
+            /**
+             * Extension value.
+             */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -13492,7 +13564,27 @@ export interface operations {
       };
     };
     requestBody: {
-      "application/json": { providers: string[] };
+      "application/json": {
+        providers: string[];
+        /**
+         * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /**
+           * Number of Extension elements.
+           */
+          extension: {
+            /**
+             * Extension key.
+             */
+            key: string;
+            /**
+             * Extension value.
+             */
+            value: string;
+          }[];
+        };
+      };
     };
     responses: {
       /**
@@ -17934,6 +18026,24 @@ export interface operations {
              * The customer rejected the terms of the transfer.
              */
         responseType: "REJECTED";
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       }
       | {
         /**
@@ -17993,6 +18103,24 @@ export interface operations {
             type: "public-key";
           };
         };
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       }
       | {
         /**
@@ -18008,6 +18136,24 @@ export interface operations {
                * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
                */
           genericSignedPayload: string;
+        };
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
         };
       };
     };
@@ -18771,6 +18917,24 @@ export interface operations {
                */
           type: "public-key";
         };
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       }
       | {
         verificationRequestId: string;
@@ -18791,6 +18955,24 @@ export interface operations {
              * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
              */
         genericSignedPayload: string;
+        /**
+             * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+        extensionList?: {
+          /**
+               * Number of Extension elements.
+               */
+          extension: {
+            /**
+                 * Extension key.
+                 */
+            key: string;
+            /**
+                 * Extension value.
+                 */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -19452,6 +19634,24 @@ export interface operations {
          * Below are the allowed values for the enumeration AuthenticationResponse. - VERIFIED - The challenge was correctly signed.
          */
         authenticationResponse: "VERIFIED";
+        /**
+         * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /**
+           * Number of Extension elements.
+           */
+          extension: {
+            /**
+             * Extension key.
+             */
+            key: string;
+            /**
+             * Extension value.
+             */
+            value: string;
+          }[];
+        };
       };
     };
     responses: {
@@ -24338,6 +24538,24 @@ export interface components {
        * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
        */
       callbackUri: string;
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The web auth channel being used for `PUT /consentRequest/{ID}` request.
@@ -24377,6 +24595,24 @@ export interface components {
        * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
        */
       authUri: string;
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The OTP auth channel being used for `PUT /consentRequests/{ID}` request.
@@ -24409,6 +24645,24 @@ export interface components {
        * The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
        */
       callbackUri?: string;
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
@@ -24424,6 +24678,24 @@ export interface components {
        * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
        */
       authToken: string;
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The type of the Credential. - "FIDO" - The credential is based on a FIDO challenge. Its payload is a FIDOPublicKeyCredentialAttestation object. - "GENERIC" - The credential is based on a simple public key validation. Its payload is a GenericCredential object.
@@ -25316,7 +25588,27 @@ export interface components {
      * Callback - PUT /services/{ServiceType} Error Callback - PUT /services/{ServiceType}/error Data Model - Empty body
      * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31531-put-servicesservicetype
      */
-    ServicesServiceTypePutResponse: { providers: string[] };
+    ServicesServiceTypePutResponse: {
+      providers: string[];
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
+    };
     /**
      * Used by: PISP
      * The HTTP request POST /thirdpartyRequests/transactions is used to request the creation of a transaction request on the server for the transfer described in the request.
@@ -26696,6 +26988,24 @@ export interface components {
        * The customer rejected the terms of the transfer.
        */
       responseType: "REJECTED";
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The customer accepted the terms of the transfer
@@ -26866,6 +27176,24 @@ export interface components {
           type: "public-key";
         };
       };
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * Describes a challenge that has been signed with a private key
@@ -26898,6 +27226,24 @@ export interface components {
          * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
          */
         genericSignedPayload: string;
+      };
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
       };
     };
     /**
@@ -26965,6 +27311,24 @@ export interface components {
          */
         type: "public-key";
       };
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The object sent in the POST /thirdpartyRequests/verifications request.
@@ -26988,6 +27352,24 @@ export interface components {
        * The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
        */
       genericSignedPayload: string;
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
     /**
      * The AuthenticationResponse enumeration describes the result of authenticating verification request.
@@ -27005,6 +27387,24 @@ export interface components {
        * Below are the allowed values for the enumeration AuthenticationResponse. - VERIFIED - The challenge was correctly signed.
        */
       authenticationResponse: "VERIFIED";
+      /**
+       * Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /**
+         * Number of Extension elements.
+         */
+        extension: {
+          /**
+           * Extension key.
+           */
+          key: string;
+          /**
+           * Extension value.
+           */
+          value: string;
+        }[];
+      };
     };
   };
   responses: {
