@@ -1,8 +1,18 @@
 title: ThirdpartyRequestsTransactionsIDPutResponse
 type: object
-description: 'The object sent in the PUT /thirdPartyRequests/transactions/{ID} request.'
+description: >-
+  Used by: DFSP
+
+  After a PISP requests the creation of a Third Party Transaction request
+  (POST /thirdpartyRequests/transactions) or the status of a previously created
+  Third Party Transaction request (GET /thirdpartyRequests/transactions/{ID}),
+  the DFSP will send this callback.
+
+  https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31721-put-thirdpartyrequeststransactionsid
 properties:
   transactionRequestState:
     $ref: ./TransactionRequestState.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - transactionRequestState

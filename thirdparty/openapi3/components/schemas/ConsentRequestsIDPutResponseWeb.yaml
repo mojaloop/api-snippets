@@ -29,6 +29,8 @@ properties:
   # login.
   authUri:
     $ref: ./Uri.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - scopes
   - authChannels

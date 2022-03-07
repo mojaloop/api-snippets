@@ -7,14 +7,16 @@ description: >
   Called by a `PISP` to after signing a challenge. Sent to a DFSP for
   verification.
 properties:
+  status:
+    $ref: ./ConsentStatusIssued.yaml
   scopes:
     type: array
     items:
       $ref: ./Scope.yaml
-  status:
-    $ref: ./ConsentStatusIssued.yaml
   credential:
     $ref: ./SignedCredential.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - scopes
   - credential

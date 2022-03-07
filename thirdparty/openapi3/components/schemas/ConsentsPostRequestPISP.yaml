@@ -7,8 +7,8 @@ properties:
     allOf:
       - $ref: ./CorrelationId.yaml
     description: |
-      Common ID between the PISP and the Payer DFSP for the consent object. The ID 
-      should be reused for resends of the same consent. A new ID should be generated
+      Common ID between the PISP and the Payer DFSP for the consent object. The ID
+      should be reused for re-sends of the same consent. A new ID should be generated
       for each new consent.
   consentRequestId:
     allOf:
@@ -22,9 +22,11 @@ properties:
     items:
       $ref: ./Scope.yaml
   status:
-    $ref: ConsentStatus.yaml
+    $ref: ./ConsentStatus.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - consentId
-  - consentRequestId 
+  - consentRequestId
   - scopes
   - status

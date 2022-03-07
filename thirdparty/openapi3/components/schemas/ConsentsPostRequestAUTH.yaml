@@ -10,6 +10,8 @@ properties:
     description: |
       Common ID between the PISP and FSP for the Consent object
       determined by the DFSP who creates the Consent.
+  consentRequestId:
+    $ref: ./CorrelationId.yaml
   scopes:
     minLength: 1
     maxLength: 256
@@ -20,10 +22,12 @@ properties:
     allOf:
       - $ref: ./SignedCredential.yaml
   status:
-    $ref: ConsentStatus.yaml
+    $ref: ./ConsentStatus.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - consentId
   - scopes
   - credential
-  - status 
+  - status
 additionalProperties: false

@@ -7,14 +7,16 @@ description: >
   Called by a `auth-service` to notify a DFSP that a credential has
   been verified and registered.
 properties:
+  status:
+    $ref: ./ConsentStatusIssued.yaml
   scopes:
     type: array
     items:
       $ref: ./Scope.yaml
-  status:
-    $ref: ./ConsentStatusIssued.yaml
   credential:
     $ref: ./VerifiedCredential.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - scopes
   - credential

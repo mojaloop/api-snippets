@@ -13,7 +13,7 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 get:
   description: >
-    The **GET /consents/**_{ID}_ resource allows a party to enquire after the status of a consent. The 
+    The **GET /consents/**_{ID}_ resource allows a party to enquire after the status of a consent. The
     *{ID}* used in the URI of the request should be the consent request ID which was used to identify
     the consent when it was created.
   tags:
@@ -138,7 +138,7 @@ delete:
     Used by PISP, DFSP
 
     The **DELETE /consents/**_{ID}_ request is used to request the revocation of a previously agreed consent.
-    For tracing and auditing purposes, the switch should be sure not to delete the consent physically; 
+    For tracing and auditing purposes, the switch should be sure not to delete the consent physically;
     instead, information relating to the consent should be marked as deleted and requests relating to the
     consent should not be honoured.
   operationId: DeleteConsentByID

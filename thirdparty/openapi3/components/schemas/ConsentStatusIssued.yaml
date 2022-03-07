@@ -1,4 +1,4 @@
-title: ConsentStatus
+title: ConsentStatusIssued
 type: string
 enum:
   - ISSUED

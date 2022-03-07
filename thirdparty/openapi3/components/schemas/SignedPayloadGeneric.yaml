@@ -1,0 +1,11 @@
+title: SignedPayloadGeneric
+type: object
+properties:
+  signedPayloadType:
+    $ref: ./SignedPayloadTypeGeneric.yaml
+  genericSignedPayload:
+    $ref: ./BinaryString.yaml
+required:
+  - signedPayloadType
+  - genericSignedPayload
+additionalProperties: false

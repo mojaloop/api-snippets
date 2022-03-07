@@ -1,0 +1,11 @@
+title: AccountList
+type: array
+description: >-
+  The AccountList data model is used to hold information about the accounts
+  that a party controls.
+
+  https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3213-accountlist
+items:
+  $ref: ./Account.yaml
+minItems: 1
+maxItems: 256

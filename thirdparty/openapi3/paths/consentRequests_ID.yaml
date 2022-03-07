@@ -15,8 +15,8 @@ get:
   operationId: GetConsentRequestsById
   summary: GetConsentRequestsById
   description: |
-    The HTTP request `GET /consentRequests/{ID}` is used to get information about a previously 
-    requested consent. The *{ID}* in the URI should contain the consentRequestId that was assigned to the 
+    The HTTP request `GET /consentRequests/{ID}` is used to get information about a previously
+    requested consent. The *{ID}* in the URI should contain the consentRequestId that was assigned to the
     request by the PISP when the PISP originated the request.
   tags:
     - consentRequests
@@ -49,14 +49,14 @@ put:
   operationId: UpdateConsentRequest
   summary: UpdateConsentRequest
   description: |
-    A DFSP uses this callback to (1) inform the PISP that the consentRequest has been accepted, 
+    A DFSP uses this callback to (1) inform the PISP that the consentRequest has been accepted,
     and (2) communicate to the PISP which `authChannel` it should use to authenticate their user
     with.
 
-    When a PISP requests a series of permissions from a DFSP on behalf of a DFSP’s customer, not all 
-    the permissions requested may be granted by the DFSP. Conversely, the out-of-band authorization 
+    When a PISP requests a series of permissions from a DFSP on behalf of a DFSP’s customer, not all
+    the permissions requested may be granted by the DFSP. Conversely, the out-of-band authorization
     process  may result in additional privileges being granted by the account holder to the PISP. The
-    **PUT /consentRequests/**_{ID}_ resource returns the current state of the permissions relating to a 
+    **PUT /consentRequests/**_{ID}_ resource returns the current state of the permissions relating to a
     particular authorization request.
   parameters:
     - $ref: ../components/parameters/Content-Length.yaml

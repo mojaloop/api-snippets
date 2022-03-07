@@ -1,4 +1,4 @@
-title: ConsentStatus
+title: ConsentStatusRevoked
 type: string
 enum:
   - REVOKED

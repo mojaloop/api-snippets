@@ -29,20 +29,20 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: './components/schemas/AuthorizationChannelType.yaml'
-                - $ref: './components/schemas/AuthorizationResponseType.yaml'
-                - $ref: './components/schemas/AuthorizationsPostRequest.yaml'
-                - $ref: './components/schemas/IlpFulfilment.yaml'
-                - $ref: './components/schemas/Note.yaml'
-                - $ref: './components/schemas/PartyResult.yaml'
                 - $ref: './components/schemas/ParticipantsIDPutResponse.yaml'
-                - $ref: './components/schemas/ParticipantsPostRequest.yaml'
                 - $ref: './components/schemas/PartiesTypeIDPutResponse.yaml'
-                - $ref: './components/schemas/PartyIdInfoTPLink.yaml'
-                - $ref: './components/schemas/ServiceType.yaml'
+                - $ref: './components/schemas/QuotesIDPutResponse.yaml'
                 - $ref: './components/schemas/ThirdpartyRequestsTransactionsIDPatchResponse.yaml'
-                - $ref: './components/schemas/TransactionRequestsPostRequest.yaml'
-                - $ref: './components/schemas/TransactionState.yaml'
+                - $ref: './components/schemas/AuthorizationResponseType.yaml'
+                - $ref: './components/schemas/ConsentStatusIssued.yaml'
+                - $ref: './components/schemas/IlpFulfilment.yaml'
+                - $ref: './components/schemas/Integer.yaml'
+                - $ref: './components/schemas/Note.yaml'
+                - $ref: './components/schemas/PartyIdInfoTPLink.yaml'
+                - $ref: './components/schemas/PartyResult.yaml'
+                - $ref: './components/schemas/ServiceType.yaml'
+                - $ref: './components/schemas/ParticipantsPostRequest.yaml'
+                - $ref: './components/schemas/QuotesPostRequest.yaml'
       responses:
         200:
           description: Ok

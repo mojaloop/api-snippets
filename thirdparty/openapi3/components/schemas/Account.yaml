@@ -1,6 +1,9 @@
 title: Account
 type: object
-description: Data model for the complex type Account.
+description: >-
+  Data model for the complex type Account.
+
+  https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3211-account
 properties:
   accountNickname:
     $ref: ./Name.yaml
@@ -10,5 +13,5 @@ properties:
     $ref: ./Currency.yaml
 required:
   - accountNickname
-  - id
+  - address
   - currency

@@ -2,19 +2,12 @@ title: ThirdpartyRequestsAuthorizationsIDPutResponseFIDO
 type: object
 description: 'The object sent in the PUT /thirdpartyRequests/authorizations/{ID} callback.'
 properties:
-  responseType: 
+  responseType:
     $ref: ./AuthorizationResponseTypeAccepted.yaml
   signedPayload:
-    type: object
-    properties:
-      signedPayloadType:
-        $ref: ./SignedPayloadTypeFIDO.yaml
-      fidoSignedPayload:
-        $ref: ./FIDOPublicKeyCredentialAssertion.yaml
-    required:
-      - signedPayloadType
-      - fidoSignedPayload
-    additionalProperties: false
+    $ref: ./SignedPayloadFIDO.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - responseType
   - signedPayload

@@ -1,9 +1,0 @@
-title: AuthenticationValue
-anyOf:
-  - $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/OtpValue.yaml'
-  - $ref: '../../../../fspiop/v1_1/openapi3/components/schemas/QRCODE.yaml'
-  - $ref: ./U2FPinValue.yaml
-  - $ref: ./FIDOPublicKeyCredentialAssertion.yaml
-description: >-
-  Contains the authentication value. The format depends on the authentication
-  type used in the AuthenticationInfo complex type.
