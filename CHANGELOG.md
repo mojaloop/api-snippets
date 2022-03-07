@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.7](https://github.com/mojaloop/api-snippets/compare/v13.0.6...v13.0.7) (2022-03-07)
+
+
+### Maintenance
+
+* add first pass preparing snippets for update to latest version ([#122](https://github.com/mojaloop/api-snippets/issues/122)) ([7069b41](https://github.com/mojaloop/api-snippets/commit/7069b41905ab39e71280f8b7105f6b72ff1fde00))
+
 ### [13.0.6](https://github.com/mojaloop/api-snippets/compare/v13.0.5...v13.0.6) (2022-03-03)
 
 
