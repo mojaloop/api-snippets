@@ -22660,7 +22660,7 @@ export interface components {
     };
     /**
      * The ServiceType enumeration describes the types of role for which a DFSP may query using the /services resource.
-     * Below are the allowed values for the enumeration ServiceType - THIRD_PARTY_DFSP - Enum used to query for DFSP's that have thirdparty features enabled. - PISP - Enum used to query for PISPs. - AUTH_SERVICE - Participants which provide Authentication Services.
+     * Below are the allowed values for the enumeration ServiceType - THIRD_PARTY_DFSP - Enum used to query for DFSPs that have thirdparty features enabled. - PISP - Enum used to query for PISPs. - AUTH_SERVICE - Participants which provide Authentication Services.
      * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3229-servicetype
      */
     ServiceType: "THIRD_PARTY_DFSP" | "PISP" | "AUTH_SERVICE";

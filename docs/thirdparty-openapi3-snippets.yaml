@@ -886,7 +886,7 @@ paths:
                     which a DFSP may query using the /services resource.
 
                     Below are the allowed values for the enumeration ServiceType
-                    - THIRD_PARTY_DFSP - Enum used to query for DFSP's that have
+                    - THIRD_PARTY_DFSP - Enum used to query for DFSPs that have
                     thirdparty features enabled. - PISP - Enum used to query for
                     PISPs. - AUTH_SERVICE - Participants which provide
                     Authentication Services.
@@ -8590,7 +8590,7 @@ components:
         may query using the /services resource.
 
         Below are the allowed values for the enumeration ServiceType -
-        THIRD_PARTY_DFSP - Enum used to query for DFSP's that have thirdparty
+        THIRD_PARTY_DFSP - Enum used to query for DFSPs that have thirdparty
         features enabled. - PISP - Enum used to query for PISPs. - AUTH_SERVICE
         - Participants which provide Authentication Services.
 
