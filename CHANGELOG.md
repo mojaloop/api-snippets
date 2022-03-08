@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.8](https://github.com/mojaloop/api-snippets/compare/v13.0.7...v13.0.8) (2022-03-08)
+
+
+### Maintenance
+
+* move thirdparty snippets to versioned folder ([#123](https://github.com/mojaloop/api-snippets/issues/123)) ([0d11cdb](https://github.com/mojaloop/api-snippets/commit/0d11cdbffc0c50c558dff1fac48d00856731dae4))
+
 ### [13.0.7](https://github.com/mojaloop/api-snippets/compare/v13.0.6...v13.0.7) (2022-03-07)
 
 
