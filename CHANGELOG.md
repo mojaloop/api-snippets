@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.9](https://github.com/mojaloop/api-snippets/compare/v13.0.8...v13.0.9) (2022-03-14)
+
+
+### Maintenance
+
+* fix accounts property and transactionId and update codeowners ([#124](https://github.com/mojaloop/api-snippets/issues/124)) ([ba9e7eb](https://github.com/mojaloop/api-snippets/commit/ba9e7eb01781d52c8982ffeffdd330573e00db2e))
+
 ### [13.0.8](https://github.com/mojaloop/api-snippets/compare/v13.0.7...v13.0.8) (2022-03-08)
 
 
