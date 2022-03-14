@@ -3968,7 +3968,7 @@ export interface operations {
          * The AccountList data model is used to hold information about the accounts that a party controls.
          * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3213-accountlist
          */
-        accountList?: {
+        accounts: {
           /**
            * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
            *
@@ -15420,6 +15420,10 @@ export interface operations {
     requestBody: {
       "application/json": {
         /**
+         * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+         */
+        transactionId?: string;
+        /**
          * Below are the allowed values for the enumeration.
          * - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
          * - PENDING - Payer FSP has sent the transaction request to the Payer.
@@ -24216,7 +24220,7 @@ export interface components {
        * The AccountList data model is used to hold information about the accounts that a party controls.
        * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3213-accountlist
        */
-      accountList?: {
+      accounts: {
         /**
          * The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
          *
@@ -26105,6 +26109,10 @@ export interface components {
      * https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31721-put-thirdpartyrequeststransactionsid
      */
     ThirdpartyRequestsTransactionsIDPutResponse: {
+      /**
+       * Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+       */
+      transactionId?: string;
       /**
        * Below are the allowed values for the enumeration.
        * - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
