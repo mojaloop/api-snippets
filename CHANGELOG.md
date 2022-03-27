@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.10](https://github.com/mojaloop/api-snippets/compare/v13.0.9...v13.0.10) (2022-03-27)
+
+
+### Maintenance
+
+* **deps:** bump minimist from 1.2.5 to 1.2.6 ([#125](https://github.com/mojaloop/api-snippets/issues/125)) ([0483e6f](https://github.com/mojaloop/api-snippets/commit/0483e6fd370b7c1cc02c4228feed0b234b3657af))
+
 ### [13.0.9](https://github.com/mojaloop/api-snippets/compare/v13.0.8...v13.0.9) (2022-03-14)
 
 
