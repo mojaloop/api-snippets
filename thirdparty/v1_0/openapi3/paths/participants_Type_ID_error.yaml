@@ -21,6 +21,7 @@ put:
   summary: Return participant information error
   tags:
     - participants
+    - sampled
   operationId: ParticipantsErrorByTypeAndID
   parameters:
     - $ref: ../components/parameters/Content-Length.yaml

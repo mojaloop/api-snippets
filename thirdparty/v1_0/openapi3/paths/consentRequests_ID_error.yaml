@@ -14,6 +14,7 @@ parameters:
 put:
   tags:
     - consentRequests
+    - sampled
   operationId: NotifyErrorConsentRequests
   summary: NotifyErrorConsentRequests
   description: |

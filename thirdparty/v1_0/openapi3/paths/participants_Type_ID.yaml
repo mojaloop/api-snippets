@@ -23,6 +23,7 @@ post:
   summary: Create participant information
   tags:
     - participants
+    - sampled
   operationId: ParticipantsByIDAndType
   parameters:
     - $ref: ../components/parameters/Accept.yaml

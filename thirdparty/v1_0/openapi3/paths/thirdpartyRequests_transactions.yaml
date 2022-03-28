@@ -15,6 +15,7 @@ post:
   description: The HTTP request POST `/thirdpartyRequests/transactions` is used by a PISP to initiate a 3rd party Transaction request with a DFSP
   tags:
     - thirdpartyRequests
+    - sampled
   parameters:
     #Headers
     - $ref: ../components/parameters/Accept.yaml
