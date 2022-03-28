@@ -17,6 +17,7 @@ post:
   summary: PostThirdpartyRequestsAuthorizations
   tags:
     - authorizations
+    - sampled
   parameters:
     #Headers
     - $ref: ../components/parameters/Accept.yaml

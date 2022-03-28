@@ -20,6 +20,7 @@ get:
   summary: GetThirdpartyRequestsAuthorizationsById
   tags:
     - authorizations
+    - sampled
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:

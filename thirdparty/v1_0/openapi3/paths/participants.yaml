@@ -18,6 +18,7 @@ post:
   summary: Create bulk participant information
   tags:
     - participants
+    - sampled
   operationId: Participants1
   parameters:
     - $ref: ../components/parameters/Accept.yaml
