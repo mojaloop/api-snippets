@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [13.0.11](https://github.com/mojaloop/api-snippets/compare/v13.0.10...v13.0.11) (2022-03-28)
+
+
+### Maintenance
+
+* add sample tag to paths ([#127](https://github.com/mojaloop/api-snippets/issues/127)) ([e35ab91](https://github.com/mojaloop/api-snippets/commit/e35ab911a6e62b2eb5a34cbadf0529cc518c4f74))
+
 ### [13.0.10](https://github.com/mojaloop/api-snippets/compare/v13.0.9...v13.0.10) (2022-03-27)
 
 
