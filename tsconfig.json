@@ -3,7 +3,10 @@
     ".eslintrc.js",
     "commitlint.config.js",
     "jest.config.js",
-    "src"
+    "src",
+    "tests/dto/v1_0.test.ts",
+    "tests/dto/v1_1.test.ts",
+    "tests/dto/thirdparty.test.ts"
   ],
   "exclude": [
     "node_modules",

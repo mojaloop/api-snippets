@@ -27,7 +27,9 @@
     "dep:update": "ncu -u",
     "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",
     "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
-    "test:unit": "jest --testMatch '**/tests/dto/*.(test|spec).ts'"
+    "test:unit": "jest --testMatch '**/tests/dto/*.(test|spec).ts'",
+    "test:coverage": "jest --coverage --testMatch '**/tests/dto/*.(test|spec).ts'"
+
   },
   "husky": {
     "hooks": {
@@ -88,6 +90,7 @@
     "jest-junit": "^13.2.0",
     "lint-staged": "^12.4.1",
     "npm-audit-resolver": "^3.0.0-7",
+    "npm-check-updates": "^13.0.3",
     "standard-version": "^9.5.0",
     "swagger-cli": "^4.0.4",
     "ts-jest": "^28.0.2",
