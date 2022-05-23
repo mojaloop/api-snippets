@@ -27,13 +27,12 @@
     "dep:update": "ncu -u",
     "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",
     "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
-    "test": "npm run test:dto",
-    "test:dto": "jest --testMatch '**/tests/dto/*.(test|spec).ts'"
+    "test:unit": "jest --testMatch '**/tests/dto/*.(test|spec).ts'"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged; npm run test",
+      "pre-commit": "lint-staged; npm run test:unit",
       "post-commit": "git update-index --again"
     }
   },
