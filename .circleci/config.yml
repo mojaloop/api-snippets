@@ -1,4 +1,4 @@
-# CircleCI v2.1 Config
+# CircleCI v2 Config
 version: 2.1
 
 ##
@@ -7,9 +7,9 @@ version: 2.1
 # Orbs used in this pipeline
 ##
 orbs:
-  slack: circleci/slack@3.4.2
-  github-release: h-matsuo/github-release@0.1.3
-  pr-tools: mojaloop/pr-tools@0.1.10
+  slack: circleci/slack@4.9.3 # Ref: https://github.com/mojaloop/ci-config/tree/master/slack-templates
+  pr-tools: mojaloop/pr-tools@0.1.10 # Ref: https://github.com/mojaloop/ci-config/
+  gh: circleci/github-cli@2.1.0
 
 ##
 # defaults
@@ -21,24 +21,23 @@ defaults_Dependencies: &defaults_Dependencies |
     apk --no-cache add ca-certificates
     apk --no-cache add curl
     apk --no-cache add openssh-client
-    apk --no-cache add bash
-    apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake jq
+    apk add --no-cache -t build-dependencies make gcc g++ python3 libtool autoconf automake jq
     npm config set unsafe-perm true
     npm install -g node-gyp
 
 defaults_awsCliDependencies: &defaults_awsCliDependencies |
-    apk upgrade --no-cache
-    apk --no-cache add \
-            python3 \
-            py3-pip \
-            groff \
-            less \
-            mailcap
-    pip3 install --upgrade pip awscli==1.14.5 s3cmd==2.0.1 python-magic
+    apk --no-cache add aws-cli
+
+defaults_license_scanner: &defaults_license_scanner
+  name: Install and set up license-scanner
+  command: |
+    git clone https://github.com/mojaloop/license-scanner /tmp/license-scanner
+    cd /tmp/license-scanner && make build default-files set-up
 
 defaults_npm_auth: &defaults_npm_auth
   name: Update NPM registry auth token
   command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+
 
 defaults_npm_publish_release: &defaults_npm_publish_release
   name: Publish NPM $RELEASE_TAG artifact
@@ -47,18 +46,18 @@ defaults_npm_publish_release: &defaults_npm_publish_release
     echo "Publishing tag $RELEASE_TAG"
     npm publish --tag $RELEASE_TAG --access public
 
-defaults_npm_publish_version: &defaults_npm_publish
-  name: Update version to prerelease
+defaults_export_version_from_package: &defaults_export_version_from_package
+  name: Format the changelog into the github release body and get release tag
   command: |
-    source $BASH_ENV
-    echo "Publishing tag $CIRCLE_TAG"
-    npm publish --tag $CIRCLE_TAG --access public
+    git diff --no-indent-heuristic master~1 HEAD CHANGELOG.md | sed -n '/^+[^+]/ s/^+//p' > /tmp/changes
+    echo 'export RELEASE_CHANGES=`cat /tmp/changes`' >> $BASH_ENV
+    echo 'export RELEASE_TAG=`cat package-lock.json | jq -r .version`' >> $BASH_ENV
 
-defaults_license_scanner: &defaults_license_scanner
-  name: Install and set up license-scanner
+defaults_configure_git: &defaults_configure_git
+  name: Configure git
   command: |
-    git clone https://github.com/mojaloop/license-scanner /tmp/license-scanner
-    cd /tmp/license-scanner && make build default-files set-up
+    git config user.email ${GIT_CI_EMAIL}
+    git config user.name ${GIT_CI_USER}
 
 ##
 # Executors
@@ -67,19 +66,15 @@ defaults_license_scanner: &defaults_license_scanner
 ##
 executors:
   default-docker:
-    working_directory: /home/circleci/project
+    working_directory: &WORKING_DIR /home/circleci/project
     docker:
-      - image: node:12.16.1-alpine
+      - image: node:16.14.2-alpine
 
   default-machine:
+    working_directory: *WORKING_DIR
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:current
 
-##
-# Jobs
-#
-# A map of CircleCI jobs
-##
 jobs:
   setup:
     executor: default-docker
@@ -88,24 +83,15 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
-      - restore_cache:
-          keys:
-            - dependency-cache-{{ checksum "package-lock.json" }}
-      - run:
-          name: Access npm folder as root
-          command: cd $(npm root -g)/npm
       - run:
           name: Update NPM install
           command: npm ci
-      - run:
-          name: Delete build dependencies
-          command: apk del build-dependencies
       - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - node_modules
 
-  build_and_test:
+  test-dependencies:
     executor: default-docker
     steps:
       - run:
@@ -113,23 +99,65 @@ jobs:
           command: *defaults_Dependencies
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          name: build
-          command: npm run build
+          name: Execute dependency tests
+          command: npm run dep:check
+
+  test-lint:
+    executor: default-docker
+    steps:
       - run:
-          name: test
-          command: npm run test
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          name: prepare test/results
-          command: |
-            mkdir -p test/results
-            mv junit.xml test/results
+          name: Execute lint tests
+          command: npm run lint
+
+  test-unit:
+    executor: default-docker
+    steps:
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Create dir for test results
+          command: mkdir -p ./test/results
+      - run:
+          name: Execute unit tests
+          command: npm -s run test:unit
       - store_artifacts:
           path: ./test/results
           prefix: test
       - store_test_results:
           path: ./test/results
+
+  test-coverage:
+    executor: default-docker
+    steps:
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          name: Install AWS CLI dependencies
+          command: *defaults_awsCliDependencies
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Execute code coverage check
+          command: npm -s run test:coverage-check
+      - store_artifacts:
+          path: coverage
+          prefix: test
+      - store_test_results:
+          path: coverage
 
   vulnerability-check:
     executor: default-docker
@@ -139,7 +167,7 @@ jobs:
           command: *defaults_Dependencies
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Create dir for test results
           command: mkdir -p ./audit/results
@@ -156,21 +184,18 @@ jobs:
       - run:
           name: Install general dependencies
           command: *defaults_Dependencies
-      - checkout
       - run:
           <<: *defaults_license_scanner
+      - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-      - run:
-          name: Prune non-production packages before running license-scanner
-          command: npm prune --production
+          key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Run the license-scanner
           command: cd /tmp/license-scanner && pathToRepo=$CIRCLE_WORKING_DIRECTORY make run
       - store_artifacts:
           path: /tmp/license-scanner/results
           prefix: licenses
-  
+
   release:
     executor: default-docker
     steps:
@@ -180,25 +205,26 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - dependency-cache-{{ checksum "package-lock.json" }}
+          - dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          name: Configure git
-          command: |
-            git config user.email ${GIT_CI_EMAIL}
-            git config user.name ${GIT_CI_USER}
-            git checkout ${CIRCLE_BRANCH}
+          <<: *defaults_configure_git
       - run:
-          name: Configure ssh
+          name: Setup Slack config
           command: |
-            mkdir -p ~/.ssh
-            ssh-keyscan -p 443 ssh.github.com >> ~/.ssh/known_hosts
-            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            echo "export SLACK_PROJECT_NAME=${CIRCLE_PROJECT_REPONAME}" >> $BASH_ENV
+            echo "export SLACK_RELEASE_TYPE='GitHub Release'" >> $BASH_ENV
+            echo "export SLACK_RELEASE_TAG='${RELEASE_TAG} on ${CIRCLE_BRANCH} branch'" >> $BASH_ENV
+            echo "export SLACK_BUILD_ID=${CIRCLE_BUILD_NUM}" >> $BASH_ENV
+            echo "export SLACK_CI_URL=${CIRCLE_BUILD_URL}" >> $BASH_ENV
       - run:
           name: Generate changelog and bump package version
-          command: npm run release
+          command: npm run release -- --no-verify
       - run:
           name: Push the release
           command: git push --follow-tags origin ${CIRCLE_BRANCH}
+      - slack/notify:
+          event: fail
+          template: SLACK_TEMP_RELEASE_FAILURE
 
   github-release:
     executor: default-machine
@@ -207,34 +233,40 @@ jobs:
           name: Install git
           command: |
             sudo apt-get update && sudo apt-get install -y git
+      - gh/install
       - checkout
+      - run:
+          <<: *defaults_configure_git
       - run:
           name: Fetch updated release branch
           command: |
-            git config user.email ${GIT_CI_EMAIL}
-            git config user.name ${GIT_CI_USER}
             git fetch origin
             git checkout origin/${CIRCLE_BRANCH}
       - run:
-          # Note: this is rather imperfect, but will do for now
-          name: Format the changelog into the github release body and get release tag
-          command: |
-            git diff --no-indent-heuristic master~1 HEAD CHANGELOG.md | sed -n '/^+[^+]/ s/^+//p' > /tmp/changes
-            echo 'export RELEASE_CHANGES=`cat /tmp/changes`' >> $BASH_ENV
-            echo 'export RELEASE_TAG=`cat package.json | jq -r .version`' >> $BASH_ENV
+          <<: *defaults_export_version_from_package
       - run:
-          name: check the release changes
+          name: Check the release changes
           command: |
             echo "Changes are: ${RELEASE_CHANGES}"
-      - github-release/create:
-          github-token-variable: ${GITHUB_TOKEN}
-          tag: v${RELEASE_TAG}
-          title: v${RELEASE_TAG} Release
-          description: ${RELEASE_CHANGES}
-          file-path: CHANGELOG.md
-      - slack/status:
-          webhook: "$SLACK_WEBHOOK_ANNOUNCEMENT"
-          success_message: '*"${CIRCLE_PROJECT_REPONAME}"* - Release \`"v${RELEASE_TAG}"\` \nhttps://github.com/mojaloop/"${CIRCLE_PROJECT_REPONAME}"/releases/tag/"v${RELEASE_TAG}"'
+      - run:
+          name: Setup Slack config
+          command: |
+            echo "export SLACK_PROJECT_NAME=${CIRCLE_PROJECT_REPONAME}" >> $BASH_ENV
+            echo "export SLACK_RELEASE_TYPE='Github Release'" >> $BASH_ENV
+            echo "export SLACK_RELEASE_TAG=v${RELEASE_TAG}" >> $BASH_ENV
+            echo "export SLACK_RELEASE_URL=https://github.com/mojaloop/${CIRCLE_PROJECT_REPONAME}/releases/tag/v${RELEASE_TAG}" >> $BASH_ENV
+            echo "export SLACK_BUILD_ID=${CIRCLE_BUILD_NUM}" >> $BASH_ENV
+            echo "export SLACK_CI_URL=${CIRCLE_BUILD_URL}" >> $BASH_ENV
+      - run:
+          name: Create Release
+          command: |
+            gh release create "v${RELEASE_TAG}" --title "v${RELEASE_TAG} Release" --draft=false --notes "${RELEASE_CHANGES}" ./CHANGELOG.md
+      - slack/notify:
+          event: pass
+          template: SLACK_TEMP_RELEASE_SUCCESS
+      - slack/notify:
+          event: fail
+          template: SLACK_TEMP_RELEASE_FAILURE
 
   publish:
     executor: default-docker
@@ -243,70 +275,171 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
-          name: setup environment vars for LATEST release
+          name: Setup for LATEST release
           command: |
-            echo 'export RELEASE_TAG=$RELEASE_TAG_PROD' >> $BASH_ENV
+            echo "export RELEASE_TAG=$RELEASE_TAG_PROD" >> $BASH_ENV
+            echo "RELEASE_TAG=$RELEASE_TAG_PROD"
+
+            PACKAGE_VERSION=$(cat package-lock.json | jq -r .version)
+            echo "export PACKAGE_VERSION=${PACKAGE_VERSION}" >> $BASH_ENV
+            echo "PACKAGE_VERSION=${PACKAGE_VERSION}"
+      - run:
+          name: Setup Slack config
+          command: |
+            echo "export SLACK_PROJECT_NAME=${CIRCLE_PROJECT_REPONAME}" >> $BASH_ENV
+            echo "export SLACK_RELEASE_TYPE='NPM Release'" >> $BASH_ENV
+            echo "export SLACK_RELEASE_TAG=v${CIRCLE_TAG:1}" >> $BASH_ENV
+            echo "export SLACK_RELEASE_URL=https://www.npmjs.com/package/@mojaloop/${CIRCLE_PROJECT_REPONAME}/v/${CIRCLE_TAG:1}" >> $BASH_ENV
+            echo "export SLACK_BUILD_ID=${CIRCLE_BUILD_NUM}" >> $BASH_ENV
+            echo "export SLACK_CI_URL=${CIRCLE_BUILD_URL}" >> $BASH_ENV
       - run:
           <<: *defaults_npm_auth
       - run:
           <<: *defaults_npm_publish_release
+      - slack/notify:
+          event: pass
+          template: SLACK_TEMP_RELEASE_SUCCESS
+      - slack/notify:
+          event: fail
+          template: SLACK_TEMP_RELEASE_FAILURE
 
-##
-# Workflows
-#
-# CircleCI Workflow config
-##
+  publish-snapshot:
+    executor: default-docker
+    steps:
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - checkout
+      - run:
+          name: Setup for SNAPSHOT release
+          command: |
+            echo "export RELEASE_TAG=${RELEASE_TAG_SNAPSHOT}" >> $BASH_ENV
+            echo "RELEASE_TAG=${RELEASE_TAG_SNAPSHOT}"
+
+            echo "Override package version: ${CIRCLE_TAG:1}"
+            npx standard-version --skip.tag --skip.commit --skip.changelog --release-as ${CIRCLE_TAG:1}
+
+            PACKAGE_VERSION=$(cat package-lock.json | jq -r .version)
+            echo "export PACKAGE_VERSION=${PACKAGE_VERSION}" >> $BASH_ENV
+            echo "PACKAGE_VERSION=${PACKAGE_VERSION}"
+      - run:
+          name: Setup Slack config
+          command: |
+            echo "export SLACK_PROJECT_NAME=${CIRCLE_PROJECT_REPONAME}" >> $BASH_ENV
+            echo "export SLACK_RELEASE_TYPE='NPM Snapshot'" >> $BASH_ENV
+            echo "export SLACK_RELEASE_TAG=v${CIRCLE_TAG:1}" >> $BASH_ENV
+            echo "export SLACK_RELEASE_URL=https://www.npmjs.com/package/@mojaloop/${CIRCLE_PROJECT_REPONAME}/v/${CIRCLE_TAG:1}" >> $BASH_ENV
+            echo "export SLACK_BUILD_ID=${CIRCLE_BUILD_NUM}" >> $BASH_ENV
+            echo "export SLACK_CI_URL=${CIRCLE_BUILD_URL}" >> $BASH_ENV
+      - run:
+          <<: *defaults_npm_auth
+      - run:
+          <<: *defaults_npm_publish_release
+      - slack/notify:
+          event: pass
+          template: SLACK_TEMP_RELEASE_SUCCESS
+      - slack/notify:
+          event: fail
+          template: SLACK_TEMP_RELEASE_FAILURE
+
 workflows:
   version: 2
   build_and_test:
     jobs:
       - pr-tools/pr-title-check:
           context: org-global
-
       - setup:
           context: org-global
           filters:
             tags:
               only: /.*/
-
-      - build_and_test:
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
+      - test-dependencies:
           context: org-global
           requires:
             - setup
           filters:
             tags:
               only: /.*/
-
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
+      - test-lint:
+          context: org-global
+          requires:
+            - setup
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
+      - test-unit:
+          context: org-global
+          requires:
+            - setup
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
+      - test-coverage:
+          context: org-global
+          requires:
+            - setup
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
       - vulnerability-check:
           context: org-global
           requires:
-            - build_and_test
+            - setup
           filters:
             tags:
               only: /.*/
-
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
       - audit-licenses:
           context: org-global
           requires:
-            - build_and_test
+            - setup
           filters:
             tags:
               only: /.*/
-
+            branches:
+              ignore:
+                - /feature*/
+                - /bugfix*/
       # New commits to master release automatically
       - release:
           context: org-global
           requires:
-            - audit-licenses
+            - pr-tools/pr-title-check
+            - test-dependencies
+            - test-lint
+            - test-unit
+            - test-coverage
             - vulnerability-check
+            - audit-licenses
           filters:
             branches:
               only:
                 - master
-
+                - /release\/v.*/
       - github-release:
           context: org-global
           requires:
@@ -315,15 +448,34 @@ workflows:
             branches:
               only:
                 - master
-
+                - /release\/v.*/
       - publish:
           context: org-global
           requires:
+            - pr-tools/pr-title-check
+            - test-lint
+            - test-unit
+            - test-coverage
             - vulnerability-check
             - audit-licenses
           filters:
             tags:
-              only: /.*/
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore:
+                - /.*/
+      - publish-snapshot:
+          context: org-global
+          requires:
+            - pr-tools/pr-title-check
+            - test-lint
+            - test-unit
+            - test-coverage
+            - vulnerability-check
+            - audit-licenses
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*\-snapshot+((\.[0-9]+)?)/
             branches:
               ignore:
                 - /.*/
