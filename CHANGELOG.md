@@ -1,4 +1,15 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [14.0.0](https://github.com/mojaloop/api-snippets/compare/v13.0.11...v14.0.0) (2022-05-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade nodejs, packages, linting and ci (#129)
+
+### Features
+
+* upgrade nodejs, packages, linting and ci ([#129](https://github.com/mojaloop/api-snippets/issues/129)) ([12ecac1](https://github.com/mojaloop/api-snippets/commit/12ecac14f9ba9e2dc8caa829ae3403e93df4b7c8))
+
 ### [13.0.11](https://github.com/mojaloop/api-snippets/compare/v13.0.10...v13.0.11) (2022-03-28)
 
 
