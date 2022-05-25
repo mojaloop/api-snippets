@@ -21,13 +21,14 @@
     "build:thirdparty": "openapi bundle --dereferenced --output docs/thirdparty-openapi3-snippets.yaml --ext yaml thirdparty/v1_0/openapi3/openapi.yaml && swagger-cli validate docs/thirdparty-openapi3-snippets.yaml",
     "build:thirdparty-dfsp": "swagger-cli bundle -o ./thirdparty/v1_0/openapi3/thirdparty-dfsp-api.yaml -t yaml ./thirdparty/v1_0/openapi3/thirdparty-dfsp-api.template.yaml",
     "build:thirdparty-pisp": "swagger-cli bundle -o ./thirdparty/v1_0/openapi3/thirdparty-pisp-api.yaml -t yaml ./thirdparty/v1_0/openapi3/thirdparty-pisp-api.template.yaml",
-    "lint": "eslint ./src/**/*.ts *.js",
+    "lint": "eslint --ext ts --ext js test src",
+    "lint:fix": "eslint --fix --ext ts --ext js test src",
     "prepare": "npm run build",
     "dep:check": "ncu -e 2",
     "dep:update": "ncu -u",
     "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",
     "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
-    "test:unit": "jest --testMatch '**/tests/dto/*.(test|spec).ts'"
+    "test:unit": "jest --testMatch '**/test/dto/*.(test|spec).ts'"
   },
   "husky": {
     "hooks": {
@@ -76,11 +77,13 @@
     "@typescript-eslint/parser": "^5.26.0",
     "diff": "^5.1.0",
     "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-cucumber": "^2.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-standard": "^5.0.0",
     "husky": "4.3.8",
@@ -89,6 +92,7 @@
     "lint-staged": "^12.4.2",
     "npm-audit-resolver": "^3.0.0-7",
     "npm-check-updates": "^13.0.3",
+    "prettier": "^2.6.2",
     "standard-version": "^9.5.0",
     "swagger-cli": "^4.0.4",
     "ts-jest": "^28.0.3",
