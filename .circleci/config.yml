@@ -59,6 +59,18 @@ defaults_configure_git: &defaults_configure_git
     git config user.email ${GIT_CI_EMAIL}
     git config user.name ${GIT_CI_USER}
 
+defaults_configure_nvm: &defaults_configure_nvm
+  name: Configure NVM
+  command: |
+    touch $HOME/.profile
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    echo "Installing Node version: $(cat .nvmrc)"
+    nvm install $(cat .nvmrc)
+    nvm alias default $(cat .nvmrc)
+    nvm use $(cat .nvmrc)
+
 ##
 # Executors
 #
@@ -84,6 +96,8 @@ jobs:
           command: *defaults_Dependencies
       - checkout
       - run:
+          <<: *defaults_configure_nvm
+      - run:
           name: Update NPM install
           command: npm ci
       - save_cache:
@@ -98,6 +112,8 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
+      - run:
+          <<: *defaults_configure_nvm
       - restore_cache:
           key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
@@ -111,11 +127,17 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
+      - run:
+          <<: *defaults_configure_nvm
       - restore_cache:
           key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
+          name: Build library
+          command: npm run build
+      - run:
           name: Execute lint tests
           command: npm run lint
+
 
   test-unit:
     executor: default-docker
@@ -124,6 +146,8 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
+      - run:
+          <<: *defaults_configure_nvm
       - restore_cache:
           key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
@@ -148,6 +172,8 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
+      - run:
+          <<: *defaults_configure_nvm
       - restore_cache:
           key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
@@ -169,6 +195,8 @@ jobs:
       - run:
           <<: *defaults_license_scanner
       - checkout
+      - run:
+          <<: *defaults_configure_nvm
       - restore_cache:
           key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
@@ -185,6 +213,8 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
+      - run:
+          <<: *defaults_configure_nvm
       - restore_cache:
           keys:
           - dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
@@ -217,6 +247,8 @@ jobs:
             sudo apt-get update && sudo apt-get install -y git
       - gh/install
       - checkout
+      - run:
+          <<: *defaults_configure_nvm
       - run:
           <<: *defaults_configure_git
       - run:
@@ -258,6 +290,8 @@ jobs:
           command: *defaults_Dependencies
       - checkout
       - run:
+          <<: *defaults_configure_nvm
+      - run:
           name: Setup for LATEST release
           command: |
             echo "export RELEASE_TAG=$RELEASE_TAG_PROD" >> $BASH_ENV
@@ -293,6 +327,8 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
+      - run:
+          <<: *defaults_configure_nvm
       - run:
           name: Setup for SNAPSHOT release
           command: |
