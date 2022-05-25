@@ -19,7 +19,8 @@
       }
     ],
     "rootDirs": [
-      "src"
+      "src",
+      "test"
     ],
     "lib": [
       "esnext"

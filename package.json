@@ -10,8 +10,8 @@
   "scripts": {
     "audit:resolve": "SHELL=sh resolve-audit --production",
     "audit:check": "SHELL=sh check-audit --production",
-    "build": "npm run build:openapi; npm run build:dto;",
-    "build:dto": "npm run build:dto:v1.0; npm run build:dto:v1.1; npm run build:dto:thirdparty; tsc;",
+    "build": "npm run build:openapi; npm run build:dto; ",
+    "build:dto": "npm run build:dto:v1.0; npm run build:dto:v1.1; npm run build:dto:thirdparty; tsc -p ./tsconfig.build.json",
     "build:dto:v1.0": "openapi-typescript docs/fspiop-rest-v1.0-openapi3-snippets.yaml --output src/fspiop/v1_0/openapi.ts",
     "build:dto:v1.1": "openapi-typescript docs/fspiop-rest-v1.1-openapi3-snippets.yaml --output src/fspiop/v1_1/openapi.ts",
     "build:dto:thirdparty": "openapi-typescript docs/thirdparty-openapi3-snippets.yaml --output src/thirdparty/openapi.ts",
