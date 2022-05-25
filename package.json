@@ -69,7 +69,7 @@
     "ttypescript": "^1.5.13"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.0",
+    "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@redocly/openapi-cli": "^1.0.0-beta.94",
     "@types/jest": "^27.5.1",
