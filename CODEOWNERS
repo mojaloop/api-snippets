@@ -1,3 +1,5 @@
+*   @kleyow @elnyry-sam-k @lewisdaly @vijayg10 @mdebarros
+
 # This is a comment.
 # Each line is a file pattern followed by one or more owners.
 
@@ -6,7 +8,6 @@
 ## @global-owner1 and @global-owner2 will be requested for
 ## review when someone opens a pull request.
 #*       @global-owner1 @global-owner2
-*   @kleyow @elnyry-sam-k @lewisdaly @vijayg10
 
 ## Order is important; the last matching pattern takes the most
 ## precedence. When someone opens a pull request that only

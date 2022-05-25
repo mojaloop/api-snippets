@@ -8,18 +8,16 @@ interface Interface {
 
 describe('automock', () => {
   it('should work', () => {
-    let mock: Interface
     const randomNumber = Math.random()
-    mock = createMock<Interface>({
+    const mock = createMock<Interface>({
       b: randomNumber
-    });
+    })
     expect(mock.a).toBe('')
     expect(mock.b).toBe(randomNumber)
   })
 
   it('should work with fspiop interface', () => {
-    let mock: Schemas.TransfersPostRequest
-    mock = createMock<Schemas.TransfersPostRequest>({
+    const mock = createMock<Schemas.TransfersPostRequest>({
       transferId: 'my-uuid'
     })
     expect(mock).toEqual({
@@ -30,8 +28,8 @@ describe('automock', () => {
       condition: '',
       expiration: '',
       amount: {
-        amount: "",
-        currency: "AED",
+        amount: '',
+        currency: 'AED'
       }
     })
   })

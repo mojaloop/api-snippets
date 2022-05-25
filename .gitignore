@@ -3,3 +3,4 @@ test/resolved.*
 /lib
 junit.xml
 .eslintcache
+coverage

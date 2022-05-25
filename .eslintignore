@@ -1,4 +1,4 @@
 node_modules/**/*.js
 .circleci/*
-commitlint.config.js
 config.ts
+**/openapi.ts

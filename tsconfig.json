@@ -3,11 +3,11 @@
     ".eslintrc.js",
     "commitlint.config.js",
     "jest.config.js",
-    "src"
+    "src",
+    "test",
   ],
   "exclude": [
     "node_modules",
-    "tests"
   ],
   "compilerOptions": {
     "target": "es2018",
@@ -19,7 +19,8 @@
       }
     ],
     "rootDirs": [
-      "src"
+      "src",
+      "test"
     ],
     "lib": [
       "esnext"
