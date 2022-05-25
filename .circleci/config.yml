@@ -289,6 +289,9 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
+      - restore_cache:
+          keys:
+          - dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           <<: *defaults_configure_nvm
       - run:
@@ -327,6 +330,9 @@ jobs:
           name: Install general dependencies
           command: *defaults_Dependencies
       - checkout
+      - restore_cache:
+          keys:
+          - dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           <<: *defaults_configure_nvm
       - run:
