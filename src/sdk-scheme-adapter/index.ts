@@ -1,0 +1,114 @@
+/* eslint-disable @typescript-eslint/no-namespace */
+import { components as OutboundComponents } from './outbound/openapi3-snippets/openapi'
+export * as OutboundOpenAPI from './outbound/openapi3-snippets/openapi'
+
+// TODO: We need to export JSON Schema of individual parts for schema validation. The types are not sufficient for schema validation including regular expressions.
+export namespace OutboundTypes {
+  export type Currency = OutboundComponents['schemas']['Currency']
+  // TODO: define all the types here
+  // TransactionInitiatorType
+  // PartyIdType
+  // PartyIdentifier
+  // PartySubIdOrType
+  // Name
+  // FirstName
+  // MiddleName
+  // LastName
+  // DateofBirth (type Date)
+  // MerchantClassificationCode
+  // FspId
+  // ExtensionKey
+  // ExtensionValue
+  // Extension
+  // extensionListEmptiable
+  // transferParty
+  // AmountType
+  // Currency
+  // Amount
+  // transactionType
+  // Note
+  // transferRequest
+  // CorrelationId
+  // transferStatus
+  // Money
+  // DateTime
+  // Latitude
+  // Longitude
+  // GeoCode
+  // IlpPacket
+  // IlpCondition
+  // ExtensionList
+  // QuotesIDPutResponse
+  // IlpFulfilment
+  // TransferState
+  // TransfersIDPutResponse
+  // ErrorCode
+  // ErrorDescription
+  // ErrorInformation
+  // mojaloopError
+  // transferError
+  // transferResponse
+  // errorResponse
+  // errorTransferResponse
+  // transferStatusResponse
+  // transferContinuationAcceptParty
+  // transferContinuationAcceptQuote
+  // autoAcceptPartyOption
+  // bulkPerTransferFeeLimit
+  // autoAcceptQuote
+  // bulkTransferOptions
+  // PartyIdInfo
+  // PartyName
+  // PartyComplexName
+  // PartyPersonalInfo
+  // Party
+  // IndividualTransfer
+  // bulkTransferRequest
+  // bulkTransferStatus
+  // individualTransferResult
+  // bulkTransferResponse
+  // bulkTransferErrorResponse
+  // individualTransferAccept
+  // bulkTransferContinuationAcceptParty
+  // bulkTransferContinuationAcceptQuote
+  // partyError
+  // bulkAcceptPartyErrorResponse
+  // quoteError
+  // bulkAcceptQuoteErrorResponse
+  // IndividualQuote
+  // bulkQuoteRequest
+  // individualQuoteResult
+  // bulkQuoteResponse
+  // bulkQuoteErrorResponse
+  // bulkQuoteStatus
+  // bulkQuoteStatusResponse
+  // TransactionScenario
+  // TransactionSubScenario
+  // TransactionInitiator
+  // RefundReason
+  // Refund
+  // BalanceOfPayments
+  // TransactionType
+  // requestToPayRequest
+  // AuthenticationType
+  // TransactionRequestState
+  // requestToPayResponse
+  // requestToPayTransferRequest
+  // requestToPayTransferResponse
+  // transferContinuationAcceptOTP
+  // accountsRequest
+  // accountCreationStatus
+  // accountsCreationState
+  // accountsResponse
+  // errorAccountsResponse
+  // async2SyncCurrentState
+  // partiesByIdResponse
+  // QuotesPostRequest
+  // QuotesPostRequest
+  // QuotesPostResponse
+  // errorQuotesResponse
+  // TransfersPostRequest
+  // SimpleTransfersPostRequest
+  // SimpleTransfersPostResponse
+  // errorSimpleTransfersResponse
+}

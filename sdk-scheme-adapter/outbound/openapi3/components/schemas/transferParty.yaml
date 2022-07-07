@@ -1,0 +1,29 @@
+type: object
+required:
+  - idType
+  - idValue
+properties:
+  type:
+    $ref: ./TransactionInitiatorType.yaml
+  idType:
+    $ref: ./PartyIdType.yaml
+  idValue:
+    $ref: ./PartyIdentifier.yaml
+  idSubValue:
+    $ref: ./PartySubIdOrType.yaml
+  displayName:
+    $ref: ./Name.yaml
+  firstName:
+    $ref: ./FirstName.yaml
+  middleName:
+    $ref: ./MiddleName.yaml
+  lastName:
+    $ref: ./LastName.yaml
+  dateOfBirth:
+    $ref: ./DateOfBirth.yaml
+  merchantClassificationCode:
+    $ref: ./MerchantClassificationCode.yaml
+  fspId:
+    $ref: ./FspId.yaml
+  extensionList:
+    $ref: ./extensionListEmptiable.yaml
