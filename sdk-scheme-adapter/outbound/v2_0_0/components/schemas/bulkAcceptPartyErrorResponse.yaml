@@ -6,5 +6,5 @@ allOf:
     properties:
       bulkTransferState:
         allOf:
-          - $ref: ./bulkTransferContinuationAcceptParty.yaml
+          - $ref: ./bulkTransactionContinuationAcceptParty.yaml
           - $ref: ./partyError.yaml

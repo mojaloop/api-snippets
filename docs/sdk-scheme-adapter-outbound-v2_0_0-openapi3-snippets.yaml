@@ -79,7 +79,7 @@ paths:
           application/json:
             schema:
               type: object
-              required: &ref_65
+              required: &ref_64
                 - homeTransactionId
                 - from
                 - to
@@ -87,7 +87,7 @@ paths:
                 - currency
                 - amount
                 - transactionType
-              properties: &ref_66
+              properties: &ref_65
                 homeTransactionId:
                   type: string
                   description: >-
@@ -756,7 +756,7 @@ paths:
                               Data model for the complex type GeoCode. Indicates
                               the geographic location from where the transaction
                               was initiated.
-                            properties: &ref_62
+                            properties: &ref_61
                               latitude:
                                 title: Latitude
                                 type: string
@@ -779,7 +779,7 @@ paths:
                                   regular expression for interoperability
                                   reasons.
                                 example: '+75.6972'
-                            required: &ref_63
+                            required: &ref_62
                               - latitude
                               - longitude
                           ilpPacket:
@@ -876,7 +876,7 @@ paths:
                           transferState:
                             title: TransferState
                             type: string
-                            enum: &ref_67
+                            enum: &ref_66
                               - RECEIVED
                               - RESERVED
                               - COMMITTED
@@ -934,7 +934,7 @@ paths:
                             title: ErrorInformation
                             type: object
                             description: Data model for the complex type ErrorInformation.
-                            properties: &ref_56
+                            properties: &ref_55
                               errorCode:
                                 title: ErrorCode
                                 type: string
@@ -967,7 +967,7 @@ paths:
                                   deployment.
                                 properties: *ref_10
                                 required: *ref_11
-                            required: &ref_57
+                            required: &ref_56
                               - errorCode
                               - errorDescription
                   skipPartyLookup:
@@ -978,7 +978,7 @@ paths:
                     type: boolean
         '400':
           description: Malformed or missing required body, headers or parameters
-          content: &ref_127
+          content: &ref_126
             application/json:
               schema:
                 allOf: &ref_14
@@ -1107,11 +1107,11 @@ paths:
             application/json:
               schema:
                 type: object
-                required: &ref_68
+                required: &ref_67
                   - transferId
                   - currentState
                   - fulfil
-                properties: &ref_69
+                properties: &ref_68
                   transferId:
                     title: CorrelationId
                     type: string
@@ -1164,12 +1164,12 @@ paths:
           application/json:
             schema:
               type: object
-              required: &ref_82
+              required: &ref_81
                 - bulkHomeTransactionID
                 - options
                 - from
                 - individualTransfers
-              properties: &ref_83
+              properties: &ref_82
                 bulkHomeTransactionID:
                   type: string
                   description: >-
@@ -1204,9 +1204,9 @@ paths:
                       type: boolean
                     autoAcceptParty:
                       type: object
-                      required: &ref_70
+                      required: &ref_69
                         - enabled
-                      properties: &ref_71
+                      properties: &ref_70
                         enabled:
                           type: boolean
                           enum:
@@ -1221,9 +1221,9 @@ paths:
                       type: object
                       oneOf:
                         - type: object
-                          required: &ref_74
+                          required: &ref_73
                             - enabled
-                          properties: &ref_75
+                          properties: &ref_74
                             enabled:
                               type: boolean
                               enum:
@@ -1234,10 +1234,10 @@ paths:
                               minItems: 0
                               items:
                                 type: object
-                                required: &ref_72
+                                required: &ref_71
                                   - currency
                                   - amount
-                                properties: &ref_73
+                                properties: &ref_72
                                   currency:
                                     title: Currency
                                     description: >-
@@ -1311,7 +1311,7 @@ paths:
                         Data model for the complex type PartyIdInfo. An
                         ExtensionList element has been added to this reqeust in
                         version v1.1
-                      properties: &ref_76
+                      properties: &ref_75
                         partyIdType:
                           title: PartyIdType
                           type: string
@@ -1404,7 +1404,7 @@ paths:
                             optional list of extensions, specific to deployment.
                           properties: *ref_10
                           required: *ref_11
-                      required: &ref_77
+                      required: &ref_76
                         - partyIdType
                         - partyIdentifier
                     merchantClassificationCode:
@@ -1426,12 +1426,12 @@ paths:
                       title: PartyPersonalInfo
                       type: object
                       description: Data model for the complex type PartyPersonalInfo.
-                      properties: &ref_79
+                      properties: &ref_78
                         complexName:
                           title: PartyComplexName
                           type: object
                           description: Data model for the complex type PartyComplexName.
-                          properties: &ref_78
+                          properties: &ref_77
                             firstName:
                               title: FirstName
                               type: string
@@ -1480,7 +1480,7 @@ paths:
                     title: IndividualTransfer
                     type: object
                     description: Data model for the complex type 'individualTransfer'.
-                    properties: &ref_80
+                    properties: &ref_79
                       homeTransactionId:
                         title: CorrelationId
                         type: string
@@ -1576,7 +1576,7 @@ paths:
                           This object represents a Mojaloop API error received
                           at any time during the transfer process
                         properties: *ref_26
-                    required: &ref_81
+                    required: &ref_80
                       - homeTransactionId
                       - to
                       - amountType
@@ -1596,10 +1596,10 @@ paths:
           description: Bulk transfer accepted successfully
         '400':
           description: Malformed or missing required body, headers or parameters
-          content: &ref_128
+          content: &ref_127
             application/json:
               schema:
-                allOf: &ref_89
+                allOf: &ref_88
                   - type: object
                     properties: *ref_22
                   - type: object
@@ -1608,12 +1608,12 @@ paths:
                     properties:
                       bulkTransferState:
                         type: object
-                        required: &ref_87
+                        required: &ref_86
                           - bulkHomeTransactionID
                           - bulkTransactionId
                           - currentState
                           - individualTransferResults
-                        properties: &ref_88
+                        properties: &ref_87
                           bulkHomeTransactionID:
                             type: string
                             description: >-
@@ -1638,7 +1638,7 @@ paths:
                             example: b51ec534-ee48-4575-b6a9-ead2955b8069
                           currentState:
                             type: string
-                            enum: &ref_84
+                            enum: &ref_83
                               - ERROR_OCCURRED
                               - WAITING_FOR_PARTY_ACCEPTANCE
                               - WAITING_FOR_QUOTE_ACCEPTANCE
@@ -1656,14 +1656,14 @@ paths:
                             maxItems: 1000
                             items:
                               type: object
-                              required: &ref_85
+                              required: &ref_84
                                 - homeTransactionId
                                 - transactionId
                                 - to
                                 - amountType
                                 - currency
                                 - amount
-                              properties: &ref_86
+                              properties: &ref_85
                                 transferId:
                                   title: CorrelationId
                                   type: string
@@ -1844,7 +1844,7 @@ paths:
                             required: *ref_11
         '500':
           description: Internal Server Error
-          content: &ref_129
+          content: &ref_128
             application/json:
               schema:
                 type: object
@@ -1865,7 +1865,7 @@ paths:
         - name: bulkTransactionId
           in: path
           required: true
-          schema: &ref_144
+          schema: &ref_143
             title: CorrelationId
             type: string
             pattern: >-
@@ -1990,11 +1990,11 @@ paths:
           description: Bulk transfer information successfully amended
         '400':
           description: Malformed or missing required body, headers or parameters
-          content: &ref_130
+          content: &ref_129
             application/json:
               schema:
                 oneOf:
-                  - allOf: &ref_91
+                  - allOf: &ref_90
                       - type: object
                         properties: *ref_22
                       - type: object
@@ -2014,7 +2014,7 @@ paths:
                                   This object represents a Mojaloop API error
                                   received at any time during the party
                                   discovery process
-                                properties: &ref_90
+                                properties: &ref_89
                                   httpStatusCode:
                                     type: integer
                                     description: >-
@@ -2030,7 +2030,7 @@ paths:
                                       the underlying Mojaloop API error object.
                                     type: object
                                     properties: *ref_39
-                  - allOf: &ref_92
+                  - allOf: &ref_91
                       - type: object
                         properties: *ref_22
                       - type: object
@@ -2086,11 +2086,11 @@ paths:
           application/json:
             schema:
               type: object
-              required: &ref_93
+              required: &ref_92
                 - homeTransactionId
                 - from
                 - individualQuotes
-              properties: &ref_94
+              properties: &ref_93
                 homeTransactionId:
                   type: string
                   description: >-
@@ -2222,7 +2222,7 @@ paths:
       responses:
         '200':
           description: Bulk quote completed successfully
-          content: &ref_131
+          content: &ref_130
             application/json:
               schema:
                 type: object
@@ -2259,7 +2259,7 @@ paths:
                     maxItems: 1000
                     items:
                       type: object
-                      properties: &ref_95
+                      properties: &ref_94
                         quoteId:
                           title: CorrelationId
                           type: string
@@ -2344,7 +2344,7 @@ paths:
                       response.
         '400':
           description: Malformed or missing required body, headers or parameters
-          content: &ref_132
+          content: &ref_131
             application/json:
               schema:
                 allOf: &ref_45
@@ -2360,13 +2360,13 @@ paths:
                         properties: *ref_44
         '500':
           description: An error occurred processing the bulk quote
-          content: &ref_133
+          content: &ref_132
             application/json:
               schema:
                 allOf: *ref_45
         '504':
           description: Timeout occurred processing the bulk quote
-          content: &ref_134
+          content: &ref_133
             application/json:
               schema:
                 allOf: *ref_45
@@ -2384,7 +2384,7 @@ paths:
         - name: bulkQuoteId
           in: path
           required: true
-          schema: &ref_145
+          schema: &ref_144
             title: CorrelationId
             type: string
             pattern: >-
@@ -2408,11 +2408,11 @@ paths:
             application/json:
               schema:
                 type: object
-                required: &ref_97
+                required: &ref_96
                   - bulkQuoteId
                   - currentState
                   - individualQuotes
-                properties: &ref_98
+                properties: &ref_97
                   bulkQuoteId:
                     title: CorrelationId
                     type: string
@@ -2430,7 +2430,7 @@ paths:
                     example: b51ec534-ee48-4575-b6a9-ead2955b8069
                   currentState:
                     type: string
-                    enum: &ref_96
+                    enum: &ref_95
                       - ERROR_OCCURRED
                       - COMPLETED
                   individualQuotes:
@@ -2469,7 +2469,7 @@ paths:
           application/json:
             schema:
               type: object
-              required: &ref_99
+              required: &ref_98
                 - homeTransactionId
                 - from
                 - to
@@ -2479,7 +2479,7 @@ paths:
                 - scenario
                 - initiator
                 - initiatorType
-              properties: &ref_100
+              properties: &ref_99
                 homeTransactionId:
                   type: string
                   description: >-
@@ -2534,13 +2534,12 @@ paths:
                   example: '123.45'
                 scenario:
                   type: string
-                  enum: &ref_49
-                    - TRANSFER
+                  enum: *ref_5
                   description: Type of transaction.
                 initiator:
                   title: TransactionInitiator
                   type: string
-                  enum: &ref_50
+                  enum: &ref_49
                     - PAYER
                     - PAYEE
                   description: >-
@@ -2571,11 +2570,11 @@ paths:
       responses:
         '200':
           description: Request to Pay completed successfully
-          content: &ref_135
+          content: &ref_134
             application/json:
               schema:
                 type: object
-                required: &ref_103
+                required: &ref_102
                   - transactionRequestId
                   - from
                   - to
@@ -2584,7 +2583,7 @@ paths:
                   - amount
                   - transactionType
                   - requestToPayState
-                properties: &ref_104
+                properties: &ref_103
                   transactionRequestId:
                     title: CorrelationId
                     type: string
@@ -2651,12 +2650,12 @@ paths:
                     example: '123.45'
                   scenario:
                     type: string
-                    enum: *ref_49
+                    enum: *ref_5
                     description: Type of transaction.
                   initiator:
                     title: TransactionInitiator
                     type: string
-                    enum: *ref_50
+                    enum: *ref_49
                     description: >-
                       Below are the allowed values for the enumeration.
 
@@ -2684,7 +2683,7 @@ paths:
                   authenticationType:
                     title: AuthenticationType
                     type: string
-                    enum: &ref_101
+                    enum: &ref_100
                       - OTP
                       - QRCODE
                       - U2F
@@ -2702,7 +2701,7 @@ paths:
                   requestToPayState:
                     title: TransactionRequestState
                     type: string
-                    enum: &ref_102
+                    enum: &ref_101
                       - RECEIVED
                       - PENDING
                       - ACCEPTED
@@ -2768,7 +2767,7 @@ paths:
           application/json:
             schema:
               type: object
-              required: &ref_105
+              required: &ref_104
                 - requestToPayTransactionId
                 - from
                 - to
@@ -2778,7 +2777,7 @@ paths:
                 - scenario
                 - initiator
                 - initiatorType
-              properties: &ref_106
+              properties: &ref_105
                 requestToPayTransactionId:
                   type: string
                   description: >-
@@ -2833,12 +2832,12 @@ paths:
                   example: '123.45'
                 scenario:
                   type: string
-                  enum: *ref_49
+                  enum: *ref_5
                   description: Type of transaction.
                 initiator:
                   title: TransactionInitiator
                   type: string
-                  enum: *ref_50
+                  enum: *ref_49
                   description: >-
                     Below are the allowed values for the enumeration.
 
@@ -2874,11 +2873,11 @@ paths:
       responses:
         '200':
           description: Transfer completed successfully
-          content: &ref_136
+          content: &ref_135
             application/json:
               schema:
                 type: object
-                required: &ref_107
+                required: &ref_106
                   - requestToPayTransactionId
                   - from
                   - to
@@ -2886,7 +2885,7 @@ paths:
                   - currency
                   - amount
                   - transactionType
-                properties: &ref_108
+                properties: &ref_107
                   transferId:
                     title: CorrelationId
                     type: string
@@ -3012,7 +3011,7 @@ paths:
                     properties: *ref_26
         '400':
           description: Malformed or missing required body, headers or parameters
-          content: &ref_137
+          content: &ref_136
             application/json:
               schema:
                 allOf: *ref_14
@@ -3050,9 +3049,9 @@ paths:
                   required: *ref_35
                   properties: *ref_36
                 - type: object
-                  required: &ref_109
+                  required: &ref_108
                     - acceptOTP
-                  properties: &ref_110
+                  properties: &ref_109
                     acceptOTP:
                       type: boolean
                       enum:
@@ -3062,7 +3061,7 @@ paths:
         - name: requestToPayTransactionId
           in: path
           required: true
-          schema: &ref_146
+          schema: &ref_145
             title: CorrelationId
             type: string
             pattern: >-
@@ -3107,7 +3106,7 @@ paths:
           application/json:
             schema:
               type: array
-              items: &ref_51
+              items: &ref_50
                 type: object
                 required:
                   - idType
@@ -3202,13 +3201,13 @@ paths:
       responses:
         '200':
           description: Accounts creation completed
-          content: &ref_138
+          content: &ref_137
             application/json:
               schema:
                 type: object
-                required: &ref_52
+                required: &ref_51
                   - accounts
-                properties: &ref_53
+                properties: &ref_52
                   modelId:
                     title: CorrelationId
                     type: string
@@ -3226,10 +3225,10 @@ paths:
                     example: b51ec534-ee48-4575-b6a9-ead2955b8069
                   accounts:
                     type: array
-                    items: *ref_51
+                    items: *ref_50
                   response:
                     type: array
-                    items: &ref_111
+                    items: &ref_110
                       type: object
                       required:
                         - idType
@@ -3318,7 +3317,7 @@ paths:
                           properties: *ref_22
                   currentState:
                     type: string
-                    enum: &ref_112
+                    enum: &ref_111
                       - ERROR_OCCURRED
                       - COMPLETED
                   lastError:
@@ -3338,10 +3337,10 @@ paths:
                         type: object
         '400':
           description: An error occurred creating accounts
-          content: &ref_54
+          content: &ref_53
             application/json:
               schema:
-                allOf: &ref_55
+                allOf: &ref_54
                   - type: object
                     properties: *ref_22
                   - type: object
@@ -3350,23 +3349,23 @@ paths:
                     properties:
                       executionState:
                         type: object
-                        required: *ref_52
-                        properties: *ref_53
+                        required: *ref_51
+                        properties: *ref_52
         '500':
           description: An error occurred creating accounts
-          content: *ref_54
+          content: *ref_53
         '504':
           description: Timeout occurred creating accounts
-          content: &ref_139
+          content: &ref_138
             application/json:
               schema:
-                allOf: *ref_55
+                allOf: *ref_54
   /parties/{Type}/{ID}:
     parameters:
       - name: Type
         in: path
         required: true
-        schema: &ref_58
+        schema: &ref_57
           type: string
         description: >-
           The type of the party identifier. For example, `MSISDN`,
@@ -3374,7 +3373,7 @@ paths:
       - name: ID
         in: path
         required: true
-        schema: &ref_59
+        schema: &ref_58
           type: string
         description: The identifier value.
     get:
@@ -3390,13 +3389,13 @@ paths:
       responses:
         '200':
           description: PartiesByIdSuccess
-          content: &ref_60
+          content: &ref_59
             application/json:
               schema:
                 title: partiesByIdResponse
                 type: object
                 description: GET /parties/{Type}/{ID} response object
-                properties: &ref_113
+                properties: &ref_112
                   party:
                     properties:
                       body:
@@ -3412,16 +3411,16 @@ paths:
                       - headers
                   currentState:
                     type: string
-                    enum: &ref_64
+                    enum: &ref_63
                       - WAITING_FOR_ACTION
                       - COMPLETED
                       - ERROR_OCCURRED
-                required: &ref_114
+                required: &ref_113
                   - party
                   - currentState
         '404':
           description: PartiesByIdError404
-          content: &ref_61
+          content: &ref_60
             application/json:
               schema:
                 type: object
@@ -3430,26 +3429,26 @@ paths:
                     title: ErrorInformation
                     type: object
                     description: Data model for the complex type ErrorInformation.
-                    properties: *ref_56
-                    required: *ref_57
+                    properties: *ref_55
+                    required: *ref_56
   /parties/{Type}/{ID}/{SubId}:
     parameters:
       - name: Type
         in: path
         required: true
-        schema: *ref_58
+        schema: *ref_57
         description: >-
           The type of the party identifier. For example, `MSISDN`,
           `PERSONAL_ID`.
       - name: ID
         in: path
         required: true
-        schema: *ref_59
+        schema: *ref_58
         description: The identifier value.
       - name: SubId
         in: path
         required: true
-        schema: &ref_147
+        schema: &ref_146
           type: string
         description: >-
           A sub-identifier of the party identifier, or a sub-type of the party
@@ -3467,10 +3466,10 @@ paths:
       responses:
         '200':
           description: PartiesByIdSuccess
-          content: *ref_60
+          content: *ref_59
         '404':
           description: PartiesByIdError404
-          content: *ref_61
+          content: *ref_60
   /quotes:
     post:
       summary: Quotes endpoint
@@ -3486,7 +3485,7 @@ paths:
               title: QuotesPostRequest
               type: object
               description: The object sent in the POST /quotes request.
-              properties: &ref_115
+              properties: &ref_114
                 quoteId:
                   title: CorrelationId
                   type: string
@@ -3570,7 +3569,7 @@ paths:
                   required: *ref_7
                 transactionType:
                   type: string
-                  enum: *ref_49
+                  enum: *ref_5
                   description: Type of transaction.
                 geoCode:
                   title: GeoCode
@@ -3579,8 +3578,8 @@ paths:
                     Data model for the complex type GeoCode. Indicates the
                     geographic location from where the transaction was
                     initiated.
-                  properties: *ref_62
-                  required: *ref_63
+                  properties: *ref_61
+                  required: *ref_62
                 note:
                   title: Note
                   type: string
@@ -3612,7 +3611,7 @@ paths:
                     list of extensions, specific to deployment.
                   properties: *ref_10
                   required: *ref_11
-              required: &ref_116
+              required: &ref_115
                 - quoteId
                 - transactionId
                 - payee
@@ -3624,12 +3623,12 @@ paths:
       responses:
         '200':
           description: sync response from POST /quotes
-          content: &ref_140
+          content: &ref_139
             application/json:
               schema:
                 title: QuotesPostResponse
                 type: object
-                properties: &ref_117
+                properties: &ref_116
                   quotes:
                     title: QuotesIDPutResponse
                     type: object
@@ -3676,8 +3675,8 @@ paths:
                               Data model for the complex type GeoCode. Indicates
                               the geographic location from where the transaction
                               was initiated.
-                            properties: *ref_62
-                            required: *ref_63
+                            properties: *ref_61
+                            required: *ref_62
                           ilpPacket:
                             title: IlpPacket
                             type: string
@@ -3718,16 +3717,16 @@ paths:
                       - headers
                   currentState:
                     type: string
-                    enum: *ref_64
-                required: &ref_118
+                    enum: *ref_63
+                required: &ref_117
                   - quotes
                   - currentState
         '500':
           description: An error occurred processing the quotes request
-          content: &ref_141
+          content: &ref_140
             application/json:
               schema:
-                allOf: &ref_119
+                allOf: &ref_118
                   - type: object
                     properties: *ref_22
                   - type: object
@@ -3745,7 +3744,7 @@ paths:
             schema:
               title: SimpleTransfersPostRequest
               type: object
-              properties: &ref_122
+              properties: &ref_121
                 fspId:
                   title: FspId
                   type: string
@@ -3756,7 +3755,7 @@ paths:
                   title: TransfersPostRequest
                   type: object
                   description: The object sent in the POST /transfers request.
-                  properties: &ref_120
+                  properties: &ref_119
                     transferId:
                       title: CorrelationId
                       type: string
@@ -3833,7 +3832,7 @@ paths:
                         optional list of extensions, specific to deployment.
                       properties: *ref_10
                       required: *ref_11
-                  required: &ref_121
+                  required: &ref_120
                     - transferId
                     - payeeFsp
                     - payerFsp
@@ -3841,19 +3840,19 @@ paths:
                     - ilpPacket
                     - condition
                     - expiration
-              required: &ref_123
+              required: &ref_122
                 - fspId
                 - transfersPostRequest
         required: true
       responses:
         '200':
           description: sync response from POST /simpleTransfers
-          content: &ref_142
+          content: &ref_141
             application/json:
               schema:
                 title: SimpleTransfersPostResponse
                 type: object
-                properties: &ref_124
+                properties: &ref_123
                   transfer:
                     properties:
                       body:
@@ -3869,16 +3868,16 @@ paths:
                       - headers
                   currentState:
                     type: string
-                    enum: *ref_64
-                required: &ref_125
+                    enum: *ref_63
+                required: &ref_124
                   - transfer
                   - currentState
         '500':
           description: An error occurred processing the simple transfers request
-          content: &ref_143
+          content: &ref_142
             application/json:
               schema:
-                allOf: &ref_126
+                allOf: &ref_125
                   - type: object
                     properties: *ref_22
                   - type: object
@@ -4093,7 +4092,7 @@ components:
         minor currency unit; a negative value is not allowed. Using more than 18
         digits in the major currency unit is not allowed.
       example: '123.45'
-    transactionType:
+    TransactionType:
       type: string
       enum: *ref_5
       description: Type of transaction.
@@ -4106,8 +4105,8 @@ components:
       example: Note sent to Payee.
     transferRequest:
       type: object
-      required: *ref_65
-      properties: *ref_66
+      required: *ref_64
+      properties: *ref_65
     CorrelationId:
       title: CorrelationId
       type: string
@@ -4169,8 +4168,8 @@ components:
       description: >-
         Data model for the complex type GeoCode. Indicates the geographic
         location from where the transaction was initiated.
-      properties: *ref_62
-      required: *ref_63
+      properties: *ref_61
+      required: *ref_62
     IlpPacket:
       title: IlpPacket
       type: string
@@ -4210,7 +4209,7 @@ components:
     TransferState:
       title: TransferState
       type: string
-      enum: *ref_67
+      enum: *ref_66
       description: >-
         Below are the allowed values for the enumeration.
 
@@ -4252,8 +4251,8 @@ components:
       title: ErrorInformation
       type: object
       description: Data model for the complex type ErrorInformation.
-      properties: *ref_56
-      required: *ref_57
+      properties: *ref_55
+      required: *ref_56
     mojaloopError:
       type: object
       properties: *ref_39
@@ -4274,8 +4273,8 @@ components:
       allOf: *ref_14
     transferStatusResponse:
       type: object
-      required: *ref_68
-      properties: *ref_69
+      required: *ref_67
+      properties: *ref_68
     transferContinuationAcceptParty:
       type: object
       required: *ref_31
@@ -4286,16 +4285,16 @@ components:
       properties: *ref_36
     autoAcceptPartyOption:
       type: object
-      required: *ref_70
-      properties: *ref_71
+      required: *ref_69
+      properties: *ref_70
     bulkPerTransferFeeLimit:
       type: object
-      required: *ref_72
-      properties: *ref_73
+      required: *ref_71
+      properties: *ref_72
     autoAcceptQuote:
       type: object
-      required: *ref_74
-      properties: *ref_75
+      required: *ref_73
+      properties: *ref_74
     bulkTransferOptions:
       type: object
       required: *ref_27
@@ -4306,8 +4305,8 @@ components:
       description: >-
         Data model for the complex type PartyIdInfo. An ExtensionList element
         has been added to this reqeust in version v1.1
-      properties: *ref_76
-      required: *ref_77
+      properties: *ref_75
+      required: *ref_76
     PartyName:
       title: PartyName
       type: string
@@ -4318,12 +4317,12 @@ components:
       title: PartyComplexName
       type: object
       description: Data model for the complex type PartyComplexName.
-      properties: *ref_78
+      properties: *ref_77
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
       description: Data model for the complex type PartyPersonalInfo.
-      properties: *ref_79
+      properties: *ref_78
     Party:
       title: Party
       type: object
@@ -4334,25 +4333,25 @@ components:
       title: IndividualTransfer
       type: object
       description: Data model for the complex type 'individualTransfer'.
-      properties: *ref_80
-      required: *ref_81
+      properties: *ref_79
+      required: *ref_80
     bulkTransferRequest:
       type: object
-      required: *ref_82
-      properties: *ref_83
+      required: *ref_81
+      properties: *ref_82
     bulkTransferStatus:
       type: string
-      enum: *ref_84
+      enum: *ref_83
     individualTransferResult:
       type: object
-      required: *ref_85
-      properties: *ref_86
+      required: *ref_84
+      properties: *ref_85
     bulkTransferResponse:
       type: object
-      required: *ref_87
-      properties: *ref_88
+      required: *ref_86
+      properties: *ref_87
     bulkTransferErrorResponse:
-      allOf: *ref_89
+      allOf: *ref_88
     individualTransferAccept:
       type: object
       description: Data model for the 'individualTransfer' while accepting party or quote.
@@ -4377,9 +4376,9 @@ components:
       description: >-
         This object represents a Mojaloop API error received at any time during
         the party discovery process
-      properties: *ref_90
+      properties: *ref_89
     bulkAcceptPartyErrorResponse:
-      allOf: *ref_91
+      allOf: *ref_90
     quoteError:
       type: object
       description: >-
@@ -4387,7 +4386,7 @@ components:
         the quote process
       properties: *ref_42
     bulkAcceptQuoteErrorResponse:
-      allOf: *ref_92
+      allOf: *ref_91
     individualQuote:
       title: IndividualQuote
       type: object
@@ -4396,11 +4395,11 @@ components:
       required: *ref_47
     bulkQuoteRequest:
       type: object
-      required: *ref_93
-      properties: *ref_94
+      required: *ref_92
+      properties: *ref_93
     individualQuoteResult:
       type: object
-      properties: *ref_95
+      properties: *ref_94
     bulkQuoteResponse:
       type: object
       required: *ref_43
@@ -4409,19 +4408,15 @@ components:
       allOf: *ref_45
     bulkQuoteStatus:
       type: string
-      enum: *ref_96
+      enum: *ref_95
     bulkQuoteStatusResponse:
       type: object
-      required: *ref_97
-      properties: *ref_98
-    TransactionType:
-      type: string
-      enum: *ref_49
-      description: Type of transaction.
+      required: *ref_96
+      properties: *ref_97
     TransactionInitiator:
       title: TransactionInitiator
       type: string
-      enum: *ref_50
+      enum: *ref_49
       description: >-
         Below are the allowed values for the enumeration.
 
@@ -4436,12 +4431,12 @@ components:
       example: PAYEE
     requestToPayRequest:
       type: object
-      required: *ref_99
-      properties: *ref_100
+      required: *ref_98
+      properties: *ref_99
     AuthenticationType:
       title: AuthenticationType
       type: string
-      enum: *ref_101
+      enum: *ref_100
       description: |-
         Below are the allowed values for the enumeration AuthenticationType.
         - OTP - One-time password generated by the Payer FSP.
@@ -4451,7 +4446,7 @@ components:
     TransactionRequestState:
       title: TransactionRequestState
       type: string
-      enum: *ref_102
+      enum: *ref_101
       description: |-
         Below are the allowed values for the enumeration.
         - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
@@ -4461,82 +4456,82 @@ components:
       example: RECEIVED
     requestToPayResponse:
       type: object
-      required: *ref_103
-      properties: *ref_104
+      required: *ref_102
+      properties: *ref_103
     requestToPayTransferRequest:
       type: object
-      required: *ref_105
-      properties: *ref_106
+      required: *ref_104
+      properties: *ref_105
     requestToPayTransferResponse:
       type: object
-      required: *ref_107
-      properties: *ref_108
+      required: *ref_106
+      properties: *ref_107
     transferContinuationAcceptOTP:
       type: object
-      required: *ref_109
-      properties: *ref_110
+      required: *ref_108
+      properties: *ref_109
     accountsRequest:
       type: array
-      items: *ref_51
+      items: *ref_50
     accountCreationStatus:
       type: array
-      items: *ref_111
+      items: *ref_110
     accountsCreationState:
       type: string
-      enum: *ref_112
+      enum: *ref_111
     accountsResponse:
       type: object
-      required: *ref_52
-      properties: *ref_53
+      required: *ref_51
+      properties: *ref_52
     errorAccountsResponse:
-      allOf: *ref_55
+      allOf: *ref_54
     async2SyncCurrentState:
       type: string
-      enum: *ref_64
+      enum: *ref_63
     partiesByIdResponse:
       title: partiesByIdResponse
       type: object
       description: GET /parties/{Type}/{ID} response object
-      properties: *ref_113
-      required: *ref_114
-    quotesPostRequest:
+      properties: *ref_112
+      required: *ref_113
+    QuotesPostRequest:
       title: QuotesPostRequest
       type: object
       description: The object sent in the POST /quotes request.
-      properties: *ref_115
-      required: *ref_116
+      properties: *ref_114
+      required: *ref_115
     quotesPostResponse:
       title: QuotesPostResponse
       type: object
-      properties: *ref_117
-      required: *ref_118
+      properties: *ref_116
+      required: *ref_117
     errorQuotesResponse:
-      allOf: *ref_119
+      allOf: *ref_118
     TransfersPostRequest:
       title: TransfersPostRequest
       type: object
       description: The object sent in the POST /transfers request.
-      properties: *ref_120
-      required: *ref_121
+      properties: *ref_119
+      required: *ref_120
     simpleTransfersPostRequest:
       title: SimpleTransfersPostRequest
       type: object
-      properties: *ref_122
-      required: *ref_123
+      properties: *ref_121
+      required: *ref_122
     simpleTransfersPostResponse:
       title: SimpleTransfersPostResponse
       type: object
-      properties: *ref_124
-      required: *ref_125
+      properties: *ref_123
+      required: *ref_124
     errorSimpleTransfersResponse:
-      allOf: *ref_126
+      allOf: *ref_125
   responses:
     transferSuccess:
       description: Transfer completed successfully
       content: *ref_15
     transferBadRequest:
       description: Malformed or missing required body, headers or parameters
-      content: *ref_127
+      content: *ref_126
     transferServerError:
       description: An error occurred processing the transfer
       content: *ref_16
@@ -4547,61 +4542,61 @@ components:
       description: Bulk transfer accepted successfully
     bulkTransferBadRequest:
       description: Malformed or missing required body, headers or parameters
-      content: *ref_128
+      content: *ref_127
     errorResponse:
       description: Internal Server Error
-      content: *ref_129
+      content: *ref_128
     bulkTransferPutBadRequest:
       description: Malformed or missing required body, headers or parameters
-      content: *ref_130
+      content: *ref_129
     bulkQuoteSuccess:
       description: Bulk quote completed successfully
-      content: *ref_131
+      content: *ref_130
     bulkQuoteBadRequest:
       description: Malformed or missing required body, headers or parameters
-      content: *ref_132
+      content: *ref_131
     bulkQuoteServerError:
       description: An error occurred processing the bulk quote
-      content: *ref_133
+      content: *ref_132
     bulkQuoteTimeout:
       description: Timeout occurred processing the bulk quote
-      content: *ref_134
+      content: *ref_133
     requestToPaySuccess:
       description: Request to Pay completed successfully
-      content: *ref_135
+      content: *ref_134
     requestToPayTransferSuccess:
       description: Transfer completed successfully
-      content: *ref_136
+      content: *ref_135
     requestToPayTransferBadRequest:
       description: Malformed or missing required body, headers or parameters
-      content: *ref_137
+      content: *ref_136
     accountsCreationCompleted:
       description: Accounts creation completed
-      content: *ref_138
+      content: *ref_137
     accountsCreationError:
       description: An error occurred creating accounts
-      content: *ref_54
+      content: *ref_53
     accountsCreationTimeout:
       description: Timeout occurred creating accounts
-      content: *ref_139
+      content: *ref_138
     partiesByIdSuccess:
       description: PartiesByIdSuccess
-      content: *ref_60
+      content: *ref_59
     partiesByIdError404:
       description: PartiesByIdError404
-      content: *ref_61
+      content: *ref_60
     quotesPostSuccess:
       description: sync response from POST /quotes
-      content: *ref_140
+      content: *ref_139
     quotesServerError:
       description: An error occurred processing the quotes request
-      content: *ref_141
+      content: *ref_140
     simpleTransfersPostSuccess:
       description: sync response from POST /simpleTransfers
-      content: *ref_142
+      content: *ref_141
     simpleTransfersServerError:
       description: An error occurred processing the simple transfers request
-      content: *ref_143
+      content: *ref_142
   parameters:
     transferId:
       name: transferId
@@ -4615,7 +4610,7 @@ components:
       name: bulkTransactionId
       in: path
       required: true
-      schema: *ref_144
+      schema: *ref_143
       description: >-
         Identifier of the bulk transfer to continue as returned in the response
         to a `POST /bulkTransfers` request.
@@ -4623,7 +4618,7 @@ components:
       name: bulkQuoteId
       in: path
       required: true
-      schema: *ref_145
+      schema: *ref_144
       description: >-
         Identifier of the bulk transfer to continue as returned in the response
         to a `POST /bulkTransfers` request.
@@ -4631,7 +4626,7 @@ components:
       name: requestToPayTransactionId
       in: path
       required: true
-      schema: *ref_146
+      schema: *ref_145
       description: >-
         Identifier of the merchant request to pay transfer to continue as
         returned in the response to a `POST /requestToPayTransfer` request.
@@ -4639,19 +4634,19 @@ components:
       name: Type
       in: path
       required: true
-      schema: *ref_58
+      schema: *ref_57
       description: The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.
     ID:
       name: ID
       in: path
       required: true
-      schema: *ref_59
+      schema: *ref_58
       description: The identifier value.
     SubId:
       name: SubId
       in: path
       required: true
-      schema: *ref_147
+      schema: *ref_146
       description: >-
         A sub-identifier of the party identifier, or a sub-type of the party
         identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`.

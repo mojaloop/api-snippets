@@ -27707,7 +27707,7 @@ export interface components {
      * @description Type of transaction.
      * @enum {string}
      */
-    transactionType: "TRANSFER";
+    TransactionType: "TRANSFER";
     /**
      * Note
      * @description Memo assigned to transaction.
@@ -40986,11 +40986,6 @@ export interface components {
       }[];
     };
     /**
-     * @description Type of transaction.
-     * @enum {string}
-     */
-    TransactionType: "TRANSFER";
-    /**
      * TransactionInitiator
      * @description Below are the allowed values for the enumeration.
      * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
@@ -44605,7 +44600,7 @@ export interface components {
      * QuotesPostRequest
      * @description The object sent in the POST /quotes request.
      */
-    quotesPostRequest: {
+    QuotesPostRequest: {
       /**
        * CorrelationId
        * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).

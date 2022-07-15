@@ -13,7 +13,7 @@ properties:
   amount:
     $ref: ./Amount.yaml
   transactionType:
-    $ref: ./transactionType.yaml
+    $ref: ./TransactionType.yaml
   note:
     $ref: ./Note.yaml
   extensions:

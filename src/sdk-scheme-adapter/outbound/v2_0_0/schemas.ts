@@ -24,7 +24,7 @@ export namespace Schemas {
   export const AmountType = JsonSchemas.AmountType
   export const Currency = JsonSchemas.Currency
   export const Amount = JsonSchemas.Amount
-  export const transactionType = JsonSchemas.transactionType
+  export const TransactionType = JsonSchemas.TransactionType
   export const Note = JsonSchemas.Note
   export const transferRequest = JsonSchemas.transferRequest
   export const CorrelationId = JsonSchemas.CorrelationId
@@ -81,7 +81,6 @@ export namespace Schemas {
   export const bulkQuoteErrorResponse = JsonSchemas.bulkQuoteErrorResponse
   export const bulkQuoteStatus = JsonSchemas.bulkQuoteStatus
   export const bulkQuoteStatusResponse = JsonSchemas.bulkQuoteStatusResponse
-  export const TransactionType = JsonSchemas.TransactionType
   export const TransactionInitiator = JsonSchemas.TransactionInitiator
   export const requestToPayRequest = JsonSchemas.requestToPayRequest
   export const AuthenticationType = JsonSchemas.AuthenticationType
@@ -97,7 +96,7 @@ export namespace Schemas {
   export const errorAccountsResponse = JsonSchemas.errorAccountsResponse
   export const async2SyncCurrentState = JsonSchemas.async2SyncCurrentState
   export const partiesByIdResponse = JsonSchemas.partiesByIdResponse
-  export const quotesPostRequest = JsonSchemas.quotesPostRequest
+  export const QuotesPostRequest = JsonSchemas.QuotesPostRequest
   export const quotesPostResponse = JsonSchemas.quotesPostResponse
   export const errorQuotesResponse = JsonSchemas.errorQuotesResponse
   export const TransfersPostRequest = JsonSchemas.TransfersPostRequest

@@ -1,5 +1,5 @@
 put:
-  summary: Amends the bulk transfer request
+  summary: Amends the bulk transaction request
   description: >-
     The HTTP request `PUT /bulkTransfers/{bulkTransactionId}` is used to amend
     information regarding a bulk transfer, i.e. when autoAcceptParty or
@@ -8,25 +8,25 @@ put:
     the URI should contain the `bulkTransactionId` that was used for the
     creation of the bulk transfer.
   tags:
-    - BulkTransfers
+    - BulkTransactions
   parameters:
     - $ref: ../components/parameters/bulkTransactionId.yaml
   requestBody:
-    description: Bulk transfer request body
+    description: Bulk transaction request body
     content:
       application/json:
         schema:
           oneOf:
-            - $ref: ../components/schemas/bulkTransferContinuationAcceptParty.yaml
-            - $ref: ../components/schemas/bulkTransferContinuationAcceptQuote.yaml
+            - $ref: ../components/schemas/bulkTransactionContinuationAcceptParty.yaml
+            - $ref: ../components/schemas/bulkTransactionContinuationAcceptQuote.yaml
     required: true
   responses:
     '202':
-      description: Bulk transfer information successfully amended
+      description: Bulk transaction information successfully amended
     '400':
-      $ref: ../components/responses/bulkTransferPutBadRequest.yaml
+      $ref: ../components/responses/bulkTransactionPutBadRequest.yaml
     '500':
-      description: An error occurred processing the bulk transfer
+      description: An error occurred processing the bulk transaction
       content:
         application/json:
           schema:
