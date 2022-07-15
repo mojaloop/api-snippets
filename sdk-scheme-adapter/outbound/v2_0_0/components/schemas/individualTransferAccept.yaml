@@ -1,0 +1,10 @@
+type: object
+description: Data model for the 'individualTransfer' while accepting party or quote.
+properties:
+  homeTransactionId:
+    $ref: ./CorrelationId.yaml
+  transactionId:
+    $ref: ./CorrelationId.yaml
+required:
+  - homeTransactionId
+  - transactionId

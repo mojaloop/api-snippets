@@ -1,0 +1,19 @@
+title: partiesByIdResponse
+type: object
+description: GET /parties/{Type}/{ID} response object
+properties:
+  party:
+    properties:
+      body:
+        $ref: ./Party.yaml
+        description: Information regarding the requested Party.
+      headers:
+        type: object
+    required:
+      - body
+      - headers
+  currentState:
+    $ref: ./async2SyncCurrentState.yaml
+required:
+  - party
+  - currentState

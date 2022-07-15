@@ -1,0 +1,37 @@
+type: object
+required:
+  - homeTransactionId
+  - transactionId
+  - to
+  - amountType
+  - currency
+  - amount
+properties:
+  transferId:
+    $ref: ./CorrelationId.yaml
+  homeTransactionId:
+    $ref: ./CorrelationId.yaml
+  transactionId:
+    $ref: ./CorrelationId.yaml
+  to:
+    $ref: ./Party.yaml
+  amountType:
+    $ref: ./AmountType.yaml
+  currency:
+    $ref: ./Currency.yaml
+  amount:
+    $ref: ./Amount.yaml
+  note:
+    $ref: ./Note.yaml
+  quoteId:
+    $ref: ./CorrelationId.yaml
+  quoteResponse:
+    $ref: ./QuotesIDPutResponse.yaml
+  fulfil:
+    $ref: ./TransfersIDPutResponse.yaml
+  quoteExtensions:
+    $ref: ./ExtensionList.yaml
+  transferExtensions:
+    $ref: ./ExtensionList.yaml
+  lastError:
+    $ref: ./transferError.yaml
