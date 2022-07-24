@@ -26,10 +26,14 @@ paths:
     $ref: paths/transfers.yaml
   /transfers/{transferId}:
     $ref: paths/transfers_transferId.yaml
+  /bulkTransactions:
+    $ref: paths/bulkTransactions.yaml
+  /bulkTransactions/{bulkTransactionId}:
+    $ref: paths/bulkTransactions_bulkTransactionId.yaml
   /bulkTransfers:
     $ref: paths/bulkTransfers.yaml
-  /bulkTransfers/{bulkTransactionId}:
-    $ref: paths/bulkTransfers_bulkTransactionId.yaml
+  /bulkTransfers/{bulkTransferId}:
+    $ref: paths/bulkTransfers_bulkTransferId.yaml
   /bulkQuotes:
     $ref: paths/bulkQuotes.yaml
   /bulkQuotes/{bulkQuoteId}:
