@@ -1,8 +1,8 @@
 put:
   summary: Amends the bulk transaction request
   description: >-
-    The HTTP request `PUT /bulkTransfers/{bulkTransactionId}` is used to amend
-    information regarding a bulk transfer, i.e. when autoAcceptParty or
+    The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to amend
+    information regarding a bulk transaction, i.e. when autoAcceptParty or
     autoAcceptQuote  is false then the payer need to provide confirmation to
     proceed with further processing of the request. The `{bulkTransactionId}` in
     the URI should contain the `bulkTransactionId` that was used for the
