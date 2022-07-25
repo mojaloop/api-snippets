@@ -12010,8 +12010,8 @@ export interface paths {
                   statusCode?: string;
                   /** @description Error message text. */
                   message?: string;
-                } & ({
-                  bulkTransferState?: {
+                } & {
+                  bulkTransferState: {
                     /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
                     bulkHomeTransactionID: string;
                     /** @description List of individual transfers in a bulk transfer with accept party information. */
@@ -12075,9 +12075,7 @@ export interface paths {
                       };
                     };
                   };
-                } & {
-                  bulkTansferState: unknown;
-                }))
+                })
               | ({
                   /** @description Error code as string. */
                   statusCode?: string;
@@ -40970,13 +40968,13 @@ export interface components {
         };
       };
     };
-    bulkAcceptPartyErrorResponse: {
+    bulkTransactionAcceptPartyErrorResponse: {
       /** @description Error code as string. */
       statusCode?: string;
       /** @description Error message text. */
       message?: string;
-    } & ({
-      bulkTransferState?: {
+    } & {
+      bulkTransferState: {
         /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
         bulkHomeTransactionID: string;
         /** @description List of individual transfers in a bulk transfer with accept party information. */
@@ -41040,9 +41038,7 @@ export interface components {
           };
         };
       };
-    } & {
-      bulkTansferState: unknown;
-    });
+    };
     /** @description This object represents a Mojaloop API error received at any time during the quote process */
     quoteError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
@@ -41087,7 +41083,7 @@ export interface components {
         };
       };
     };
-    bulkAcceptQuoteErrorResponse: {
+    bulkTransactionAcceptQuoteErrorResponse: {
       /** @description Error code as string. */
       statusCode?: string;
       /** @description Error message text. */
@@ -56708,8 +56704,8 @@ export interface components {
               statusCode?: string;
               /** @description Error message text. */
               message?: string;
-            } & ({
-              bulkTransferState?: {
+            } & {
+              bulkTransferState: {
                 /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
                 bulkHomeTransactionID: string;
                 /** @description List of individual transfers in a bulk transfer with accept party information. */
@@ -56773,9 +56769,7 @@ export interface components {
                   };
                 };
               };
-            } & {
-              bulkTansferState: unknown;
-            }))
+            })
           | ({
               /** @description Error code as string. */
               statusCode?: string;

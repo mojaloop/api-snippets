@@ -70,9 +70,9 @@ export namespace Schemas {
   export const bulkTransactionContinuationAcceptParty = JsonSchemas.bulkTransactionContinuationAcceptParty
   export const bulkTransactionContinuationAcceptQuote = JsonSchemas.bulkTransactionContinuationAcceptQuote
   export const partyError = JsonSchemas.partyError
-  export const bulkAcceptPartyErrorResponse = JsonSchemas.bulkAcceptPartyErrorResponse
+  export const bulkTransactionAcceptPartyErrorResponse = JsonSchemas.bulkTransactionAcceptPartyErrorResponse
   export const quoteError = JsonSchemas.quoteError
-  export const bulkAcceptQuoteErrorResponse = JsonSchemas.bulkAcceptQuoteErrorResponse
+  export const bulkTransactionAcceptQuoteErrorResponse = JsonSchemas.bulkTransactionAcceptQuoteErrorResponse
   export const individualTransfer = JsonSchemas.individualTransfer
   export const bulkTransferRequest = JsonSchemas.bulkTransferRequest
   export const bulkTransferStatus = JsonSchemas.bulkTransferStatus

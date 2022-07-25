@@ -1931,7 +1931,7 @@ paths:
                         properties: *ref_22
                       - type: object
                         required:
-                          - bulkTansferState
+                          - bulkTransferState
                         properties:
                           bulkTransferState:
                             allOf:
@@ -4565,7 +4565,7 @@ components:
         This object represents a Mojaloop API error received at any time during
         the party discovery process
       properties: *ref_90
-    bulkAcceptPartyErrorResponse:
+    bulkTransactionAcceptPartyErrorResponse:
       allOf: *ref_91
     quoteError:
       type: object
@@ -4573,7 +4573,7 @@ components:
         This object represents a Mojaloop API error received at any time during
         the quote process
       properties: *ref_44
-    bulkAcceptQuoteErrorResponse:
+    bulkTransactionAcceptQuoteErrorResponse:
       allOf: *ref_92
     individualTransfer:
       title: IndividualTransfer

@@ -13254,7 +13254,7 @@
       }
     }
   },
-  "bulkAcceptPartyErrorResponse": {
+  "bulkTransactionAcceptPartyErrorResponse": {
     "allOf": [
       {
         "type": "object",
@@ -13272,7 +13272,7 @@
       {
         "type": "object",
         "required": [
-          "bulkTansferState"
+          "bulkTransferState"
         ],
         "properties": {
           "bulkTransferState": {
@@ -13509,7 +13509,7 @@
       }
     }
   },
-  "bulkAcceptQuoteErrorResponse": {
+  "bulkTransactionAcceptQuoteErrorResponse": {
     "allOf": [
       {
         "type": "object",
