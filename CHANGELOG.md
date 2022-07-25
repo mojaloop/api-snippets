@@ -1,3 +1,4 @@
+# Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
 ### Features
 
 * add sdk outbound api ([#131](https://github.com/mojaloop/api-snippets/issues/131)) ([de4d3a5](https://github.com/mojaloop/api-snippets/commit/de4d3a545737f98b050d7347a2dfe7ea433655eb))
