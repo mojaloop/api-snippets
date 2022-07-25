@@ -3,5 +3,5 @@ content:
   application/json:
     schema:
       oneOf:
-        - $ref: ../schemas/bulkAcceptPartyErrorResponse.yaml
-        - $ref: ../schemas/bulkAcceptQuoteErrorResponse.yaml
+        - $ref: ../schemas/bulkTransactionAcceptPartyErrorResponse.yaml
+        - $ref: ../schemas/bulkTransactionAcceptQuoteErrorResponse.yaml
