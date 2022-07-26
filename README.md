@@ -59,7 +59,7 @@ TODO: Add more detailed instructions for this workflow.
 
 1) Do we need to support both Swagger 2.0 and Open Api 3?
 
-## Suggestions
+## Suggestions for Improvement
 1) Avoid storing generated files in the repo. All artifacts should be generated during build time (when building docker image).
 2) Organize snippets into folders based on their usage (i.e. bulk API, participants API, etc)  
 
