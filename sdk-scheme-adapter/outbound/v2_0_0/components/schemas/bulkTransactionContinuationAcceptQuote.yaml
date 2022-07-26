@@ -1,24 +1,20 @@
+description: The object sent back as confirmation of quotes when autoAcceptQuotes is false.
 type: object
 required:
-- homeTransactionId
-- from
-- individualTransfers
+  - bulkHomeTransactionID
+  - individualTransfers
 properties:
-  homeTransactionId:
+  bulkHomeTransactionID:
     type: string
     description: >-
       Transaction ID from the DFSP backend, used to reconcile transactions
       between the Switch and DFSP backend systems.
-  bulkTransferId:
-    $ref: ./CorrelationId.yaml
-  from:
-    $ref: ./transferParty.yaml
   individualTransfers:
     description: List of individual transfers in a bulk transfer.
     type: array
     minItems: 1
     maxItems: 1000
     items:
-      $ref: ./individualTransfer.yaml
-  extensions:
-    $ref: ./ExtensionList.yaml
+      allOf:
+        - $ref: ./individualTransactionAccept.yaml
+        - $ref: ./transferContinuationAcceptQuote.yaml

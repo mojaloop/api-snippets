@@ -2,9 +2,9 @@ allOf:
   - $ref: ./errorResponse.yaml
   - type: object
     required:
-      - bulkTansferState
+      - bulkTransferState
     properties:
       bulkTransferState:
         allOf:
-          - $ref: ./bulkTransferContinuationAcceptParty.yaml
+          - $ref: ./bulkTransactionContinuationAcceptParty.yaml
           - $ref: ./partyError.yaml

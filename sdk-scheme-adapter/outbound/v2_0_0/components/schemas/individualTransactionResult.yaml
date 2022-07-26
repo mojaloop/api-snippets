@@ -1,5 +1,6 @@
 type: object
 required:
+  - homeTransactionId
   - transactionId
   - to
   - amountType
@@ -8,30 +9,29 @@ required:
 properties:
   transferId:
     $ref: ./CorrelationId.yaml
+  homeTransactionId:
+    $ref: ./CorrelationId.yaml
+  transactionId:
+    $ref: ./CorrelationId.yaml
   to:
-    $ref: ./transferParty.yaml
+    $ref: ./Party.yaml
   amountType:
     $ref: ./AmountType.yaml
   currency:
     $ref: ./Currency.yaml
   amount:
     $ref: ./Amount.yaml
-  transactionType:
-    $ref: ./TransactionType.yaml
   note:
     $ref: ./Note.yaml
   quoteId:
     $ref: ./CorrelationId.yaml
   quoteResponse:
     $ref: ./QuotesIDPutResponse.yaml
-  quoteResponseSource:
-    type: string
-    description: >
-      FSPID of the entity that supplied the quote response. This may not
-      be the same as the FSPID of the entity which owns the end user
-      account in the case of a FOREX transfer. i.e. it may be a FOREX
-      gateway.
   fulfil:
     $ref: ./TransfersIDPutResponse.yaml
+  quoteExtensions:
+    $ref: ./ExtensionList.yaml
+  transferExtensions:
+    $ref: ./ExtensionList.yaml
   lastError:
     $ref: ./transferError.yaml

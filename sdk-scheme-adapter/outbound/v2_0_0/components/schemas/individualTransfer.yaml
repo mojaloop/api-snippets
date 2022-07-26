@@ -2,29 +2,24 @@ title: IndividualTransfer
 type: object
 description: Data model for the complex type 'individualTransfer'.
 properties:
-  homeTransactionId:
+  transferId:
     $ref: ./CorrelationId.yaml
   to:
-    $ref: ./Party.yaml
-  reference:
-    description: Payer Loan reference
-    type: string
+    $ref: ./transferParty.yaml
   amountType:
     $ref: ./AmountType.yaml
   currency:
     $ref: ./Currency.yaml
   amount:
     $ref: ./Amount.yaml
+  transactionType:
+    $ref: ./TransactionType.yaml
   note:
     $ref: ./Note.yaml
-  quoteExtensions:
+  extensions:
     $ref: ./ExtensionList.yaml
-  transferExtensions:
-    $ref: ./ExtensionList.yaml
-  lastError:
-    $ref: ./transferError.yaml
 required:
-  - homeTransactionId
+  - transferId
   - to
   - amountType
   - currency

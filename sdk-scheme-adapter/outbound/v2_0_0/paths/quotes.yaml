@@ -9,7 +9,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/quotesPostRequest.yaml
+          $ref: ../components/schemas/QuotesPostRequest.yaml
     required: true
   responses:
     '200':
