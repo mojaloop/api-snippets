@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [14.2.0](https://github.com/mojaloop/api-snippets/compare/v14.1.0...v14.2.0) (2022-07-26)
+
+
+### Features
+
+* refactor bulk API ([#133](https://github.com/mojaloop/api-snippets/issues/133)) ([7d4f062](https://github.com/mojaloop/api-snippets/commit/7d4f062ec7cee170c4c2ecf486e1eba3db39f031))
+
 ## [14.1.0](https://github.com/mojaloop/api-snippets/compare/v14.0.0...v14.1.0) (2022-07-15)
 
 
