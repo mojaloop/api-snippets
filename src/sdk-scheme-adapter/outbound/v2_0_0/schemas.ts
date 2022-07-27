@@ -101,6 +101,7 @@ export namespace Schemas {
   export const async2SyncCurrentState = JsonSchemas.async2SyncCurrentState
   export const partiesByIdResponse = JsonSchemas.partiesByIdResponse
   export const QuotesPostRequest = JsonSchemas.QuotesPostRequest
+  export const simpleQuotesPostRequest = JsonSchemas.simpleQuotesPostRequest
   export const quotesPostResponse = JsonSchemas.quotesPostResponse
   export const errorQuotesResponse = JsonSchemas.errorQuotesResponse
   export const TransfersPostRequest = JsonSchemas.TransfersPostRequest

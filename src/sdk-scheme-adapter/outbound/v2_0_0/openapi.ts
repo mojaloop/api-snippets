@@ -11990,7 +11990,7 @@ export interface paths {
     };
   };
   "/bulkTransactions/{bulkTransactionId}": {
-    /** The HTTP request `PUT /bulkTransfers/{bulkTransactionId}` is used to amend information regarding a bulk transfer, i.e. when autoAcceptParty or autoAcceptQuote  is false then the payer need to provide confirmation to proceed with further processing of the request. The `{bulkTransactionId}` in the URI should contain the `bulkTransactionId` that was used for the creation of the bulk transfer. */
+    /** The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to amend information regarding a bulk transaction, i.e. when autoAcceptParty or autoAcceptQuote  is false then the payer need to provide confirmation to proceed with further processing of the request. The `{bulkTransactionId}` in the URI should contain the `bulkTransactionId` that was used for the creation of the bulk transfer. */
     put: {
       parameters: {
         path: {
@@ -48697,6 +48697,695 @@ export interface components {
         }[];
       };
     };
+    /** simpleQuotesPostRequest */
+    simpleQuotesPostRequest: {
+      /**
+       * FspId
+       * @description FSP identifier.
+       */
+      fspId: string;
+      /**
+       * QuotesPostRequest
+       * @description The object sent in the POST /quotes request.
+       */
+      quotesPostRequest: {
+        /**
+         * CorrelationId
+         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+         */
+        quoteId: string;
+        /**
+         * CorrelationId
+         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+         */
+        transactionId: string;
+        /**
+         * CorrelationId
+         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+         */
+        transactionRequestId?: string;
+        /**
+         * Party
+         * @description Data model for the complex type Party.
+         */
+        payee: {
+          /**
+           * PartyIdInfo
+           * @description Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
+           */
+          partyIdInfo: {
+            /**
+             * PartyIdType
+             * @description Below are the allowed values for the enumeration.
+             * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+             * - EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).
+             * - PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.
+             * - BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.
+             * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.
+             * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+             * - IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.
+             * - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.
+             * @enum {string}
+             */
+            partyIdType:
+              | "MSISDN"
+              | "EMAIL"
+              | "PERSONAL_ID"
+              | "BUSINESS"
+              | "DEVICE"
+              | "ACCOUNT_ID"
+              | "IBAN"
+              | "ALIAS";
+            /**
+             * PartyIdentifier
+             * @description Identifier of the Party.
+             * @example 16135551212
+             */
+            partyIdentifier: string;
+            /**
+             * PartySubIdOrType
+             * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+             */
+            partySubIdOrType?: string;
+            /**
+             * FspId
+             * @description FSP identifier.
+             */
+            fspId?: string;
+            /**
+             * ExtensionList
+             * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /** @description Number of Extension elements. */
+              extension: {
+                /**
+                 * ExtensionKey
+                 * @description Extension key.
+                 */
+                key: string;
+                /**
+                 * ExtensionValue
+                 * @description Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+          /**
+           * MerchantClassificationCode
+           * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+           */
+          merchantClassificationCode?: string;
+          /**
+           * PartyName
+           * @description Name of the Party. Could be a real name or a nickname.
+           */
+          name?: string;
+          /**
+           * PartyPersonalInfo
+           * @description Data model for the complex type PartyPersonalInfo.
+           */
+          personalInfo?: {
+            /**
+             * PartyComplexName
+             * @description Data model for the complex type PartyComplexName.
+             */
+            complexName?: {
+              /**
+               * FirstName
+               * @description First name of the Party (Name Type).
+               * @example Henrik
+               */
+              firstName?: string;
+              /**
+               * MiddleName
+               * @description Middle name of the Party (Name Type).
+               * @example Johannes
+               */
+              middleName?: string;
+              /**
+               * LastName
+               * @description Last name of the Party (Name Type).
+               * @example Karlsson
+               */
+              lastName?: string;
+            };
+            /**
+             * DateofBirth (type Date)
+             * @description Date of Birth of the Party.
+             * @example 1966-06-16
+             */
+            dateOfBirth?: string;
+          };
+        };
+        /**
+         * Party
+         * @description Data model for the complex type Party.
+         */
+        payer: {
+          /**
+           * PartyIdInfo
+           * @description Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
+           */
+          partyIdInfo: {
+            /**
+             * PartyIdType
+             * @description Below are the allowed values for the enumeration.
+             * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+             * - EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).
+             * - PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.
+             * - BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.
+             * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.
+             * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+             * - IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.
+             * - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.
+             * @enum {string}
+             */
+            partyIdType:
+              | "MSISDN"
+              | "EMAIL"
+              | "PERSONAL_ID"
+              | "BUSINESS"
+              | "DEVICE"
+              | "ACCOUNT_ID"
+              | "IBAN"
+              | "ALIAS";
+            /**
+             * PartyIdentifier
+             * @description Identifier of the Party.
+             * @example 16135551212
+             */
+            partyIdentifier: string;
+            /**
+             * PartySubIdOrType
+             * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+             */
+            partySubIdOrType?: string;
+            /**
+             * FspId
+             * @description FSP identifier.
+             */
+            fspId?: string;
+            /**
+             * ExtensionList
+             * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /** @description Number of Extension elements. */
+              extension: {
+                /**
+                 * ExtensionKey
+                 * @description Extension key.
+                 */
+                key: string;
+                /**
+                 * ExtensionValue
+                 * @description Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+          /**
+           * MerchantClassificationCode
+           * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+           */
+          merchantClassificationCode?: string;
+          /**
+           * PartyName
+           * @description Name of the Party. Could be a real name or a nickname.
+           */
+          name?: string;
+          /**
+           * PartyPersonalInfo
+           * @description Data model for the complex type PartyPersonalInfo.
+           */
+          personalInfo?: {
+            /**
+             * PartyComplexName
+             * @description Data model for the complex type PartyComplexName.
+             */
+            complexName?: {
+              /**
+               * FirstName
+               * @description First name of the Party (Name Type).
+               * @example Henrik
+               */
+              firstName?: string;
+              /**
+               * MiddleName
+               * @description Middle name of the Party (Name Type).
+               * @example Johannes
+               */
+              middleName?: string;
+              /**
+               * LastName
+               * @description Last name of the Party (Name Type).
+               * @example Karlsson
+               */
+              lastName?: string;
+            };
+            /**
+             * DateofBirth (type Date)
+             * @description Date of Birth of the Party.
+             * @example 1966-06-16
+             */
+            dateOfBirth?: string;
+          };
+        };
+        /**
+         * AmountType
+         * @description Below are the allowed values for the enumeration AmountType.
+         * - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
+         * - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
+         * @example RECEIVE
+         * @enum {string}
+         */
+        amountType: "SEND" | "RECEIVE";
+        /**
+         * Money
+         * @description Data model for the complex type Money.
+         */
+        amount: {
+          /**
+           * Currency
+           * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+           * @enum {string}
+           */
+          currency:
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "XTS"
+            | "XXX"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
+          /**
+           * Amount
+           * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
+           * @example 123.45
+           */
+          amount: string;
+        };
+        /**
+         * Money
+         * @description Data model for the complex type Money.
+         */
+        fees?: {
+          /**
+           * Currency
+           * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+           * @enum {string}
+           */
+          currency:
+            | "AED"
+            | "AFN"
+            | "ALL"
+            | "AMD"
+            | "ANG"
+            | "AOA"
+            | "ARS"
+            | "AUD"
+            | "AWG"
+            | "AZN"
+            | "BAM"
+            | "BBD"
+            | "BDT"
+            | "BGN"
+            | "BHD"
+            | "BIF"
+            | "BMD"
+            | "BND"
+            | "BOB"
+            | "BRL"
+            | "BSD"
+            | "BTN"
+            | "BWP"
+            | "BYN"
+            | "BZD"
+            | "CAD"
+            | "CDF"
+            | "CHF"
+            | "CLP"
+            | "CNY"
+            | "COP"
+            | "CRC"
+            | "CUC"
+            | "CUP"
+            | "CVE"
+            | "CZK"
+            | "DJF"
+            | "DKK"
+            | "DOP"
+            | "DZD"
+            | "EGP"
+            | "ERN"
+            | "ETB"
+            | "EUR"
+            | "FJD"
+            | "FKP"
+            | "GBP"
+            | "GEL"
+            | "GGP"
+            | "GHS"
+            | "GIP"
+            | "GMD"
+            | "GNF"
+            | "GTQ"
+            | "GYD"
+            | "HKD"
+            | "HNL"
+            | "HRK"
+            | "HTG"
+            | "HUF"
+            | "IDR"
+            | "ILS"
+            | "IMP"
+            | "INR"
+            | "IQD"
+            | "IRR"
+            | "ISK"
+            | "JEP"
+            | "JMD"
+            | "JOD"
+            | "JPY"
+            | "KES"
+            | "KGS"
+            | "KHR"
+            | "KMF"
+            | "KPW"
+            | "KRW"
+            | "KWD"
+            | "KYD"
+            | "KZT"
+            | "LAK"
+            | "LBP"
+            | "LKR"
+            | "LRD"
+            | "LSL"
+            | "LYD"
+            | "MAD"
+            | "MDL"
+            | "MGA"
+            | "MKD"
+            | "MMK"
+            | "MNT"
+            | "MOP"
+            | "MRO"
+            | "MUR"
+            | "MVR"
+            | "MWK"
+            | "MXN"
+            | "MYR"
+            | "MZN"
+            | "NAD"
+            | "NGN"
+            | "NIO"
+            | "NOK"
+            | "NPR"
+            | "NZD"
+            | "OMR"
+            | "PAB"
+            | "PEN"
+            | "PGK"
+            | "PHP"
+            | "PKR"
+            | "PLN"
+            | "PYG"
+            | "QAR"
+            | "RON"
+            | "RSD"
+            | "RUB"
+            | "RWF"
+            | "SAR"
+            | "SBD"
+            | "SCR"
+            | "SDG"
+            | "SEK"
+            | "SGD"
+            | "SHP"
+            | "SLL"
+            | "SOS"
+            | "SPL"
+            | "SRD"
+            | "STD"
+            | "SVC"
+            | "SYP"
+            | "SZL"
+            | "THB"
+            | "TJS"
+            | "TMT"
+            | "TND"
+            | "TOP"
+            | "TRY"
+            | "TTD"
+            | "TVD"
+            | "TWD"
+            | "TZS"
+            | "UAH"
+            | "UGX"
+            | "USD"
+            | "UYU"
+            | "UZS"
+            | "VEF"
+            | "VND"
+            | "VUV"
+            | "WST"
+            | "XAF"
+            | "XCD"
+            | "XDR"
+            | "XOF"
+            | "XPF"
+            | "XTS"
+            | "XXX"
+            | "YER"
+            | "ZAR"
+            | "ZMW"
+            | "ZWD";
+          /**
+           * Amount
+           * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
+           * @example 123.45
+           */
+          amount: string;
+        };
+        /**
+         * @description Type of transaction.
+         * @enum {string}
+         */
+        transactionType: "TRANSFER";
+        /**
+         * GeoCode
+         * @description Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
+         */
+        geoCode?: {
+          /**
+           * Latitude
+           * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+           * @example +45.4215
+           */
+          latitude: string;
+          /**
+           * Longitude
+           * @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+           * @example +75.6972
+           */
+          longitude: string;
+        };
+        /**
+         * Note
+         * @description Memo assigned to transaction.
+         * @example Note sent to Payee.
+         */
+        note?: string;
+        /**
+         * DateTime
+         * @description The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
+         * @example 2016-05-24T08:38:08.699-04:00
+         */
+        expiration?: string;
+        /**
+         * ExtensionList
+         * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /** @description Number of Extension elements. */
+          extension: {
+            /**
+             * ExtensionKey
+             * @description Extension key.
+             */
+            key: string;
+            /**
+             * ExtensionValue
+             * @description Extension value.
+             */
+            value: string;
+          }[];
+        };
+      };
+    };
     /** QuotesPostResponse */
     quotesPostResponse: {
       /**
@@ -66332,679 +67021,690 @@ export interface operations {
       content: {
         "application/json": {
           /**
-           * CorrelationId
-           * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-           * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+           * FspId
+           * @description FSP identifier.
            */
-          quoteId: string;
+          fspId: string;
           /**
-           * CorrelationId
-           * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-           * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+           * QuotesPostRequest
+           * @description The object sent in the POST /quotes request.
            */
-          transactionId: string;
-          /**
-           * CorrelationId
-           * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-           * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-           */
-          transactionRequestId?: string;
-          /**
-           * Party
-           * @description Data model for the complex type Party.
-           */
-          payee: {
+          quotesPostRequest: {
             /**
-             * PartyIdInfo
-             * @description Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
+             * CorrelationId
+             * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+             * @example b51ec534-ee48-4575-b6a9-ead2955b8069
              */
-            partyIdInfo: {
+            quoteId: string;
+            /**
+             * CorrelationId
+             * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+             * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+             */
+            transactionId: string;
+            /**
+             * CorrelationId
+             * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+             * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+             */
+            transactionRequestId?: string;
+            /**
+             * Party
+             * @description Data model for the complex type Party.
+             */
+            payee: {
               /**
-               * PartyIdType
-               * @description Below are the allowed values for the enumeration.
-               * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-               * - EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).
-               * - PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.
-               * - BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.
-               * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.
-               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-               * - IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.
-               * - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.
-               * @enum {string}
+               * PartyIdInfo
+               * @description Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
                */
-              partyIdType:
-                | "MSISDN"
-                | "EMAIL"
-                | "PERSONAL_ID"
-                | "BUSINESS"
-                | "DEVICE"
-                | "ACCOUNT_ID"
-                | "IBAN"
-                | "ALIAS";
+              partyIdInfo: {
+                /**
+                 * PartyIdType
+                 * @description Below are the allowed values for the enumeration.
+                 * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+                 * - EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).
+                 * - PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.
+                 * - BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.
+                 * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.
+                 * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+                 * - IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.
+                 * - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.
+                 * @enum {string}
+                 */
+                partyIdType:
+                  | "MSISDN"
+                  | "EMAIL"
+                  | "PERSONAL_ID"
+                  | "BUSINESS"
+                  | "DEVICE"
+                  | "ACCOUNT_ID"
+                  | "IBAN"
+                  | "ALIAS";
+                /**
+                 * PartyIdentifier
+                 * @description Identifier of the Party.
+                 * @example 16135551212
+                 */
+                partyIdentifier: string;
+                /**
+                 * PartySubIdOrType
+                 * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+                 */
+                partySubIdOrType?: string;
+                /**
+                 * FspId
+                 * @description FSP identifier.
+                 */
+                fspId?: string;
+                /**
+                 * ExtensionList
+                 * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+                 */
+                extensionList?: {
+                  /** @description Number of Extension elements. */
+                  extension: {
+                    /**
+                     * ExtensionKey
+                     * @description Extension key.
+                     */
+                    key: string;
+                    /**
+                     * ExtensionValue
+                     * @description Extension value.
+                     */
+                    value: string;
+                  }[];
+                };
+              };
               /**
-               * PartyIdentifier
-               * @description Identifier of the Party.
-               * @example 16135551212
+               * MerchantClassificationCode
+               * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
                */
-              partyIdentifier: string;
+              merchantClassificationCode?: string;
               /**
-               * PartySubIdOrType
-               * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+               * PartyName
+               * @description Name of the Party. Could be a real name or a nickname.
                */
-              partySubIdOrType?: string;
+              name?: string;
               /**
-               * FspId
-               * @description FSP identifier.
+               * PartyPersonalInfo
+               * @description Data model for the complex type PartyPersonalInfo.
                */
-              fspId?: string;
-              /**
-               * ExtensionList
-               * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-               */
-              extensionList?: {
-                /** @description Number of Extension elements. */
-                extension: {
+              personalInfo?: {
+                /**
+                 * PartyComplexName
+                 * @description Data model for the complex type PartyComplexName.
+                 */
+                complexName?: {
                   /**
-                   * ExtensionKey
-                   * @description Extension key.
+                   * FirstName
+                   * @description First name of the Party (Name Type).
+                   * @example Henrik
                    */
-                  key: string;
+                  firstName?: string;
                   /**
-                   * ExtensionValue
-                   * @description Extension value.
+                   * MiddleName
+                   * @description Middle name of the Party (Name Type).
+                   * @example Johannes
                    */
-                  value: string;
-                }[];
+                  middleName?: string;
+                  /**
+                   * LastName
+                   * @description Last name of the Party (Name Type).
+                   * @example Karlsson
+                   */
+                  lastName?: string;
+                };
+                /**
+                 * DateofBirth (type Date)
+                 * @description Date of Birth of the Party.
+                 * @example 1966-06-16
+                 */
+                dateOfBirth?: string;
               };
             };
             /**
-             * MerchantClassificationCode
-             * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+             * Party
+             * @description Data model for the complex type Party.
              */
-            merchantClassificationCode?: string;
-            /**
-             * PartyName
-             * @description Name of the Party. Could be a real name or a nickname.
-             */
-            name?: string;
-            /**
-             * PartyPersonalInfo
-             * @description Data model for the complex type PartyPersonalInfo.
-             */
-            personalInfo?: {
+            payer: {
               /**
-               * PartyComplexName
-               * @description Data model for the complex type PartyComplexName.
+               * PartyIdInfo
+               * @description Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
                */
-              complexName?: {
+              partyIdInfo: {
                 /**
-                 * FirstName
-                 * @description First name of the Party (Name Type).
-                 * @example Henrik
+                 * PartyIdType
+                 * @description Below are the allowed values for the enumeration.
+                 * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+                 * - EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).
+                 * - PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.
+                 * - BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.
+                 * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.
+                 * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+                 * - IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.
+                 * - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.
+                 * @enum {string}
                  */
-                firstName?: string;
+                partyIdType:
+                  | "MSISDN"
+                  | "EMAIL"
+                  | "PERSONAL_ID"
+                  | "BUSINESS"
+                  | "DEVICE"
+                  | "ACCOUNT_ID"
+                  | "IBAN"
+                  | "ALIAS";
                 /**
-                 * MiddleName
-                 * @description Middle name of the Party (Name Type).
-                 * @example Johannes
+                 * PartyIdentifier
+                 * @description Identifier of the Party.
+                 * @example 16135551212
                  */
-                middleName?: string;
+                partyIdentifier: string;
                 /**
-                 * LastName
-                 * @description Last name of the Party (Name Type).
-                 * @example Karlsson
+                 * PartySubIdOrType
+                 * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
                  */
-                lastName?: string;
+                partySubIdOrType?: string;
+                /**
+                 * FspId
+                 * @description FSP identifier.
+                 */
+                fspId?: string;
+                /**
+                 * ExtensionList
+                 * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+                 */
+                extensionList?: {
+                  /** @description Number of Extension elements. */
+                  extension: {
+                    /**
+                     * ExtensionKey
+                     * @description Extension key.
+                     */
+                    key: string;
+                    /**
+                     * ExtensionValue
+                     * @description Extension value.
+                     */
+                    value: string;
+                  }[];
+                };
               };
               /**
-               * DateofBirth (type Date)
-               * @description Date of Birth of the Party.
-               * @example 1966-06-16
+               * MerchantClassificationCode
+               * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
                */
-              dateOfBirth?: string;
-            };
-          };
-          /**
-           * Party
-           * @description Data model for the complex type Party.
-           */
-          payer: {
-            /**
-             * PartyIdInfo
-             * @description Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
-             */
-            partyIdInfo: {
+              merchantClassificationCode?: string;
               /**
-               * PartyIdType
-               * @description Below are the allowed values for the enumeration.
-               * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-               * - EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).
-               * - PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.
-               * - BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.
-               * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.
-               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-               * - IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.
-               * - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.
-               * @enum {string}
+               * PartyName
+               * @description Name of the Party. Could be a real name or a nickname.
                */
-              partyIdType:
-                | "MSISDN"
-                | "EMAIL"
-                | "PERSONAL_ID"
-                | "BUSINESS"
-                | "DEVICE"
-                | "ACCOUNT_ID"
-                | "IBAN"
-                | "ALIAS";
+              name?: string;
               /**
-               * PartyIdentifier
-               * @description Identifier of the Party.
-               * @example 16135551212
+               * PartyPersonalInfo
+               * @description Data model for the complex type PartyPersonalInfo.
                */
-              partyIdentifier: string;
-              /**
-               * PartySubIdOrType
-               * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
-               */
-              partySubIdOrType?: string;
-              /**
-               * FspId
-               * @description FSP identifier.
-               */
-              fspId?: string;
-              /**
-               * ExtensionList
-               * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-               */
-              extensionList?: {
-                /** @description Number of Extension elements. */
-                extension: {
+              personalInfo?: {
+                /**
+                 * PartyComplexName
+                 * @description Data model for the complex type PartyComplexName.
+                 */
+                complexName?: {
                   /**
-                   * ExtensionKey
-                   * @description Extension key.
+                   * FirstName
+                   * @description First name of the Party (Name Type).
+                   * @example Henrik
                    */
-                  key: string;
+                  firstName?: string;
                   /**
-                   * ExtensionValue
-                   * @description Extension value.
+                   * MiddleName
+                   * @description Middle name of the Party (Name Type).
+                   * @example Johannes
                    */
-                  value: string;
-                }[];
+                  middleName?: string;
+                  /**
+                   * LastName
+                   * @description Last name of the Party (Name Type).
+                   * @example Karlsson
+                   */
+                  lastName?: string;
+                };
+                /**
+                 * DateofBirth (type Date)
+                 * @description Date of Birth of the Party.
+                 * @example 1966-06-16
+                 */
+                dateOfBirth?: string;
               };
             };
             /**
-             * MerchantClassificationCode
-             * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
-             */
-            merchantClassificationCode?: string;
-            /**
-             * PartyName
-             * @description Name of the Party. Could be a real name or a nickname.
-             */
-            name?: string;
-            /**
-             * PartyPersonalInfo
-             * @description Data model for the complex type PartyPersonalInfo.
-             */
-            personalInfo?: {
-              /**
-               * PartyComplexName
-               * @description Data model for the complex type PartyComplexName.
-               */
-              complexName?: {
-                /**
-                 * FirstName
-                 * @description First name of the Party (Name Type).
-                 * @example Henrik
-                 */
-                firstName?: string;
-                /**
-                 * MiddleName
-                 * @description Middle name of the Party (Name Type).
-                 * @example Johannes
-                 */
-                middleName?: string;
-                /**
-                 * LastName
-                 * @description Last name of the Party (Name Type).
-                 * @example Karlsson
-                 */
-                lastName?: string;
-              };
-              /**
-               * DateofBirth (type Date)
-               * @description Date of Birth of the Party.
-               * @example 1966-06-16
-               */
-              dateOfBirth?: string;
-            };
-          };
-          /**
-           * AmountType
-           * @description Below are the allowed values for the enumeration AmountType.
-           * - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
-           * - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
-           * @example RECEIVE
-           * @enum {string}
-           */
-          amountType: "SEND" | "RECEIVE";
-          /**
-           * Money
-           * @description Data model for the complex type Money.
-           */
-          amount: {
-            /**
-             * Currency
-             * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+             * AmountType
+             * @description Below are the allowed values for the enumeration AmountType.
+             * - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
+             * - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
+             * @example RECEIVE
              * @enum {string}
              */
-            currency:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "XTS"
-              | "XXX"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
+            amountType: "SEND" | "RECEIVE";
             /**
-             * Amount
-             * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
-             * @example 123.45
+             * Money
+             * @description Data model for the complex type Money.
              */
-            amount: string;
-          };
-          /**
-           * Money
-           * @description Data model for the complex type Money.
-           */
-          fees?: {
+            amount: {
+              /**
+               * Currency
+               * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+               * @enum {string}
+               */
+              currency:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /**
+               * Amount
+               * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
+               * @example 123.45
+               */
+              amount: string;
+            };
             /**
-             * Currency
-             * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+             * Money
+             * @description Data model for the complex type Money.
+             */
+            fees?: {
+              /**
+               * Currency
+               * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+               * @enum {string}
+               */
+              currency:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /**
+               * Amount
+               * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
+               * @example 123.45
+               */
+              amount: string;
+            };
+            /**
+             * @description Type of transaction.
              * @enum {string}
              */
-            currency:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "XTS"
-              | "XXX"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
+            transactionType: "TRANSFER";
             /**
-             * Amount
-             * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
-             * @example 123.45
+             * GeoCode
+             * @description Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
              */
-            amount: string;
-          };
-          /**
-           * @description Type of transaction.
-           * @enum {string}
-           */
-          transactionType: "TRANSFER";
-          /**
-           * GeoCode
-           * @description Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
-           */
-          geoCode?: {
-            /**
-             * Latitude
-             * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
-             * @example +45.4215
-             */
-            latitude: string;
-            /**
-             * Longitude
-             * @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
-             * @example +75.6972
-             */
-            longitude: string;
-          };
-          /**
-           * Note
-           * @description Memo assigned to transaction.
-           * @example Note sent to Payee.
-           */
-          note?: string;
-          /**
-           * DateTime
-           * @description The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
-           * @example 2016-05-24T08:38:08.699-04:00
-           */
-          expiration?: string;
-          /**
-           * ExtensionList
-           * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-           */
-          extensionList?: {
-            /** @description Number of Extension elements. */
-            extension: {
+            geoCode?: {
               /**
-               * ExtensionKey
-               * @description Extension key.
+               * Latitude
+               * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+               * @example +45.4215
                */
-              key: string;
+              latitude: string;
               /**
-               * ExtensionValue
-               * @description Extension value.
+               * Longitude
+               * @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+               * @example +75.6972
                */
-              value: string;
-            }[];
+              longitude: string;
+            };
+            /**
+             * Note
+             * @description Memo assigned to transaction.
+             * @example Note sent to Payee.
+             */
+            note?: string;
+            /**
+             * DateTime
+             * @description The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
+             * @example 2016-05-24T08:38:08.699-04:00
+             */
+            expiration?: string;
+            /**
+             * ExtensionList
+             * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /** @description Number of Extension elements. */
+              extension: {
+                /**
+                 * ExtensionKey
+                 * @description Extension key.
+                 */
+                key: string;
+                /**
+                 * ExtensionValue
+                 * @description Extension value.
+                 */
+                value: string;
+              }[];
+            };
           };
         };
       };
