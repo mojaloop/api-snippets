@@ -1,4 +1,20 @@
-type: string
-enum:
-  - TRANSFER
-description: Type of transaction.
+title: TransactionType
+type: object
+description: Data model for the complex type TransactionType.
+properties:
+  scenario:
+    $ref: ./TransactionScenario.yaml
+  subScenario:
+    $ref: ./TransactionSubScenario.yaml
+  initiator:
+    $ref: ./TransactionInitiator.yaml
+  initiatorType:
+    $ref: ./TransactionInitiatorType.yaml
+  refundInfo:
+    $ref: ./Refund.yaml
+  balanceOfPayments:
+    $ref: ./BalanceOfPayments.yaml
+required:
+  - scenario
+  - initiator
+  - initiatorType
