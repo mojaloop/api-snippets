@@ -101,6 +101,7 @@ export namespace Types {
   export type async2SyncCurrentState = components['schemas']['async2SyncCurrentState']
   export type partiesByIdResponse = components['schemas']['partiesByIdResponse']
   export type QuotesPostRequest = components['schemas']['QuotesPostRequest']
+  export type simpleQuotesPostRequest = components['schemas']['simpleQuotesPostRequest']
   export type quotesPostResponse = components['schemas']['quotesPostResponse']
   export type errorQuotesResponse = components['schemas']['errorQuotesResponse']
   export type TransfersPostRequest = components['schemas']['TransfersPostRequest']

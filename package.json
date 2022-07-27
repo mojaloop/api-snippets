@@ -96,7 +96,7 @@
     "jest-junit": "^14.0.0",
     "lint-staged": "^13.0.3",
     "npm-audit-resolver": "^3.0.0-7",
-    "npm-check-updates": "^16.0.0",
+    "npm-check-updates": "^16.0.1",
     "prettier": "^2.7.1",
     "standard-version": "^9.5.0",
     "swagger-cli": "^4.0.4",

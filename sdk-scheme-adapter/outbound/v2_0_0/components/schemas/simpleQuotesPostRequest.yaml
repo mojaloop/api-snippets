@@ -1,0 +1,11 @@
+title: simpleQuotesPostRequest
+type: object
+properties:
+  fspId:
+    title: destination DFSP requested to calculate the quote
+    $ref: ./FspId.yaml
+  quotesPostRequest:
+    $ref: ./QuotesPostRequest.yaml
+required:
+  - fspId
+  - quotesPostRequest
