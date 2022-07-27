@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [14.2.1](https://github.com/mojaloop/api-snippets/compare/v14.2.0...v14.2.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* correct /quote request body for sdk-scheme-adapter ([#134](https://github.com/mojaloop/api-snippets/issues/134)) ([120f7ca](https://github.com/mojaloop/api-snippets/commit/120f7ca39ce5bebbaaeb884f1ef7ef6ac220e2fd))
+
 ## [14.2.0](https://github.com/mojaloop/api-snippets/compare/v14.1.0...v14.2.0) (2022-07-26)
 
 
