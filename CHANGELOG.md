@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [14.2.2](https://github.com/mojaloop/api-snippets/compare/v14.2.1...v14.2.2) (2022-07-28)
+
+
+### Bug Fixes
+
+* fix transaction type on sdk-scheme-adapter outbound ([#135](https://github.com/mojaloop/api-snippets/issues/135)) ([240bf0c](https://github.com/mojaloop/api-snippets/commit/240bf0c661045d337a31203d96485cc07fcdb212))
+
 ### [14.2.1](https://github.com/mojaloop/api-snippets/compare/v14.2.0...v14.2.1) (2022-07-27)
 
 
