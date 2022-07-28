@@ -11,7 +11,7 @@ properties:
   amount:
     $ref: ./Amount.yaml
   transactionType:
-    $ref: ./TransactionType.yaml
+    $ref: ./transferTransactionType.yaml
   note:
     $ref: ./Note.yaml
   lastError:
