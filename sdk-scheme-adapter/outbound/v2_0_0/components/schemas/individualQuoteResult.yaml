@@ -2,18 +2,23 @@ type: object
 properties:
   quoteId:
     $ref: ./CorrelationId.yaml
-  to:
-    $ref: ./transferParty.yaml
-  amountType:
-    $ref: ./AmountType.yaml
-  currency:
-    $ref: ./Currency.yaml
-  amount:
-    $ref: ./Amount.yaml
-  transactionType:
-    $ref: ./transferTransactionType.yaml
-  note:
-    $ref: ./Note.yaml
+  transferAmount:
+    $ref: ./Money.yaml
+  payeeReceiveAmount:
+    $ref: ./Money.yaml
+  payeeFspFee:
+    $ref: ./Money.yaml
+  payeeFspCommission:
+    $ref: ./Money.yaml
+  geoCode:
+    $ref: ./GeoCode.yaml
+  ilpPacket:
+    $ref: ./IlpPacket.yaml
+  condition:
+    $ref: ./IlpCondition.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+    description: 'Optional extension, specific to deployment.'
   lastError:
     description: >
       Object representing the last error to occur during a quote process. This
@@ -21,3 +26,9 @@ properties:
       an object representing other types of error e.g. exceptions that may occur
       inside the scheme adapter.
     $ref: ./quoteError.yaml
+
+required:
+  - transferAmount
+  - expiration
+  - ilpPacket
+  - condition

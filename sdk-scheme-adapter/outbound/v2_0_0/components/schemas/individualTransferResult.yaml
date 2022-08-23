@@ -1,37 +1,16 @@
 type: object
 required:
-  - transactionId
-  - to
-  - amountType
-  - currency
-  - amount
+  - transferId
 properties:
   transferId:
     $ref: ./CorrelationId.yaml
-  to:
-    $ref: ./transferParty.yaml
-  amountType:
-    $ref: ./AmountType.yaml
-  currency:
-    $ref: ./Currency.yaml
-  amount:
-    $ref: ./Amount.yaml
-  transactionType:
-    $ref: ./transferTransactionType.yaml
-  note:
-    $ref: ./Note.yaml
-  quoteId:
-    $ref: ./CorrelationId.yaml
-  quoteResponse:
-    $ref: ./QuotesIDPutResponse.yaml
-  quoteResponseSource:
-    type: string
+  fulfilment:
+    $ref: ./IlpFulfilment.yaml
     description: >
-      FSPID of the entity that supplied the quote response. This may not
-      be the same as the FSPID of the entity which owns the end user
-      account in the case of a FOREX transfer. i.e. it may be a FOREX
-      gateway.
-  fulfil:
-    $ref: ./TransfersIDPutResponse.yaml
+      Fulfilment of the condition specified with the transaction.
+      Mandatory if transfer has completed successfully.
+  extensionList:
+    $ref: ./ExtensionList.yaml
+    description: 'Optional extension, specific to deployment.'
   lastError:
     $ref: ./transferError.yaml
