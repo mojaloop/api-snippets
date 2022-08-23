@@ -3,15 +3,13 @@ required:
   - from
   - individualQuoteResults
 properties:
-  quoteId:
+  bulkQuoteId:
     $ref: ./CorrelationId.yaml
   homeTransactionId:
     type: string
     description: >-
       Transaction ID from the DFSP backend, used to reconcile transactions
       between the Switch and DFSP backend systems.
-  from:
-    $ref: ./transferParty.yaml
   individualQuoteResults:
     type: array
     maxItems: 1000
