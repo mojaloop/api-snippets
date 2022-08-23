@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [14.2.3](https://github.com/mojaloop/api-snippets/compare/v14.2.2...v14.2.3) (2022-08-23)
+
+
+### Bug Fixes
+
+* **mojaloop/2886:** fixed bulkQuotes and bulkTransfers response in sdk-out api ([#137](https://github.com/mojaloop/api-snippets/issues/137)) ([e443d58](https://github.com/mojaloop/api-snippets/commit/e443d5886ddb53a12fcdeb3aab840c6e6463f4ba))
+
 ### [14.2.2](https://github.com/mojaloop/api-snippets/compare/v14.2.1...v14.2.2) (2022-07-28)
 
 
