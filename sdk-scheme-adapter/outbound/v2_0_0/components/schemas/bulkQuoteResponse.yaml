@@ -1,6 +1,6 @@
 type: object
 required:
-  - from
+  - bulkQuoteId
   - individualQuoteResults
 properties:
   bulkQuoteId:
@@ -13,7 +13,7 @@ properties:
   expiration:
     $ref: ./DateTime.yaml
   extensionList:
-    $ref: './extensionListEmptiable.yaml'
+    $ref: ./ExtensionList.yaml
   individualQuoteResults:
     type: array
     maxItems: 1000
