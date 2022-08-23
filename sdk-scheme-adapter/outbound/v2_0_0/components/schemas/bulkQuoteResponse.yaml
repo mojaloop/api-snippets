@@ -10,6 +10,10 @@ properties:
     description: >-
       Transaction ID from the DFSP backend, used to reconcile transactions
       between the Switch and DFSP backend systems.
+  expiration:
+    $ref: ./DateTime.yaml
+  extensionList:
+    $ref: './extensionListEmptiable.yaml'
   individualQuoteResults:
     type: array
     maxItems: 1000
