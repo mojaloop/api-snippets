@@ -10,7 +10,10 @@ properties:
   transferId:
     $ref: ./CorrelationId.yaml
   homeTransactionId:
-    $ref: ./CorrelationId.yaml
+    type: string
+    description: >-
+      Transaction ID from the DFSP backend, used to reconcile transactions
+      between the Switch and DFSP backend systems.
   transactionId:
     $ref: ./CorrelationId.yaml
   to:

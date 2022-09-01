@@ -2,6 +2,7 @@ type: object
 required:
   - bulkQuoteId
   - individualQuoteResults
+  - currentState
 properties:
   bulkQuoteId:
     $ref: ./CorrelationId.yaml
@@ -14,6 +15,8 @@ properties:
     $ref: ./DateTime.yaml
   extensionList:
     $ref: ./ExtensionList.yaml
+  currentState:
+    $ref: ../schemas/bulkTransferStatus.yaml
   individualQuoteResults:
     type: array
     maxItems: 1000

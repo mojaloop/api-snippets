@@ -3,7 +3,10 @@ type: object
 description: Data model for the complex type 'individualTransaction'.
 properties:
   homeTransactionId:
-    $ref: ./CorrelationId.yaml
+    type: string
+    description: >-
+      Transaction ID from the DFSP backend, used to reconcile transactions
+      between the Switch and DFSP backend systems.
   to:
     $ref: ./Party.yaml
   reference:
