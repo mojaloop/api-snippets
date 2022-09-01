@@ -63,6 +63,7 @@ export namespace Schemas {
   export const Party = JsonSchemas.Party
   export const individualTransaction = JsonSchemas.individualTransaction
   export const bulkTransactionRequest = JsonSchemas.bulkTransactionRequest
+  export const bulkTransferStatus = JsonSchemas.bulkTransferStatus
   export const individualTransferResult = JsonSchemas.individualTransferResult
   export const bulkTransferResponse = JsonSchemas.bulkTransferResponse
   export const bulkTransferErrorResponse = JsonSchemas.bulkTransferErrorResponse
@@ -75,7 +76,6 @@ export namespace Schemas {
   export const bulkTransactionAcceptQuoteErrorResponse = JsonSchemas.bulkTransactionAcceptQuoteErrorResponse
   export const individualTransfer = JsonSchemas.individualTransfer
   export const bulkTransferRequest = JsonSchemas.bulkTransferRequest
-  export const bulkTransferStatus = JsonSchemas.bulkTransferStatus
   export const individualTransferFulfilment = JsonSchemas.individualTransferFulfilment
   export const bulkTransferStatusResponse = JsonSchemas.bulkTransferStatusResponse
   export const individualQuote = JsonSchemas.individualQuote
