@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [14.2.4](https://github.com/mojaloop/api-snippets/compare/v14.2.3...v14.2.4) (2022-09-01)
+
+
+### Bug Fixes
+
+* **mojaloop/2802:** issues with sdk outbound spec ([#138](https://github.com/mojaloop/api-snippets/issues/138)) ([bb2945c](https://github.com/mojaloop/api-snippets/commit/bb2945c3197a7fb7599cf3ca30980880f7f611c6))
+
 ### [14.2.3](https://github.com/mojaloop/api-snippets/compare/v14.2.2...v14.2.3) (2022-08-23)
 
 
