@@ -9975,6 +9975,8 @@ export interface paths {
                     value: string;
                   }[];
                 };
+                /** @enum {string} */
+                currentState: "ERROR_OCCURRED" | "COMPLETED";
                 /** @description List of individual transfer result in a bulk transfer response. */
                 individualTransferResults: {
                   /**
@@ -10082,7 +10084,7 @@ export interface paths {
              * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
              * @example b51ec534-ee48-4575-b6a9-ead2955b8069
              */
-            bulkTransactionId?: string;
+            bulkTransactionId: string;
             options: {
               /** @description Set to true if only party validation is required.  This means the quotes and transfers will not run. This is useful for only party resolution. */
               onlyValidateParty?: boolean;
@@ -10401,11 +10403,7 @@ export interface paths {
             };
             /** @description List of individual transfers in a bulk transfer. */
             individualTransfers: {
-              /**
-               * CorrelationId
-               * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-               * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-               */
+              /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
               homeTransactionId: string;
               /**
                * Party
@@ -10849,11 +10847,7 @@ export interface paths {
                     bulkHomeTransactionID: string;
                     /** @description List of individual transfers in a bulk transfer with accept party information. */
                     individualTransfers: ({
-                      /**
-                       * CorrelationId
-                       * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-                       * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-                       */
+                      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
                       homeTransactionId: string;
                       /**
                        * CorrelationId
@@ -10920,11 +10914,7 @@ export interface paths {
                     bulkHomeTransactionID: string;
                     /** @description List of individual transfers in a bulk transfer. */
                     individualTransfers: ({
-                      /**
-                       * CorrelationId
-                       * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-                       * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-                       */
+                      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
                       homeTransactionId: string;
                       /**
                        * CorrelationId
@@ -11005,11 +10995,7 @@ export interface paths {
                 bulkHomeTransactionID: string;
                 /** @description List of individual transfers in a bulk transfer with accept party information. */
                 individualTransfers: ({
-                  /**
-                   * CorrelationId
-                   * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-                   * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-                   */
+                  /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
                   homeTransactionId: string;
                   /**
                    * CorrelationId
@@ -11027,11 +11013,7 @@ export interface paths {
                 bulkHomeTransactionID: string;
                 /** @description List of individual transfers in a bulk transfer. */
                 individualTransfers: ({
-                  /**
-                   * CorrelationId
-                   * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-                   * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-                   */
+                  /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
                   homeTransactionId: string;
                   /**
                    * CorrelationId
@@ -11110,6 +11092,8 @@ export interface paths {
                   value: string;
                 }[];
               };
+              /** @enum {string} */
+              currentState: "ERROR_OCCURRED" | "COMPLETED";
               /** @description List of individual transfer result in a bulk transfer response. */
               individualTransferResults: {
                 /**
@@ -11255,6 +11239,8 @@ export interface paths {
                     value: string;
                   }[];
                 };
+                /** @enum {string} */
+                currentState: "ERROR_OCCURRED" | "COMPLETED";
                 /** @description List of individual transfer result in a bulk transfer response. */
                 individualTransferResults: {
                   /**
@@ -11921,14 +11907,16 @@ export interface paths {
                   value: string;
                 }[];
               };
+              /** @enum {string} */
+              currentState: "ERROR_OCCURRED" | "COMPLETED";
               /** @description List of individualQuoteResults in a bulk transfer response. */
-              individualQuoteResults: ({
+              individualQuoteResults: {
                 /**
                  * CorrelationId
                  * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                  * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                  */
-                quoteId?: string;
+                quoteId: string;
                 /**
                  * Money
                  * @description Data model for the complex type Money.
@@ -12749,9 +12737,7 @@ export interface paths {
                     };
                   };
                 };
-              } & {
-                expiration: unknown;
-              })[];
+              }[];
             };
           };
         };
@@ -12798,14 +12784,16 @@ export interface paths {
                     value: string;
                   }[];
                 };
+                /** @enum {string} */
+                currentState: "ERROR_OCCURRED" | "COMPLETED";
                 /** @description List of individualQuoteResults in a bulk transfer response. */
-                individualQuoteResults: ({
+                individualQuoteResults: {
                   /**
                    * CorrelationId
                    * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                    * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                    */
-                  quoteId?: string;
+                  quoteId: string;
                   /**
                    * Money
                    * @description Data model for the complex type Money.
@@ -13626,9 +13614,7 @@ export interface paths {
                       };
                     };
                   };
-                } & {
-                  expiration: unknown;
-                })[];
+                }[];
               };
             } & {
               bulkTansferState: unknown;
@@ -13678,14 +13664,16 @@ export interface paths {
                     value: string;
                   }[];
                 };
+                /** @enum {string} */
+                currentState: "ERROR_OCCURRED" | "COMPLETED";
                 /** @description List of individualQuoteResults in a bulk transfer response. */
-                individualQuoteResults: ({
+                individualQuoteResults: {
                   /**
                    * CorrelationId
                    * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                    * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                    */
-                  quoteId?: string;
+                  quoteId: string;
                   /**
                    * Money
                    * @description Data model for the complex type Money.
@@ -14506,9 +14494,7 @@ export interface paths {
                       };
                     };
                   };
-                } & {
-                  expiration: unknown;
-                })[];
+                }[];
               };
             } & {
               bulkTansferState: unknown;
@@ -14558,14 +14544,16 @@ export interface paths {
                     value: string;
                   }[];
                 };
+                /** @enum {string} */
+                currentState: "ERROR_OCCURRED" | "COMPLETED";
                 /** @description List of individualQuoteResults in a bulk transfer response. */
-                individualQuoteResults: ({
+                individualQuoteResults: {
                   /**
                    * CorrelationId
                    * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                    * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                    */
-                  quoteId?: string;
+                  quoteId: string;
                   /**
                    * Money
                    * @description Data model for the complex type Money.
@@ -15386,9 +15374,7 @@ export interface paths {
                       };
                     };
                   };
-                } & {
-                  expiration: unknown;
-                })[];
+                }[];
               };
             } & {
               bulkTansferState: unknown;
@@ -15802,7 +15788,7 @@ export interface paths {
                * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
                * @example 123.45
                */
-              amount?: string;
+              amount: string;
               /**
                * transferTransactionType
                * @description Type of transaction.
@@ -16173,7 +16159,7 @@ export interface paths {
                  * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
                  * @example 123.45
                  */
-                amount?: string;
+                amount: string;
                 /**
                  * transferTransactionType
                  * @description Type of transaction.
@@ -34229,11 +34215,7 @@ export interface components {
      * @description Data model for the complex type 'individualTransaction'.
      */
     individualTransaction: {
-      /**
-       * CorrelationId
-       * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-       * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-       */
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
       homeTransactionId: string;
       /**
        * Party
@@ -34634,7 +34616,7 @@ export interface components {
        * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
        * @example b51ec534-ee48-4575-b6a9-ead2955b8069
        */
-      bulkTransactionId?: string;
+      bulkTransactionId: string;
       options: {
         /** @description Set to true if only party validation is required.  This means the quotes and transfers will not run. This is useful for only party resolution. */
         onlyValidateParty?: boolean;
@@ -34953,11 +34935,7 @@ export interface components {
       };
       /** @description List of individual transfers in a bulk transfer. */
       individualTransfers: {
-        /**
-         * CorrelationId
-         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-         */
+        /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
         homeTransactionId: string;
         /**
          * Party
@@ -35370,6 +35348,8 @@ export interface components {
         }[];
       };
     };
+    /** @enum {string} */
+    bulkTransferStatus: "ERROR_OCCURRED" | "COMPLETED";
     individualTransferResult: {
       /**
        * CorrelationId
@@ -35498,6 +35478,8 @@ export interface components {
           value: string;
         }[];
       };
+      /** @enum {string} */
+      currentState: "ERROR_OCCURRED" | "COMPLETED";
       /** @description List of individual transfer result in a bulk transfer response. */
       individualTransferResults: {
         /**
@@ -35634,6 +35616,8 @@ export interface components {
             value: string;
           }[];
         };
+        /** @enum {string} */
+        currentState: "ERROR_OCCURRED" | "COMPLETED";
         /** @description List of individual transfer result in a bulk transfer response. */
         individualTransferResults: {
           /**
@@ -35718,11 +35702,7 @@ export interface components {
     });
     /** @description Data model for the 'individualTransfer' while accepting party or quote. */
     individualTransactionAccept: {
-      /**
-       * CorrelationId
-       * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-       * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-       */
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
       homeTransactionId: string;
       /**
        * CorrelationId
@@ -35737,11 +35717,7 @@ export interface components {
       bulkHomeTransactionID: string;
       /** @description List of individual transfers in a bulk transfer with accept party information. */
       individualTransfers: ({
-        /**
-         * CorrelationId
-         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-         */
+        /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
         homeTransactionId: string;
         /**
          * CorrelationId
@@ -35760,11 +35736,7 @@ export interface components {
       bulkHomeTransactionID: string;
       /** @description List of individual transfers in a bulk transfer. */
       individualTransfers: ({
-        /**
-         * CorrelationId
-         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-         */
+        /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
         homeTransactionId: string;
         /**
          * CorrelationId
@@ -35832,11 +35804,7 @@ export interface components {
         bulkHomeTransactionID: string;
         /** @description List of individual transfers in a bulk transfer with accept party information. */
         individualTransfers: ({
-          /**
-           * CorrelationId
-           * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-           * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-           */
+          /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
           homeTransactionId: string;
           /**
            * CorrelationId
@@ -35947,11 +35915,7 @@ export interface components {
         bulkHomeTransactionID: string;
         /** @description List of individual transfers in a bulk transfer. */
         individualTransfers: ({
-          /**
-           * CorrelationId
-           * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-           * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-           */
+          /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
           homeTransactionId: string;
           /**
            * CorrelationId
@@ -36794,8 +36758,6 @@ export interface components {
         }[];
       };
     };
-    /** @enum {string} */
-    bulkTransferStatus: "ERROR_OCCURRED" | "COMPLETED";
     /** @description A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer */
     individualTransferFulfilment: {
       /**
@@ -37157,7 +37119,7 @@ export interface components {
        * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
        * @example 123.45
        */
-      amount?: string;
+      amount: string;
       /**
        * transferTransactionType
        * @description Type of transaction.
@@ -37593,7 +37555,7 @@ export interface components {
          * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
          * @example 123.45
          */
-        amount?: string;
+        amount: string;
         /**
          * transferTransactionType
          * @description Type of transaction.
@@ -37652,7 +37614,7 @@ export interface components {
        * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
        * @example b51ec534-ee48-4575-b6a9-ead2955b8069
        */
-      quoteId?: string;
+      quoteId: string;
       /**
        * Money
        * @description Data model for the complex type Money.
@@ -38473,8 +38435,6 @@ export interface components {
           };
         };
       };
-    } & {
-      expiration: unknown;
     };
     bulkQuoteResponse: {
       /**
@@ -38510,14 +38470,16 @@ export interface components {
           value: string;
         }[];
       };
+      /** @enum {string} */
+      currentState: "ERROR_OCCURRED" | "COMPLETED";
       /** @description List of individualQuoteResults in a bulk transfer response. */
-      individualQuoteResults: ({
+      individualQuoteResults: {
         /**
          * CorrelationId
          * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
          * @example b51ec534-ee48-4575-b6a9-ead2955b8069
          */
-        quoteId?: string;
+        quoteId: string;
         /**
          * Money
          * @description Data model for the complex type Money.
@@ -39338,9 +39300,7 @@ export interface components {
             };
           };
         };
-      } & {
-        expiration: unknown;
-      })[];
+      }[];
     };
     bulkQuoteErrorResponse: {
       /** @description Error code as string. */
@@ -39382,14 +39342,16 @@ export interface components {
             value: string;
           }[];
         };
+        /** @enum {string} */
+        currentState: "ERROR_OCCURRED" | "COMPLETED";
         /** @description List of individualQuoteResults in a bulk transfer response. */
-        individualQuoteResults: ({
+        individualQuoteResults: {
           /**
            * CorrelationId
            * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
            * @example b51ec534-ee48-4575-b6a9-ead2955b8069
            */
-          quoteId?: string;
+          quoteId: string;
           /**
            * Money
            * @description Data model for the complex type Money.
@@ -40210,9 +40172,7 @@ export interface components {
               };
             };
           };
-        } & {
-          expiration: unknown;
-        })[];
+        }[];
       };
     } & {
       bulkTansferState: unknown;
@@ -40520,7 +40480,7 @@ export interface components {
          * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
          * @example 123.45
          */
-        amount?: string;
+        amount: string;
         /**
          * transferTransactionType
          * @description Type of transaction.
@@ -52709,6 +52669,8 @@ export interface components {
                 value: string;
               }[];
             };
+            /** @enum {string} */
+            currentState: "ERROR_OCCURRED" | "COMPLETED";
             /** @description List of individual transfer result in a bulk transfer response. */
             individualTransferResults: {
               /**
@@ -52819,11 +52781,7 @@ export interface components {
                 bulkHomeTransactionID: string;
                 /** @description List of individual transfers in a bulk transfer with accept party information. */
                 individualTransfers: ({
-                  /**
-                   * CorrelationId
-                   * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-                   * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-                   */
+                  /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
                   homeTransactionId: string;
                   /**
                    * CorrelationId
@@ -52890,11 +52848,7 @@ export interface components {
                 bulkHomeTransactionID: string;
                 /** @description List of individual transfers in a bulk transfer. */
                 individualTransfers: ({
-                  /**
-                   * CorrelationId
-                   * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-                   * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-                   */
+                  /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
                   homeTransactionId: string;
                   /**
                    * CorrelationId
@@ -53008,6 +52962,8 @@ export interface components {
               value: string;
             }[];
           };
+          /** @enum {string} */
+          currentState: "ERROR_OCCURRED" | "COMPLETED";
           /** @description List of individual transfer result in a bulk transfer response. */
           individualTransferResults: {
             /**
@@ -53126,14 +53082,16 @@ export interface components {
               value: string;
             }[];
           };
+          /** @enum {string} */
+          currentState: "ERROR_OCCURRED" | "COMPLETED";
           /** @description List of individualQuoteResults in a bulk transfer response. */
-          individualQuoteResults: ({
+          individualQuoteResults: {
             /**
              * CorrelationId
              * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
              * @example b51ec534-ee48-4575-b6a9-ead2955b8069
              */
-            quoteId?: string;
+            quoteId: string;
             /**
              * Money
              * @description Data model for the complex type Money.
@@ -53954,9 +53912,7 @@ export interface components {
                 };
               };
             };
-          } & {
-            expiration: unknown;
-          })[];
+          }[];
         };
       };
     };
@@ -54003,14 +53959,16 @@ export interface components {
                 value: string;
               }[];
             };
+            /** @enum {string} */
+            currentState: "ERROR_OCCURRED" | "COMPLETED";
             /** @description List of individualQuoteResults in a bulk transfer response. */
-            individualQuoteResults: ({
+            individualQuoteResults: {
               /**
                * CorrelationId
                * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                */
-              quoteId?: string;
+              quoteId: string;
               /**
                * Money
                * @description Data model for the complex type Money.
@@ -54831,9 +54789,7 @@ export interface components {
                   };
                 };
               };
-            } & {
-              expiration: unknown;
-            })[];
+            }[];
           };
         } & {
           bulkTansferState: unknown;
@@ -54883,14 +54839,16 @@ export interface components {
                 value: string;
               }[];
             };
+            /** @enum {string} */
+            currentState: "ERROR_OCCURRED" | "COMPLETED";
             /** @description List of individualQuoteResults in a bulk transfer response. */
-            individualQuoteResults: ({
+            individualQuoteResults: {
               /**
                * CorrelationId
                * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                */
-              quoteId?: string;
+              quoteId: string;
               /**
                * Money
                * @description Data model for the complex type Money.
@@ -55711,9 +55669,7 @@ export interface components {
                   };
                 };
               };
-            } & {
-              expiration: unknown;
-            })[];
+            }[];
           };
         } & {
           bulkTansferState: unknown;
@@ -55763,14 +55719,16 @@ export interface components {
                 value: string;
               }[];
             };
+            /** @enum {string} */
+            currentState: "ERROR_OCCURRED" | "COMPLETED";
             /** @description List of individualQuoteResults in a bulk transfer response. */
-            individualQuoteResults: ({
+            individualQuoteResults: {
               /**
                * CorrelationId
                * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                */
-              quoteId?: string;
+              quoteId: string;
               /**
                * Money
                * @description Data model for the complex type Money.
@@ -56591,9 +56549,7 @@ export interface components {
                   };
                 };
               };
-            } & {
-              expiration: unknown;
-            })[];
+            }[];
           };
         } & {
           bulkTansferState: unknown;

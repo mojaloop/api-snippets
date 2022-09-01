@@ -2,6 +2,7 @@ type: object
 required:
 - bulkTransferId
 - individualTransferResults
+- currentState
 properties:
   bulkTransferId:
     $ref: ./CorrelationId.yaml
@@ -18,6 +19,8 @@ properties:
     $ref: ./DateTime.yaml
   extensionList:
     $ref: ./ExtensionList.yaml
+  currentState:
+    $ref: ../schemas/bulkTransferStatus.yaml
   individualTransferResults:
     type: array
     maxItems: 1000

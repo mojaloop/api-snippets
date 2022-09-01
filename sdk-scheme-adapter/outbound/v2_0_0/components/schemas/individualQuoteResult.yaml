@@ -28,7 +28,7 @@ properties:
     $ref: ./quoteError.yaml
 
 required:
+  - quoteId
   - transferAmount
-  - expiration
   - ilpPacket
   - condition
