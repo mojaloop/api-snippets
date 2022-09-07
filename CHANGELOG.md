@@ -1,4 +1,15 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [15.0.0](https://github.com/mojaloop/api-snippets/compare/v14.2.4...v15.0.0) (2022-09-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* api swagger changes for bulk mvp (#139)
+
+### Features
+
+* api swagger changes for bulk mvp ([#139](https://github.com/mojaloop/api-snippets/issues/139)) ([0104817](https://github.com/mojaloop/api-snippets/commit/01048176136c3e77609e5334935df0d4116f53e9))
+
 ### [14.2.4](https://github.com/mojaloop/api-snippets/compare/v14.2.3...v14.2.4) (2022-09-01)
 
 
