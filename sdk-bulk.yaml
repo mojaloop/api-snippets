@@ -1596,7 +1596,7 @@ components:
         - $ref: '#/components/schemas/errorResponse'
         - type: object
           required:
-            - bulkTansferState
+            - bulkTransferState
           properties:
             bulkTransferState:
               $ref: '#/components/schemas/bulkTransferResponse'

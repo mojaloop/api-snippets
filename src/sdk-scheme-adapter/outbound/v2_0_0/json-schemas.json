@@ -6926,10 +6926,10 @@
       "partyIdInfo"
     ]
   },
-  "individualTransaction": {
-    "title": "IndividualTransaction",
+  "bulkTransactionIndividualTransfer": {
+    "title": "BulkTransactionIndividualTransfer",
     "type": "object",
-    "description": "Data model for the complex type 'individualTransaction'.",
+    "description": "Data model for the complex type 'bulkTransactionIndividualTransfer'.",
     "properties": {
       "homeTransactionId": {
         "type": "string",
@@ -7915,9 +7915,9 @@
         "minItems": 1,
         "maxItems": 1000,
         "items": {
-          "title": "IndividualTransaction",
+          "title": "BulkTransactionIndividualTransfer",
           "type": "object",
-          "description": "Data model for the complex type 'individualTransaction'.",
+          "description": "Data model for the complex type 'bulkTransactionIndividualTransfer'.",
           "properties": {
             "homeTransactionId": {
               "type": "string",
@@ -8919,7 +8919,7 @@
       {
         "type": "object",
         "required": [
-          "bulkTansferState"
+          "bulkTransferState"
         ],
         "properties": {
           "bulkTransferState": {
@@ -9172,7 +9172,7 @@
       }
     ]
   },
-  "individualTransactionAccept": {
+  "bulkTransactionIndividualTransferAccept": {
     "type": "object",
     "description": "Data model for the 'individualTransfer' while accepting party or quote.",
     "properties": {

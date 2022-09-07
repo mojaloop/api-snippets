@@ -20,5 +20,5 @@ properties:
     maxItems: 1000
     items:
       allOf:
-        - $ref: ./individualTransactionAccept.yaml
+        - $ref: ./bulkTransactionIndividualTransferAccept.yaml
         - $ref: ./transferContinuationAcceptParty.yaml

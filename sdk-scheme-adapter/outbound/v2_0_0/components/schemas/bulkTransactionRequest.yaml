@@ -23,6 +23,6 @@ properties:
     minItems: 1
     maxItems: 1000
     items:
-      $ref: ./individualTransaction.yaml
+      $ref: ./bulkTransactionIndividualTransfer.yaml
   extensions:
     $ref: ./ExtensionList.yaml

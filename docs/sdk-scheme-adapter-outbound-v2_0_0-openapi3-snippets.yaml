@@ -1480,9 +1480,11 @@ paths:
                   minItems: 1
                   maxItems: 1000
                   items:
-                    title: IndividualTransaction
+                    title: BulkTransactionIndividualTransfer
                     type: object
-                    description: Data model for the complex type 'individualTransaction'.
+                    description: >-
+                      Data model for the complex type
+                      'bulkTransactionIndividualTransfer'.
                     properties: &ref_86
                       homeTransactionId:
                         type: string
@@ -1597,7 +1599,7 @@ paths:
                     properties: *ref_22
                   - type: object
                     required:
-                      - bulkTansferState
+                      - bulkTransferState
                     properties:
                       bulkTransferState:
                         type: object
@@ -4671,10 +4673,10 @@ components:
       description: Data model for the complex type Party.
       properties: *ref_24
       required: *ref_25
-    individualTransaction:
-      title: IndividualTransaction
+    bulkTransactionIndividualTransfer:
+      title: BulkTransactionIndividualTransfer
       type: object
-      description: Data model for the complex type 'individualTransaction'.
+      description: Data model for the complex type 'bulkTransactionIndividualTransfer'.
       properties: *ref_86
       required: *ref_87
     bulkTransactionRequest:
@@ -4694,7 +4696,7 @@ components:
       properties: *ref_40
     bulkTransferErrorResponse:
       allOf: *ref_92
-    individualTransactionAccept:
+    bulkTransactionIndividualTransferAccept:
       type: object
       description: Data model for the 'individualTransfer' while accepting party or quote.
       properties: *ref_30
