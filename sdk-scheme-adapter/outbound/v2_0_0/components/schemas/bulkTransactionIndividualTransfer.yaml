@@ -1,6 +1,6 @@
-title: IndividualTransaction
+title: BulkTransactionIndividualTransfer
 type: object
-description: Data model for the complex type 'individualTransaction'.
+description: Data model for the complex type 'bulkTransactionIndividualTransfer'.
 properties:
   homeTransactionId:
     type: string

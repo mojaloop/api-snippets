@@ -61,13 +61,13 @@ export namespace Schemas {
   export const PartyComplexName = JsonSchemas.PartyComplexName
   export const PartyPersonalInfo = JsonSchemas.PartyPersonalInfo
   export const Party = JsonSchemas.Party
-  export const individualTransaction = JsonSchemas.individualTransaction
+  export const bulkTransactionIndividualTransfer = JsonSchemas.bulkTransactionIndividualTransfer
   export const bulkTransactionRequest = JsonSchemas.bulkTransactionRequest
   export const bulkTransferStatus = JsonSchemas.bulkTransferStatus
   export const individualTransferResult = JsonSchemas.individualTransferResult
   export const bulkTransferResponse = JsonSchemas.bulkTransferResponse
   export const bulkTransferErrorResponse = JsonSchemas.bulkTransferErrorResponse
-  export const individualTransactionAccept = JsonSchemas.individualTransactionAccept
+  export const individualTransferAccept = JsonSchemas.individualTransferAccept
   export const bulkTransactionContinuationAcceptParty = JsonSchemas.bulkTransactionContinuationAcceptParty
   export const bulkTransactionContinuationAcceptQuote = JsonSchemas.bulkTransactionContinuationAcceptQuote
   export const partyError = JsonSchemas.partyError
