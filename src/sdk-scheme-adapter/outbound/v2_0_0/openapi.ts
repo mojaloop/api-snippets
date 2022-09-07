@@ -35695,7 +35695,7 @@ export interface components {
       };
     };
     /** @description Data model for the 'individualTransfer' while accepting party or quote. */
-    individualTransferAccept: {
+    bulkTransactionIndividualTransferAccept: {
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
       homeTransactionId: string;
       /**

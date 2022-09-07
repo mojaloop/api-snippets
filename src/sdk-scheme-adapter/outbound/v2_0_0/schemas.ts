@@ -67,7 +67,7 @@ export namespace Schemas {
   export const individualTransferResult = JsonSchemas.individualTransferResult
   export const bulkTransferResponse = JsonSchemas.bulkTransferResponse
   export const bulkTransferErrorResponse = JsonSchemas.bulkTransferErrorResponse
-  export const individualTransferAccept = JsonSchemas.individualTransferAccept
+  export const bulkTransactionIndividualTransferAccept = JsonSchemas.bulkTransactionIndividualTransferAccept
   export const bulkTransactionContinuationAcceptParty = JsonSchemas.bulkTransactionContinuationAcceptParty
   export const bulkTransactionContinuationAcceptQuote = JsonSchemas.bulkTransactionContinuationAcceptQuote
   export const partyError = JsonSchemas.partyError

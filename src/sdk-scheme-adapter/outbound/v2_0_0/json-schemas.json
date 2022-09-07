@@ -9172,7 +9172,7 @@
       }
     ]
   },
-  "individualTransferAccept": {
+  "bulkTransactionIndividualTransferAccept": {
     "type": "object",
     "description": "Data model for the 'individualTransfer' while accepting party or quote.",
     "properties": {

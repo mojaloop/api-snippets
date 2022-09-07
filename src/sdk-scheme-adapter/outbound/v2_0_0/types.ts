@@ -67,7 +67,7 @@ export namespace Types {
   export type individualTransferResult = components['schemas']['individualTransferResult']
   export type bulkTransferResponse = components['schemas']['bulkTransferResponse']
   export type bulkTransferErrorResponse = components['schemas']['bulkTransferErrorResponse']
-  export type individualTransferAccept = components['schemas']['individualTransferAccept']
+  export type bulkTransactionIndividualTransferAccept = components['schemas']['bulkTransactionIndividualTransferAccept']
   export type bulkTransactionContinuationAcceptParty = components['schemas']['bulkTransactionContinuationAcceptParty']
   export type bulkTransactionContinuationAcceptQuote = components['schemas']['bulkTransactionContinuationAcceptQuote']
   export type partyError = components['schemas']['partyError']
