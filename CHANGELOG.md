@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [15.0.1](https://github.com/mojaloop/api-snippets/compare/v15.0.0...v15.0.1) (2022-09-12)
+
+
+### Bug Fixes
+
+* **mojaloop/2922:** not able to specify acceptQuote to false in type bulkTransactionContinuationAcceptParty ([#140](https://github.com/mojaloop/api-snippets/issues/140)) ([1dcff89](https://github.com/mojaloop/api-snippets/commit/1dcff89398855ed9fac844d954b09f5d2857cf7f))
+
 ## [15.0.0](https://github.com/mojaloop/api-snippets/compare/v14.2.4...v15.0.0) (2022-09-07)
 
 
