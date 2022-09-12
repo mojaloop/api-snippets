@@ -6,3 +6,4 @@ properties:
     type: boolean
     enum:
       - true
+      - false
