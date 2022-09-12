@@ -9895,7 +9895,7 @@ export interface paths {
           "application/json":
             | {
                 /** @enum {boolean} */
-                acceptParty: true;
+                acceptParty: true | false;
               }
             | {
                 /** @enum {boolean} */
@@ -10855,7 +10855,7 @@ export interface paths {
                       transactionId: string;
                     } & {
                       /** @enum {boolean} */
-                      acceptParty: true;
+                      acceptParty: true | false;
                     })[];
                   } & {
                     /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
@@ -11003,7 +11003,7 @@ export interface paths {
                   transactionId: string;
                 } & {
                   /** @enum {boolean} */
-                  acceptParty: true;
+                  acceptParty: true | false;
                 })[];
               }
             | {
@@ -33392,7 +33392,7 @@ export interface components {
     };
     transferContinuationAcceptParty: {
       /** @enum {boolean} */
-      acceptParty: true;
+      acceptParty: true | false;
     };
     transferContinuationAcceptQuote: {
       /** @enum {boolean} */
@@ -35721,7 +35721,7 @@ export interface components {
         transactionId: string;
       } & {
         /** @enum {boolean} */
-        acceptParty: true;
+        acceptParty: true | false;
       })[];
     };
     /** @description The object sent back as confirmation of quotes when autoAcceptQuotes is false. */
@@ -35808,7 +35808,7 @@ export interface components {
           transactionId: string;
         } & {
           /** @enum {boolean} */
-          acceptParty: true;
+          acceptParty: true | false;
         })[];
       } & {
         /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
@@ -52783,7 +52783,7 @@ export interface components {
                   transactionId: string;
                 } & {
                   /** @enum {boolean} */
-                  acceptParty: true;
+                  acceptParty: true | false;
                 })[];
               } & {
                 /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
