@@ -1045,6 +1045,7 @@ paths:
                       type: boolean
                       enum:
                         - true
+                        - false
                 - type: object
                   required: &ref_32
                     - acceptQuote

@@ -5898,7 +5898,8 @@
       "acceptParty": {
         "type": "boolean",
         "enum": [
-          true
+          true,
+          false
         ]
       }
     }
@@ -9242,7 +9243,8 @@
                 "acceptParty": {
                   "type": "boolean",
                   "enum": [
-                    true
+                    true,
+                    false
                   ]
                 }
               }
@@ -9466,7 +9468,8 @@
                             "acceptParty": {
                               "type": "boolean",
                               "enum": [
-                                true
+                                true,
+                                false
                               ]
                             }
                           }
