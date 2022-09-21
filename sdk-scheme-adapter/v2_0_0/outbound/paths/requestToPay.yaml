@@ -15,8 +15,8 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/requestToPayRequest.yaml
+          $ref: ../../components/schemas/requestToPayRequest.yaml
     required: true
   responses:
     '200':
-      $ref: ../components/responses/requestToPaySuccess.yaml
+      $ref: ../../components/responses/requestToPaySuccess.yaml

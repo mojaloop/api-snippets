@@ -42,14 +42,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/transferRequest.yaml
+          $ref: ../../components/schemas/transferRequest.yaml
     required: true
   responses:
     '200':
-      $ref: ../components/responses/transferSuccess.yaml
+      $ref: ../../components/responses/transferSuccess.yaml
     '400':
-      $ref: ../components/responses/transferBadRequest.yaml
+      $ref: ../../components/responses/transferBadRequest.yaml
     '500':
-      $ref: ../components/responses/transferServerError.yaml
+      $ref: ../../components/responses/transferServerError.yaml
     '504':
-      $ref: ../components/responses/transferTimeout.yaml
+      $ref: ../../components/responses/transferTimeout.yaml

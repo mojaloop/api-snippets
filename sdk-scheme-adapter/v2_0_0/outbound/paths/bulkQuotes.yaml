@@ -10,14 +10,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/bulkQuoteRequest.yaml
+          $ref: ../../components/schemas/bulkQuoteRequest.yaml
     required: true
   responses:
     '200':
-      $ref: ../components/responses/bulkQuoteSuccess.yaml
+      $ref: ../../components/responses/bulkQuoteSuccess.yaml
     '400':
-      $ref: ../components/responses/bulkQuoteBadRequest.yaml
+      $ref: ../../components/responses/bulkQuoteBadRequest.yaml
     '500':
-      $ref: ../components/responses/bulkQuoteServerError.yaml
+      $ref: ../../components/responses/bulkQuoteServerError.yaml
     '504':
-      $ref: ../components/responses/bulkQuoteTimeout.yaml
+      $ref: ../../components/responses/bulkQuoteTimeout.yaml

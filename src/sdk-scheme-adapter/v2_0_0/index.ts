@@ -29,5 +29,6 @@
 
 'use strict'
 
-import * as V2_0_0 from './v2_0_0'
-export { V2_0_0 }
+import * as Inbound from './inbound'
+import * as Outbound from './outbound'
+export { Inbound, Outbound }

@@ -10,12 +10,12 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/bulkTransactionRequest.yaml
+          $ref: ../../components/schemas/bulkTransactionRequest.yaml
     required: true
   responses:
     '202':
-      $ref: ../components/responses/bulkTransactionAccepted.yaml
+      $ref: ../../components/responses/bulkTransactionAccepted.yaml
     '400':
-      $ref: ../components/responses/bulkTransferBadRequest.yaml
+      $ref: ../../components/responses/bulkTransferBadRequest.yaml
     '500':
-      $ref: ../components/responses/errorResponse.yaml
+      $ref: ../../components/responses/errorResponse.yaml

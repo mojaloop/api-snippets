@@ -44,14 +44,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/requestToPayTransferRequest.yaml
+          $ref: ../../components/schemas/requestToPayTransferRequest.yaml
     required: true
   responses:
     '200':
-      $ref: ../components/responses/requestToPayTransferSuccess.yaml
+      $ref: ../../components/responses/requestToPayTransferSuccess.yaml
     '400':
-      $ref: ../components/responses/requestToPayTransferBadRequest.yaml
+      $ref: ../../components/responses/requestToPayTransferBadRequest.yaml
     '500':
-      $ref: ../components/responses/transferServerError.yaml
+      $ref: ../../components/responses/transferServerError.yaml
     '504':
-      $ref: ../components/responses/transferTimeout.yaml
+      $ref: ../../components/responses/transferTimeout.yaml
