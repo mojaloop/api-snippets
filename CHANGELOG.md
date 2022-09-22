@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [16.0.1](https://github.com/mojaloop/api-snippets/compare/v16.0.0...v16.0.1) (2022-09-22)
+
+
+### Bug Fixes
+
+* build command ([#142](https://github.com/mojaloop/api-snippets/issues/142)) ([1d262d0](https://github.com/mojaloop/api-snippets/commit/1d262d082d74ac28aa8db64222677842fb9aa360))
+
 ## [16.0.0](https://github.com/mojaloop/api-snippets/compare/v15.0.1...v16.0.0) (2022-09-22)
 
 
