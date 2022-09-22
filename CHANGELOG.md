@@ -1,4 +1,15 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [16.0.0](https://github.com/mojaloop/api-snippets/compare/v15.0.1...v16.0.0) (2022-09-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* add dfsp inbound api (#141)
+
+### Features
+
+* add dfsp inbound api ([#141](https://github.com/mojaloop/api-snippets/issues/141)) ([2bc88e8](https://github.com/mojaloop/api-snippets/commit/2bc88e88490728143d8cdd91bcd85f20ab263fdb))
+
 ### [15.0.1](https://github.com/mojaloop/api-snippets/compare/v15.0.0...v15.0.1) (2022-09-12)
 
 
