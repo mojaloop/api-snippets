@@ -14,6 +14,10 @@ properties:
     $ref: ./Amount.yaml
   transactionType:
     $ref: ./transferTransactionType.yaml
+  ilpPacket:
+    $ref: ./ilpPacket.yaml
+  condition:
+    $ref: ./ilpCondition.yaml
   note:
     $ref: ./Note.yaml
   extensions:
@@ -24,3 +28,5 @@ required:
   - amountType
   - currency
   - amount
+  - ilpPacket
+  - condition

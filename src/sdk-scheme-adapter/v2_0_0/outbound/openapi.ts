@@ -10676,6 +10676,14 @@ export interface paths {
              */
             transactionType?: "TRANSFER";
             /**
+             * Information for recipient (transport layer information).
+             */
+            ilpPacket: string;
+            /**
+             * Condition that must be attached to the transfer by the Payer.
+             */
+            condition: string;
+            /**
              * Memo assigned to transaction.
              */
             note?: string;
@@ -35631,6 +35639,14 @@ export interface components {
       };
     };
     /**
+     * Information for recipient (transport layer information).
+     */
+    ilpPacket: string;
+    /**
+     * Condition that must be attached to the transfer by the Payer.
+     */
+    ilpCondition: string;
+    /**
      * Data model for the complex type 'individualTransfer'.
      */
     individualTransfer: {
@@ -35900,6 +35916,14 @@ export interface components {
        * Type of transaction.
        */
       transactionType?: "TRANSFER";
+      /**
+       * Information for recipient (transport layer information).
+       */
+      ilpPacket: string;
+      /**
+       * Condition that must be attached to the transfer by the Payer.
+       */
+      condition: string;
       /**
        * Memo assigned to transaction.
        */
@@ -36286,6 +36310,14 @@ export interface components {
          * Type of transaction.
          */
         transactionType?: "TRANSFER";
+        /**
+         * Information for recipient (transport layer information).
+         */
+        ilpPacket: string;
+        /**
+         * Condition that must be attached to the transfer by the Payer.
+         */
+        condition: string;
         /**
          * Memo assigned to transaction.
          */
