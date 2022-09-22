@@ -10,24 +10,24 @@ put:
   tags:
     - BulkTransactions
   parameters:
-    - $ref: ../components/parameters/bulkTransactionId.yaml
+    - $ref: ../../components/parameters/bulkTransactionId.yaml
   requestBody:
     description: Bulk transaction request body
     content:
       application/json:
         schema:
           oneOf:
-            - $ref: ../components/schemas/bulkTransactionContinuationAcceptParty.yaml
-            - $ref: ../components/schemas/bulkTransactionContinuationAcceptQuote.yaml
+            - $ref: ../../components/schemas/bulkTransactionContinuationAcceptParty.yaml
+            - $ref: ../../components/schemas/bulkTransactionContinuationAcceptQuote.yaml
     required: true
   responses:
     '202':
       description: Bulk transaction information successfully amended
     '400':
-      $ref: ../components/responses/bulkTransactionPutBadRequest.yaml
+      $ref: ../../components/responses/bulkTransactionPutBadRequest.yaml
     '500':
       description: An error occurred processing the bulk transaction
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/errorResponse.yaml
+            $ref: ../../components/schemas/errorResponse.yaml

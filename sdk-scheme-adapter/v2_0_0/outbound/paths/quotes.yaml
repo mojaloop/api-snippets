@@ -9,10 +9,10 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/simpleQuotesPostRequest.yaml
+          $ref: ../../components/schemas/simpleQuotesPostRequest.yaml
     required: true
   responses:
     '200':
-      $ref: ../components/responses/quotesPostSuccess.yaml
+      $ref: ../../components/responses/quotesPostSuccess.yaml
     '500':
-      $ref: ../components/responses/quotesServerError.yaml
+      $ref: ../../components/responses/quotesServerError.yaml

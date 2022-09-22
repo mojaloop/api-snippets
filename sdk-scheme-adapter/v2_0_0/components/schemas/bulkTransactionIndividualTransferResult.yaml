@@ -18,6 +18,9 @@ properties:
     $ref: ./CorrelationId.yaml
   to:
     $ref: ./Party.yaml
+  reference:
+    description: Payer Loan reference
+    type: string
   amountType:
     $ref: ./AmountType.yaml
   currency:

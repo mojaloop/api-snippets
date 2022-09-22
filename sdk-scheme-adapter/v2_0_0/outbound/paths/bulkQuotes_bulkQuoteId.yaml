@@ -8,17 +8,17 @@ get:
   tags:
     - BulkQuotes
   parameters:
-    - $ref: ../components/parameters/bulkQuoteId.yaml
+    - $ref: ../../components/parameters/bulkQuoteId.yaml
   responses:
     '200':
       description: Bulk quote information successfully retrieved
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/bulkQuoteStatusResponse.yaml
+            $ref: ../../components/schemas/bulkQuoteStatusResponse.yaml
     '500':
       description: An error occurred processing the bulk quote
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/errorResponse.yaml
+            $ref: ../../components/schemas/errorResponse.yaml

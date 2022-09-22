@@ -8,17 +8,17 @@ get:
   tags:
     - BulkTransfers
   parameters:
-    - $ref: ../components/parameters/bulkTransferId.yaml
+    - $ref: ../../components/parameters/bulkTransferId.yaml
   responses:
     '200':
       description: Bulk transfer information successfully retrieved
       content:
         application/json:
           schema:
-            $ref: ../components/responses/bulkTransferStatusResponse.yaml
+            $ref: ../../components/responses/bulkTransferStatusResponse.yaml
     '500':
       description: An error occurred processing the bulk transfer
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/errorResponse.yaml
+            $ref: ../../components/schemas/errorResponse.yaml

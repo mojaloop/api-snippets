@@ -13,14 +13,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/accountsRequest.yaml
+          $ref: ../../components/schemas/accountsRequest.yaml
     required: true
   responses:
     '200':
-      $ref: ../components/responses/accountsCreationCompleted.yaml
+      $ref: ../../components/responses/accountsCreationCompleted.yaml
     '400':
-      $ref: ../components/responses/accountsCreationError.yaml
+      $ref: ../../components/responses/accountsCreationError.yaml
     '500':
-      $ref: ../components/responses/accountsCreationError.yaml
+      $ref: ../../components/responses/accountsCreationError.yaml
     '504':
-      $ref: ../components/responses/accountsCreationTimeout.yaml
+      $ref: ../../components/responses/accountsCreationTimeout.yaml

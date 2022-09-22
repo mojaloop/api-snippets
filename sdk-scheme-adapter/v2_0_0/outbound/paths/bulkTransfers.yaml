@@ -10,12 +10,12 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/bulkTransferRequest.yaml
+          $ref: ../../components/schemas/bulkTransferRequest.yaml
     required: true
   responses:
     '200':
-      $ref: ../components/responses/bulkTransferSuccess.yaml
+      $ref: ../../components/responses/bulkTransferSuccess.yaml
     '400':
-      $ref: ../components/responses/bulkTransferBadRequest.yaml
+      $ref: ../../components/responses/bulkTransferBadRequest.yaml
     '500':
-      $ref: ../components/responses/errorResponse.yaml
+      $ref: ../../components/responses/errorResponse.yaml

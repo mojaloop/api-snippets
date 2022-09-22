@@ -9,10 +9,10 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/simpleTransfersPostRequest.yaml
+          $ref: ../../components/schemas/simpleTransfersPostRequest.yaml
     required: true
   responses:
     '200':
-      $ref: ../components/responses/simpleTransfersPostSuccess.yaml
+      $ref: ../../components/responses/simpleTransfersPostSuccess.yaml
     '500':
-      $ref: ../components/responses/simpleTransfersServerError.yaml
+      $ref: ../../components/responses/simpleTransfersServerError.yaml
