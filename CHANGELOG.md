@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [16.0.2](https://github.com/mojaloop/api-snippets/compare/v16.0.1...v16.0.2) (2022-09-22)
+
+
+### Bug Fixes
+
+* added missing fields and required parameters to the SDK Scheme Adapter Outbound API ([#143](https://github.com/mojaloop/api-snippets/issues/143)) ([c2ddf0b](https://github.com/mojaloop/api-snippets/commit/c2ddf0b156f6cacfef6f367e94173fdf4f7a34db))
+
 ### [16.0.1](https://github.com/mojaloop/api-snippets/compare/v16.0.0...v16.0.1) (2022-09-22)
 
 
