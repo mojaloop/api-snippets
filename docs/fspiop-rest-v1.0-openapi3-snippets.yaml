@@ -13,9 +13,9 @@ info:
     name: >-
       Open API for FSP Interoperability (FSPIOP) (Implementation Friendly
       Version)
-    url: https://github.com/mojaloop/mojaloop-specification/blob/develop/LICENSE.md
+    url: 'https://github.com/mojaloop/mojaloop-specification/blob/develop/LICENSE.md'
 servers:
-  - url: protocol://hostname:<port>/switch/
+  - url: 'protocol://hostname:<port>/switch/'
     variables:
       protocol:
         enum:
@@ -90,7 +90,7 @@ paths:
       responses:
         '200':
           description: Ok
-  /participants/{Type}/{ID}:
+  '/participants/{Type}/{ID}':
     parameters:
       - $ref: '#/components/parameters/Type'
       - $ref: '#/components/parameters/ID'
@@ -258,7 +258,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/{Type}/{ID}/error:
+  '/participants/{Type}/{ID}/error':
     put:
       description: >-
         If the server is unable to find, create or delete the associated FSP of
@@ -308,7 +308,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/{Type}/{ID}/{SubId}:
+  '/participants/{Type}/{ID}/{SubId}':
     parameters:
       - $ref: '#/components/parameters/Type'
       - $ref: '#/components/parameters/ID'
@@ -477,7 +477,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/{Type}/{ID}/{SubId}/error:
+  '/participants/{Type}/{ID}/{SubId}/error':
     put:
       description: >-
         If the server is unable to find, create or delete the associated FSP of
@@ -578,7 +578,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/{ID}:
+  '/participants/{ID}':
     put:
       description: >-
         The callback `PUT /participants/{ID}` is used to inform the client of
@@ -625,7 +625,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /participants/{ID}/error:
+  '/participants/{ID}/error':
     put:
       description: >-
         If there is an error during FSP information creation in the server, the
@@ -674,7 +674,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /parties/{Type}/{ID}:
+  '/parties/{Type}/{ID}':
     parameters:
       - $ref: '#/components/parameters/Type'
       - $ref: '#/components/parameters/ID'
@@ -756,7 +756,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /parties/{Type}/{ID}/error:
+  '/parties/{Type}/{ID}/error':
     put:
       description: >-
         If the server is unable to find Party information of the provided
@@ -806,7 +806,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /parties/{Type}/{ID}/{SubId}:
+  '/parties/{Type}/{ID}/{SubId}':
     parameters:
       - $ref: '#/components/parameters/Type'
       - $ref: '#/components/parameters/ID'
@@ -889,7 +889,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /parties/{Type}/{ID}/{SubId}/error:
+  '/parties/{Type}/{ID}/{SubId}/error':
     put:
       description: >-
         If the server is unable to find Party information of the provided
@@ -988,7 +988,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transactionRequests/{ID}:
+  '/transactionRequests/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1070,7 +1070,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transactionRequests/{ID}/error:
+  '/transactionRequests/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a transaction request, or
@@ -1168,7 +1168,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /quotes/{ID}:
+  '/quotes/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1248,7 +1248,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /quotes/{ID}/error:
+  '/quotes/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a quote, or some other
@@ -1298,7 +1298,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /authorizations/{ID}:
+  '/authorizations/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1411,7 +1411,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /authorizations/{ID}/error:
+  '/authorizations/{ID}/error':
     put:
       description: >-
         If the server is unable to find the transaction request, or another
@@ -1508,7 +1508,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transfers/{ID}:
+  '/transfers/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1589,7 +1589,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transfers/{ID}/error:
+  '/transfers/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a transfer, or another
@@ -1639,7 +1639,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transactions/{ID}:
+  '/transactions/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1720,7 +1720,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /transactions/{ID}/error:
+  '/transactions/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a transaction, or another
@@ -1816,7 +1816,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /bulkQuotes/{ID}:
+  '/bulkQuotes/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -1897,7 +1897,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /bulkQuotes/{ID}/error:
+  '/bulkQuotes/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a bulk quote, or another
@@ -1994,7 +1994,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /bulkTransfers/{ID}:
+  '/bulkTransfers/{ID}':
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -2076,7 +2076,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /bulkTransfers/{ID}/error:
+  '/bulkTransfers/{ID}/error':
     put:
       description: >-
         If the server is unable to find or create a bulk transfer, or another
@@ -2132,7 +2132,7 @@ components:
     Amount:
       title: Amount
       type: string
-      pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+      pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
       description: >-
         The API data type Amount is a JSON String in a canonical format that is
         restricted by a regular expression for interoperability reasons. This
@@ -2183,7 +2183,7 @@ components:
     OtpValue:
       title: OtpValue
       type: string
-      pattern: ^\d{3,10}$
+      pattern: '^\d{3,10}$'
       description: >-
         The API data type OtpValue is a JSON String of 3 to 10 characters,
         consisting of digits only. Negative numbers are not allowed. One or more
@@ -2199,7 +2199,7 @@ components:
       oneOf:
         - $ref: '#/components/schemas/OtpValue'
         - $ref: '#/components/schemas/QRCODE'
-      pattern: ^\d{3,10}$|^\S{1,64}$
+      pattern: '^\d{3,10}$|^\S{1,64}$'
       description: >-
         Contains the authentication value. The format depends on the
         authentication type used in the AuthenticationInfo complex type.
@@ -2218,7 +2218,7 @@ components:
     BalanceOfPayments:
       title: BalanceOfPayments
       type: string
-      pattern: ^[1-9]\d{2}$
+      pattern: '^[1-9]\d{2}$'
       description: >-
         (BopCode) The API data type
         [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String
@@ -2226,7 +2226,7 @@ components:
         allowed. A leading zero is not allowed.
     BinaryString:
       type: string
-      pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
       description: >-
         The API data type BinaryString is a JSON String. The string is a
         base64url  encoding of a string of raw bytes, where padding (character
@@ -2235,7 +2235,7 @@ components:
         allowed number of characters.
     BinaryString32:
       type: string
-      pattern: ^[A-Za-z0-9-_]{43}$
+      pattern: '^[A-Za-z0-9-_]{43}$'
       description: >-
         The API data type BinaryString32 is a fixed size version of the API data
         type BinaryString, where the raw underlying data is always of 32 bytes.
@@ -2269,7 +2269,7 @@ components:
     Code:
       title: Code
       type: string
-      pattern: ^[0-9a-zA-Z]{4,32}$
+      pattern: '^[0-9a-zA-Z]{4,32}$'
       description: Any code/token returned by the Payee FSP (TokenCode Type).
     CorrelationId:
       title: CorrelationId
@@ -2492,7 +2492,7 @@ components:
     ErrorCode:
       title: ErrorCode
       type: string
-      pattern: ^[1-9]\d{3}$
+      pattern: '^[1-9]\d{3}$'
       description: >-
         The API data type ErrorCode is a JSON String of four characters,
         consisting of digits only. Negative numbers are not allowed. A leading
@@ -2537,19 +2537,19 @@ components:
     IlpCondition:
       title: IlpCondition
       type: string
-      pattern: ^[A-Za-z0-9-_]{43}$
+      pattern: '^[A-Za-z0-9-_]{43}$'
       maxLength: 48
       description: Condition that must be attached to the transfer by the Payer.
     IlpFulfilment:
       title: IlpFulfilment
       type: string
-      pattern: ^[A-Za-z0-9-_]{43}$
+      pattern: '^[A-Za-z0-9-_]{43}$'
       maxLength: 48
       description: Fulfilment that must be attached to the transfer by the Payee.
     IlpPacket:
       title: IlpPacket
       type: string
-      pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
       minLength: 1
       maxLength: 32768
       description: Information for recipient (transport layer information).
@@ -2601,7 +2601,7 @@ components:
       properties:
         complexName:
           $ref: '#/components/schemas/PartyComplexName'
-          description: First, middle and last name for the Party.
+          description: 'First, middle and last name for the Party.'
         dateOfBirth:
           type: string
           description: Date of birth for the Party.
@@ -2613,7 +2613,7 @@ components:
       properties:
         partyIdInfo:
           $ref: '#/components/schemas/PartyIdInfo'
-          description: Party Id type, id, sub ID or type, and FSP Id.
+          description: 'Party Id type, id, sub ID or type, and FSP Id.'
         merchantClassificationCode:
           type: string
           description: >-
@@ -2622,7 +2622,7 @@ components:
           example: 4321
         name:
           type: string
-          description: Display name of the Party, could be a real name or a nick name.
+          description: 'Display name of the Party, could be a real name or a nick name.'
           example: Henrik Karlsson
         personalInfo:
           $ref: '#/components/schemas/PartyPersonalInfo'
@@ -2655,11 +2655,11 @@ components:
       properties:
         scenario:
           type: string
-          description: Deposit, withdrawal, refund, …
+          description: 'Deposit, withdrawal, refund, …'
           example: DEPOSIT
         subScenario:
           type: string
-          description: Possible sub-scenario, defined locally within the scheme.
+          description: 'Possible sub-scenario, defined locally within the scheme.'
           example: Locally defined sub-scenario.
         initiator:
           type: string
@@ -2667,7 +2667,7 @@ components:
           example: PAYEE
         initiatorType:
           type: string
-          description: Consumer, agent, business, …
+          description: 'Consumer, agent, business, …'
           example: CONSUMER
         refundInfo:
           $ref: '#/components/schemas/Refund'
@@ -2730,7 +2730,7 @@ components:
           description: Information about the Payee in the proposed financial transaction.
         amountType:
           type: string
-          description: SEND for sendAmount, RECEIVE for receiveAmount.
+          description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
           example: RECEIVE
         amount:
           properties:
@@ -2761,7 +2761,7 @@ components:
           example: Note sent to Payee.
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - quoteId
         - transactionId
@@ -2772,7 +2772,7 @@ components:
     Integer:
       title: Integer
       type: string
-      pattern: ^[1-9]\d*$
+      pattern: '^[1-9]\d*$'
       description: >-
         The API data type Integer is a JSON String consisting of digits only.
         Negative numbers and leading zeroes are not allowed. The data type is
@@ -2805,7 +2805,7 @@ components:
     MerchantClassificationCode:
       title: MerchantClassificationCode
       type: string
-      pattern: ^[\d]{1,4}$
+      pattern: '^[\d]{1,4}$'
       description: >-
         A limited set of pre-defined numbers. This list would be a limited set
         of numbers identifying a set of popular merchant types like School Fees,
@@ -2822,7 +2822,7 @@ components:
     Name:
       title: Name
       type: string
-      pattern: ^(?!\s*$)[\w .,'-]{1,128}$
+      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: >-
         The API data type Name is a JSON String, restricted by a regular
         expression to avoid characters which are generally not used in a name.
@@ -2986,7 +2986,7 @@ components:
     TokenCode:
       title: TokenCode
       type: string
-      pattern: ^[0-9a-zA-Z]{4,32}$
+      pattern: '^[0-9a-zA-Z]{4,32}$'
       description: >-
         The API data type TokenCode is a JSON String between 4 and 32
         characters, consisting of digits or upper- or lowercase characters from
@@ -3040,10 +3040,10 @@ components:
           description: Type of the transaction.
         note:
           type: string
-          description: Memo associated to the transaction, intended to the Payee.
+          description: 'Memo associated to the transaction, intended to the Payee.'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - transactionId
         - quoteId
@@ -3145,7 +3145,7 @@ components:
     TransactionSubScenario:
       title: TransactionSubScenario
       type: string
-      pattern: ^[A-Z_]{1,32}$
+      pattern: '^[A-Z_]{1,32}$'
       description: >-
         Possible sub-scenario, defined locally within the scheme (UndefinedEnum
         Type).
@@ -3171,7 +3171,7 @@ components:
     UndefinedEnum:
       title: UndefinedEnum
       type: string
-      pattern: ^[A-Z_]{1,32}$
+      pattern: '^[A-Z_]{1,32}$'
       description: >-
         The API data type UndefinedEnum is a JSON String consisting of 1 to 32
         uppercase characters including an underscore character (_).
@@ -3275,7 +3275,7 @@ components:
       properties:
         partyId:
           $ref: '#/components/schemas/PartyIdInfo'
-          description: Party Id type, id, sub ID or type, and FSP Id.
+          description: 'Party Id type, id, sub ID or type, and FSP Id.'
         errorInformation:
           $ref: '#/components/schemas/ErrorInformation'
           description: >-
@@ -3287,7 +3287,7 @@ components:
     ParticipantsIDPutResponse:
       title: ParticipantsIDPutResponse
       type: object
-      description: The object sent in the PUT /participants/{ID} callback.
+      description: 'The object sent in the PUT /participants/{ID} callback.'
       properties:
         partyList:
           type: array
@@ -3309,7 +3309,7 @@ components:
     PartiesTypeIDPutResponse:
       title: PartiesTypeIDPutResponse
       type: object
-      description: The object sent in the PUT /parties/{Type}/{ID} callback.
+      description: 'The object sent in the PUT /parties/{Type}/{ID} callback.'
       properties:
         party:
           $ref: '#/components/schemas/Party'
@@ -3363,7 +3363,7 @@ components:
           description: Type of transaction.
         note:
           type: string
-          description: Reason for the transaction request, intended to the Payer.
+          description: 'Reason for the transaction request, intended to the Payer.'
           example: Free-text memo.
         geoCode:
           $ref: '#/components/schemas/GeoCode'
@@ -3372,7 +3372,7 @@ components:
             detect fraud.
         authenticationType:
           type: string
-          description: OTP or QR Code, otherwise empty.
+          description: 'OTP or QR Code, otherwise empty.'
           example: OTP
         expiration:
           type: string
@@ -3383,7 +3383,7 @@ components:
           example: '2016-05-24T08:38:08.699-04:00'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - transactionRequestId
         - payee
@@ -3393,7 +3393,7 @@ components:
     TransactionRequestsIDPutResponse:
       title: TransactionRequestsIDPutResponse
       type: object
-      description: The object sent in the PUT /transactionRequests/{ID} callback.
+      description: 'The object sent in the PUT /transactionRequests/{ID} callback.'
       properties:
         transactionId:
           type: string
@@ -3407,7 +3407,7 @@ components:
           example: RECEIVED
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - transactionRequestState
     QuotesPostRequest:
@@ -3473,7 +3473,7 @@ components:
               example: 1234
             name:
               type: string
-              description: Display name of the Party, could be a real name or a nick name.
+              description: 'Display name of the Party, could be a real name or a nick name.'
               example: Lars Bergqvist
             personalInfo:
               properties:
@@ -3497,7 +3497,7 @@ components:
                   example: '1977-07-17'
         amountType:
           type: string
-          description: SEND for send amount, RECEIVE for receive amount.
+          description: 'SEND for send amount, RECEIVE for receive amount.'
           example: SEND
         amount:
           properties:
@@ -3541,7 +3541,7 @@ components:
           example: '2016-05-24T08:38:08.699-04:00'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - quoteId
         - transactionId
@@ -3553,7 +3553,7 @@ components:
     QuotesIDPutResponse:
       title: QuotesIDPutResponse
       type: object
-      description: The object sent in the PUT /quotes/{ID} callback.
+      description: 'The object sent in the PUT /quotes/{ID} callback.'
       properties:
         transferAmount:
           properties:
@@ -3615,7 +3615,7 @@ components:
           example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - transferAmount
         - expiration
@@ -3624,11 +3624,11 @@ components:
     AuthorizationsIDPutResponse:
       title: AuthorizationsIDPutResponse
       type: object
-      description: The object sent in the PUT /authorizations/{ID} callback.
+      description: 'The object sent in the PUT /authorizations/{ID} callback.'
       properties:
         authenticationInfo:
           type: string
-          description: OTP or QR Code if entered, otherwise empty.
+          description: 'OTP or QR Code if entered, otherwise empty.'
           example: OTP
         responseType:
           type: string
@@ -3683,7 +3683,7 @@ components:
           example: '2016-05-24T08:38:08.699-04:00'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - transferId
         - payeeFsp
@@ -3695,7 +3695,7 @@ components:
     TransfersIDPutResponse:
       title: TransfersIDPutResponse
       type: object
-      description: The object sent in the PUT /transfers/{ID} callback.
+      description: 'The object sent in the PUT /transfers/{ID} callback.'
       properties:
         fulfilment:
           type: string
@@ -3713,13 +3713,13 @@ components:
           example: RESERVED
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - transferState
     TransactionsIDPutResponse:
       title: TransactionsIDPutResponse
       type: object
-      description: The object sent in the PUT /transactions/{ID} callback.
+      description: 'The object sent in the PUT /transactions/{ID} callback.'
       properties:
         completedTimestamp:
           type: string
@@ -3737,7 +3737,7 @@ components:
           example: Test-Code
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - transactionState
     BulkQuotesPostRequest:
@@ -3756,7 +3756,7 @@ components:
           properties:
             partyIdInfo:
               $ref: '#/components/schemas/PartyIdInfo'
-              description: Party Id type, id, sub ID or type, and FSP Id.
+              description: 'Party Id type, id, sub ID or type, and FSP Id.'
             merchantClassificationCode:
               type: string
               description: >-
@@ -3765,7 +3765,7 @@ components:
               example: 1234
             name:
               type: string
-              description: Display name of the Party, could be a real name or a nick name.
+              description: 'Display name of the Party, could be a real name or a nick name.'
               example: Henrik Karlsson
             personalInfo:
               $ref: '#/components/schemas/PartyPersonalInfo'
@@ -3797,7 +3797,7 @@ components:
               properties:
                 partyIdInfo:
                   $ref: '#/components/schemas/PartyIdInfo'
-                  description: Party Id type, id, sub ID or type, and FSP Id.
+                  description: 'Party Id type, id, sub ID or type, and FSP Id.'
                 merchantClassificationCode:
                   type: string
                   description: >-
@@ -3817,7 +3817,7 @@ components:
                     as first, middle, last name and date of birth.
             amountType:
               type: string
-              description: SEND for sendAmount, RECEIVE for receiveAmount.
+              description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
               example: RECEIVE
             amount:
               properties:
@@ -3848,7 +3848,7 @@ components:
               example: Note sent to Payee.
             extensionList:
               $ref: '#/components/schemas/ExtensionList'
-              description: Optional extension, specific to deployment.
+              description: 'Optional extension, specific to deployment.'
       required:
         - bulkQuoteId
         - payer
@@ -3922,13 +3922,13 @@ components:
             should not be set if errorInformation is set.
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - quoteId
     BulkQuotesIDPutResponse:
       title: BulkQuotesIDPutResponse
       type: object
-      description: The object sent in the PUT /bulkQuotes/{ID} callback.
+      description: 'The object sent in the PUT /bulkQuotes/{ID} callback.'
       properties:
         individualQuoteResults:
           type: array
@@ -3946,7 +3946,7 @@ components:
           example: '2016-05-24T08:38:08.699-04:00'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - expiration
     IndividualTransfer:
@@ -3974,7 +3974,7 @@ components:
           example: f5sqb7tBTWPd5Y8BDFdMm9BJR_MNI4isf8p8n4D5pHA
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - transferId
         - transferAmount
@@ -4018,7 +4018,7 @@ components:
           example: '2016-05-24T08:38:08.699-04:00'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - bulkTransferId
         - bulkQuoteId
@@ -4050,13 +4050,13 @@ components:
             both.
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - transferId
     BulkTransfersIDPutResponse:
       title: BulkTransfersIDPutResponse
       type: object
-      description: The object sent in the PUT /bulkTransfers/{ID} callback.
+      description: 'The object sent in the PUT /bulkTransfers/{ID} callback.'
       properties:
         completedTimestamp:
           type: string
@@ -4074,7 +4074,7 @@ components:
           example: RECEIVED
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
+          description: 'Optional extension, specific to deployment.'
       required:
         - bulkTransferState
   parameters:
@@ -4084,7 +4084,7 @@ components:
       required: true
       schema:
         type: string
-      description: The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.
+      description: 'The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.'
     ID:
       name: ID
       in: path

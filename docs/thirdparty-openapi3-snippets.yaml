@@ -31,7 +31,7 @@ paths:
               oneOf:
                 - title: ParticipantsIDPutResponse
                   type: object
-                  description: The object sent in the PUT /participants/{ID} callback.
+                  description: 'The object sent in the PUT /participants/{ID} callback.'
                   properties: &ref_62
                     partyList:
                       type: array
@@ -253,7 +253,7 @@ paths:
                               errorCode:
                                 title: ErrorCode
                                 type: string
-                                pattern: ^[1-9]\d{3}$
+                                pattern: '^[1-9]\d{3}$'
                                 description: >-
                                   The API data type ErrorCode is a JSON String
                                   of four characters, consisting of digits only.
@@ -497,7 +497,7 @@ paths:
                         merchantClassificationCode:
                           title: MerchantClassificationCode
                           type: string
-                          pattern: ^[\d]{1,4}$
+                          pattern: '^[\d]{1,4}$'
                           description: >-
                             A limited set of pre-defined numbers. This list
                             would be a limited set of numbers identifying a set
@@ -566,7 +566,7 @@ paths:
                     - party
                 - title: QuotesIDPutResponse
                   type: object
-                  description: The object sent in the PUT /quotes/{ID} callback.
+                  description: 'The object sent in the PUT /quotes/{ID} callback.'
                   properties: &ref_84
                     transferAmount:
                       title: Money
@@ -587,7 +587,7 @@ paths:
                         amount:
                           title: Amount
                           type: string
-                          pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                          pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
                           description: >-
                             The API data type Amount is a JSON String in a
                             canonical format that is restricted by a regular
@@ -672,7 +672,7 @@ paths:
                     ilpPacket:
                       title: IlpPacket
                       type: string
-                      pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+                      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
                       minLength: 1
                       maxLength: 32768
                       description: Information for recipient (transport layer information).
@@ -681,7 +681,7 @@ paths:
                     condition:
                       title: IlpCondition
                       type: string
-                      pattern: ^[A-Za-z0-9-_]{43}$
+                      pattern: '^[A-Za-z0-9-_]{43}$'
                       maxLength: 48
                       description: >-
                         Condition that must be attached to the transfer by the
@@ -808,7 +808,7 @@ paths:
                     - ISSUED - The consent has been issued by the DFSP
                 - title: IlpFulfilment
                   type: string
-                  pattern: ^[A-Za-z0-9-_]{43}$
+                  pattern: '^[A-Za-z0-9-_]{43}$'
                   maxLength: 48
                   description: >-
                     Fulfilment that must be attached to the transfer by the
@@ -816,7 +816,7 @@ paths:
                   example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
                 - title: Integer
                   type: string
-                  pattern: ^[1-9]\d*$
+                  pattern: '^[1-9]\d*$'
                   description: >-
                     The API data type Integer is a JSON String consisting of
                     digits only. Negative numbers and leading zeroes are not
@@ -1082,7 +1082,7 @@ paths:
                         subScenario:
                           title: TransactionSubScenario
                           type: string
-                          pattern: ^[A-Z_]{1,32}$
+                          pattern: '^[A-Z_]{1,32}$'
                           description: >-
                             Possible sub-scenario, defined locally within the
                             scheme (UndefinedEnum Type).
@@ -1163,7 +1163,7 @@ paths:
                         balanceOfPayments:
                           title: BalanceOfPayments
                           type: string
-                          pattern: ^[1-9]\d{2}$
+                          pattern: '^[1-9]\d{2}$'
                           description: >-
                             (BopCode) The API data type
                             [BopCode](https://www.imf.org/external/np/sta/bopcode/)
@@ -1228,7 +1228,7 @@ paths:
       responses:
         '200':
           description: Ok
-  /accounts/{ID}:
+  '/accounts/{ID}':
     parameters:
       - name: ID
         in: path
@@ -1651,7 +1651,7 @@ paths:
                       accountNickname:
                         title: Name
                         type: string
-                        pattern: ^(?!\s*$)[\w .,'-]{1,128}$
+                        pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
                         description: >-
                           The API data type Name is a JSON String, restricted by
                           a regular expression to avoid characters which are
@@ -1697,7 +1697,7 @@ paths:
                           address space owner (the payer DFSP in this case).
 
                           https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
-                        pattern: ^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$
+                        pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
                         minLength: 1
                         maxLength: 1023
                       currency:
@@ -1769,7 +1769,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /accounts/{ID}/error:
+  '/accounts/{ID}/error':
     parameters:
       - name: ID
         in: path
@@ -2224,7 +2224,7 @@ paths:
                           address space owner (the payer DFSP in this case).
 
                           https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
-                        pattern: ^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$
+                        pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
                         minLength: 1
                         maxLength: 1023
                       actions:
@@ -2278,7 +2278,7 @@ paths:
                 callbackUri:
                   title: Uri
                   type: string
-                  pattern: ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
+                  pattern: '^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?'
                   minLength: 1
                   maxLength: 512
                   description: >
@@ -2334,7 +2334,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /consentRequests/{ID}:
+  '/consentRequests/{ID}':
     parameters:
       - name: ID
         in: path
@@ -2752,7 +2752,7 @@ paths:
               properties: &ref_114
                 authToken:
                   type: string
-                  pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+                  pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
                   description: >-
                     The API data type BinaryString is a JSON String. The string
                     is a base64url  encoding of a string of raw bytes, where
@@ -2805,7 +2805,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /consentRequests/{ID}/error:
+  '/consentRequests/{ID}/error':
     parameters:
       - name: ID
         in: path
@@ -3200,7 +3200,7 @@ paths:
                               properties: &ref_56
                                 publicKey:
                                   type: string
-                                  pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+                                  pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
                                   description: >-
                                     The API data type BinaryString is a JSON
                                     String. The string is a base64url  encoding
@@ -3212,7 +3212,7 @@ paths:
                                     characters.
                                 signature:
                                   type: string
-                                  pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+                                  pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
                                   description: >-
                                     The API data type BinaryString is a JSON
                                     String. The string is a base64url  encoding
@@ -3446,7 +3446,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /consents/{ID}:
+  '/consents/{ID}':
     parameters:
       - name: ID
         in: path
@@ -4061,7 +4061,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /consents/{ID}/error:
+  '/consents/{ID}/error':
     parameters:
       - name: ID
         in: path
@@ -4384,7 +4384,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /participants/{ID}:
+  '/participants/{ID}':
     parameters:
       - name: ID
         in: path
@@ -4504,7 +4504,7 @@ paths:
             schema:
               title: ParticipantsIDPutResponse
               type: object
-              description: The object sent in the PUT /participants/{ID} callback.
+              description: 'The object sent in the PUT /participants/{ID} callback.'
               properties: *ref_62
               required: *ref_63
       responses:
@@ -4542,7 +4542,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /participants/{ID}/error:
+  '/participants/{ID}/error':
     parameters:
       - name: ID
         in: path
@@ -4704,7 +4704,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /participants/{Type}/{ID}:
+  '/participants/{Type}/{ID}':
     parameters:
       - name: Type
         in: path
@@ -5106,7 +5106,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /participants/{Type}/{ID}/error:
+  '/participants/{Type}/{ID}/error':
     parameters:
       - name: Type
         in: path
@@ -5275,14 +5275,14 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /services/{ServiceType}:
+  '/services/{ServiceType}':
     parameters:
       - name: ServiceType
         in: path
         required: true
         schema: &ref_65
           type: string
-        description: The type of the service identifier. For example, `THIRD_PARTY_DFSP`
+        description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
       - name: Content-Type
         in: header
         schema: *ref_35
@@ -5520,13 +5520,13 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /services/{ServiceType}/error:
+  '/services/{ServiceType}/error':
     parameters:
       - name: ServiceType
         in: path
         required: true
         schema: *ref_65
-        description: The type of the service identifier. For example, `THIRD_PARTY_DFSP`
+        description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
       - name: Content-Type
         in: header
         schema: *ref_35
@@ -5876,7 +5876,7 @@ paths:
                         receive, that is, the amount that should be sent to the
                         receiver exclusive of any fees.
                       example: RECEIVE
-                  description: SEND for sendAmount, RECEIVE for receiveAmount.
+                  description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
                 amount:
                   allOf:
                     - title: Money
@@ -5956,7 +5956,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /thirdpartyRequests/transactions/{ID}:
+  '/thirdpartyRequests/transactions/{ID}':
     parameters:
       - name: ID
         in: path
@@ -6317,7 +6317,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /thirdpartyRequests/transactions/{ID}/error:
+  '/thirdpartyRequests/transactions/{ID}/error':
     parameters:
       - name: ID
         in: path
@@ -6788,7 +6788,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /thirdpartyRequests/authorizations/{ID}:
+  '/thirdpartyRequests/authorizations/{ID}':
     parameters:
       - name: ID
         in: path
@@ -7152,7 +7152,7 @@ paths:
                             private key
                         genericSignedPayload:
                           type: string
-                          pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+                          pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
                           description: >-
                             The API data type BinaryString is a JSON String. The
                             string is a base64url  encoding of a string of raw
@@ -7212,7 +7212,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /thirdpartyRequests/authorizations/{ID}/error:
+  '/thirdpartyRequests/authorizations/{ID}/error':
     parameters:
       - name: ID
         in: path
@@ -7660,7 +7660,7 @@ paths:
                         private key
                     genericSignedPayload:
                       type: string
-                      pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+                      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
                       description: >-
                         The API data type BinaryString is a JSON String. The
                         string is a base64url  encoding of a string of raw
@@ -7717,7 +7717,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /thirdpartyRequests/verifications/{ID}:
+  '/thirdpartyRequests/verifications/{ID}':
     parameters:
       - name: ID
         in: path
@@ -7971,7 +7971,7 @@ paths:
           description: Service Unavailable
           content: *ref_32
           headers: *ref_33
-  /thirdpartyRequests/verifications/{ID}/error:
+  '/thirdpartyRequests/verifications/{ID}/error':
     parameters:
       - name: ID
         in: path
@@ -8306,7 +8306,7 @@ components:
     ErrorCode:
       title: ErrorCode
       type: string
-      pattern: ^[1-9]\d{3}$
+      pattern: '^[1-9]\d{3}$'
       description: >-
         The API data type ErrorCode is a JSON String of four characters,
         consisting of digits only. Negative numbers are not allowed. A leading
@@ -8348,13 +8348,13 @@ components:
     ParticipantsIDPutResponse:
       title: ParticipantsIDPutResponse
       type: object
-      description: The object sent in the PUT /participants/{ID} callback.
+      description: 'The object sent in the PUT /participants/{ID} callback.'
       properties: *ref_62
       required: *ref_63
     MerchantClassificationCode:
       title: MerchantClassificationCode
       type: string
-      pattern: ^[\d]{1,4}$
+      pattern: '^[\d]{1,4}$'
       description: >-
         A limited set of pre-defined numbers. This list would be a limited set
         of numbers identifying a set of popular merchant types like School Fees,
@@ -8436,7 +8436,7 @@ components:
     Amount:
       title: Amount
       type: string
-      pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+      pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
       description: >-
         The API data type Amount is a JSON String in a canonical format that is
         restricted by a regular expression for interoperability reasons. This
@@ -8495,7 +8495,7 @@ components:
     IlpPacket:
       title: IlpPacket
       type: string
-      pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
       minLength: 1
       maxLength: 32768
       description: Information for recipient (transport layer information).
@@ -8504,13 +8504,13 @@ components:
     IlpCondition:
       title: IlpCondition
       type: string
-      pattern: ^[A-Za-z0-9-_]{43}$
+      pattern: '^[A-Za-z0-9-_]{43}$'
       maxLength: 48
       description: Condition that must be attached to the transfer by the Payer.
     QuotesIDPutResponse:
       title: QuotesIDPutResponse
       type: object
-      description: The object sent in the PUT /quotes/{ID} callback.
+      description: 'The object sent in the PUT /quotes/{ID} callback.'
       properties: *ref_84
       required: *ref_85
     TransactionRequestState:
@@ -8571,14 +8571,14 @@ components:
     IlpFulfilment:
       title: IlpFulfilment
       type: string
-      pattern: ^[A-Za-z0-9-_]{43}$
+      pattern: '^[A-Za-z0-9-_]{43}$'
       maxLength: 48
       description: Fulfilment that must be attached to the transfer by the Payee.
       example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
     Integer:
       title: Integer
       type: string
-      pattern: ^[1-9]\d*$
+      pattern: '^[1-9]\d*$'
       description: >-
         The API data type Integer is a JSON String consisting of digits only.
         Negative numbers and leading zeroes are not allowed. The data type is
@@ -8681,7 +8681,7 @@ components:
     TransactionSubScenario:
       title: TransactionSubScenario
       type: string
-      pattern: ^[A-Z_]{1,32}$
+      pattern: '^[A-Z_]{1,32}$'
       description: >-
         Possible sub-scenario, defined locally within the scheme (UndefinedEnum
         Type).
@@ -8729,7 +8729,7 @@ components:
     BalanceOfPayments:
       title: BalanceOfPayments
       type: string
-      pattern: ^[1-9]\d{2}$
+      pattern: '^[1-9]\d{2}$'
       description: >-
         (BopCode) The API data type
         [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String
@@ -8758,7 +8758,7 @@ components:
     Name:
       title: Name
       type: string
-      pattern: ^(?!\s*$)[\w .,'-]{1,128}$
+      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
       description: >-
         The API data type Name is a JSON String, restricted by a regular
         expression to avoid characters which are generally not used in a name.
@@ -8798,7 +8798,7 @@ components:
         case).
 
         https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
-      pattern: ^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$
+      pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
       minLength: 1
       maxLength: 1023
     Account:
@@ -8885,7 +8885,7 @@ components:
     Uri:
       title: Uri
       type: string
-      pattern: ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
+      pattern: '^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?'
       minLength: 1
       maxLength: 512
       description: >
@@ -8953,7 +8953,7 @@ components:
       additionalProperties: false
     BinaryString:
       type: string
-      pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
+      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
       description: >-
         The API data type BinaryString is a JSON String. The string is a
         base64url  encoding of a string of raw bytes, where padding (character
@@ -9470,13 +9470,13 @@ components:
       in: path
       required: true
       schema: *ref_64
-      description: The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.
+      description: 'The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.'
     ServiceType:
       name: ServiceType
       in: path
       required: true
       schema: *ref_65
-      description: The type of the service identifier. For example, `THIRD_PARTY_DFSP`
+      description: 'The type of the service identifier. For example, `THIRD_PARTY_DFSP`'
   responses:
     '200':
       description: OK
