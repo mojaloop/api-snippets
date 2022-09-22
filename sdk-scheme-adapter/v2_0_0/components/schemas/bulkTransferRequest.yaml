@@ -1,6 +1,8 @@
 type: object
 required:
+- bulkTransferId
 - homeTransactionId
+- bulkQuoteId
 - from
 - individualTransfers
 properties:
@@ -10,6 +12,8 @@ properties:
       Transaction ID from the DFSP backend, used to reconcile transactions
       between the Switch and DFSP backend systems.
   bulkTransferId:
+    $ref: ./CorrelationId.yaml
+  bulkQuoteId:
     $ref: ./CorrelationId.yaml
   from:
     $ref: ./transferParty.yaml
