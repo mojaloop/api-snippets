@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [16.0.3](https://github.com/mojaloop/api-snippets/compare/v16.0.2...v16.0.3) (2022-09-23)
+
+
+### Bug Fixes
+
+* updates to sdk-scheme-adapter individualTransfer ([#144](https://github.com/mojaloop/api-snippets/issues/144)) ([11285c4](https://github.com/mojaloop/api-snippets/commit/11285c4f9151219250873159171eefb2d9910efc))
+
 ### [16.0.2](https://github.com/mojaloop/api-snippets/compare/v16.0.1...v16.0.2) (2022-09-22)
 
 
