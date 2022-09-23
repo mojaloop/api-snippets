@@ -9820,6 +9820,22 @@
       }
     ]
   },
+  "ilpPacket": {
+    "title": "IlpPacket",
+    "type": "string",
+    "pattern": "^[A-Za-z0-9-_]+[=]{0,2}$",
+    "minLength": 1,
+    "maxLength": 32768,
+    "description": "Information for recipient (transport layer information).",
+    "example": "AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA"
+  },
+  "ilpCondition": {
+    "title": "IlpCondition",
+    "type": "string",
+    "pattern": "^[A-Za-z0-9-_]{43}$",
+    "maxLength": 48,
+    "description": "Condition that must be attached to the transfer by the Payer."
+  },
   "individualTransfer": {
     "title": "IndividualTransfer",
     "type": "object",
@@ -10164,6 +10180,22 @@
         ],
         "description": "Type of transaction."
       },
+      "ilpPacket": {
+        "title": "IlpPacket",
+        "type": "string",
+        "pattern": "^[A-Za-z0-9-_]+[=]{0,2}$",
+        "minLength": 1,
+        "maxLength": 32768,
+        "description": "Information for recipient (transport layer information).",
+        "example": "AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA"
+      },
+      "condition": {
+        "title": "IlpCondition",
+        "type": "string",
+        "pattern": "^[A-Za-z0-9-_]{43}$",
+        "maxLength": 48,
+        "description": "Condition that must be attached to the transfer by the Payer."
+      },
       "note": {
         "title": "Note",
         "type": "string",
@@ -10219,7 +10251,9 @@
       "to",
       "amountType",
       "currency",
-      "amount"
+      "amount",
+      "ilpPacket",
+      "condition"
     ]
   },
   "bulkTransferRequest": {
@@ -10733,6 +10767,22 @@
               ],
               "description": "Type of transaction."
             },
+            "ilpPacket": {
+              "title": "IlpPacket",
+              "type": "string",
+              "pattern": "^[A-Za-z0-9-_]+[=]{0,2}$",
+              "minLength": 1,
+              "maxLength": 32768,
+              "description": "Information for recipient (transport layer information).",
+              "example": "AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA"
+            },
+            "condition": {
+              "title": "IlpCondition",
+              "type": "string",
+              "pattern": "^[A-Za-z0-9-_]{43}$",
+              "maxLength": 48,
+              "description": "Condition that must be attached to the transfer by the Payer."
+            },
             "note": {
               "title": "Note",
               "type": "string",
@@ -10788,7 +10838,9 @@
             "to",
             "amountType",
             "currency",
-            "amount"
+            "amount",
+            "ilpPacket",
+            "condition"
           ]
         }
       },

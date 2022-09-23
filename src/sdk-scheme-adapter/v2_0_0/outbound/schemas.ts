@@ -74,6 +74,8 @@ export namespace Schemas {
   export const bulkTransactionAcceptPartyErrorResponse = JsonSchemas.bulkTransactionAcceptPartyErrorResponse
   export const quoteError = JsonSchemas.quoteError
   export const bulkTransactionAcceptQuoteErrorResponse = JsonSchemas.bulkTransactionAcceptQuoteErrorResponse
+  export const ilpPacket = JsonSchemas.ilpPacket
+  export const ilpCondition = JsonSchemas.ilpCondition
   export const individualTransfer = JsonSchemas.individualTransfer
   export const bulkTransferRequest = JsonSchemas.bulkTransferRequest
   export const individualTransferFulfilment = JsonSchemas.individualTransferFulfilment
