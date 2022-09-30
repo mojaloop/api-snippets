@@ -3,6 +3,7 @@ required:
   - bulkQuoteId
   - individualQuoteResults
   - currentState
+  - expiration
 properties:
   bulkQuoteId:
     $ref: ./CorrelationId.yaml

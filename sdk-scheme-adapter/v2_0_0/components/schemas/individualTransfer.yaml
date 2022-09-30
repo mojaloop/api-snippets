@@ -15,9 +15,9 @@ properties:
   transactionType:
     $ref: ./transferTransactionType.yaml
   ilpPacket:
-    $ref: ./ilpPacket.yaml
+    $ref: ./IlpPacket.yaml
   condition:
-    $ref: ./ilpCondition.yaml
+    $ref: ./IlpCondition.yaml
   note:
     $ref: ./Note.yaml
   extensions:

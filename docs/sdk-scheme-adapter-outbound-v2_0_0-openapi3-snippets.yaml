@@ -16,8 +16,8 @@ info:
     **Note on terminology:** The term "Switch" is equal to the term "Hub", and
     the term "FSP" is equal to the term "DFSP".
   license:
-    name: 'Apache License Version 2.0, January 2004'
-    url: 'https://github.com/mojaloop/documentation/blob/master/LICENSE.md'
+    name: Apache License Version 2.0, January 2004
+    url: https://github.com/mojaloop/documentation/blob/master/LICENSE.md
   version: 1.0.0
 paths:
   /:
@@ -206,7 +206,7 @@ paths:
                     displayName:
                       title: Name
                       type: string
-                      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+                      pattern: ^(?!\s*$)[\w .,'-]{1,128}$
                       description: >-
                         The API data type Name is a JSON String, restricted by a
                         regular expression to avoid characters which are
@@ -265,7 +265,7 @@ paths:
                     merchantClassificationCode:
                       title: MerchantClassificationCode
                       type: string
-                      pattern: '^[\d]{1,4}$'
+                      pattern: ^[\d]{1,4}$
                       description: >-
                         A limited set of pre-defined numbers. This list would be
                         a limited set of numbers identifying a set of popular
@@ -500,7 +500,7 @@ paths:
                 amount:
                   title: Amount
                   type: string
-                  pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                   description: >-
                     The API data type Amount is a JSON String in a canonical
                     format that is restricted by a regular expression for
@@ -614,7 +614,7 @@ paths:
                   amount:
                     title: Amount
                     type: string
-                    pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                     description: >-
                       The API data type Amount is a JSON String in a canonical
                       format that is restricted by a regular expression for
@@ -676,7 +676,7 @@ paths:
                       body:
                         title: QuotesIDPutResponse
                         type: object
-                        description: 'The object sent in the PUT /quotes/{ID} callback.'
+                        description: The object sent in the PUT /quotes/{ID} callback.
                         properties: &ref_56
                           transferAmount:
                             title: Money
@@ -787,7 +787,7 @@ paths:
                           ilpPacket:
                             title: IlpPacket
                             type: string
-                            pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                            pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
                             minLength: 1
                             maxLength: 32768
                             description: >-
@@ -798,7 +798,7 @@ paths:
                           condition:
                             title: IlpCondition
                             type: string
-                            pattern: '^[A-Za-z0-9-_]{43}$'
+                            pattern: ^[A-Za-z0-9-_]{43}$
                             maxLength: 48
                             description: >-
                               Condition that must be attached to the transfer by
@@ -846,12 +846,12 @@ paths:
                       body:
                         title: TransfersIDPutResponse
                         type: object
-                        description: 'The object sent in the PUT /transfers/{ID} callback.'
+                        description: The object sent in the PUT /transfers/{ID} callback.
                         properties: &ref_20
                           fulfilment:
                             title: IlpFulfilment
                             type: string
-                            pattern: '^[A-Za-z0-9-_]{43}$'
+                            pattern: ^[A-Za-z0-9-_]{43}$
                             maxLength: 48
                             description: >-
                               Fulfilment that must be attached to the transfer
@@ -940,7 +940,7 @@ paths:
                               errorCode:
                                 title: ErrorCode
                                 type: string
-                                pattern: '^[1-9]\d{3}$'
+                                pattern: ^[1-9]\d{3}$
                                 description: >-
                                   The API data type ErrorCode is a JSON String
                                   of four characters, consisting of digits only.
@@ -979,7 +979,7 @@ paths:
                       previous party resolution has been performed.
                     type: boolean
         '400':
-          description: 'Malformed or missing required body, headers or parameters'
+          description: Malformed or missing required body, headers or parameters
           content: &ref_143
             application/json:
               schema:
@@ -1012,7 +1012,7 @@ paths:
             application/json:
               schema:
                 allOf: *ref_14
-  '/transfers/{transferId}':
+  /transfers/{transferId}:
     put:
       summary: >-
         Continues a transfer that has paused at the quote stage in order to
@@ -1141,7 +1141,7 @@ paths:
                       body:
                         title: TransfersIDPutResponse
                         type: object
-                        description: 'The object sent in the PUT /transfers/{ID} callback.'
+                        description: The object sent in the PUT /transfers/{ID} callback.
                         properties: *ref_20
                         required: *ref_21
                       headers:
@@ -1414,7 +1414,7 @@ paths:
                     merchantClassificationCode:
                       title: MerchantClassificationCode
                       type: string
-                      pattern: '^[\d]{1,4}$'
+                      pattern: ^[\d]{1,4}$
                       description: >-
                         A limited set of pre-defined numbers. This list would be
                         a limited set of numbers identifying a set of popular
@@ -1532,7 +1532,7 @@ paths:
                       amount:
                         title: Amount
                         type: string
-                        pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                        pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                         description: >-
                           The API data type Amount is a JSON String in a
                           canonical format that is restricted by a regular
@@ -1591,7 +1591,7 @@ paths:
         '202':
           description: Bulk transfer accepted successfully
         '400':
-          description: 'Malformed or missing required body, headers or parameters'
+          description: Malformed or missing required body, headers or parameters
           content: &ref_41
             application/json:
               schema:
@@ -1730,7 +1730,7 @@ paths:
                                     transfer by the Payee.
                                   title: IlpFulfilment
                                   type: string
-                                  pattern: '^[A-Za-z0-9-_]{43}$'
+                                  pattern: ^[A-Za-z0-9-_]{43}$
                                   maxLength: 48
                                   example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
                                 extensionList:
@@ -1759,7 +1759,7 @@ paths:
               schema:
                 type: object
                 properties: *ref_22
-  '/bulkTransactions/{bulkTransactionId}':
+  /bulkTransactions/{bulkTransactionId}:
     put:
       summary: Amends the bulk transaction request
       description: >-
@@ -1889,7 +1889,7 @@ paths:
         '202':
           description: Bulk transaction information successfully amended
         '400':
-          description: 'Malformed or missing required body, headers or parameters'
+          description: Malformed or missing required body, headers or parameters
           content: &ref_144
             application/json:
               schema:
@@ -2090,7 +2090,7 @@ paths:
                       amount:
                         title: Amount
                         type: string
-                        pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                        pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                         description: >-
                           The API data type Amount is a JSON String in a
                           canonical format that is restricted by a regular
@@ -2109,7 +2109,7 @@ paths:
                       ilpPacket:
                         title: IlpPacket
                         type: string
-                        pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                        pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
                         minLength: 1
                         maxLength: 32768
                         description: >-
@@ -2120,7 +2120,7 @@ paths:
                       condition:
                         title: IlpCondition
                         type: string
-                        pattern: '^[A-Za-z0-9-_]{43}$'
+                        pattern: ^[A-Za-z0-9-_]{43}$
                         maxLength: 48
                         description: >-
                           Condition that must be attached to the transfer by the
@@ -2167,12 +2167,12 @@ paths:
                 required: *ref_39
                 properties: *ref_40
         '400':
-          description: 'Malformed or missing required body, headers or parameters'
+          description: Malformed or missing required body, headers or parameters
           content: *ref_41
         '500':
           description: Internal Server Error
           content: *ref_42
-  '/bulkTransfers/{bulkTransferId}':
+  /bulkTransfers/{bulkTransferId}:
     get:
       summary: Retrieves information for a specific bulk transfer
       description: >-
@@ -2249,7 +2249,7 @@ paths:
                             the Payee.
                           title: IlpFulfilment
                           type: string
-                          pattern: '^[A-Za-z0-9-_]{43}$'
+                          pattern: ^[A-Za-z0-9-_]{43}$
                           maxLength: 48
                           example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
                         extensionList:
@@ -2369,7 +2369,7 @@ paths:
                       amount:
                         title: Amount
                         type: string
-                        pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                        pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                         description: >-
                           The API data type Amount is a JSON String in a
                           canonical format that is restricted by a regular
@@ -2427,6 +2427,7 @@ paths:
                   - bulkQuoteId
                   - individualQuoteResults
                   - currentState
+                  - expiration
                 properties: &ref_48
                   bulkQuoteId:
                     title: CorrelationId
@@ -2534,7 +2535,7 @@ paths:
                         ilpPacket:
                           title: IlpPacket
                           type: string
-                          pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                          pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
                           minLength: 1
                           maxLength: 32768
                           description: >-
@@ -2545,7 +2546,7 @@ paths:
                         condition:
                           title: IlpCondition
                           type: string
-                          pattern: '^[A-Za-z0-9-_]{43}$'
+                          pattern: ^[A-Za-z0-9-_]{43}$
                           maxLength: 48
                           description: >-
                             Condition that must be attached to the transfer by
@@ -2573,7 +2574,7 @@ paths:
                       List of individualQuoteResults in a bulk transfer
                       response.
         '400':
-          description: 'Malformed or missing required body, headers or parameters'
+          description: Malformed or missing required body, headers or parameters
           content: &ref_147
             application/json:
               schema:
@@ -2582,7 +2583,7 @@ paths:
                     properties: *ref_22
                   - type: object
                     required:
-                      - bulkTansferState
+                      - bulkQuoteState
                     properties:
                       bulkQuoteState:
                         type: object
@@ -2600,7 +2601,7 @@ paths:
             application/json:
               schema:
                 allOf: *ref_49
-  '/bulkQuotes/{bulkQuoteId}':
+  /bulkQuotes/{bulkQuoteId}:
     get:
       summary: Retrieves information for a specific bulk quote
       description: >-
@@ -2752,7 +2753,7 @@ paths:
                 amount:
                   title: Amount
                   type: string
-                  pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                   description: >-
                     The API data type Amount is a JSON String in a canonical
                     format that is restricted by a regular expression for
@@ -2807,7 +2808,7 @@ paths:
                     subScenario:
                       title: TransactionSubScenario
                       type: string
-                      pattern: '^[A-Z_]{1,32}$'
+                      pattern: ^[A-Z_]{1,32}$
                       description: >-
                         Possible sub-scenario, defined locally within the scheme
                         (UndefinedEnum Type).
@@ -2881,7 +2882,7 @@ paths:
                     balanceOfPayments:
                       title: BalanceOfPayments
                       type: string
-                      pattern: '^[1-9]\d{2}$'
+                      pattern: ^[1-9]\d{2}$
                       description: >-
                         (BopCode) The API data type
                         [BopCode](https://www.imf.org/external/np/sta/bopcode/)
@@ -2992,7 +2993,7 @@ paths:
                   amount:
                     title: Amount
                     type: string
-                    pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                     description: >-
                       The API data type Amount is a JSON String in a canonical
                       format that is restricted by a regular expression for
@@ -3177,7 +3178,7 @@ paths:
                 amount:
                   title: Amount
                   type: string
-                  pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                   description: >-
                     The API data type Amount is a JSON String in a canonical
                     format that is restricted by a regular expression for
@@ -3303,7 +3304,7 @@ paths:
                   amount:
                     title: Amount
                     type: string
-                    pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                     description: >-
                       The API data type Amount is a JSON String in a canonical
                       format that is restricted by a regular expression for
@@ -3347,7 +3348,7 @@ paths:
                   quoteResponse:
                     title: QuotesIDPutResponse
                     type: object
-                    description: 'The object sent in the PUT /quotes/{ID} callback.'
+                    description: The object sent in the PUT /quotes/{ID} callback.
                     properties: *ref_56
                     required: *ref_57
                   quoteResponseSource:
@@ -3360,7 +3361,7 @@ paths:
                   fulfil:
                     title: TransfersIDPutResponse
                     type: object
-                    description: 'The object sent in the PUT /transfers/{ID} callback.'
+                    description: The object sent in the PUT /transfers/{ID} callback.
                     properties: *ref_20
                     required: *ref_21
                   lastError:
@@ -3370,7 +3371,7 @@ paths:
                     type: object
                     properties: *ref_26
         '400':
-          description: 'Malformed or missing required body, headers or parameters'
+          description: Malformed or missing required body, headers or parameters
           content: &ref_152
             application/json:
               schema:
@@ -3381,7 +3382,7 @@ paths:
         '504':
           description: Timeout occurred processing the transfer
           content: *ref_17
-  '/requestToPayTransfer/{requestToPayTransactionId}':
+  /requestToPayTransfer/{requestToPayTransactionId}:
     put:
       summary: >-
         Continues a transfer that has paused at the otp stage in order to accept
@@ -3720,7 +3721,7 @@ paths:
             application/json:
               schema:
                 allOf: *ref_62
-  '/parties/{Type}/{ID}':
+  /parties/{Type}/{ID}:
     parameters:
       - name: Type
         in: path
@@ -3754,7 +3755,7 @@ paths:
               schema:
                 title: partiesByIdResponse
                 type: object
-                description: 'GET /parties/{Type}/{ID} response object'
+                description: GET /parties/{Type}/{ID} response object
                 properties: &ref_127
                   party:
                     properties:
@@ -3791,7 +3792,7 @@ paths:
                     description: Data model for the complex type ErrorInformation.
                     properties: *ref_63
                     required: *ref_64
-  '/parties/{Type}/{ID}/{SubId}':
+  /parties/{Type}/{ID}/{SubId}:
     parameters:
       - name: Type
         in: path
@@ -4013,7 +4014,7 @@ paths:
                   quotes:
                     title: QuotesIDPutResponse
                     type: object
-                    description: 'The object sent in the PUT /quotes/{ID} callback.'
+                    description: The object sent in the PUT /quotes/{ID} callback.
                     properties:
                       body:
                         type: object
@@ -4061,7 +4062,7 @@ paths:
                           ilpPacket:
                             title: IlpPacket
                             type: string
-                            pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                            pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
                             minLength: 1
                             maxLength: 32768
                             description: >-
@@ -4072,7 +4073,7 @@ paths:
                           condition:
                             title: IlpCondition
                             type: string
-                            pattern: '^[A-Za-z0-9-_]{43}$'
+                            pattern: ^[A-Za-z0-9-_]{43}$
                             maxLength: 48
                             description: >-
                               Condition that must be attached to the transfer by
@@ -4173,7 +4174,7 @@ paths:
                     ilpPacket:
                       title: IlpPacket
                       type: string
-                      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                      pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
                       minLength: 1
                       maxLength: 32768
                       description: Information for recipient (transport layer information).
@@ -4182,7 +4183,7 @@ paths:
                     condition:
                       title: IlpCondition
                       type: string
-                      pattern: '^[A-Za-z0-9-_]{43}$'
+                      pattern: ^[A-Za-z0-9-_]{43}$
                       maxLength: 48
                       description: >-
                         Condition that must be attached to the transfer by the
@@ -4239,7 +4240,7 @@ paths:
                       body:
                         title: TransfersIDPutResponse
                         type: object
-                        description: 'The object sent in the PUT /transfers/{ID} callback.'
+                        description: The object sent in the PUT /transfers/{ID} callback.
                         properties: *ref_20
                         required: *ref_21
                       headers:
@@ -4343,7 +4344,7 @@ components:
     Name:
       title: Name
       type: string
-      pattern: '^(?!\s*$)[\w .,''-]{1,128}$'
+      pattern: ^(?!\s*$)[\w .,'-]{1,128}$
       description: >-
         The API data type Name is a JSON String, restricted by a regular
         expression to avoid characters which are generally not used in a name.
@@ -4399,7 +4400,7 @@ components:
     MerchantClassificationCode:
       title: MerchantClassificationCode
       type: string
-      pattern: '^[\d]{1,4}$'
+      pattern: ^[\d]{1,4}$
       description: >-
         A limited set of pre-defined numbers. This list would be a limited set
         of numbers identifying a set of popular merchant types like School Fees,
@@ -4464,7 +4465,7 @@ components:
     Amount:
       title: Amount
       type: string
-      pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+      pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
       description: >-
         The API data type Amount is a JSON String in a canonical format that is
         restricted by a regular expression for interoperability reasons. This
@@ -4555,7 +4556,7 @@ components:
     IlpPacket:
       title: IlpPacket
       type: string
-      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+      pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
       minLength: 1
       maxLength: 32768
       description: Information for recipient (transport layer information).
@@ -4564,7 +4565,7 @@ components:
     IlpCondition:
       title: IlpCondition
       type: string
-      pattern: '^[A-Za-z0-9-_]{43}$'
+      pattern: ^[A-Za-z0-9-_]{43}$
       maxLength: 48
       description: Condition that must be attached to the transfer by the Payer.
     ExtensionList:
@@ -4578,13 +4579,13 @@ components:
     QuotesIDPutResponse:
       title: QuotesIDPutResponse
       type: object
-      description: 'The object sent in the PUT /quotes/{ID} callback.'
+      description: The object sent in the PUT /quotes/{ID} callback.
       properties: *ref_56
       required: *ref_57
     IlpFulfilment:
       title: IlpFulfilment
       type: string
-      pattern: '^[A-Za-z0-9-_]{43}$'
+      pattern: ^[A-Za-z0-9-_]{43}$
       maxLength: 48
       description: Fulfilment that must be attached to the transfer by the Payee.
       example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
@@ -4607,13 +4608,13 @@ components:
     TransfersIDPutResponse:
       title: TransfersIDPutResponse
       type: object
-      description: 'The object sent in the PUT /transfers/{ID} callback.'
+      description: The object sent in the PUT /transfers/{ID} callback.
       properties: *ref_20
       required: *ref_21
     ErrorCode:
       title: ErrorCode
       type: string
-      pattern: '^[1-9]\d{3}$'
+      pattern: ^[1-9]\d{3}$
       description: >-
         The API data type ErrorCode is a JSON String of four characters,
         consisting of digits only. Negative numbers are not allowed. A leading
@@ -4769,21 +4770,6 @@ components:
       properties: *ref_46
     bulkTransactionAcceptQuoteErrorResponse:
       allOf: *ref_95
-    ilpPacket:
-      title: IlpPacket
-      type: string
-      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
-      minLength: 1
-      maxLength: 32768
-      description: Information for recipient (transport layer information).
-      example: >-
-        AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
-    ilpCondition:
-      title: IlpCondition
-      type: string
-      pattern: '^[A-Za-z0-9-_]{43}$'
-      maxLength: 48
-      description: Condition that must be attached to the transfer by the Payer.
     individualTransfer:
       title: IndividualTransfer
       type: object
@@ -4862,7 +4848,7 @@ components:
     TransactionSubScenario:
       title: TransactionSubScenario
       type: string
-      pattern: '^[A-Z_]{1,32}$'
+      pattern: ^[A-Z_]{1,32}$
       description: >-
         Possible sub-scenario, defined locally within the scheme (UndefinedEnum
         Type).
@@ -4899,7 +4885,7 @@ components:
     BalanceOfPayments:
       title: BalanceOfPayments
       type: string
-      pattern: '^[1-9]\d{2}$'
+      pattern: ^[1-9]\d{2}$
       description: >-
         (BopCode) The API data type
         [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String
@@ -4974,7 +4960,7 @@ components:
     partiesByIdResponse:
       title: partiesByIdResponse
       type: object
-      description: 'GET /parties/{Type}/{ID} response object'
+      description: GET /parties/{Type}/{ID} response object
       properties: *ref_127
       required: *ref_128
     QuotesPostRequest:
@@ -5018,7 +5004,7 @@ components:
       description: Transfer completed successfully
       content: *ref_15
     transferBadRequest:
-      description: 'Malformed or missing required body, headers or parameters'
+      description: Malformed or missing required body, headers or parameters
       content: *ref_143
     transferServerError:
       description: An error occurred processing the transfer
@@ -5029,13 +5015,13 @@ components:
     bulkTransactionAccepted:
       description: Bulk transfer accepted successfully
     bulkTransferBadRequest:
-      description: 'Malformed or missing required body, headers or parameters'
+      description: Malformed or missing required body, headers or parameters
       content: *ref_41
     errorResponse:
       description: Internal Server Error
       content: *ref_42
     bulkTransactionPutBadRequest:
-      description: 'Malformed or missing required body, headers or parameters'
+      description: Malformed or missing required body, headers or parameters
       content: *ref_144
     bulkTransferSuccess:
       description: Bulk transfer completed successfully
@@ -5044,7 +5030,7 @@ components:
       description: Bulk quote completed successfully
       content: *ref_146
     bulkQuoteBadRequest:
-      description: 'Malformed or missing required body, headers or parameters'
+      description: Malformed or missing required body, headers or parameters
       content: *ref_147
     bulkQuoteServerError:
       description: An error occurred processing the bulk quote
@@ -5059,7 +5045,7 @@ components:
       description: Transfer completed successfully
       content: *ref_151
     requestToPayTransferBadRequest:
-      description: 'Malformed or missing required body, headers or parameters'
+      description: Malformed or missing required body, headers or parameters
       content: *ref_152
     accountsCreationCompleted:
       description: Accounts creation completed
@@ -5134,7 +5120,7 @@ components:
       in: path
       required: true
       schema: *ref_65
-      description: 'The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.'
+      description: The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.
     ID:
       name: ID
       in: path

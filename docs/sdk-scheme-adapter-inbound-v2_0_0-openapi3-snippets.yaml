@@ -9,11 +9,11 @@ info:
     **Note on terminology:** The term "Switch" is equal to the term "Hub", and
     the term "FSP" is equal to the term "DFSP".
   license:
-    name: 'Apache License Version 2.0, January 2004'
-    url: 'http://www.apache.org/licenses/'
+    name: Apache License Version 2.0, January 2004
+    url: http://www.apache.org/licenses/
   version: 1.1.0
 paths:
-  '/participants/{idType}/{idValue}':
+  /participants/{idType}/{idValue}:
     get:
       summary: >-
         Asks for the identifier (fspId) of the scheme participant (FSP) that can
@@ -98,7 +98,7 @@ paths:
                 type: object
                 required: *ref_0
                 properties: *ref_1
-  '/participants/{idType}/{idValue}/{idSubValue}':
+  /participants/{idType}/{idValue}/{idSubValue}:
     get:
       summary: >-
         Asks for the identifier (fspId) of the scheme participant (FSP) that can
@@ -164,7 +164,7 @@ paths:
         '500':
           description: An error occurred processing the request
           content: *ref_6
-  '/parties/{idType}/{idValue}':
+  /parties/{idType}/{idValue}:
     get:
       summary: >-
         Requests information relating to a transfer party identified by the
@@ -254,7 +254,7 @@ paths:
                       the `{idType}`, normally a `{personalIdType}`
                   displayName:
                     type: string
-                    description: 'Display name of the sender, if known.'
+                    description: Display name of the sender, if known.
                   firstName:
                     type: string
                     description: Party first name.
@@ -304,7 +304,7 @@ paths:
         '500':
           description: An error occurred processing the request
           content: *ref_6
-  '/parties/{idType}/{idValue}/{idSubValue}':
+  /parties/{idType}/{idValue}/{idSubValue}:
     get:
       summary: >-
         Requests information relating to a transfer party identified by the
@@ -422,7 +422,7 @@ paths:
                   required: *ref_8
                   properties: *ref_9
                 amountType:
-                  description: 'SEND for send amount, RECEIVE for receive amount.'
+                  description: SEND for send amount, RECEIVE for receive amount.
                   type: string
                   enum: &ref_16
                     - SEND
@@ -437,7 +437,7 @@ paths:
                     receive, that is, the amount that should be sent to the
                     receiver exclusive any fees. The amount is not updated by
                     any of the participating entities.
-                  pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                   type: string
                 currency:
                   maxLength: 3
@@ -613,7 +613,7 @@ paths:
                     The fees in the transaction. The fees element should be
                     empty if fees should be non-disclosed. The fees element
                     should be non-empty if fees should be disclosed.
-                  pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                   type: string
                 feesCurrency:
                   maxLength: 3
@@ -711,7 +711,7 @@ paths:
                     description: >-
                       The amount of money that the Payer FSP should transfer to
                       the Payee FSP.
-                    pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                     type: string
                   transferAmountCurrency:
                     description: The currency of the `transferAmount`.
@@ -724,7 +724,7 @@ paths:
                       The amount that the Payee should receive in the end-to-end
                       transaction. Optional as the Payee FSP might not want to
                       disclose any optional Payee fees.
-                    pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                     type: string
                   payeeReceiveAmountCurrency:
                     description: The currency of the `payeeReceiveAmount`.
@@ -734,7 +734,7 @@ paths:
                     enum: *ref_10
                   payeeFspFeeAmount:
                     description: Payee FSP’s part of the transaction fee.
-                    pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                     type: string
                   payeeFspFeeAmountCurrency:
                     description: The currency of the `payeeFspFeeAmount`.
@@ -744,7 +744,7 @@ paths:
                     enum: *ref_10
                   payeeFspCommissionAmount:
                     description: Transaction commission from the Payee FSP.
-                    pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                     type: string
                   payeeFspCommissionAmountCurrency:
                     description: Currency of the `payeeFspCommissionAmount`.
@@ -826,14 +826,14 @@ paths:
                 amountType:
                   type: string
                   enum: *ref_16
-                  description: 'SEND for send amount, RECEIVE for receive amount.'
+                  description: SEND for send amount, RECEIVE for receive amount.
                 currency:
                   maxLength: 3
                   minLength: 3
                   type: string
                   enum: *ref_10
                 amount:
-                  pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                   type: string
                 transactionType:
                   type: string
@@ -890,7 +890,7 @@ paths:
                             - currency
                           properties: &ref_34
                             amount:
-                              pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                              pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                               type: string
                             currency:
                               maxLength: 3
@@ -943,7 +943,7 @@ paths:
                       Payee.
                     title: IlpFulfilment
                     type: string
-                    pattern: '^[A-Za-z0-9-_]{43}$'
+                    pattern: ^[A-Za-z0-9-_]{43}$
                     maxLength: 48
                     example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
                   transferState:
@@ -973,7 +973,7 @@ paths:
         '500':
           description: An error occurred processing the request
           content: *ref_6
-  '/transfers/{transferId}':
+  /transfers/{transferId}:
     parameters:
       - name: transferId
         in: path
@@ -1023,14 +1023,14 @@ paths:
                   amountType:
                     type: string
                     enum: *ref_16
-                    description: 'SEND for send amount, RECEIVE for receive amount.'
+                    description: SEND for send amount, RECEIVE for receive amount.
                   currency:
                     maxLength: 3
                     minLength: 3
                     type: string
                     enum: *ref_10
                   amount:
-                    pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                     type: string
                   transferState:
                     type: string
@@ -1075,7 +1075,7 @@ paths:
             schema:
               title: TransfersIDPatchResponse
               type: object
-              description: 'PUT /transfers/{transferId} object'
+              description: PUT /transfers/{transferId} object
               properties: &ref_46
                 transferId:
                   pattern: >-
@@ -1162,7 +1162,7 @@ paths:
                             errorCode:
                               title: ErrorCode
                               type: string
-                              pattern: '^[1-9]\d{3}$'
+                              pattern: ^[1-9]\d{3}$
                               description: >-
                                 The API data type ErrorCode is a JSON String of
                                 four characters, consisting of digits only.
@@ -1245,7 +1245,7 @@ paths:
                       type: string
                       enum: *ref_20
                     extensionList:
-                      description: 'Optional extension, specific to deployment.'
+                      description: Optional extension, specific to deployment.
                       type: array
                       items: *ref_11
                       minItems: 0
@@ -1259,7 +1259,7 @@ paths:
         '500':
           description: An error occurred processing the request
           content: *ref_6
-  '/bulkTransactions/{bulkTransactionId}':
+  /bulkTransactions/{bulkTransactionId}:
     parameters:
       - name: bulkTransactionId
         in: path
@@ -1615,7 +1615,6 @@ paths:
                     type: object
                     required: &ref_76
                       - homeTransactionId
-                      - transactionId
                       - to
                       - amountType
                       - currency
@@ -1786,7 +1785,7 @@ paths:
                           merchantClassificationCode:
                             title: MerchantClassificationCode
                             type: string
-                            pattern: '^[\d]{1,4}$'
+                            pattern: ^[\d]{1,4}$
                             description: >-
                               A limited set of pre-defined numbers. This list
                               would be a limited set of numbers identifying a
@@ -1886,7 +1885,7 @@ paths:
                       amount:
                         title: Amount
                         type: string
-                        pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+                        pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                         description: >-
                           The API data type Amount is a JSON String in a
                           canonical format that is restricted by a regular
@@ -1923,7 +1922,7 @@ paths:
                       quoteResponse:
                         title: QuotesIDPutResponse
                         type: object
-                        description: 'The object sent in the PUT /quotes/{ID} callback.'
+                        description: The object sent in the PUT /quotes/{ID} callback.
                         properties: &ref_71
                           transferAmount:
                             title: Money
@@ -2034,7 +2033,7 @@ paths:
                           ilpPacket:
                             title: IlpPacket
                             type: string
-                            pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+                            pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
                             minLength: 1
                             maxLength: 32768
                             description: >-
@@ -2045,7 +2044,7 @@ paths:
                           condition:
                             title: IlpCondition
                             type: string
-                            pattern: '^[A-Za-z0-9-_]{43}$'
+                            pattern: ^[A-Za-z0-9-_]{43}$
                             maxLength: 48
                             description: >-
                               Condition that must be attached to the transfer by
@@ -2067,12 +2066,12 @@ paths:
                       fulfil:
                         title: TransfersIDPutResponse
                         type: object
-                        description: 'The object sent in the PUT /transfers/{ID} callback.'
+                        description: The object sent in the PUT /transfers/{ID} callback.
                         properties: &ref_74
                           fulfilment:
                             title: IlpFulfilment
                             type: string
-                            pattern: '^[A-Za-z0-9-_]{43}$'
+                            pattern: ^[A-Za-z0-9-_]{43}$
                             maxLength: 48
                             description: >-
                               Fulfilment that must be attached to the transfer
@@ -2172,7 +2171,7 @@ components:
     amountType:
       type: string
       enum: *ref_16
-      description: 'SEND for send amount, RECEIVE for receive amount.'
+      description: SEND for send amount, RECEIVE for receive amount.
     currency:
       maxLength: 3
       minLength: 3
@@ -2328,7 +2327,7 @@ components:
         The API data type Longitude is a JSON String in a lexical format that is
         restricted by a regular expression for interoperability reasons.
     money:
-      pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+      pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
       type: string
     participantsResponse:
       type: object
@@ -2420,7 +2419,7 @@ components:
     fulfilNotification:
       title: TransfersIDPatchResponse
       type: object
-      description: 'PUT /transfers/{transferId} object'
+      description: PUT /transfers/{transferId} object
       properties: *ref_46
     extensionListComplex:
       type: object
@@ -2444,14 +2443,14 @@ components:
     IlpFulfilment:
       title: IlpFulfilment
       type: string
-      pattern: '^[A-Za-z0-9-_]{43}$'
+      pattern: ^[A-Za-z0-9-_]{43}$
       maxLength: 48
       description: Fulfilment that must be attached to the transfer by the Payee.
       example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
     ErrorCode:
       title: ErrorCode
       type: string
-      pattern: '^[1-9]\d{3}$'
+      pattern: ^[1-9]\d{3}$
       description: >-
         The API data type ErrorCode is a JSON String of four characters,
         consisting of digits only. Negative numbers are not allowed. A leading
@@ -2542,7 +2541,7 @@ components:
     Amount:
       title: Amount
       type: string
-      pattern: '^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$'
+      pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
       description: >-
         The API data type Amount is a JSON String in a canonical format that is
         restricted by a regular expression for interoperability reasons. This
@@ -2660,7 +2659,7 @@ components:
     MerchantClassificationCode:
       title: MerchantClassificationCode
       type: string
-      pattern: '^[\d]{1,4}$'
+      pattern: ^[\d]{1,4}$
       description: >-
         A limited set of pre-defined numbers. This list would be a limited set
         of numbers identifying a set of popular merchant types like School Fees,
@@ -2779,7 +2778,7 @@ components:
     IlpPacket:
       title: IlpPacket
       type: string
-      pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
+      pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
       minLength: 1
       maxLength: 32768
       description: Information for recipient (transport layer information).
@@ -2788,13 +2787,13 @@ components:
     IlpCondition:
       title: IlpCondition
       type: string
-      pattern: '^[A-Za-z0-9-_]{43}$'
+      pattern: ^[A-Za-z0-9-_]{43}$
       maxLength: 48
       description: Condition that must be attached to the transfer by the Payer.
     QuotesIDPutResponse:
       title: QuotesIDPutResponse
       type: object
-      description: 'The object sent in the PUT /quotes/{ID} callback.'
+      description: The object sent in the PUT /quotes/{ID} callback.
       properties: *ref_71
       required: *ref_72
     TransferState:
@@ -2816,7 +2815,7 @@ components:
     TransfersIDPutResponse:
       title: TransfersIDPutResponse
       type: object
-      description: 'The object sent in the PUT /transfers/{ID} callback.'
+      description: The object sent in the PUT /transfers/{ID} callback.
       properties: *ref_74
       required: *ref_75
     bulkTransactionIndividualTransferResult:

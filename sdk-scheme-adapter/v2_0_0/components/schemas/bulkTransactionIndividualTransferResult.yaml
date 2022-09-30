@@ -1,7 +1,6 @@
 type: object
 required:
   - homeTransactionId
-  - transactionId
   - to
   - amountType
   - currency
