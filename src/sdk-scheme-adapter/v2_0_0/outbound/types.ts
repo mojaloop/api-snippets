@@ -74,8 +74,6 @@ export namespace Types {
   export type bulkTransactionAcceptPartyErrorResponse = components['schemas']['bulkTransactionAcceptPartyErrorResponse']
   export type quoteError = components['schemas']['quoteError']
   export type bulkTransactionAcceptQuoteErrorResponse = components['schemas']['bulkTransactionAcceptQuoteErrorResponse']
-  export type ilpPacket = components['schemas']['ilpPacket']
-  export type ilpCondition = components['schemas']['ilpCondition']
   export type individualTransfer = components['schemas']['individualTransfer']
   export type bulkTransferRequest = components['schemas']['bulkTransferRequest']
   export type individualTransferFulfilment = components['schemas']['individualTransferFulfilment']

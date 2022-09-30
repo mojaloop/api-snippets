@@ -2,7 +2,7 @@ allOf:
   - $ref: ./errorResponse.yaml
   - type: object
     required:
-      - bulkTansferState
+      - bulkQuoteState
     properties:
       bulkQuoteState:
         $ref: ./bulkQuoteResponse.yaml
