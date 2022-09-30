@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [16.0.4](https://github.com/mojaloop/api-snippets/compare/v16.0.3...v16.0.4) (2022-09-30)
+
+
+### Bug Fixes
+
+* required props ([#145](https://github.com/mojaloop/api-snippets/issues/145)) ([d615f4a](https://github.com/mojaloop/api-snippets/commit/d615f4aca0e5b6a49e1e944d180ebe2720bff7cb))
+
 ### [16.0.3](https://github.com/mojaloop/api-snippets/compare/v16.0.2...v16.0.3) (2022-09-23)
 
 
