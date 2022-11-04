@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [16.0.6](https://github.com/mojaloop/api-snippets/compare/v16.0.5...v16.0.6) (2022-11-04)
+
+
+### Bug Fixes
+
+* **mojaloop/3003:** SDK Interface /bulkTransaction definition restricts individualTransfers maxLimit ([36bdeb3](https://github.com/mojaloop/api-snippets/commit/36bdeb30aa900320c33b66f8b7083f3a54cb0fa9))
+
 ### [16.0.5](https://github.com/mojaloop/api-snippets/compare/v16.0.4...v16.0.5) (2022-11-04)
 
 
