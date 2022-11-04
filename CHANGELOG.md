@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [16.0.5](https://github.com/mojaloop/api-snippets/compare/v16.0.4...v16.0.5) (2022-11-04)
+
+
+### Bug Fixes
+
+* **mojaloop/#3003:** remove maxItems on bulkTransaction components ([#146](https://github.com/mojaloop/api-snippets/issues/146)) ([0a91072](https://github.com/mojaloop/api-snippets/commit/0a91072899dd5a832488963047b4988e55d93250)), closes [mojaloop/#3003](https://github.com/mojaloop/api-snippets/issues/3003)
+
 ### [16.0.4](https://github.com/mojaloop/api-snippets/compare/v16.0.3...v16.0.4) (2022-09-30)
 
 
