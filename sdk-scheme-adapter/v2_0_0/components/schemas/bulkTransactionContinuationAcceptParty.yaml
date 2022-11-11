@@ -3,6 +3,7 @@ description: >-
   false.
 type: object
 required:
+  - bulkHomeTransactionID
   - individualTransfers
 properties:
   bulkHomeTransactionID:

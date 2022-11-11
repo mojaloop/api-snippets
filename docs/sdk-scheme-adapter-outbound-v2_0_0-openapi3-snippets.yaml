@@ -1169,6 +1169,7 @@ paths:
               type: object
               required: &ref_88
                 - bulkTransactionId
+                - bulkHomeTransactionID
                 - options
                 - from
                 - individualTransfers
@@ -1571,6 +1572,7 @@ paths:
                           at any time during the transfer process
                         properties: *ref_26
                     required: &ref_87
+                      - homeTransactionId
                       - to
                       - amountType
                       - currency
@@ -1800,6 +1802,7 @@ paths:
                     autoAcceptParty is false.
                   type: object
                   required: &ref_34
+                    - bulkHomeTransactionID
                     - individualTransfers
                   properties: &ref_35
                     bulkHomeTransactionID:
@@ -1860,6 +1863,7 @@ paths:
                                   dashes (‘-‘).
                                 example: b51ec534-ee48-4575-b6a9-ead2955b8069
                             required: &ref_31
+                              - homeTransactionId
                               - transferId
                           - type: object
                             required: *ref_28
@@ -1869,6 +1873,7 @@ paths:
                     autoAcceptQuotes is false.
                   type: object
                   required: &ref_37
+                    - bulkHomeTransactionID
                     - individualTransfers
                   properties: &ref_38
                     bulkHomeTransactionID:

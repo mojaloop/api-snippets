@@ -1299,6 +1299,7 @@ paths:
               title: BulkTransactionResponse
               type: object
               required: &ref_78
+                - bulkHomeTransactionID
                 - bulkTransactionId
                 - currentState
                 - individualTransferResults
@@ -1612,7 +1613,7 @@ paths:
                   items:
                     type: object
                     required: &ref_76
-                      - transferId
+                      - homeTransactionId
                       - to
                       - amountType
                       - currency

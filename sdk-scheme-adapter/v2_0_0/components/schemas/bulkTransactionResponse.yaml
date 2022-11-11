@@ -1,6 +1,7 @@
 title: BulkTransactionResponse
 type: object
 required:
+  - bulkHomeTransactionID
   - bulkTransactionId
   - currentState
   - individualTransferResults

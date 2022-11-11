@@ -27,6 +27,7 @@ properties:
   lastError:
     $ref: ./transferError.yaml
 required:
+  - homeTransactionId
   - to
   - amountType
   - currency

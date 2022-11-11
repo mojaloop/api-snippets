@@ -7683,7 +7683,7 @@
   "bulkTransactionIndividualTransferResult": {
     "type": "object",
     "required": [
-      "transferId",
+      "homeTransactionId",
       "to",
       "amountType",
       "currency",
@@ -9191,6 +9191,7 @@
     "title": "BulkTransactionResponse",
     "type": "object",
     "required": [
+      "bulkHomeTransactionID",
       "bulkTransactionId",
       "currentState",
       "individualTransferResults"
@@ -9481,7 +9482,7 @@
         "items": {
           "type": "object",
           "required": [
-            "transferId",
+            "homeTransactionId",
             "to",
             "amountType",
             "currency",
