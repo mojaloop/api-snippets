@@ -9176,17 +9176,6 @@
     "type": "object",
     "description": "Data model for the 'individualTransfer' while accepting party or quote.",
     "properties": {
-      "homeTransactionId": {
-        "type": "string",
-        "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-      },
-      "transactionId": {
-        "title": "CorrelationId",
-        "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-        "description": "Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).",
-        "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
-      },
       "transferId": {
         "title": "CorrelationId",
         "type": "string",
@@ -9196,7 +9185,6 @@
       }
     },
     "required": [
-      "homeTransactionId",
       "transferId"
     ]
   },
@@ -9204,14 +9192,9 @@
     "description": "The object sent back as confirmation of payee parties when autoAcceptParty is false.",
     "type": "object",
     "required": [
-      "bulkHomeTransactionID",
       "individualTransfers"
     ],
     "properties": {
-      "bulkHomeTransactionID": {
-        "type": "string",
-        "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-      },
       "individualTransfers": {
         "description": "List of individual transfers in a bulk transfer with accept party information.",
         "type": "array",
@@ -9222,17 +9205,6 @@
               "type": "object",
               "description": "Data model for the 'individualTransfer' while accepting party or quote.",
               "properties": {
-                "homeTransactionId": {
-                  "type": "string",
-                  "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                },
-                "transactionId": {
-                  "title": "CorrelationId",
-                  "type": "string",
-                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-                  "description": "Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).",
-                  "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
-                },
                 "transferId": {
                   "title": "CorrelationId",
                   "type": "string",
@@ -9242,7 +9214,6 @@
                 }
               },
               "required": [
-                "homeTransactionId",
                 "transferId"
               ]
             },
@@ -9270,14 +9241,9 @@
     "description": "The object sent back as confirmation of quotes when autoAcceptQuotes is false.",
     "type": "object",
     "required": [
-      "bulkHomeTransactionID",
       "individualTransfers"
     ],
     "properties": {
-      "bulkHomeTransactionID": {
-        "type": "string",
-        "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-      },
       "individualTransfers": {
         "description": "List of individual transfers in a bulk transfer.",
         "type": "array",
@@ -9288,17 +9254,6 @@
               "type": "object",
               "description": "Data model for the 'individualTransfer' while accepting party or quote.",
               "properties": {
-                "homeTransactionId": {
-                  "type": "string",
-                  "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                },
-                "transactionId": {
-                  "title": "CorrelationId",
-                  "type": "string",
-                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-                  "description": "Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).",
-                  "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
-                },
                 "transferId": {
                   "title": "CorrelationId",
                   "type": "string",
@@ -9308,7 +9263,6 @@
                 }
               },
               "required": [
-                "homeTransactionId",
                 "transferId"
               ]
             },
@@ -9441,14 +9395,9 @@
                 "description": "The object sent back as confirmation of payee parties when autoAcceptParty is false.",
                 "type": "object",
                 "required": [
-                  "bulkHomeTransactionID",
                   "individualTransfers"
                 ],
                 "properties": {
-                  "bulkHomeTransactionID": {
-                    "type": "string",
-                    "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                  },
                   "individualTransfers": {
                     "description": "List of individual transfers in a bulk transfer with accept party information.",
                     "type": "array",
@@ -9459,17 +9408,6 @@
                           "type": "object",
                           "description": "Data model for the 'individualTransfer' while accepting party or quote.",
                           "properties": {
-                            "homeTransactionId": {
-                              "type": "string",
-                              "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                            },
-                            "transactionId": {
-                              "title": "CorrelationId",
-                              "type": "string",
-                              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-                              "description": "Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).",
-                              "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
-                            },
                             "transferId": {
                               "title": "CorrelationId",
                               "type": "string",
@@ -9479,7 +9417,6 @@
                             }
                           },
                           "required": [
-                            "homeTransactionId",
                             "transferId"
                           ]
                         },
@@ -9700,14 +9637,9 @@
                 "description": "The object sent back as confirmation of quotes when autoAcceptQuotes is false.",
                 "type": "object",
                 "required": [
-                  "bulkHomeTransactionID",
                   "individualTransfers"
                 ],
                 "properties": {
-                  "bulkHomeTransactionID": {
-                    "type": "string",
-                    "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                  },
                   "individualTransfers": {
                     "description": "List of individual transfers in a bulk transfer.",
                     "type": "array",
@@ -9718,17 +9650,6 @@
                           "type": "object",
                           "description": "Data model for the 'individualTransfer' while accepting party or quote.",
                           "properties": {
-                            "homeTransactionId": {
-                              "type": "string",
-                              "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                            },
-                            "transactionId": {
-                              "title": "CorrelationId",
-                              "type": "string",
-                              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-                              "description": "Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).",
-                              "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
-                            },
                             "transferId": {
                               "title": "CorrelationId",
                               "type": "string",
@@ -9738,7 +9659,6 @@
                             }
                           },
                           "required": [
-                            "homeTransactionId",
                             "transferId"
                           ]
                         },

@@ -3,14 +3,8 @@ description: >-
   false.
 type: object
 required:
-  - bulkHomeTransactionID
   - individualTransfers
 properties:
-  bulkHomeTransactionID:
-    type: string
-    description: >-
-      Transaction ID from the DFSP backend, used to reconcile transactions
-      between the Switch and DFSP backend systems.
   individualTransfers:
     description: >-
       List of individual transfers in a bulk transfer with accept party
