@@ -3,332 +3,525 @@
  * Do not make direct changes to the file.
  */
 
-
-/** Type helpers */
-type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
-type XOR<T, U> = (T | U) extends object ? (Without<T, U> & U) | (Without<U, T> & T) : T | U;
-type OneOf<T extends any[]> = T extends [infer Only] ? Only : T extends [infer A, infer B, ...infer Rest] ? OneOf<[XOR<A, B>, ...Rest]> : never;
-
 export interface paths {
   "/interface": {
-    /** @description Essential path to include schema definitions that are not used so that these definitions get included into the openapi-cli bundle api definition so that they get converted into typescript definitions. */
+    /** Essential path to include schema definitions that are not used so that these definitions get included into the openapi-cli bundle api definition so that they get converted into typescript definitions. */
     post: operations["test"];
   };
   "/participants/{Type}/{ID}": {
-    /**
-     * Look up participant information 
-     * @description The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is located (for example, `GET /participants/MSISDN/123456789`, or `GET /participants/BUSINESS/shoecompany/employee1`). This HTTP request should support a query string for filtering of currency. To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
-     */
+    /** The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is located (for example, `GET /participants/MSISDN/123456789`, or `GET /participants/BUSINESS/shoecompany/employee1`). This HTTP request should support a query string for filtering of currency. To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency. */
     get: operations["ParticipantsByTypeAndID"];
-    /**
-     * Return participant information 
-     * @description The callback `PUT /participants/{Type}/{ID}` (or `PUT /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the lookup, creation, or deletion of the FSP information related to the Party. If the FSP information is deleted, the fspId element should be empty; otherwise the element should include the FSP information for the Party.
-     */
+    /** The callback `PUT /participants/{Type}/{ID}` (or `PUT /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the lookup, creation, or deletion of the FSP information related to the Party. If the FSP information is deleted, the fspId element should be empty; otherwise the element should include the FSP information for the Party. */
     put: operations["ParticipantsByTypeAndID3"];
-    /**
-     * Create participant information 
-     * @description The HTTP request `POST /participants/{Type}/{ID}` (or `POST /participants/{Type}/{ID}/{SubId}`) is used to create information in the server regarding the provided identity, defined by `{Type}`, `{ID}`, and optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or `POST /participants/BUSINESS/shoecompany/employee1`). An ExtensionList element has been added to this reqeust in version v1.1
-     */
+    /** The HTTP request `POST /participants/{Type}/{ID}` (or `POST /participants/{Type}/{ID}/{SubId}`) is used to create information in the server regarding the provided identity, defined by `{Type}`, `{ID}`, and optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or `POST /participants/BUSINESS/shoecompany/employee1`). An ExtensionList element has been added to this reqeust in version v1.1 */
     post: operations["ParticipantsByIDAndType"];
     /**
-     * Delete participant information 
-     * @description The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete information in the server regarding the provided identity, defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`. This HTTP request should support a query string to delete FSP information regarding a specific currency only. To delete a specific currency only, the HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
-     * 
+     * The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete information in the server regarding the provided identity, defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`. This HTTP request should support a query string to delete FSP information regarding a specific currency only. To delete a specific currency only, the HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
+     *
      * **Note:** The Account Lookup System should verify that it is the Party’s current FSP that is deleting the FSP information.
      */
     delete: operations["ParticipantsByTypeAndID2"];
-    
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/participants/{Type}/{ID}/error": {
-    /**
-     * Return participant information error 
-     * @description If the server is unable to find, create or delete the associated FSP of the provided identity, or another processing error occurred, the error callback `PUT /participants/{Type}/{ID}/error` (or `PUT /participants/{Type}/{ID}/{SubId}/error`) is used.
-     */
+    /** If the server is unable to find, create or delete the associated FSP of the provided identity, or another processing error occurred, the error callback `PUT /participants/{Type}/{ID}/error` (or `PUT /participants/{Type}/{ID}/{SubId}/error`) is used. */
     put: operations["ParticipantsErrorByTypeAndID"];
   };
   "/participants/{Type}/{ID}/{SubId}": {
-    /**
-     * Look up participant information 
-     * @description The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is located (for example, `GET /participants/MSISDN/123456789`, or `GET /participants/BUSINESS/shoecompany/employee1`). This HTTP request should support a query string for filtering of currency. To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
-     */
+    /** The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is located (for example, `GET /participants/MSISDN/123456789`, or `GET /participants/BUSINESS/shoecompany/employee1`). This HTTP request should support a query string for filtering of currency. To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency. */
     get: operations["ParticipantsSubIdByTypeAndID"];
-    /**
-     * Return participant information 
-     * @description The callback `PUT /participants/{Type}/{ID}` (or `PUT /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the lookup, creation, or deletion of the FSP information related to the Party. If the FSP information is deleted, the fspId element should be empty; otherwise the element should include the FSP information for the Party.
-     */
+    /** The callback `PUT /participants/{Type}/{ID}` (or `PUT /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the lookup, creation, or deletion of the FSP information related to the Party. If the FSP information is deleted, the fspId element should be empty; otherwise the element should include the FSP information for the Party. */
     put: operations["ParticipantsSubIdByTypeAndID3"];
-    /**
-     * Create participant information 
-     * @description The HTTP request `POST /participants/{Type}/{ID}` (or `POST /participants/{Type}/{ID}/{SubId}`) is used to create information in the server regarding the provided identity, defined by `{Type}`, `{ID}`, and optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or `POST /participants/BUSINESS/shoecompany/employee1`). An ExtensionList element has been added to this reqeust in version v1.1
-     */
+    /** The HTTP request `POST /participants/{Type}/{ID}` (or `POST /participants/{Type}/{ID}/{SubId}`) is used to create information in the server regarding the provided identity, defined by `{Type}`, `{ID}`, and optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or `POST /participants/BUSINESS/shoecompany/employee1`). An ExtensionList element has been added to this reqeust in version v1.1 */
     post: operations["ParticipantsSubIdByTypeAndIDPost"];
     /**
-     * Delete participant information 
-     * @description The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete information in the server regarding the provided identity, defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`. This HTTP request should support a query string to delete FSP information regarding a specific currency only. To delete a specific currency only, the HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
-     * 
+     * The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete information in the server regarding the provided identity, defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`. This HTTP request should support a query string to delete FSP information regarding a specific currency only. To delete a specific currency only, the HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
+     *
      * **Note:** The Account Lookup System should verify that it is the Party’s current FSP that is deleting the FSP information.
      */
     delete: operations["ParticipantsSubIdByTypeAndID2"];
-    
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/participants/{Type}/{ID}/{SubId}/error": {
-    /**
-     * Return participant information error 
-     * @description If the server is unable to find, create or delete the associated FSP of the provided identity, or another processing error occurred, the error callback `PUT /participants/{Type}/{ID}/error` (or `PUT /participants/{Type}/{ID}/{SubId}/error`) is used.
-     */
+    /** If the server is unable to find, create or delete the associated FSP of the provided identity, or another processing error occurred, the error callback `PUT /participants/{Type}/{ID}/error` (or `PUT /participants/{Type}/{ID}/{SubId}/error`) is used. */
     put: operations["ParticipantsSubIdErrorByTypeAndID"];
   };
   "/participants": {
-    /**
-     * Create bulk participant information 
-     * @description The HTTP request `POST /participants` is used to create information in the server regarding the provided list of identities. This request should be used for bulk creation of FSP information for more than one Party. The optional currency parameter should indicate that each provided Party supports the currency.
-     */
+    /** The HTTP request `POST /participants` is used to create information in the server regarding the provided list of identities. This request should be used for bulk creation of FSP information for more than one Party. The optional currency parameter should indicate that each provided Party supports the currency. */
     post: operations["Participants1"];
   };
   "/participants/{ID}": {
-    /**
-     * Return bulk participant information 
-     * @description The callback `PUT /participants/{ID}` is used to inform the client of the result of the creation of the provided list of identities.
-     */
+    /** The callback `PUT /participants/{ID}` is used to inform the client of the result of the creation of the provided list of identities. */
     put: operations["putParticipantsByID"];
   };
   "/participants/{ID}/error": {
-    /**
-     * Return bulk participant information error 
-     * @description If there is an error during FSP information creation in the server, the error callback `PUT /participants/{ID}/error` is used. The `{ID}` in the URI should contain the requestId that was used for the creation of the participant information.
-     */
+    /** If there is an error during FSP information creation in the server, the error callback `PUT /participants/{ID}/error` is used. The `{ID}` in the URI should contain the requestId that was used for the creation of the participant information. */
     put: operations["ParticipantsByIDAndError"];
   };
   "/parties/{Type}/{ID}": {
-    /**
-     * Look up party information 
-     * @description The HTTP request `GET /parties/{Type}/{ID}` (or `GET /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET /parties/BUSINESS/shoecompany/employee1`).
-     */
+    /** The HTTP request `GET /parties/{Type}/{ID}` (or `GET /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET /parties/BUSINESS/shoecompany/employee1`). */
     get: operations["PartiesByTypeAndID"];
-    /**
-     * Return party information 
-     * @description The callback `PUT /parties/{Type}/{ID}` (or `PUT /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the Party information lookup.
-     */
+    /** The callback `PUT /parties/{Type}/{ID}` (or `PUT /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the Party information lookup. */
     put: operations["PartiesByTypeAndID2"];
-    
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/parties/{Type}/{ID}/error": {
-    /**
-     * Return party information error 
-     * @description If the server is unable to find Party information of the provided identity, or another processing error occurred, the error callback `PUT /parties/{Type}/{ID}/error` (or `PUT /parties/{Type}/{ID}/{SubI}/error`) is used.
-     */
+    /** If the server is unable to find Party information of the provided identity, or another processing error occurred, the error callback `PUT /parties/{Type}/{ID}/error` (or `PUT /parties/{Type}/{ID}/{SubI}/error`) is used. */
     put: operations["PartiesErrorByTypeAndID"];
   };
   "/parties/{Type}/{ID}/{SubId}": {
-    /**
-     * Look up party information 
-     * @description The HTTP request `GET /parties/{Type}/{ID}` (or `GET /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET /parties/BUSINESS/shoecompany/employee1`).
-     */
+    /** The HTTP request `GET /parties/{Type}/{ID}` (or `GET /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET /parties/BUSINESS/shoecompany/employee1`). */
     get: operations["PartiesSubIdByTypeAndID"];
-    /**
-     * Return party information 
-     * @description The callback `PUT /parties/{Type}/{ID}` (or `PUT /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the Party information lookup.
-     */
+    /** The callback `PUT /parties/{Type}/{ID}` (or `PUT /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the Party information lookup. */
     put: operations["PartiesSubIdByTypeAndIDPut"];
-    
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/parties/{Type}/{ID}/{SubId}/error": {
-    /**
-     * Return party information error 
-     * @description If the server is unable to find Party information of the provided identity, or another processing error occurred, the error callback `PUT /parties/{Type}/{ID}/error` (or `PUT /parties/{Type}/{ID}/{SubId}/error`) is used.
-     */
+    /** If the server is unable to find Party information of the provided identity, or another processing error occurred, the error callback `PUT /parties/{Type}/{ID}/error` (or `PUT /parties/{Type}/{ID}/{SubId}/error`) is used. */
     put: operations["PartiesSubIdErrorByTypeAndID"];
   };
   "/transactionRequests": {
-    /**
-     * Perform transaction request 
-     * @description The HTTP request `POST /transactionRequests` is used to request the creation of a transaction request for the provided financial transaction in the server.
-     */
+    /** The HTTP request `POST /transactionRequests` is used to request the creation of a transaction request for the provided financial transaction in the server. */
     post: operations["TransactionRequests"];
   };
   "/transactionRequests/{ID}": {
-    /**
-     * Retrieve transaction request information 
-     * @description The HTTP request `GET /transactionRequests/{ID}` is used to get information regarding a transaction request created or requested earlier. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request.
-     */
+    /** The HTTP request `GET /transactionRequests/{ID}` is used to get information regarding a transaction request created or requested earlier. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request. */
     get: operations["TransactionRequestsByID"];
-    /**
-     * Return transaction request information 
-     * @description The callback `PUT /transactionRequests/{ID}` is used to inform the client of a requested or created transaction request. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request, or the `{ID}` that was used in the `GET /transactionRequests/{ID}`.
-     */
+    /** The callback `PUT /transactionRequests/{ID}` is used to inform the client of a requested or created transaction request. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request, or the `{ID}` that was used in the `GET /transactionRequests/{ID}`. */
     put: operations["TransactionRequestsByIDPut"];
-    
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/transactionRequests/{ID}/error": {
-    /**
-     * Return transaction request information error 
-     * @description If the server is unable to find or create a transaction request, or another processing error occurs, the error callback `PUT /transactionRequests/{ID}/error` is used. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request, or the `{ID}` that was used in the `GET /transactionRequests/{ID}`.
-     */
+    /** If the server is unable to find or create a transaction request, or another processing error occurs, the error callback `PUT /transactionRequests/{ID}/error` is used. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request, or the `{ID}` that was used in the `GET /transactionRequests/{ID}`. */
     put: operations["TransactionRequestsErrorByID"];
   };
   "/quotes": {
-    /**
-     * Calculate quote 
-     * @description The HTTP request `POST /quotes` is used to request the creation of a quote for the provided financial transaction in the server.
-     */
+    /** The HTTP request `POST /quotes` is used to request the creation of a quote for the provided financial transaction in the server. */
     post: operations["Quotes"];
   };
   "/quotes/{ID}": {
-    /**
-     * Retrieve quote information 
-     * @description The HTTP request `GET /quotes/{ID}` is used to get information regarding a quote created or requested earlier. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote.
-     */
+    /** The HTTP request `GET /quotes/{ID}` is used to get information regarding a quote created or requested earlier. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote. */
     get: operations["QuotesByID"];
-    /**
-     * Return quote information 
-     * @description The callback `PUT /quotes/{ID}` is used to inform the client of a requested or created quote. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote, or the `{ID}` that was used in the `GET /quotes/{ID}` request.
-     */
+    /** The callback `PUT /quotes/{ID}` is used to inform the client of a requested or created quote. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote, or the `{ID}` that was used in the `GET /quotes/{ID}` request. */
     put: operations["QuotesByID1"];
-    
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/quotes/{ID}/error": {
-    /**
-     * Return quote information error 
-     * @description If the server is unable to find or create a quote, or some other processing error occurs, the error callback `PUT /quotes/{ID}/error` is used. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote, or the `{ID}` that was used in the `GET /quotes/{ID}` request.
-     */
+    /** If the server is unable to find or create a quote, or some other processing error occurs, the error callback `PUT /quotes/{ID}/error` is used. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote, or the `{ID}` that was used in the `GET /quotes/{ID}` request. */
     put: operations["QuotesByIDAndError"];
   };
   "/authorizations/{ID}": {
     /**
-     * Perform authorization 
-     * @description The HTTP request `GET /authorizations/{ID}` is used to request the Payer to enter the applicable credentials in the Payee FSP system. The `{ID}` in the URI should contain the `transactionRequestID`, received from the `POST /transactionRequests` service earlier in the process. This request requires a query string to be included in the URI, with the following key-value pairs*:*
-     * 
+     * The HTTP request `GET /authorizations/{ID}` is used to request the Payer to enter the applicable credentials in the Payee FSP system. The `{ID}` in the URI should contain the `transactionRequestID`, received from the `POST /transactionRequests` service earlier in the process. This request requires a query string to be included in the URI, with the following key-value pairs*:*
+     *
      * - `authenticationType={Type}`, where `{Type}` value is a valid authentication type from the enumeration `AuthenticationType`.
-     * 
+     *
      * - `retriesLeft=={NrOfRetries}`, where `{NrOfRetries}` is the number of retries left before the financial transaction is rejected. `{NrOfRetries}` must be expressed in the form of the data type `Integer`. `retriesLeft=1` means that this is the last retry before the financial transaction is rejected.
-     * 
+     *
      * - `amount={Amount}`, where `{Amount}` is the transaction amount that will be withdrawn from the Payer’s account. `{Amount}` must be expressed in the form of the data type `Amount`.
-     * 
+     *
      * - `currency={Currency}`, where `{Currency}` is the transaction currency for the amount that will be withdrawn from the Payer’s account. The `{Currency}` value must be expressed in the form of the enumeration `CurrencyCode`.
-     * 
+     *
      * The following is an example URI containing all the required key-value pairs in the query string*:*
-     * 
+     *
      * `GET /authorization/3d492671-b7af-4f3f-88de-76169b1bdf88?authenticationType=OTP&retriesLeft=2&amount=102&currency=USD`
      */
     get: operations["AuthorizationsByIDGet"];
-    /**
-     * Return authorization result 
-     * @description The callback `PUT /authorizations/{ID}` is used to inform the client of the result of a previously-requested authorization. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /authorizations/{ID}` request.
-     */
+    /** The callback `PUT /authorizations/{ID}` is used to inform the client of the result of a previously-requested authorization. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /authorizations/{ID}` request. */
     put: operations["AuthorizationsByIDPut"];
-    
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/authorizations/{ID}/error": {
-    /**
-     * Return authorization error 
-     * @description If the server is unable to find the transaction request, or another processing error occurs, the error callback `PUT /authorizations/{ID}/error` is used. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /authorizations/{ID}`.
-     */
+    /** If the server is unable to find the transaction request, or another processing error occurs, the error callback `PUT /authorizations/{ID}/error` is used. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /authorizations/{ID}`. */
     put: operations["AuthorizationsByIDAndError"];
   };
   "/transfers": {
-    /**
-     * Perform transfer 
-     * @description The HTTP request `POST /transfers` is used to request the creation of a transfer for the next ledger, and a financial transaction for the Payee FSP.
-     */
+    /** The HTTP request `POST /transfers` is used to request the creation of a transfer for the next ledger, and a financial transaction for the Payee FSP. */
     post: operations["transfers"];
   };
   "/transfers/{ID}": {
-    /**
-     * Retrieve transfer information 
-     * @description The HTTP request `GET /transfers/{ID}` is used to get information regarding a transfer created or requested earlier. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer.
-     */
+    /** The HTTP request `GET /transfers/{ID}` is used to get information regarding a transfer created or requested earlier. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
     get: operations["TransfersByIDGet"];
-    /**
-     * Return transfer information 
-     * @description The callback `PUT /transfers/{ID}` is used to inform the client of a requested or created transfer. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer, or the `{ID}` that was used in the `GET /transfers/{ID}` request.
-     */
+    /** The callback `PUT /transfers/{ID}` is used to inform the client of a requested or created transfer. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer, or the `{ID}` that was used in the `GET /transfers/{ID}` request. */
     put: operations["TransfersByIDPut"];
-    /**
-     * Return transfer information 
-     * @description The HTTP request PATCH /transfers/<ID> is used by a Switch to update the state of a previously reserved transfer, if the Payee FSP has requested a commit notification when the Switch has completed processing of the transfer. The <ID> in the URI should contain the transferId that was used for the creation of the transfer. Please note that this request does not generate a callback.
-     */
+    /** The HTTP request PATCH /transfers/<ID> is used by a Switch to update the state of a previously reserved transfer, if the Payee FSP has requested a commit notification when the Switch has completed processing of the transfer. The <ID> in the URI should contain the transferId that was used for the creation of the transfer. Please note that this request does not generate a callback. */
     patch: operations["TransfersByIDPatch"];
-    
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/transfers/{ID}/error": {
-    /**
-     * Return transfer information error 
-     * @description If the server is unable to find or create a transfer, or another processing error occurs, the error callback `PUT /transfers/{ID}/error` is used. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer, or the `{ID}` that was used in the `GET /transfers/{ID}`.
-     */
+    /** If the server is unable to find or create a transfer, or another processing error occurs, the error callback `PUT /transfers/{ID}/error` is used. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer, or the `{ID}` that was used in the `GET /transfers/{ID}`. */
     put: operations["TransfersByIDAndError"];
   };
   "/transactions/{ID}": {
-    /**
-     * Retrieve transaction information 
-     * @description The HTTP request `GET /transactions/{ID}` is used to get transaction information regarding a financial transaction created earlier. The `{ID}` in the URI should contain the `transactionId` that was used for the creation of the quote, as the transaction is created as part of another process (the transfer process).
-     */
+    /** The HTTP request `GET /transactions/{ID}` is used to get transaction information regarding a financial transaction created earlier. The `{ID}` in the URI should contain the `transactionId` that was used for the creation of the quote, as the transaction is created as part of another process (the transfer process). */
     get: operations["TransactionsByID"];
-    /**
-     * Return transaction information 
-     * @description The callback `PUT /transactions/{ID}` is used to inform the client of a requested transaction. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /transactions/{ID}` request.
-     */
+    /** The callback `PUT /transactions/{ID}` is used to inform the client of a requested transaction. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /transactions/{ID}` request. */
     put: operations["TransactionsByID1"];
-    
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/transactions/{ID}/error": {
-    /**
-     * Return transaction information error 
-     * @description If the server is unable to find or create a transaction, or another processing error occurs, the error callback `PUT /transactions/{ID}/error` is used. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /transactions/{ID}` request.
-     */
+    /** If the server is unable to find or create a transaction, or another processing error occurs, the error callback `PUT /transactions/{ID}/error` is used. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /transactions/{ID}` request. */
     put: operations["TransactionsErrorByID"];
   };
   "/bulkQuotes": {
-    /**
-     * Calculate bulk quote 
-     * @description The HTTP request `POST /bulkQuotes` is used to request the creation of a bulk quote for the provided financial transactions in the server.
-     */
+    /** The HTTP request `POST /bulkQuotes` is used to request the creation of a bulk quote for the provided financial transactions in the server. */
     post: operations["BulkQuotes"];
   };
   "/bulkQuotes/{ID}": {
-    /**
-     * Retrieve bulk quote information 
-     * @description The HTTP request `GET /bulkQuotes/{ID}` is used to get information regarding a bulk quote created or requested earlier. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote.
-     */
+    /** The HTTP request `GET /bulkQuotes/{ID}` is used to get information regarding a bulk quote created or requested earlier. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote. */
     get: operations["BulkQuotesByID"];
-    /**
-     * Return bulk quote information 
-     * @description The callback `PUT /bulkQuotes/{ID}` is used to inform the client of a requested or created bulk quote. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote, or the `{ID}` that was used in the `GET /bulkQuotes/{ID}` request.
-     */
+    /** The callback `PUT /bulkQuotes/{ID}` is used to inform the client of a requested or created bulk quote. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote, or the `{ID}` that was used in the `GET /bulkQuotes/{ID}` request. */
     put: operations["BulkQuotesByID1"];
-    
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/bulkQuotes/{ID}/error": {
-    /**
-     * Return bulk quote information error 
-     * @description If the server is unable to find or create a bulk quote, or another processing error occurs, the error callback `PUT /bulkQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote, or the `{ID}` that was used in the `GET /bulkQuotes/{ID}` request.
-     */
+    /** If the server is unable to find or create a bulk quote, or another processing error occurs, the error callback `PUT /bulkQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote, or the `{ID}` that was used in the `GET /bulkQuotes/{ID}` request. */
     put: operations["BulkQuotesErrorByID"];
   };
   "/bulkTransfers": {
-    /**
-     * Perform bulk transfer 
-     * @description The HTTP request `POST /bulkTransfers` is used to request the creation of a bulk transfer in the server.
-     */
+    /** The HTTP request `POST /bulkTransfers` is used to request the creation of a bulk transfer in the server. */
     post: operations["BulkTransfers"];
   };
   "/bulkTransfers/{ID}": {
-    /**
-     * Retrieve bulk transfer information 
-     * @description The HTTP request `GET /bulkTransfers/{ID}` is used to get information regarding a bulk transfer created or requested earlier. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer.
-     */
+    /** The HTTP request `GET /bulkTransfers/{ID}` is used to get information regarding a bulk transfer created or requested earlier. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer. */
     get: operations["BulkTransferByID"];
-    /**
-     * Return bulk transfer information 
-     * @description The callback `PUT /bulkTransfers/{ID}` is used to inform the client of a requested or created bulk transfer. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer (`POST /bulkTransfers`), or the `{ID}` that was used in the `GET /bulkTransfers/{ID}` request.
-     */
+    /** The callback `PUT /bulkTransfers/{ID}` is used to inform the client of a requested or created bulk transfer. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer (`POST /bulkTransfers`), or the `{ID}` that was used in the `GET /bulkTransfers/{ID}` request. */
     put: operations["BulkTransfersByIDPut"];
-    
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
   };
   "/bulkTransfers/{ID}/error": {
-    /**
-     * Return bulk transfer information error 
-     * @description If the server is unable to find or create a bulk transfer, or another processing error occurs, the error callback `PUT /bulkTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer (`POST /bulkTransfers`), or the `{ID}` that was used in the `GET /bulkTransfers/{ID}` request.
-     */
+    /** If the server is unable to find or create a bulk transfer, or another processing error occurs, the error callback `PUT /bulkTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer (`POST /bulkTransfers`), or the `{ID}` that was used in the `GET /bulkTransfers/{ID}` request. */
     put: operations["BulkTransfersErrorByID"];
   };
 }
@@ -340,26 +533,26 @@ export interface components {
     /** @description The API data type BinaryString32 is a fixed size version of the API data type BinaryString, where the raw underlying data is always of 32 bytes. The data type BinaryString32 should not use a padding character as the size of the underlying data is fixed. */
     BinaryString32: string;
     /**
-     * Date 
+     * Date
      * @description The API data type Date is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. This format, as specified in ISO 8601, contains a date only. A more readable version of the format is yyyy-MM-dd. Examples are "1982-05-23", "1987-08-05”.
      */
     Date: string;
     /**
-     * Integer 
+     * Integer
      * @description The API data type Integer is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited to a specific number of digits.
      */
     Integer: string;
     /**
-     * Name 
+     * Name
      * @description The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-     * 
+     *
      * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-     * 
+     *
      * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
      */
     Name: string;
     /**
-     * PersonalIdentifierType 
+     * PersonalIdentifierType
      * @description Below are the allowed values for the enumeration.
      * - PASSPORT - A passport number is used as reference to a Party.
      * - NATIONAL_REGISTRATION - A national registration number is used as reference to a Party.
@@ -373,23 +566,36 @@ export interface components {
      * - HEALTH_CARD - A health card number is used as reference to a Party.
      * - VOTERS_ID - A voter’s identification number is used as reference to a Party.
      * - UNITED_NATIONS - An UN (United Nations) number is used as reference to a Party.
-     * - OTHER_ID - Any other type of identification type number is used as reference to a Party. 
+     * - OTHER_ID - Any other type of identification type number is used as reference to a Party.
      * @enum {string}
      */
-    PersonalIdentifierType: "PASSPORT" | "NATIONAL_REGISTRATION" | "DRIVING_LICENSE" | "ALIEN_REGISTRATION" | "NATIONAL_ID_CARD" | "EMPLOYER_ID" | "TAX_ID_NUMBER" | "SENIOR_CITIZENS_CARD" | "MARRIAGE_CERTIFICATE" | "HEALTH_CARD" | "VOTERS_ID" | "UNITED_NATIONS" | "OTHER_ID";
+    PersonalIdentifierType:
+      | "PASSPORT"
+      | "NATIONAL_REGISTRATION"
+      | "DRIVING_LICENSE"
+      | "ALIEN_REGISTRATION"
+      | "NATIONAL_ID_CARD"
+      | "EMPLOYER_ID"
+      | "TAX_ID_NUMBER"
+      | "SENIOR_CITIZENS_CARD"
+      | "MARRIAGE_CERTIFICATE"
+      | "HEALTH_CARD"
+      | "VOTERS_ID"
+      | "UNITED_NATIONS"
+      | "OTHER_ID";
     /**
-     * TokenCode 
+     * TokenCode
      * @description The API data type TokenCode is a JSON String between 4 and 32 characters, consisting of digits or upper- or lowercase characters from a to z.
      */
     TokenCode: string;
     /**
-     * CorrelationId 
-     * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘). 
+     * CorrelationId
+     * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
      * @example b51ec534-ee48-4575-b6a9-ead2955b8069
      */
     CorrelationId: string;
     /**
-     * PartyIdType 
+     * PartyIdType
      * @description Below are the allowed values for the enumeration.
      * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
      * - EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).
@@ -398,38 +604,46 @@ export interface components {
      * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.
      * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
      * - IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.
-     * - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier. 
+     * - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.
      * @enum {string}
      */
-    PartyIdType: "MSISDN" | "EMAIL" | "PERSONAL_ID" | "BUSINESS" | "DEVICE" | "ACCOUNT_ID" | "IBAN" | "ALIAS";
+    PartyIdType:
+      | "MSISDN"
+      | "EMAIL"
+      | "PERSONAL_ID"
+      | "BUSINESS"
+      | "DEVICE"
+      | "ACCOUNT_ID"
+      | "IBAN"
+      | "ALIAS";
     /**
-     * PartyIdentifier 
-     * @description Identifier of the Party. 
+     * PartyIdentifier
+     * @description Identifier of the Party.
      * @example 16135551212
      */
     PartyIdentifier: string;
     /**
-     * PartySubIdOrType 
+     * PartySubIdOrType
      * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
      */
     PartySubIdOrType: string;
     /**
-     * FspId 
+     * FspId
      * @description FSP identifier.
      */
     FspId: string;
     /**
-     * ExtensionKey 
+     * ExtensionKey
      * @description Extension key.
      */
     ExtensionKey: string;
     /**
-     * ExtensionValue 
+     * ExtensionValue
      * @description Extension value.
      */
     ExtensionValue: string;
     /**
-     * Extension 
+     * Extension
      * @description Data model for the complex type Extension.
      */
     Extension: {
@@ -437,15 +651,15 @@ export interface components {
       value: components["schemas"]["ExtensionValue"];
     };
     /**
-     * ExtensionList 
+     * ExtensionList
      * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
      */
     ExtensionList: {
       /** @description Number of Extension elements. */
-      extension: (components["schemas"]["Extension"])[];
+      extension: components["schemas"]["Extension"][];
     };
     /**
-     * PartyIdInfo 
+     * PartyIdInfo
      * @description Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
      */
     PartyIdInfo: {
@@ -456,35 +670,35 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * MerchantClassificationCode 
+     * MerchantClassificationCode
      * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
      */
     MerchantClassificationCode: string;
     /**
-     * PartyName 
+     * PartyName
      * @description Name of the Party. Could be a real name or a nickname.
      */
     PartyName: string;
     /**
-     * FirstName 
-     * @description First name of the Party (Name Type). 
+     * FirstName
+     * @description First name of the Party (Name Type).
      * @example Henrik
      */
     FirstName: string;
     /**
-     * MiddleName 
-     * @description Middle name of the Party (Name Type). 
+     * MiddleName
+     * @description Middle name of the Party (Name Type).
      * @example Johannes
      */
     MiddleName: string;
     /**
-     * LastName 
-     * @description Last name of the Party (Name Type). 
+     * LastName
+     * @description Last name of the Party (Name Type).
      * @example Karlsson
      */
     LastName: string;
     /**
-     * PartyComplexName 
+     * PartyComplexName
      * @description Data model for the complex type PartyComplexName.
      */
     PartyComplexName: {
@@ -493,13 +707,13 @@ export interface components {
       lastName?: components["schemas"]["LastName"];
     };
     /**
-     * DateofBirth (type Date) 
-     * @description Date of Birth of the Party. 
+     * DateofBirth (type Date)
+     * @description Date of Birth of the Party.
      * @example 1966-06-16
      */
     DateOfBirth: string;
     /**
-     * PartyPersonalInfo 
+     * PartyPersonalInfo
      * @description Data model for the complex type PartyPersonalInfo.
      */
     PartyPersonalInfo: {
@@ -507,7 +721,7 @@ export interface components {
       dateOfBirth?: components["schemas"]["DateOfBirth"];
     };
     /**
-     * Party 
+     * Party
      * @description Data model for the complex type Party.
      */
     Party: {
@@ -517,19 +731,183 @@ export interface components {
       personalInfo?: components["schemas"]["PartyPersonalInfo"];
     };
     /**
-     * Currency 
-     * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies. 
+     * Currency
+     * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
      * @enum {string}
      */
-    Currency: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
+    Currency:
+      | "AED"
+      | "AFN"
+      | "ALL"
+      | "AMD"
+      | "ANG"
+      | "AOA"
+      | "ARS"
+      | "AUD"
+      | "AWG"
+      | "AZN"
+      | "BAM"
+      | "BBD"
+      | "BDT"
+      | "BGN"
+      | "BHD"
+      | "BIF"
+      | "BMD"
+      | "BND"
+      | "BOB"
+      | "BRL"
+      | "BSD"
+      | "BTN"
+      | "BWP"
+      | "BYN"
+      | "BZD"
+      | "CAD"
+      | "CDF"
+      | "CHF"
+      | "CLP"
+      | "CNY"
+      | "COP"
+      | "CRC"
+      | "CUC"
+      | "CUP"
+      | "CVE"
+      | "CZK"
+      | "DJF"
+      | "DKK"
+      | "DOP"
+      | "DZD"
+      | "EGP"
+      | "ERN"
+      | "ETB"
+      | "EUR"
+      | "FJD"
+      | "FKP"
+      | "GBP"
+      | "GEL"
+      | "GGP"
+      | "GHS"
+      | "GIP"
+      | "GMD"
+      | "GNF"
+      | "GTQ"
+      | "GYD"
+      | "HKD"
+      | "HNL"
+      | "HRK"
+      | "HTG"
+      | "HUF"
+      | "IDR"
+      | "ILS"
+      | "IMP"
+      | "INR"
+      | "IQD"
+      | "IRR"
+      | "ISK"
+      | "JEP"
+      | "JMD"
+      | "JOD"
+      | "JPY"
+      | "KES"
+      | "KGS"
+      | "KHR"
+      | "KMF"
+      | "KPW"
+      | "KRW"
+      | "KWD"
+      | "KYD"
+      | "KZT"
+      | "LAK"
+      | "LBP"
+      | "LKR"
+      | "LRD"
+      | "LSL"
+      | "LYD"
+      | "MAD"
+      | "MDL"
+      | "MGA"
+      | "MKD"
+      | "MMK"
+      | "MNT"
+      | "MOP"
+      | "MRO"
+      | "MUR"
+      | "MVR"
+      | "MWK"
+      | "MXN"
+      | "MYR"
+      | "MZN"
+      | "NAD"
+      | "NGN"
+      | "NIO"
+      | "NOK"
+      | "NPR"
+      | "NZD"
+      | "OMR"
+      | "PAB"
+      | "PEN"
+      | "PGK"
+      | "PHP"
+      | "PKR"
+      | "PLN"
+      | "PYG"
+      | "QAR"
+      | "RON"
+      | "RSD"
+      | "RUB"
+      | "RWF"
+      | "SAR"
+      | "SBD"
+      | "SCR"
+      | "SDG"
+      | "SEK"
+      | "SGD"
+      | "SHP"
+      | "SLL"
+      | "SOS"
+      | "SPL"
+      | "SRD"
+      | "STD"
+      | "SVC"
+      | "SYP"
+      | "SZL"
+      | "THB"
+      | "TJS"
+      | "TMT"
+      | "TND"
+      | "TOP"
+      | "TRY"
+      | "TTD"
+      | "TVD"
+      | "TWD"
+      | "TZS"
+      | "UAH"
+      | "UGX"
+      | "USD"
+      | "UYU"
+      | "UZS"
+      | "VEF"
+      | "VND"
+      | "VUV"
+      | "WST"
+      | "XAF"
+      | "XCD"
+      | "XDR"
+      | "XOF"
+      | "XPF"
+      | "XTS"
+      | "XXX"
+      | "YER"
+      | "ZAR"
+      | "ZMW"
+      | "ZWD";
     /**
-     * Amount 
-     * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed. 
+     * Amount
+     * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
      * @example 123.45
      */
     Amount: string;
     /**
-     * Money 
+     * Money
      * @description Data model for the complex type Money.
      */
     Money: {
@@ -537,51 +915,56 @@ export interface components {
       amount: components["schemas"]["Amount"];
     };
     /**
-     * TransactionScenario 
+     * TransactionScenario
      * @description Below are the allowed values for the enumeration.
      * - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.
      * - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.
      * - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.
      * - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
-     * - REFUND - Used for performing a refund of transaction. 
-     * @example DEPOSIT 
+     * - REFUND - Used for performing a refund of transaction.
+     * @example DEPOSIT
      * @enum {string}
      */
-    TransactionScenario: "DEPOSIT" | "WITHDRAWAL" | "TRANSFER" | "PAYMENT" | "REFUND";
+    TransactionScenario:
+      | "DEPOSIT"
+      | "WITHDRAWAL"
+      | "TRANSFER"
+      | "PAYMENT"
+      | "REFUND";
     /**
-     * TransactionSubScenario 
-     * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). 
+     * TransactionSubScenario
+     * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
      * @example LOCALLY_DEFINED_SUBSCENARIO
      */
     TransactionSubScenario: string;
     /**
-     * TransactionInitiator 
+     * TransactionInitiator
      * @description Below are the allowed values for the enumeration.
      * - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
-     * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device. 
-     * @example PAYEE 
+     * - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
+     * @example PAYEE
      * @enum {string}
      */
     TransactionInitiator: "PAYER" | "PAYEE";
     /**
-     * TransactionInitiatorType 
+     * TransactionInitiatorType
      * @description Below are the allowed values for the enumeration.
      * - CONSUMER - Consumer is the initiator of the transaction.
      * - AGENT - Agent is the initiator of the transaction.
      * - BUSINESS - Business is the initiator of the transaction.
-     * - DEVICE - Device is the initiator of the transaction. 
-     * @example CONSUMER 
+     * - DEVICE - Device is the initiator of the transaction.
+     * @example CONSUMER
      * @enum {string}
      */
     TransactionInitiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
     /**
-     * RefundReason 
-     * @description Reason for the refund. 
+     * RefundReason
+     * @description Reason for the refund.
      * @example Free text indicating reason for the refund.
      */
     RefundReason: string;
     /**
-     * Refund 
+     * Refund
      * @description Data model for the complex type Refund.
      */
     Refund: {
@@ -589,13 +972,13 @@ export interface components {
       refundReason?: components["schemas"]["RefundReason"];
     };
     /**
-     * BalanceOfPayments 
-     * @description (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. 
+     * BalanceOfPayments
+     * @description (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
      * @example 123
      */
     BalanceOfPayments: string;
     /**
-     * TransactionType 
+     * TransactionType
      * @description Data model for the complex type TransactionType.
      */
     TransactionType: {
@@ -607,13 +990,13 @@ export interface components {
       balanceOfPayments?: components["schemas"]["BalanceOfPayments"];
     };
     /**
-     * Note 
-     * @description Memo assigned to transaction. 
+     * Note
+     * @description Memo assigned to transaction.
      * @example Note sent to Payee.
      */
     Note: string;
     /**
-     * Transaction 
+     * Transaction
      * @description Data model for the complex type Transaction. The Transaction type is used to carry end-to-end data between the Payer FSP and the Payee FSP in the ILP Packet. Both the transactionId and the quoteId in the data model are decided by the Payer FSP in the POST /quotes request.
      */
     Transaction: {
@@ -627,23 +1010,23 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * UndefinedEnum 
+     * UndefinedEnum
      * @description The API data type UndefinedEnum is a JSON String consisting of 1 to 32 uppercase characters including an underscore character (_).
      */
     UndefinedEnum: string;
     /**
-     * ErrorCode 
-     * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error. 
+     * ErrorCode
+     * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
      * @example 5100
      */
     ErrorCode: string;
     /**
-     * ErrorDescription 
+     * ErrorDescription
      * @description Error description string.
      */
     ErrorDescription: string;
     /**
-     * ErrorInformation 
+     * ErrorInformation
      * @description Data model for the complex type ErrorInformation.
      */
     ErrorInformation: {
@@ -652,21 +1035,21 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * ErrorInformationResponse 
+     * ErrorInformationResponse
      * @description Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
      */
     ErrorInformationResponse: {
       errorInformation?: components["schemas"]["ErrorInformation"];
     };
     /**
-     * ParticipantsTypeIDPutResponse 
+     * ParticipantsTypeIDPutResponse
      * @description The object sent in the PUT /participants/{Type}/{ID}/{SubId} and /participants/{Type}/{ID} callbacks.
      */
     ParticipantsTypeIDPutResponse: {
       fspId?: components["schemas"]["FspId"];
     };
     /**
-     * ParticipantsTypeIDSubIDPostRequest 
+     * ParticipantsTypeIDSubIDPostRequest
      * @description The object sent in the POST /participants/{Type}/{ID}/{SubId} and /participants/{Type}/{ID} requests. An additional optional ExtensionList element has been added as part of v1.1 changes.
      */
     ParticipantsTypeIDSubIDPostRequest: {
@@ -675,24 +1058,24 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * ErrorInformationObject 
+     * ErrorInformationObject
      * @description Data model for the complex type object that contains ErrorInformation.
      */
     ErrorInformationObject: {
       errorInformation: components["schemas"]["ErrorInformation"];
     };
     /**
-     * ParticipantsPostRequest 
+     * ParticipantsPostRequest
      * @description The object sent in the POST /participants request.
      */
     ParticipantsPostRequest: {
       requestId: components["schemas"]["CorrelationId"];
       /** @description List of PartyIdInfo elements that the client would like to update or create FSP information about. */
-      partyList: (components["schemas"]["PartyIdInfo"])[];
+      partyList: components["schemas"]["PartyIdInfo"][];
       currency?: components["schemas"]["Currency"];
     };
     /**
-     * PartyResult 
+     * PartyResult
      * @description Data model for the complex type PartyResult.
      */
     PartyResult: {
@@ -700,35 +1083,35 @@ export interface components {
       errorInformation?: components["schemas"]["ErrorInformation"];
     };
     /**
-     * ParticipantsIDPutResponse 
+     * ParticipantsIDPutResponse
      * @description The object sent in the PUT /participants/{ID} callback.
      */
     ParticipantsIDPutResponse: {
       /** @description List of PartyResult elements that were either created or failed to be created. */
-      partyList: (components["schemas"]["PartyResult"])[];
+      partyList: components["schemas"]["PartyResult"][];
       currency?: components["schemas"]["Currency"];
     };
     /**
-     * PartiesTypeIDPutResponse 
+     * PartiesTypeIDPutResponse
      * @description The object sent in the PUT /parties/{Type}/{ID} callback.
      */
     PartiesTypeIDPutResponse: {
       party: components["schemas"]["Party"];
     };
     /**
-     * Latitude 
-     * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. 
+     * Latitude
+     * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
      * @example +45.4215
      */
     Latitude: string;
     /**
-     * Longitude 
-     * @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. 
+     * Longitude
+     * @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
      * @example +75.6972
      */
     Longitude: string;
     /**
-     * GeoCode 
+     * GeoCode
      * @description Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
      */
     GeoCode: {
@@ -736,23 +1119,23 @@ export interface components {
       longitude: components["schemas"]["Longitude"];
     };
     /**
-     * AuthenticationType 
+     * AuthenticationType
      * @description Below are the allowed values for the enumeration AuthenticationType.
      * - OTP - One-time password generated by the Payer FSP.
      * - QRCODE - QR code used as One Time Password.
-     * - U2F - U2F is a new addition isolated to Thirdparty stream. 
-     * @example OTP 
+     * - U2F - U2F is a new addition isolated to Thirdparty stream.
+     * @example OTP
      * @enum {string}
      */
     AuthenticationType: "OTP" | "QRCODE" | "U2F";
     /**
-     * DateTime 
-     * @description The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC). 
+     * DateTime
+     * @description The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
      * @example 2016-05-24T08:38:08.699-04:00
      */
     DateTime: string;
     /**
-     * TransactionRequestsPostRequest 
+     * TransactionRequestsPostRequest
      * @description The object sent in the POST /transactionRequests request.
      */
     TransactionRequestsPostRequest: {
@@ -768,18 +1151,18 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * TransactionRequestState 
+     * TransactionRequestState
      * @description Below are the allowed values for the enumeration.
      * - RECEIVED - Payer FSP has received the transaction from the Payee FSP.
      * - PENDING - Payer FSP has sent the transaction request to the Payer.
      * - ACCEPTED - Payer has approved the transaction.
-     * - REJECTED - Payer has rejected the transaction. 
-     * @example RECEIVED 
+     * - REJECTED - Payer has rejected the transaction.
+     * @example RECEIVED
      * @enum {string}
      */
     TransactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
     /**
-     * TransactionRequestsIDPutResponse 
+     * TransactionRequestsIDPutResponse
      * @description The object sent in the PUT /transactionRequests/{ID} callback.
      */
     TransactionRequestsIDPutResponse: {
@@ -788,16 +1171,16 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * AmountType 
+     * AmountType
      * @description Below are the allowed values for the enumeration AmountType.
      * - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
-     * - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees. 
-     * @example RECEIVE 
+     * - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
+     * @example RECEIVE
      * @enum {string}
      */
     AmountType: "SEND" | "RECEIVE";
     /**
-     * QuotesPostRequest 
+     * QuotesPostRequest
      * @description The object sent in the POST /quotes request.
      */
     QuotesPostRequest: {
@@ -816,18 +1199,18 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * IlpPacket 
-     * @description Information for recipient (transport layer information). 
+     * IlpPacket
+     * @description Information for recipient (transport layer information).
      * @example AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
      */
     IlpPacket: string;
     /**
-     * IlpCondition 
+     * IlpCondition
      * @description Condition that must be attached to the transfer by the Payer.
      */
     IlpCondition: string;
     /**
-     * QuotesIDPutResponse 
+     * QuotesIDPutResponse
      * @description The object sent in the PUT /quotes/{ID} callback.
      */
     QuotesIDPutResponse: {
@@ -842,22 +1225,22 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * OtpValue 
+     * OtpValue
      * @description The API data type OtpValue is a JSON String of 3 to 10 characters, consisting of digits only. Negative numbers are not allowed. One or more leading zeros are allowed.
      */
     OtpValue: string;
     /**
-     * QRCODE 
+     * QRCODE
      * @description QR code used as a One Time Password.
      */
     QRCODE: string;
     /**
-     * U2FPIN 
+     * U2FPIN
      * @description U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.
      */
     U2FPIN: string;
     /**
-     * U2FPinValue 
+     * U2FPinValue
      * @description U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.
      */
     U2FPinValue: {
@@ -867,12 +1250,14 @@ export interface components {
       counter: components["schemas"]["Integer"];
     };
     /**
-     * AuthenticationValue 
+     * AuthenticationValue
      * @description Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
      */
-    AuthenticationValue: components["schemas"]["OtpValue"] | components["schemas"]["QRCODE"] | components["schemas"]["U2FPinValue"];
+    AuthenticationValue: Partial<components["schemas"]["OtpValue"]> &
+      Partial<components["schemas"]["QRCODE"]> &
+      Partial<components["schemas"]["U2FPinValue"]>;
     /**
-     * AuthenticationInfo 
+     * AuthenticationInfo
      * @description Data model for the complex type AuthenticationInfo.
      */
     AuthenticationInfo: {
@@ -880,17 +1265,17 @@ export interface components {
       authenticationValue: components["schemas"]["AuthenticationValue"];
     };
     /**
-     * AuthorizationResponse 
+     * AuthorizationResponse
      * @description Below are the allowed values for the enumeration.
      * - ENTERED - Consumer entered the authentication value.
      * - REJECTED - Consumer rejected the transaction.
-     * - RESEND - Consumer requested to resend the authentication value. 
-     * @example ENTERED 
+     * - RESEND - Consumer requested to resend the authentication value.
+     * @example ENTERED
      * @enum {string}
      */
     AuthorizationResponse: "ENTERED" | "REJECTED" | "RESEND";
     /**
-     * AuthorizationsIDPutResponse 
+     * AuthorizationsIDPutResponse
      * @description The object sent in the PUT /authorizations/{ID} callback.
      */
     AuthorizationsIDPutResponse: {
@@ -898,7 +1283,7 @@ export interface components {
       responseType: components["schemas"]["AuthorizationResponse"];
     };
     /**
-     * TransfersPostRequest 
+     * TransfersPostRequest
      * @description The object sent in the POST /transfers request.
      */
     TransfersPostRequest: {
@@ -912,24 +1297,24 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * IlpFulfilment 
-     * @description Fulfilment that must be attached to the transfer by the Payee. 
+     * IlpFulfilment
+     * @description Fulfilment that must be attached to the transfer by the Payee.
      * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
      */
     IlpFulfilment: string;
     /**
-     * TransferState 
+     * TransferState
      * @description Below are the allowed values for the enumeration.
      * - RECEIVED - Next ledger has received the transfer.
      * - RESERVED - Next ledger has reserved the transfer.
      * - COMMITTED - Next ledger has successfully performed the transfer.
-     * - ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer. 
-     * @example RESERVED 
+     * - ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.
+     * @example RESERVED
      * @enum {string}
      */
     TransferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
     /**
-     * TransfersIDPutResponse 
+     * TransfersIDPutResponse
      * @description The object sent in the PUT /transfers/{ID} callback.
      */
     TransfersIDPutResponse: {
@@ -939,7 +1324,7 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * TransfersIDPatchResponse 
+     * TransfersIDPatchResponse
      * @description PATCH /transfers/{ID} object
      */
     TransfersIDPatchResponse: {
@@ -948,24 +1333,24 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * TransactionState 
+     * TransactionState
      * @description Below are the allowed values for the enumeration.
      * - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
      * - PENDING - Payee FSP has validated the transaction.
      * - COMPLETED - Payee FSP has successfully performed the transaction.
-     * - REJECTED - Payee FSP has failed to perform the transaction. 
-     * @example RECEIVED 
+     * - REJECTED - Payee FSP has failed to perform the transaction.
+     * @example RECEIVED
      * @enum {string}
      */
     TransactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
     /**
-     * Code 
-     * @description Any code/token returned by the Payee FSP (TokenCode Type). 
+     * Code
+     * @description Any code/token returned by the Payee FSP (TokenCode Type).
      * @example Test-Code
      */
     Code: string;
     /**
-     * TransactionsIDPutResponse 
+     * TransactionsIDPutResponse
      * @description The object sent in the PUT /transactions/{ID} callback.
      */
     TransactionsIDPutResponse: {
@@ -975,7 +1360,7 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * IndividualQuote 
+     * IndividualQuote
      * @description Data model for the complex type IndividualQuote.
      */
     IndividualQuote: {
@@ -990,7 +1375,7 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * BulkQuotesPostRequest 
+     * BulkQuotesPostRequest
      * @description The object sent in the POST /bulkQuotes request.
      */
     BulkQuotesPostRequest: {
@@ -999,11 +1384,11 @@ export interface components {
       geoCode?: components["schemas"]["GeoCode"];
       expiration?: components["schemas"]["DateTime"];
       /** @description List of quotes elements. */
-      individualQuotes: (components["schemas"]["IndividualQuote"])[];
+      individualQuotes: components["schemas"]["IndividualQuote"][];
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * IndividualQuoteResult 
+     * IndividualQuoteResult
      * @description Data model for the complex type IndividualQuoteResult.
      */
     IndividualQuoteResult: {
@@ -1019,17 +1404,17 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * BulkQuotesIDPutResponse 
+     * BulkQuotesIDPutResponse
      * @description The object sent in the PUT /bulkQuotes/{ID} callback.
      */
     BulkQuotesIDPutResponse: {
       /** @description Fees for each individual transaction, if any of them are charged per transaction. */
-      individualQuoteResults?: (components["schemas"]["IndividualQuoteResult"])[];
+      individualQuoteResults?: components["schemas"]["IndividualQuoteResult"][];
       expiration: components["schemas"]["DateTime"];
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * IndividualTransfer 
+     * IndividualTransfer
      * @description Data model for the complex type IndividualTransfer.
      */
     IndividualTransfer: {
@@ -1040,7 +1425,7 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * BulkTransfersPostRequest 
+     * BulkTransfersPostRequest
      * @description The object sent in the POST /bulkTransfers request.
      */
     BulkTransfersPostRequest: {
@@ -1049,12 +1434,12 @@ export interface components {
       payerFsp: components["schemas"]["FspId"];
       payeeFsp: components["schemas"]["FspId"];
       /** @description List of IndividualTransfer elements. */
-      individualTransfers: (components["schemas"]["IndividualTransfer"])[];
+      individualTransfers: components["schemas"]["IndividualTransfer"][];
       expiration: components["schemas"]["DateTime"];
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * IndividualTransferResult 
+     * IndividualTransferResult
      * @description Data model for the complex type IndividualTransferResult.
      */
     IndividualTransferResult: {
@@ -1064,111 +1449,93 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * BulkTransactionState 
+     * BulkTransactionState
      * @description Below are the allowed values for the enumeration.
      * - RECEIVED - Payee FSP has received the bulk transfer from the Payer FSP.
      * - PENDING - Payee FSP has validated the bulk transfer.
      * - ACCEPTED - Payee FSP has accepted to process the bulk transfer.
      * - PROCESSING - Payee FSP has started to transfer fund to the Payees.
      * - COMPLETED - Payee FSP has completed transfer of funds to the Payees.
-     * - REJECTED - Payee FSP has rejected to process the bulk transfer. 
-     * @example RECEIVED 
+     * - REJECTED - Payee FSP has rejected to process the bulk transfer.
+     * @example RECEIVED
      * @enum {string}
      */
-    BulkTransferState: "RECEIVED" | "PENDING" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "REJECTED";
+    BulkTransferState:
+      | "RECEIVED"
+      | "PENDING"
+      | "ACCEPTED"
+      | "PROCESSING"
+      | "COMPLETED"
+      | "REJECTED";
     /**
-     * BulkTransfersIDPutResponse 
+     * BulkTransfersIDPutResponse
      * @description The object sent in the PUT /bulkTransfers/{ID} callback.
      */
     BulkTransfersIDPutResponse: {
       completedTimestamp?: components["schemas"]["DateTime"];
       /** @description List of IndividualTransferResult elements. */
-      individualTransferResults?: (components["schemas"]["IndividualTransferResult"])[];
+      individualTransferResults?: components["schemas"]["IndividualTransferResult"][];
       bulkTransferState: components["schemas"]["BulkTransferState"];
       extensionList?: components["schemas"]["ExtensionList"];
     };
   };
   responses: {
-    /** @description OK */
-    200: never;
-    /** @description Accepted */
-    202: never;
-    /** @description Bad Request */
+    /** OK */
+    200: unknown;
+    /** Accepted */
+    202: unknown;
+    /** Bad Request */
     400: {
-      headers: {
-        "Content-Length": components["headers"]["Content-Length"];
-        "Content-Type": components["headers"]["Content-Type"];
-      };
+      headers: {};
       content: {
         "application/json": components["schemas"]["ErrorInformationResponse"];
       };
     };
-    /** @description Unauthorized */
+    /** Unauthorized */
     401: {
-      headers: {
-        "Content-Length": components["headers"]["Content-Length"];
-        "Content-Type": components["headers"]["Content-Type"];
-      };
+      headers: {};
       content: {
         "application/json": components["schemas"]["ErrorInformationResponse"];
       };
     };
-    /** @description Forbidden */
+    /** Forbidden */
     403: {
-      headers: {
-        "Content-Length": components["headers"]["Content-Length"];
-        "Content-Type": components["headers"]["Content-Type"];
-      };
+      headers: {};
       content: {
         "application/json": components["schemas"]["ErrorInformationResponse"];
       };
     };
-    /** @description Not Found */
+    /** Not Found */
     404: {
-      headers: {
-        "Content-Length": components["headers"]["Content-Length"];
-        "Content-Type": components["headers"]["Content-Type"];
-      };
+      headers: {};
       content: {
         "application/json": components["schemas"]["ErrorInformationResponse"];
       };
     };
-    /** @description Method Not Allowed */
+    /** Method Not Allowed */
     405: {
-      headers: {
-        "Content-Length": components["headers"]["Content-Length"];
-        "Content-Type": components["headers"]["Content-Type"];
-      };
+      headers: {};
       content: {
         "application/json": components["schemas"]["ErrorInformationResponse"];
       };
     };
-    /** @description Not Acceptable */
+    /** Not Acceptable */
     406: {
-      headers: {
-        "Content-Length": components["headers"]["Content-Length"];
-        "Content-Type": components["headers"]["Content-Type"];
-      };
+      headers: {};
       content: {
         "application/json": components["schemas"]["ErrorInformationResponse"];
       };
     };
-    /** @description Not Implemented */
+    /** Not Implemented */
     501: {
-      headers: {
-        "Content-Length": components["headers"]["Content-Length"];
-        "Content-Type": components["headers"]["Content-Type"];
-      };
+      headers: {};
       content: {
         "application/json": components["schemas"]["ErrorInformationResponse"];
       };
     };
-    /** @description Service Unavailable */
+    /** Service Unavailable */
     503: {
-      headers: {
-        "Content-Length": components["headers"]["Content-Length"];
-        "Content-Type": components["headers"]["Content-Type"];
-      };
+      headers: {};
       content: {
         "application/json": components["schemas"]["ErrorInformationResponse"];
       };
@@ -1185,7 +1552,7 @@ export interface components {
     Date: string;
     /**
      * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
-     * 
+     *
      * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
      */
     "X-Forwarded-For": string;
@@ -1205,48 +1572,83 @@ export interface components {
     Accept: string;
     /**
      * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
-     * 
+     *
      * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
      */
     "Content-Length": number;
     /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
     SubId: string;
   };
-  requestBodies: never;
   headers: {
     /**
-     * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
-     * 
+     * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+     *
      * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
      */
-    "Content-Length": number;
-    /** @description The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+    "Content-Length"?: number;
+    /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
     "Content-Type": string;
   };
-  pathItems: never;
 }
 
-export type external = Record<string, never>;
-
 export interface operations {
-
+  /** Essential path to include schema definitions that are not used so that these definitions get included into the openapi-cli bundle api definition so that they get converted into typescript definitions. */
   test: {
-    /** @description Essential path to include schema definitions that are not used so that these definitions get included into the openapi-cli bundle api definition so that they get converted into typescript definitions. */
-    requestBody?: {
+    responses: {
+      /** Ok */
+      200: unknown;
+    };
+    requestBody: {
       content: {
-        "application/json": components["schemas"]["BinaryString"] | components["schemas"]["BinaryString32"] | components["schemas"]["Date"] | components["schemas"]["Integer"] | components["schemas"]["Name"] | components["schemas"]["PersonalIdentifierType"] | components["schemas"]["TokenCode"] | components["schemas"]["Transaction"] | components["schemas"]["UndefinedEnum"];
+        "application/json":
+          | components["schemas"]["BinaryString"]
+          | components["schemas"]["BinaryString32"]
+          | components["schemas"]["Date"]
+          | components["schemas"]["Integer"]
+          | components["schemas"]["Name"]
+          | components["schemas"]["PersonalIdentifierType"]
+          | components["schemas"]["TokenCode"]
+          | components["schemas"]["Transaction"]
+          | components["schemas"]["UndefinedEnum"];
       };
     };
-    responses: {
-      /** @description Ok */
-      200: never;
-    };
   };
+  /** The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is located (for example, `GET /participants/MSISDN/123456789`, or `GET /participants/BUSINESS/shoecompany/employee1`). This HTTP request should support a query string for filtering of currency. To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency. */
   ParticipantsByTypeAndID: {
-    /**
-     * Look up participant information 
-     * @description The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is located (for example, `GET /participants/MSISDN/123456789`, or `GET /participants/BUSINESS/shoecompany/employee1`). This HTTP request should support a query string for filtering of currency. To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
-     */
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -1259,15 +1661,44 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /participants/{Type}/{ID}` (or `PUT /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the lookup, creation, or deletion of the FSP information related to the Party. If the FSP information is deleted, the fspId element should be empty; otherwise the element should include the FSP information for the Party. */
   ParticipantsByTypeAndID3: {
-    /**
-     * Return participant information 
-     * @description The callback `PUT /participants/{Type}/{ID}` (or `PUT /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the lookup, creation, or deletion of the FSP information related to the Party. If the FSP information is deleted, the fspId element should be empty; otherwise the element should include the FSP information for the Party.
-     */
-    /** @description Participant information returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ParticipantsTypeIDPutResponse"];
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
       };
     };
     responses: {
@@ -1281,16 +1712,111 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Participant information returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ParticipantsTypeIDPutResponse"];
+      };
+    };
   };
+  /** The HTTP request `POST /participants/{Type}/{ID}` (or `POST /participants/{Type}/{ID}/{SubId}`) is used to create information in the server regarding the provided identity, defined by `{Type}`, `{ID}`, and optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or `POST /participants/BUSINESS/shoecompany/employee1`). An ExtensionList element has been added to this reqeust in version v1.1 */
   ParticipantsByIDAndType: {
-    /**
-     * Create participant information 
-     * @description The HTTP request `POST /participants/{Type}/{ID}` (or `POST /participants/{Type}/{ID}/{SubId}`) is used to create information in the server regarding the provided identity, defined by `{Type}`, `{ID}`, and optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or `POST /participants/BUSINESS/shoecompany/employee1`). An ExtensionList element has been added to this reqeust in version v1.1
-     */
-    /** @description Participant information to be created. */
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      202: components["responses"]["202"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Participant information to be created. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["ParticipantsTypeIDSubIDPostRequest"];
+      };
+    };
+  };
+  /**
+   * The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete information in the server regarding the provided identity, defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`. This HTTP request should support a query string to delete FSP information regarding a specific currency only. To delete a specific currency only, the HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
+   *
+   * **Note:** The Account Lookup System should verify that it is the Party’s current FSP that is deleting the FSP information.
+   */
+  ParticipantsByTypeAndID2: {
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
       };
     };
     responses: {
@@ -1305,34 +1831,44 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
-  ParticipantsByTypeAndID2: {
-    /**
-     * Delete participant information 
-     * @description The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete information in the server regarding the provided identity, defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`. This HTTP request should support a query string to delete FSP information regarding a specific currency only. To delete a specific currency only, the HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
-     * 
-     * **Note:** The Account Lookup System should verify that it is the Party’s current FSP that is deleting the FSP information.
-     */
-    responses: {
-      202: components["responses"]["202"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
-  };
+  /** If the server is unable to find, create or delete the associated FSP of the provided identity, or another processing error occurred, the error callback `PUT /participants/{Type}/{ID}/error` (or `PUT /participants/{Type}/{ID}/{SubId}/error`) is used. */
   ParticipantsErrorByTypeAndID: {
-    /**
-     * Return participant information error 
-     * @description If the server is unable to find, create or delete the associated FSP of the provided identity, or another processing error occurred, the error callback `PUT /participants/{Type}/{ID}/error` (or `PUT /participants/{Type}/{ID}/{SubId}/error`) is used.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -1346,12 +1882,51 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is located (for example, `GET /participants/MSISDN/123456789`, or `GET /participants/BUSINESS/shoecompany/employee1`). This HTTP request should support a query string for filtering of currency. To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency. */
   ParticipantsSubIdByTypeAndID: {
-    /**
-     * Look up participant information 
-     * @description The HTTP request `GET /participants/{Type}/{ID}` (or `GET /participants/{Type}/{ID}/{SubId}`) is used to find out in which FSP the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}`, is located (for example, `GET /participants/MSISDN/123456789`, or `GET /participants/BUSINESS/shoecompany/employee1`). This HTTP request should support a query string for filtering of currency. To use filtering of currency, the HTTP request `GET /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
-     */
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -1364,19 +1939,112 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /participants/{Type}/{ID}` (or `PUT /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the lookup, creation, or deletion of the FSP information related to the Party. If the FSP information is deleted, the fspId element should be empty; otherwise the element should include the FSP information for the Party. */
   ParticipantsSubIdByTypeAndID3: {
-    /**
-     * Return participant information 
-     * @description The callback `PUT /participants/{Type}/{ID}` (or `PUT /participants/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the lookup, creation, or deletion of the FSP information related to the Party. If the FSP information is deleted, the fspId element should be empty; otherwise the element should include the FSP information for the Party.
-     */
-    /** @description Participant information returned. */
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Participant information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["ParticipantsTypeIDPutResponse"];
       };
     };
+  };
+  /** The HTTP request `POST /participants/{Type}/{ID}` (or `POST /participants/{Type}/{ID}/{SubId}`) is used to create information in the server regarding the provided identity, defined by `{Type}`, `{ID}`, and optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or `POST /participants/BUSINESS/shoecompany/employee1`). An ExtensionList element has been added to this reqeust in version v1.1 */
+  ParticipantsSubIdByTypeAndIDPost: {
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
     responses: {
-      200: components["responses"]["200"];
+      202: components["responses"]["202"];
       400: components["responses"]["400"];
       401: components["responses"]["401"];
       403: components["responses"]["403"];
@@ -1386,37 +2054,55 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
-  };
-  ParticipantsSubIdByTypeAndIDPost: {
-    /**
-     * Create participant information 
-     * @description The HTTP request `POST /participants/{Type}/{ID}` (or `POST /participants/{Type}/{ID}/{SubId}`) is used to create information in the server regarding the provided identity, defined by `{Type}`, `{ID}`, and optionally `{SubId}` (for example, `POST /participants/MSISDN/123456789` or `POST /participants/BUSINESS/shoecompany/employee1`). An ExtensionList element has been added to this reqeust in version v1.1
-     */
-    /** @description Participant information to be created. */
+    /** Participant information to be created. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["ParticipantsTypeIDSubIDPostRequest"];
       };
     };
-    responses: {
-      202: components["responses"]["202"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /**
+   * The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete information in the server regarding the provided identity, defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`. This HTTP request should support a query string to delete FSP information regarding a specific currency only. To delete a specific currency only, the HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
+   *
+   * **Note:** The Account Lookup System should verify that it is the Party’s current FSP that is deleting the FSP information.
+   */
   ParticipantsSubIdByTypeAndID2: {
-    /**
-     * Delete participant information 
-     * @description The HTTP request `DELETE /participants/{Type}/{ID}` (or `DELETE /participants/{Type}/{ID}/{SubId}`) is used to delete information in the server regarding the provided identity, defined by `{Type}` and `{ID}`) (for example, `DELETE /participants/MSISDN/123456789`), and optionally `{SubId}`. This HTTP request should support a query string to delete FSP information regarding a specific currency only. To delete a specific currency only, the HTTP request `DELETE /participants/{Type}/{ID}?currency=XYZ` should be used, where `XYZ` is the requested currency.
-     * 
-     * **Note:** The Account Lookup System should verify that it is the Party’s current FSP that is deleting the FSP information.
-     */
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -1429,15 +2115,46 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** If the server is unable to find, create or delete the associated FSP of the provided identity, or another processing error occurred, the error callback `PUT /participants/{Type}/{ID}/error` (or `PUT /participants/{Type}/{ID}/{SubId}/error`) is used. */
   ParticipantsSubIdErrorByTypeAndID: {
-    /**
-     * Return participant information error 
-     * @description If the server is unable to find, create or delete the associated FSP of the provided identity, or another processing error occurred, the error callback `PUT /participants/{Type}/{ID}/error` (or `PUT /participants/{Type}/{ID}/{SubId}/error`) is used.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -1451,20 +2168,107 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `POST /participants` is used to create information in the server regarding the provided list of identities. This request should be used for bulk creation of FSP information for more than one Party. The optional currency parameter should indicate that each provided Party supports the currency. */
   Participants1: {
-    /**
-     * Create bulk participant information 
-     * @description The HTTP request `POST /participants` is used to create information in the server regarding the provided list of identities. This request should be used for bulk creation of FSP information for more than one Party. The optional currency parameter should indicate that each provided Party supports the currency.
-     */
-    /** @description Participant information to be created. */
+    parameters: {
+      header: {
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
+    responses: {
+      202: components["responses"]["202"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Participant information to be created. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["ParticipantsPostRequest"];
       };
     };
+  };
+  /** The callback `PUT /participants/{ID}` is used to inform the client of the result of the creation of the provided list of identities. */
+  putParticipantsByID: {
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
     responses: {
-      202: components["responses"]["202"];
+      200: components["responses"]["200"];
       400: components["responses"]["400"];
       401: components["responses"]["401"];
       403: components["responses"]["403"];
@@ -1474,39 +2278,49 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
-  };
-  putParticipantsByID: {
-    /**
-     * Return bulk participant information 
-     * @description The callback `PUT /participants/{ID}` is used to inform the client of the result of the creation of the provided list of identities.
-     */
-    /** @description Participant information returned. */
+    /** Participant information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["ParticipantsIDPutResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If there is an error during FSP information creation in the server, the error callback `PUT /participants/{ID}/error` is used. The `{ID}` in the URI should contain the requestId that was used for the creation of the participant information. */
   ParticipantsByIDAndError: {
-    /**
-     * Return bulk participant information error 
-     * @description If there is an error during FSP information creation in the server, the error callback `PUT /participants/{ID}/error` is used. The `{ID}` in the URI should contain the requestId that was used for the creation of the participant information.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -1520,12 +2334,49 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `GET /parties/{Type}/{ID}` (or `GET /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET /parties/BUSINESS/shoecompany/employee1`). */
   PartiesByTypeAndID: {
-    /**
-     * Look up party information 
-     * @description The HTTP request `GET /parties/{Type}/{ID}` (or `GET /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET /parties/BUSINESS/shoecompany/employee1`).
-     */
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -1538,38 +2389,102 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /parties/{Type}/{ID}` (or `PUT /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the Party information lookup. */
   PartiesByTypeAndID2: {
-    /**
-     * Return party information 
-     * @description The callback `PUT /parties/{Type}/{ID}` (or `PUT /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the Party information lookup.
-     */
-    /** @description Party information returned. */
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Party information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["PartiesTypeIDPutResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If the server is unable to find Party information of the provided identity, or another processing error occurred, the error callback `PUT /parties/{Type}/{ID}/error` (or `PUT /parties/{Type}/{ID}/{SubI}/error`) is used. */
   PartiesErrorByTypeAndID: {
-    /**
-     * Return party information error 
-     * @description If the server is unable to find Party information of the provided identity, or another processing error occurred, the error callback `PUT /parties/{Type}/{ID}/error` (or `PUT /parties/{Type}/{ID}/{SubI}/error`) is used.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -1583,12 +2498,51 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `GET /parties/{Type}/{ID}` (or `GET /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET /parties/BUSINESS/shoecompany/employee1`). */
   PartiesSubIdByTypeAndID: {
-    /**
-     * Look up party information 
-     * @description The HTTP request `GET /parties/{Type}/{ID}` (or `GET /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET /parties/BUSINESS/shoecompany/employee1`).
-     */
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -1601,38 +2555,106 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /parties/{Type}/{ID}` (or `PUT /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the Party information lookup. */
   PartiesSubIdByTypeAndIDPut: {
-    /**
-     * Return party information 
-     * @description The callback `PUT /parties/{Type}/{ID}` (or `PUT /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a successful result of the Party information lookup.
-     */
-    /** @description Party information returned. */
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Party information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["PartiesTypeIDPutResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If the server is unable to find Party information of the provided identity, or another processing error occurred, the error callback `PUT /parties/{Type}/{ID}/error` (or `PUT /parties/{Type}/{ID}/{SubId}/error`) is used. */
   PartiesSubIdErrorByTypeAndID: {
-    /**
-     * Return party information error 
-     * @description If the server is unable to find Party information of the provided identity, or another processing error occurred, the error callback `PUT /parties/{Type}/{ID}/error` (or `PUT /parties/{Type}/{ID}/{SubId}/error`) is used.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -1646,35 +2668,101 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `POST /transactionRequests` is used to request the creation of a transaction request for the provided financial transaction in the server. */
   TransactionRequests: {
-    /**
-     * Perform transaction request 
-     * @description The HTTP request `POST /transactionRequests` is used to request the creation of a transaction request for the provided financial transaction in the server.
-     */
-    /** @description Transaction request to be created. */
+    parameters: {
+      header: {
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
+    responses: {
+      202: components["responses"]["202"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Transaction request to be created. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["TransactionRequestsPostRequest"];
       };
     };
-    responses: {
-      202: components["responses"]["202"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** The HTTP request `GET /transactionRequests/{ID}` is used to get information regarding a transaction request created or requested earlier. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request. */
   TransactionRequestsByID: {
-    /**
-     * Retrieve transaction request information 
-     * @description The HTTP request `GET /transactionRequests/{ID}` is used to get information regarding a transaction request created or requested earlier. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request.
-     */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -1687,38 +2775,98 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /transactionRequests/{ID}` is used to inform the client of a requested or created transaction request. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request, or the `{ID}` that was used in the `GET /transactionRequests/{ID}`. */
   TransactionRequestsByIDPut: {
-    /**
-     * Return transaction request information 
-     * @description The callback `PUT /transactionRequests/{ID}` is used to inform the client of a requested or created transaction request. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request, or the `{ID}` that was used in the `GET /transactionRequests/{ID}`.
-     */
-    /** @description Transaction request information returned. */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Transaction request information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["TransactionRequestsIDPutResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If the server is unable to find or create a transaction request, or another processing error occurs, the error callback `PUT /transactionRequests/{ID}/error` is used. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request, or the `{ID}` that was used in the `GET /transactionRequests/{ID}`. */
   TransactionRequestsErrorByID: {
-    /**
-     * Return transaction request information error 
-     * @description If the server is unable to find or create a transaction request, or another processing error occurs, the error callback `PUT /transactionRequests/{ID}/error` is used. The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of the transaction request, or the `{ID}` that was used in the `GET /transactionRequests/{ID}`.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -1732,35 +2880,101 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `POST /quotes` is used to request the creation of a quote for the provided financial transaction in the server. */
   Quotes: {
-    /**
-     * Calculate quote 
-     * @description The HTTP request `POST /quotes` is used to request the creation of a quote for the provided financial transaction in the server.
-     */
-    /** @description Details of the quote to be created. */
+    parameters: {
+      header: {
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
+    responses: {
+      202: components["responses"]["202"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Details of the quote to be created. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["QuotesPostRequest"];
       };
     };
-    responses: {
-      202: components["responses"]["202"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** The HTTP request `GET /quotes/{ID}` is used to get information regarding a quote created or requested earlier. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote. */
   QuotesByID: {
-    /**
-     * Retrieve quote information 
-     * @description The HTTP request `GET /quotes/{ID}` is used to get information regarding a quote created or requested earlier. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote.
-     */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -1773,38 +2987,98 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /quotes/{ID}` is used to inform the client of a requested or created quote. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote, or the `{ID}` that was used in the `GET /quotes/{ID}` request. */
   QuotesByID1: {
-    /**
-     * Return quote information 
-     * @description The callback `PUT /quotes/{ID}` is used to inform the client of a requested or created quote. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote, or the `{ID}` that was used in the `GET /quotes/{ID}` request.
-     */
-    /** @description Quote information returned. */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Quote information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["QuotesIDPutResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If the server is unable to find or create a quote, or some other processing error occurs, the error callback `PUT /quotes/{ID}/error` is used. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote, or the `{ID}` that was used in the `GET /quotes/{ID}` request. */
   QuotesByIDAndError: {
-    /**
-     * Return quote information error 
-     * @description If the server is unable to find or create a quote, or some other processing error occurs, the error callback `PUT /quotes/{ID}/error` is used. The `{ID}` in the URI should contain the `quoteId` that was used for the creation of the quote, or the `{ID}` that was used in the `GET /quotes/{ID}` request.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -1818,24 +3092,61 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /**
+   * The HTTP request `GET /authorizations/{ID}` is used to request the Payer to enter the applicable credentials in the Payee FSP system. The `{ID}` in the URI should contain the `transactionRequestID`, received from the `POST /transactionRequests` service earlier in the process. This request requires a query string to be included in the URI, with the following key-value pairs*:*
+   *
+   * - `authenticationType={Type}`, where `{Type}` value is a valid authentication type from the enumeration `AuthenticationType`.
+   *
+   * - `retriesLeft=={NrOfRetries}`, where `{NrOfRetries}` is the number of retries left before the financial transaction is rejected. `{NrOfRetries}` must be expressed in the form of the data type `Integer`. `retriesLeft=1` means that this is the last retry before the financial transaction is rejected.
+   *
+   * - `amount={Amount}`, where `{Amount}` is the transaction amount that will be withdrawn from the Payer’s account. `{Amount}` must be expressed in the form of the data type `Amount`.
+   *
+   * - `currency={Currency}`, where `{Currency}` is the transaction currency for the amount that will be withdrawn from the Payer’s account. The `{Currency}` value must be expressed in the form of the enumeration `CurrencyCode`.
+   *
+   * The following is an example URI containing all the required key-value pairs in the query string*:*
+   *
+   * `GET /authorization/3d492671-b7af-4f3f-88de-76169b1bdf88?authenticationType=OTP&retriesLeft=2&amount=102&currency=USD`
+   */
   AuthorizationsByIDGet: {
-    /**
-     * Perform authorization 
-     * @description The HTTP request `GET /authorizations/{ID}` is used to request the Payer to enter the applicable credentials in the Payee FSP system. The `{ID}` in the URI should contain the `transactionRequestID`, received from the `POST /transactionRequests` service earlier in the process. This request requires a query string to be included in the URI, with the following key-value pairs*:*
-     * 
-     * - `authenticationType={Type}`, where `{Type}` value is a valid authentication type from the enumeration `AuthenticationType`.
-     * 
-     * - `retriesLeft=={NrOfRetries}`, where `{NrOfRetries}` is the number of retries left before the financial transaction is rejected. `{NrOfRetries}` must be expressed in the form of the data type `Integer`. `retriesLeft=1` means that this is the last retry before the financial transaction is rejected.
-     * 
-     * - `amount={Amount}`, where `{Amount}` is the transaction amount that will be withdrawn from the Payer’s account. `{Amount}` must be expressed in the form of the data type `Amount`.
-     * 
-     * - `currency={Currency}`, where `{Currency}` is the transaction currency for the amount that will be withdrawn from the Payer’s account. The `{Currency}` value must be expressed in the form of the enumeration `CurrencyCode`.
-     * 
-     * The following is an example URI containing all the required key-value pairs in the query string*:*
-     * 
-     * `GET /authorization/3d492671-b7af-4f3f-88de-76169b1bdf88?authenticationType=OTP&retriesLeft=2&amount=102&currency=USD`
-     */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -1848,38 +3159,98 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /authorizations/{ID}` is used to inform the client of the result of a previously-requested authorization. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /authorizations/{ID}` request. */
   AuthorizationsByIDPut: {
-    /**
-     * Return authorization result 
-     * @description The callback `PUT /authorizations/{ID}` is used to inform the client of the result of a previously-requested authorization. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /authorizations/{ID}` request.
-     */
-    /** @description Authorization result returned. */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Authorization result returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["AuthorizationsIDPutResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If the server is unable to find the transaction request, or another processing error occurs, the error callback `PUT /authorizations/{ID}/error` is used. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /authorizations/{ID}`. */
   AuthorizationsByIDAndError: {
-    /**
-     * Return authorization error 
-     * @description If the server is unable to find the transaction request, or another processing error occurs, the error callback `PUT /authorizations/{ID}/error` is used. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /authorizations/{ID}`.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -1893,35 +3264,101 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `POST /transfers` is used to request the creation of a transfer for the next ledger, and a financial transaction for the Payee FSP. */
   transfers: {
-    /**
-     * Perform transfer 
-     * @description The HTTP request `POST /transfers` is used to request the creation of a transfer for the next ledger, and a financial transaction for the Payee FSP.
-     */
-    /** @description Details of the transfer to be created. */
+    parameters: {
+      header: {
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
+    responses: {
+      202: components["responses"]["202"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Details of the transfer to be created. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["TransfersPostRequest"];
       };
     };
-    responses: {
-      202: components["responses"]["202"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** The HTTP request `GET /transfers/{ID}` is used to get information regarding a transfer created or requested earlier. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
   TransfersByIDGet: {
-    /**
-     * Retrieve transfer information 
-     * @description The HTTP request `GET /transfers/{ID}` is used to get information regarding a transfer created or requested earlier. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer.
-     */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -1934,17 +3371,100 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /transfers/{ID}` is used to inform the client of a requested or created transfer. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer, or the `{ID}` that was used in the `GET /transfers/{ID}` request. */
   TransfersByIDPut: {
-    /**
-     * Return transfer information 
-     * @description The callback `PUT /transfers/{ID}` is used to inform the client of a requested or created transfer. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer, or the `{ID}` that was used in the `GET /transfers/{ID}` request.
-     */
-    /** @description Transfer information returned. */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Transfer information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["TransfersIDPutResponse"];
       };
     };
+  };
+  /** The HTTP request PATCH /transfers/<ID> is used by a Switch to update the state of a previously reserved transfer, if the Payee FSP has requested a commit notification when the Switch has completed processing of the transfer. The <ID> in the URI should contain the transferId that was used for the creation of the transfer. Please note that this request does not generate a callback. */
+  TransfersByIDPatch: {
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
     responses: {
       200: components["responses"]["200"];
       400: components["responses"]["400"];
@@ -1956,39 +3476,49 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
-  };
-  TransfersByIDPatch: {
-    /**
-     * Return transfer information 
-     * @description The HTTP request PATCH /transfers/<ID> is used by a Switch to update the state of a previously reserved transfer, if the Payee FSP has requested a commit notification when the Switch has completed processing of the transfer. The <ID> in the URI should contain the transferId that was used for the creation of the transfer. Please note that this request does not generate a callback.
-     */
-    /** @description Transfer notification upon completion. */
+    /** Transfer notification upon completion. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["TransfersIDPatchResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If the server is unable to find or create a transfer, or another processing error occurs, the error callback `PUT /transfers/{ID}/error` is used. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer, or the `{ID}` that was used in the `GET /transfers/{ID}`. */
   TransfersByIDAndError: {
-    /**
-     * Return transfer information error 
-     * @description If the server is unable to find or create a transfer, or another processing error occurs, the error callback `PUT /transfers/{ID}/error` is used. The `{ID}` in the URI should contain the `transferId` that was used for the creation of the transfer, or the `{ID}` that was used in the `GET /transfers/{ID}`.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -2002,12 +3532,47 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `GET /transactions/{ID}` is used to get transaction information regarding a financial transaction created earlier. The `{ID}` in the URI should contain the `transactionId` that was used for the creation of the quote, as the transaction is created as part of another process (the transfer process). */
   TransactionsByID: {
-    /**
-     * Retrieve transaction information 
-     * @description The HTTP request `GET /transactions/{ID}` is used to get transaction information regarding a financial transaction created earlier. The `{ID}` in the URI should contain the `transactionId` that was used for the creation of the quote, as the transaction is created as part of another process (the transfer process).
-     */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -2020,38 +3585,98 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /transactions/{ID}` is used to inform the client of a requested transaction. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /transactions/{ID}` request. */
   TransactionsByID1: {
-    /**
-     * Return transaction information 
-     * @description The callback `PUT /transactions/{ID}` is used to inform the client of a requested transaction. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /transactions/{ID}` request.
-     */
-    /** @description Transaction information returned. */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Transaction information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["TransactionsIDPutResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If the server is unable to find or create a transaction, or another processing error occurs, the error callback `PUT /transactions/{ID}/error` is used. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /transactions/{ID}` request. */
   TransactionsErrorByID: {
-    /**
-     * Return transaction information error 
-     * @description If the server is unable to find or create a transaction, or another processing error occurs, the error callback `PUT /transactions/{ID}/error` is used. The `{ID}` in the URI should contain the `{ID}` that was used in the `GET /transactions/{ID}` request.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -2065,35 +3690,101 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `POST /bulkQuotes` is used to request the creation of a bulk quote for the provided financial transactions in the server. */
   BulkQuotes: {
-    /**
-     * Calculate bulk quote 
-     * @description The HTTP request `POST /bulkQuotes` is used to request the creation of a bulk quote for the provided financial transactions in the server.
-     */
-    /** @description Details of the bulk quote to be created. */
+    parameters: {
+      header: {
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
+    responses: {
+      202: components["responses"]["202"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Details of the bulk quote to be created. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["BulkQuotesPostRequest"];
       };
     };
-    responses: {
-      202: components["responses"]["202"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** The HTTP request `GET /bulkQuotes/{ID}` is used to get information regarding a bulk quote created or requested earlier. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote. */
   BulkQuotesByID: {
-    /**
-     * Retrieve bulk quote information 
-     * @description The HTTP request `GET /bulkQuotes/{ID}` is used to get information regarding a bulk quote created or requested earlier. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote.
-     */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -2106,38 +3797,98 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /bulkQuotes/{ID}` is used to inform the client of a requested or created bulk quote. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote, or the `{ID}` that was used in the `GET /bulkQuotes/{ID}` request. */
   BulkQuotesByID1: {
-    /**
-     * Return bulk quote information 
-     * @description The callback `PUT /bulkQuotes/{ID}` is used to inform the client of a requested or created bulk quote. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote, or the `{ID}` that was used in the `GET /bulkQuotes/{ID}` request.
-     */
-    /** @description Bulk quote information returned. */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Bulk quote information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["BulkQuotesIDPutResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If the server is unable to find or create a bulk quote, or another processing error occurs, the error callback `PUT /bulkQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote, or the `{ID}` that was used in the `GET /bulkQuotes/{ID}` request. */
   BulkQuotesErrorByID: {
-    /**
-     * Return bulk quote information error 
-     * @description If the server is unable to find or create a bulk quote, or another processing error occurs, the error callback `PUT /bulkQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote, or the `{ID}` that was used in the `GET /bulkQuotes/{ID}` request.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -2151,35 +3902,101 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
+  /** The HTTP request `POST /bulkTransfers` is used to request the creation of a bulk transfer in the server. */
   BulkTransfers: {
-    /**
-     * Perform bulk transfer 
-     * @description The HTTP request `POST /bulkTransfers` is used to request the creation of a bulk transfer in the server.
-     */
-    /** @description Details of the bulk transfer to be created. */
+    parameters: {
+      header: {
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
+    responses: {
+      202: components["responses"]["202"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Details of the bulk transfer to be created. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["BulkTransfersPostRequest"];
       };
     };
-    responses: {
-      202: components["responses"]["202"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** The HTTP request `GET /bulkTransfers/{ID}` is used to get information regarding a bulk transfer created or requested earlier. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer. */
   BulkTransferByID: {
-    /**
-     * Retrieve bulk transfer information 
-     * @description The HTTP request `GET /bulkTransfers/{ID}` is used to get information regarding a bulk transfer created or requested earlier. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer.
-     */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /** The `Accept` header field indicates the version of the API the client would like the server to use. */
+        Accept: components["parameters"]["Accept"];
+      };
+    };
     responses: {
       202: components["responses"]["202"];
       400: components["responses"]["400"];
@@ -2192,38 +4009,98 @@ export interface operations {
       503: components["responses"]["503"];
     };
   };
+  /** The callback `PUT /bulkTransfers/{ID}` is used to inform the client of a requested or created bulk transfer. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer (`POST /bulkTransfers`), or the `{ID}` that was used in the `GET /bulkTransfers/{ID}` request. */
   BulkTransfersByIDPut: {
-    /**
-     * Return bulk transfer information 
-     * @description The callback `PUT /bulkTransfers/{ID}` is used to inform the client of a requested or created bulk transfer. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer (`POST /bulkTransfers`), or the `{ID}` that was used in the `GET /bulkTransfers/{ID}` request.
-     */
-    /** @description Bulk transfer information returned. */
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+    /** Bulk transfer information returned. */
     requestBody: {
       content: {
         "application/json": components["schemas"]["BulkTransfersIDPutResponse"];
       };
     };
-    responses: {
-      200: components["responses"]["200"];
-      400: components["responses"]["400"];
-      401: components["responses"]["401"];
-      403: components["responses"]["403"];
-      404: components["responses"]["404"];
-      405: components["responses"]["405"];
-      406: components["responses"]["406"];
-      501: components["responses"]["501"];
-      503: components["responses"]["503"];
-    };
   };
+  /** If the server is unable to find or create a bulk transfer, or another processing error occurs, the error callback `PUT /bulkTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer (`POST /bulkTransfers`), or the `{ID}` that was used in the `GET /bulkTransfers/{ID}` request. */
   BulkTransfersErrorByID: {
-    /**
-     * Return bulk transfer information error 
-     * @description If the server is unable to find or create a bulk transfer, or another processing error occurs, the error callback `PUT /bulkTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer (`POST /bulkTransfers`), or the `{ID}` that was used in the `GET /bulkTransfers/{ID}` request.
-     */
-    /** @description Details of the error returned. */
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ErrorInformationObject"];
+    parameters: {
+      path: {
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+      };
+      header: {
+        /**
+         * The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+         *
+         * **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
+        "Content-Length"?: components["parameters"]["Content-Length"];
+        /** The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": components["parameters"]["Content-Type"];
+        /** The `Date` header field indicates the date when the request was sent. */
+        Date: components["parameters"]["Date"];
+        /**
+         * The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         * **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        /** The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        /** The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        /** The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        /** The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        /** The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        /** The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
       };
     };
     responses: {
@@ -2237,5 +4114,13 @@ export interface operations {
       501: components["responses"]["501"];
       503: components["responses"]["503"];
     };
+    /** Details of the error returned. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
   };
 }
+
+export interface external {}
