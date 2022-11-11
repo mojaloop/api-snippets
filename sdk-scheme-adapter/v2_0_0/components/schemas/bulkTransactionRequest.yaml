@@ -1,7 +1,6 @@
 type: object
 required:
   - bulkTransactionId
-  - bulkHomeTransactionID
   - options
   - from
   - individualTransfers

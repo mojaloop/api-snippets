@@ -11,5 +11,4 @@ properties:
   transferId:
     $ref: ./CorrelationId.yaml
 required:
-  - homeTransactionId
   - transferId

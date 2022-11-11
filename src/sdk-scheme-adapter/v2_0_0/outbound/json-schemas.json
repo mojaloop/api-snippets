@@ -7464,7 +7464,6 @@
       }
     },
     "required": [
-      "homeTransactionId",
       "to",
       "amountType",
       "currency",
@@ -7475,7 +7474,6 @@
     "type": "object",
     "required": [
       "bulkTransactionId",
-      "bulkHomeTransactionID",
       "options",
       "from",
       "individualTransfers"
@@ -8451,7 +8449,6 @@
             }
           },
           "required": [
-            "homeTransactionId",
             "to",
             "amountType",
             "currency",
@@ -9196,7 +9193,6 @@
       }
     },
     "required": [
-      "homeTransactionId",
       "transferId"
     ]
   },
@@ -9204,7 +9200,6 @@
     "description": "The object sent back as confirmation of payee parties when autoAcceptParty is false.",
     "type": "object",
     "required": [
-      "bulkHomeTransactionID",
       "individualTransfers"
     ],
     "properties": {
@@ -9242,7 +9237,6 @@
                 }
               },
               "required": [
-                "homeTransactionId",
                 "transferId"
               ]
             },
@@ -9270,7 +9264,6 @@
     "description": "The object sent back as confirmation of quotes when autoAcceptQuotes is false.",
     "type": "object",
     "required": [
-      "bulkHomeTransactionID",
       "individualTransfers"
     ],
     "properties": {
@@ -9308,7 +9301,6 @@
                 }
               },
               "required": [
-                "homeTransactionId",
                 "transferId"
               ]
             },
@@ -9441,7 +9433,6 @@
                 "description": "The object sent back as confirmation of payee parties when autoAcceptParty is false.",
                 "type": "object",
                 "required": [
-                  "bulkHomeTransactionID",
                   "individualTransfers"
                 ],
                 "properties": {
@@ -9479,7 +9470,6 @@
                             }
                           },
                           "required": [
-                            "homeTransactionId",
                             "transferId"
                           ]
                         },
@@ -9700,7 +9690,6 @@
                 "description": "The object sent back as confirmation of quotes when autoAcceptQuotes is false.",
                 "type": "object",
                 "required": [
-                  "bulkHomeTransactionID",
                   "individualTransfers"
                 ],
                 "properties": {
@@ -9738,7 +9727,6 @@
                             }
                           },
                           "required": [
-                            "homeTransactionId",
                             "transferId"
                           ]
                         },
