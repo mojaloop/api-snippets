@@ -10852,7 +10852,13 @@ export interface paths {
                        * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                        * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                        */
-                      transactionId: string;
+                      transactionId?: string;
+                      /**
+                       * CorrelationId
+                       * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+                       * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+                       */
+                      transferId: string;
                     } & {
                       /** @enum {boolean} */
                       acceptParty: true | false;
@@ -10919,7 +10925,13 @@ export interface paths {
                        * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                        * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                        */
-                      transactionId: string;
+                      transactionId?: string;
+                      /**
+                       * CorrelationId
+                       * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+                       * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+                       */
+                      transferId: string;
                     } & {
                       /** @enum {boolean} */
                       acceptQuote: true | false;
@@ -11000,7 +11012,13 @@ export interface paths {
                    * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                    * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                    */
-                  transactionId: string;
+                  transactionId?: string;
+                  /**
+                   * CorrelationId
+                   * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+                   * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+                   */
+                  transferId: string;
                 } & {
                   /** @enum {boolean} */
                   acceptParty: true | false;
@@ -11018,7 +11036,13 @@ export interface paths {
                    * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                    * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                    */
-                  transactionId: string;
+                  transactionId?: string;
+                  /**
+                   * CorrelationId
+                   * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+                   * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+                   */
+                  transferId: string;
                 } & {
                   /** @enum {boolean} */
                   acceptQuote: true | false;
@@ -35714,7 +35738,13 @@ export interface components {
        * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
        * @example b51ec534-ee48-4575-b6a9-ead2955b8069
        */
-      transactionId: string;
+      transactionId?: string;
+      /**
+       * CorrelationId
+       * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+       * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+       */
+      transferId: string;
     };
     /** @description The object sent back as confirmation of payee parties when autoAcceptParty is false. */
     bulkTransactionContinuationAcceptParty: {
@@ -35729,7 +35759,13 @@ export interface components {
          * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
          * @example b51ec534-ee48-4575-b6a9-ead2955b8069
          */
-        transactionId: string;
+        transactionId?: string;
+        /**
+         * CorrelationId
+         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+         */
+        transferId: string;
       } & {
         /** @enum {boolean} */
         acceptParty: true | false;
@@ -35748,7 +35784,13 @@ export interface components {
          * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
          * @example b51ec534-ee48-4575-b6a9-ead2955b8069
          */
-        transactionId: string;
+        transactionId?: string;
+        /**
+         * CorrelationId
+         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+         */
+        transferId: string;
       } & {
         /** @enum {boolean} */
         acceptQuote: true | false;
@@ -35816,7 +35858,13 @@ export interface components {
            * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
            * @example b51ec534-ee48-4575-b6a9-ead2955b8069
            */
-          transactionId: string;
+          transactionId?: string;
+          /**
+           * CorrelationId
+           * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+           * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+           */
+          transferId: string;
         } & {
           /** @enum {boolean} */
           acceptParty: true | false;
@@ -35927,7 +35975,13 @@ export interface components {
            * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
            * @example b51ec534-ee48-4575-b6a9-ead2955b8069
            */
-          transactionId: string;
+          transactionId?: string;
+          /**
+           * CorrelationId
+           * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+           * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+           */
+          transferId: string;
         } & {
           /** @enum {boolean} */
           acceptQuote: true | false;
@@ -52817,7 +52871,13 @@ export interface components {
                    * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                    * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                    */
-                  transactionId: string;
+                  transactionId?: string;
+                  /**
+                   * CorrelationId
+                   * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+                   * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+                   */
+                  transferId: string;
                 } & {
                   /** @enum {boolean} */
                   acceptParty: true | false;
@@ -52884,7 +52944,13 @@ export interface components {
                    * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
                    * @example b51ec534-ee48-4575-b6a9-ead2955b8069
                    */
-                  transactionId: string;
+                  transactionId?: string;
+                  /**
+                   * CorrelationId
+                   * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+                   * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+                   */
+                  transferId: string;
                 } & {
                   /** @enum {boolean} */
                   acceptQuote: true | false;

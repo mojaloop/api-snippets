@@ -8,6 +8,8 @@ properties:
       between the Switch and DFSP backend systems.
   transactionId:
     $ref: ./CorrelationId.yaml
+  transferId:
+    $ref: ./CorrelationId.yaml
 required:
   - homeTransactionId
-  - transactionId
+  - transferId
