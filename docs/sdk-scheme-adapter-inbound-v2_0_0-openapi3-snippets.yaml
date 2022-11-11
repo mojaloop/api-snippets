@@ -1614,6 +1614,7 @@ paths:
                     type: object
                     required: &ref_76
                       - homeTransactionId
+                      - transferId
                       - to
                       - amountType
                       - currency

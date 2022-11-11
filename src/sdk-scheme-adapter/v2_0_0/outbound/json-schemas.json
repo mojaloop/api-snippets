@@ -9176,11 +9176,7 @@
     "type": "object",
     "description": "Data model for the 'individualTransfer' while accepting party or quote.",
     "properties": {
-      "homeTransactionId": {
-        "type": "string",
-        "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-      },
-      "transactionId": {
+      "transferId": {
         "title": "CorrelationId",
         "type": "string",
         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
@@ -9189,22 +9185,16 @@
       }
     },
     "required": [
-      "homeTransactionId",
-      "transactionId"
+      "transferId"
     ]
   },
   "bulkTransactionContinuationAcceptParty": {
     "description": "The object sent back as confirmation of payee parties when autoAcceptParty is false.",
     "type": "object",
     "required": [
-      "bulkHomeTransactionID",
       "individualTransfers"
     ],
     "properties": {
-      "bulkHomeTransactionID": {
-        "type": "string",
-        "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-      },
       "individualTransfers": {
         "description": "List of individual transfers in a bulk transfer with accept party information.",
         "type": "array",
@@ -9215,11 +9205,7 @@
               "type": "object",
               "description": "Data model for the 'individualTransfer' while accepting party or quote.",
               "properties": {
-                "homeTransactionId": {
-                  "type": "string",
-                  "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                },
-                "transactionId": {
+                "transferId": {
                   "title": "CorrelationId",
                   "type": "string",
                   "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
@@ -9228,8 +9214,7 @@
                 }
               },
               "required": [
-                "homeTransactionId",
-                "transactionId"
+                "transferId"
               ]
             },
             {
@@ -9256,14 +9241,9 @@
     "description": "The object sent back as confirmation of quotes when autoAcceptQuotes is false.",
     "type": "object",
     "required": [
-      "bulkHomeTransactionID",
       "individualTransfers"
     ],
     "properties": {
-      "bulkHomeTransactionID": {
-        "type": "string",
-        "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-      },
       "individualTransfers": {
         "description": "List of individual transfers in a bulk transfer.",
         "type": "array",
@@ -9274,11 +9254,7 @@
               "type": "object",
               "description": "Data model for the 'individualTransfer' while accepting party or quote.",
               "properties": {
-                "homeTransactionId": {
-                  "type": "string",
-                  "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                },
-                "transactionId": {
+                "transferId": {
                   "title": "CorrelationId",
                   "type": "string",
                   "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
@@ -9287,8 +9263,7 @@
                 }
               },
               "required": [
-                "homeTransactionId",
-                "transactionId"
+                "transferId"
               ]
             },
             {
@@ -9420,14 +9395,9 @@
                 "description": "The object sent back as confirmation of payee parties when autoAcceptParty is false.",
                 "type": "object",
                 "required": [
-                  "bulkHomeTransactionID",
                   "individualTransfers"
                 ],
                 "properties": {
-                  "bulkHomeTransactionID": {
-                    "type": "string",
-                    "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                  },
                   "individualTransfers": {
                     "description": "List of individual transfers in a bulk transfer with accept party information.",
                     "type": "array",
@@ -9438,11 +9408,7 @@
                           "type": "object",
                           "description": "Data model for the 'individualTransfer' while accepting party or quote.",
                           "properties": {
-                            "homeTransactionId": {
-                              "type": "string",
-                              "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                            },
-                            "transactionId": {
+                            "transferId": {
                               "title": "CorrelationId",
                               "type": "string",
                               "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
@@ -9451,8 +9417,7 @@
                             }
                           },
                           "required": [
-                            "homeTransactionId",
-                            "transactionId"
+                            "transferId"
                           ]
                         },
                         {
@@ -9672,14 +9637,9 @@
                 "description": "The object sent back as confirmation of quotes when autoAcceptQuotes is false.",
                 "type": "object",
                 "required": [
-                  "bulkHomeTransactionID",
                   "individualTransfers"
                 ],
                 "properties": {
-                  "bulkHomeTransactionID": {
-                    "type": "string",
-                    "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                  },
                   "individualTransfers": {
                     "description": "List of individual transfers in a bulk transfer.",
                     "type": "array",
@@ -9690,11 +9650,7 @@
                           "type": "object",
                           "description": "Data model for the 'individualTransfer' while accepting party or quote.",
                           "properties": {
-                            "homeTransactionId": {
-                              "type": "string",
-                              "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
-                            },
-                            "transactionId": {
+                            "transferId": {
                               "title": "CorrelationId",
                               "type": "string",
                               "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
@@ -9703,8 +9659,7 @@
                             }
                           },
                           "required": [
-                            "homeTransactionId",
-                            "transactionId"
+                            "transferId"
                           ]
                         },
                         {

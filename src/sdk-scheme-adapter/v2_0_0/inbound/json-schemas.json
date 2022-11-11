@@ -7684,6 +7684,7 @@
     "type": "object",
     "required": [
       "homeTransactionId",
+      "transferId",
       "to",
       "amountType",
       "currency",
@@ -9483,6 +9484,7 @@
           "type": "object",
           "required": [
             "homeTransactionId",
+            "transferId",
             "to",
             "amountType",
             "currency",
