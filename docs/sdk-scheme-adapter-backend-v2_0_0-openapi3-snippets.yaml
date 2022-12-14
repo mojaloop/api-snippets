@@ -32,22 +32,22 @@ paths:
         content:
           application/json:
             schema:
-              description: A request for a bulk quote
-              properties: &ref_39
+              description: A request for a bulk quote.
+              properties: &ref_40
                 bulkQuoteId:
-                  description: A Mojaloop API bulk quote identifier (UUID)
+                  description: A Mojaloop API bulk quote identifier (UUID).
                   pattern: >-
                     ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                   type: string
                 expiration:
-                  description: An ISO-8601 formatted timestamp
+                  description: An ISO-8601 formatted timestamp.
                   pattern: >-
                     ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
                   type: string
                 from:
                   properties: &ref_1
                     dateOfBirth:
-                      description: Date of birth in the form YYYY-MM-DD
+                      description: Date of birth in the form YYYY-MM-DD.
                       pattern: >-
                         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
                       type: string
@@ -56,7 +56,7 @@ paths:
                       type: string
                     extensionList:
                       items: &ref_12
-                        properties: &ref_43
+                        properties: &ref_25
                           key:
                             maxLength: 32
                             minLength: 1
@@ -77,12 +77,12 @@ paths:
                         Mojaloop scheme FSPID of the DFSP which owns the party
                         account.
                       type: string
-                    subIdValue:
+                    idSubValue:
                       maxLength: 128
                       minLength: 1
                       type: string
                     idType:
-                      enum: &ref_52
+                      enum: &ref_51
                         - MSISDN
                         - ACCOUNT_NO
                         - EMAIL
@@ -108,7 +108,7 @@ paths:
                       description: Party middle name.
                       type: string
                     type:
-                      enum: &ref_57
+                      enum: &ref_56
                         - CONSUMER
                         - AGENT
                         - BUSINESS
@@ -145,8 +145,8 @@ paths:
                   type: object
                 individualQuotes:
                   items:
-                    description: Data model for individual quote in a bulk quote request
-                    properties: &ref_27
+                    description: Data model for individual quote in a bulk quote request.
+                    properties: &ref_28
                       amount:
                         pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                         type: string
@@ -345,12 +345,12 @@ paths:
                           - DEVICE
                         type: string
                       note:
-                        description: An optional note associated with the quote
+                        description: An optional note associated with the quote.
                         maxLength: 128
                         minLength: 1
                         type: string
                       quoteId:
-                        description: A Mojaloop API quote identifier (UUID)
+                        description: A Mojaloop API quote identifier (UUID).
                         pattern: >-
                           ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                         type: string
@@ -361,7 +361,7 @@ paths:
                       transactionId:
                         description: >-
                           ID of the transaction, the ID is decided by the Payer
-                          FSP during the creation of the quote
+                          FSP during the creation of the quote.
                         pattern: >-
                           ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                         type: string
@@ -371,7 +371,7 @@ paths:
                           - DEPOSIT
                           - PAYMENT
                         type: string
-                    required: &ref_28
+                    required: &ref_29
                       - quoteId
                       - transactionId
                       - to
@@ -385,26 +385,26 @@ paths:
                   maxItems: 1000
                   minItems: 1
                   type: array
-              required: &ref_40
+              required: &ref_41
                 - bulkQuoteId
                 - from
                 - individualQuotes
               type: object
-        description: Incoming request for a bulk quotation
+        description: Incoming request for a bulk quotation.
       responses:
         '200':
           content:
             application/json:
               schema:
-                description: A response to a request for a bulk quote
+                description: A response to a request for a bulk quote.
                 properties: &ref_4
                   bulkQuoteId:
-                    description: A Mojaloop API bulk quote identifier (UUID)
+                    description: A Mojaloop API bulk quote identifier (UUID).
                     pattern: >-
                       ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                     type: string
                   expiration:
-                    description: An ISO-8601 formatted timestamp
+                    description: An ISO-8601 formatted timestamp.
                     pattern: >-
                       ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
                     type: string
@@ -416,8 +416,8 @@ paths:
                       oneOf:
                         - description: >-
                             Data model for successful individual quote in a bulk
-                            quote response
-                          properties: &ref_31
+                            quote response.
+                          properties: &ref_32
                             payeeFspCommissionAmount:
                               pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                               type: string
@@ -443,7 +443,7 @@ paths:
                               minLength: 3
                               type: string
                             quoteId:
-                              description: A Mojaloop API quote identifier (UUID)
+                              description: A Mojaloop API quote identifier (UUID).
                               pattern: >-
                                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                               type: string
@@ -455,13 +455,13 @@ paths:
                               maxLength: 3
                               minLength: 3
                               type: string
-                          required: &ref_32
+                          required: &ref_33
                             - quoteId
                           type: object
                         - description: >-
                             Data model for failed individual quote in a bulk
-                            quote response
-                          properties: &ref_29
+                            quote response.
+                          properties: &ref_30
                             errorResponse:
                               properties: &ref_3
                                 message:
@@ -480,11 +480,11 @@ paths:
                                   type: string
                               type: object
                             quoteId:
-                              description: A Mojaloop API quote identifier (UUID)
+                              description: A Mojaloop API quote identifier (UUID).
                               pattern: >-
                                 ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                               type: string
-                          required: &ref_30
+                          required: &ref_31
                             - quoteId
                             - errorResponse
                           type: object
@@ -495,22 +495,22 @@ paths:
                   - bulkQuoteId
                   - individualQuoteResults
                 type: object
-          description: A response to the bulk quote request
+          description: A response to the bulk quote request.
         '400':
           content: &ref_6
             application/json:
               schema:
                 properties: *ref_3
                 type: object
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '500':
           content: &ref_7
             application/json:
               schema:
                 properties: *ref_3
                 type: object
-          description: An error occurred processing the request
-      summary: Requests a bulk quote
+          description: An error occurred processing the request.
+      summary: Requests a bulk quote.
       tags:
         - BulkQuotes
   /bulkQuotes/{idValue}:
@@ -528,24 +528,24 @@ paths:
           content:
             application/json:
               schema:
-                description: A response to a request for a bulk quote
+                description: A response to a request for a bulk quote.
                 properties: *ref_4
                 required: *ref_5
                 type: object
-          description: Response containing details of the requested bulk quote
+          description: Response containing details of the requested bulk quote.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '404':
           description: >-
             The party specified by the provided identifier type and value is not
-            known to the server
+            known to the server.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
+          description: An error occurred processing the request.
       summary: >-
         Requests information relating to a bulk quote identified by the
-        specified identifier value
+        specified identifier value.
       tags:
         - BulkQuotes
   /bulkTransactions/{bulkTransactionId}:
@@ -559,11 +559,11 @@ paths:
         `bulkTransactionId` that was used for the creation of the bulk transfer.
       operationId: BackendBulkTransactionsPut
       parameters:
-        - description: Identifier of the bulk transaction to continue as returned in
+        - description: Identifier of the bulk transaction to continue as returned in.
           in: path
           name: bulkTransactionId
           required: true
-          schema: &ref_25
+          schema: &ref_26
             description: >-
               Identifier that correlates all messages of the same sequence. The
               API data type UUID (Universally Unique Identifier) is a JSON
@@ -627,18 +627,18 @@ paths:
                 - bulkHomeTransactionID
                 - individualTransferResults
               type: object
-        description: Bulk transaction request body
+        description: Bulk transaction request body.
         required: true
       responses:
         '202':
-          description: Bulk transaction information successfully amended
+          description: Bulk transaction information successfully amended.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
-      summary: Callbacks for the bulk transaction request
+          description: An error occurred processing the request.
+      summary: Callbacks for the bulk transaction request.
       tags:
         - BulkTransactionsPut
   /bulkTransfers:
@@ -648,14 +648,14 @@ paths:
         content:
           application/json:
             schema:
-              properties: &ref_41
+              properties: &ref_42
                 bulkQuote:
-                  description: A response to a request for a bulk quote
+                  description: A response to a request for a bulk quote.
                   properties: *ref_4
                   required: *ref_5
                   type: object
                 bulkTransferId:
-                  description: A Mojaloop API transfer identifier (UUID)
+                  description: A Mojaloop API transfer identifier (UUID).
                   pattern: >-
                     ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                   type: string
@@ -667,8 +667,8 @@ paths:
                   items:
                     description: >-
                       Data model for individual transfer in a bulk transfer
-                      request
-                    properties: &ref_33
+                      request.
+                    properties: &ref_34
                       amount:
                         pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                         type: string
@@ -695,7 +695,7 @@ paths:
                         enum: *ref_10
                         type: string
                       note:
-                        description: An optional note associated with the quote
+                        description: An optional note associated with the quote.
                         maxLength: 128
                         minLength: 1
                         type: string
@@ -711,7 +711,7 @@ paths:
                         pattern: >-
                           ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                         type: string
-                    required: &ref_34
+                    required: &ref_35
                       - transferId
                       - amount
                       - currency
@@ -719,11 +719,11 @@ paths:
                   maxItems: 1000
                   minItems: 1
                   type: array
-              required: &ref_42
+              required: &ref_43
                 - bulkTransferId
                 - individualTransfers
               type: object
-        description: An incoming bulk transfer request
+        description: An incoming bulk transfer request.
       responses:
         '200':
           content:
@@ -731,21 +731,21 @@ paths:
               schema:
                 properties: &ref_14
                   bulkTransferId:
-                    description: A Mojaloop API transfer identifier (UUID)
+                    description: A Mojaloop API transfer identifier (UUID).
                     pattern: >-
                       ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                     type: string
                   homeTransactionId:
                     description: >-
                       Transaction ID from the DFSP backend, used to reconcile
-                      transactions between the switch and DFSP backend systems
+                      transactions between the switch and DFSP backend systems.
                     type: string
                   individualTransferResults:
                     items:
                       description: >-
                         Data model for individual transfer in a bulk transfer
-                        response
-                      properties: &ref_35
+                        response.
+                      properties: &ref_36
                         errorResponse:
                           properties: *ref_3
                           type: object
@@ -759,7 +759,7 @@ paths:
                           pattern: >-
                             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                           type: string
-                      required: &ref_36
+                      required: &ref_37
                         - transferId
                       type: object
                     maxItems: 1000
@@ -768,16 +768,16 @@ paths:
                 required: &ref_15
                   - homeTransactionId
                 type: object
-          description: The bulk transfer was accepted
+          description: The bulk transfer was accepted.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
+          description: An error occurred processing the request.
       summary: >-
         Execute bulk transfer of funds from an external account to internal
-        accounts
+        accounts.
       tags:
         - BulkTransfers
   /bulkTransfers/{idValue}:
@@ -797,20 +797,20 @@ paths:
                 properties: *ref_14
                 required: *ref_15
                 type: object
-          description: Response containing details of the requested bulk transfer
+          description: Response containing details of the requested bulk transfer.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '404':
           description: >-
             The party specified by the provided identifier type and value is not
-            known to the server
+            known to the server.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
+          description: An error occurred processing the request.
       summary: >-
         Requests information relating to a bulk transfer identified by the
-        specified identifier value
+        specified identifier value.
       tags:
         - BulkTransfers
   /otp/{requestToPayId}:
@@ -820,7 +820,7 @@ paths:
         - in: path
           name: requestToPayId
           required: true
-          schema: &ref_26
+          schema: &ref_27
             maxLength: 128
             minLength: 1
             type: string
@@ -829,25 +829,25 @@ paths:
           content:
             application/json:
               schema:
-                properties: &ref_55
+                properties: &ref_54
                   otpValue:
-                    description: OTP value
+                    description: OTP value.
                     type: string
-                required: &ref_56
+                required: &ref_55
                   - otpValue
                 type: object
-          description: Response containing details of the OTP
+          description: Response containing details of the OTP.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '404':
           description: >-
             The party specified by the provided identifier type and value is not
-            known to the server
+            known to the server.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
-      summary: Requests OTP
+          description: An error occurred processing the request.
+      summary: Requests OTP.
       tags:
         - OTP
   /participants/{idType}/{idValue}:
@@ -883,29 +883,29 @@ paths:
                     minLength: 1
                     type: string
                 type: object
-          description: Response containing details of the requested party
+          description: Response containing details of the requested party.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '404':
           description: >-
             The party specified by the provided identifier type and value is not
-            known to the server
+            known to the server.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
+          description: An error occurred processing the request.
       summary: >-
         Asks for the identifier (fspId) of the scheme participant (FSP) that can
-        handle transfers for the specified identifier type and value
+        handle transfers for the specified identifier type and value.
       tags:
         - Participants
-  /participants/{idType}/{idValue}/{subIdValue}:
+  /participants/{idType}/{idValue}/{idSubValue}:
     get:
       operationId: BackendParticipantsGetByTypeIDAndSubId
       description: >-
-        The HTTP request `GET /participants/{idType}/{idValue}/{subIdValue}` is
+        The HTTP request `GET /participants/{idType}/{idValue}/{idSubValue}` is
         used to find out in which FSP the requested party, defined by
-        `{idType}`, `{idValue}` and `{subIdValue}` is located.
+        `{idType}`, `{idValue}` and `{idSubValue}` is located.
       parameters:
         - name: idType
           in: path
@@ -919,7 +919,7 @@ paths:
           required: true
           schema: *ref_13
           description: The identifier value.
-        - name: subIdValue
+        - name: idSubValue
           in: path
           required: true
           schema: &ref_18
@@ -934,20 +934,20 @@ paths:
               schema:
                 properties: *ref_17
                 type: object
-          description: Response containing details of the requested party
+          description: Response containing details of the requested party.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '404':
           description: >-
             The party specified by the provided identifier type and value is not
-            known to the server
+            known to the server.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
+          description: An error occurred processing the request.
       summary: >-
         Asks for the identifier (fspId) of the scheme participant (FSP) that can
-        handle transfers for the specified identifier type and value
+        handle transfers for the specified identifier type and value.
       tags:
         - Participants
   /parties/{idType}/{idValue}:
@@ -978,29 +978,29 @@ paths:
                 properties: *ref_1
                 required: *ref_2
                 type: object
-          description: Response containing details of the requested party
+          description: Response containing details of the requested party.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '404':
           description: >-
             The party specified by the provided identifier type and value is not
-            known to the server
+            known to the server.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
+          description: An error occurred processing the request.
       summary: >-
         Requests information relating to a transfer party identified by the
-        specified identifier type and value
+        specified identifier type and value.
       tags:
         - Parties
-  /parties/{idType}/{idValue}/{subIdValue}:
+  /parties/{idType}/{idValue}/{idSubValue}:
     get:
       operationId: BackendPartiesGetByTypeIdAndSubId
       description: >-
-        The HTTP request `GET /parties/{idType}/{idValue}/{subIdValue}` is used
+        The HTTP request `GET /parties/{idType}/{idValue}/{idSubValue}` is used
         to look up information regarding the requested transfer party,
-        identified by `{idType}`, `{idValue}` and `{subIdValue}`.
+        identified by `{idType}`, `{idValue}` and `{idSubValue}`.
       parameters:
         - name: idType
           in: path
@@ -1014,7 +1014,7 @@ paths:
           required: true
           schema: *ref_13
           description: The identifier value.
-        - name: subIdValue
+        - name: idSubValue
           in: path
           required: true
           schema: *ref_18
@@ -1029,20 +1029,20 @@ paths:
                 properties: *ref_1
                 required: *ref_2
                 type: object
-          description: Response containing details of the requested party
+          description: Response containing details of the requested party.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '404':
           description: >-
             The party specified by the provided identifier type and value is not
-            known to the server
+            known to the server.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
+          description: An error occurred processing the request.
       summary: >-
         Requests information relating to a transfer party identified by the
-        specified identifier type, value and subId value
+        specified identifier type, value and subId value.
       tags:
         - Parties
   /quoterequests:
@@ -1056,7 +1056,7 @@ paths:
           application/json:
             schema:
               description: A request for a quote for transfer from the DFSP backend.
-              properties: &ref_58
+              properties: &ref_57
                 amount:
                   description: >-
                     Depending on `amountType`. If SEND - The amount the Payer
@@ -1079,7 +1079,7 @@ paths:
                   minLength: 3
                   type: string
                 expiration:
-                  description: An ISO-8601 formatted timestamp
+                  description: An ISO-8601 formatted timestamp.
                   pattern: >-
                     ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
                   type: string
@@ -1130,7 +1130,7 @@ paths:
                   minLength: 1
                   type: string
                 quoteId:
-                  description: A Mojaloop API quote identifier (UUID)
+                  description: A Mojaloop API quote identifier (UUID).
                   pattern: >-
                     ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                   type: string
@@ -1144,7 +1144,7 @@ paths:
                 transactionId:
                   description: >-
                     ID of the transaction, the ID is decided by the Payer FSP
-                    during the creation of the quote
+                    during the creation of the quote.
                   pattern: >-
                     ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                   type: string
@@ -1152,7 +1152,7 @@ paths:
                   description: Type of transaction for which the quote is requested.
                   enum: *ref_11
                   type: string
-              required: &ref_59
+              required: &ref_58
                 - quoteId
                 - transactionId
                 - to
@@ -1164,7 +1164,7 @@ paths:
                 - initiator
                 - initiatorType
               type: object
-        description: Request for a transfer quotation
+        description: Request for a transfer quotation.
       responses:
         '200':
           content:
@@ -1173,7 +1173,7 @@ paths:
                 description: A response to a request for a quote.
                 properties: &ref_21
                   expiration:
-                    description: An ISO-8601 formatted timestamp
+                    description: An ISO-8601 formatted timestamp.
                     pattern: >-
                       ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
                     type: string
@@ -1223,14 +1223,14 @@ paths:
                     minLength: 3
                     type: string
                   quoteId:
-                    description: A Mojaloop API quote identifier (UUID)
+                    description: A Mojaloop API quote identifier (UUID).
                     pattern: >-
                       ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                     type: string
                   transactionId:
                     description: >-
                       ID of the transaction, the ID is decided by the Payer FSP
-                      during the creation of the quote
+                      during the creation of the quote.
                     pattern: >-
                       ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                     type: string
@@ -1252,14 +1252,14 @@ paths:
                   - transferAmount
                   - transferAmountCurrency
                 type: object
-          description: A response to the transfer quotation request
+          description: A response to the transfer quotation request.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
-      summary: Requests a quote for the specified transfer
+          description: An error occurred processing the request.
+      summary: Requests a quote for the specified transfer.
       tags:
         - Quotes
   /transactionrequests:
@@ -1269,8 +1269,8 @@ paths:
         content:
           application/json:
             schema:
-              description: A request for a pull based transfer
-              properties: &ref_65
+              description: A request for a pull based transfer.
+              properties: &ref_64
                 amount:
                   pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                   type: string
@@ -1280,7 +1280,7 @@ paths:
                   minLength: 3
                   type: string
                 expiration:
-                  description: An ISO-8601 formatted timestamp
+                  description: An ISO-8601 formatted timestamp.
                   pattern: >-
                     ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
                   type: string
@@ -1302,7 +1302,7 @@ paths:
                   enum: *ref_10
                   type: string
                 note:
-                  description: An optional note associated with the requested transfer
+                  description: An optional note associated with the requested transfer.
                   maxLength: 128
                   minLength: 1
                   type: string
@@ -1311,14 +1311,14 @@ paths:
                   required: *ref_2
                   type: object
                 transactionRequestId:
-                  description: A Mojaloop API transaction request identifier (UUID)
+                  description: A Mojaloop API transaction request identifier (UUID).
                   pattern: >-
                     ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                   type: string
                 transactionType:
                   enum: *ref_11
                   type: string
-              required: &ref_66
+              required: &ref_65
                 - transactionRequestId
                 - to
                 - from
@@ -1328,40 +1328,40 @@ paths:
                 - initiator
                 - initiatorType
               type: object
-        description: Request for Transaction Request
+        description: Request for Transaction Request.
       responses:
         '200':
           content:
             application/json:
               schema:
-                description: A response to a request for a quote
-                properties: &ref_67
+                description: A response to a request for a quote.
+                properties: &ref_66
                   transactionId:
                     description: >-
                       ID of the transaction, the ID is decided by the Payer FSP
-                      during the creation of the quote
+                      during the creation of the quote.
                     pattern: >-
                       ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                     type: string
                   transferAmount:
-                    enum: &ref_69
+                    enum: &ref_68
                       - RECEIVED
                       - PENDING
                       - ACCEPTED
                       - REJECTED
                     type: string
-                required: &ref_68
+                required: &ref_67
                   - transactionId
                   - transactionRequestState
                 type: object
-          description: A response to the transfer transaction request
+          description: A response to the transfer transaction request.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
-      summary: Transaction request that supports pull based transfers
+          description: An error occurred processing the request.
+      summary: Transaction request that supports pull based transfers.
       tags:
         - TransactionRequest
   /transfers:
@@ -1374,7 +1374,7 @@ paths:
         content:
           application/json:
             schema:
-              properties: &ref_70
+              properties: &ref_69
                 amount:
                   pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                   type: string
@@ -1394,12 +1394,12 @@ paths:
                   properties:
                     data:
                       description: Object containing transfer object.
-                      properties: &ref_53
+                      properties: &ref_52
                         amount:
                           description: >-
                             Object containing Amount and Currency of the
                             transfer.
-                          properties: &ref_37
+                          properties: &ref_38
                             amount:
                               pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                               type: string
@@ -1408,7 +1408,7 @@ paths:
                               maxLength: 3
                               minLength: 3
                               type: string
-                          required: &ref_38
+                          required: &ref_39
                             - amount
                             - currency
                           type: object
@@ -1427,20 +1427,20 @@ paths:
                           required: *ref_2
                           type: object
                         quoteId:
-                          description: A Mojaloop API quote identifier (UUID)
+                          description: A Mojaloop API quote identifier (UUID).
                           pattern: >-
                             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                           type: string
                         transactionId:
                           description: >-
                             ID of the transaction, the ID is decided by the
-                            Payer FSP during the creation of the quote
+                            Payer FSP during the creation of the quote.
                           pattern: >-
                             ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                           type: string
                         transactionType:
                           description: Object containing transfer object.
-                          properties: &ref_61
+                          properties: &ref_60
                             initiator:
                               enum: *ref_9
                               type: string
@@ -1449,15 +1449,15 @@ paths:
                               enum: *ref_10
                               type: string
                             scenario:
-                              enum: &ref_60
+                              enum: &ref_59
                                 - TRANSFER
                               type: string
-                          required: &ref_62
+                          required: &ref_61
                             - scenario
                             - initiator
                             - initiatorType
                           type: object
-                      required: &ref_54
+                      required: &ref_53
                         - quoteId
                         - transactionId
                         - payer
@@ -1493,7 +1493,7 @@ paths:
                   pattern: >-
                     ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                   type: string
-              required: &ref_71
+              required: &ref_70
                 - transferId
                 - quote
                 - from
@@ -1504,15 +1504,15 @@ paths:
                 - transactionType
                 - ilpPacket
               type: object
-        description: An incoming transfer request
+        description: An incoming transfer request.
       responses:
         '200':
           content:
             application/json:
               schema:
-                properties: &ref_72
+                properties: &ref_71
                   completedTimestamp:
-                    description: An ISO-8601 formatted timestamp
+                    description: An ISO-8601 formatted timestamp.
                     example: '2020-05-19T08:38:08.699-04:00'
                     pattern: >-
                       ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
@@ -1546,17 +1546,17 @@ paths:
                       - COMMITTED
                       - ABORTED
                     type: string
-                required: &ref_73
+                required: &ref_72
                   - homeTransactionId
                 type: object
-          description: The transfer was accepted
+          description: The transfer was accepted.
         '400':
           content: *ref_6
-          description: Malformed or missing required headers or parameters
+          description: Malformed or missing required headers or parameters.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
-      summary: Transfers funds from an external account to an internal account
+          description: An error occurred processing the request.
+      summary: Transfers funds from an external account to an internal account.
       tags:
         - Transfers
   /transfers/{transferId}:
@@ -1578,7 +1578,7 @@ paths:
           content:
             application/json:
               schema:
-                properties: &ref_63
+                properties: &ref_62
                   amount:
                     pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
                     type: string
@@ -1608,7 +1608,7 @@ paths:
                     maxLength: 128
                     type: string
                   timestamp:
-                    description: An ISO-8601 formatted timestamp
+                    description: An ISO-8601 formatted timestamp.
                     pattern: >-
                       ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
                     type: string
@@ -1629,7 +1629,7 @@ paths:
                       the transfer.
                     enum: *ref_23
                     type: string
-                required: &ref_64
+                required: &ref_63
                   - homeTransactionId
                   - from
                   - to
@@ -1640,18 +1640,18 @@ paths:
                   - transactionType
                   - timestamp
                 type: object
-          description: The transfer was accepted
+          description: The transfer was accepted.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
-      summary: Retrieves information for a specific transfer
+          description: An error occurred processing the request.
+      summary: Retrieves information for a specific transfer.
       tags:
         - Transfers
     put:
       operationId: BackendTransfersPut
       description: >-
         The HTTP request `PUT /transfers/{transferId}` is used to receive
-        notification for transfer being fulfiled when the FSP is a Payee
+        notification for transfer being fulfiled when the FSP is a Payee.
       parameters:
         - in: path
           name: transferId
@@ -1661,50 +1661,182 @@ paths:
         content:
           application/json:
             schema:
-              description: PUT /transfers/{transferId} object
-              properties: &ref_49
-                completedTimestamp:
-                  description: An ISO-8601 formatted timestamp
+              description: PUT /transfers/{transferId} object.
+              properties: &ref_50
+                currentState:
+                  enum: &ref_73
+                    - ERROR_OCCURRED
+                    - WAITING_FOR_PARTY_ACCEPTANCE
+                    - WAITING_FOR_QUOTE_ACCEPTANCE
+                    - COMPLETED
+                  type: string
+                direction:
+                  enum:
+                    - INBOUND
+                  type: string
+                finalNotification:
+                  properties:
+                    completedTimestamp:
+                      description: An ISO-8601 formatted timestamp.
+                      example: '2020-05-19T08:38:08.699-04:00'
+                      pattern: >-
+                        ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
+                      type: string
+                    extensionList:
+                      description: Optional extension, specific to deployment.
+                      items: *ref_12
+                      maxItems: 16
+                      minItems: 0
+                      type: array
+                    transferState:
+                      description: >
+                        Below are the allowed values for the enumeration -
+                        RECEIVED DFSP has received the transfer. - RESERVED DFSP
+                        has reserved the transfer. - COMMITTED DFSP has
+                        successfully performed the transfer. - ABORTED DFSP has
+                        aborted the transfer due a rejection or failure to
+                        perform the transfer.
+                      example: COMMITTED
+                      enum: *ref_23
+                      type: string
+                  required:
+                    - completedTimestamp
+                    - transferState
+                  type: object
+                fulfil:
+                  properties:
+                    body:
+                      type: object
+                    headers:
+                      type: object
+                  type: object
+                initiatedTimestamp:
+                  description: An ISO-8601 formatted timestamp.
                   pattern: >-
                     ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
                   type: string
-                extensionList:
-                  items: *ref_12
-                  maxItems: 16
-                  minItems: 0
-                  type: array
-                transferState:
-                  description: >
-                    Below are the allowed values for the enumeration - RECEIVED
-                    DFSP has received the transfer. - RESERVED DFSP has reserved
-                    the transfer. - COMMITTED DFSP has successfully performed
-                    the transfer. - ABORTED DFSP has aborted the transfer due a
-                    rejection or failure to perform the transfer.
-                  enum: *ref_23
+                lastError:
+                  type: object
+                  description: >-
+                    This object represents a Mojaloop API error received at any
+                    time during the transfer process.
+                  properties: &ref_46
+                    httpStatusCode:
+                      type: integer
+                      description: >-
+                        The HTTP status code returned to the caller. This is the
+                        same as the actual HTTP status code returned with the
+                        response.
+                    mojaloopError:
+                      description: >-
+                        If a transfer process results in an error callback
+                        during the asynchronous Mojaloop API exchange, this
+                        property will contain the underlying Mojaloop API error
+                        object.
+                      type: object
+                      properties: &ref_47
+                        errorInformation:
+                          title: ErrorInformation
+                          type: object
+                          description: A Mojaloop API error information construct.
+                          properties: &ref_48
+                            errorCode:
+                              description: >
+                                The API data type errorCode is a JSON String of
+                                four characters, consisting of digits only.
+                                Negative numbers are not allowed. A leading zero
+                                is not allowed. Each error code in the API is a
+                                four-digit number, for example, 1234, where the
+                                first number (1 in the example) represents the
+                                high-level error category, the second number (2
+                                in the example) represents the low-level error
+                                category, and the last two numbers (34 in the
+                                example) represents the specific error.
+                              title: ErrorCode
+                              type: string
+                              pattern: ^[1-9]\d{3}$
+                            errorDescription:
+                              description: Error description string.
+                              title: ErrorDescription
+                              type: string
+                              minLength: 1
+                              maxLength: 128
+                            extensionList:
+                              description: Data model for the complex type ExtensionList.
+                              properties: &ref_44
+                                extension:
+                                  description: Number of Extension elements.
+                                  items:
+                                    properties: *ref_25
+                                    type: object
+                                  maxItems: 16
+                                  minItems: 1
+                                  type: array
+                              required: &ref_45
+                                - extension
+                              type: object
+                          required: &ref_49
+                            - errorCode
+                            - errorDescription
+                prepare:
+                  properties:
+                    body:
+                      type: object
+                    headers:
+                      type: object
+                  type: object
+                quote:
+                  properties:
+                    fulfilment:
+                      type: string
+                    internalRequest:
+                      type: object
+                    mojaloopResponse:
+                      type: object
+                    request:
+                      type: object
+                    response:
+                      type: object
+                  type: object
+                quoteRequest:
+                  properties:
+                    body:
+                      type: object
+                    headers:
+                      type: object
+                  type: object
+                quoteResponse:
+                  properties:
+                    body:
+                      type: object
+                    headers:
+                      type: object
+                  type: object
+                transferId:
+                  description: A Mojaloop API transfer identifier (UUID).
+                  pattern: >-
+                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                   type: string
-              required: &ref_50
-                - completedTimestamp
-                - transferState
               title: TransfersIDPatchResponse
               type: object
-        description: An incoming notification for fulfiled transfer
+        description: An incoming notification for fulfiled transfer.
       responses:
         '200':
-          description: The notification was accepted
+          description: The notification was accepted.
         '500':
           content: *ref_7
-          description: An error occurred processing the request
-      summary: Receive notification for a specific transfer
+          description: An error occurred processing the request.
+      summary: Receive notification for a specific transfer.
       tags:
         - Transfers
 components:
   parameters:
     bulkTransactionId:
-      description: Identifier of the bulk transaction to continue as returned in
+      description: Identifier of the bulk transaction to continue as returned in.
       in: path
       name: bulkTransactionId
       required: true
-      schema: *ref_25
+      schema: *ref_26
     idType:
       name: idType
       in: path
@@ -1717,8 +1849,8 @@ components:
       required: true
       schema: *ref_13
       description: The identifier value.
-    subIdValue:
-      name: subIdValue
+    idSubValue:
+      name: idSubValue
       in: path
       required: true
       schema: *ref_18
@@ -1729,7 +1861,7 @@ components:
       in: path
       name: requestToPayId
       required: true
-      schema: *ref_26
+      schema: *ref_27
     transferId:
       in: path
       name: transferId
@@ -1738,71 +1870,71 @@ components:
   responses:
     '400':
       content: *ref_6
-      description: Malformed or missing required headers or parameters
+      description: Malformed or missing required headers or parameters.
     '404':
       description: >-
         The party specified by the provided identifier type and value is not
-        known to the server
+        known to the server.
     '500':
       content: *ref_7
-      description: An error occurred processing the request
+      description: An error occurred processing the request.
   schemas:
     IndividualQuote:
-      description: Data model for individual quote in a bulk quote request
-      properties: *ref_27
-      required: *ref_28
+      description: Data model for individual quote in a bulk quote request.
+      properties: *ref_28
+      required: *ref_29
       type: object
     IndividualQuoteResultFailed:
-      description: Data model for failed individual quote in a bulk quote response
-      properties: *ref_29
-      required: *ref_30
+      description: Data model for failed individual quote in a bulk quote response.
+      properties: *ref_30
+      required: *ref_31
       type: object
     IndividualQuoteResultSuccess:
-      description: Data model for successful individual quote in a bulk quote response
-      properties: *ref_31
-      required: *ref_32
+      description: Data model for successful individual quote in a bulk quote response.
+      properties: *ref_32
+      required: *ref_33
       type: object
     IndividualTransfer:
-      description: Data model for individual transfer in a bulk transfer request
-      properties: *ref_33
-      required: *ref_34
+      description: Data model for individual transfer in a bulk transfer request.
+      properties: *ref_34
+      required: *ref_35
       type: object
     IndividualTransferResult:
-      description: Data model for individual transfer in a bulk transfer response
-      properties: *ref_35
-      required: *ref_36
+      description: Data model for individual transfer in a bulk transfer response.
+      properties: *ref_36
+      required: *ref_37
       type: object
     amountCurrency:
       description: Object containing Amount and Currency of the transfer.
-      properties: *ref_37
-      required: *ref_38
+      properties: *ref_38
+      required: *ref_39
       type: object
     amountType:
       enum: *ref_8
       type: string
     bulkQuoteId:
-      description: A Mojaloop API bulk quote identifier (UUID)
+      description: A Mojaloop API bulk quote identifier (UUID).
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
       type: string
     bulkQuoteRequest:
-      description: A request for a bulk quote
-      properties: *ref_39
-      required: *ref_40
+      description: A request for a bulk quote.
+      properties: *ref_40
+      required: *ref_41
       type: object
     bulkQuoteResponse:
-      description: A response to a request for a bulk quote
+      description: A response to a request for a bulk quote.
       properties: *ref_4
       required: *ref_5
       type: object
     bulkTransferId:
-      description: A Mojaloop API transfer identifier (UUID)
+      description: A Mojaloop API transfer identifier (UUID).
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
       type: string
     bulkTransferRequest:
-      properties: *ref_41
-      required: *ref_42
+      properties: *ref_42
+      required: *ref_43
       type: object
     bulkTransferResponse:
       properties: *ref_14
@@ -1814,7 +1946,7 @@ components:
       minLength: 3
       type: string
     dateOfBirth:
-      description: Date of birth in the form YYYY-MM-DD
+      description: Date of birth in the form YYYY-MM-DD.
       pattern: >-
         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
       type: string
@@ -1822,7 +1954,7 @@ components:
       properties: *ref_3
       type: object
     extensionItem:
-      properties: *ref_43
+      properties: *ref_25
       type: object
     extensionList:
       items: *ref_12
@@ -1830,70 +1962,16 @@ components:
       minItems: 0
       type: array
     extensionListComplex:
-      description: Data model for the complex type ExtensionList
-      properties: &ref_44
-        extension:
-          description: Number of Extension elements
-          items:
-            properties: *ref_43
-            type: object
-          maxItems: 16
-          minItems: 1
-          type: array
-      required: &ref_45
-        - extension
+      description: Data model for the complex type ExtensionList.
+      properties: *ref_44
+      required: *ref_45
       type: object
     transferError:
       type: object
       description: >-
         This object represents a Mojaloop API error received at any time during
-        the transfer process
-      properties: &ref_51
-        httpStatusCode:
-          type: integer
-          description: >-
-            The HTTP status code returned to the caller. This is the same as the
-            actual HTTP status code returned with the response.
-        mojaloopError:
-          description: >-
-            If a transfer process results in an error callback during the
-            asynchronous Mojaloop API exchange, this property will contain the
-            underlying Mojaloop API error object.
-          type: object
-          properties: &ref_46
-            errorInformation:
-              title: ErrorInformation
-              type: object
-              description: A Mojaloop API error information construct.
-              properties: &ref_47
-                errorCode:
-                  description: >
-                    The API data type errorCode is a JSON String of four
-                    characters, consisting of digits only. Negative numbers are
-                    not allowed. A leading zero is not allowed. Each error code
-                    in the API is a four-digit number, for example, 1234, where
-                    the first number (1 in the example) represents the
-                    high-level error category, the second number (2 in the
-                    example) represents the low-level error category, and the
-                    last two numbers (34 in the example) represents the specific
-                    error.
-                  title: ErrorCode
-                  type: string
-                  pattern: ^[1-9]\d{3}$
-                errorDescription:
-                  description: Error description string.
-                  title: ErrorDescription
-                  type: string
-                  minLength: 1
-                  maxLength: 128
-                extensionList:
-                  description: Data model for the complex type ExtensionList
-                  properties: *ref_44
-                  required: *ref_45
-                  type: object
-              required: &ref_48
-                - errorCode
-                - errorDescription
+        the transfer process.
+      properties: *ref_46
     generalError:
       type: object
       description: >-
@@ -1901,13 +1979,13 @@ components:
         so its properties may vary significantly.
     mojaloopError:
       type: object
-      properties: *ref_46
+      properties: *ref_47
     errorInformation:
       title: ErrorInformation
       type: object
       description: A Mojaloop API error information construct.
-      properties: *ref_47
-      required: *ref_48
+      properties: *ref_48
+      required: *ref_49
     errorCode:
       title: ErrorCode
       type: string
@@ -1932,110 +2010,8 @@ components:
       minLength: 1
       type: string
     fulfilNotification:
-      description: PUT /transfers/{transferId} object
-      properties: *ref_49
-      required: *ref_50
-      title: TransfersIDPatchResponse
-      type: object
-    fulfilNotificationDupe:
-      description: PUT /transfers/{transferId} object
-      properties:
-        currentState:
-          enum: &ref_74
-            - ERROR_OCCURRED
-            - WAITING_FOR_PARTY_ACCEPTANCE
-            - WAITING_FOR_QUOTE_ACCEPTANCE
-            - COMPLETED
-          type: string
-        direction:
-          enum:
-            - INBOUND
-          type: string
-        finalNotification:
-          properties:
-            completedTimestamp:
-              description: An ISO-8601 formatted timestamp
-              example: '2020-05-19T08:38:08.699-04:00'
-              pattern: >-
-                ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-              type: string
-            extensionList:
-              description: Optional extension, specific to deployment.
-              items: *ref_12
-              maxItems: 16
-              minItems: 0
-              type: array
-            transferState:
-              description: >
-                Below are the allowed values for the enumeration - RECEIVED DFSP
-                has received the transfer. - RESERVED DFSP has reserved the
-                transfer. - COMMITTED DFSP has successfully performed the
-                transfer. - ABORTED DFSP has aborted the transfer due a
-                rejection or failure to perform the transfer.
-              example: COMMITTED
-              enum: *ref_23
-              type: string
-          required:
-            - completedTimestamp
-            - transferState
-          type: object
-        fulfil:
-          properties:
-            body:
-              type: object
-            headers:
-              type: object
-          type: object
-        initiatedTimestamp:
-          description: An ISO-8601 formatted timestamp
-          pattern: >-
-            ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-          type: string
-        lastError:
-          type: object
-          description: >-
-            This object represents a Mojaloop API error received at any time
-            during the transfer process
-          properties: *ref_51
-        prepare:
-          properties:
-            body:
-              type: object
-            headers:
-              type: object
-          type: object
-        quote:
-          properties:
-            fulfilment:
-              type: string
-            internalRequest:
-              type: object
-            mojaloopResponse:
-              type: object
-            request:
-              type: object
-            response:
-              type: object
-          type: object
-        quoteRequest:
-          properties:
-            body:
-              type: object
-            headers:
-              type: object
-          type: object
-        quoteResponse:
-          properties:
-            body:
-              type: object
-            headers:
-              type: object
-          type: object
-        transferId:
-          description: A Mojaloop API transfer identifier (UUID).
-          pattern: >-
-            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-          type: string
+      description: PUT /transfers/{transferId} object.
+      properties: *ref_50
       title: TransfersIDPatchResponse
       type: object
     geoCode:
@@ -2045,8 +2021,8 @@ components:
       properties: *ref_19
       required: *ref_20
       type: object
-    Type:
-      enum: *ref_52
+    idType:
+      enum: *ref_51
       type: string
     ID:
       maxLength: 128
@@ -2061,8 +2037,8 @@ components:
       example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
     ilpPacketData:
       description: Object containing transfer object.
-      properties: *ref_53
-      required: *ref_54
+      properties: *ref_52
+      required: *ref_53
       type: object
     initiator:
       enum: *ref_9
@@ -2088,57 +2064,57 @@ components:
       pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
       type: string
     otpDetails:
-      properties: *ref_55
-      required: *ref_56
+      properties: *ref_54
+      required: *ref_55
       type: object
     participantsResponse:
       properties: *ref_17
       type: object
     payerType:
-      enum: *ref_57
+      enum: *ref_56
       type: string
     quoteId:
-      description: A Mojaloop API quote identifier (UUID)
+      description: A Mojaloop API quote identifier (UUID).
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
       type: string
     quoteRequest:
       description: A request for a quote for transfer from the DFSP backend.
-      properties: *ref_58
-      required: *ref_59
+      properties: *ref_57
+      required: *ref_58
       type: object
     quoteResponse:
       description: A response to a request for a quote.
       properties: *ref_21
       required: *ref_22
       type: object
-    SubId:
+    idSubValue:
       maxLength: 128
       minLength: 1
       type: string
     scenario:
-      enum: *ref_60
+      enum: *ref_59
       type: string
     timestamp:
-      description: An ISO-8601 formatted timestamp
+      description: An ISO-8601 formatted timestamp.
       pattern: >-
         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
       type: string
     transactionId:
       description: >-
         ID of the transaction, the ID is decided by the Payer FSP during the
-        creation of the quote
+        creation of the quote.
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
       type: string
     transactionTypeObject:
       description: Object containing transfer object.
-      properties: *ref_61
-      required: *ref_62
+      properties: *ref_60
+      required: *ref_61
       type: object
     transferDetailsResponse:
-      properties: *ref_63
-      required: *ref_64
+      properties: *ref_62
+      required: *ref_63
       type: object
     transferId:
       description: A Mojaloop API transfer identifier (UUID).
@@ -2146,22 +2122,22 @@ components:
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
       type: string
     transactionRequest:
-      description: A request for a pull based transfer
-      properties: *ref_65
-      required: *ref_66
+      description: A request for a pull based transfer.
+      properties: *ref_64
+      required: *ref_65
       type: object
     transactionRequestId:
-      description: A Mojaloop API transaction request identifier (UUID)
+      description: A Mojaloop API transaction request identifier (UUID).
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
       type: string
     transactionRequestResponse:
-      description: A response to a request for a quote
-      properties: *ref_67
-      required: *ref_68
+      description: A response to a request for a quote.
+      properties: *ref_66
+      required: *ref_67
       type: object
     transactionRequestState:
-      enum: *ref_69
+      enum: *ref_68
       type: string
     transactionType:
       enum: *ref_11
@@ -2171,12 +2147,12 @@ components:
       required: *ref_2
       type: object
     transferRequest:
-      properties: *ref_70
-      required: *ref_71
+      properties: *ref_69
+      required: *ref_70
       type: object
     transferResponse:
-      properties: *ref_72
-      required: *ref_73
+      properties: *ref_71
+      required: *ref_72
       type: object
     transferState:
       description: >
@@ -2188,5 +2164,5 @@ components:
       enum: *ref_23
       type: string
     transferStatus:
-      enum: *ref_74
+      enum: *ref_73
       type: string

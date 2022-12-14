@@ -32,9 +32,8 @@ export namespace Schemas {
   export const errorDescription = JsonSchemas.errorDescription
   export const fspId = JsonSchemas.fspId
   export const fulfilNotification = JsonSchemas.fulfilNotification
-  export const fulfilNotificationDupe = JsonSchemas.fulfilNotificationDupe
   export const geoCode = JsonSchemas.geoCode
-  export const Type = JsonSchemas.Type
+  export const idType = JsonSchemas.idType
   export const ID = JsonSchemas.ID
   export const ilpFulfilment = JsonSchemas.ilpFulfilment
   export const ilpPacketData = JsonSchemas.ilpPacketData
@@ -49,7 +48,7 @@ export namespace Schemas {
   export const quoteId = JsonSchemas.quoteId
   export const quoteRequest = JsonSchemas.quoteRequest
   export const quoteResponse = JsonSchemas.quoteResponse
-  export const SubId = JsonSchemas.SubId
+  export const idSubValue = JsonSchemas.idSubValue
   export const scenario = JsonSchemas.scenario
   export const timestamp = JsonSchemas.timestamp
   export const transactionId = JsonSchemas.transactionId

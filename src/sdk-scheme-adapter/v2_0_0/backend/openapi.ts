@@ -30,16 +30,16 @@ export interface paths {
     /** The HTTP request `GET /participants/{idType}/{idValue}` is used to find out in which FSP the requested party, defined by `{idType}` and `{idValue}`, is located. */
     get: operations["BackendParticipantsGetByTypeAndID"];
   };
-  "/participants/{idType}/{idValue}/{subIdValue}": {
-    /** The HTTP request `GET /participants/{idType}/{idValue}/{subIdValue}` is used to find out in which FSP the requested party, defined by `{idType}`, `{idValue}` and `{subIdValue}` is located. */
+  "/participants/{idType}/{idValue}/{idSubValue}": {
+    /** The HTTP request `GET /participants/{idType}/{idValue}/{idSubValue}` is used to find out in which FSP the requested party, defined by `{idType}`, `{idValue}` and `{idSubValue}` is located. */
     get: operations["BackendParticipantsGetByTypeIDAndSubId"];
   };
   "/parties/{idType}/{idValue}": {
     /** The HTTP request `GET /parties/{idType}/{idValue}` is used to look up information regarding the requested transfer party, identified by `{idType}` and `{idValue}`. */
     get: operations["BackendPartiesGetByTypeAndID"];
   };
-  "/parties/{idType}/{idValue}/{subIdValue}": {
-    /** The HTTP request `GET /parties/{idType}/{idValue}/{subIdValue}` is used to look up information regarding the requested transfer party, identified by `{idType}`, `{idValue}` and `{subIdValue}`. */
+  "/parties/{idType}/{idValue}/{idSubValue}": {
+    /** The HTTP request `GET /parties/{idType}/{idValue}/{idSubValue}` is used to look up information regarding the requested transfer party, identified by `{idType}`, `{idValue}` and `{idSubValue}`. */
     get: operations["BackendPartiesGetByTypeIdAndSubId"];
   };
   "/quoterequests": {
@@ -56,14 +56,14 @@ export interface paths {
   "/transfers/{transferId}": {
     /** The HTTP request `GET /transfers/{transferId}` is used to get information regarding a transfer created or requested earlier. The `{transferId}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
     get: operations["BackendTransfersGet"];
-    /** The HTTP request `PUT /transfers/{transferId}` is used to receive notification for transfer being fulfiled when the FSP is a Payee */
+    /** The HTTP request `PUT /transfers/{transferId}` is used to receive notification for transfer being fulfiled when the FSP is a Payee. */
     put: operations["BackendTransfersPut"];
   };
 }
 
 export interface components {
   schemas: {
-    /** @description Data model for individual quote in a bulk quote request */
+    /** @description Data model for individual quote in a bulk quote request. */
     IndividualQuote: {
       amount: string;
       /** @enum {string} */
@@ -405,12 +405,12 @@ export interface components {
       initiator: "PAYER" | "PAYEE";
       /** @enum {string} */
       initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-      /** @description An optional note associated with the quote */
+      /** @description An optional note associated with the quote. */
       note?: string;
-      /** @description A Mojaloop API quote identifier (UUID) */
+      /** @description A Mojaloop API quote identifier (UUID). */
       quoteId: string;
       to: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -422,7 +422,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -445,12 +445,12 @@ export interface components {
         /** @enum {string} */
         type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
       };
-      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
       transactionId: string;
       /** @enum {string} */
       transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
     };
-    /** @description Data model for failed individual quote in a bulk quote response */
+    /** @description Data model for failed individual quote in a bulk quote response. */
     IndividualQuoteResultFailed: {
       errorResponse: {
         /** @description Error message text */
@@ -461,10 +461,10 @@ export interface components {
          */
         statusCode?: string;
       };
-      /** @description A Mojaloop API quote identifier (UUID) */
+      /** @description A Mojaloop API quote identifier (UUID). */
       quoteId: string;
     };
-    /** @description Data model for successful individual quote in a bulk quote response */
+    /** @description Data model for successful individual quote in a bulk quote response. */
     IndividualQuoteResultSuccess: {
       payeeFspCommissionAmount?: string;
       /** @enum {string} */
@@ -967,7 +967,7 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-      /** @description A Mojaloop API quote identifier (UUID) */
+      /** @description A Mojaloop API quote identifier (UUID). */
       quoteId: string;
       transferAmount?: string;
       /** @enum {string} */
@@ -1137,7 +1137,7 @@ export interface components {
         | "ZMW"
         | "ZWD";
     };
-    /** @description Data model for individual transfer in a bulk transfer request */
+    /** @description Data model for individual transfer in a bulk transfer request. */
     IndividualTransfer: {
       amount: string;
       /** @enum {string} */
@@ -1479,10 +1479,10 @@ export interface components {
       initiator?: "PAYER" | "PAYEE";
       /** @enum {string} */
       initiatorType?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-      /** @description An optional note associated with the quote */
+      /** @description An optional note associated with the quote. */
       note?: string;
       to?: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -1494,7 +1494,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -1522,7 +1522,7 @@ export interface components {
       /** @description A Mojaloop API transfer identifier (UUID). */
       transferId: string;
     };
-    /** @description Data model for individual transfer in a bulk transfer response */
+    /** @description Data model for individual transfer in a bulk transfer response. */
     IndividualTransferResult: {
       errorResponse?: {
         /** @description Error message text */
@@ -1712,16 +1712,16 @@ export interface components {
     };
     /** @enum {string} */
     amountType: "SEND" | "RECEIVE";
-    /** @description A Mojaloop API bulk quote identifier (UUID) */
+    /** @description A Mojaloop API bulk quote identifier (UUID). */
     bulkQuoteId: string;
-    /** @description A request for a bulk quote */
+    /** @description A request for a bulk quote. */
     bulkQuoteRequest: {
-      /** @description A Mojaloop API bulk quote identifier (UUID) */
+      /** @description A Mojaloop API bulk quote identifier (UUID). */
       bulkQuoteId: string;
-      /** @description An ISO-8601 formatted timestamp */
+      /** @description An ISO-8601 formatted timestamp. */
       expiration?: string;
       from: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -1733,7 +1733,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -2104,12 +2104,12 @@ export interface components {
         initiator: "PAYER" | "PAYEE";
         /** @enum {string} */
         initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /** @description An optional note associated with the quote */
+        /** @description An optional note associated with the quote. */
         note?: string;
-        /** @description A Mojaloop API quote identifier (UUID) */
+        /** @description A Mojaloop API quote identifier (UUID). */
         quoteId: string;
         to: {
-          /** @description Date of birth in the form YYYY-MM-DD */
+          /** @description Date of birth in the form YYYY-MM-DD. */
           dateOfBirth?: string;
           /** @description Display name of the sender, if known. */
           displayName?: string;
@@ -2121,7 +2121,7 @@ export interface components {
           firstName?: string;
           /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
           fspId?: string;
-          subIdValue?: string;
+          idSubValue?: string;
           /** @enum {string} */
           idType:
             | "MSISDN"
@@ -2144,17 +2144,17 @@ export interface components {
           /** @enum {string} */
           type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
         };
-        /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+        /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
         transactionId: string;
         /** @enum {string} */
         transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
       }[];
     };
-    /** @description A response to a request for a bulk quote */
+    /** @description A response to a request for a bulk quote. */
     bulkQuoteResponse: {
-      /** @description A Mojaloop API bulk quote identifier (UUID) */
+      /** @description A Mojaloop API bulk quote identifier (UUID). */
       bulkQuoteId: string;
-      /** @description An ISO-8601 formatted timestamp */
+      /** @description An ISO-8601 formatted timestamp. */
       expiration?: string;
       /** @description Fees for each individual transaction, if any of them are charged per transaction. */
       individualQuoteResults: (
@@ -2660,7 +2660,7 @@ export interface components {
               | "ZAR"
               | "ZMW"
               | "ZWD";
-            /** @description A Mojaloop API quote identifier (UUID) */
+            /** @description A Mojaloop API quote identifier (UUID). */
             quoteId: string;
             transferAmount?: string;
             /** @enum {string} */
@@ -2840,19 +2840,19 @@ export interface components {
                */
               statusCode?: string;
             };
-            /** @description A Mojaloop API quote identifier (UUID) */
+            /** @description A Mojaloop API quote identifier (UUID). */
             quoteId: string;
           }
       )[];
     };
-    /** @description A Mojaloop API transfer identifier (UUID) */
+    /** @description A Mojaloop API transfer identifier (UUID). */
     bulkTransferId: string;
     bulkTransferRequest: {
-      /** @description A response to a request for a bulk quote */
+      /** @description A response to a request for a bulk quote. */
       bulkQuote?: {
-        /** @description A Mojaloop API bulk quote identifier (UUID) */
+        /** @description A Mojaloop API bulk quote identifier (UUID). */
         bulkQuoteId: string;
-        /** @description An ISO-8601 formatted timestamp */
+        /** @description An ISO-8601 formatted timestamp. */
         expiration?: string;
         /** @description Fees for each individual transaction, if any of them are charged per transaction. */
         individualQuoteResults: (
@@ -3358,7 +3358,7 @@ export interface components {
                 | "ZAR"
                 | "ZMW"
                 | "ZWD";
-              /** @description A Mojaloop API quote identifier (UUID) */
+              /** @description A Mojaloop API quote identifier (UUID). */
               quoteId: string;
               transferAmount?: string;
               /** @enum {string} */
@@ -3538,15 +3538,15 @@ export interface components {
                  */
                 statusCode?: string;
               };
-              /** @description A Mojaloop API quote identifier (UUID) */
+              /** @description A Mojaloop API quote identifier (UUID). */
               quoteId: string;
             }
         )[];
       };
-      /** @description A Mojaloop API transfer identifier (UUID) */
+      /** @description A Mojaloop API transfer identifier (UUID). */
       bulkTransferId: string;
       from?: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -3558,7 +3558,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -3922,10 +3922,10 @@ export interface components {
         initiator?: "PAYER" | "PAYEE";
         /** @enum {string} */
         initiatorType?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /** @description An optional note associated with the quote */
+        /** @description An optional note associated with the quote. */
         note?: string;
         to?: {
-          /** @description Date of birth in the form YYYY-MM-DD */
+          /** @description Date of birth in the form YYYY-MM-DD. */
           dateOfBirth?: string;
           /** @description Display name of the sender, if known. */
           displayName?: string;
@@ -3937,7 +3937,7 @@ export interface components {
           firstName?: string;
           /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
           fspId?: string;
-          subIdValue?: string;
+          idSubValue?: string;
           /** @enum {string} */
           idType:
             | "MSISDN"
@@ -3967,9 +3967,9 @@ export interface components {
       }[];
     };
     bulkTransferResponse: {
-      /** @description A Mojaloop API transfer identifier (UUID) */
+      /** @description A Mojaloop API transfer identifier (UUID). */
       bulkTransferId?: string;
-      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the switch and DFSP backend systems */
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the switch and DFSP backend systems. */
       homeTransactionId: string;
       individualTransferResults?: {
         errorResponse?: {
@@ -4155,7 +4155,7 @@ export interface components {
       | "ZAR"
       | "ZMW"
       | "ZWD";
-    /** @description Date of birth in the form YYYY-MM-DD */
+    /** @description Date of birth in the form YYYY-MM-DD. */
     dateOfBirth: string;
     errorResponse: {
       /** @description Error message text */
@@ -4174,15 +4174,15 @@ export interface components {
       key?: string;
       value?: string;
     }[];
-    /** @description Data model for the complex type ExtensionList */
+    /** @description Data model for the complex type ExtensionList. */
     extensionListComplex: {
-      /** @description Number of Extension elements */
+      /** @description Number of Extension elements. */
       extension: {
         key?: string;
         value?: string;
       }[];
     };
-    /** @description This object represents a Mojaloop API error received at any time during the transfer process */
+    /** @description This object represents a Mojaloop API error received at any time during the transfer process. */
     transferError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
       httpStatusCode?: number;
@@ -4203,9 +4203,9 @@ export interface components {
            * @description Error description string.
            */
           errorDescription: string;
-          /** @description Data model for the complex type ExtensionList */
+          /** @description Data model for the complex type ExtensionList. */
           extensionList?: {
-            /** @description Number of Extension elements */
+            /** @description Number of Extension elements. */
             extension: {
               key?: string;
               value?: string;
@@ -4232,9 +4232,9 @@ export interface components {
          * @description Error description string.
          */
         errorDescription: string;
-        /** @description Data model for the complex type ExtensionList */
+        /** @description Data model for the complex type ExtensionList. */
         extensionList?: {
-          /** @description Number of Extension elements */
+          /** @description Number of Extension elements. */
           extension: {
             key?: string;
             value?: string;
@@ -4257,9 +4257,9 @@ export interface components {
        * @description Error description string.
        */
       errorDescription: string;
-      /** @description Data model for the complex type ExtensionList */
+      /** @description Data model for the complex type ExtensionList. */
       extensionList?: {
-        /** @description Number of Extension elements */
+        /** @description Number of Extension elements. */
         extension: {
           key?: string;
           value?: string;
@@ -4280,27 +4280,9 @@ export interface components {
     fspId: string;
     /**
      * TransfersIDPatchResponse
-     * @description PUT /transfers/{transferId} object
+     * @description PUT /transfers/{transferId} object.
      */
     fulfilNotification: {
-      /** @description An ISO-8601 formatted timestamp */
-      completedTimestamp: string;
-      extensionList?: {
-        key?: string;
-        value?: string;
-      }[];
-      /**
-       * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-       *
-       * @enum {string}
-       */
-      transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-    };
-    /**
-     * TransfersIDPatchResponse
-     * @description PUT /transfers/{transferId} object
-     */
-    fulfilNotificationDupe: {
       /** @enum {string} */
       currentState?:
         | "ERROR_OCCURRED"
@@ -4311,7 +4293,7 @@ export interface components {
       direction?: "INBOUND";
       finalNotification?: {
         /**
-         * @description An ISO-8601 formatted timestamp
+         * @description An ISO-8601 formatted timestamp.
          * @example 2020-05-19T08:38:08.699-04:00
          */
         completedTimestamp: string;
@@ -4332,9 +4314,9 @@ export interface components {
         body?: { [key: string]: unknown };
         headers?: { [key: string]: unknown };
       };
-      /** @description An ISO-8601 formatted timestamp */
+      /** @description An ISO-8601 formatted timestamp. */
       initiatedTimestamp?: string;
-      /** @description This object represents a Mojaloop API error received at any time during the transfer process */
+      /** @description This object represents a Mojaloop API error received at any time during the transfer process. */
       lastError?: {
         /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
         httpStatusCode?: number;
@@ -4355,9 +4337,9 @@ export interface components {
              * @description Error description string.
              */
             errorDescription: string;
-            /** @description Data model for the complex type ExtensionList */
+            /** @description Data model for the complex type ExtensionList. */
             extensionList?: {
-              /** @description Number of Extension elements */
+              /** @description Number of Extension elements. */
               extension: {
                 key?: string;
                 value?: string;
@@ -4396,7 +4378,7 @@ export interface components {
       longitude: string;
     };
     /** @enum {string} */
-    Type:
+    idType:
       | "MSISDN"
       | "ACCOUNT_NO"
       | "EMAIL"
@@ -4587,7 +4569,7 @@ export interface components {
       };
       /** @description Information about the Payee in the proposed financial transaction. */
       payee: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -4599,7 +4581,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -4624,7 +4606,7 @@ export interface components {
       };
       /** @description Information about the Payer in the proposed financial transaction. */
       payer: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -4636,7 +4618,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -4659,9 +4641,9 @@ export interface components {
         /** @enum {string} */
         type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
       };
-      /** @description A Mojaloop API quote identifier (UUID) */
+      /** @description A Mojaloop API quote identifier (UUID). */
       quoteId: string;
-      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
       transactionId: string;
       /** @description Object containing transfer object. */
       transactionType: {
@@ -4686,7 +4668,7 @@ export interface components {
     longitude: string;
     money: string;
     otpDetails: {
-      /** @description OTP value */
+      /** @description OTP value. */
       otpValue: string;
     };
     participantsResponse: {
@@ -4695,7 +4677,7 @@ export interface components {
     };
     /** @enum {string} */
     payerType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-    /** @description A Mojaloop API quote identifier (UUID) */
+    /** @description A Mojaloop API quote identifier (UUID). */
     quoteId: string;
     /** @description A request for a quote for transfer from the DFSP backend. */
     quoteRequest: {
@@ -4872,7 +4854,7 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-      /** @description An ISO-8601 formatted timestamp */
+      /** @description An ISO-8601 formatted timestamp. */
       expiration?: string;
       extensionList?: {
         key?: string;
@@ -5048,7 +5030,7 @@ export interface components {
         | "ZWD";
       /** @description Information about the Payer in the proposed financial transaction. */
       from: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -5060,7 +5042,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -5102,11 +5084,11 @@ export interface components {
       initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
       /** @description An optional note associated with the requested transfer. */
       note?: string;
-      /** @description A Mojaloop API quote identifier (UUID) */
+      /** @description A Mojaloop API quote identifier (UUID). */
       quoteId: string;
       /** @description Information about the Payee in the proposed financial transaction. */
       to: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -5118,7 +5100,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -5141,7 +5123,7 @@ export interface components {
         /** @enum {string} */
         type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
       };
-      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
       transactionId: string;
       /**
        * @description Type of transaction for which the quote is requested.
@@ -5151,7 +5133,7 @@ export interface components {
     };
     /** @description A response to a request for a quote. */
     quoteResponse: {
-      /** @description An ISO-8601 formatted timestamp */
+      /** @description An ISO-8601 formatted timestamp. */
       expiration?: string;
       extensionList?: {
         key?: string;
@@ -5677,9 +5659,9 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-      /** @description A Mojaloop API quote identifier (UUID) */
+      /** @description A Mojaloop API quote identifier (UUID). */
       quoteId: string;
-      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
       transactionId: string;
       /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
       transferAmount: string;
@@ -5853,12 +5835,12 @@ export interface components {
         | "ZMW"
         | "ZWD";
     };
-    SubId: string;
+    idSubValue: string;
     /** @enum {string} */
     scenario: "TRANSFER";
-    /** @description An ISO-8601 formatted timestamp */
+    /** @description An ISO-8601 formatted timestamp. */
     timestamp: string;
-    /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+    /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
     transactionId: string;
     /** @description Object containing transfer object. */
     transactionTypeObject: {
@@ -6047,7 +6029,7 @@ export interface components {
         value?: string;
       }[];
       from: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -6059,7 +6041,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6085,10 +6067,10 @@ export interface components {
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
       homeTransactionId: string;
       note?: string;
-      /** @description An ISO-8601 formatted timestamp */
+      /** @description An ISO-8601 formatted timestamp. */
       timestamp: string;
       to: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -6100,7 +6082,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6134,7 +6116,7 @@ export interface components {
     };
     /** @description A Mojaloop API transfer identifier (UUID). */
     transferId: string;
-    /** @description A request for a pull based transfer */
+    /** @description A request for a pull based transfer. */
     transactionRequest: {
       amount: string;
       /** @enum {string} */
@@ -6303,10 +6285,10 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-      /** @description An ISO-8601 formatted timestamp */
+      /** @description An ISO-8601 formatted timestamp. */
       expiration?: string;
       from: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -6318,7 +6300,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6352,10 +6334,10 @@ export interface components {
       initiator: "PAYER" | "PAYEE";
       /** @enum {string} */
       initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-      /** @description An optional note associated with the requested transfer */
+      /** @description An optional note associated with the requested transfer. */
       note?: string;
       to: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -6367,7 +6349,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6390,16 +6372,16 @@ export interface components {
         /** @enum {string} */
         type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
       };
-      /** @description A Mojaloop API transaction request identifier (UUID) */
+      /** @description A Mojaloop API transaction request identifier (UUID). */
       transactionRequestId: string;
       /** @enum {string} */
       transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
     };
-    /** @description A Mojaloop API transaction request identifier (UUID) */
+    /** @description A Mojaloop API transaction request identifier (UUID). */
     transactionRequestId: string;
-    /** @description A response to a request for a quote */
+    /** @description A response to a request for a quote. */
     transactionRequestResponse: {
-      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
       transactionId: string;
       /** @enum {string} */
       transferAmount?: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
@@ -6411,7 +6393,7 @@ export interface components {
     /** @enum {string} */
     transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
     transferParty: {
-      /** @description Date of birth in the form YYYY-MM-DD */
+      /** @description Date of birth in the form YYYY-MM-DD. */
       dateOfBirth?: string;
       /** @description Display name of the sender, if known. */
       displayName?: string;
@@ -6423,7 +6405,7 @@ export interface components {
       firstName?: string;
       /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
       fspId?: string;
-      subIdValue?: string;
+      idSubValue?: string;
       /** @enum {string} */
       idType:
         | "MSISDN"
@@ -6617,7 +6599,7 @@ export interface components {
         | "ZMW"
         | "ZWD";
       from: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -6629,7 +6611,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6827,7 +6809,7 @@ export interface components {
           };
           /** @description Information about the Payee in the proposed financial transaction. */
           payee: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -6839,7 +6821,7 @@ export interface components {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -6864,7 +6846,7 @@ export interface components {
           };
           /** @description Information about the Payer in the proposed financial transaction. */
           payer: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -6876,7 +6858,7 @@ export interface components {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -6899,9 +6881,9 @@ export interface components {
             /** @enum {string} */
             type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
           };
-          /** @description A Mojaloop API quote identifier (UUID) */
+          /** @description A Mojaloop API quote identifier (UUID). */
           quoteId: string;
-          /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+          /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
           transactionId: string;
           /** @description Object containing transfer object. */
           transactionType: {
@@ -6920,7 +6902,7 @@ export interface components {
       note?: string;
       /** @description A response to a request for a quote. */
       quote: {
-        /** @description An ISO-8601 formatted timestamp */
+        /** @description An ISO-8601 formatted timestamp. */
         expiration?: string;
         extensionList?: {
           key?: string;
@@ -7446,9 +7428,9 @@ export interface components {
           | "ZAR"
           | "ZMW"
           | "ZWD";
-        /** @description A Mojaloop API quote identifier (UUID) */
+        /** @description A Mojaloop API quote identifier (UUID). */
         quoteId: string;
-        /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+        /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
         transactionId: string;
         /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
         transferAmount: string;
@@ -7627,7 +7609,7 @@ export interface components {
         value?: string;
       }[];
       to: {
-        /** @description Date of birth in the form YYYY-MM-DD */
+        /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
         /** @description Display name of the sender, if known. */
         displayName?: string;
@@ -7639,7 +7621,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        subIdValue?: string;
+        idSubValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -7669,7 +7651,7 @@ export interface components {
     };
     transferResponse: {
       /**
-       * @description An ISO-8601 formatted timestamp
+       * @description An ISO-8601 formatted timestamp.
        * @example 2020-05-19T08:38:08.699-04:00
        */
       completedTimestamp?: string;
@@ -7703,7 +7685,7 @@ export interface components {
       | "COMPLETED";
   };
   responses: {
-    /** Malformed or missing required headers or parameters */
+    /** Malformed or missing required headers or parameters. */
     400: {
       content: {
         "application/json": {
@@ -7717,9 +7699,9 @@ export interface components {
         };
       };
     };
-    /** The party specified by the provided identifier type and value is not known to the server */
+    /** The party specified by the provided identifier type and value is not known to the server. */
     404: unknown;
-    /** An error occurred processing the request */
+    /** An error occurred processing the request. */
     500: {
       content: {
         "application/json": {
@@ -7735,14 +7717,14 @@ export interface components {
     };
   };
   parameters: {
-    /** @description Identifier of the bulk transaction to continue as returned in */
+    /** @description Identifier of the bulk transaction to continue as returned in. */
     bulkTransactionId: string;
     /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
     idType: string;
     /** @description The identifier value. */
     idValue: string;
     /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
-    subIdValue: string;
+    idSubValue: string;
     requestToPayId: string;
     transferId: string;
   };
@@ -7757,13 +7739,13 @@ export interface operations {
   };
   BackendBulkQuotesPost: {
     responses: {
-      /** A response to the bulk quote request */
+      /** A response to the bulk quote request. */
       200: {
         content: {
           "application/json": {
-            /** @description A Mojaloop API bulk quote identifier (UUID) */
+            /** @description A Mojaloop API bulk quote identifier (UUID). */
             bulkQuoteId: string;
-            /** @description An ISO-8601 formatted timestamp */
+            /** @description An ISO-8601 formatted timestamp. */
             expiration?: string;
             /** @description Fees for each individual transaction, if any of them are charged per transaction. */
             individualQuoteResults: (
@@ -8269,7 +8251,7 @@ export interface operations {
                     | "ZAR"
                     | "ZMW"
                     | "ZWD";
-                  /** @description A Mojaloop API quote identifier (UUID) */
+                  /** @description A Mojaloop API quote identifier (UUID). */
                   quoteId: string;
                   transferAmount?: string;
                   /** @enum {string} */
@@ -8449,14 +8431,14 @@ export interface operations {
                      */
                     statusCode?: string;
                   };
-                  /** @description A Mojaloop API quote identifier (UUID) */
+                  /** @description A Mojaloop API quote identifier (UUID). */
                   quoteId: string;
                 }
             )[];
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -8470,7 +8452,7 @@ export interface operations {
           };
         };
       };
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -8485,16 +8467,16 @@ export interface operations {
         };
       };
     };
-    /** Incoming request for a bulk quotation */
+    /** Incoming request for a bulk quotation. */
     requestBody: {
       content: {
         "application/json": {
-          /** @description A Mojaloop API bulk quote identifier (UUID) */
+          /** @description A Mojaloop API bulk quote identifier (UUID). */
           bulkQuoteId: string;
-          /** @description An ISO-8601 formatted timestamp */
+          /** @description An ISO-8601 formatted timestamp. */
           expiration?: string;
           from: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -8506,7 +8488,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -8877,12 +8859,12 @@ export interface operations {
             initiator: "PAYER" | "PAYEE";
             /** @enum {string} */
             initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-            /** @description An optional note associated with the quote */
+            /** @description An optional note associated with the quote. */
             note?: string;
-            /** @description A Mojaloop API quote identifier (UUID) */
+            /** @description A Mojaloop API quote identifier (UUID). */
             quoteId: string;
             to: {
-              /** @description Date of birth in the form YYYY-MM-DD */
+              /** @description Date of birth in the form YYYY-MM-DD. */
               dateOfBirth?: string;
               /** @description Display name of the sender, if known. */
               displayName?: string;
@@ -8894,7 +8876,7 @@ export interface operations {
               firstName?: string;
               /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
               fspId?: string;
-              subIdValue?: string;
+              idSubValue?: string;
               /** @enum {string} */
               idType:
                 | "MSISDN"
@@ -8917,7 +8899,7 @@ export interface operations {
               /** @enum {string} */
               type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
             };
-            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
             transactionId: string;
             /** @enum {string} */
             transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
@@ -8934,13 +8916,13 @@ export interface operations {
       };
     };
     responses: {
-      /** Response containing details of the requested bulk quote */
+      /** Response containing details of the requested bulk quote. */
       200: {
         content: {
           "application/json": {
-            /** @description A Mojaloop API bulk quote identifier (UUID) */
+            /** @description A Mojaloop API bulk quote identifier (UUID). */
             bulkQuoteId: string;
-            /** @description An ISO-8601 formatted timestamp */
+            /** @description An ISO-8601 formatted timestamp. */
             expiration?: string;
             /** @description Fees for each individual transaction, if any of them are charged per transaction. */
             individualQuoteResults: (
@@ -9446,7 +9428,7 @@ export interface operations {
                     | "ZAR"
                     | "ZMW"
                     | "ZWD";
-                  /** @description A Mojaloop API quote identifier (UUID) */
+                  /** @description A Mojaloop API quote identifier (UUID). */
                   quoteId: string;
                   transferAmount?: string;
                   /** @enum {string} */
@@ -9626,14 +9608,14 @@ export interface operations {
                      */
                     statusCode?: string;
                   };
-                  /** @description A Mojaloop API quote identifier (UUID) */
+                  /** @description A Mojaloop API quote identifier (UUID). */
                   quoteId: string;
                 }
             )[];
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -9647,9 +9629,9 @@ export interface operations {
           };
         };
       };
-      /** The party specified by the provided identifier type and value is not known to the server */
+      /** The party specified by the provided identifier type and value is not known to the server. */
       404: unknown;
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -9669,14 +9651,14 @@ export interface operations {
   BackendBulkTransactionsPut: {
     parameters: {
       path: {
-        /** Identifier of the bulk transaction to continue as returned in */
+        /** Identifier of the bulk transaction to continue as returned in. */
         bulkTransactionId: string;
       };
     };
     responses: {
-      /** Bulk transaction information successfully amended */
+      /** Bulk transaction information successfully amended. */
       202: unknown;
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -9690,7 +9672,7 @@ export interface operations {
           };
         };
       };
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -9705,7 +9687,7 @@ export interface operations {
         };
       };
     };
-    /** Bulk transaction request body */
+    /** Bulk transaction request body. */
     requestBody: {
       content: {
         "application/json": {
@@ -9728,13 +9710,13 @@ export interface operations {
   };
   BackendBulkTransfersPost: {
     responses: {
-      /** The bulk transfer was accepted */
+      /** The bulk transfer was accepted. */
       200: {
         content: {
           "application/json": {
-            /** @description A Mojaloop API transfer identifier (UUID) */
+            /** @description A Mojaloop API transfer identifier (UUID). */
             bulkTransferId?: string;
-            /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the switch and DFSP backend systems */
+            /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the switch and DFSP backend systems. */
             homeTransactionId: string;
             individualTransferResults?: {
               errorResponse?: {
@@ -9756,7 +9738,7 @@ export interface operations {
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -9770,7 +9752,7 @@ export interface operations {
           };
         };
       };
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -9785,15 +9767,15 @@ export interface operations {
         };
       };
     };
-    /** An incoming bulk transfer request */
+    /** An incoming bulk transfer request. */
     requestBody: {
       content: {
         "application/json": {
-          /** @description A response to a request for a bulk quote */
+          /** @description A response to a request for a bulk quote. */
           bulkQuote?: {
-            /** @description A Mojaloop API bulk quote identifier (UUID) */
+            /** @description A Mojaloop API bulk quote identifier (UUID). */
             bulkQuoteId: string;
-            /** @description An ISO-8601 formatted timestamp */
+            /** @description An ISO-8601 formatted timestamp. */
             expiration?: string;
             /** @description Fees for each individual transaction, if any of them are charged per transaction. */
             individualQuoteResults: (
@@ -10299,7 +10281,7 @@ export interface operations {
                     | "ZAR"
                     | "ZMW"
                     | "ZWD";
-                  /** @description A Mojaloop API quote identifier (UUID) */
+                  /** @description A Mojaloop API quote identifier (UUID). */
                   quoteId: string;
                   transferAmount?: string;
                   /** @enum {string} */
@@ -10479,15 +10461,15 @@ export interface operations {
                      */
                     statusCode?: string;
                   };
-                  /** @description A Mojaloop API quote identifier (UUID) */
+                  /** @description A Mojaloop API quote identifier (UUID). */
                   quoteId: string;
                 }
             )[];
           };
-          /** @description A Mojaloop API transfer identifier (UUID) */
+          /** @description A Mojaloop API transfer identifier (UUID). */
           bulkTransferId: string;
           from?: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -10499,7 +10481,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -10863,10 +10845,10 @@ export interface operations {
             initiator?: "PAYER" | "PAYEE";
             /** @enum {string} */
             initiatorType?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-            /** @description An optional note associated with the quote */
+            /** @description An optional note associated with the quote. */
             note?: string;
             to?: {
-              /** @description Date of birth in the form YYYY-MM-DD */
+              /** @description Date of birth in the form YYYY-MM-DD. */
               dateOfBirth?: string;
               /** @description Display name of the sender, if known. */
               displayName?: string;
@@ -10878,7 +10860,7 @@ export interface operations {
               firstName?: string;
               /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
               fspId?: string;
-              subIdValue?: string;
+              idSubValue?: string;
               /** @enum {string} */
               idType:
                 | "MSISDN"
@@ -10918,13 +10900,13 @@ export interface operations {
       };
     };
     responses: {
-      /** Response containing details of the requested bulk transfer */
+      /** Response containing details of the requested bulk transfer. */
       200: {
         content: {
           "application/json": {
-            /** @description A Mojaloop API transfer identifier (UUID) */
+            /** @description A Mojaloop API transfer identifier (UUID). */
             bulkTransferId?: string;
-            /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the switch and DFSP backend systems */
+            /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the switch and DFSP backend systems. */
             homeTransactionId: string;
             individualTransferResults?: {
               errorResponse?: {
@@ -10946,7 +10928,7 @@ export interface operations {
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -10960,9 +10942,9 @@ export interface operations {
           };
         };
       };
-      /** The party specified by the provided identifier type and value is not known to the server */
+      /** The party specified by the provided identifier type and value is not known to the server. */
       404: unknown;
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -10985,16 +10967,16 @@ export interface operations {
       };
     };
     responses: {
-      /** Response containing details of the OTP */
+      /** Response containing details of the OTP. */
       200: {
         content: {
           "application/json": {
-            /** @description OTP value */
+            /** @description OTP value. */
             otpValue: string;
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -11008,9 +10990,9 @@ export interface operations {
           };
         };
       };
-      /** The party specified by the provided identifier type and value is not known to the server */
+      /** The party specified by the provided identifier type and value is not known to the server. */
       404: unknown;
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -11037,7 +11019,7 @@ export interface operations {
       };
     };
     responses: {
-      /** Response containing details of the requested party */
+      /** Response containing details of the requested party. */
       200: {
         content: {
           "application/json": {
@@ -11046,7 +11028,7 @@ export interface operations {
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -11060,9 +11042,9 @@ export interface operations {
           };
         };
       };
-      /** The party specified by the provided identifier type and value is not known to the server */
+      /** The party specified by the provided identifier type and value is not known to the server. */
       404: unknown;
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -11078,7 +11060,7 @@ export interface operations {
       };
     };
   };
-  /** The HTTP request `GET /participants/{idType}/{idValue}/{subIdValue}` is used to find out in which FSP the requested party, defined by `{idType}`, `{idValue}` and `{subIdValue}` is located. */
+  /** The HTTP request `GET /participants/{idType}/{idValue}/{idSubValue}` is used to find out in which FSP the requested party, defined by `{idType}`, `{idValue}` and `{idSubValue}` is located. */
   BackendParticipantsGetByTypeIDAndSubId: {
     parameters: {
       path: {
@@ -11087,11 +11069,11 @@ export interface operations {
         /** The identifier value. */
         idValue: string;
         /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
-        subIdValue: string;
+        idSubValue: string;
       };
     };
     responses: {
-      /** Response containing details of the requested party */
+      /** Response containing details of the requested party. */
       200: {
         content: {
           "application/json": {
@@ -11100,7 +11082,7 @@ export interface operations {
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -11114,9 +11096,9 @@ export interface operations {
           };
         };
       };
-      /** The party specified by the provided identifier type and value is not known to the server */
+      /** The party specified by the provided identifier type and value is not known to the server. */
       404: unknown;
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -11143,11 +11125,11 @@ export interface operations {
       };
     };
     responses: {
-      /** Response containing details of the requested party */
+      /** Response containing details of the requested party. */
       200: {
         content: {
           "application/json": {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -11159,7 +11141,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -11184,7 +11166,7 @@ export interface operations {
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -11198,9 +11180,9 @@ export interface operations {
           };
         };
       };
-      /** The party specified by the provided identifier type and value is not known to the server */
+      /** The party specified by the provided identifier type and value is not known to the server. */
       404: unknown;
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -11216,7 +11198,7 @@ export interface operations {
       };
     };
   };
-  /** The HTTP request `GET /parties/{idType}/{idValue}/{subIdValue}` is used to look up information regarding the requested transfer party, identified by `{idType}`, `{idValue}` and `{subIdValue}`. */
+  /** The HTTP request `GET /parties/{idType}/{idValue}/{idSubValue}` is used to look up information regarding the requested transfer party, identified by `{idType}`, `{idValue}` and `{idSubValue}`. */
   BackendPartiesGetByTypeIdAndSubId: {
     parameters: {
       path: {
@@ -11225,15 +11207,15 @@ export interface operations {
         /** The identifier value. */
         idValue: string;
         /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
-        subIdValue: string;
+        idSubValue: string;
       };
     };
     responses: {
-      /** Response containing details of the requested party */
+      /** Response containing details of the requested party. */
       200: {
         content: {
           "application/json": {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -11245,7 +11227,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -11270,7 +11252,7 @@ export interface operations {
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -11284,9 +11266,9 @@ export interface operations {
           };
         };
       };
-      /** The party specified by the provided identifier type and value is not known to the server */
+      /** The party specified by the provided identifier type and value is not known to the server. */
       404: unknown;
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -11305,11 +11287,11 @@ export interface operations {
   /** The HTTP request `POST /quoterequests` is used to request the creation of a quote for the provided financial transaction. */
   BackendQuoteRequest: {
     responses: {
-      /** A response to the transfer quotation request */
+      /** A response to the transfer quotation request. */
       200: {
         content: {
           "application/json": {
-            /** @description An ISO-8601 formatted timestamp */
+            /** @description An ISO-8601 formatted timestamp. */
             expiration?: string;
             extensionList?: {
               key?: string;
@@ -11835,9 +11817,9 @@ export interface operations {
               | "ZAR"
               | "ZMW"
               | "ZWD";
-            /** @description A Mojaloop API quote identifier (UUID) */
+            /** @description A Mojaloop API quote identifier (UUID). */
             quoteId: string;
-            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
             transactionId: string;
             /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
             transferAmount: string;
@@ -12013,7 +11995,7 @@ export interface operations {
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -12027,7 +12009,7 @@ export interface operations {
           };
         };
       };
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -12042,7 +12024,7 @@ export interface operations {
         };
       };
     };
-    /** Request for a transfer quotation */
+    /** Request for a transfer quotation. */
     requestBody: {
       content: {
         "application/json": {
@@ -12219,7 +12201,7 @@ export interface operations {
             | "ZAR"
             | "ZMW"
             | "ZWD";
-          /** @description An ISO-8601 formatted timestamp */
+          /** @description An ISO-8601 formatted timestamp. */
           expiration?: string;
           extensionList?: {
             key?: string;
@@ -12395,7 +12377,7 @@ export interface operations {
             | "ZWD";
           /** @description Information about the Payer in the proposed financial transaction. */
           from: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -12407,7 +12389,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -12449,11 +12431,11 @@ export interface operations {
           initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
           /** @description An optional note associated with the requested transfer. */
           note?: string;
-          /** @description A Mojaloop API quote identifier (UUID) */
+          /** @description A Mojaloop API quote identifier (UUID). */
           quoteId: string;
           /** @description Information about the Payee in the proposed financial transaction. */
           to: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -12465,7 +12447,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -12488,7 +12470,7 @@ export interface operations {
             /** @enum {string} */
             type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
           };
-          /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+          /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
           transactionId: string;
           /**
            * @description Type of transaction for which the quote is requested.
@@ -12501,11 +12483,11 @@ export interface operations {
   };
   BackendTransactionRequest: {
     responses: {
-      /** A response to the transfer transaction request */
+      /** A response to the transfer transaction request. */
       200: {
         content: {
           "application/json": {
-            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
             transactionId: string;
             /** @enum {string} */
             transferAmount?: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
@@ -12514,7 +12496,7 @@ export interface operations {
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -12528,7 +12510,7 @@ export interface operations {
           };
         };
       };
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -12543,7 +12525,7 @@ export interface operations {
         };
       };
     };
-    /** Request for Transaction Request */
+    /** Request for Transaction Request. */
     requestBody: {
       content: {
         "application/json": {
@@ -12714,10 +12696,10 @@ export interface operations {
             | "ZAR"
             | "ZMW"
             | "ZWD";
-          /** @description An ISO-8601 formatted timestamp */
+          /** @description An ISO-8601 formatted timestamp. */
           expiration?: string;
           from: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -12729,7 +12711,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -12763,10 +12745,10 @@ export interface operations {
           initiator: "PAYER" | "PAYEE";
           /** @enum {string} */
           initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-          /** @description An optional note associated with the requested transfer */
+          /** @description An optional note associated with the requested transfer. */
           note?: string;
           to: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -12778,7 +12760,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -12801,7 +12783,7 @@ export interface operations {
             /** @enum {string} */
             type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
           };
-          /** @description A Mojaloop API transaction request identifier (UUID) */
+          /** @description A Mojaloop API transaction request identifier (UUID). */
           transactionRequestId: string;
           /** @enum {string} */
           transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
@@ -12812,12 +12794,12 @@ export interface operations {
   /** The HTTP request `POST /transfers` is used to request the creation of a transfer for the transfer party. */
   BackendTransfersPost: {
     responses: {
-      /** The transfer was accepted */
+      /** The transfer was accepted. */
       200: {
         content: {
           "application/json": {
             /**
-             * @description An ISO-8601 formatted timestamp
+             * @description An ISO-8601 formatted timestamp.
              * @example 2020-05-19T08:38:08.699-04:00
              */
             completedTimestamp?: string;
@@ -12839,7 +12821,7 @@ export interface operations {
           };
         };
       };
-      /** Malformed or missing required headers or parameters */
+      /** Malformed or missing required headers or parameters. */
       400: {
         content: {
           "application/json": {
@@ -12853,7 +12835,7 @@ export interface operations {
           };
         };
       };
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -12868,7 +12850,7 @@ export interface operations {
         };
       };
     };
-    /** An incoming transfer request */
+    /** An incoming transfer request. */
     requestBody: {
       content: {
         "application/json": {
@@ -13042,7 +13024,7 @@ export interface operations {
             | "ZMW"
             | "ZWD";
           from: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -13054,7 +13036,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -13252,7 +13234,7 @@ export interface operations {
               };
               /** @description Information about the Payee in the proposed financial transaction. */
               payee: {
-                /** @description Date of birth in the form YYYY-MM-DD */
+                /** @description Date of birth in the form YYYY-MM-DD. */
                 dateOfBirth?: string;
                 /** @description Display name of the sender, if known. */
                 displayName?: string;
@@ -13264,7 +13246,7 @@ export interface operations {
                 firstName?: string;
                 /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
                 fspId?: string;
-                subIdValue?: string;
+                idSubValue?: string;
                 /** @enum {string} */
                 idType:
                   | "MSISDN"
@@ -13289,7 +13271,7 @@ export interface operations {
               };
               /** @description Information about the Payer in the proposed financial transaction. */
               payer: {
-                /** @description Date of birth in the form YYYY-MM-DD */
+                /** @description Date of birth in the form YYYY-MM-DD. */
                 dateOfBirth?: string;
                 /** @description Display name of the sender, if known. */
                 displayName?: string;
@@ -13301,7 +13283,7 @@ export interface operations {
                 firstName?: string;
                 /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
                 fspId?: string;
-                subIdValue?: string;
+                idSubValue?: string;
                 /** @enum {string} */
                 idType:
                   | "MSISDN"
@@ -13324,9 +13306,9 @@ export interface operations {
                 /** @enum {string} */
                 type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
               };
-              /** @description A Mojaloop API quote identifier (UUID) */
+              /** @description A Mojaloop API quote identifier (UUID). */
               quoteId: string;
-              /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+              /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
               transactionId: string;
               /** @description Object containing transfer object. */
               transactionType: {
@@ -13345,7 +13327,7 @@ export interface operations {
           note?: string;
           /** @description A response to a request for a quote. */
           quote: {
-            /** @description An ISO-8601 formatted timestamp */
+            /** @description An ISO-8601 formatted timestamp. */
             expiration?: string;
             extensionList?: {
               key?: string;
@@ -13871,9 +13853,9 @@ export interface operations {
               | "ZAR"
               | "ZMW"
               | "ZWD";
-            /** @description A Mojaloop API quote identifier (UUID) */
+            /** @description A Mojaloop API quote identifier (UUID). */
             quoteId: string;
-            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote */
+            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
             transactionId: string;
             /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
             transferAmount: string;
@@ -14052,7 +14034,7 @@ export interface operations {
             value?: string;
           }[];
           to: {
-            /** @description Date of birth in the form YYYY-MM-DD */
+            /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
             /** @description Display name of the sender, if known. */
             displayName?: string;
@@ -14064,7 +14046,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            subIdValue?: string;
+            idSubValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -14103,7 +14085,7 @@ export interface operations {
       };
     };
     responses: {
-      /** The transfer was accepted */
+      /** The transfer was accepted. */
       200: {
         content: {
           "application/json": {
@@ -14281,7 +14263,7 @@ export interface operations {
               value?: string;
             }[];
             from: {
-              /** @description Date of birth in the form YYYY-MM-DD */
+              /** @description Date of birth in the form YYYY-MM-DD. */
               dateOfBirth?: string;
               /** @description Display name of the sender, if known. */
               displayName?: string;
@@ -14293,7 +14275,7 @@ export interface operations {
               firstName?: string;
               /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
               fspId?: string;
-              subIdValue?: string;
+              idSubValue?: string;
               /** @enum {string} */
               idType:
                 | "MSISDN"
@@ -14319,10 +14301,10 @@ export interface operations {
             /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
             homeTransactionId: string;
             note?: string;
-            /** @description An ISO-8601 formatted timestamp */
+            /** @description An ISO-8601 formatted timestamp. */
             timestamp: string;
             to: {
-              /** @description Date of birth in the form YYYY-MM-DD */
+              /** @description Date of birth in the form YYYY-MM-DD. */
               dateOfBirth?: string;
               /** @description Display name of the sender, if known. */
               displayName?: string;
@@ -14334,7 +14316,7 @@ export interface operations {
               firstName?: string;
               /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
               fspId?: string;
-              subIdValue?: string;
+              idSubValue?: string;
               /** @enum {string} */
               idType:
                 | "MSISDN"
@@ -14368,7 +14350,7 @@ export interface operations {
           };
         };
       };
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -14384,7 +14366,7 @@ export interface operations {
       };
     };
   };
-  /** The HTTP request `PUT /transfers/{transferId}` is used to receive notification for transfer being fulfiled when the FSP is a Payee */
+  /** The HTTP request `PUT /transfers/{transferId}` is used to receive notification for transfer being fulfiled when the FSP is a Payee. */
   BackendTransfersPut: {
     parameters: {
       path: {
@@ -14392,9 +14374,9 @@ export interface operations {
       };
     };
     responses: {
-      /** The notification was accepted */
+      /** The notification was accepted. */
       200: unknown;
-      /** An error occurred processing the request */
+      /** An error occurred processing the request. */
       500: {
         content: {
           "application/json": {
@@ -14409,22 +14391,96 @@ export interface operations {
         };
       };
     };
-    /** An incoming notification for fulfiled transfer */
+    /** An incoming notification for fulfiled transfer. */
     requestBody: {
       content: {
         "application/json": {
-          /** @description An ISO-8601 formatted timestamp */
-          completedTimestamp: string;
-          extensionList?: {
-            key?: string;
-            value?: string;
-          }[];
-          /**
-           * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-           *
-           * @enum {string}
-           */
-          transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
+          /** @enum {string} */
+          currentState?:
+            | "ERROR_OCCURRED"
+            | "WAITING_FOR_PARTY_ACCEPTANCE"
+            | "WAITING_FOR_QUOTE_ACCEPTANCE"
+            | "COMPLETED";
+          /** @enum {string} */
+          direction?: "INBOUND";
+          finalNotification?: {
+            /**
+             * @description An ISO-8601 formatted timestamp.
+             * @example 2020-05-19T08:38:08.699-04:00
+             */
+            completedTimestamp: string;
+            /** @description Optional extension, specific to deployment. */
+            extensionList?: {
+              key?: string;
+              value?: string;
+            }[];
+            /**
+             * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
+             *
+             * @example COMMITTED
+             * @enum {string}
+             */
+            transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
+          };
+          fulfil?: {
+            body?: { [key: string]: unknown };
+            headers?: { [key: string]: unknown };
+          };
+          /** @description An ISO-8601 formatted timestamp. */
+          initiatedTimestamp?: string;
+          /** @description This object represents a Mojaloop API error received at any time during the transfer process. */
+          lastError?: {
+            /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
+            httpStatusCode?: number;
+            /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
+            mojaloopError?: {
+              /**
+               * ErrorInformation
+               * @description A Mojaloop API error information construct.
+               */
+              errorInformation?: {
+                /**
+                 * ErrorCode
+                 * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
+                 */
+                errorCode: string;
+                /**
+                 * ErrorDescription
+                 * @description Error description string.
+                 */
+                errorDescription: string;
+                /** @description Data model for the complex type ExtensionList. */
+                extensionList?: {
+                  /** @description Number of Extension elements. */
+                  extension: {
+                    key?: string;
+                    value?: string;
+                  }[];
+                };
+              };
+            };
+          };
+          prepare?: {
+            body?: { [key: string]: unknown };
+            headers?: { [key: string]: unknown };
+          };
+          quote?: {
+            fulfilment?: string;
+            internalRequest?: { [key: string]: unknown };
+            mojaloopResponse?: { [key: string]: unknown };
+            request?: { [key: string]: unknown };
+            response?: { [key: string]: unknown };
+          };
+          quoteRequest?: {
+            body?: { [key: string]: unknown };
+            headers?: { [key: string]: unknown };
+          };
+          quoteResponse?: {
+            body?: { [key: string]: unknown };
+            headers?: { [key: string]: unknown };
+          };
+          /** @description A Mojaloop API transfer identifier (UUID). */
+          transferId?: string;
         };
       };
     };
