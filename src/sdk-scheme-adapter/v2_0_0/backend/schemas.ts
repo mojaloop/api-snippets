@@ -34,7 +34,7 @@ export namespace Schemas {
   export const fulfilNotification = JsonSchemas.fulfilNotification
   export const geoCode = JsonSchemas.geoCode
   export const idType = JsonSchemas.idType
-  export const ID = JsonSchemas.ID
+  export const idValue = JsonSchemas.idValue
   export const ilpFulfilment = JsonSchemas.ilpFulfilment
   export const ilpPacketData = JsonSchemas.ilpPacketData
   export const initiator = JsonSchemas.initiator

@@ -4,12 +4,18 @@ info:
   description: >
     API specification for the SDK Backend API.
 
+
     To be implemented by the Digital Financial Service Provider (DFSP) to work
-    in tandem with the Mojaloop SDK (`mojaloop/sdk-scheme-adapter`). This API is
-    not to be confused with the Mojaloop SDK's Inbound or Outbound API.
+    in tandem with the Mojaloop SDK (`mojaloop/sdk-scheme-adapter`).
+
+
+    This API is not to be confused with the Mojaloop SDK's Inbound or Outbound
+    API.
+
 
     TODO: More explanation and links about the SDK adapter's Inbound and
     Outbound API.
+
 
     **Note on terminology:** The term "Switch" is equal to the term "Hub", and
     the term "FSP" is equal to the term "DFSP".
@@ -2024,7 +2030,8 @@ components:
     idType:
       enum: *ref_51
       type: string
-    ID:
+    idValue:
+      description: Identifier of the party.
       maxLength: 128
       minLength: 1
       type: string

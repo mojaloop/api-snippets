@@ -4388,7 +4388,8 @@ export interface components {
       | "ACCOUNT_ID"
       | "IBAN"
       | "ALIAS";
-    ID: string;
+    /** @description Identifier of the party. */
+    idValue: string;
     /**
      * ilpFulfilment
      * @description Fulfilment that must be attached to the transfer by the Payee.

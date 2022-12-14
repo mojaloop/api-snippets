@@ -34,7 +34,7 @@ export namespace Types {
   export type fulfilNotification = components['schemas']['fulfilNotification']
   export type geoCode = components['schemas']['geoCode']
   export type idType = components['schemas']['idType']
-  export type ID = components['schemas']['ID']
+  export type idValue = components['schemas']['idValue']
   export type ilpFulfilment = components['schemas']['ilpFulfilment']
   export type ilpPacketData = components['schemas']['ilpPacketData']
   export type initiator = components['schemas']['initiator']
