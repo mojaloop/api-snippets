@@ -1040,7 +1040,8 @@ components:
         - IBAN
         - ALIAS
       type: string
-    ID:
+    idValue:
+      description: Identifier of the party.
       maxLength: 128
       minLength: 1
       type: string
