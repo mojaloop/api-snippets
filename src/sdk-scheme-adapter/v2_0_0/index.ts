@@ -29,6 +29,6 @@
 
 'use strict'
 
-import * as Backend from './backend'
+import * as Inbound from './inbound'
 import * as Outbound from './outbound'
-export { Backend, Outbound }
+export { Inbound, Outbound }
