@@ -5,7 +5,7 @@ info:
     API specification for the Mojaloop SDK Adapter FSP Backend API.
 
     IMPORTANT: To be implemented by the Digital Financial Service Provider's (DFSP) backend.
-               This API is not to be confused with the Mojaloop SDK adapter's Inbound or Outbound API.
+    This API is not to be confused with the Mojaloop SDK adapter's Inbound or Outbound API.
 
     TODO: More explanation and links about the SDK adapter's Inbound and Outbound API.
 
