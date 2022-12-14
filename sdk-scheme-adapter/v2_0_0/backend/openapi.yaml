@@ -19,7 +19,7 @@ paths:
     get:
       operationId: BackendHealthCheck
       responses:
-        200:
+        '200':
           description: Returns empty body if the service is running.
       summary: Health check endpoint.
   /bulkQuotes:
@@ -32,15 +32,15 @@ paths:
               $ref: '#/components/schemas/bulkQuoteRequest'
         description: Incoming request for a bulk quotation.
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/bulkQuoteResponse'
           description: A response to the bulk quote request.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Requests a bulk quote.
       tags:
@@ -51,17 +51,17 @@ paths:
       parameters:
         - $ref: '#/components/parameters/idValue'
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/bulkQuoteResponse'
           description: Response containing details of the requested bulk quote.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        404:
+        '404':
           $ref: '#/components/responses/404'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Requests information relating to a bulk quote identified by the specified identifier value.
       tags:
@@ -108,9 +108,9 @@ paths:
       responses:
         '202':
           description: Bulk transaction information successfully amended.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Callbacks for the bulk transaction request.
       tags:
@@ -125,15 +125,15 @@ paths:
               $ref: '#/components/schemas/bulkTransferRequest'
         description: An incoming bulk transfer request.
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/bulkTransferResponse'
           description: The bulk transfer was accepted.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Execute bulk transfer of funds from an external account to internal accounts.
       tags:
@@ -144,17 +144,17 @@ paths:
       parameters:
         - $ref: '#/components/parameters/idValue'
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/bulkTransferResponse'
           description: Response containing details of the requested bulk transfer.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        404:
+        '404':
           $ref: '#/components/responses/404'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Requests information relating to a bulk transfer identified by the specified identifier value.
       tags:
@@ -165,17 +165,17 @@ paths:
       parameters:
         - $ref: '#/components/parameters/requestToPayId'
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/otpDetails'
           description: Response containing details of the OTP.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        404:
+        '404':
           $ref: '#/components/responses/404'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Requests OTP.
       tags:
@@ -188,17 +188,17 @@ paths:
         - $ref: '#/components/parameters/idType'
         - $ref: '#/components/parameters/idValue'
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/participantsResponse'
           description: Response containing details of the requested party.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        404:
+        '404':
           $ref: '#/components/responses/404'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Asks for the identifier (fspId) of the scheme participant (FSP) that can handle transfers for the specified identifier type and value.
       tags:
@@ -212,17 +212,17 @@ paths:
         - $ref: '#/components/parameters/idValue'
         - $ref: '#/components/parameters/idSubValue'
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/participantsResponse'
           description: Response containing details of the requested party.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        404:
+        '404':
           $ref: '#/components/responses/404'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Asks for the identifier (fspId) of the scheme participant (FSP) that can handle transfers for the specified identifier type and value.
       tags:
@@ -235,17 +235,17 @@ paths:
         - $ref: '#/components/parameters/idType'
         - $ref: '#/components/parameters/idValue'
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/transferParty'
           description: Response containing details of the requested party.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        404:
+        '404':
           $ref: '#/components/responses/404'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Requests information relating to a transfer party identified by the specified identifier type and value.
       tags:
@@ -259,17 +259,17 @@ paths:
         - $ref: '#/components/parameters/idValue'
         - $ref: '#/components/parameters/idSubValue'
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/transferParty'
           description: Response containing details of the requested party.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        404:
+        '404':
           $ref: '#/components/responses/404'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Requests information relating to a transfer party identified by the specified identifier type, value and subId value.
       tags:
@@ -285,15 +285,15 @@ paths:
               $ref: '#/components/schemas/quoteRequest'
         description: Request for a transfer quotation.
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/quoteResponse'
           description: A response to the transfer quotation request.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Requests a quote for the specified transfer.
       tags:
@@ -308,15 +308,15 @@ paths:
               $ref: '#/components/schemas/transactionRequest'
         description: Request for Transaction Request.
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/transactionRequestResponse'
           description: A response to the transfer transaction request.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Transaction request that supports pull based transfers.
       tags:
@@ -332,15 +332,15 @@ paths:
               $ref: '#/components/schemas/transferRequest'
         description: An incoming transfer request.
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/transferResponse'
           description: The transfer was accepted.
-        400:
+        '400':
           $ref: '#/components/responses/400'
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Transfers funds from an external account to an internal account.
       tags:
@@ -352,13 +352,13 @@ paths:
       parameters:
         - $ref: '#/components/parameters/transferId'
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/transferDetailsResponse'
           description: The transfer was accepted.
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Retrieves information for a specific transfer.
       tags:
@@ -375,9 +375,9 @@ paths:
               $ref: '#/components/schemas/fulfilNotification'
         description: An incoming notification for fulfiled transfer.
       responses:
-        200:
+        '200':
           description: The notification was accepted.
-        500:
+        '500':
           $ref: '#/components/responses/500'
       summary: Receive notification for a specific transfer.
       tags:
