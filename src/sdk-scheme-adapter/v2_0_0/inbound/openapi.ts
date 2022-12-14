@@ -5,59 +5,59 @@
 
 export interface paths {
   "/": {
-    get: operations["healthCheck"];
+    get: operations["BackendHealthCheck"];
   };
   "/bulkQuotes": {
-    post: operations["BulkQuotesPost"];
+    post: operations["BackendBulkQuotesPost"];
   };
-  "/bulkQuotes/{ID}": {
-    get: operations["BulkQuotesGet"];
+  "/bulkQuotes/{idValue}": {
+    get: operations["BackendBulkQuotesGet"];
   };
   "/bulkTransactions/{bulkTransactionId}": {
     /** The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to amend information regarding a bulk transaction, i.e. when autoAcceptParty or autoAcceptQuote  is false then the payer need to provide confirmation to proceed with further processing of the request. The `{bulkTransactionId}` in the URI should contain the `bulkTransactionId` that was used for the creation of the bulk transfer. */
-    put: operations["BulkTransactionsPut"];
+    put: operations["BackendBulkTransactionsPut"];
   };
   "/bulkTransfers": {
-    post: operations["BulkTransfersPost"];
+    post: operations["BackendBulkTransfersPost"];
   };
-  "/bulkTransfers/{ID}": {
-    get: operations["BulkTransfersGet"];
+  "/bulkTransfers/{idValue}": {
+    get: operations["BackendBulkTransfersGet"];
   };
   "/otp/{requestToPayId}": {
-    get: operations["OtpGet"];
+    get: operations["BackendOtpGet"];
   };
-  "/participants/{Type}/{ID}": {
-    /** The HTTP request `GET /participants/{Type}/{ID}` is used to find out in which FSP the requested party, defined by `{Type}` and `{ID}`, is located. */
-    get: operations["ParticipantsGetByTypeAndID"];
+  "/participants/{idType}/{idValue}": {
+    /** The HTTP request `GET /participants/{idType}/{idValue}` is used to find out in which FSP the requested party, defined by `{idType}` and `{idValue}`, is located. */
+    get: operations["BackendParticipantsGetByTypeAndID"];
   };
-  "/participants/{Type}/{ID}/{SubId}": {
-    /** The HTTP request `GET /participants/{Type}/{ID}/{SubId}` is used to find out in which FSP the requested party, defined by `{Type}`, `{ID}` and `{SubId}` is located. */
-    get: operations["ParticipantsGetByTypeIDAndSubId"];
+  "/participants/{idType}/{idValue}/{subIdValue}": {
+    /** The HTTP request `GET /participants/{idType}/{idValue}/{subIdValue}` is used to find out in which FSP the requested party, defined by `{idType}`, `{idValue}` and `{subIdValue}` is located. */
+    get: operations["BackendParticipantsGetByTypeIDAndSubId"];
   };
-  "/parties/{Type}/{ID}": {
-    /** The HTTP request `GET /parties/{Type}/{ID}` is used to look up information regarding the requested transfer party, identified by `{Type}` and `{ID}`. */
-    get: operations["PartiesGetByTypeAndID"];
+  "/parties/{idType}/{idValue}": {
+    /** The HTTP request `GET /parties/{idType}/{idValue}` is used to look up information regarding the requested transfer party, identified by `{idType}` and `{idValue}`. */
+    get: operations["BackendPartiesGetByTypeAndID"];
   };
-  "/parties/{Type}/{ID}/{SubId}": {
-    /** The HTTP request `GET /parties/{Type}/{ID}/{SubId}` is used to look up information regarding the requested transfer party, identified by `{Type}`, `{ID}` and `{SubId}`. */
-    get: operations["PartiesGetByTypeIdAndSubId"];
+  "/parties/{idType}/{idValue}/{subIdValue}": {
+    /** The HTTP request `GET /parties/{idType}/{idValue}/{subIdValue}` is used to look up information regarding the requested transfer party, identified by `{idType}`, `{idValue}` and `{subIdValue}`. */
+    get: operations["BackendPartiesGetByTypeIdAndSubId"];
   };
   "/quoterequests": {
     /** The HTTP request `POST /quoterequests` is used to request the creation of a quote for the provided financial transaction. */
-    post: operations["QuoteRequest"];
+    post: operations["BackendQuoteRequest"];
   };
   "/transactionrequests": {
-    post: operations["TransactionRequest"];
+    post: operations["BackendTransactionRequest"];
   };
   "/transfers": {
     /** The HTTP request `POST /transfers` is used to request the creation of a transfer for the transfer party. */
-    post: operations["TransfersPost"];
+    post: operations["BackendTransfersPost"];
   };
   "/transfers/{transferId}": {
     /** The HTTP request `GET /transfers/{transferId}` is used to get information regarding a transfer created or requested earlier. The `{transferId}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
-    get: operations["TransfersGet"];
+    get: operations["BackendTransfersGet"];
     /** The HTTP request `PUT /transfers/{transferId}` is used to receive notification for transfer being fulfiled when the FSP is a Payee */
-    put: operations["TransfersPut"];
+    put: operations["BackendTransfersPut"];
   };
 }
 
@@ -422,7 +422,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -1494,7 +1494,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -1733,7 +1733,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -2121,7 +2121,7 @@ export interface components {
           firstName?: string;
           /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
           fspId?: string;
-          idSubValue?: string;
+          subIdValue?: string;
           /** @enum {string} */
           idType:
             | "MSISDN"
@@ -3558,7 +3558,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -3937,7 +3937,7 @@ export interface components {
           firstName?: string;
           /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
           fspId?: string;
-          idSubValue?: string;
+          subIdValue?: string;
           /** @enum {string} */
           idType:
             | "MSISDN"
@@ -4599,7 +4599,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -4636,7 +4636,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -5060,7 +5060,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -5118,7 +5118,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6059,7 +6059,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6100,7 +6100,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6318,7 +6318,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6367,7 +6367,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6423,7 +6423,7 @@ export interface components {
       firstName?: string;
       /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
       fspId?: string;
-      idSubValue?: string;
+      subIdValue?: string;
       /** @enum {string} */
       idType:
         | "MSISDN"
@@ -6629,7 +6629,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -6839,7 +6839,7 @@ export interface components {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -6876,7 +6876,7 @@ export interface components {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -7639,7 +7639,7 @@ export interface components {
         firstName?: string;
         /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
         fspId?: string;
-        idSubValue?: string;
+        subIdValue?: string;
         /** @enum {string} */
         idType:
           | "MSISDN"
@@ -7738,24 +7738,24 @@ export interface components {
     /** @description Identifier of the bulk transaction to continue as returned in */
     bulkTransactionId: string;
     /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
-    Type: string;
+    idType: string;
     /** @description The identifier value. */
-    ID: string;
+    idValue: string;
     /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
-    SubId: string;
+    subIdValue: string;
     requestToPayId: string;
     transferId: string;
   };
 }
 
 export interface operations {
-  healthCheck: {
+  BackendHealthCheck: {
     responses: {
       /** Returns empty body if the service is running. */
       200: unknown;
     };
   };
-  BulkQuotesPost: {
+  BackendBulkQuotesPost: {
     responses: {
       /** A response to the bulk quote request */
       200: {
@@ -8506,7 +8506,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -8894,7 +8894,7 @@ export interface operations {
               firstName?: string;
               /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
               fspId?: string;
-              idSubValue?: string;
+              subIdValue?: string;
               /** @enum {string} */
               idType:
                 | "MSISDN"
@@ -8926,11 +8926,11 @@ export interface operations {
       };
     };
   };
-  BulkQuotesGet: {
+  BackendBulkQuotesGet: {
     parameters: {
       path: {
         /** The identifier value. */
-        ID: string;
+        idValue: string;
       };
     };
     responses: {
@@ -9666,7 +9666,7 @@ export interface operations {
     };
   };
   /** The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to amend information regarding a bulk transaction, i.e. when autoAcceptParty or autoAcceptQuote  is false then the payer need to provide confirmation to proceed with further processing of the request. The `{bulkTransactionId}` in the URI should contain the `bulkTransactionId` that was used for the creation of the bulk transfer. */
-  BulkTransactionsPut: {
+  BackendBulkTransactionsPut: {
     parameters: {
       path: {
         /** Identifier of the bulk transaction to continue as returned in */
@@ -9726,7 +9726,7 @@ export interface operations {
       };
     };
   };
-  BulkTransfersPost: {
+  BackendBulkTransfersPost: {
     responses: {
       /** The bulk transfer was accepted */
       200: {
@@ -10499,7 +10499,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -10878,7 +10878,7 @@ export interface operations {
               firstName?: string;
               /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
               fspId?: string;
-              idSubValue?: string;
+              subIdValue?: string;
               /** @enum {string} */
               idType:
                 | "MSISDN"
@@ -10910,11 +10910,11 @@ export interface operations {
       };
     };
   };
-  BulkTransfersGet: {
+  BackendBulkTransfersGet: {
     parameters: {
       path: {
         /** The identifier value. */
-        ID: string;
+        idValue: string;
       };
     };
     responses: {
@@ -10978,7 +10978,7 @@ export interface operations {
       };
     };
   };
-  OtpGet: {
+  BackendOtpGet: {
     parameters: {
       path: {
         requestToPayId: string;
@@ -11026,14 +11026,14 @@ export interface operations {
       };
     };
   };
-  /** The HTTP request `GET /participants/{Type}/{ID}` is used to find out in which FSP the requested party, defined by `{Type}` and `{ID}`, is located. */
-  ParticipantsGetByTypeAndID: {
+  /** The HTTP request `GET /participants/{idType}/{idValue}` is used to find out in which FSP the requested party, defined by `{idType}` and `{idValue}`, is located. */
+  BackendParticipantsGetByTypeAndID: {
     parameters: {
       path: {
         /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
-        Type: string;
+        idType: string;
         /** The identifier value. */
-        ID: string;
+        idValue: string;
       };
     };
     responses: {
@@ -11078,16 +11078,16 @@ export interface operations {
       };
     };
   };
-  /** The HTTP request `GET /participants/{Type}/{ID}/{SubId}` is used to find out in which FSP the requested party, defined by `{Type}`, `{ID}` and `{SubId}` is located. */
-  ParticipantsGetByTypeIDAndSubId: {
+  /** The HTTP request `GET /participants/{idType}/{idValue}/{subIdValue}` is used to find out in which FSP the requested party, defined by `{idType}`, `{idValue}` and `{subIdValue}` is located. */
+  BackendParticipantsGetByTypeIDAndSubId: {
     parameters: {
       path: {
         /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
-        Type: string;
+        idType: string;
         /** The identifier value. */
-        ID: string;
+        idValue: string;
         /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
-        SubId: string;
+        subIdValue: string;
       };
     };
     responses: {
@@ -11132,14 +11132,14 @@ export interface operations {
       };
     };
   };
-  /** The HTTP request `GET /parties/{Type}/{ID}` is used to look up information regarding the requested transfer party, identified by `{Type}` and `{ID}`. */
-  PartiesGetByTypeAndID: {
+  /** The HTTP request `GET /parties/{idType}/{idValue}` is used to look up information regarding the requested transfer party, identified by `{idType}` and `{idValue}`. */
+  BackendPartiesGetByTypeAndID: {
     parameters: {
       path: {
         /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
-        Type: string;
+        idType: string;
         /** The identifier value. */
-        ID: string;
+        idValue: string;
       };
     };
     responses: {
@@ -11159,7 +11159,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -11216,16 +11216,16 @@ export interface operations {
       };
     };
   };
-  /** The HTTP request `GET /parties/{Type}/{ID}/{SubId}` is used to look up information regarding the requested transfer party, identified by `{Type}`, `{ID}` and `{SubId}`. */
-  PartiesGetByTypeIdAndSubId: {
+  /** The HTTP request `GET /parties/{idType}/{idValue}/{subIdValue}` is used to look up information regarding the requested transfer party, identified by `{idType}`, `{idValue}` and `{subIdValue}`. */
+  BackendPartiesGetByTypeIdAndSubId: {
     parameters: {
       path: {
         /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
-        Type: string;
+        idType: string;
         /** The identifier value. */
-        ID: string;
+        idValue: string;
         /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
-        SubId: string;
+        subIdValue: string;
       };
     };
     responses: {
@@ -11245,7 +11245,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -11303,7 +11303,7 @@ export interface operations {
     };
   };
   /** The HTTP request `POST /quoterequests` is used to request the creation of a quote for the provided financial transaction. */
-  QuoteRequest: {
+  BackendQuoteRequest: {
     responses: {
       /** A response to the transfer quotation request */
       200: {
@@ -12407,7 +12407,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -12465,7 +12465,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -12499,7 +12499,7 @@ export interface operations {
       };
     };
   };
-  TransactionRequest: {
+  BackendTransactionRequest: {
     responses: {
       /** A response to the transfer transaction request */
       200: {
@@ -12729,7 +12729,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -12778,7 +12778,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -12810,7 +12810,7 @@ export interface operations {
     };
   };
   /** The HTTP request `POST /transfers` is used to request the creation of a transfer for the transfer party. */
-  TransfersPost: {
+  BackendTransfersPost: {
     responses: {
       /** The transfer was accepted */
       200: {
@@ -13054,7 +13054,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -13264,7 +13264,7 @@ export interface operations {
                 firstName?: string;
                 /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
                 fspId?: string;
-                idSubValue?: string;
+                subIdValue?: string;
                 /** @enum {string} */
                 idType:
                   | "MSISDN"
@@ -13301,7 +13301,7 @@ export interface operations {
                 firstName?: string;
                 /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
                 fspId?: string;
-                idSubValue?: string;
+                subIdValue?: string;
                 /** @enum {string} */
                 idType:
                   | "MSISDN"
@@ -14064,7 +14064,7 @@ export interface operations {
             firstName?: string;
             /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
             fspId?: string;
-            idSubValue?: string;
+            subIdValue?: string;
             /** @enum {string} */
             idType:
               | "MSISDN"
@@ -14096,7 +14096,7 @@ export interface operations {
     };
   };
   /** The HTTP request `GET /transfers/{transferId}` is used to get information regarding a transfer created or requested earlier. The `{transferId}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
-  TransfersGet: {
+  BackendTransfersGet: {
     parameters: {
       path: {
         transferId: string;
@@ -14293,7 +14293,7 @@ export interface operations {
               firstName?: string;
               /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
               fspId?: string;
-              idSubValue?: string;
+              subIdValue?: string;
               /** @enum {string} */
               idType:
                 | "MSISDN"
@@ -14334,7 +14334,7 @@ export interface operations {
               firstName?: string;
               /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
               fspId?: string;
-              idSubValue?: string;
+              subIdValue?: string;
               /** @enum {string} */
               idType:
                 | "MSISDN"
@@ -14385,7 +14385,7 @@ export interface operations {
     };
   };
   /** The HTTP request `PUT /transfers/{transferId}` is used to receive notification for transfer being fulfiled when the FSP is a Payee */
-  TransfersPut: {
+  BackendTransfersPut: {
     parameters: {
       path: {
         transferId: string;

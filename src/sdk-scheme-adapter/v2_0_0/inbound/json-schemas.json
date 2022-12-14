@@ -425,7 +425,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -1666,7 +1666,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -2034,7 +2034,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -2532,7 +2532,7 @@
                   "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
                   "type": "string"
                 },
-                "idSubValue": {
+                "subIdValue": {
                   "maxLength": 128,
                   "minLength": 1,
                   "type": "string"
@@ -4217,7 +4217,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -4690,7 +4690,7 @@
                   "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
                   "type": "string"
                 },
-                "idSubValue": {
+                "subIdValue": {
                   "maxLength": 128,
                   "minLength": 1,
                   "type": "string"
@@ -5836,7 +5836,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -5927,7 +5927,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -6528,7 +6528,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -6668,7 +6668,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -7821,7 +7821,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -7924,7 +7924,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -8234,7 +8234,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -8366,7 +8366,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -8528,7 +8528,7 @@
         "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
         "type": "string"
       },
-      "idSubValue": {
+      "subIdValue": {
         "maxLength": 128,
         "minLength": 1,
         "type": "string"
@@ -8802,7 +8802,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
@@ -9083,7 +9083,7 @@
                     "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
                     "type": "string"
                   },
-                  "idSubValue": {
+                  "subIdValue": {
                     "maxLength": 128,
                     "minLength": 1,
                     "type": "string"
@@ -9174,7 +9174,7 @@
                     "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
                     "type": "string"
                   },
-                  "idSubValue": {
+                  "subIdValue": {
                     "maxLength": 128,
                     "minLength": 1,
                     "type": "string"
@@ -10124,7 +10124,7 @@
             "description": "Mojaloop scheme FSPID of the DFSP which owns the party account.",
             "type": "string"
           },
-          "idSubValue": {
+          "subIdValue": {
             "maxLength": 128,
             "minLength": 1,
             "type": "string"
