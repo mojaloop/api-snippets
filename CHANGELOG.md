@@ -1,4 +1,15 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.0.0](https://github.com/mojaloop/api-snippets/compare/v16.0.6...v17.0.0) (2022-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **mojaloop/3018:** transferId is now required on bulkTransaction Individual Transfer Accept PUT callback (for both accept parties & quotes), and bulkHomeTransaction, homeTransaction, and transaction Id' have been removed.
+
+### Features
+
+* **mojaloop/3018:** [SDK-Scheme-Adapter] TransactionId is being used instead of TransferId ([#148](https://github.com/mojaloop/api-snippets/issues/148)) ([af6c1e2](https://github.com/mojaloop/api-snippets/commit/af6c1e2b39f905f77f5b44f684f8bc99634d6d38))
+
 ### [16.0.6](https://github.com/mojaloop/api-snippets/compare/v16.0.5...v16.0.6) (2022-11-04)
 
 
