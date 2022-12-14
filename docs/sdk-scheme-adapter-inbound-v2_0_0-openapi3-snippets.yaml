@@ -13,1258 +13,12 @@ info:
     url: http://www.apache.org/licenses/
   version: 1.1.0
 paths:
-  /participants/{idType}/{idValue}:
-    get:
-      summary: >-
-        Asks for the identifier (fspId) of the scheme participant (FSP) that can
-        handle transfers for the specified identifier type and value
-      description: >-
-        The HTTP request `GET /participants/{idType}/{idValue}` is used to find
-        out in which FSP the requested party, defined by `{idType}` and
-        `{idValue}`, is located.
-      tags:
-        - Participants
-      parameters:
-        - name: idType
-          in: path
-          required: true
-          schema: &ref_2
-            type: string
-            enum:
-              - MSISDN
-              - ACCOUNT_ID
-          description: >
-            Below are the allowed values for the enumeration.
-
-
-            - MSISDN -  An MSISDN (Mobile Station International Subscriber
-            Directory Number, that is, the phone number) is used as reference to
-            a participant. The MSISDN identifier should be in international
-            format according to the [ITU-T E.164
-            standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
-            MSISDN may be prefixed by a single plus sign, indicating the
-            international prefix.
-
-
-            - ACCOUNT_ID - A bank account number or FSP account ID should be
-            used as reference to a participant. The ACCOUNT_ID identifier can be
-            in any format, as formats can greatly differ depending on country
-            and FSP.
-        - name: idValue
-          in: path
-          required: true
-          schema: &ref_3
-            type: string
-            minLength: 1
-            maxLength: 128
-          description: Identifier of the party.
-      responses:
-        '200':
-          description: Response containing details of the requested party
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: &ref_4
-                  fspId:
-                    type: string
-                    minLength: 1
-                    maxLength: 32
-                    description: FSP identifier.
-        '400':
-          description: Malformed or missing required headers or parameters
-          content: &ref_5
-            application/json:
-              schema:
-                type: object
-                required: &ref_0
-                  - statusCode
-                properties: &ref_1
-                  statusCode:
-                    type: string
-                    description: Error code as string.
-                  message:
-                    type: string
-                    description: Error message text.
-        '404':
-          description: >-
-            The party specified by the provided identifier type and value is not
-            known to the server
-        '500':
-          description: An error occurred processing the request
-          content: &ref_6
-            application/json:
-              schema:
-                type: object
-                required: *ref_0
-                properties: *ref_1
-  /participants/{idType}/{idValue}/{idSubValue}:
-    get:
-      summary: >-
-        Asks for the identifier (fspId) of the scheme participant (FSP) that can
-        handle transfers for the specified identifier type and value
-      description: >-
-        The HTTP request `GET /participants/{idType}/{idValue}/{idSubValue}` is
-        used to find out in which FSP the requested party, defined by
-        `{idType}`, `{idValue}` and `{idSubValue}` is located.
-      tags:
-        - Participants
-      parameters:
-        - name: idType
-          in: path
-          required: true
-          schema: *ref_2
-          description: >
-            Below are the allowed values for the enumeration.
-
-
-            - MSISDN -  An MSISDN (Mobile Station International Subscriber
-            Directory Number, that is, the phone number) is used as reference to
-            a participant. The MSISDN identifier should be in international
-            format according to the [ITU-T E.164
-            standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
-            MSISDN may be prefixed by a single plus sign, indicating the
-            international prefix.
-
-
-            - ACCOUNT_ID - A bank account number or FSP account ID should be
-            used as reference to a participant. The ACCOUNT_ID identifier can be
-            in any format, as formats can greatly differ depending on country
-            and FSP.
-        - name: idValue
-          in: path
-          required: true
-          schema: *ref_3
-          description: Identifier of the party.
-        - name: idSubValue
-          in: path
-          required: true
-          schema: &ref_7
-            type: string
-            minLength: 1
-            maxLength: 128
-          description: >-
-            Either a sub-identifier of a `{idValue}`, or a sub-type of the
-            `{idType}`, normally a `{personalIdType}`
-      responses:
-        '200':
-          description: Response containing details of the requested party
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: *ref_4
-        '400':
-          description: Malformed or missing required headers or parameters
-          content: *ref_5
-        '404':
-          description: >-
-            The party specified by the provided identifier type and value is not
-            known to the server
-        '500':
-          description: An error occurred processing the request
-          content: *ref_6
-  /parties/{idType}/{idValue}:
-    get:
-      summary: >-
-        Requests information relating to a transfer party identified by the
-        specified identifier type and value
-      description: >-
-        The HTTP request `GET /parties/{idType}/{idValue}` is used to look up
-        information regarding the requested transfer party, identified by
-        `{idType}` and `{idValue}`.
-      tags:
-        - Parties
-      parameters:
-        - name: idType
-          in: path
-          required: true
-          schema: *ref_2
-          description: >
-            Below are the allowed values for the enumeration.
-
-
-            - MSISDN -  An MSISDN (Mobile Station International Subscriber
-            Directory Number, that is, the phone number) is used as reference to
-            a participant. The MSISDN identifier should be in international
-            format according to the [ITU-T E.164
-            standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
-            MSISDN may be prefixed by a single plus sign, indicating the
-            international prefix.
-
-
-            - ACCOUNT_ID - A bank account number or FSP account ID should be
-            used as reference to a participant. The ACCOUNT_ID identifier can be
-            in any format, as formats can greatly differ depending on country
-            and FSP.
-        - name: idValue
-          in: path
-          required: true
-          schema: *ref_3
-          description: Identifier of the party.
-      responses:
-        '200':
-          description: Response containing details of the requested party
-          content:
-            application/json:
-              schema:
-                type: object
-                required: &ref_8
-                  - idType
-                  - idValue
-                properties: &ref_9
-                  type:
-                    type: string
-                    enum: &ref_29
-                      - CONSUMER
-                      - AGENT
-                      - BUSINESS
-                      - DEVICE
-                  idType:
-                    type: string
-                    enum: &ref_27
-                      - MSISDN
-                      - ACCOUNT_ID
-                    description: >
-                      Below are the allowed values for the enumeration.
-
-
-                      - MSISDN -  An MSISDN (Mobile Station International
-                      Subscriber Directory Number, that is, the phone number) is
-                      used as reference to a participant. The MSISDN identifier
-                      should be in international format according to the [ITU-T
-                      E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
-                      Optionally, the MSISDN may be prefixed by a single plus
-                      sign, indicating the international prefix.
-
-
-                      - ACCOUNT_ID - A bank account number or FSP account ID
-                      should be used as reference to a participant. The
-                      ACCOUNT_ID identifier can be in any format, as formats can
-                      greatly differ depending on country and FSP.
-                  idValue:
-                    type: string
-                    description: The identifier string used to identify the sender.
-                  idSubValue:
-                    type: string
-                    minLength: 1
-                    maxLength: 128
-                    description: >-
-                      Either a sub-identifier of a `{idValue}`, or a sub-type of
-                      the `{idType}`, normally a `{personalIdType}`
-                  displayName:
-                    type: string
-                    description: Display name of the sender, if known.
-                  firstName:
-                    type: string
-                    description: Party first name.
-                  middleName:
-                    type: string
-                    description: Party middle name.
-                  lastName:
-                    type: string
-                    description: Party last name.
-                  dateOfBirth:
-                    type: string
-                    pattern: >-
-                      ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
-                    description: Date of birth in the form YYYY-MM-DD.
-                  merchantClassificationCode:
-                    type: string
-                    description: >-
-                      Up to 4 digits specifying the sender's merchant
-                      classification, if known and applicable.
-                  fspId:
-                    type: string
-                    description: >-
-                      Mojaloop scheme FSPID of the DFSP which owns the party
-                      account.
-                  extensionList:
-                    type: array
-                    items: &ref_11
-                      type: object
-                      properties: &ref_28
-                        key:
-                          type: string
-                          minLength: 1
-                          maxLength: 32
-                        value:
-                          type: string
-                          minLength: 1
-                          maxLength: 128
-                    minItems: 0
-                    maxItems: 16
-        '400':
-          description: Malformed or missing required headers or parameters
-          content: *ref_5
-        '404':
-          description: >-
-            The party specified by the provided identifier type and value is not
-            known to the server
-        '500':
-          description: An error occurred processing the request
-          content: *ref_6
-  /parties/{idType}/{idValue}/{idSubValue}:
-    get:
-      summary: >-
-        Requests information relating to a transfer party identified by the
-        specified identifier type and value
-      description: >-
-        The HTTP request `GET /parties/{idType}/{idValue}/{idSubValue}` is used
-        to look up information regarding the requested transfer party,
-        identified by `{idType}`, `{idValue}` and `{idSubValue}`.
-      tags:
-        - Parties
-      parameters:
-        - name: idType
-          in: path
-          required: true
-          schema: *ref_2
-          description: >
-            Below are the allowed values for the enumeration.
-
-
-            - MSISDN -  An MSISDN (Mobile Station International Subscriber
-            Directory Number, that is, the phone number) is used as reference to
-            a participant. The MSISDN identifier should be in international
-            format according to the [ITU-T E.164
-            standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
-            MSISDN may be prefixed by a single plus sign, indicating the
-            international prefix.
-
-
-            - ACCOUNT_ID - A bank account number or FSP account ID should be
-            used as reference to a participant. The ACCOUNT_ID identifier can be
-            in any format, as formats can greatly differ depending on country
-            and FSP.
-        - name: idValue
-          in: path
-          required: true
-          schema: *ref_3
-          description: Identifier of the party.
-        - name: idSubValue
-          in: path
-          required: true
-          schema: *ref_7
-          description: >-
-            Either a sub-identifier of a `{idValue}`, or a sub-type of the
-            `{idType}`, normally a `{personalIdType}`
-      responses:
-        '200':
-          description: Response containing details of the requested party
-          content:
-            application/json:
-              schema:
-                type: object
-                required: *ref_8
-                properties: *ref_9
-        '400':
-          description: Malformed or missing required headers or parameters
-          content: *ref_5
-        '404':
-          description: >-
-            The party specified by the provided identifier type and value is not
-            known to the server
-        '500':
-          description: An error occurred processing the request
-          content: *ref_6
-  /quoterequests:
-    post:
-      summary: Requests a quote for the specified transfer
-      description: >-
-        The HTTP request `POST /quoterequests` is used to request the creation
-        of a quote for the provided financial transaction.
-      tags:
-        - Quotes
-      requestBody:
-        description: Request for a transfer quotation
-        content:
-          application/json:
-            schema:
-              type: object
-              description: A request for a quote for transfer from the DFSP backend.
-              required: &ref_30
-                - quoteId
-                - transactionId
-                - to
-                - from
-                - amountType
-                - amount
-                - currency
-                - transactionType
-                - initiator
-                - initiatorType
-              properties: &ref_31
-                quoteId:
-                  pattern: >-
-                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                  type: string
-                  description: A Mojaloop API quote identifier (UUID).
-                transactionId:
-                  description: >-
-                    ID of the transaction, the ID is decided by the Payer FSP
-                    during the creation of the quote.
-                  pattern: >-
-                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                  type: string
-                to:
-                  description: >-
-                    Information about the Payee in the proposed financial
-                    transaction.
-                  type: object
-                  required: *ref_8
-                  properties: *ref_9
-                from:
-                  description: >-
-                    Information about the Payer in the proposed financial
-                    transaction.
-                  type: object
-                  required: *ref_8
-                  properties: *ref_9
-                amountType:
-                  description: SEND for send amount, RECEIVE for receive amount.
-                  type: string
-                  enum: &ref_16
-                    - SEND
-                    - RECEIVE
-                amount:
-                  description: >-
-                    Depending on `amountType`. If SEND - The amount the Payer
-                    would like to send, that is, the amount that should be
-                    withdrawn from the Payer account including any fees. The
-                    amount is updated by each participating entity in the
-                    transaction. If RECEIVE - The amount the Payee should
-                    receive, that is, the amount that should be sent to the
-                    receiver exclusive any fees. The amount is not updated by
-                    any of the participating entities.
-                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-                  type: string
-                currency:
-                  maxLength: 3
-                  minLength: 3
-                  type: string
-                  enum: &ref_10
-                    - AED
-                    - AFN
-                    - ALL
-                    - AMD
-                    - ANG
-                    - AOA
-                    - ARS
-                    - AUD
-                    - AWG
-                    - AZN
-                    - BAM
-                    - BBD
-                    - BDT
-                    - BGN
-                    - BHD
-                    - BIF
-                    - BMD
-                    - BND
-                    - BOB
-                    - BRL
-                    - BSD
-                    - BTN
-                    - BWP
-                    - BYN
-                    - BZD
-                    - CAD
-                    - CDF
-                    - CHF
-                    - CLP
-                    - CNY
-                    - COP
-                    - CRC
-                    - CUC
-                    - CUP
-                    - CVE
-                    - CZK
-                    - DJF
-                    - DKK
-                    - DOP
-                    - DZD
-                    - EGP
-                    - ERN
-                    - ETB
-                    - EUR
-                    - FJD
-                    - FKP
-                    - GBP
-                    - GEL
-                    - GGP
-                    - GHS
-                    - GIP
-                    - GMD
-                    - GNF
-                    - GTQ
-                    - GYD
-                    - HKD
-                    - HNL
-                    - HRK
-                    - HTG
-                    - HUF
-                    - IDR
-                    - ILS
-                    - IMP
-                    - INR
-                    - IQD
-                    - IRR
-                    - ISK
-                    - JEP
-                    - JMD
-                    - JOD
-                    - JPY
-                    - KES
-                    - KGS
-                    - KHR
-                    - KMF
-                    - KPW
-                    - KRW
-                    - KWD
-                    - KYD
-                    - KZT
-                    - LAK
-                    - LBP
-                    - LKR
-                    - LRD
-                    - LSL
-                    - LYD
-                    - MAD
-                    - MDL
-                    - MGA
-                    - MKD
-                    - MMK
-                    - MNT
-                    - MOP
-                    - MRO
-                    - MUR
-                    - MVR
-                    - MWK
-                    - MXN
-                    - MYR
-                    - MZN
-                    - NAD
-                    - NGN
-                    - NIO
-                    - NOK
-                    - NPR
-                    - NZD
-                    - OMR
-                    - PAB
-                    - PEN
-                    - PGK
-                    - PHP
-                    - PKR
-                    - PLN
-                    - PYG
-                    - QAR
-                    - RON
-                    - RSD
-                    - RUB
-                    - RWF
-                    - SAR
-                    - SBD
-                    - SCR
-                    - SDG
-                    - SEK
-                    - SGD
-                    - SHP
-                    - SLL
-                    - SOS
-                    - SPL
-                    - SRD
-                    - STD
-                    - SVC
-                    - SYP
-                    - SZL
-                    - THB
-                    - TJS
-                    - TMT
-                    - TND
-                    - TOP
-                    - TRY
-                    - TTD
-                    - TVD
-                    - TWD
-                    - TZS
-                    - UAH
-                    - UGX
-                    - USD
-                    - UYU
-                    - UZS
-                    - VEF
-                    - VND
-                    - VUV
-                    - WST
-                    - XAF
-                    - XCD
-                    - XDR
-                    - XOF
-                    - XPF
-                    - XTS
-                    - XXX
-                    - YER
-                    - ZAR
-                    - ZMW
-                    - ZWD
-                feesAmount:
-                  description: >-
-                    The fees in the transaction. The fees element should be
-                    empty if fees should be non-disclosed. The fees element
-                    should be non-empty if fees should be disclosed.
-                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-                  type: string
-                feesCurrency:
-                  maxLength: 3
-                  minLength: 3
-                  type: string
-                  enum: *ref_10
-                transactionType:
-                  description: Type of transaction for which the quote is requested.
-                  type: string
-                  enum: &ref_17
-                    - TRANSFER
-                initiator:
-                  description: >-
-                    Specifies if the initiator of the transfer is the Payer or
-                    Payee.
-                  type: string
-                  enum: &ref_18
-                    - PAYER
-                    - PAYEE
-                initiatorType:
-                  description: Specifies the type of the transaction initiator.
-                  type: string
-                  enum: &ref_19
-                    - CONSUMER
-                    - AGENT
-                    - BUSINESS
-                    - DEVICE
-                geoCode:
-                  description: >-
-                    Indicates the geographic location from where the transaction
-                    was initiated.
-                  type: object
-                  properties: &ref_12
-                    latitude:
-                      type: string
-                      pattern: >-
-                        ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
-                      description: >-
-                        The API data type Latitude is a JSON String in a lexical
-                        format that is restricted by a regular expression for
-                        interoperability reasons.
-                    longitude:
-                      type: string
-                      pattern: >-
-                        ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
-                      description: >-
-                        The API data type Longitude is a JSON String in a
-                        lexical format that is restricted by a regular
-                        expression for interoperability reasons.
-                  required: &ref_13
-                    - latitude
-                    - longitude
-                note:
-                  type: string
-                  minLength: 1
-                  maxLength: 128
-                  description: An optional note associated with the requested transfer.
-                expiration:
-                  description: An ISO-8601 formatted timestamp.
-                  type: string
-                  pattern: >-
-                    ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-                extensionList:
-                  type: array
-                  items: *ref_11
-                  minItems: 0
-                  maxItems: 16
-      responses:
-        '200':
-          description: A response to the transfer quotation request
-          content:
-            application/json:
-              schema:
-                type: object
-                description: A response to a request for a quote.
-                required: &ref_14
-                  - quoteId
-                  - transactionId
-                  - transferAmount
-                  - transferAmountCurrency
-                properties: &ref_15
-                  quoteId:
-                    description: A Mojaloop API quote identifier (UUID).
-                    pattern: >-
-                      ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                    type: string
-                  transactionId:
-                    description: >-
-                      ID of the transaction, the ID is decided by the Payer FSP
-                      during the creation of the quote.
-                    pattern: >-
-                      ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                    type: string
-                  transferAmount:
-                    description: >-
-                      The amount of money that the Payer FSP should transfer to
-                      the Payee FSP.
-                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-                    type: string
-                  transferAmountCurrency:
-                    description: The currency of the `transferAmount`.
-                    maxLength: 3
-                    minLength: 3
-                    type: string
-                    enum: *ref_10
-                  payeeReceiveAmount:
-                    description: >-
-                      The amount that the Payee should receive in the end-to-end
-                      transaction. Optional as the Payee FSP might not want to
-                      disclose any optional Payee fees.
-                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-                    type: string
-                  payeeReceiveAmountCurrency:
-                    description: The currency of the `payeeReceiveAmount`.
-                    maxLength: 3
-                    minLength: 3
-                    type: string
-                    enum: *ref_10
-                  payeeFspFeeAmount:
-                    description: Payee FSP’s part of the transaction fee.
-                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-                    type: string
-                  payeeFspFeeAmountCurrency:
-                    description: The currency of the `payeeFspFeeAmount`.
-                    maxLength: 3
-                    minLength: 3
-                    type: string
-                    enum: *ref_10
-                  payeeFspCommissionAmount:
-                    description: Transaction commission from the Payee FSP.
-                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-                    type: string
-                  payeeFspCommissionAmountCurrency:
-                    description: Currency of the `payeeFspCommissionAmount`.
-                    maxLength: 3
-                    minLength: 3
-                    type: string
-                    enum: *ref_10
-                  expiration:
-                    description: An ISO-8601 formatted timestamp.
-                    type: string
-                    pattern: >-
-                      ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-                  geoCode:
-                    description: >-
-                      Indicates the geographic location from where the
-                      transaction was initiated.
-                    type: object
-                    properties: *ref_12
-                    required: *ref_13
-                  extensionList:
-                    type: array
-                    items: *ref_11
-                    minItems: 0
-                    maxItems: 16
-        '400':
-          description: Malformed or missing required headers or parameters
-          content: *ref_5
-        '500':
-          description: An error occurred processing the request
-          content: *ref_6
-  /transfers:
-    post:
-      summary: Transfers funds from an external account to an internal account
-      description: >-
-        The HTTP request `POST /transfers` is used to request the creation of a
-        transfer for the transfer party.
-      tags:
-        - Transfers
-      requestBody:
-        description: An incoming transfer request
-        content:
-          application/json:
-            schema:
-              type: object
-              required: &ref_39
-                - transferId
-                - quote
-                - from
-                - to
-                - amountType
-                - currency
-                - amount
-                - transactionType
-                - ilpPacket
-              properties: &ref_40
-                transferId:
-                  pattern: >-
-                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                  type: string
-                  description: A Mojaloop API transfer identifier (UUID).
-                quote:
-                  type: object
-                  description: A response to a request for a quote.
-                  required: *ref_14
-                  properties: *ref_15
-                quoteRequestExtensions:
-                  type: array
-                  items: *ref_11
-                  minItems: 0
-                  maxItems: 16
-                from:
-                  type: object
-                  required: *ref_8
-                  properties: *ref_9
-                to:
-                  type: object
-                  required: *ref_8
-                  properties: *ref_9
-                amountType:
-                  type: string
-                  enum: *ref_16
-                  description: SEND for send amount, RECEIVE for receive amount.
-                currency:
-                  maxLength: 3
-                  minLength: 3
-                  type: string
-                  enum: *ref_10
-                amount:
-                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-                  type: string
-                transactionType:
-                  type: string
-                  enum: *ref_17
-                ilpPacket:
-                  type: object
-                  required:
-                    - data
-                  properties:
-                    data:
-                      type: object
-                      description: Object containing transfer object.
-                      required: &ref_37
-                        - quoteId
-                        - transactionId
-                        - payer
-                        - payee
-                        - amount
-                        - transactionType
-                      properties: &ref_38
-                        quoteId:
-                          pattern: >-
-                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                          type: string
-                          description: A Mojaloop API quote identifier (UUID).
-                        transactionId:
-                          description: >-
-                            ID of the transaction, the ID is decided by the
-                            Payer FSP during the creation of the quote.
-                          pattern: >-
-                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                          type: string
-                        payer:
-                          description: >-
-                            Information about the Payer in the proposed
-                            financial transaction.
-                          type: object
-                          required: *ref_8
-                          properties: *ref_9
-                        payee:
-                          description: >-
-                            Information about the Payee in the proposed
-                            financial transaction.
-                          type: object
-                          required: *ref_8
-                          properties: *ref_9
-                        amount:
-                          description: >-
-                            Object containing Amount and Currency of the
-                            transfer.
-                          type: object
-                          required: &ref_33
-                            - amount
-                            - currency
-                          properties: &ref_34
-                            amount:
-                              pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-                              type: string
-                            currency:
-                              maxLength: 3
-                              minLength: 3
-                              type: string
-                              enum: *ref_10
-                        transactionType:
-                          description: Object containing transfer object.
-                          type: object
-                          required: &ref_35
-                            - scenario
-                            - initiator
-                            - initiatorType
-                          properties: &ref_36
-                            scenario:
-                              type: string
-                              enum: &ref_32
-                                - TRANSFER
-                            initiator:
-                              type: string
-                              enum: *ref_18
-                              description: >-
-                                Specifies if the initiator of the transfer is
-                                the Payer or Payee.
-                            initiatorType:
-                              description: Specifies the type of the transaction initiator.
-                              type: string
-                              enum: *ref_19
-                note:
-                  maxLength: 128
-                  type: string
-      responses:
-        '200':
-          description: The transfer was accepted
-          content:
-            application/json:
-              schema:
-                type: object
-                required: &ref_41
-                  - homeTransactionId
-                properties: &ref_42
-                  homeTransactionId:
-                    type: string
-                    description: >-
-                      Transaction ID from the DFSP backend, used to reconcile
-                      transactions between the Switch and DFSP backend systems.
-                  fulfilment:
-                    description: >-
-                      Fulfilment that must be attached to the transfer by the
-                      Payee.
-                    title: IlpFulfilment
-                    type: string
-                    pattern: ^[A-Za-z0-9-_]{43}$
-                    maxLength: 48
-                    example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
-                  transferState:
-                    description: >
-                      Below are the allowed values for the enumeration -
-                      RECEIVED DFSP has received the transfer. - RESERVED DFSP
-                      has reserved the transfer. - COMMITTED DFSP has
-                      successfully performed the transfer. - ABORTED DFSP has
-                      aborted the transfer due a rejection or failure to perform
-                      the transfer.
-                    example: ABORTED
-                    type: string
-                    enum: &ref_20
-                      - RECEIVED
-                      - RESERVED
-                      - COMMITTED
-                      - ABORTED
-                  completedTimestamp:
-                    description: An ISO-8601 formatted timestamp.
-                    example: '2020-05-19T08:38:08.699-04:00'
-                    type: string
-                    pattern: >-
-                      ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-        '400':
-          description: Malformed or missing required headers or parameters
-          content: *ref_5
-        '500':
-          description: An error occurred processing the request
-          content: *ref_6
-  /transfers/{transferId}:
-    parameters:
-      - name: transferId
-        in: path
-        required: true
-        schema: &ref_80
-          type: string
-    get:
-      summary: Retrieves information for a specific transfer
-      description: >-
-        The HTTP request `GET /transfers/{transferId}` is used to get
-        information regarding a transfer created or requested earlier. The
-        `{transferId}` in the URI should contain the `transferId` that was used
-        for the creation of the transfer.
-      tags:
-        - Transfers
-      responses:
-        '200':
-          description: The transfer was accepted
-          content:
-            application/json:
-              schema:
-                type: object
-                required: &ref_43
-                  - homeTransactionId
-                  - from
-                  - to
-                  - amountType
-                  - currency
-                  - amount
-                  - transferState
-                  - transactionType
-                  - timestamp
-                properties: &ref_44
-                  homeTransactionId:
-                    type: string
-                    description: >-
-                      Transaction ID from the DFSP backend, used to reconcile
-                      transactions between the Switch and DFSP backend systems.
-                  from:
-                    type: object
-                    required: *ref_8
-                    properties: *ref_9
-                  to:
-                    type: object
-                    required: *ref_8
-                    properties: *ref_9
-                  amountType:
-                    type: string
-                    enum: *ref_16
-                    description: SEND for send amount, RECEIVE for receive amount.
-                  currency:
-                    maxLength: 3
-                    minLength: 3
-                    type: string
-                    enum: *ref_10
-                  amount:
-                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-                    type: string
-                  transferState:
-                    type: string
-                    enum: *ref_20
-                    description: >
-                      Below are the allowed values for the enumeration -
-                      RECEIVED DFSP has received the transfer. - RESERVED DFSP
-                      has reserved the transfer. - COMMITTED DFSP has
-                      successfully performed the transfer. - ABORTED DFSP has
-                      aborted the transfer due a rejection or failure to perform
-                      the transfer.
-                  timestamp:
-                    type: string
-                    pattern: >-
-                      ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-                    description: An ISO-8601 formatted timestamp.
-                  transactionType:
-                    type: string
-                    enum: *ref_17
-                  note:
-                    maxLength: 128
-                    type: string
-                  extensions:
-                    type: array
-                    items: *ref_11
-                    minItems: 0
-                    maxItems: 16
-        '500':
-          description: An error occurred processing the request
-          content: *ref_6
-    put:
-      summary: Receive notification for a specific transfer
-      description: >-
-        The HTTP request `PUT /transfers/{transferId}` is used to receive
-        notification for transfer being fulfiled when the FSP is a Payee
-      tags:
-        - Transfers
-      requestBody:
-        description: An incoming notification for fulfiled transfer
-        content:
-          application/json:
-            schema:
-              title: TransfersIDPatchResponse
-              type: object
-              description: PUT /transfers/{transferId} object
-              properties: &ref_46
-                transferId:
-                  pattern: >-
-                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-                  type: string
-                  description: A Mojaloop API transfer identifier (UUID).
-                direction:
-                  type: string
-                  enum:
-                    - INBOUND
-                quoteRequest:
-                  type: object
-                  properties:
-                    headers:
-                      type: object
-                    body:
-                      type: object
-                quoteResponse:
-                  type: object
-                  properties:
-                    headers:
-                      type: object
-                    body:
-                      type: object
-                prepare:
-                  type: object
-                  properties:
-                    headers:
-                      type: object
-                    body:
-                      type: object
-                fulfil:
-                  type: object
-                  properties:
-                    headers:
-                      type: object
-                    body:
-                      type: object
-                quote:
-                  type: object
-                  properties:
-                    request:
-                      type: object
-                    internalRequest:
-                      type: object
-                    response:
-                      type: object
-                    mojaloopResponse:
-                      type: object
-                    fulfilment:
-                      type: string
-                currentState:
-                  type: string
-                  enum: &ref_45
-                    - ERROR_OCCURRED
-                    - WAITING_FOR_PARTY_ACCEPTANCE
-                    - WAITING_FOR_QUOTE_ACCEPTANCE
-                    - COMPLETED
-                lastError:
-                  type: object
-                  description: >-
-                    This object represents a Mojaloop API error received at any
-                    time during the transfer process
-                  properties: &ref_26
-                    httpStatusCode:
-                      type: integer
-                      description: >-
-                        The HTTP status code returned to the caller. This is the
-                        same as the actual HTTP status code returned with the
-                        response.
-                    mojaloopError:
-                      description: >-
-                        If a transfer process results in an error callback
-                        during the asynchronous Mojaloop API exchange, this
-                        property will contain the underlying Mojaloop API error
-                        object.
-                      type: object
-                      properties: &ref_51
-                        errorInformation:
-                          title: ErrorInformation
-                          type: object
-                          description: Data model for the complex type ErrorInformation.
-                          properties: &ref_49
-                            errorCode:
-                              title: ErrorCode
-                              type: string
-                              pattern: ^[1-9]\d{3}$
-                              description: >-
-                                The API data type ErrorCode is a JSON String of
-                                four characters, consisting of digits only.
-                                Negative numbers are not allowed. A leading zero
-                                is not allowed. Each error code in the API is a
-                                four-digit number, for example, 1234, where the
-                                first number (1 in the example) represents the
-                                high-level error category, the second number (2
-                                in the example) represents the low-level error
-                                category, and the last two numbers (34 in the
-                                example) represent the specific error.
-                              example: '5100'
-                            errorDescription:
-                              title: ErrorDescription
-                              type: string
-                              minLength: 1
-                              maxLength: 128
-                              description: Error description string.
-                            extensionList:
-                              title: ExtensionList
-                              type: object
-                              description: >-
-                                Data model for the complex type ExtensionList.
-                                An optional list of extensions, specific to
-                                deployment.
-                              properties: &ref_21
-                                extension:
-                                  type: array
-                                  items:
-                                    title: Extension
-                                    type: object
-                                    description: Data model for the complex type Extension.
-                                    properties: &ref_47
-                                      key:
-                                        title: ExtensionKey
-                                        type: string
-                                        minLength: 1
-                                        maxLength: 32
-                                        description: Extension key.
-                                      value:
-                                        title: ExtensionValue
-                                        type: string
-                                        minLength: 1
-                                        maxLength: 128
-                                        description: Extension value.
-                                    required: &ref_48
-                                      - key
-                                      - value
-                                  minItems: 1
-                                  maxItems: 16
-                                  description: Number of Extension elements.
-                              required: &ref_22
-                                - extension
-                          required: &ref_50
-                            - errorCode
-                            - errorDescription
-                initiatedTimestamp:
-                  type: string
-                  pattern: >-
-                    ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-                  description: An ISO-8601 formatted timestamp.
-                finalNotification:
-                  type: object
-                  properties:
-                    completedTimestamp:
-                      description: An ISO-8601 formatted timestamp.
-                      example: '2020-05-19T08:38:08.699-04:00'
-                      type: string
-                      pattern: >-
-                        ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-                    transferState:
-                      description: >
-                        Below are the allowed values for the enumeration -
-                        RECEIVED DFSP has received the transfer. - RESERVED DFSP
-                        has reserved the transfer. - COMMITTED DFSP has
-                        successfully performed the transfer. - ABORTED DFSP has
-                        aborted the transfer due a rejection or failure to
-                        perform the transfer.
-                      example: COMMITTED
-                      type: string
-                      enum: *ref_20
-                    extensionList:
-                      description: Optional extension, specific to deployment.
-                      type: array
-                      items: *ref_11
-                      minItems: 0
-                      maxItems: 16
-                  required:
-                    - completedTimestamp
-                    - transferState
-      responses:
-        '200':
-          description: The notification was accepted
-        '500':
-          description: An error occurred processing the request
-          content: *ref_6
   /bulkTransactions/{bulkTransactionId}:
     parameters:
       - name: bulkTransactionId
         in: path
         required: true
-        schema: &ref_81
+        schema: &ref_28
           title: CorrelationId
           type: string
           pattern: >-
@@ -1281,7 +35,6 @@ paths:
           Identifier of the bulk transaction to continue as returned in the
           response to a `POST /bulkTransaction` request.
     put:
-      summary: Request is used for bulk transaction confirmations
       description: >-
         The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to
         request information regarding a bulk transaction, i.e. when
@@ -1289,21 +42,18 @@ paths:
         provide confirmation to proceed with further processing of the request.
         The `{bulkTransactionId}` in the URI should contain the
         `bulkTransactionId` that was used for the creation of the bulk transfer.
-      tags:
-        - BulkTransactions
       requestBody:
-        description: An incoming notification for fulfiled transfer
         content:
           application/json:
             schema:
               title: BulkTransactionResponse
               type: object
-              required: &ref_78
+              required: &ref_80
                 - bulkHomeTransactionID
                 - bulkTransactionId
                 - currentState
                 - individualTransferResults
-              properties: &ref_79
+              properties: &ref_81
                 bulkHomeTransactionID:
                   type: string
                   description: >-
@@ -1325,18 +75,18 @@ paths:
                   example: b51ec534-ee48-4575-b6a9-ead2955b8069
                 currentState:
                   type: string
-                  enum: &ref_52
+                  enum: &ref_49
                     - ERROR_OCCURRED
                     - WAITING_FOR_PARTY_ACCEPTANCE
                     - WAITING_FOR_QUOTE_ACCEPTANCE
                     - COMPLETED
                 options:
                   type: object
-                  required: &ref_59
+                  required: &ref_56
                     - autoAcceptParty
                     - autoAcceptQuote
                     - bulkExpiration
-                  properties: &ref_60
+                  properties: &ref_57
                     onlyValidateParty:
                       description: >-
                         Set to true if only party validation is required.  This
@@ -1345,9 +95,9 @@ paths:
                       type: boolean
                     autoAcceptParty:
                       type: object
-                      required: &ref_53
+                      required: &ref_50
                         - enabled
-                      properties: &ref_54
+                      properties: &ref_51
                         enabled:
                           type: boolean
                           enum:
@@ -1362,9 +112,9 @@ paths:
                       type: object
                       oneOf:
                         - type: object
-                          required: &ref_57
+                          required: &ref_54
                             - enabled
-                          properties: &ref_58
+                          properties: &ref_55
                             enabled:
                               type: boolean
                               enum:
@@ -1375,10 +125,10 @@ paths:
                               minItems: 0
                               items:
                                 type: object
-                                required: &ref_55
+                                required: &ref_52
                                   - currency
                                   - amount
-                                properties: &ref_56
+                                properties: &ref_53
                                   currency:
                                     title: Currency
                                     description: >-
@@ -1390,7 +140,7 @@ paths:
                                     type: string
                                     minLength: 3
                                     maxLength: 3
-                                    enum: &ref_23
+                                    enum: &ref_0
                                       - AED
                                       - AFN
                                       - ALL
@@ -1612,14 +362,14 @@ paths:
                   minItems: 1
                   items:
                     type: object
-                    required: &ref_76
+                    required: &ref_78
                       - homeTransactionId
                       - transferId
                       - to
                       - amountType
                       - currency
                       - amount
-                    properties: &ref_77
+                    properties: &ref_79
                       transferId:
                         title: CorrelationId
                         type: string
@@ -1662,7 +412,7 @@ paths:
                         title: Party
                         type: object
                         description: Data model for the complex type Party.
-                        properties: &ref_66
+                        properties: &ref_65
                           partyIdInfo:
                             title: PartyIdInfo
                             type: object
@@ -1670,11 +420,11 @@ paths:
                               Data model for the complex type PartyIdInfo. An
                               ExtensionList element has been added to this
                               reqeust in version v1.1
-                            properties: &ref_62
+                            properties: &ref_61
                               partyIdType:
                                 title: PartyIdType
                                 type: string
-                                enum: &ref_61
+                                enum: &ref_58
                                   - MSISDN
                                   - EMAIL
                                   - PERSONAL_ID
@@ -1777,9 +527,37 @@ paths:
                                   Data model for the complex type ExtensionList.
                                   An optional list of extensions, specific to
                                   deployment.
-                                properties: *ref_21
-                                required: *ref_22
-                            required: &ref_63
+                                properties: &ref_3
+                                  extension:
+                                    type: array
+                                    items:
+                                      title: Extension
+                                      type: object
+                                      description: >-
+                                        Data model for the complex type
+                                        Extension.
+                                      properties: &ref_59
+                                        key:
+                                          title: ExtensionKey
+                                          type: string
+                                          minLength: 1
+                                          maxLength: 32
+                                          description: Extension key.
+                                        value:
+                                          title: ExtensionValue
+                                          type: string
+                                          minLength: 1
+                                          maxLength: 128
+                                          description: Extension value.
+                                      required: &ref_60
+                                        - key
+                                        - value
+                                    minItems: 1
+                                    maxItems: 16
+                                    description: Number of Extension elements.
+                                required: &ref_4
+                                  - extension
+                            required: &ref_62
                               - partyIdType
                               - partyIdentifier
                           merchantClassificationCode:
@@ -1803,14 +581,14 @@ paths:
                             title: PartyPersonalInfo
                             type: object
                             description: Data model for the complex type PartyPersonalInfo.
-                            properties: &ref_65
+                            properties: &ref_64
                               complexName:
                                 title: PartyComplexName
                                 type: object
                                 description: >-
                                   Data model for the complex type
                                   PartyComplexName.
-                                properties: &ref_64
+                                properties: &ref_63
                                   firstName:
                                     title: FirstName
                                     type: string
@@ -1848,7 +626,7 @@ paths:
                                   ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
                                 description: Date of Birth of the Party.
                                 example: '1966-06-16'
-                        required: &ref_67
+                        required: &ref_66
                           - partyIdInfo
                       reference:
                         description: Payer Loan reference
@@ -1856,7 +634,7 @@ paths:
                       amountType:
                         title: AmountType
                         type: string
-                        enum: &ref_68
+                        enum: &ref_67
                           - SEND
                           - RECEIVE
                         description: >-
@@ -1881,7 +659,7 @@ paths:
                         type: string
                         minLength: 3
                         maxLength: 3
-                        enum: *ref_23
+                        enum: *ref_0
                       amount:
                         title: Amount
                         type: string
@@ -1923,12 +701,12 @@ paths:
                         title: QuotesIDPutResponse
                         type: object
                         description: The object sent in the PUT /quotes/{ID} callback.
-                        properties: &ref_71
+                        properties: &ref_70
                           transferAmount:
                             title: Money
                             type: object
                             description: Data model for the complex type Money.
-                            properties: &ref_24
+                            properties: &ref_1
                               currency:
                                 title: Currency
                                 description: >-
@@ -1940,7 +718,7 @@ paths:
                                 type: string
                                 minLength: 3
                                 maxLength: 3
-                                enum: *ref_23
+                                enum: *ref_0
                               amount:
                                 title: Amount
                                 type: string
@@ -1958,27 +736,27 @@ paths:
                                   than 18 digits in the major currency unit is
                                   not allowed.
                                 example: '123.45'
-                            required: &ref_25
+                            required: &ref_2
                               - currency
                               - amount
                           payeeReceiveAmount:
                             title: Money
                             type: object
                             description: Data model for the complex type Money.
-                            properties: *ref_24
-                            required: *ref_25
+                            properties: *ref_1
+                            required: *ref_2
                           payeeFspFee:
                             title: Money
                             type: object
                             description: Data model for the complex type Money.
-                            properties: *ref_24
-                            required: *ref_25
+                            properties: *ref_1
+                            required: *ref_2
                           payeeFspCommission:
                             title: Money
                             type: object
                             description: Data model for the complex type Money.
-                            properties: *ref_24
-                            required: *ref_25
+                            properties: *ref_1
+                            required: *ref_2
                           expiration:
                             title: DateTime
                             type: string
@@ -2004,7 +782,7 @@ paths:
                               Data model for the complex type GeoCode. Indicates
                               the geographic location from where the transaction
                               was initiated.
-                            properties: &ref_69
+                            properties: &ref_68
                               latitude:
                                 title: Latitude
                                 type: string
@@ -2027,7 +805,7 @@ paths:
                                   regular expression for interoperability
                                   reasons.
                                 example: '+75.6972'
-                            required: &ref_70
+                            required: &ref_69
                               - latitude
                               - longitude
                           ilpPacket:
@@ -2056,9 +834,9 @@ paths:
                               Data model for the complex type ExtensionList. An
                               optional list of extensions, specific to
                               deployment.
-                            properties: *ref_21
-                            required: *ref_22
-                        required: &ref_72
+                            properties: *ref_3
+                            required: *ref_4
+                        required: &ref_71
                           - transferAmount
                           - expiration
                           - ilpPacket
@@ -2067,7 +845,7 @@ paths:
                         title: TransfersIDPutResponse
                         type: object
                         description: The object sent in the PUT /transfers/{ID} callback.
-                        properties: &ref_74
+                        properties: &ref_73
                           fulfilment:
                             title: IlpFulfilment
                             type: string
@@ -2098,7 +876,7 @@ paths:
                           transferState:
                             title: TransferState
                             type: string
-                            enum: &ref_73
+                            enum: &ref_72
                               - RECEIVED
                               - RESERVED
                               - COMMITTED
@@ -2126,9 +904,9 @@ paths:
                               Data model for the complex type ExtensionList. An
                               optional list of extensions, specific to
                               deployment.
-                            properties: *ref_21
-                            required: *ref_22
-                        required: &ref_75
+                            properties: *ref_3
+                            required: *ref_4
+                        required: &ref_74
                           - transferState
                       quoteExtensions:
                         title: ExtensionList
@@ -2136,76 +914,1275 @@ paths:
                         description: >-
                           Data model for the complex type ExtensionList. An
                           optional list of extensions, specific to deployment.
-                        properties: *ref_21
-                        required: *ref_22
+                        properties: *ref_3
+                        required: *ref_4
                       transferExtensions:
                         title: ExtensionList
                         type: object
                         description: >-
                           Data model for the complex type ExtensionList. An
                           optional list of extensions, specific to deployment.
-                        properties: *ref_21
-                        required: *ref_22
+                        properties: *ref_3
+                        required: *ref_4
                       lastError:
                         type: object
                         description: >-
                           This object represents a Mojaloop API error received
                           at any time during the transfer process
-                        properties: *ref_26
+                        properties: &ref_26
+                          httpStatusCode:
+                            type: integer
+                            description: >-
+                              The HTTP status code returned to the caller. This
+                              is the same as the actual HTTP status code
+                              returned with the response.
+                          mojaloopError:
+                            description: >-
+                              If a transfer process results in an error callback
+                              during the asynchronous Mojaloop API exchange,
+                              this property will contain the underlying Mojaloop
+                              API error object.
+                            type: object
+                            properties: &ref_77
+                              errorInformation:
+                                title: ErrorInformation
+                                type: object
+                                description: >-
+                                  Data model for the complex type
+                                  ErrorInformation.
+                                properties: &ref_75
+                                  errorCode:
+                                    title: ErrorCode
+                                    type: string
+                                    pattern: ^[1-9]\d{3}$
+                                    description: >-
+                                      The API data type ErrorCode is a JSON
+                                      String of four characters, consisting of
+                                      digits only. Negative numbers are not
+                                      allowed. A leading zero is not allowed.
+                                      Each error code in the API is a four-digit
+                                      number, for example, 1234, where the first
+                                      number (1 in the example) represents the
+                                      high-level error category, the second
+                                      number (2 in the example) represents the
+                                      low-level error category, and the last two
+                                      numbers (34 in the example) represent the
+                                      specific error.
+                                    example: '5100'
+                                  errorDescription:
+                                    title: ErrorDescription
+                                    type: string
+                                    minLength: 1
+                                    maxLength: 128
+                                    description: Error description string.
+                                  extensionList:
+                                    title: ExtensionList
+                                    type: object
+                                    description: >-
+                                      Data model for the complex type
+                                      ExtensionList. An optional list of
+                                      extensions, specific to deployment.
+                                    properties: *ref_3
+                                    required: *ref_4
+                                required: &ref_76
+                                  - errorCode
+                                  - errorDescription
                 extensions:
                   title: ExtensionList
                   type: object
                   description: >-
                     Data model for the complex type ExtensionList. An optional
                     list of extensions, specific to deployment.
-                  properties: *ref_21
-                  required: *ref_22
+                  properties: *ref_3
+                  required: *ref_4
+        description: An incoming notification for fulfiled transfer
       responses:
         '200':
           description: The notification was accepted
         '500':
+          content: &ref_7
+            application/json:
+              schema:
+                properties: &ref_5
+                  message:
+                    description: Error message text.
+                    type: string
+                  statusCode:
+                    description: Error code as string.
+                    type: string
+                required: &ref_6
+                  - statusCode
+                type: object
           description: An error occurred processing the request
-          content: *ref_6
-components:
-  schemas:
-    amountType:
-      type: string
-      enum: *ref_16
-      description: SEND for send amount, RECEIVE for receive amount.
-    currency:
-      maxLength: 3
-      minLength: 3
-      type: string
-      enum: *ref_10
-    dateOfBirth:
-      type: string
-      pattern: >-
-        ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
-      description: Date of birth in the form YYYY-MM-DD.
-    errorResponse:
-      type: object
-      required: *ref_0
-      properties: *ref_1
-    fspId:
-      type: string
-      minLength: 1
-      maxLength: 32
-      description: FSP identifier.
-    extensionList:
-      type: array
-      items: *ref_11
-      minItems: 0
-      maxItems: 16
-    geoCode:
-      type: object
+      summary: Request is used for bulk transaction confirmations
+      tags:
+        - BulkTransactions
+  /participants/{idType}/{idValue}:
+    get:
       description: >-
-        Indicates the geographic location from where the transaction was
-        initiated.
-      properties: *ref_12
-      required: *ref_13
+        The HTTP request `GET /participants/{idType}/{idValue}` is used to find
+        out in which FSP the requested party, defined by `{idType}` and
+        `{idValue}`, is located.
+      parameters:
+        - description: >
+            Below are the allowed values for the enumeration.
+
+
+            - MSISDN -  An MSISDN (Mobile Station International Subscriber
+            Directory Number, that is, the phone number) is used as reference to
+            a participant. The MSISDN identifier should be in international
+            format according to the [ITU-T E.164
+            standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
+            MSISDN may be prefixed by a single plus sign, indicating the
+            international prefix.
+
+
+            - ACCOUNT_ID - A bank account number or FSP account ID should be
+            used as reference to a participant. The ACCOUNT_ID identifier can be
+            in any format, as formats can greatly differ depending on country
+            and FSP.
+          in: path
+          name: idType
+          required: true
+          schema: &ref_8
+            enum:
+              - MSISDN
+              - ACCOUNT_ID
+            type: string
+        - description: Identifier of the party.
+          in: path
+          name: idValue
+          required: true
+          schema: &ref_9
+            maxLength: 128
+            minLength: 1
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties: &ref_10
+                  fspId:
+                    description: FSP identifier.
+                    maxLength: 32
+                    minLength: 1
+                    type: string
+                type: object
+          description: Response containing details of the requested party
+        '400':
+          content: &ref_11
+            application/json:
+              schema:
+                properties: *ref_5
+                required: *ref_6
+                type: object
+          description: Malformed or missing required headers or parameters
+        '404':
+          description: >-
+            The party specified by the provided identifier type and value is not
+            known to the server
+        '500':
+          content: *ref_7
+          description: An error occurred processing the request
+      summary: >-
+        Asks for the identifier (fspId) of the scheme participant (FSP) that can
+        handle transfers for the specified identifier type and value
+      tags:
+        - Participants
+  /participants/{idType}/{idValue}/{idSubValue}:
+    get:
+      description: >-
+        The HTTP request `GET /participants/{idType}/{idValue}/{idSubValue}` is
+        used to find out in which FSP the requested party, defined by
+        `{idType}`, `{idValue}` and `{idSubValue}` is located.
+      parameters:
+        - description: >
+            Below are the allowed values for the enumeration.
+
+
+            - MSISDN -  An MSISDN (Mobile Station International Subscriber
+            Directory Number, that is, the phone number) is used as reference to
+            a participant. The MSISDN identifier should be in international
+            format according to the [ITU-T E.164
+            standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
+            MSISDN may be prefixed by a single plus sign, indicating the
+            international prefix.
+
+
+            - ACCOUNT_ID - A bank account number or FSP account ID should be
+            used as reference to a participant. The ACCOUNT_ID identifier can be
+            in any format, as formats can greatly differ depending on country
+            and FSP.
+          in: path
+          name: idType
+          required: true
+          schema: *ref_8
+        - description: Identifier of the party.
+          in: path
+          name: idValue
+          required: true
+          schema: *ref_9
+        - description: >-
+            Either a sub-identifier of a `{idValue}`, or a sub-type of the
+            `{idType}`, normally a `{personalIdType}`
+          in: path
+          name: idSubValue
+          required: true
+          schema: &ref_12
+            maxLength: 128
+            minLength: 1
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties: *ref_10
+                type: object
+          description: Response containing details of the requested party
+        '400':
+          content: *ref_11
+          description: Malformed or missing required headers or parameters
+        '404':
+          description: >-
+            The party specified by the provided identifier type and value is not
+            known to the server
+        '500':
+          content: *ref_7
+          description: An error occurred processing the request
+      summary: >-
+        Asks for the identifier (fspId) of the scheme participant (FSP) that can
+        handle transfers for the specified identifier type and value
+      tags:
+        - Participants
+  /parties/{idType}/{idValue}:
+    get:
+      description: >-
+        The HTTP request `GET /parties/{idType}/{idValue}` is used to look up
+        information regarding the requested transfer party, identified by
+        `{idType}` and `{idValue}`.
+      parameters:
+        - description: >
+            Below are the allowed values for the enumeration.
+
+
+            - MSISDN -  An MSISDN (Mobile Station International Subscriber
+            Directory Number, that is, the phone number) is used as reference to
+            a participant. The MSISDN identifier should be in international
+            format according to the [ITU-T E.164
+            standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
+            MSISDN may be prefixed by a single plus sign, indicating the
+            international prefix.
+
+
+            - ACCOUNT_ID - A bank account number or FSP account ID should be
+            used as reference to a participant. The ACCOUNT_ID identifier can be
+            in any format, as formats can greatly differ depending on country
+            and FSP.
+          in: path
+          name: idType
+          required: true
+          schema: *ref_8
+        - description: Identifier of the party.
+          in: path
+          name: idValue
+          required: true
+          schema: *ref_9
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties: &ref_13
+                  dateOfBirth:
+                    description: Date of birth in the form YYYY-MM-DD.
+                    pattern: >-
+                      ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
+                    type: string
+                  displayName:
+                    description: Display name of the sender, if known.
+                    type: string
+                  extensionList:
+                    items: &ref_15
+                      properties: &ref_31
+                        key:
+                          maxLength: 32
+                          minLength: 1
+                          type: string
+                        value:
+                          maxLength: 128
+                          minLength: 1
+                          type: string
+                      type: object
+                    maxItems: 16
+                    minItems: 0
+                    type: array
+                  firstName:
+                    description: Party first name.
+                    type: string
+                  fspId:
+                    description: >-
+                      Mojaloop scheme FSPID of the DFSP which owns the party
+                      account.
+                    type: string
+                  idSubValue:
+                    description: >-
+                      Either a sub-identifier of a `{idValue}`, or a sub-type of
+                      the `{idType}`, normally a `{personalIdType}`
+                    maxLength: 128
+                    minLength: 1
+                    type: string
+                  idType:
+                    description: >
+                      Below are the allowed values for the enumeration.
+
+
+                      - MSISDN -  An MSISDN (Mobile Station International
+                      Subscriber Directory Number, that is, the phone number) is
+                      used as reference to a participant. The MSISDN identifier
+                      should be in international format according to the [ITU-T
+                      E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+                      Optionally, the MSISDN may be prefixed by a single plus
+                      sign, indicating the international prefix.
+
+
+                      - ACCOUNT_ID - A bank account number or FSP account ID
+                      should be used as reference to a participant. The
+                      ACCOUNT_ID identifier can be in any format, as formats can
+                      greatly differ depending on country and FSP.
+                    enum: &ref_33
+                      - MSISDN
+                      - ACCOUNT_ID
+                    type: string
+                  idValue:
+                    description: The identifier string used to identify the sender.
+                    type: string
+                  lastName:
+                    description: Party last name.
+                    type: string
+                  merchantClassificationCode:
+                    description: >-
+                      Up to 4 digits specifying the sender's merchant
+                      classification, if known and applicable.
+                    type: string
+                  middleName:
+                    description: Party middle name.
+                    type: string
+                  type:
+                    enum: &ref_36
+                      - CONSUMER
+                      - AGENT
+                      - BUSINESS
+                      - DEVICE
+                    type: string
+                required: &ref_14
+                  - idType
+                  - idValue
+                type: object
+          description: Response containing details of the requested party
+        '400':
+          content: *ref_11
+          description: Malformed or missing required headers or parameters
+        '404':
+          description: >-
+            The party specified by the provided identifier type and value is not
+            known to the server
+        '500':
+          content: *ref_7
+          description: An error occurred processing the request
+      summary: >-
+        Requests information relating to a transfer party identified by the
+        specified identifier type and value
+      tags:
+        - Parties
+  /parties/{idType}/{idValue}/{idSubValue}:
+    get:
+      description: >-
+        The HTTP request `GET /parties/{idType}/{idValue}/{idSubValue}` is used
+        to look up information regarding the requested transfer party,
+        identified by `{idType}`, `{idValue}` and `{idSubValue}`.
+      parameters:
+        - description: >
+            Below are the allowed values for the enumeration.
+
+
+            - MSISDN -  An MSISDN (Mobile Station International Subscriber
+            Directory Number, that is, the phone number) is used as reference to
+            a participant. The MSISDN identifier should be in international
+            format according to the [ITU-T E.164
+            standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
+            MSISDN may be prefixed by a single plus sign, indicating the
+            international prefix.
+
+
+            - ACCOUNT_ID - A bank account number or FSP account ID should be
+            used as reference to a participant. The ACCOUNT_ID identifier can be
+            in any format, as formats can greatly differ depending on country
+            and FSP.
+          in: path
+          name: idType
+          required: true
+          schema: *ref_8
+        - description: Identifier of the party.
+          in: path
+          name: idValue
+          required: true
+          schema: *ref_9
+        - description: >-
+            Either a sub-identifier of a `{idValue}`, or a sub-type of the
+            `{idType}`, normally a `{personalIdType}`
+          in: path
+          name: idSubValue
+          required: true
+          schema: *ref_12
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties: *ref_13
+                required: *ref_14
+                type: object
+          description: Response containing details of the requested party
+        '400':
+          content: *ref_11
+          description: Malformed or missing required headers or parameters
+        '404':
+          description: >-
+            The party specified by the provided identifier type and value is not
+            known to the server
+        '500':
+          content: *ref_7
+          description: An error occurred processing the request
+      summary: >-
+        Requests information relating to a transfer party identified by the
+        specified identifier type and value
+      tags:
+        - Parties
+  /quoterequests:
+    post:
+      description: >-
+        The HTTP request `POST /quoterequests` is used to request the creation
+        of a quote for the provided financial transaction.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: A request for a quote for transfer from the DFSP backend.
+              properties: &ref_37
+                amount:
+                  description: >-
+                    Depending on `amountType`. If SEND - The amount the Payer
+                    would like to send, that is, the amount that should be
+                    withdrawn from the Payer account including any fees. The
+                    amount is updated by each participating entity in the
+                    transaction. If RECEIVE - The amount the Payee should
+                    receive, that is, the amount that should be sent to the
+                    receiver exclusive any fees. The amount is not updated by
+                    any of the participating entities.
+                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                  type: string
+                amountType:
+                  description: SEND for send amount, RECEIVE for receive amount.
+                  enum: &ref_19
+                    - SEND
+                    - RECEIVE
+                  type: string
+                currency:
+                  enum: &ref_16
+                    - AED
+                    - AFN
+                    - ALL
+                    - AMD
+                    - ANG
+                    - AOA
+                    - ARS
+                    - AUD
+                    - AWG
+                    - AZN
+                    - BAM
+                    - BBD
+                    - BDT
+                    - BGN
+                    - BHD
+                    - BIF
+                    - BMD
+                    - BND
+                    - BOB
+                    - BRL
+                    - BSD
+                    - BTN
+                    - BWP
+                    - BYN
+                    - BZD
+                    - CAD
+                    - CDF
+                    - CHF
+                    - CLP
+                    - CNY
+                    - COP
+                    - CRC
+                    - CUC
+                    - CUP
+                    - CVE
+                    - CZK
+                    - DJF
+                    - DKK
+                    - DOP
+                    - DZD
+                    - EGP
+                    - ERN
+                    - ETB
+                    - EUR
+                    - FJD
+                    - FKP
+                    - GBP
+                    - GEL
+                    - GGP
+                    - GHS
+                    - GIP
+                    - GMD
+                    - GNF
+                    - GTQ
+                    - GYD
+                    - HKD
+                    - HNL
+                    - HRK
+                    - HTG
+                    - HUF
+                    - IDR
+                    - ILS
+                    - IMP
+                    - INR
+                    - IQD
+                    - IRR
+                    - ISK
+                    - JEP
+                    - JMD
+                    - JOD
+                    - JPY
+                    - KES
+                    - KGS
+                    - KHR
+                    - KMF
+                    - KPW
+                    - KRW
+                    - KWD
+                    - KYD
+                    - KZT
+                    - LAK
+                    - LBP
+                    - LKR
+                    - LRD
+                    - LSL
+                    - LYD
+                    - MAD
+                    - MDL
+                    - MGA
+                    - MKD
+                    - MMK
+                    - MNT
+                    - MOP
+                    - MRO
+                    - MUR
+                    - MVR
+                    - MWK
+                    - MXN
+                    - MYR
+                    - MZN
+                    - NAD
+                    - NGN
+                    - NIO
+                    - NOK
+                    - NPR
+                    - NZD
+                    - OMR
+                    - PAB
+                    - PEN
+                    - PGK
+                    - PHP
+                    - PKR
+                    - PLN
+                    - PYG
+                    - QAR
+                    - RON
+                    - RSD
+                    - RUB
+                    - RWF
+                    - SAR
+                    - SBD
+                    - SCR
+                    - SDG
+                    - SEK
+                    - SGD
+                    - SHP
+                    - SLL
+                    - SOS
+                    - SPL
+                    - SRD
+                    - STD
+                    - SVC
+                    - SYP
+                    - SZL
+                    - THB
+                    - TJS
+                    - TMT
+                    - TND
+                    - TOP
+                    - TRY
+                    - TTD
+                    - TVD
+                    - TWD
+                    - TZS
+                    - UAH
+                    - UGX
+                    - USD
+                    - UYU
+                    - UZS
+                    - VEF
+                    - VND
+                    - VUV
+                    - WST
+                    - XAF
+                    - XCD
+                    - XDR
+                    - XOF
+                    - XPF
+                    - XTS
+                    - XXX
+                    - YER
+                    - ZAR
+                    - ZMW
+                    - ZWD
+                  maxLength: 3
+                  minLength: 3
+                  type: string
+                expiration:
+                  description: An ISO-8601 formatted timestamp.
+                  pattern: >-
+                    ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
+                  type: string
+                extensionList:
+                  items: *ref_15
+                  maxItems: 16
+                  minItems: 0
+                  type: array
+                feesAmount:
+                  description: >-
+                    The fees in the transaction. The fees element should be
+                    empty if fees should be non-disclosed. The fees element
+                    should be non-empty if fees should be disclosed.
+                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                  type: string
+                feesCurrency:
+                  enum: *ref_16
+                  maxLength: 3
+                  minLength: 3
+                  type: string
+                from:
+                  description: >-
+                    Information about the Payer in the proposed financial
+                    transaction.
+                  properties: *ref_13
+                  required: *ref_14
+                  type: object
+                geoCode:
+                  description: >-
+                    Indicates the geographic location from where the transaction
+                    was initiated.
+                  properties: &ref_17
+                    latitude:
+                      description: >-
+                        The API data type Latitude is a JSON String in a lexical
+                        format that is restricted by a regular expression for
+                        interoperability reasons.
+                      pattern: >-
+                        ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
+                      type: string
+                    longitude:
+                      description: >-
+                        The API data type Longitude is a JSON String in a
+                        lexical format that is restricted by a regular
+                        expression for interoperability reasons.
+                      pattern: >-
+                        ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
+                      type: string
+                  required: &ref_18
+                    - latitude
+                    - longitude
+                  type: object
+                initiator:
+                  description: >-
+                    Specifies if the initiator of the transfer is the Payer or
+                    Payee.
+                  enum: &ref_20
+                    - PAYER
+                    - PAYEE
+                  type: string
+                initiatorType:
+                  description: Specifies the type of the transaction initiator.
+                  enum: &ref_21
+                    - CONSUMER
+                    - AGENT
+                    - BUSINESS
+                    - DEVICE
+                  type: string
+                note:
+                  description: An optional note associated with the requested transfer.
+                  maxLength: 128
+                  minLength: 1
+                  type: string
+                quoteId:
+                  description: A Mojaloop API quote identifier (UUID).
+                  pattern: >-
+                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                  type: string
+                to:
+                  description: >-
+                    Information about the Payee in the proposed financial
+                    transaction.
+                  properties: *ref_13
+                  required: *ref_14
+                  type: object
+                transactionId:
+                  description: >-
+                    ID of the transaction, the ID is decided by the Payer FSP
+                    during the creation of the quote.
+                  pattern: >-
+                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                  type: string
+                transactionType:
+                  description: Type of transaction for which the quote is requested.
+                  enum: &ref_24
+                    - TRANSFER
+                  type: string
+              required: &ref_38
+                - quoteId
+                - transactionId
+                - to
+                - from
+                - amountType
+                - amount
+                - currency
+                - transactionType
+                - initiator
+                - initiatorType
+              type: object
+        description: Request for a transfer quotation
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: A response to a request for a quote.
+                properties: &ref_22
+                  expiration:
+                    description: An ISO-8601 formatted timestamp.
+                    pattern: >-
+                      ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
+                    type: string
+                  extensionList:
+                    items: *ref_15
+                    maxItems: 16
+                    minItems: 0
+                    type: array
+                  geoCode:
+                    description: >-
+                      Indicates the geographic location from where the
+                      transaction was initiated.
+                    properties: *ref_17
+                    required: *ref_18
+                    type: object
+                  payeeFspCommissionAmount:
+                    description: Transaction commission from the Payee FSP.
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                    type: string
+                  payeeFspCommissionAmountCurrency:
+                    description: Currency of the `payeeFspCommissionAmount`.
+                    enum: *ref_16
+                    maxLength: 3
+                    minLength: 3
+                    type: string
+                  payeeFspFeeAmount:
+                    description: Payee FSP’s part of the transaction fee.
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                    type: string
+                  payeeFspFeeAmountCurrency:
+                    description: The currency of the `payeeFspFeeAmount`.
+                    enum: *ref_16
+                    maxLength: 3
+                    minLength: 3
+                    type: string
+                  payeeReceiveAmount:
+                    description: >-
+                      The amount that the Payee should receive in the end-to-end
+                      transaction. Optional as the Payee FSP might not want to
+                      disclose any optional Payee fees.
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                    type: string
+                  payeeReceiveAmountCurrency:
+                    description: The currency of the `payeeReceiveAmount`.
+                    enum: *ref_16
+                    maxLength: 3
+                    minLength: 3
+                    type: string
+                  quoteId:
+                    description: A Mojaloop API quote identifier (UUID).
+                    pattern: >-
+                      ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                    type: string
+                  transactionId:
+                    description: >-
+                      ID of the transaction, the ID is decided by the Payer FSP
+                      during the creation of the quote.
+                    pattern: >-
+                      ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                    type: string
+                  transferAmount:
+                    description: >-
+                      The amount of money that the Payer FSP should transfer to
+                      the Payee FSP.
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                    type: string
+                  transferAmountCurrency:
+                    description: The currency of the `transferAmount`.
+                    enum: *ref_16
+                    maxLength: 3
+                    minLength: 3
+                    type: string
+                required: &ref_23
+                  - quoteId
+                  - transactionId
+                  - transferAmount
+                  - transferAmountCurrency
+                type: object
+          description: A response to the transfer quotation request
+        '400':
+          content: *ref_11
+          description: Malformed or missing required headers or parameters
+        '500':
+          content: *ref_7
+          description: An error occurred processing the request
+      summary: Requests a quote for the specified transfer
+      tags:
+        - Quotes
+  /transfers:
+    post:
+      description: >-
+        The HTTP request `POST /transfers` is used to request the creation of a
+        transfer for the transfer party.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties: &ref_44
+                amount:
+                  pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                  type: string
+                amountType:
+                  description: SEND for send amount, RECEIVE for receive amount.
+                  enum: *ref_19
+                  type: string
+                currency:
+                  enum: *ref_16
+                  maxLength: 3
+                  minLength: 3
+                  type: string
+                from:
+                  properties: *ref_13
+                  required: *ref_14
+                  type: object
+                ilpPacket:
+                  properties:
+                    data:
+                      description: Object containing transfer object.
+                      properties: &ref_34
+                        amount:
+                          description: >-
+                            Object containing Amount and Currency of the
+                            transfer.
+                          properties: &ref_29
+                            amount:
+                              pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                              type: string
+                            currency:
+                              enum: *ref_16
+                              maxLength: 3
+                              minLength: 3
+                              type: string
+                          required: &ref_30
+                            - amount
+                            - currency
+                          type: object
+                        payee:
+                          description: >-
+                            Information about the Payee in the proposed
+                            financial transaction.
+                          properties: *ref_13
+                          required: *ref_14
+                          type: object
+                        payer:
+                          description: >-
+                            Information about the Payer in the proposed
+                            financial transaction.
+                          properties: *ref_13
+                          required: *ref_14
+                          type: object
+                        quoteId:
+                          description: A Mojaloop API quote identifier (UUID).
+                          pattern: >-
+                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                          type: string
+                        transactionId:
+                          description: >-
+                            ID of the transaction, the ID is decided by the
+                            Payer FSP during the creation of the quote.
+                          pattern: >-
+                            ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                          type: string
+                        transactionType:
+                          description: Object containing transfer object.
+                          properties: &ref_40
+                            initiator:
+                              description: >-
+                                Specifies if the initiator of the transfer is
+                                the Payer or Payee.
+                              enum: *ref_20
+                              type: string
+                            initiatorType:
+                              description: Specifies the type of the transaction initiator.
+                              enum: *ref_21
+                              type: string
+                            scenario:
+                              enum: &ref_39
+                                - TRANSFER
+                              type: string
+                          required: &ref_41
+                            - scenario
+                            - initiator
+                            - initiatorType
+                          type: object
+                      required: &ref_35
+                        - quoteId
+                        - transactionId
+                        - payer
+                        - payee
+                        - amount
+                        - transactionType
+                      type: object
+                  required:
+                    - data
+                  type: object
+                note:
+                  maxLength: 128
+                  type: string
+                quote:
+                  description: A response to a request for a quote.
+                  properties: *ref_22
+                  required: *ref_23
+                  type: object
+                quoteRequestExtensions:
+                  items: *ref_15
+                  maxItems: 16
+                  minItems: 0
+                  type: array
+                to:
+                  properties: *ref_13
+                  required: *ref_14
+                  type: object
+                transactionType:
+                  enum: *ref_24
+                  type: string
+                transferId:
+                  description: A Mojaloop API transfer identifier (UUID).
+                  pattern: >-
+                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                  type: string
+              required: &ref_45
+                - transferId
+                - quote
+                - from
+                - to
+                - amountType
+                - currency
+                - amount
+                - transactionType
+                - ilpPacket
+              type: object
+        description: An incoming transfer request
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties: &ref_46
+                  completedTimestamp:
+                    description: An ISO-8601 formatted timestamp.
+                    example: '2020-05-19T08:38:08.699-04:00'
+                    pattern: >-
+                      ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
+                    type: string
+                  fulfilment:
+                    description: >-
+                      Fulfilment that must be attached to the transfer by the
+                      Payee.
+                    title: IlpFulfilment
+                    type: string
+                    pattern: ^[A-Za-z0-9-_]{43}$
+                    maxLength: 48
+                    example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+                  homeTransactionId:
+                    description: >-
+                      Transaction ID from the DFSP backend, used to reconcile
+                      transactions between the Switch and DFSP backend systems.
+                    type: string
+                  transferState:
+                    description: >
+                      Below are the allowed values for the enumeration -
+                      RECEIVED DFSP has received the transfer. - RESERVED DFSP
+                      has reserved the transfer. - COMMITTED DFSP has
+                      successfully performed the transfer. - ABORTED DFSP has
+                      aborted the transfer due a rejection or failure to perform
+                      the transfer.
+                    example: ABORTED
+                    enum: &ref_25
+                      - RECEIVED
+                      - RESERVED
+                      - COMMITTED
+                      - ABORTED
+                    type: string
+                required: &ref_47
+                  - homeTransactionId
+                type: object
+          description: The transfer was accepted
+        '400':
+          content: *ref_11
+          description: Malformed or missing required headers or parameters
+        '500':
+          content: *ref_7
+          description: An error occurred processing the request
+      summary: Transfers funds from an external account to an internal account
+      tags:
+        - Transfers
+  /transfers/{transferId}:
+    get:
+      description: >-
+        The HTTP request `GET /transfers/{transferId}` is used to get
+        information regarding a transfer created or requested earlier. The
+        `{transferId}` in the URI should contain the `transferId` that was used
+        for the creation of the transfer.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties: &ref_42
+                  amount:
+                    pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+                    type: string
+                  amountType:
+                    description: SEND for send amount, RECEIVE for receive amount.
+                    enum: *ref_19
+                    type: string
+                  currency:
+                    enum: *ref_16
+                    maxLength: 3
+                    minLength: 3
+                    type: string
+                  extensions:
+                    items: *ref_15
+                    maxItems: 16
+                    minItems: 0
+                    type: array
+                  from:
+                    properties: *ref_13
+                    required: *ref_14
+                    type: object
+                  homeTransactionId:
+                    description: >-
+                      Transaction ID from the DFSP backend, used to reconcile
+                      transactions between the Switch and DFSP backend systems.
+                    type: string
+                  note:
+                    maxLength: 128
+                    type: string
+                  timestamp:
+                    description: An ISO-8601 formatted timestamp.
+                    pattern: >-
+                      ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
+                    type: string
+                  to:
+                    properties: *ref_13
+                    required: *ref_14
+                    type: object
+                  transactionType:
+                    enum: *ref_24
+                    type: string
+                  transferState:
+                    description: >
+                      Below are the allowed values for the enumeration -
+                      RECEIVED DFSP has received the transfer. - RESERVED DFSP
+                      has reserved the transfer. - COMMITTED DFSP has
+                      successfully performed the transfer. - ABORTED DFSP has
+                      aborted the transfer due a rejection or failure to perform
+                      the transfer.
+                    enum: *ref_25
+                    type: string
+                required: &ref_43
+                  - homeTransactionId
+                  - from
+                  - to
+                  - amountType
+                  - currency
+                  - amount
+                  - transferState
+                  - transactionType
+                  - timestamp
+                type: object
+          description: The transfer was accepted
+        '500':
+          content: *ref_7
+          description: An error occurred processing the request
+      summary: Retrieves information for a specific transfer
+      tags:
+        - Transfers
+    parameters:
+      - in: path
+        name: transferId
+        required: true
+        schema: &ref_27
+          type: string
+    put:
+      description: >-
+        The HTTP request `PUT /transfers/{transferId}` is used to receive
+        notification for transfer being fulfiled when the FSP is a Payee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: PUT /transfers/{transferId} object
+              properties: &ref_32
+                currentState:
+                  enum: &ref_48
+                    - ERROR_OCCURRED
+                    - WAITING_FOR_PARTY_ACCEPTANCE
+                    - WAITING_FOR_QUOTE_ACCEPTANCE
+                    - COMPLETED
+                  type: string
+                direction:
+                  enum:
+                    - INBOUND
+                  type: string
+                finalNotification:
+                  properties:
+                    completedTimestamp:
+                      description: An ISO-8601 formatted timestamp.
+                      example: '2020-05-19T08:38:08.699-04:00'
+                      pattern: >-
+                        ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
+                      type: string
+                    extensionList:
+                      description: Optional extension, specific to deployment.
+                      items: *ref_15
+                      maxItems: 16
+                      minItems: 0
+                      type: array
+                    transferState:
+                      description: >
+                        Below are the allowed values for the enumeration -
+                        RECEIVED DFSP has received the transfer. - RESERVED DFSP
+                        has reserved the transfer. - COMMITTED DFSP has
+                        successfully performed the transfer. - ABORTED DFSP has
+                        aborted the transfer due a rejection or failure to
+                        perform the transfer.
+                      example: COMMITTED
+                      enum: *ref_25
+                      type: string
+                  required:
+                    - completedTimestamp
+                    - transferState
+                  type: object
+                fulfil:
+                  properties:
+                    body:
+                      type: object
+                    headers:
+                      type: object
+                  type: object
+                initiatedTimestamp:
+                  description: An ISO-8601 formatted timestamp.
+                  pattern: >-
+                    ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
+                  type: string
+                lastError:
+                  type: object
+                  description: >-
+                    This object represents a Mojaloop API error received at any
+                    time during the transfer process
+                  properties: *ref_26
+                prepare:
+                  properties:
+                    body:
+                      type: object
+                    headers:
+                      type: object
+                  type: object
+                quote:
+                  properties:
+                    fulfilment:
+                      type: string
+                    internalRequest:
+                      type: object
+                    mojaloopResponse:
+                      type: object
+                    request:
+                      type: object
+                    response:
+                      type: object
+                  type: object
+                quoteRequest:
+                  properties:
+                    body:
+                      type: object
+                    headers:
+                      type: object
+                  type: object
+                quoteResponse:
+                  properties:
+                    body:
+                      type: object
+                    headers:
+                      type: object
+                  type: object
+                transferId:
+                  description: A Mojaloop API transfer identifier (UUID).
+                  pattern: >-
+                    ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                  type: string
+              title: TransfersIDPatchResponse
+              type: object
+        description: An incoming notification for fulfiled transfer
+      responses:
+        '200':
+          description: The notification was accepted
+        '500':
+          content: *ref_7
+          description: An error occurred processing the request
+      summary: Receive notification for a specific transfer
+      tags:
+        - Transfers
+components:
+  parameters:
+    idSubValue:
+      description: >-
+        Either a sub-identifier of a `{idValue}`, or a sub-type of the
+        `{idType}`, normally a `{personalIdType}`
+      in: path
+      name: idSubValue
+      required: true
+      schema: *ref_12
     idType:
-      type: string
-      enum: *ref_27
       description: >
         Below are the allowed values for the enumeration.
 
@@ -2222,22 +2199,176 @@ components:
         - ACCOUNT_ID - A bank account number or FSP account ID should be used as
         reference to a participant. The ACCOUNT_ID identifier can be in any
         format, as formats can greatly differ depending on country and FSP.
-    personalIdType:
+      in: path
+      name: idType
+      required: true
+      schema: *ref_8
+    idValue:
+      description: Identifier of the party.
+      in: path
+      name: idValue
+      required: true
+      schema: *ref_9
+    transferId:
+      in: path
+      name: transferId
+      required: true
+      schema: *ref_27
+    bulkTransactionId:
+      name: bulkTransactionId
+      in: path
+      required: true
+      schema: *ref_28
+      description: >-
+        Identifier of the bulk transaction to continue as returned in the
+        response to a `POST /bulkTransaction` request.
+  responses:
+    '400':
+      content: *ref_11
+      description: Malformed or missing required headers or parameters
+    '404':
+      description: >-
+        The party specified by the provided identifier type and value is not
+        known to the server
+    '500':
+      content: *ref_7
+      description: An error occurred processing the request
+  schemas:
+    amountCurrency:
+      description: Object containing Amount and Currency of the transfer.
+      properties: *ref_29
+      required: *ref_30
+      type: object
+    amountType:
+      description: SEND for send amount, RECEIVE for receive amount.
+      enum: *ref_19
       type: string
-      enum:
-        - PASSPORT
-        - NATIONAL_REGISTRATION
-        - DRIVING_LICENSE
-        - ALIEN_REGISTRATION
-        - NATIONAL_ID_CARD
-        - EMPLOYER_ID
-        - TAX_ID_NUMBER
-        - SENIOR_CITIZENS_CARD
-        - MARRIAGE_CERTIFICATE
-        - HEALTH_CARD
-        - VOTERS_ID
-        - UNITED_NATIONS
-        - OTHER_ID
+    currency:
+      enum: *ref_16
+      maxLength: 3
+      minLength: 3
+      type: string
+    dateOfBirth:
+      description: Date of birth in the form YYYY-MM-DD.
+      pattern: >-
+        ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
+      type: string
+    errorResponse:
+      properties: *ref_5
+      required: *ref_6
+      type: object
+    extensionItem:
+      properties: *ref_31
+      type: object
+    extensionList:
+      items: *ref_15
+      maxItems: 16
+      minItems: 0
+      type: array
+    extensionListComplex:
+      description: Data model for the complex type ExtensionList
+      properties:
+        extension:
+          description: Number of Extension elements
+          items:
+            properties: *ref_31
+            type: object
+          maxItems: 16
+          minItems: 1
+          type: array
+      required:
+        - extension
+      type: object
+    fspId:
+      description: FSP identifier.
+      maxLength: 32
+      minLength: 1
+      type: string
+    fulfilNotification:
+      description: PUT /transfers/{transferId} object
+      properties: *ref_32
+      title: TransfersIDPatchResponse
+      type: object
+    generalError:
+      description: >-
+        This object may represent a number of different error object types and
+        so its properties may vary significantly.
+      type: object
+    geoCode:
+      description: >-
+        Indicates the geographic location from where the transaction was
+        initiated.
+      properties: *ref_17
+      required: *ref_18
+      type: object
+    idSubValue:
+      description: >-
+        Either a sub-identifier of a `{idValue}`, or a sub-type of the
+        `{idType}`, normally a `{personalIdType}`
+      maxLength: 128
+      minLength: 1
+      type: string
+    idType:
+      description: >
+        Below are the allowed values for the enumeration.
+
+
+        - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory
+        Number, that is, the phone number) is used as reference to a
+        participant. The MSISDN identifier should be in international format
+        according to the [ITU-T E.164
+        standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
+        MSISDN may be prefixed by a single plus sign, indicating the
+        international prefix.
+
+
+        - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+        reference to a participant. The ACCOUNT_ID identifier can be in any
+        format, as formats can greatly differ depending on country and FSP.
+      enum: *ref_33
+      type: string
+    idValue:
+      description: Identifier of the party.
+      maxLength: 128
+      minLength: 1
+      type: string
+    ilpPacketData:
+      description: Object containing transfer object.
+      properties: *ref_34
+      required: *ref_35
+      type: object
+    initiator:
+      description: Specifies if the initiator of the transfer is the Payer or Payee.
+      enum: *ref_20
+      type: string
+    initiatorType:
+      description: Specifies the type of the transaction initiator.
+      enum: *ref_21
+      type: string
+    latitude:
+      description: >-
+        The API data type Latitude is a JSON String in a lexical format that is
+        restricted by a regular expression for interoperability reasons.
+      pattern: >-
+        ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
+      type: string
+    longitude:
+      description: >-
+        The API data type Longitude is a JSON String in a lexical format that is
+        restricted by a regular expression for interoperability reasons.
+      pattern: >-
+        ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
+      type: string
+    money:
+      pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
+      type: string
+    participantsResponse:
+      properties: *ref_10
+      type: object
+    payerType:
+      enum: *ref_36
+      type: string
+    personalIdType:
       description: >
         Below are the allowed values for the enumeration.
 
@@ -2289,224 +2420,92 @@ components:
 
         - OTHER_ID - Any other type of identification type number isused in
         reference to a party.
-    idValue:
+      enum:
+        - PASSPORT
+        - NATIONAL_REGISTRATION
+        - DRIVING_LICENSE
+        - ALIEN_REGISTRATION
+        - NATIONAL_ID_CARD
+        - EMPLOYER_ID
+        - TAX_ID_NUMBER
+        - SENIOR_CITIZENS_CARD
+        - MARRIAGE_CERTIFICATE
+        - HEALTH_CARD
+        - VOTERS_ID
+        - UNITED_NATIONS
+        - OTHER_ID
       type: string
-      minLength: 1
-      maxLength: 128
-      description: Identifier of the party.
-    idSubValue:
-      type: string
-      minLength: 1
-      maxLength: 128
-      description: >-
-        Either a sub-identifier of a `{idValue}`, or a sub-type of the
-        `{idType}`, normally a `{personalIdType}`
-    initiator:
-      type: string
-      enum: *ref_18
-      description: Specifies if the initiator of the transfer is the Payer or Payee.
-    extensionItem:
-      type: object
-      properties: *ref_28
-    initiatorType:
-      type: string
-      enum: *ref_19
-      description: Specifies the type of the transaction initiator.
-    latitude:
-      type: string
-      pattern: >-
-        ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
-      description: >-
-        The API data type Latitude is a JSON String in a lexical format that is
-        restricted by a regular expression for interoperability reasons.
-    longitude:
-      type: string
-      pattern: >-
-        ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
-      description: >-
-        The API data type Longitude is a JSON String in a lexical format that is
-        restricted by a regular expression for interoperability reasons.
-    money:
-      pattern: ^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$
-      type: string
-    participantsResponse:
-      type: object
-      properties: *ref_4
-    payerType:
-      type: string
-      enum: *ref_29
     quoteId:
+      description: A Mojaloop API quote identifier (UUID).
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
       type: string
-      description: A Mojaloop API quote identifier (UUID).
     quoteRequest:
-      type: object
       description: A request for a quote for transfer from the DFSP backend.
-      required: *ref_30
-      properties: *ref_31
-    quoteResponse:
+      properties: *ref_37
+      required: *ref_38
       type: object
+    quoteResponse:
       description: A response to a request for a quote.
-      required: *ref_14
-      properties: *ref_15
-    timestamp:
+      properties: *ref_22
+      required: *ref_23
+      type: object
+    scenario:
+      enum: *ref_39
       type: string
+    timestamp:
+      description: An ISO-8601 formatted timestamp.
       pattern: >-
         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-      description: An ISO-8601 formatted timestamp.
-    transactionId:
-      pattern: >-
-        ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
       type: string
+    transactionId:
       description: >-
         ID of the transaction, the ID is decided by the Payer FSP during the
         creation of the quote.
-    transactionType:
-      type: string
-      enum: *ref_17
-    scenario:
-      type: string
-      enum: *ref_32
-    amountCurrency:
-      type: object
-      description: Object containing Amount and Currency of the transfer.
-      required: *ref_33
-      properties: *ref_34
-    transactionTypeObject:
-      type: object
-      description: Object containing transfer object.
-      required: *ref_35
-      properties: *ref_36
-    ilpPacketData:
-      type: object
-      description: Object containing transfer object.
-      required: *ref_37
-      properties: *ref_38
-    transferId:
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
       type: string
-      description: A Mojaloop API transfer identifier (UUID).
-    transferParty:
-      type: object
-      required: *ref_8
-      properties: *ref_9
-    transferState:
+    transactionType:
+      enum: *ref_24
       type: string
-      enum: *ref_20
+    transactionTypeObject:
+      description: Object containing transfer object.
+      properties: *ref_40
+      required: *ref_41
+      type: object
+    transferDetailsResponse:
+      properties: *ref_42
+      required: *ref_43
+      type: object
+    transferId:
+      description: A Mojaloop API transfer identifier (UUID).
+      pattern: >-
+        ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+      type: string
+    transferParty:
+      properties: *ref_13
+      required: *ref_14
+      type: object
+    transferRequest:
+      properties: *ref_44
+      required: *ref_45
+      type: object
+    transferResponse:
+      properties: *ref_46
+      required: *ref_47
+      type: object
+    transferState:
       description: >
         Below are the allowed values for the enumeration - RECEIVED DFSP has
         received the transfer. - RESERVED DFSP has reserved the transfer. -
         COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP
         has aborted the transfer due a rejection or failure to perform the
         transfer.
-    transferRequest:
-      type: object
-      required: *ref_39
-      properties: *ref_40
-    transferResponse:
-      type: object
-      required: *ref_41
-      properties: *ref_42
-    transferDetailsResponse:
-      type: object
-      required: *ref_43
-      properties: *ref_44
+      enum: *ref_25
+      type: string
     transferStatus:
+      enum: *ref_48
       type: string
-      enum: *ref_45
-    fulfilNotification:
-      title: TransfersIDPatchResponse
-      type: object
-      description: PUT /transfers/{transferId} object
-      properties: *ref_46
-    extensionListComplex:
-      type: object
-      description: Data model for the complex type ExtensionList
-      properties:
-        extension:
-          type: array
-          items:
-            type: object
-            properties: *ref_28
-          minItems: 1
-          maxItems: 16
-          description: Number of Extension elements
-      required:
-        - extension
-    generalError:
-      type: object
-      description: >-
-        This object may represent a number of different error object types and
-        so its properties may vary significantly.
-    IlpFulfilment:
-      title: IlpFulfilment
-      type: string
-      pattern: ^[A-Za-z0-9-_]{43}$
-      maxLength: 48
-      description: Fulfilment that must be attached to the transfer by the Payee.
-      example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
-    ErrorCode:
-      title: ErrorCode
-      type: string
-      pattern: ^[1-9]\d{3}$
-      description: >-
-        The API data type ErrorCode is a JSON String of four characters,
-        consisting of digits only. Negative numbers are not allowed. A leading
-        zero is not allowed. Each error code in the API is a four-digit number,
-        for example, 1234, where the first number (1 in the example) represents
-        the high-level error category, the second number (2 in the example)
-        represents the low-level error category, and the last two numbers (34 in
-        the example) represent the specific error.
-      example: '5100'
-    ErrorDescription:
-      title: ErrorDescription
-      type: string
-      minLength: 1
-      maxLength: 128
-      description: Error description string.
-    ExtensionKey:
-      title: ExtensionKey
-      type: string
-      minLength: 1
-      maxLength: 32
-      description: Extension key.
-    ExtensionValue:
-      title: ExtensionValue
-      type: string
-      minLength: 1
-      maxLength: 128
-      description: Extension value.
-    Extension:
-      title: Extension
-      type: object
-      description: Data model for the complex type Extension.
-      properties: *ref_47
-      required: *ref_48
-    ExtensionList:
-      title: ExtensionList
-      type: object
-      description: >-
-        Data model for the complex type ExtensionList. An optional list of
-        extensions, specific to deployment.
-      properties: *ref_21
-      required: *ref_22
-    ErrorInformation:
-      title: ErrorInformation
-      type: object
-      description: Data model for the complex type ErrorInformation.
-      properties: *ref_49
-      required: *ref_50
-    mojaloopError:
-      type: object
-      properties: *ref_51
-    transferError:
-      type: object
-      description: >-
-        This object represents a Mojaloop API error received at any time during
-        the transfer process
-      properties: *ref_26
     CorrelationId:
       title: CorrelationId
       type: string
@@ -2522,11 +2521,11 @@ components:
       example: b51ec534-ee48-4575-b6a9-ead2955b8069
     bulkTransactionStatus:
       type: string
-      enum: *ref_52
+      enum: *ref_49
     autoAcceptPartyOption:
       type: object
-      required: *ref_53
-      properties: *ref_54
+      required: *ref_50
+      properties: *ref_51
     Currency:
       title: Currency
       description: >-
@@ -2537,7 +2536,7 @@ components:
       type: string
       minLength: 3
       maxLength: 3
-      enum: *ref_23
+      enum: *ref_0
     Amount:
       title: Amount
       type: string
@@ -2552,12 +2551,12 @@ components:
       example: '123.45'
     bulkPerTransferFeeLimit:
       type: object
-      required: *ref_55
-      properties: *ref_56
+      required: *ref_52
+      properties: *ref_53
     autoAcceptQuote:
       type: object
-      required: *ref_57
-      properties: *ref_58
+      required: *ref_54
+      properties: *ref_55
     DateTime:
       title: DateTime
       type: string
@@ -2575,12 +2574,12 @@ components:
       example: '2016-05-24T08:38:08.699-04:00'
     bulkTransactionOptions:
       type: object
-      required: *ref_59
-      properties: *ref_60
+      required: *ref_56
+      properties: *ref_57
     PartyIdType:
       title: PartyIdType
       type: string
-      enum: *ref_61
+      enum: *ref_58
       description: >-
         Below are the allowed values for the enumeration.
 
@@ -2648,14 +2647,40 @@ components:
       minLength: 1
       maxLength: 32
       description: FSP identifier.
+    ExtensionKey:
+      title: ExtensionKey
+      type: string
+      minLength: 1
+      maxLength: 32
+      description: Extension key.
+    ExtensionValue:
+      title: ExtensionValue
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Extension value.
+    Extension:
+      title: Extension
+      type: object
+      description: Data model for the complex type Extension.
+      properties: *ref_59
+      required: *ref_60
+    ExtensionList:
+      title: ExtensionList
+      type: object
+      description: >-
+        Data model for the complex type ExtensionList. An optional list of
+        extensions, specific to deployment.
+      properties: *ref_3
+      required: *ref_4
     PartyIdInfo:
       title: PartyIdInfo
       type: object
       description: >-
         Data model for the complex type PartyIdInfo. An ExtensionList element
         has been added to this reqeust in version v1.1
-      properties: *ref_62
-      required: *ref_63
+      properties: *ref_61
+      required: *ref_62
     MerchantClassificationCode:
       title: MerchantClassificationCode
       type: string
@@ -2704,7 +2729,7 @@ components:
       title: PartyComplexName
       type: object
       description: Data model for the complex type PartyComplexName.
-      properties: *ref_64
+      properties: *ref_63
     DateOfBirth:
       title: DateofBirth (type Date)
       type: string
@@ -2716,17 +2741,17 @@ components:
       title: PartyPersonalInfo
       type: object
       description: Data model for the complex type PartyPersonalInfo.
-      properties: *ref_65
+      properties: *ref_64
     Party:
       title: Party
       type: object
       description: Data model for the complex type Party.
-      properties: *ref_66
-      required: *ref_67
+      properties: *ref_65
+      required: *ref_66
     AmountType:
       title: AmountType
       type: string
-      enum: *ref_68
+      enum: *ref_67
       description: >-
         Below are the allowed values for the enumeration AmountType.
 
@@ -2747,8 +2772,8 @@ components:
       title: Money
       type: object
       description: Data model for the complex type Money.
-      properties: *ref_24
-      required: *ref_25
+      properties: *ref_1
+      required: *ref_2
     Latitude:
       title: Latitude
       type: string
@@ -2773,8 +2798,8 @@ components:
       description: >-
         Data model for the complex type GeoCode. Indicates the geographic
         location from where the transaction was initiated.
-      properties: *ref_69
-      required: *ref_70
+      properties: *ref_68
+      required: *ref_69
     IlpPacket:
       title: IlpPacket
       type: string
@@ -2794,12 +2819,19 @@ components:
       title: QuotesIDPutResponse
       type: object
       description: The object sent in the PUT /quotes/{ID} callback.
-      properties: *ref_71
-      required: *ref_72
+      properties: *ref_70
+      required: *ref_71
+    IlpFulfilment:
+      title: IlpFulfilment
+      type: string
+      pattern: ^[A-Za-z0-9-_]{43}$
+      maxLength: 48
+      description: Fulfilment that must be attached to the transfer by the Payee.
+      example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
     TransferState:
       title: TransferState
       type: string
-      enum: *ref_73
+      enum: *ref_72
       description: >-
         Below are the allowed values for the enumeration.
 
@@ -2816,74 +2848,48 @@ components:
       title: TransfersIDPutResponse
       type: object
       description: The object sent in the PUT /transfers/{ID} callback.
-      properties: *ref_74
-      required: *ref_75
-    bulkTransactionIndividualTransferResult:
+      properties: *ref_73
+      required: *ref_74
+    ErrorCode:
+      title: ErrorCode
+      type: string
+      pattern: ^[1-9]\d{3}$
+      description: >-
+        The API data type ErrorCode is a JSON String of four characters,
+        consisting of digits only. Negative numbers are not allowed. A leading
+        zero is not allowed. Each error code in the API is a four-digit number,
+        for example, 1234, where the first number (1 in the example) represents
+        the high-level error category, the second number (2 in the example)
+        represents the low-level error category, and the last two numbers (34 in
+        the example) represent the specific error.
+      example: '5100'
+    ErrorDescription:
+      title: ErrorDescription
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Error description string.
+    ErrorInformation:
+      title: ErrorInformation
       type: object
+      description: Data model for the complex type ErrorInformation.
+      properties: *ref_75
       required: *ref_76
+    mojaloopError:
+      type: object
       properties: *ref_77
-    bulkTransactionResponse:
-      title: BulkTransactionResponse
+    transferError:
+      type: object
+      description: >-
+        This object represents a Mojaloop API error received at any time during
+        the transfer process
+      properties: *ref_26
+    bulkTransactionIndividualTransferResult:
       type: object
       required: *ref_78
       properties: *ref_79
-  responses:
-    '400':
-      description: Malformed or missing required headers or parameters
-      content: *ref_5
-    '404':
-      description: >-
-        The party specified by the provided identifier type and value is not
-        known to the server
-    '500':
-      description: An error occurred processing the request
-      content: *ref_6
-  parameters:
-    transferId:
-      name: transferId
-      in: path
-      required: true
-      schema: *ref_80
-    idType:
-      name: idType
-      in: path
-      required: true
-      schema: *ref_2
-      description: >
-        Below are the allowed values for the enumeration.
-
-
-        - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory
-        Number, that is, the phone number) is used as reference to a
-        participant. The MSISDN identifier should be in international format
-        according to the [ITU-T E.164
-        standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the
-        MSISDN may be prefixed by a single plus sign, indicating the
-        international prefix.
-
-
-        - ACCOUNT_ID - A bank account number or FSP account ID should be used as
-        reference to a participant. The ACCOUNT_ID identifier can be in any
-        format, as formats can greatly differ depending on country and FSP.
-    idValue:
-      name: idValue
-      in: path
-      required: true
-      schema: *ref_3
-      description: Identifier of the party.
-    idSubValue:
-      name: idSubValue
-      in: path
-      required: true
-      schema: *ref_7
-      description: >-
-        Either a sub-identifier of a `{idValue}`, or a sub-type of the
-        `{idType}`, normally a `{personalIdType}`
-    bulkTransactionId:
-      name: bulkTransactionId
-      in: path
-      required: true
-      schema: *ref_81
-      description: >-
-        Identifier of the bulk transaction to continue as returned in the
-        response to a `POST /bulkTransaction` request.
+    bulkTransactionResponse:
+      title: BulkTransactionResponse
+      type: object
+      required: *ref_80
+      properties: *ref_81

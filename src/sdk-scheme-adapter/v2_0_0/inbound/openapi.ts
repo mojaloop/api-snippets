@@ -4,3195 +4,6 @@
  */
 
 export interface paths {
-  "/participants/{idType}/{idValue}": {
-    /** The HTTP request `GET /participants/{idType}/{idValue}` is used to find out in which FSP the requested party, defined by `{idType}` and `{idValue}`, is located. */
-    get: {
-      parameters: {
-        path: {
-          /**
-           * Below are the allowed values for the enumeration.
-           *
-           * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-           *
-           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-           */
-          idType: "MSISDN" | "ACCOUNT_ID";
-          /** Identifier of the party. */
-          idValue: string;
-        };
-      };
-      responses: {
-        /** Response containing details of the requested party */
-        200: {
-          content: {
-            "application/json": {
-              /** @description FSP identifier. */
-              fspId?: string;
-            };
-          };
-        };
-        /** Malformed or missing required headers or parameters */
-        400: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-        /** The party specified by the provided identifier type and value is not known to the server */
-        404: unknown;
-        /** An error occurred processing the request */
-        500: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/participants/{idType}/{idValue}/{idSubValue}": {
-    /** The HTTP request `GET /participants/{idType}/{idValue}/{idSubValue}` is used to find out in which FSP the requested party, defined by `{idType}`, `{idValue}` and `{idSubValue}` is located. */
-    get: {
-      parameters: {
-        path: {
-          /**
-           * Below are the allowed values for the enumeration.
-           *
-           * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-           *
-           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-           */
-          idType: "MSISDN" | "ACCOUNT_ID";
-          /** Identifier of the party. */
-          idValue: string;
-          /** Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-          idSubValue: string;
-        };
-      };
-      responses: {
-        /** Response containing details of the requested party */
-        200: {
-          content: {
-            "application/json": {
-              /** @description FSP identifier. */
-              fspId?: string;
-            };
-          };
-        };
-        /** Malformed or missing required headers or parameters */
-        400: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-        /** The party specified by the provided identifier type and value is not known to the server */
-        404: unknown;
-        /** An error occurred processing the request */
-        500: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/parties/{idType}/{idValue}": {
-    /** The HTTP request `GET /parties/{idType}/{idValue}` is used to look up information regarding the requested transfer party, identified by `{idType}` and `{idValue}`. */
-    get: {
-      parameters: {
-        path: {
-          /**
-           * Below are the allowed values for the enumeration.
-           *
-           * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-           *
-           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-           */
-          idType: "MSISDN" | "ACCOUNT_ID";
-          /** Identifier of the party. */
-          idValue: string;
-        };
-      };
-      responses: {
-        /** Response containing details of the requested party */
-        200: {
-          content: {
-            "application/json": {
-              /** @enum {string} */
-              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-              /**
-               * @description Below are the allowed values for the enumeration.
-               *
-               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-               *
-               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-               *
-               * @enum {string}
-               */
-              idType: "MSISDN" | "ACCOUNT_ID";
-              /** @description The identifier string used to identify the sender. */
-              idValue: string;
-              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-              idSubValue?: string;
-              /** @description Display name of the sender, if known. */
-              displayName?: string;
-              /** @description Party first name. */
-              firstName?: string;
-              /** @description Party middle name. */
-              middleName?: string;
-              /** @description Party last name. */
-              lastName?: string;
-              /** @description Date of birth in the form YYYY-MM-DD. */
-              dateOfBirth?: string;
-              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-              merchantClassificationCode?: string;
-              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-              fspId?: string;
-              extensionList?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-          };
-        };
-        /** Malformed or missing required headers or parameters */
-        400: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-        /** The party specified by the provided identifier type and value is not known to the server */
-        404: unknown;
-        /** An error occurred processing the request */
-        500: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/parties/{idType}/{idValue}/{idSubValue}": {
-    /** The HTTP request `GET /parties/{idType}/{idValue}/{idSubValue}` is used to look up information regarding the requested transfer party, identified by `{idType}`, `{idValue}` and `{idSubValue}`. */
-    get: {
-      parameters: {
-        path: {
-          /**
-           * Below are the allowed values for the enumeration.
-           *
-           * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-           *
-           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-           */
-          idType: "MSISDN" | "ACCOUNT_ID";
-          /** Identifier of the party. */
-          idValue: string;
-          /** Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-          idSubValue: string;
-        };
-      };
-      responses: {
-        /** Response containing details of the requested party */
-        200: {
-          content: {
-            "application/json": {
-              /** @enum {string} */
-              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-              /**
-               * @description Below are the allowed values for the enumeration.
-               *
-               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-               *
-               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-               *
-               * @enum {string}
-               */
-              idType: "MSISDN" | "ACCOUNT_ID";
-              /** @description The identifier string used to identify the sender. */
-              idValue: string;
-              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-              idSubValue?: string;
-              /** @description Display name of the sender, if known. */
-              displayName?: string;
-              /** @description Party first name. */
-              firstName?: string;
-              /** @description Party middle name. */
-              middleName?: string;
-              /** @description Party last name. */
-              lastName?: string;
-              /** @description Date of birth in the form YYYY-MM-DD. */
-              dateOfBirth?: string;
-              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-              merchantClassificationCode?: string;
-              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-              fspId?: string;
-              extensionList?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-          };
-        };
-        /** Malformed or missing required headers or parameters */
-        400: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-        /** The party specified by the provided identifier type and value is not known to the server */
-        404: unknown;
-        /** An error occurred processing the request */
-        500: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/quoterequests": {
-    /** The HTTP request `POST /quoterequests` is used to request the creation of a quote for the provided financial transaction. */
-    post: {
-      responses: {
-        /** A response to the transfer quotation request */
-        200: {
-          content: {
-            "application/json": {
-              /** @description A Mojaloop API quote identifier (UUID). */
-              quoteId: string;
-              /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
-              transactionId: string;
-              /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
-              transferAmount: string;
-              /**
-               * @description The currency of the `transferAmount`.
-               * @enum {string}
-               */
-              transferAmountCurrency:
-                | "AED"
-                | "AFN"
-                | "ALL"
-                | "AMD"
-                | "ANG"
-                | "AOA"
-                | "ARS"
-                | "AUD"
-                | "AWG"
-                | "AZN"
-                | "BAM"
-                | "BBD"
-                | "BDT"
-                | "BGN"
-                | "BHD"
-                | "BIF"
-                | "BMD"
-                | "BND"
-                | "BOB"
-                | "BRL"
-                | "BSD"
-                | "BTN"
-                | "BWP"
-                | "BYN"
-                | "BZD"
-                | "CAD"
-                | "CDF"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "CRC"
-                | "CUC"
-                | "CUP"
-                | "CVE"
-                | "CZK"
-                | "DJF"
-                | "DKK"
-                | "DOP"
-                | "DZD"
-                | "EGP"
-                | "ERN"
-                | "ETB"
-                | "EUR"
-                | "FJD"
-                | "FKP"
-                | "GBP"
-                | "GEL"
-                | "GGP"
-                | "GHS"
-                | "GIP"
-                | "GMD"
-                | "GNF"
-                | "GTQ"
-                | "GYD"
-                | "HKD"
-                | "HNL"
-                | "HRK"
-                | "HTG"
-                | "HUF"
-                | "IDR"
-                | "ILS"
-                | "IMP"
-                | "INR"
-                | "IQD"
-                | "IRR"
-                | "ISK"
-                | "JEP"
-                | "JMD"
-                | "JOD"
-                | "JPY"
-                | "KES"
-                | "KGS"
-                | "KHR"
-                | "KMF"
-                | "KPW"
-                | "KRW"
-                | "KWD"
-                | "KYD"
-                | "KZT"
-                | "LAK"
-                | "LBP"
-                | "LKR"
-                | "LRD"
-                | "LSL"
-                | "LYD"
-                | "MAD"
-                | "MDL"
-                | "MGA"
-                | "MKD"
-                | "MMK"
-                | "MNT"
-                | "MOP"
-                | "MRO"
-                | "MUR"
-                | "MVR"
-                | "MWK"
-                | "MXN"
-                | "MYR"
-                | "MZN"
-                | "NAD"
-                | "NGN"
-                | "NIO"
-                | "NOK"
-                | "NPR"
-                | "NZD"
-                | "OMR"
-                | "PAB"
-                | "PEN"
-                | "PGK"
-                | "PHP"
-                | "PKR"
-                | "PLN"
-                | "PYG"
-                | "QAR"
-                | "RON"
-                | "RSD"
-                | "RUB"
-                | "RWF"
-                | "SAR"
-                | "SBD"
-                | "SCR"
-                | "SDG"
-                | "SEK"
-                | "SGD"
-                | "SHP"
-                | "SLL"
-                | "SOS"
-                | "SPL"
-                | "SRD"
-                | "STD"
-                | "SVC"
-                | "SYP"
-                | "SZL"
-                | "THB"
-                | "TJS"
-                | "TMT"
-                | "TND"
-                | "TOP"
-                | "TRY"
-                | "TTD"
-                | "TVD"
-                | "TWD"
-                | "TZS"
-                | "UAH"
-                | "UGX"
-                | "USD"
-                | "UYU"
-                | "UZS"
-                | "VEF"
-                | "VND"
-                | "VUV"
-                | "WST"
-                | "XAF"
-                | "XCD"
-                | "XDR"
-                | "XOF"
-                | "XPF"
-                | "XTS"
-                | "XXX"
-                | "YER"
-                | "ZAR"
-                | "ZMW"
-                | "ZWD";
-              /** @description The amount that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. */
-              payeeReceiveAmount?: string;
-              /**
-               * @description The currency of the `payeeReceiveAmount`.
-               * @enum {string}
-               */
-              payeeReceiveAmountCurrency?:
-                | "AED"
-                | "AFN"
-                | "ALL"
-                | "AMD"
-                | "ANG"
-                | "AOA"
-                | "ARS"
-                | "AUD"
-                | "AWG"
-                | "AZN"
-                | "BAM"
-                | "BBD"
-                | "BDT"
-                | "BGN"
-                | "BHD"
-                | "BIF"
-                | "BMD"
-                | "BND"
-                | "BOB"
-                | "BRL"
-                | "BSD"
-                | "BTN"
-                | "BWP"
-                | "BYN"
-                | "BZD"
-                | "CAD"
-                | "CDF"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "CRC"
-                | "CUC"
-                | "CUP"
-                | "CVE"
-                | "CZK"
-                | "DJF"
-                | "DKK"
-                | "DOP"
-                | "DZD"
-                | "EGP"
-                | "ERN"
-                | "ETB"
-                | "EUR"
-                | "FJD"
-                | "FKP"
-                | "GBP"
-                | "GEL"
-                | "GGP"
-                | "GHS"
-                | "GIP"
-                | "GMD"
-                | "GNF"
-                | "GTQ"
-                | "GYD"
-                | "HKD"
-                | "HNL"
-                | "HRK"
-                | "HTG"
-                | "HUF"
-                | "IDR"
-                | "ILS"
-                | "IMP"
-                | "INR"
-                | "IQD"
-                | "IRR"
-                | "ISK"
-                | "JEP"
-                | "JMD"
-                | "JOD"
-                | "JPY"
-                | "KES"
-                | "KGS"
-                | "KHR"
-                | "KMF"
-                | "KPW"
-                | "KRW"
-                | "KWD"
-                | "KYD"
-                | "KZT"
-                | "LAK"
-                | "LBP"
-                | "LKR"
-                | "LRD"
-                | "LSL"
-                | "LYD"
-                | "MAD"
-                | "MDL"
-                | "MGA"
-                | "MKD"
-                | "MMK"
-                | "MNT"
-                | "MOP"
-                | "MRO"
-                | "MUR"
-                | "MVR"
-                | "MWK"
-                | "MXN"
-                | "MYR"
-                | "MZN"
-                | "NAD"
-                | "NGN"
-                | "NIO"
-                | "NOK"
-                | "NPR"
-                | "NZD"
-                | "OMR"
-                | "PAB"
-                | "PEN"
-                | "PGK"
-                | "PHP"
-                | "PKR"
-                | "PLN"
-                | "PYG"
-                | "QAR"
-                | "RON"
-                | "RSD"
-                | "RUB"
-                | "RWF"
-                | "SAR"
-                | "SBD"
-                | "SCR"
-                | "SDG"
-                | "SEK"
-                | "SGD"
-                | "SHP"
-                | "SLL"
-                | "SOS"
-                | "SPL"
-                | "SRD"
-                | "STD"
-                | "SVC"
-                | "SYP"
-                | "SZL"
-                | "THB"
-                | "TJS"
-                | "TMT"
-                | "TND"
-                | "TOP"
-                | "TRY"
-                | "TTD"
-                | "TVD"
-                | "TWD"
-                | "TZS"
-                | "UAH"
-                | "UGX"
-                | "USD"
-                | "UYU"
-                | "UZS"
-                | "VEF"
-                | "VND"
-                | "VUV"
-                | "WST"
-                | "XAF"
-                | "XCD"
-                | "XDR"
-                | "XOF"
-                | "XPF"
-                | "XTS"
-                | "XXX"
-                | "YER"
-                | "ZAR"
-                | "ZMW"
-                | "ZWD";
-              /** @description Payee FSP’s part of the transaction fee. */
-              payeeFspFeeAmount?: string;
-              /**
-               * @description The currency of the `payeeFspFeeAmount`.
-               * @enum {string}
-               */
-              payeeFspFeeAmountCurrency?:
-                | "AED"
-                | "AFN"
-                | "ALL"
-                | "AMD"
-                | "ANG"
-                | "AOA"
-                | "ARS"
-                | "AUD"
-                | "AWG"
-                | "AZN"
-                | "BAM"
-                | "BBD"
-                | "BDT"
-                | "BGN"
-                | "BHD"
-                | "BIF"
-                | "BMD"
-                | "BND"
-                | "BOB"
-                | "BRL"
-                | "BSD"
-                | "BTN"
-                | "BWP"
-                | "BYN"
-                | "BZD"
-                | "CAD"
-                | "CDF"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "CRC"
-                | "CUC"
-                | "CUP"
-                | "CVE"
-                | "CZK"
-                | "DJF"
-                | "DKK"
-                | "DOP"
-                | "DZD"
-                | "EGP"
-                | "ERN"
-                | "ETB"
-                | "EUR"
-                | "FJD"
-                | "FKP"
-                | "GBP"
-                | "GEL"
-                | "GGP"
-                | "GHS"
-                | "GIP"
-                | "GMD"
-                | "GNF"
-                | "GTQ"
-                | "GYD"
-                | "HKD"
-                | "HNL"
-                | "HRK"
-                | "HTG"
-                | "HUF"
-                | "IDR"
-                | "ILS"
-                | "IMP"
-                | "INR"
-                | "IQD"
-                | "IRR"
-                | "ISK"
-                | "JEP"
-                | "JMD"
-                | "JOD"
-                | "JPY"
-                | "KES"
-                | "KGS"
-                | "KHR"
-                | "KMF"
-                | "KPW"
-                | "KRW"
-                | "KWD"
-                | "KYD"
-                | "KZT"
-                | "LAK"
-                | "LBP"
-                | "LKR"
-                | "LRD"
-                | "LSL"
-                | "LYD"
-                | "MAD"
-                | "MDL"
-                | "MGA"
-                | "MKD"
-                | "MMK"
-                | "MNT"
-                | "MOP"
-                | "MRO"
-                | "MUR"
-                | "MVR"
-                | "MWK"
-                | "MXN"
-                | "MYR"
-                | "MZN"
-                | "NAD"
-                | "NGN"
-                | "NIO"
-                | "NOK"
-                | "NPR"
-                | "NZD"
-                | "OMR"
-                | "PAB"
-                | "PEN"
-                | "PGK"
-                | "PHP"
-                | "PKR"
-                | "PLN"
-                | "PYG"
-                | "QAR"
-                | "RON"
-                | "RSD"
-                | "RUB"
-                | "RWF"
-                | "SAR"
-                | "SBD"
-                | "SCR"
-                | "SDG"
-                | "SEK"
-                | "SGD"
-                | "SHP"
-                | "SLL"
-                | "SOS"
-                | "SPL"
-                | "SRD"
-                | "STD"
-                | "SVC"
-                | "SYP"
-                | "SZL"
-                | "THB"
-                | "TJS"
-                | "TMT"
-                | "TND"
-                | "TOP"
-                | "TRY"
-                | "TTD"
-                | "TVD"
-                | "TWD"
-                | "TZS"
-                | "UAH"
-                | "UGX"
-                | "USD"
-                | "UYU"
-                | "UZS"
-                | "VEF"
-                | "VND"
-                | "VUV"
-                | "WST"
-                | "XAF"
-                | "XCD"
-                | "XDR"
-                | "XOF"
-                | "XPF"
-                | "XTS"
-                | "XXX"
-                | "YER"
-                | "ZAR"
-                | "ZMW"
-                | "ZWD";
-              /** @description Transaction commission from the Payee FSP. */
-              payeeFspCommissionAmount?: string;
-              /**
-               * @description Currency of the `payeeFspCommissionAmount`.
-               * @enum {string}
-               */
-              payeeFspCommissionAmountCurrency?:
-                | "AED"
-                | "AFN"
-                | "ALL"
-                | "AMD"
-                | "ANG"
-                | "AOA"
-                | "ARS"
-                | "AUD"
-                | "AWG"
-                | "AZN"
-                | "BAM"
-                | "BBD"
-                | "BDT"
-                | "BGN"
-                | "BHD"
-                | "BIF"
-                | "BMD"
-                | "BND"
-                | "BOB"
-                | "BRL"
-                | "BSD"
-                | "BTN"
-                | "BWP"
-                | "BYN"
-                | "BZD"
-                | "CAD"
-                | "CDF"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "CRC"
-                | "CUC"
-                | "CUP"
-                | "CVE"
-                | "CZK"
-                | "DJF"
-                | "DKK"
-                | "DOP"
-                | "DZD"
-                | "EGP"
-                | "ERN"
-                | "ETB"
-                | "EUR"
-                | "FJD"
-                | "FKP"
-                | "GBP"
-                | "GEL"
-                | "GGP"
-                | "GHS"
-                | "GIP"
-                | "GMD"
-                | "GNF"
-                | "GTQ"
-                | "GYD"
-                | "HKD"
-                | "HNL"
-                | "HRK"
-                | "HTG"
-                | "HUF"
-                | "IDR"
-                | "ILS"
-                | "IMP"
-                | "INR"
-                | "IQD"
-                | "IRR"
-                | "ISK"
-                | "JEP"
-                | "JMD"
-                | "JOD"
-                | "JPY"
-                | "KES"
-                | "KGS"
-                | "KHR"
-                | "KMF"
-                | "KPW"
-                | "KRW"
-                | "KWD"
-                | "KYD"
-                | "KZT"
-                | "LAK"
-                | "LBP"
-                | "LKR"
-                | "LRD"
-                | "LSL"
-                | "LYD"
-                | "MAD"
-                | "MDL"
-                | "MGA"
-                | "MKD"
-                | "MMK"
-                | "MNT"
-                | "MOP"
-                | "MRO"
-                | "MUR"
-                | "MVR"
-                | "MWK"
-                | "MXN"
-                | "MYR"
-                | "MZN"
-                | "NAD"
-                | "NGN"
-                | "NIO"
-                | "NOK"
-                | "NPR"
-                | "NZD"
-                | "OMR"
-                | "PAB"
-                | "PEN"
-                | "PGK"
-                | "PHP"
-                | "PKR"
-                | "PLN"
-                | "PYG"
-                | "QAR"
-                | "RON"
-                | "RSD"
-                | "RUB"
-                | "RWF"
-                | "SAR"
-                | "SBD"
-                | "SCR"
-                | "SDG"
-                | "SEK"
-                | "SGD"
-                | "SHP"
-                | "SLL"
-                | "SOS"
-                | "SPL"
-                | "SRD"
-                | "STD"
-                | "SVC"
-                | "SYP"
-                | "SZL"
-                | "THB"
-                | "TJS"
-                | "TMT"
-                | "TND"
-                | "TOP"
-                | "TRY"
-                | "TTD"
-                | "TVD"
-                | "TWD"
-                | "TZS"
-                | "UAH"
-                | "UGX"
-                | "USD"
-                | "UYU"
-                | "UZS"
-                | "VEF"
-                | "VND"
-                | "VUV"
-                | "WST"
-                | "XAF"
-                | "XCD"
-                | "XDR"
-                | "XOF"
-                | "XPF"
-                | "XTS"
-                | "XXX"
-                | "YER"
-                | "ZAR"
-                | "ZMW"
-                | "ZWD";
-              /** @description An ISO-8601 formatted timestamp. */
-              expiration?: string;
-              /** @description Indicates the geographic location from where the transaction was initiated. */
-              geoCode?: {
-                /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-                latitude: string;
-                /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-                longitude: string;
-              };
-              extensionList?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-          };
-        };
-        /** Malformed or missing required headers or parameters */
-        400: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-        /** An error occurred processing the request */
-        500: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-      };
-      /** Request for a transfer quotation */
-      requestBody: {
-        content: {
-          "application/json": {
-            /** @description A Mojaloop API quote identifier (UUID). */
-            quoteId: string;
-            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
-            transactionId: string;
-            /** @description Information about the Payee in the proposed financial transaction. */
-            to: {
-              /** @enum {string} */
-              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-              /**
-               * @description Below are the allowed values for the enumeration.
-               *
-               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-               *
-               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-               *
-               * @enum {string}
-               */
-              idType: "MSISDN" | "ACCOUNT_ID";
-              /** @description The identifier string used to identify the sender. */
-              idValue: string;
-              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-              idSubValue?: string;
-              /** @description Display name of the sender, if known. */
-              displayName?: string;
-              /** @description Party first name. */
-              firstName?: string;
-              /** @description Party middle name. */
-              middleName?: string;
-              /** @description Party last name. */
-              lastName?: string;
-              /** @description Date of birth in the form YYYY-MM-DD. */
-              dateOfBirth?: string;
-              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-              merchantClassificationCode?: string;
-              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-              fspId?: string;
-              extensionList?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-            /** @description Information about the Payer in the proposed financial transaction. */
-            from: {
-              /** @enum {string} */
-              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-              /**
-               * @description Below are the allowed values for the enumeration.
-               *
-               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-               *
-               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-               *
-               * @enum {string}
-               */
-              idType: "MSISDN" | "ACCOUNT_ID";
-              /** @description The identifier string used to identify the sender. */
-              idValue: string;
-              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-              idSubValue?: string;
-              /** @description Display name of the sender, if known. */
-              displayName?: string;
-              /** @description Party first name. */
-              firstName?: string;
-              /** @description Party middle name. */
-              middleName?: string;
-              /** @description Party last name. */
-              lastName?: string;
-              /** @description Date of birth in the form YYYY-MM-DD. */
-              dateOfBirth?: string;
-              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-              merchantClassificationCode?: string;
-              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-              fspId?: string;
-              extensionList?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-            /**
-             * @description SEND for send amount, RECEIVE for receive amount.
-             * @enum {string}
-             */
-            amountType: "SEND" | "RECEIVE";
-            /** @description Depending on `amountType`. If SEND - The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction. If RECEIVE - The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities. */
-            amount: string;
-            /** @enum {string} */
-            currency:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "XTS"
-              | "XXX"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
-            /** @description The fees in the transaction. The fees element should be empty if fees should be non-disclosed. The fees element should be non-empty if fees should be disclosed. */
-            feesAmount?: string;
-            /** @enum {string} */
-            feesCurrency?:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "XTS"
-              | "XXX"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
-            /**
-             * @description Type of transaction for which the quote is requested.
-             * @enum {string}
-             */
-            transactionType: "TRANSFER";
-            /**
-             * @description Specifies if the initiator of the transfer is the Payer or Payee.
-             * @enum {string}
-             */
-            initiator: "PAYER" | "PAYEE";
-            /**
-             * @description Specifies the type of the transaction initiator.
-             * @enum {string}
-             */
-            initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-            /** @description Indicates the geographic location from where the transaction was initiated. */
-            geoCode?: {
-              /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-              latitude: string;
-              /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-              longitude: string;
-            };
-            /** @description An optional note associated with the requested transfer. */
-            note?: string;
-            /** @description An ISO-8601 formatted timestamp. */
-            expiration?: string;
-            extensionList?: {
-              key?: string;
-              value?: string;
-            }[];
-          };
-        };
-      };
-    };
-  };
-  "/transfers": {
-    /** The HTTP request `POST /transfers` is used to request the creation of a transfer for the transfer party. */
-    post: {
-      responses: {
-        /** The transfer was accepted */
-        200: {
-          content: {
-            "application/json": {
-              /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-              homeTransactionId: string;
-              /**
-               * IlpFulfilment
-               * @description Fulfilment that must be attached to the transfer by the Payee.
-               * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
-               */
-              fulfilment?: string;
-              /**
-               * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-               *
-               * @example ABORTED
-               * @enum {string}
-               */
-              transferState?: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-              /**
-               * @description An ISO-8601 formatted timestamp.
-               * @example 2020-05-19T08:38:08.699-04:00
-               */
-              completedTimestamp?: string;
-            };
-          };
-        };
-        /** Malformed or missing required headers or parameters */
-        400: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-        /** An error occurred processing the request */
-        500: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-      };
-      /** An incoming transfer request */
-      requestBody: {
-        content: {
-          "application/json": {
-            /** @description A Mojaloop API transfer identifier (UUID). */
-            transferId: string;
-            /** @description A response to a request for a quote. */
-            quote: {
-              /** @description A Mojaloop API quote identifier (UUID). */
-              quoteId: string;
-              /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
-              transactionId: string;
-              /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
-              transferAmount: string;
-              /**
-               * @description The currency of the `transferAmount`.
-               * @enum {string}
-               */
-              transferAmountCurrency:
-                | "AED"
-                | "AFN"
-                | "ALL"
-                | "AMD"
-                | "ANG"
-                | "AOA"
-                | "ARS"
-                | "AUD"
-                | "AWG"
-                | "AZN"
-                | "BAM"
-                | "BBD"
-                | "BDT"
-                | "BGN"
-                | "BHD"
-                | "BIF"
-                | "BMD"
-                | "BND"
-                | "BOB"
-                | "BRL"
-                | "BSD"
-                | "BTN"
-                | "BWP"
-                | "BYN"
-                | "BZD"
-                | "CAD"
-                | "CDF"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "CRC"
-                | "CUC"
-                | "CUP"
-                | "CVE"
-                | "CZK"
-                | "DJF"
-                | "DKK"
-                | "DOP"
-                | "DZD"
-                | "EGP"
-                | "ERN"
-                | "ETB"
-                | "EUR"
-                | "FJD"
-                | "FKP"
-                | "GBP"
-                | "GEL"
-                | "GGP"
-                | "GHS"
-                | "GIP"
-                | "GMD"
-                | "GNF"
-                | "GTQ"
-                | "GYD"
-                | "HKD"
-                | "HNL"
-                | "HRK"
-                | "HTG"
-                | "HUF"
-                | "IDR"
-                | "ILS"
-                | "IMP"
-                | "INR"
-                | "IQD"
-                | "IRR"
-                | "ISK"
-                | "JEP"
-                | "JMD"
-                | "JOD"
-                | "JPY"
-                | "KES"
-                | "KGS"
-                | "KHR"
-                | "KMF"
-                | "KPW"
-                | "KRW"
-                | "KWD"
-                | "KYD"
-                | "KZT"
-                | "LAK"
-                | "LBP"
-                | "LKR"
-                | "LRD"
-                | "LSL"
-                | "LYD"
-                | "MAD"
-                | "MDL"
-                | "MGA"
-                | "MKD"
-                | "MMK"
-                | "MNT"
-                | "MOP"
-                | "MRO"
-                | "MUR"
-                | "MVR"
-                | "MWK"
-                | "MXN"
-                | "MYR"
-                | "MZN"
-                | "NAD"
-                | "NGN"
-                | "NIO"
-                | "NOK"
-                | "NPR"
-                | "NZD"
-                | "OMR"
-                | "PAB"
-                | "PEN"
-                | "PGK"
-                | "PHP"
-                | "PKR"
-                | "PLN"
-                | "PYG"
-                | "QAR"
-                | "RON"
-                | "RSD"
-                | "RUB"
-                | "RWF"
-                | "SAR"
-                | "SBD"
-                | "SCR"
-                | "SDG"
-                | "SEK"
-                | "SGD"
-                | "SHP"
-                | "SLL"
-                | "SOS"
-                | "SPL"
-                | "SRD"
-                | "STD"
-                | "SVC"
-                | "SYP"
-                | "SZL"
-                | "THB"
-                | "TJS"
-                | "TMT"
-                | "TND"
-                | "TOP"
-                | "TRY"
-                | "TTD"
-                | "TVD"
-                | "TWD"
-                | "TZS"
-                | "UAH"
-                | "UGX"
-                | "USD"
-                | "UYU"
-                | "UZS"
-                | "VEF"
-                | "VND"
-                | "VUV"
-                | "WST"
-                | "XAF"
-                | "XCD"
-                | "XDR"
-                | "XOF"
-                | "XPF"
-                | "XTS"
-                | "XXX"
-                | "YER"
-                | "ZAR"
-                | "ZMW"
-                | "ZWD";
-              /** @description The amount that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. */
-              payeeReceiveAmount?: string;
-              /**
-               * @description The currency of the `payeeReceiveAmount`.
-               * @enum {string}
-               */
-              payeeReceiveAmountCurrency?:
-                | "AED"
-                | "AFN"
-                | "ALL"
-                | "AMD"
-                | "ANG"
-                | "AOA"
-                | "ARS"
-                | "AUD"
-                | "AWG"
-                | "AZN"
-                | "BAM"
-                | "BBD"
-                | "BDT"
-                | "BGN"
-                | "BHD"
-                | "BIF"
-                | "BMD"
-                | "BND"
-                | "BOB"
-                | "BRL"
-                | "BSD"
-                | "BTN"
-                | "BWP"
-                | "BYN"
-                | "BZD"
-                | "CAD"
-                | "CDF"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "CRC"
-                | "CUC"
-                | "CUP"
-                | "CVE"
-                | "CZK"
-                | "DJF"
-                | "DKK"
-                | "DOP"
-                | "DZD"
-                | "EGP"
-                | "ERN"
-                | "ETB"
-                | "EUR"
-                | "FJD"
-                | "FKP"
-                | "GBP"
-                | "GEL"
-                | "GGP"
-                | "GHS"
-                | "GIP"
-                | "GMD"
-                | "GNF"
-                | "GTQ"
-                | "GYD"
-                | "HKD"
-                | "HNL"
-                | "HRK"
-                | "HTG"
-                | "HUF"
-                | "IDR"
-                | "ILS"
-                | "IMP"
-                | "INR"
-                | "IQD"
-                | "IRR"
-                | "ISK"
-                | "JEP"
-                | "JMD"
-                | "JOD"
-                | "JPY"
-                | "KES"
-                | "KGS"
-                | "KHR"
-                | "KMF"
-                | "KPW"
-                | "KRW"
-                | "KWD"
-                | "KYD"
-                | "KZT"
-                | "LAK"
-                | "LBP"
-                | "LKR"
-                | "LRD"
-                | "LSL"
-                | "LYD"
-                | "MAD"
-                | "MDL"
-                | "MGA"
-                | "MKD"
-                | "MMK"
-                | "MNT"
-                | "MOP"
-                | "MRO"
-                | "MUR"
-                | "MVR"
-                | "MWK"
-                | "MXN"
-                | "MYR"
-                | "MZN"
-                | "NAD"
-                | "NGN"
-                | "NIO"
-                | "NOK"
-                | "NPR"
-                | "NZD"
-                | "OMR"
-                | "PAB"
-                | "PEN"
-                | "PGK"
-                | "PHP"
-                | "PKR"
-                | "PLN"
-                | "PYG"
-                | "QAR"
-                | "RON"
-                | "RSD"
-                | "RUB"
-                | "RWF"
-                | "SAR"
-                | "SBD"
-                | "SCR"
-                | "SDG"
-                | "SEK"
-                | "SGD"
-                | "SHP"
-                | "SLL"
-                | "SOS"
-                | "SPL"
-                | "SRD"
-                | "STD"
-                | "SVC"
-                | "SYP"
-                | "SZL"
-                | "THB"
-                | "TJS"
-                | "TMT"
-                | "TND"
-                | "TOP"
-                | "TRY"
-                | "TTD"
-                | "TVD"
-                | "TWD"
-                | "TZS"
-                | "UAH"
-                | "UGX"
-                | "USD"
-                | "UYU"
-                | "UZS"
-                | "VEF"
-                | "VND"
-                | "VUV"
-                | "WST"
-                | "XAF"
-                | "XCD"
-                | "XDR"
-                | "XOF"
-                | "XPF"
-                | "XTS"
-                | "XXX"
-                | "YER"
-                | "ZAR"
-                | "ZMW"
-                | "ZWD";
-              /** @description Payee FSP’s part of the transaction fee. */
-              payeeFspFeeAmount?: string;
-              /**
-               * @description The currency of the `payeeFspFeeAmount`.
-               * @enum {string}
-               */
-              payeeFspFeeAmountCurrency?:
-                | "AED"
-                | "AFN"
-                | "ALL"
-                | "AMD"
-                | "ANG"
-                | "AOA"
-                | "ARS"
-                | "AUD"
-                | "AWG"
-                | "AZN"
-                | "BAM"
-                | "BBD"
-                | "BDT"
-                | "BGN"
-                | "BHD"
-                | "BIF"
-                | "BMD"
-                | "BND"
-                | "BOB"
-                | "BRL"
-                | "BSD"
-                | "BTN"
-                | "BWP"
-                | "BYN"
-                | "BZD"
-                | "CAD"
-                | "CDF"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "CRC"
-                | "CUC"
-                | "CUP"
-                | "CVE"
-                | "CZK"
-                | "DJF"
-                | "DKK"
-                | "DOP"
-                | "DZD"
-                | "EGP"
-                | "ERN"
-                | "ETB"
-                | "EUR"
-                | "FJD"
-                | "FKP"
-                | "GBP"
-                | "GEL"
-                | "GGP"
-                | "GHS"
-                | "GIP"
-                | "GMD"
-                | "GNF"
-                | "GTQ"
-                | "GYD"
-                | "HKD"
-                | "HNL"
-                | "HRK"
-                | "HTG"
-                | "HUF"
-                | "IDR"
-                | "ILS"
-                | "IMP"
-                | "INR"
-                | "IQD"
-                | "IRR"
-                | "ISK"
-                | "JEP"
-                | "JMD"
-                | "JOD"
-                | "JPY"
-                | "KES"
-                | "KGS"
-                | "KHR"
-                | "KMF"
-                | "KPW"
-                | "KRW"
-                | "KWD"
-                | "KYD"
-                | "KZT"
-                | "LAK"
-                | "LBP"
-                | "LKR"
-                | "LRD"
-                | "LSL"
-                | "LYD"
-                | "MAD"
-                | "MDL"
-                | "MGA"
-                | "MKD"
-                | "MMK"
-                | "MNT"
-                | "MOP"
-                | "MRO"
-                | "MUR"
-                | "MVR"
-                | "MWK"
-                | "MXN"
-                | "MYR"
-                | "MZN"
-                | "NAD"
-                | "NGN"
-                | "NIO"
-                | "NOK"
-                | "NPR"
-                | "NZD"
-                | "OMR"
-                | "PAB"
-                | "PEN"
-                | "PGK"
-                | "PHP"
-                | "PKR"
-                | "PLN"
-                | "PYG"
-                | "QAR"
-                | "RON"
-                | "RSD"
-                | "RUB"
-                | "RWF"
-                | "SAR"
-                | "SBD"
-                | "SCR"
-                | "SDG"
-                | "SEK"
-                | "SGD"
-                | "SHP"
-                | "SLL"
-                | "SOS"
-                | "SPL"
-                | "SRD"
-                | "STD"
-                | "SVC"
-                | "SYP"
-                | "SZL"
-                | "THB"
-                | "TJS"
-                | "TMT"
-                | "TND"
-                | "TOP"
-                | "TRY"
-                | "TTD"
-                | "TVD"
-                | "TWD"
-                | "TZS"
-                | "UAH"
-                | "UGX"
-                | "USD"
-                | "UYU"
-                | "UZS"
-                | "VEF"
-                | "VND"
-                | "VUV"
-                | "WST"
-                | "XAF"
-                | "XCD"
-                | "XDR"
-                | "XOF"
-                | "XPF"
-                | "XTS"
-                | "XXX"
-                | "YER"
-                | "ZAR"
-                | "ZMW"
-                | "ZWD";
-              /** @description Transaction commission from the Payee FSP. */
-              payeeFspCommissionAmount?: string;
-              /**
-               * @description Currency of the `payeeFspCommissionAmount`.
-               * @enum {string}
-               */
-              payeeFspCommissionAmountCurrency?:
-                | "AED"
-                | "AFN"
-                | "ALL"
-                | "AMD"
-                | "ANG"
-                | "AOA"
-                | "ARS"
-                | "AUD"
-                | "AWG"
-                | "AZN"
-                | "BAM"
-                | "BBD"
-                | "BDT"
-                | "BGN"
-                | "BHD"
-                | "BIF"
-                | "BMD"
-                | "BND"
-                | "BOB"
-                | "BRL"
-                | "BSD"
-                | "BTN"
-                | "BWP"
-                | "BYN"
-                | "BZD"
-                | "CAD"
-                | "CDF"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "CRC"
-                | "CUC"
-                | "CUP"
-                | "CVE"
-                | "CZK"
-                | "DJF"
-                | "DKK"
-                | "DOP"
-                | "DZD"
-                | "EGP"
-                | "ERN"
-                | "ETB"
-                | "EUR"
-                | "FJD"
-                | "FKP"
-                | "GBP"
-                | "GEL"
-                | "GGP"
-                | "GHS"
-                | "GIP"
-                | "GMD"
-                | "GNF"
-                | "GTQ"
-                | "GYD"
-                | "HKD"
-                | "HNL"
-                | "HRK"
-                | "HTG"
-                | "HUF"
-                | "IDR"
-                | "ILS"
-                | "IMP"
-                | "INR"
-                | "IQD"
-                | "IRR"
-                | "ISK"
-                | "JEP"
-                | "JMD"
-                | "JOD"
-                | "JPY"
-                | "KES"
-                | "KGS"
-                | "KHR"
-                | "KMF"
-                | "KPW"
-                | "KRW"
-                | "KWD"
-                | "KYD"
-                | "KZT"
-                | "LAK"
-                | "LBP"
-                | "LKR"
-                | "LRD"
-                | "LSL"
-                | "LYD"
-                | "MAD"
-                | "MDL"
-                | "MGA"
-                | "MKD"
-                | "MMK"
-                | "MNT"
-                | "MOP"
-                | "MRO"
-                | "MUR"
-                | "MVR"
-                | "MWK"
-                | "MXN"
-                | "MYR"
-                | "MZN"
-                | "NAD"
-                | "NGN"
-                | "NIO"
-                | "NOK"
-                | "NPR"
-                | "NZD"
-                | "OMR"
-                | "PAB"
-                | "PEN"
-                | "PGK"
-                | "PHP"
-                | "PKR"
-                | "PLN"
-                | "PYG"
-                | "QAR"
-                | "RON"
-                | "RSD"
-                | "RUB"
-                | "RWF"
-                | "SAR"
-                | "SBD"
-                | "SCR"
-                | "SDG"
-                | "SEK"
-                | "SGD"
-                | "SHP"
-                | "SLL"
-                | "SOS"
-                | "SPL"
-                | "SRD"
-                | "STD"
-                | "SVC"
-                | "SYP"
-                | "SZL"
-                | "THB"
-                | "TJS"
-                | "TMT"
-                | "TND"
-                | "TOP"
-                | "TRY"
-                | "TTD"
-                | "TVD"
-                | "TWD"
-                | "TZS"
-                | "UAH"
-                | "UGX"
-                | "USD"
-                | "UYU"
-                | "UZS"
-                | "VEF"
-                | "VND"
-                | "VUV"
-                | "WST"
-                | "XAF"
-                | "XCD"
-                | "XDR"
-                | "XOF"
-                | "XPF"
-                | "XTS"
-                | "XXX"
-                | "YER"
-                | "ZAR"
-                | "ZMW"
-                | "ZWD";
-              /** @description An ISO-8601 formatted timestamp. */
-              expiration?: string;
-              /** @description Indicates the geographic location from where the transaction was initiated. */
-              geoCode?: {
-                /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-                latitude: string;
-                /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-                longitude: string;
-              };
-              extensionList?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-            quoteRequestExtensions?: {
-              key?: string;
-              value?: string;
-            }[];
-            from: {
-              /** @enum {string} */
-              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-              /**
-               * @description Below are the allowed values for the enumeration.
-               *
-               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-               *
-               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-               *
-               * @enum {string}
-               */
-              idType: "MSISDN" | "ACCOUNT_ID";
-              /** @description The identifier string used to identify the sender. */
-              idValue: string;
-              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-              idSubValue?: string;
-              /** @description Display name of the sender, if known. */
-              displayName?: string;
-              /** @description Party first name. */
-              firstName?: string;
-              /** @description Party middle name. */
-              middleName?: string;
-              /** @description Party last name. */
-              lastName?: string;
-              /** @description Date of birth in the form YYYY-MM-DD. */
-              dateOfBirth?: string;
-              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-              merchantClassificationCode?: string;
-              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-              fspId?: string;
-              extensionList?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-            to: {
-              /** @enum {string} */
-              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-              /**
-               * @description Below are the allowed values for the enumeration.
-               *
-               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-               *
-               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-               *
-               * @enum {string}
-               */
-              idType: "MSISDN" | "ACCOUNT_ID";
-              /** @description The identifier string used to identify the sender. */
-              idValue: string;
-              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-              idSubValue?: string;
-              /** @description Display name of the sender, if known. */
-              displayName?: string;
-              /** @description Party first name. */
-              firstName?: string;
-              /** @description Party middle name. */
-              middleName?: string;
-              /** @description Party last name. */
-              lastName?: string;
-              /** @description Date of birth in the form YYYY-MM-DD. */
-              dateOfBirth?: string;
-              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-              merchantClassificationCode?: string;
-              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-              fspId?: string;
-              extensionList?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-            /**
-             * @description SEND for send amount, RECEIVE for receive amount.
-             * @enum {string}
-             */
-            amountType: "SEND" | "RECEIVE";
-            /** @enum {string} */
-            currency:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "XTS"
-              | "XXX"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
-            amount: string;
-            /** @enum {string} */
-            transactionType: "TRANSFER";
-            ilpPacket: {
-              /** @description Object containing transfer object. */
-              data: {
-                /** @description A Mojaloop API quote identifier (UUID). */
-                quoteId: string;
-                /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
-                transactionId: string;
-                /** @description Information about the Payer in the proposed financial transaction. */
-                payer: {
-                  /** @enum {string} */
-                  type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-                  /**
-                   * @description Below are the allowed values for the enumeration.
-                   *
-                   * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-                   *
-                   * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-                   *
-                   * @enum {string}
-                   */
-                  idType: "MSISDN" | "ACCOUNT_ID";
-                  /** @description The identifier string used to identify the sender. */
-                  idValue: string;
-                  /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-                  idSubValue?: string;
-                  /** @description Display name of the sender, if known. */
-                  displayName?: string;
-                  /** @description Party first name. */
-                  firstName?: string;
-                  /** @description Party middle name. */
-                  middleName?: string;
-                  /** @description Party last name. */
-                  lastName?: string;
-                  /** @description Date of birth in the form YYYY-MM-DD. */
-                  dateOfBirth?: string;
-                  /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-                  merchantClassificationCode?: string;
-                  /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-                  fspId?: string;
-                  extensionList?: {
-                    key?: string;
-                    value?: string;
-                  }[];
-                };
-                /** @description Information about the Payee in the proposed financial transaction. */
-                payee: {
-                  /** @enum {string} */
-                  type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-                  /**
-                   * @description Below are the allowed values for the enumeration.
-                   *
-                   * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-                   *
-                   * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-                   *
-                   * @enum {string}
-                   */
-                  idType: "MSISDN" | "ACCOUNT_ID";
-                  /** @description The identifier string used to identify the sender. */
-                  idValue: string;
-                  /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-                  idSubValue?: string;
-                  /** @description Display name of the sender, if known. */
-                  displayName?: string;
-                  /** @description Party first name. */
-                  firstName?: string;
-                  /** @description Party middle name. */
-                  middleName?: string;
-                  /** @description Party last name. */
-                  lastName?: string;
-                  /** @description Date of birth in the form YYYY-MM-DD. */
-                  dateOfBirth?: string;
-                  /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-                  merchantClassificationCode?: string;
-                  /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-                  fspId?: string;
-                  extensionList?: {
-                    key?: string;
-                    value?: string;
-                  }[];
-                };
-                /** @description Object containing Amount and Currency of the transfer. */
-                amount: {
-                  amount: string;
-                  /** @enum {string} */
-                  currency:
-                    | "AED"
-                    | "AFN"
-                    | "ALL"
-                    | "AMD"
-                    | "ANG"
-                    | "AOA"
-                    | "ARS"
-                    | "AUD"
-                    | "AWG"
-                    | "AZN"
-                    | "BAM"
-                    | "BBD"
-                    | "BDT"
-                    | "BGN"
-                    | "BHD"
-                    | "BIF"
-                    | "BMD"
-                    | "BND"
-                    | "BOB"
-                    | "BRL"
-                    | "BSD"
-                    | "BTN"
-                    | "BWP"
-                    | "BYN"
-                    | "BZD"
-                    | "CAD"
-                    | "CDF"
-                    | "CHF"
-                    | "CLP"
-                    | "CNY"
-                    | "COP"
-                    | "CRC"
-                    | "CUC"
-                    | "CUP"
-                    | "CVE"
-                    | "CZK"
-                    | "DJF"
-                    | "DKK"
-                    | "DOP"
-                    | "DZD"
-                    | "EGP"
-                    | "ERN"
-                    | "ETB"
-                    | "EUR"
-                    | "FJD"
-                    | "FKP"
-                    | "GBP"
-                    | "GEL"
-                    | "GGP"
-                    | "GHS"
-                    | "GIP"
-                    | "GMD"
-                    | "GNF"
-                    | "GTQ"
-                    | "GYD"
-                    | "HKD"
-                    | "HNL"
-                    | "HRK"
-                    | "HTG"
-                    | "HUF"
-                    | "IDR"
-                    | "ILS"
-                    | "IMP"
-                    | "INR"
-                    | "IQD"
-                    | "IRR"
-                    | "ISK"
-                    | "JEP"
-                    | "JMD"
-                    | "JOD"
-                    | "JPY"
-                    | "KES"
-                    | "KGS"
-                    | "KHR"
-                    | "KMF"
-                    | "KPW"
-                    | "KRW"
-                    | "KWD"
-                    | "KYD"
-                    | "KZT"
-                    | "LAK"
-                    | "LBP"
-                    | "LKR"
-                    | "LRD"
-                    | "LSL"
-                    | "LYD"
-                    | "MAD"
-                    | "MDL"
-                    | "MGA"
-                    | "MKD"
-                    | "MMK"
-                    | "MNT"
-                    | "MOP"
-                    | "MRO"
-                    | "MUR"
-                    | "MVR"
-                    | "MWK"
-                    | "MXN"
-                    | "MYR"
-                    | "MZN"
-                    | "NAD"
-                    | "NGN"
-                    | "NIO"
-                    | "NOK"
-                    | "NPR"
-                    | "NZD"
-                    | "OMR"
-                    | "PAB"
-                    | "PEN"
-                    | "PGK"
-                    | "PHP"
-                    | "PKR"
-                    | "PLN"
-                    | "PYG"
-                    | "QAR"
-                    | "RON"
-                    | "RSD"
-                    | "RUB"
-                    | "RWF"
-                    | "SAR"
-                    | "SBD"
-                    | "SCR"
-                    | "SDG"
-                    | "SEK"
-                    | "SGD"
-                    | "SHP"
-                    | "SLL"
-                    | "SOS"
-                    | "SPL"
-                    | "SRD"
-                    | "STD"
-                    | "SVC"
-                    | "SYP"
-                    | "SZL"
-                    | "THB"
-                    | "TJS"
-                    | "TMT"
-                    | "TND"
-                    | "TOP"
-                    | "TRY"
-                    | "TTD"
-                    | "TVD"
-                    | "TWD"
-                    | "TZS"
-                    | "UAH"
-                    | "UGX"
-                    | "USD"
-                    | "UYU"
-                    | "UZS"
-                    | "VEF"
-                    | "VND"
-                    | "VUV"
-                    | "WST"
-                    | "XAF"
-                    | "XCD"
-                    | "XDR"
-                    | "XOF"
-                    | "XPF"
-                    | "XTS"
-                    | "XXX"
-                    | "YER"
-                    | "ZAR"
-                    | "ZMW"
-                    | "ZWD";
-                };
-                /** @description Object containing transfer object. */
-                transactionType: {
-                  /** @enum {string} */
-                  scenario: "TRANSFER";
-                  /**
-                   * @description Specifies if the initiator of the transfer is the Payer or Payee.
-                   * @enum {string}
-                   */
-                  initiator: "PAYER" | "PAYEE";
-                  /**
-                   * @description Specifies the type of the transaction initiator.
-                   * @enum {string}
-                   */
-                  initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-                };
-              };
-            };
-            note?: string;
-          };
-        };
-      };
-    };
-  };
-  "/transfers/{transferId}": {
-    /** The HTTP request `GET /transfers/{transferId}` is used to get information regarding a transfer created or requested earlier. The `{transferId}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
-    get: {
-      parameters: {
-        path: {
-          transferId: string;
-        };
-      };
-      responses: {
-        /** The transfer was accepted */
-        200: {
-          content: {
-            "application/json": {
-              /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-              homeTransactionId: string;
-              from: {
-                /** @enum {string} */
-                type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-                /**
-                 * @description Below are the allowed values for the enumeration.
-                 *
-                 * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-                 *
-                 * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-                 *
-                 * @enum {string}
-                 */
-                idType: "MSISDN" | "ACCOUNT_ID";
-                /** @description The identifier string used to identify the sender. */
-                idValue: string;
-                /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-                idSubValue?: string;
-                /** @description Display name of the sender, if known. */
-                displayName?: string;
-                /** @description Party first name. */
-                firstName?: string;
-                /** @description Party middle name. */
-                middleName?: string;
-                /** @description Party last name. */
-                lastName?: string;
-                /** @description Date of birth in the form YYYY-MM-DD. */
-                dateOfBirth?: string;
-                /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-                merchantClassificationCode?: string;
-                /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-                fspId?: string;
-                extensionList?: {
-                  key?: string;
-                  value?: string;
-                }[];
-              };
-              to: {
-                /** @enum {string} */
-                type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-                /**
-                 * @description Below are the allowed values for the enumeration.
-                 *
-                 * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-                 *
-                 * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-                 *
-                 * @enum {string}
-                 */
-                idType: "MSISDN" | "ACCOUNT_ID";
-                /** @description The identifier string used to identify the sender. */
-                idValue: string;
-                /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-                idSubValue?: string;
-                /** @description Display name of the sender, if known. */
-                displayName?: string;
-                /** @description Party first name. */
-                firstName?: string;
-                /** @description Party middle name. */
-                middleName?: string;
-                /** @description Party last name. */
-                lastName?: string;
-                /** @description Date of birth in the form YYYY-MM-DD. */
-                dateOfBirth?: string;
-                /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-                merchantClassificationCode?: string;
-                /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-                fspId?: string;
-                extensionList?: {
-                  key?: string;
-                  value?: string;
-                }[];
-              };
-              /**
-               * @description SEND for send amount, RECEIVE for receive amount.
-               * @enum {string}
-               */
-              amountType: "SEND" | "RECEIVE";
-              /** @enum {string} */
-              currency:
-                | "AED"
-                | "AFN"
-                | "ALL"
-                | "AMD"
-                | "ANG"
-                | "AOA"
-                | "ARS"
-                | "AUD"
-                | "AWG"
-                | "AZN"
-                | "BAM"
-                | "BBD"
-                | "BDT"
-                | "BGN"
-                | "BHD"
-                | "BIF"
-                | "BMD"
-                | "BND"
-                | "BOB"
-                | "BRL"
-                | "BSD"
-                | "BTN"
-                | "BWP"
-                | "BYN"
-                | "BZD"
-                | "CAD"
-                | "CDF"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "CRC"
-                | "CUC"
-                | "CUP"
-                | "CVE"
-                | "CZK"
-                | "DJF"
-                | "DKK"
-                | "DOP"
-                | "DZD"
-                | "EGP"
-                | "ERN"
-                | "ETB"
-                | "EUR"
-                | "FJD"
-                | "FKP"
-                | "GBP"
-                | "GEL"
-                | "GGP"
-                | "GHS"
-                | "GIP"
-                | "GMD"
-                | "GNF"
-                | "GTQ"
-                | "GYD"
-                | "HKD"
-                | "HNL"
-                | "HRK"
-                | "HTG"
-                | "HUF"
-                | "IDR"
-                | "ILS"
-                | "IMP"
-                | "INR"
-                | "IQD"
-                | "IRR"
-                | "ISK"
-                | "JEP"
-                | "JMD"
-                | "JOD"
-                | "JPY"
-                | "KES"
-                | "KGS"
-                | "KHR"
-                | "KMF"
-                | "KPW"
-                | "KRW"
-                | "KWD"
-                | "KYD"
-                | "KZT"
-                | "LAK"
-                | "LBP"
-                | "LKR"
-                | "LRD"
-                | "LSL"
-                | "LYD"
-                | "MAD"
-                | "MDL"
-                | "MGA"
-                | "MKD"
-                | "MMK"
-                | "MNT"
-                | "MOP"
-                | "MRO"
-                | "MUR"
-                | "MVR"
-                | "MWK"
-                | "MXN"
-                | "MYR"
-                | "MZN"
-                | "NAD"
-                | "NGN"
-                | "NIO"
-                | "NOK"
-                | "NPR"
-                | "NZD"
-                | "OMR"
-                | "PAB"
-                | "PEN"
-                | "PGK"
-                | "PHP"
-                | "PKR"
-                | "PLN"
-                | "PYG"
-                | "QAR"
-                | "RON"
-                | "RSD"
-                | "RUB"
-                | "RWF"
-                | "SAR"
-                | "SBD"
-                | "SCR"
-                | "SDG"
-                | "SEK"
-                | "SGD"
-                | "SHP"
-                | "SLL"
-                | "SOS"
-                | "SPL"
-                | "SRD"
-                | "STD"
-                | "SVC"
-                | "SYP"
-                | "SZL"
-                | "THB"
-                | "TJS"
-                | "TMT"
-                | "TND"
-                | "TOP"
-                | "TRY"
-                | "TTD"
-                | "TVD"
-                | "TWD"
-                | "TZS"
-                | "UAH"
-                | "UGX"
-                | "USD"
-                | "UYU"
-                | "UZS"
-                | "VEF"
-                | "VND"
-                | "VUV"
-                | "WST"
-                | "XAF"
-                | "XCD"
-                | "XDR"
-                | "XOF"
-                | "XPF"
-                | "XTS"
-                | "XXX"
-                | "YER"
-                | "ZAR"
-                | "ZMW"
-                | "ZWD";
-              amount: string;
-              /**
-               * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-               *
-               * @enum {string}
-               */
-              transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-              /** @description An ISO-8601 formatted timestamp. */
-              timestamp: string;
-              /** @enum {string} */
-              transactionType: "TRANSFER";
-              note?: string;
-              extensions?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-          };
-        };
-        /** An error occurred processing the request */
-        500: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-      };
-    };
-    /** The HTTP request `PUT /transfers/{transferId}` is used to receive notification for transfer being fulfiled when the FSP is a Payee */
-    put: {
-      parameters: {
-        path: {
-          transferId: string;
-        };
-      };
-      responses: {
-        /** The notification was accepted */
-        200: unknown;
-        /** An error occurred processing the request */
-        500: {
-          content: {
-            "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
-              /** @description Error message text. */
-              message?: string;
-            };
-          };
-        };
-      };
-      /** An incoming notification for fulfiled transfer */
-      requestBody: {
-        content: {
-          "application/json": {
-            /** @description A Mojaloop API transfer identifier (UUID). */
-            transferId?: string;
-            /** @enum {string} */
-            direction?: "INBOUND";
-            quoteRequest?: {
-              headers?: { [key: string]: unknown };
-              body?: { [key: string]: unknown };
-            };
-            quoteResponse?: {
-              headers?: { [key: string]: unknown };
-              body?: { [key: string]: unknown };
-            };
-            prepare?: {
-              headers?: { [key: string]: unknown };
-              body?: { [key: string]: unknown };
-            };
-            fulfil?: {
-              headers?: { [key: string]: unknown };
-              body?: { [key: string]: unknown };
-            };
-            quote?: {
-              request?: { [key: string]: unknown };
-              internalRequest?: { [key: string]: unknown };
-              response?: { [key: string]: unknown };
-              mojaloopResponse?: { [key: string]: unknown };
-              fulfilment?: string;
-            };
-            /** @enum {string} */
-            currentState?:
-              | "ERROR_OCCURRED"
-              | "WAITING_FOR_PARTY_ACCEPTANCE"
-              | "WAITING_FOR_QUOTE_ACCEPTANCE"
-              | "COMPLETED";
-            /** @description This object represents a Mojaloop API error received at any time during the transfer process */
-            lastError?: {
-              /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
-              httpStatusCode?: number;
-              /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
-              mojaloopError?: {
-                /**
-                 * ErrorInformation
-                 * @description Data model for the complex type ErrorInformation.
-                 */
-                errorInformation?: {
-                  /**
-                   * ErrorCode
-                   * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-                   * @example 5100
-                   */
-                  errorCode: string;
-                  /**
-                   * ErrorDescription
-                   * @description Error description string.
-                   */
-                  errorDescription: string;
-                  /**
-                   * ExtensionList
-                   * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-                   */
-                  extensionList?: {
-                    /** @description Number of Extension elements. */
-                    extension: {
-                      /**
-                       * ExtensionKey
-                       * @description Extension key.
-                       */
-                      key: string;
-                      /**
-                       * ExtensionValue
-                       * @description Extension value.
-                       */
-                      value: string;
-                    }[];
-                  };
-                };
-              };
-            };
-            /** @description An ISO-8601 formatted timestamp. */
-            initiatedTimestamp?: string;
-            finalNotification?: {
-              /**
-               * @description An ISO-8601 formatted timestamp.
-               * @example 2020-05-19T08:38:08.699-04:00
-               */
-              completedTimestamp: string;
-              /**
-               * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-               *
-               * @example COMMITTED
-               * @enum {string}
-               */
-              transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-              /** @description Optional extension, specific to deployment. */
-              extensionList?: {
-                key?: string;
-                value?: string;
-              }[];
-            };
-          };
-        };
-      };
-    };
-    parameters: {
-      path: {
-        transferId: string;
-      };
-    };
-  };
   "/bulkTransactions/{bulkTransactionId}": {
     /** The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to request information regarding a bulk transaction, i.e. when autoAcceptParty or autoAcceptQuote  is false then the payer need to provide confirmation to proceed with further processing of the request. The `{bulkTransactionId}` in the URI should contain the `bulkTransactionId` that was used for the creation of the bulk transfer. */
     put: {
@@ -3209,10 +20,10 @@ export interface paths {
         500: {
           content: {
             "application/json": {
-              /** @description Error code as string. */
-              statusCode: string;
               /** @description Error message text. */
               message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
             };
           };
         };
@@ -4719,10 +1530,3369 @@ export interface paths {
       };
     };
   };
+  "/participants/{idType}/{idValue}": {
+    /** The HTTP request `GET /participants/{idType}/{idValue}` is used to find out in which FSP the requested party, defined by `{idType}` and `{idValue}`, is located. */
+    get: {
+      parameters: {
+        path: {
+          /**
+           * Below are the allowed values for the enumeration.
+           *
+           * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+           *
+           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+           */
+          idType: "MSISDN" | "ACCOUNT_ID";
+          /** Identifier of the party. */
+          idValue: string;
+        };
+      };
+      responses: {
+        /** Response containing details of the requested party */
+        200: {
+          content: {
+            "application/json": {
+              /** @description FSP identifier. */
+              fspId?: string;
+            };
+          };
+        };
+        /** Malformed or missing required headers or parameters */
+        400: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+        /** The party specified by the provided identifier type and value is not known to the server */
+        404: unknown;
+        /** An error occurred processing the request */
+        500: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/participants/{idType}/{idValue}/{idSubValue}": {
+    /** The HTTP request `GET /participants/{idType}/{idValue}/{idSubValue}` is used to find out in which FSP the requested party, defined by `{idType}`, `{idValue}` and `{idSubValue}` is located. */
+    get: {
+      parameters: {
+        path: {
+          /**
+           * Below are the allowed values for the enumeration.
+           *
+           * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+           *
+           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+           */
+          idType: "MSISDN" | "ACCOUNT_ID";
+          /** Identifier of the party. */
+          idValue: string;
+          /** Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+          idSubValue: string;
+        };
+      };
+      responses: {
+        /** Response containing details of the requested party */
+        200: {
+          content: {
+            "application/json": {
+              /** @description FSP identifier. */
+              fspId?: string;
+            };
+          };
+        };
+        /** Malformed or missing required headers or parameters */
+        400: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+        /** The party specified by the provided identifier type and value is not known to the server */
+        404: unknown;
+        /** An error occurred processing the request */
+        500: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/parties/{idType}/{idValue}": {
+    /** The HTTP request `GET /parties/{idType}/{idValue}` is used to look up information regarding the requested transfer party, identified by `{idType}` and `{idValue}`. */
+    get: {
+      parameters: {
+        path: {
+          /**
+           * Below are the allowed values for the enumeration.
+           *
+           * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+           *
+           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+           */
+          idType: "MSISDN" | "ACCOUNT_ID";
+          /** Identifier of the party. */
+          idValue: string;
+        };
+      };
+      responses: {
+        /** Response containing details of the requested party */
+        200: {
+          content: {
+            "application/json": {
+              /** @description Date of birth in the form YYYY-MM-DD. */
+              dateOfBirth?: string;
+              /** @description Display name of the sender, if known. */
+              displayName?: string;
+              extensionList?: {
+                key?: string;
+                value?: string;
+              }[];
+              /** @description Party first name. */
+              firstName?: string;
+              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+              fspId?: string;
+              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+              idSubValue?: string;
+              /**
+               * @description Below are the allowed values for the enumeration.
+               *
+               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+               *
+               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+               *
+               * @enum {string}
+               */
+              idType: "MSISDN" | "ACCOUNT_ID";
+              /** @description The identifier string used to identify the sender. */
+              idValue: string;
+              /** @description Party last name. */
+              lastName?: string;
+              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+              merchantClassificationCode?: string;
+              /** @description Party middle name. */
+              middleName?: string;
+              /** @enum {string} */
+              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            };
+          };
+        };
+        /** Malformed or missing required headers or parameters */
+        400: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+        /** The party specified by the provided identifier type and value is not known to the server */
+        404: unknown;
+        /** An error occurred processing the request */
+        500: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/parties/{idType}/{idValue}/{idSubValue}": {
+    /** The HTTP request `GET /parties/{idType}/{idValue}/{idSubValue}` is used to look up information regarding the requested transfer party, identified by `{idType}`, `{idValue}` and `{idSubValue}`. */
+    get: {
+      parameters: {
+        path: {
+          /**
+           * Below are the allowed values for the enumeration.
+           *
+           * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+           *
+           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+           */
+          idType: "MSISDN" | "ACCOUNT_ID";
+          /** Identifier of the party. */
+          idValue: string;
+          /** Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+          idSubValue: string;
+        };
+      };
+      responses: {
+        /** Response containing details of the requested party */
+        200: {
+          content: {
+            "application/json": {
+              /** @description Date of birth in the form YYYY-MM-DD. */
+              dateOfBirth?: string;
+              /** @description Display name of the sender, if known. */
+              displayName?: string;
+              extensionList?: {
+                key?: string;
+                value?: string;
+              }[];
+              /** @description Party first name. */
+              firstName?: string;
+              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+              fspId?: string;
+              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+              idSubValue?: string;
+              /**
+               * @description Below are the allowed values for the enumeration.
+               *
+               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+               *
+               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+               *
+               * @enum {string}
+               */
+              idType: "MSISDN" | "ACCOUNT_ID";
+              /** @description The identifier string used to identify the sender. */
+              idValue: string;
+              /** @description Party last name. */
+              lastName?: string;
+              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+              merchantClassificationCode?: string;
+              /** @description Party middle name. */
+              middleName?: string;
+              /** @enum {string} */
+              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            };
+          };
+        };
+        /** Malformed or missing required headers or parameters */
+        400: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+        /** The party specified by the provided identifier type and value is not known to the server */
+        404: unknown;
+        /** An error occurred processing the request */
+        500: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/quoterequests": {
+    /** The HTTP request `POST /quoterequests` is used to request the creation of a quote for the provided financial transaction. */
+    post: {
+      responses: {
+        /** A response to the transfer quotation request */
+        200: {
+          content: {
+            "application/json": {
+              /** @description An ISO-8601 formatted timestamp. */
+              expiration?: string;
+              extensionList?: {
+                key?: string;
+                value?: string;
+              }[];
+              /** @description Indicates the geographic location from where the transaction was initiated. */
+              geoCode?: {
+                /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+                latitude: string;
+                /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+                longitude: string;
+              };
+              /** @description Transaction commission from the Payee FSP. */
+              payeeFspCommissionAmount?: string;
+              /**
+               * @description Currency of the `payeeFspCommissionAmount`.
+               * @enum {string}
+               */
+              payeeFspCommissionAmountCurrency?:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /** @description Payee FSP’s part of the transaction fee. */
+              payeeFspFeeAmount?: string;
+              /**
+               * @description The currency of the `payeeFspFeeAmount`.
+               * @enum {string}
+               */
+              payeeFspFeeAmountCurrency?:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /** @description The amount that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. */
+              payeeReceiveAmount?: string;
+              /**
+               * @description The currency of the `payeeReceiveAmount`.
+               * @enum {string}
+               */
+              payeeReceiveAmountCurrency?:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /** @description A Mojaloop API quote identifier (UUID). */
+              quoteId: string;
+              /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
+              transactionId: string;
+              /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
+              transferAmount: string;
+              /**
+               * @description The currency of the `transferAmount`.
+               * @enum {string}
+               */
+              transferAmountCurrency:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+            };
+          };
+        };
+        /** Malformed or missing required headers or parameters */
+        400: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+        /** An error occurred processing the request */
+        500: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+      };
+      /** Request for a transfer quotation */
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Depending on `amountType`. If SEND - The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction. If RECEIVE - The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities. */
+            amount: string;
+            /**
+             * @description SEND for send amount, RECEIVE for receive amount.
+             * @enum {string}
+             */
+            amountType: "SEND" | "RECEIVE";
+            /** @enum {string} */
+            currency:
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "XTS"
+              | "XXX"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
+            /** @description An ISO-8601 formatted timestamp. */
+            expiration?: string;
+            extensionList?: {
+              key?: string;
+              value?: string;
+            }[];
+            /** @description The fees in the transaction. The fees element should be empty if fees should be non-disclosed. The fees element should be non-empty if fees should be disclosed. */
+            feesAmount?: string;
+            /** @enum {string} */
+            feesCurrency?:
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "XTS"
+              | "XXX"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
+            /** @description Information about the Payer in the proposed financial transaction. */
+            from: {
+              /** @description Date of birth in the form YYYY-MM-DD. */
+              dateOfBirth?: string;
+              /** @description Display name of the sender, if known. */
+              displayName?: string;
+              extensionList?: {
+                key?: string;
+                value?: string;
+              }[];
+              /** @description Party first name. */
+              firstName?: string;
+              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+              fspId?: string;
+              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+              idSubValue?: string;
+              /**
+               * @description Below are the allowed values for the enumeration.
+               *
+               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+               *
+               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+               *
+               * @enum {string}
+               */
+              idType: "MSISDN" | "ACCOUNT_ID";
+              /** @description The identifier string used to identify the sender. */
+              idValue: string;
+              /** @description Party last name. */
+              lastName?: string;
+              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+              merchantClassificationCode?: string;
+              /** @description Party middle name. */
+              middleName?: string;
+              /** @enum {string} */
+              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            };
+            /** @description Indicates the geographic location from where the transaction was initiated. */
+            geoCode?: {
+              /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+              latitude: string;
+              /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+              longitude: string;
+            };
+            /**
+             * @description Specifies if the initiator of the transfer is the Payer or Payee.
+             * @enum {string}
+             */
+            initiator: "PAYER" | "PAYEE";
+            /**
+             * @description Specifies the type of the transaction initiator.
+             * @enum {string}
+             */
+            initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            /** @description An optional note associated with the requested transfer. */
+            note?: string;
+            /** @description A Mojaloop API quote identifier (UUID). */
+            quoteId: string;
+            /** @description Information about the Payee in the proposed financial transaction. */
+            to: {
+              /** @description Date of birth in the form YYYY-MM-DD. */
+              dateOfBirth?: string;
+              /** @description Display name of the sender, if known. */
+              displayName?: string;
+              extensionList?: {
+                key?: string;
+                value?: string;
+              }[];
+              /** @description Party first name. */
+              firstName?: string;
+              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+              fspId?: string;
+              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+              idSubValue?: string;
+              /**
+               * @description Below are the allowed values for the enumeration.
+               *
+               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+               *
+               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+               *
+               * @enum {string}
+               */
+              idType: "MSISDN" | "ACCOUNT_ID";
+              /** @description The identifier string used to identify the sender. */
+              idValue: string;
+              /** @description Party last name. */
+              lastName?: string;
+              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+              merchantClassificationCode?: string;
+              /** @description Party middle name. */
+              middleName?: string;
+              /** @enum {string} */
+              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            };
+            /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
+            transactionId: string;
+            /**
+             * @description Type of transaction for which the quote is requested.
+             * @enum {string}
+             */
+            transactionType: "TRANSFER";
+          };
+        };
+      };
+    };
+  };
+  "/transfers": {
+    /** The HTTP request `POST /transfers` is used to request the creation of a transfer for the transfer party. */
+    post: {
+      responses: {
+        /** The transfer was accepted */
+        200: {
+          content: {
+            "application/json": {
+              /**
+               * @description An ISO-8601 formatted timestamp.
+               * @example 2020-05-19T08:38:08.699-04:00
+               */
+              completedTimestamp?: string;
+              /**
+               * IlpFulfilment
+               * @description Fulfilment that must be attached to the transfer by the Payee.
+               * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+               */
+              fulfilment?: string;
+              /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
+              homeTransactionId: string;
+              /**
+               * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
+               *
+               * @example ABORTED
+               * @enum {string}
+               */
+              transferState?: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
+            };
+          };
+        };
+        /** Malformed or missing required headers or parameters */
+        400: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+        /** An error occurred processing the request */
+        500: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+      };
+      /** An incoming transfer request */
+      requestBody: {
+        content: {
+          "application/json": {
+            amount: string;
+            /**
+             * @description SEND for send amount, RECEIVE for receive amount.
+             * @enum {string}
+             */
+            amountType: "SEND" | "RECEIVE";
+            /** @enum {string} */
+            currency:
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "XTS"
+              | "XXX"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
+            from: {
+              /** @description Date of birth in the form YYYY-MM-DD. */
+              dateOfBirth?: string;
+              /** @description Display name of the sender, if known. */
+              displayName?: string;
+              extensionList?: {
+                key?: string;
+                value?: string;
+              }[];
+              /** @description Party first name. */
+              firstName?: string;
+              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+              fspId?: string;
+              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+              idSubValue?: string;
+              /**
+               * @description Below are the allowed values for the enumeration.
+               *
+               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+               *
+               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+               *
+               * @enum {string}
+               */
+              idType: "MSISDN" | "ACCOUNT_ID";
+              /** @description The identifier string used to identify the sender. */
+              idValue: string;
+              /** @description Party last name. */
+              lastName?: string;
+              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+              merchantClassificationCode?: string;
+              /** @description Party middle name. */
+              middleName?: string;
+              /** @enum {string} */
+              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            };
+            ilpPacket: {
+              /** @description Object containing transfer object. */
+              data: {
+                /** @description Object containing Amount and Currency of the transfer. */
+                amount: {
+                  amount: string;
+                  /** @enum {string} */
+                  currency:
+                    | "AED"
+                    | "AFN"
+                    | "ALL"
+                    | "AMD"
+                    | "ANG"
+                    | "AOA"
+                    | "ARS"
+                    | "AUD"
+                    | "AWG"
+                    | "AZN"
+                    | "BAM"
+                    | "BBD"
+                    | "BDT"
+                    | "BGN"
+                    | "BHD"
+                    | "BIF"
+                    | "BMD"
+                    | "BND"
+                    | "BOB"
+                    | "BRL"
+                    | "BSD"
+                    | "BTN"
+                    | "BWP"
+                    | "BYN"
+                    | "BZD"
+                    | "CAD"
+                    | "CDF"
+                    | "CHF"
+                    | "CLP"
+                    | "CNY"
+                    | "COP"
+                    | "CRC"
+                    | "CUC"
+                    | "CUP"
+                    | "CVE"
+                    | "CZK"
+                    | "DJF"
+                    | "DKK"
+                    | "DOP"
+                    | "DZD"
+                    | "EGP"
+                    | "ERN"
+                    | "ETB"
+                    | "EUR"
+                    | "FJD"
+                    | "FKP"
+                    | "GBP"
+                    | "GEL"
+                    | "GGP"
+                    | "GHS"
+                    | "GIP"
+                    | "GMD"
+                    | "GNF"
+                    | "GTQ"
+                    | "GYD"
+                    | "HKD"
+                    | "HNL"
+                    | "HRK"
+                    | "HTG"
+                    | "HUF"
+                    | "IDR"
+                    | "ILS"
+                    | "IMP"
+                    | "INR"
+                    | "IQD"
+                    | "IRR"
+                    | "ISK"
+                    | "JEP"
+                    | "JMD"
+                    | "JOD"
+                    | "JPY"
+                    | "KES"
+                    | "KGS"
+                    | "KHR"
+                    | "KMF"
+                    | "KPW"
+                    | "KRW"
+                    | "KWD"
+                    | "KYD"
+                    | "KZT"
+                    | "LAK"
+                    | "LBP"
+                    | "LKR"
+                    | "LRD"
+                    | "LSL"
+                    | "LYD"
+                    | "MAD"
+                    | "MDL"
+                    | "MGA"
+                    | "MKD"
+                    | "MMK"
+                    | "MNT"
+                    | "MOP"
+                    | "MRO"
+                    | "MUR"
+                    | "MVR"
+                    | "MWK"
+                    | "MXN"
+                    | "MYR"
+                    | "MZN"
+                    | "NAD"
+                    | "NGN"
+                    | "NIO"
+                    | "NOK"
+                    | "NPR"
+                    | "NZD"
+                    | "OMR"
+                    | "PAB"
+                    | "PEN"
+                    | "PGK"
+                    | "PHP"
+                    | "PKR"
+                    | "PLN"
+                    | "PYG"
+                    | "QAR"
+                    | "RON"
+                    | "RSD"
+                    | "RUB"
+                    | "RWF"
+                    | "SAR"
+                    | "SBD"
+                    | "SCR"
+                    | "SDG"
+                    | "SEK"
+                    | "SGD"
+                    | "SHP"
+                    | "SLL"
+                    | "SOS"
+                    | "SPL"
+                    | "SRD"
+                    | "STD"
+                    | "SVC"
+                    | "SYP"
+                    | "SZL"
+                    | "THB"
+                    | "TJS"
+                    | "TMT"
+                    | "TND"
+                    | "TOP"
+                    | "TRY"
+                    | "TTD"
+                    | "TVD"
+                    | "TWD"
+                    | "TZS"
+                    | "UAH"
+                    | "UGX"
+                    | "USD"
+                    | "UYU"
+                    | "UZS"
+                    | "VEF"
+                    | "VND"
+                    | "VUV"
+                    | "WST"
+                    | "XAF"
+                    | "XCD"
+                    | "XDR"
+                    | "XOF"
+                    | "XPF"
+                    | "XTS"
+                    | "XXX"
+                    | "YER"
+                    | "ZAR"
+                    | "ZMW"
+                    | "ZWD";
+                };
+                /** @description Information about the Payee in the proposed financial transaction. */
+                payee: {
+                  /** @description Date of birth in the form YYYY-MM-DD. */
+                  dateOfBirth?: string;
+                  /** @description Display name of the sender, if known. */
+                  displayName?: string;
+                  extensionList?: {
+                    key?: string;
+                    value?: string;
+                  }[];
+                  /** @description Party first name. */
+                  firstName?: string;
+                  /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+                  fspId?: string;
+                  /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+                  idSubValue?: string;
+                  /**
+                   * @description Below are the allowed values for the enumeration.
+                   *
+                   * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+                   *
+                   * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+                   *
+                   * @enum {string}
+                   */
+                  idType: "MSISDN" | "ACCOUNT_ID";
+                  /** @description The identifier string used to identify the sender. */
+                  idValue: string;
+                  /** @description Party last name. */
+                  lastName?: string;
+                  /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+                  merchantClassificationCode?: string;
+                  /** @description Party middle name. */
+                  middleName?: string;
+                  /** @enum {string} */
+                  type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+                };
+                /** @description Information about the Payer in the proposed financial transaction. */
+                payer: {
+                  /** @description Date of birth in the form YYYY-MM-DD. */
+                  dateOfBirth?: string;
+                  /** @description Display name of the sender, if known. */
+                  displayName?: string;
+                  extensionList?: {
+                    key?: string;
+                    value?: string;
+                  }[];
+                  /** @description Party first name. */
+                  firstName?: string;
+                  /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+                  fspId?: string;
+                  /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+                  idSubValue?: string;
+                  /**
+                   * @description Below are the allowed values for the enumeration.
+                   *
+                   * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+                   *
+                   * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+                   *
+                   * @enum {string}
+                   */
+                  idType: "MSISDN" | "ACCOUNT_ID";
+                  /** @description The identifier string used to identify the sender. */
+                  idValue: string;
+                  /** @description Party last name. */
+                  lastName?: string;
+                  /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+                  merchantClassificationCode?: string;
+                  /** @description Party middle name. */
+                  middleName?: string;
+                  /** @enum {string} */
+                  type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+                };
+                /** @description A Mojaloop API quote identifier (UUID). */
+                quoteId: string;
+                /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
+                transactionId: string;
+                /** @description Object containing transfer object. */
+                transactionType: {
+                  /**
+                   * @description Specifies if the initiator of the transfer is the Payer or Payee.
+                   * @enum {string}
+                   */
+                  initiator: "PAYER" | "PAYEE";
+                  /**
+                   * @description Specifies the type of the transaction initiator.
+                   * @enum {string}
+                   */
+                  initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+                  /** @enum {string} */
+                  scenario: "TRANSFER";
+                };
+              };
+            };
+            note?: string;
+            /** @description A response to a request for a quote. */
+            quote: {
+              /** @description An ISO-8601 formatted timestamp. */
+              expiration?: string;
+              extensionList?: {
+                key?: string;
+                value?: string;
+              }[];
+              /** @description Indicates the geographic location from where the transaction was initiated. */
+              geoCode?: {
+                /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+                latitude: string;
+                /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+                longitude: string;
+              };
+              /** @description Transaction commission from the Payee FSP. */
+              payeeFspCommissionAmount?: string;
+              /**
+               * @description Currency of the `payeeFspCommissionAmount`.
+               * @enum {string}
+               */
+              payeeFspCommissionAmountCurrency?:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /** @description Payee FSP’s part of the transaction fee. */
+              payeeFspFeeAmount?: string;
+              /**
+               * @description The currency of the `payeeFspFeeAmount`.
+               * @enum {string}
+               */
+              payeeFspFeeAmountCurrency?:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /** @description The amount that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. */
+              payeeReceiveAmount?: string;
+              /**
+               * @description The currency of the `payeeReceiveAmount`.
+               * @enum {string}
+               */
+              payeeReceiveAmountCurrency?:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              /** @description A Mojaloop API quote identifier (UUID). */
+              quoteId: string;
+              /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
+              transactionId: string;
+              /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
+              transferAmount: string;
+              /**
+               * @description The currency of the `transferAmount`.
+               * @enum {string}
+               */
+              transferAmountCurrency:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+            };
+            quoteRequestExtensions?: {
+              key?: string;
+              value?: string;
+            }[];
+            to: {
+              /** @description Date of birth in the form YYYY-MM-DD. */
+              dateOfBirth?: string;
+              /** @description Display name of the sender, if known. */
+              displayName?: string;
+              extensionList?: {
+                key?: string;
+                value?: string;
+              }[];
+              /** @description Party first name. */
+              firstName?: string;
+              /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+              fspId?: string;
+              /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+              idSubValue?: string;
+              /**
+               * @description Below are the allowed values for the enumeration.
+               *
+               * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+               *
+               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+               *
+               * @enum {string}
+               */
+              idType: "MSISDN" | "ACCOUNT_ID";
+              /** @description The identifier string used to identify the sender. */
+              idValue: string;
+              /** @description Party last name. */
+              lastName?: string;
+              /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+              merchantClassificationCode?: string;
+              /** @description Party middle name. */
+              middleName?: string;
+              /** @enum {string} */
+              type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            };
+            /** @enum {string} */
+            transactionType: "TRANSFER";
+            /** @description A Mojaloop API transfer identifier (UUID). */
+            transferId: string;
+          };
+        };
+      };
+    };
+  };
+  "/transfers/{transferId}": {
+    /** The HTTP request `GET /transfers/{transferId}` is used to get information regarding a transfer created or requested earlier. The `{transferId}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
+    get: {
+      parameters: {
+        path: {
+          transferId: string;
+        };
+      };
+      responses: {
+        /** The transfer was accepted */
+        200: {
+          content: {
+            "application/json": {
+              amount: string;
+              /**
+               * @description SEND for send amount, RECEIVE for receive amount.
+               * @enum {string}
+               */
+              amountType: "SEND" | "RECEIVE";
+              /** @enum {string} */
+              currency:
+                | "AED"
+                | "AFN"
+                | "ALL"
+                | "AMD"
+                | "ANG"
+                | "AOA"
+                | "ARS"
+                | "AUD"
+                | "AWG"
+                | "AZN"
+                | "BAM"
+                | "BBD"
+                | "BDT"
+                | "BGN"
+                | "BHD"
+                | "BIF"
+                | "BMD"
+                | "BND"
+                | "BOB"
+                | "BRL"
+                | "BSD"
+                | "BTN"
+                | "BWP"
+                | "BYN"
+                | "BZD"
+                | "CAD"
+                | "CDF"
+                | "CHF"
+                | "CLP"
+                | "CNY"
+                | "COP"
+                | "CRC"
+                | "CUC"
+                | "CUP"
+                | "CVE"
+                | "CZK"
+                | "DJF"
+                | "DKK"
+                | "DOP"
+                | "DZD"
+                | "EGP"
+                | "ERN"
+                | "ETB"
+                | "EUR"
+                | "FJD"
+                | "FKP"
+                | "GBP"
+                | "GEL"
+                | "GGP"
+                | "GHS"
+                | "GIP"
+                | "GMD"
+                | "GNF"
+                | "GTQ"
+                | "GYD"
+                | "HKD"
+                | "HNL"
+                | "HRK"
+                | "HTG"
+                | "HUF"
+                | "IDR"
+                | "ILS"
+                | "IMP"
+                | "INR"
+                | "IQD"
+                | "IRR"
+                | "ISK"
+                | "JEP"
+                | "JMD"
+                | "JOD"
+                | "JPY"
+                | "KES"
+                | "KGS"
+                | "KHR"
+                | "KMF"
+                | "KPW"
+                | "KRW"
+                | "KWD"
+                | "KYD"
+                | "KZT"
+                | "LAK"
+                | "LBP"
+                | "LKR"
+                | "LRD"
+                | "LSL"
+                | "LYD"
+                | "MAD"
+                | "MDL"
+                | "MGA"
+                | "MKD"
+                | "MMK"
+                | "MNT"
+                | "MOP"
+                | "MRO"
+                | "MUR"
+                | "MVR"
+                | "MWK"
+                | "MXN"
+                | "MYR"
+                | "MZN"
+                | "NAD"
+                | "NGN"
+                | "NIO"
+                | "NOK"
+                | "NPR"
+                | "NZD"
+                | "OMR"
+                | "PAB"
+                | "PEN"
+                | "PGK"
+                | "PHP"
+                | "PKR"
+                | "PLN"
+                | "PYG"
+                | "QAR"
+                | "RON"
+                | "RSD"
+                | "RUB"
+                | "RWF"
+                | "SAR"
+                | "SBD"
+                | "SCR"
+                | "SDG"
+                | "SEK"
+                | "SGD"
+                | "SHP"
+                | "SLL"
+                | "SOS"
+                | "SPL"
+                | "SRD"
+                | "STD"
+                | "SVC"
+                | "SYP"
+                | "SZL"
+                | "THB"
+                | "TJS"
+                | "TMT"
+                | "TND"
+                | "TOP"
+                | "TRY"
+                | "TTD"
+                | "TVD"
+                | "TWD"
+                | "TZS"
+                | "UAH"
+                | "UGX"
+                | "USD"
+                | "UYU"
+                | "UZS"
+                | "VEF"
+                | "VND"
+                | "VUV"
+                | "WST"
+                | "XAF"
+                | "XCD"
+                | "XDR"
+                | "XOF"
+                | "XPF"
+                | "XTS"
+                | "XXX"
+                | "YER"
+                | "ZAR"
+                | "ZMW"
+                | "ZWD";
+              extensions?: {
+                key?: string;
+                value?: string;
+              }[];
+              from: {
+                /** @description Date of birth in the form YYYY-MM-DD. */
+                dateOfBirth?: string;
+                /** @description Display name of the sender, if known. */
+                displayName?: string;
+                extensionList?: {
+                  key?: string;
+                  value?: string;
+                }[];
+                /** @description Party first name. */
+                firstName?: string;
+                /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+                fspId?: string;
+                /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+                idSubValue?: string;
+                /**
+                 * @description Below are the allowed values for the enumeration.
+                 *
+                 * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+                 *
+                 * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+                 *
+                 * @enum {string}
+                 */
+                idType: "MSISDN" | "ACCOUNT_ID";
+                /** @description The identifier string used to identify the sender. */
+                idValue: string;
+                /** @description Party last name. */
+                lastName?: string;
+                /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+                merchantClassificationCode?: string;
+                /** @description Party middle name. */
+                middleName?: string;
+                /** @enum {string} */
+                type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+              };
+              /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
+              homeTransactionId: string;
+              note?: string;
+              /** @description An ISO-8601 formatted timestamp. */
+              timestamp: string;
+              to: {
+                /** @description Date of birth in the form YYYY-MM-DD. */
+                dateOfBirth?: string;
+                /** @description Display name of the sender, if known. */
+                displayName?: string;
+                extensionList?: {
+                  key?: string;
+                  value?: string;
+                }[];
+                /** @description Party first name. */
+                firstName?: string;
+                /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+                fspId?: string;
+                /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+                idSubValue?: string;
+                /**
+                 * @description Below are the allowed values for the enumeration.
+                 *
+                 * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+                 *
+                 * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+                 *
+                 * @enum {string}
+                 */
+                idType: "MSISDN" | "ACCOUNT_ID";
+                /** @description The identifier string used to identify the sender. */
+                idValue: string;
+                /** @description Party last name. */
+                lastName?: string;
+                /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+                merchantClassificationCode?: string;
+                /** @description Party middle name. */
+                middleName?: string;
+                /** @enum {string} */
+                type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+              };
+              /** @enum {string} */
+              transactionType: "TRANSFER";
+              /**
+               * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
+               *
+               * @enum {string}
+               */
+              transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
+            };
+          };
+        };
+        /** An error occurred processing the request */
+        500: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+      };
+    };
+    /** The HTTP request `PUT /transfers/{transferId}` is used to receive notification for transfer being fulfiled when the FSP is a Payee */
+    put: {
+      parameters: {
+        path: {
+          transferId: string;
+        };
+      };
+      responses: {
+        /** The notification was accepted */
+        200: unknown;
+        /** An error occurred processing the request */
+        500: {
+          content: {
+            "application/json": {
+              /** @description Error message text. */
+              message?: string;
+              /** @description Error code as string. */
+              statusCode: string;
+            };
+          };
+        };
+      };
+      /** An incoming notification for fulfiled transfer */
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @enum {string} */
+            currentState?:
+              | "ERROR_OCCURRED"
+              | "WAITING_FOR_PARTY_ACCEPTANCE"
+              | "WAITING_FOR_QUOTE_ACCEPTANCE"
+              | "COMPLETED";
+            /** @enum {string} */
+            direction?: "INBOUND";
+            finalNotification?: {
+              /**
+               * @description An ISO-8601 formatted timestamp.
+               * @example 2020-05-19T08:38:08.699-04:00
+               */
+              completedTimestamp: string;
+              /** @description Optional extension, specific to deployment. */
+              extensionList?: {
+                key?: string;
+                value?: string;
+              }[];
+              /**
+               * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
+               *
+               * @example COMMITTED
+               * @enum {string}
+               */
+              transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
+            };
+            fulfil?: {
+              body?: { [key: string]: unknown };
+              headers?: { [key: string]: unknown };
+            };
+            /** @description An ISO-8601 formatted timestamp. */
+            initiatedTimestamp?: string;
+            /** @description This object represents a Mojaloop API error received at any time during the transfer process */
+            lastError?: {
+              /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
+              httpStatusCode?: number;
+              /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
+              mojaloopError?: {
+                /**
+                 * ErrorInformation
+                 * @description Data model for the complex type ErrorInformation.
+                 */
+                errorInformation?: {
+                  /**
+                   * ErrorCode
+                   * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+                   * @example 5100
+                   */
+                  errorCode: string;
+                  /**
+                   * ErrorDescription
+                   * @description Error description string.
+                   */
+                  errorDescription: string;
+                  /**
+                   * ExtensionList
+                   * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+                   */
+                  extensionList?: {
+                    /** @description Number of Extension elements. */
+                    extension: {
+                      /**
+                       * ExtensionKey
+                       * @description Extension key.
+                       */
+                      key: string;
+                      /**
+                       * ExtensionValue
+                       * @description Extension value.
+                       */
+                      value: string;
+                    }[];
+                  };
+                };
+              };
+            };
+            prepare?: {
+              body?: { [key: string]: unknown };
+              headers?: { [key: string]: unknown };
+            };
+            quote?: {
+              fulfilment?: string;
+              internalRequest?: { [key: string]: unknown };
+              mojaloopResponse?: { [key: string]: unknown };
+              request?: { [key: string]: unknown };
+              response?: { [key: string]: unknown };
+            };
+            quoteRequest?: {
+              body?: { [key: string]: unknown };
+              headers?: { [key: string]: unknown };
+            };
+            quoteResponse?: {
+              body?: { [key: string]: unknown };
+              headers?: { [key: string]: unknown };
+            };
+            /** @description A Mojaloop API transfer identifier (UUID). */
+            transferId?: string;
+          };
+        };
+      };
+    };
+    parameters: {
+      path: {
+        transferId: string;
+      };
+    };
+  };
 }
 
 export interface components {
   schemas: {
+    /** @description Object containing Amount and Currency of the transfer. */
+    amountCurrency: {
+      amount: string;
+      /** @enum {string} */
+      currency:
+        | "AED"
+        | "AFN"
+        | "ALL"
+        | "AMD"
+        | "ANG"
+        | "AOA"
+        | "ARS"
+        | "AUD"
+        | "AWG"
+        | "AZN"
+        | "BAM"
+        | "BBD"
+        | "BDT"
+        | "BGN"
+        | "BHD"
+        | "BIF"
+        | "BMD"
+        | "BND"
+        | "BOB"
+        | "BRL"
+        | "BSD"
+        | "BTN"
+        | "BWP"
+        | "BYN"
+        | "BZD"
+        | "CAD"
+        | "CDF"
+        | "CHF"
+        | "CLP"
+        | "CNY"
+        | "COP"
+        | "CRC"
+        | "CUC"
+        | "CUP"
+        | "CVE"
+        | "CZK"
+        | "DJF"
+        | "DKK"
+        | "DOP"
+        | "DZD"
+        | "EGP"
+        | "ERN"
+        | "ETB"
+        | "EUR"
+        | "FJD"
+        | "FKP"
+        | "GBP"
+        | "GEL"
+        | "GGP"
+        | "GHS"
+        | "GIP"
+        | "GMD"
+        | "GNF"
+        | "GTQ"
+        | "GYD"
+        | "HKD"
+        | "HNL"
+        | "HRK"
+        | "HTG"
+        | "HUF"
+        | "IDR"
+        | "ILS"
+        | "IMP"
+        | "INR"
+        | "IQD"
+        | "IRR"
+        | "ISK"
+        | "JEP"
+        | "JMD"
+        | "JOD"
+        | "JPY"
+        | "KES"
+        | "KGS"
+        | "KHR"
+        | "KMF"
+        | "KPW"
+        | "KRW"
+        | "KWD"
+        | "KYD"
+        | "KZT"
+        | "LAK"
+        | "LBP"
+        | "LKR"
+        | "LRD"
+        | "LSL"
+        | "LYD"
+        | "MAD"
+        | "MDL"
+        | "MGA"
+        | "MKD"
+        | "MMK"
+        | "MNT"
+        | "MOP"
+        | "MRO"
+        | "MUR"
+        | "MVR"
+        | "MWK"
+        | "MXN"
+        | "MYR"
+        | "MZN"
+        | "NAD"
+        | "NGN"
+        | "NIO"
+        | "NOK"
+        | "NPR"
+        | "NZD"
+        | "OMR"
+        | "PAB"
+        | "PEN"
+        | "PGK"
+        | "PHP"
+        | "PKR"
+        | "PLN"
+        | "PYG"
+        | "QAR"
+        | "RON"
+        | "RSD"
+        | "RUB"
+        | "RWF"
+        | "SAR"
+        | "SBD"
+        | "SCR"
+        | "SDG"
+        | "SEK"
+        | "SGD"
+        | "SHP"
+        | "SLL"
+        | "SOS"
+        | "SPL"
+        | "SRD"
+        | "STD"
+        | "SVC"
+        | "SYP"
+        | "SZL"
+        | "THB"
+        | "TJS"
+        | "TMT"
+        | "TND"
+        | "TOP"
+        | "TRY"
+        | "TTD"
+        | "TVD"
+        | "TWD"
+        | "TZS"
+        | "UAH"
+        | "UGX"
+        | "USD"
+        | "UYU"
+        | "UZS"
+        | "VEF"
+        | "VND"
+        | "VUV"
+        | "WST"
+        | "XAF"
+        | "XCD"
+        | "XDR"
+        | "XOF"
+        | "XPF"
+        | "XTS"
+        | "XXX"
+        | "YER"
+        | "ZAR"
+        | "ZMW"
+        | "ZWD";
+    };
     /**
      * @description SEND for send amount, RECEIVE for receive amount.
      * @enum {string}
@@ -4897,17 +5067,135 @@ export interface components {
     /** @description Date of birth in the form YYYY-MM-DD. */
     dateOfBirth: string;
     errorResponse: {
-      /** @description Error code as string. */
-      statusCode: string;
       /** @description Error message text. */
       message?: string;
+      /** @description Error code as string. */
+      statusCode: string;
     };
-    /** @description FSP identifier. */
-    fspId: string;
+    extensionItem: {
+      key?: string;
+      value?: string;
+    };
     extensionList: {
       key?: string;
       value?: string;
     }[];
+    /** @description Data model for the complex type ExtensionList */
+    extensionListComplex: {
+      /** @description Number of Extension elements */
+      extension: {
+        key?: string;
+        value?: string;
+      }[];
+    };
+    /** @description FSP identifier. */
+    fspId: string;
+    /**
+     * TransfersIDPatchResponse
+     * @description PUT /transfers/{transferId} object
+     */
+    fulfilNotification: {
+      /** @enum {string} */
+      currentState?:
+        | "ERROR_OCCURRED"
+        | "WAITING_FOR_PARTY_ACCEPTANCE"
+        | "WAITING_FOR_QUOTE_ACCEPTANCE"
+        | "COMPLETED";
+      /** @enum {string} */
+      direction?: "INBOUND";
+      finalNotification?: {
+        /**
+         * @description An ISO-8601 formatted timestamp.
+         * @example 2020-05-19T08:38:08.699-04:00
+         */
+        completedTimestamp: string;
+        /** @description Optional extension, specific to deployment. */
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /**
+         * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
+         *
+         * @example COMMITTED
+         * @enum {string}
+         */
+        transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
+      };
+      fulfil?: {
+        body?: { [key: string]: unknown };
+        headers?: { [key: string]: unknown };
+      };
+      /** @description An ISO-8601 formatted timestamp. */
+      initiatedTimestamp?: string;
+      /** @description This object represents a Mojaloop API error received at any time during the transfer process */
+      lastError?: {
+        /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
+        httpStatusCode?: number;
+        /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
+        mojaloopError?: {
+          /**
+           * ErrorInformation
+           * @description Data model for the complex type ErrorInformation.
+           */
+          errorInformation?: {
+            /**
+             * ErrorCode
+             * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+             * @example 5100
+             */
+            errorCode: string;
+            /**
+             * ErrorDescription
+             * @description Error description string.
+             */
+            errorDescription: string;
+            /**
+             * ExtensionList
+             * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+             */
+            extensionList?: {
+              /** @description Number of Extension elements. */
+              extension: {
+                /**
+                 * ExtensionKey
+                 * @description Extension key.
+                 */
+                key: string;
+                /**
+                 * ExtensionValue
+                 * @description Extension value.
+                 */
+                value: string;
+              }[];
+            };
+          };
+        };
+      };
+      prepare?: {
+        body?: { [key: string]: unknown };
+        headers?: { [key: string]: unknown };
+      };
+      quote?: {
+        fulfilment?: string;
+        internalRequest?: { [key: string]: unknown };
+        mojaloopResponse?: { [key: string]: unknown };
+        request?: { [key: string]: unknown };
+        response?: { [key: string]: unknown };
+      };
+      quoteRequest?: {
+        body?: { [key: string]: unknown };
+        headers?: { [key: string]: unknown };
+      };
+      quoteResponse?: {
+        body?: { [key: string]: unknown };
+        headers?: { [key: string]: unknown };
+      };
+      /** @description A Mojaloop API transfer identifier (UUID). */
+      transferId?: string;
+    };
+    /** @description This object may represent a number of different error object types and so its properties may vary significantly. */
+    generalError: { [key: string]: unknown };
     /** @description Indicates the geographic location from where the transaction was initiated. */
     geoCode: {
       /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
@@ -4915,6 +5203,8 @@ export interface components {
       /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
       longitude: string;
     };
+    /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+    idSubValue: string;
     /**
      * @description Below are the allowed values for the enumeration.
      *
@@ -4925,6 +5215,295 @@ export interface components {
      * @enum {string}
      */
     idType: "MSISDN" | "ACCOUNT_ID";
+    /** @description Identifier of the party. */
+    idValue: string;
+    /** @description Object containing transfer object. */
+    ilpPacketData: {
+      /** @description Object containing Amount and Currency of the transfer. */
+      amount: {
+        amount: string;
+        /** @enum {string} */
+        currency:
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "XTS"
+          | "XXX"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
+      };
+      /** @description Information about the Payee in the proposed financial transaction. */
+      payee: {
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+        idSubValue?: string;
+        /**
+         * @description Below are the allowed values for the enumeration.
+         *
+         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+         *
+         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+         *
+         * @enum {string}
+         */
+        idType: "MSISDN" | "ACCOUNT_ID";
+        /** @description The identifier string used to identify the sender. */
+        idValue: string;
+        /** @description Party last name. */
+        lastName?: string;
+        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        merchantClassificationCode?: string;
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
+      /** @description Information about the Payer in the proposed financial transaction. */
+      payer: {
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+        idSubValue?: string;
+        /**
+         * @description Below are the allowed values for the enumeration.
+         *
+         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+         *
+         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+         *
+         * @enum {string}
+         */
+        idType: "MSISDN" | "ACCOUNT_ID";
+        /** @description The identifier string used to identify the sender. */
+        idValue: string;
+        /** @description Party last name. */
+        lastName?: string;
+        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        merchantClassificationCode?: string;
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
+      /** @description A Mojaloop API quote identifier (UUID). */
+      quoteId: string;
+      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
+      transactionId: string;
+      /** @description Object containing transfer object. */
+      transactionType: {
+        /**
+         * @description Specifies if the initiator of the transfer is the Payer or Payee.
+         * @enum {string}
+         */
+        initiator: "PAYER" | "PAYEE";
+        /**
+         * @description Specifies the type of the transaction initiator.
+         * @enum {string}
+         */
+        initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+        /** @enum {string} */
+        scenario: "TRANSFER";
+      };
+    };
+    /**
+     * @description Specifies if the initiator of the transfer is the Payer or Payee.
+     * @enum {string}
+     */
+    initiator: "PAYER" | "PAYEE";
+    /**
+     * @description Specifies the type of the transaction initiator.
+     * @enum {string}
+     */
+    initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+    /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+    latitude: string;
+    /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+    longitude: string;
+    money: string;
+    participantsResponse: {
+      /** @description FSP identifier. */
+      fspId?: string;
+    };
+    /** @enum {string} */
+    payerType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
     /**
      * @description Below are the allowed values for the enumeration.
      *
@@ -4970,124 +5549,17 @@ export interface components {
       | "VOTERS_ID"
       | "UNITED_NATIONS"
       | "OTHER_ID";
-    /** @description Identifier of the party. */
-    idValue: string;
-    /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-    idSubValue: string;
-    /**
-     * @description Specifies if the initiator of the transfer is the Payer or Payee.
-     * @enum {string}
-     */
-    initiator: "PAYER" | "PAYEE";
-    extensionItem: {
-      key?: string;
-      value?: string;
-    };
-    /**
-     * @description Specifies the type of the transaction initiator.
-     * @enum {string}
-     */
-    initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-    /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-    latitude: string;
-    /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-    longitude: string;
-    money: string;
-    participantsResponse: {
-      /** @description FSP identifier. */
-      fspId?: string;
-    };
-    /** @enum {string} */
-    payerType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
     /** @description A Mojaloop API quote identifier (UUID). */
     quoteId: string;
     /** @description A request for a quote for transfer from the DFSP backend. */
     quoteRequest: {
-      /** @description A Mojaloop API quote identifier (UUID). */
-      quoteId: string;
-      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
-      transactionId: string;
-      /** @description Information about the Payee in the proposed financial transaction. */
-      to: {
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /**
-         * @description Below are the allowed values for the enumeration.
-         *
-         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-         *
-         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-         *
-         * @enum {string}
-         */
-        idType: "MSISDN" | "ACCOUNT_ID";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-        idSubValue?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-        merchantClassificationCode?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-      };
-      /** @description Information about the Payer in the proposed financial transaction. */
-      from: {
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /**
-         * @description Below are the allowed values for the enumeration.
-         *
-         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-         *
-         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-         *
-         * @enum {string}
-         */
-        idType: "MSISDN" | "ACCOUNT_ID";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-        idSubValue?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-        merchantClassificationCode?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-      };
+      /** @description Depending on `amountType`. If SEND - The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction. If RECEIVE - The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities. */
+      amount: string;
       /**
        * @description SEND for send amount, RECEIVE for receive amount.
        * @enum {string}
        */
       amountType: "SEND" | "RECEIVE";
-      /** @description Depending on `amountType`. If SEND - The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction. If RECEIVE - The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities. */
-      amount: string;
       /** @enum {string} */
       currency:
         | "AED"
@@ -5254,6 +5726,12 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
+      /** @description An ISO-8601 formatted timestamp. */
+      expiration?: string;
+      extensionList?: {
+        key?: string;
+        value?: string;
+      }[];
       /** @description The fees in the transaction. The fees element should be empty if fees should be non-disclosed. The fees element should be non-empty if fees should be disclosed. */
       feesAmount?: string;
       /** @enum {string} */
@@ -5422,11 +5900,50 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-      /**
-       * @description Type of transaction for which the quote is requested.
-       * @enum {string}
-       */
-      transactionType: "TRANSFER";
+      /** @description Information about the Payer in the proposed financial transaction. */
+      from: {
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+        idSubValue?: string;
+        /**
+         * @description Below are the allowed values for the enumeration.
+         *
+         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+         *
+         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+         *
+         * @enum {string}
+         */
+        idType: "MSISDN" | "ACCOUNT_ID";
+        /** @description The identifier string used to identify the sender. */
+        idValue: string;
+        /** @description Party last name. */
+        lastName?: string;
+        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        merchantClassificationCode?: string;
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
+      /** @description Indicates the geographic location from where the transaction was initiated. */
+      geoCode?: {
+        /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+        latitude: string;
+        /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+        longitude: string;
+      };
       /**
        * @description Specifies if the initiator of the transfer is the Payer or Payee.
        * @enum {string}
@@ -5437,6 +5954,63 @@ export interface components {
        * @enum {string}
        */
       initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      /** @description An optional note associated with the requested transfer. */
+      note?: string;
+      /** @description A Mojaloop API quote identifier (UUID). */
+      quoteId: string;
+      /** @description Information about the Payee in the proposed financial transaction. */
+      to: {
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+        idSubValue?: string;
+        /**
+         * @description Below are the allowed values for the enumeration.
+         *
+         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+         *
+         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+         *
+         * @enum {string}
+         */
+        idType: "MSISDN" | "ACCOUNT_ID";
+        /** @description The identifier string used to identify the sender. */
+        idValue: string;
+        /** @description Party last name. */
+        lastName?: string;
+        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        merchantClassificationCode?: string;
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
+      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
+      transactionId: string;
+      /**
+       * @description Type of transaction for which the quote is requested.
+       * @enum {string}
+       */
+      transactionType: "TRANSFER";
+    };
+    /** @description A response to a request for a quote. */
+    quoteResponse: {
+      /** @description An ISO-8601 formatted timestamp. */
+      expiration?: string;
+      extensionList?: {
+        key?: string;
+        value?: string;
+      }[];
       /** @description Indicates the geographic location from where the transaction was initiated. */
       geoCode?: {
         /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
@@ -5444,199 +6018,13 @@ export interface components {
         /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
         longitude: string;
       };
-      /** @description An optional note associated with the requested transfer. */
-      note?: string;
-      /** @description An ISO-8601 formatted timestamp. */
-      expiration?: string;
-      extensionList?: {
-        key?: string;
-        value?: string;
-      }[];
-    };
-    /** @description A response to a request for a quote. */
-    quoteResponse: {
-      /** @description A Mojaloop API quote identifier (UUID). */
-      quoteId: string;
-      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
-      transactionId: string;
-      /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
-      transferAmount: string;
+      /** @description Transaction commission from the Payee FSP. */
+      payeeFspCommissionAmount?: string;
       /**
-       * @description The currency of the `transferAmount`.
+       * @description Currency of the `payeeFspCommissionAmount`.
        * @enum {string}
        */
-      transferAmountCurrency:
-        | "AED"
-        | "AFN"
-        | "ALL"
-        | "AMD"
-        | "ANG"
-        | "AOA"
-        | "ARS"
-        | "AUD"
-        | "AWG"
-        | "AZN"
-        | "BAM"
-        | "BBD"
-        | "BDT"
-        | "BGN"
-        | "BHD"
-        | "BIF"
-        | "BMD"
-        | "BND"
-        | "BOB"
-        | "BRL"
-        | "BSD"
-        | "BTN"
-        | "BWP"
-        | "BYN"
-        | "BZD"
-        | "CAD"
-        | "CDF"
-        | "CHF"
-        | "CLP"
-        | "CNY"
-        | "COP"
-        | "CRC"
-        | "CUC"
-        | "CUP"
-        | "CVE"
-        | "CZK"
-        | "DJF"
-        | "DKK"
-        | "DOP"
-        | "DZD"
-        | "EGP"
-        | "ERN"
-        | "ETB"
-        | "EUR"
-        | "FJD"
-        | "FKP"
-        | "GBP"
-        | "GEL"
-        | "GGP"
-        | "GHS"
-        | "GIP"
-        | "GMD"
-        | "GNF"
-        | "GTQ"
-        | "GYD"
-        | "HKD"
-        | "HNL"
-        | "HRK"
-        | "HTG"
-        | "HUF"
-        | "IDR"
-        | "ILS"
-        | "IMP"
-        | "INR"
-        | "IQD"
-        | "IRR"
-        | "ISK"
-        | "JEP"
-        | "JMD"
-        | "JOD"
-        | "JPY"
-        | "KES"
-        | "KGS"
-        | "KHR"
-        | "KMF"
-        | "KPW"
-        | "KRW"
-        | "KWD"
-        | "KYD"
-        | "KZT"
-        | "LAK"
-        | "LBP"
-        | "LKR"
-        | "LRD"
-        | "LSL"
-        | "LYD"
-        | "MAD"
-        | "MDL"
-        | "MGA"
-        | "MKD"
-        | "MMK"
-        | "MNT"
-        | "MOP"
-        | "MRO"
-        | "MUR"
-        | "MVR"
-        | "MWK"
-        | "MXN"
-        | "MYR"
-        | "MZN"
-        | "NAD"
-        | "NGN"
-        | "NIO"
-        | "NOK"
-        | "NPR"
-        | "NZD"
-        | "OMR"
-        | "PAB"
-        | "PEN"
-        | "PGK"
-        | "PHP"
-        | "PKR"
-        | "PLN"
-        | "PYG"
-        | "QAR"
-        | "RON"
-        | "RSD"
-        | "RUB"
-        | "RWF"
-        | "SAR"
-        | "SBD"
-        | "SCR"
-        | "SDG"
-        | "SEK"
-        | "SGD"
-        | "SHP"
-        | "SLL"
-        | "SOS"
-        | "SPL"
-        | "SRD"
-        | "STD"
-        | "SVC"
-        | "SYP"
-        | "SZL"
-        | "THB"
-        | "TJS"
-        | "TMT"
-        | "TND"
-        | "TOP"
-        | "TRY"
-        | "TTD"
-        | "TVD"
-        | "TWD"
-        | "TZS"
-        | "UAH"
-        | "UGX"
-        | "USD"
-        | "UYU"
-        | "UZS"
-        | "VEF"
-        | "VND"
-        | "VUV"
-        | "WST"
-        | "XAF"
-        | "XCD"
-        | "XDR"
-        | "XOF"
-        | "XPF"
-        | "XTS"
-        | "XXX"
-        | "YER"
-        | "ZAR"
-        | "ZMW"
-        | "ZWD";
-      /** @description The amount that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. */
-      payeeReceiveAmount?: string;
-      /**
-       * @description The currency of the `payeeReceiveAmount`.
-       * @enum {string}
-       */
-      payeeReceiveAmountCurrency?:
+      payeeFspCommissionAmountCurrency?:
         | "AED"
         | "AFN"
         | "ALL"
@@ -5972,13 +6360,13 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-      /** @description Transaction commission from the Payee FSP. */
-      payeeFspCommissionAmount?: string;
+      /** @description The amount that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. */
+      payeeReceiveAmount?: string;
       /**
-       * @description Currency of the `payeeFspCommissionAmount`.
+       * @description The currency of the `payeeReceiveAmount`.
        * @enum {string}
        */
-      payeeFspCommissionAmountCurrency?:
+      payeeReceiveAmountCurrency?:
         | "AED"
         | "AFN"
         | "ALL"
@@ -6143,31 +6531,212 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-      /** @description An ISO-8601 formatted timestamp. */
-      expiration?: string;
-      /** @description Indicates the geographic location from where the transaction was initiated. */
-      geoCode?: {
-        /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-        latitude: string;
-        /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-        longitude: string;
-      };
-      extensionList?: {
-        key?: string;
-        value?: string;
-      }[];
+      /** @description A Mojaloop API quote identifier (UUID). */
+      quoteId: string;
+      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
+      transactionId: string;
+      /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
+      transferAmount: string;
+      /**
+       * @description The currency of the `transferAmount`.
+       * @enum {string}
+       */
+      transferAmountCurrency:
+        | "AED"
+        | "AFN"
+        | "ALL"
+        | "AMD"
+        | "ANG"
+        | "AOA"
+        | "ARS"
+        | "AUD"
+        | "AWG"
+        | "AZN"
+        | "BAM"
+        | "BBD"
+        | "BDT"
+        | "BGN"
+        | "BHD"
+        | "BIF"
+        | "BMD"
+        | "BND"
+        | "BOB"
+        | "BRL"
+        | "BSD"
+        | "BTN"
+        | "BWP"
+        | "BYN"
+        | "BZD"
+        | "CAD"
+        | "CDF"
+        | "CHF"
+        | "CLP"
+        | "CNY"
+        | "COP"
+        | "CRC"
+        | "CUC"
+        | "CUP"
+        | "CVE"
+        | "CZK"
+        | "DJF"
+        | "DKK"
+        | "DOP"
+        | "DZD"
+        | "EGP"
+        | "ERN"
+        | "ETB"
+        | "EUR"
+        | "FJD"
+        | "FKP"
+        | "GBP"
+        | "GEL"
+        | "GGP"
+        | "GHS"
+        | "GIP"
+        | "GMD"
+        | "GNF"
+        | "GTQ"
+        | "GYD"
+        | "HKD"
+        | "HNL"
+        | "HRK"
+        | "HTG"
+        | "HUF"
+        | "IDR"
+        | "ILS"
+        | "IMP"
+        | "INR"
+        | "IQD"
+        | "IRR"
+        | "ISK"
+        | "JEP"
+        | "JMD"
+        | "JOD"
+        | "JPY"
+        | "KES"
+        | "KGS"
+        | "KHR"
+        | "KMF"
+        | "KPW"
+        | "KRW"
+        | "KWD"
+        | "KYD"
+        | "KZT"
+        | "LAK"
+        | "LBP"
+        | "LKR"
+        | "LRD"
+        | "LSL"
+        | "LYD"
+        | "MAD"
+        | "MDL"
+        | "MGA"
+        | "MKD"
+        | "MMK"
+        | "MNT"
+        | "MOP"
+        | "MRO"
+        | "MUR"
+        | "MVR"
+        | "MWK"
+        | "MXN"
+        | "MYR"
+        | "MZN"
+        | "NAD"
+        | "NGN"
+        | "NIO"
+        | "NOK"
+        | "NPR"
+        | "NZD"
+        | "OMR"
+        | "PAB"
+        | "PEN"
+        | "PGK"
+        | "PHP"
+        | "PKR"
+        | "PLN"
+        | "PYG"
+        | "QAR"
+        | "RON"
+        | "RSD"
+        | "RUB"
+        | "RWF"
+        | "SAR"
+        | "SBD"
+        | "SCR"
+        | "SDG"
+        | "SEK"
+        | "SGD"
+        | "SHP"
+        | "SLL"
+        | "SOS"
+        | "SPL"
+        | "SRD"
+        | "STD"
+        | "SVC"
+        | "SYP"
+        | "SZL"
+        | "THB"
+        | "TJS"
+        | "TMT"
+        | "TND"
+        | "TOP"
+        | "TRY"
+        | "TTD"
+        | "TVD"
+        | "TWD"
+        | "TZS"
+        | "UAH"
+        | "UGX"
+        | "USD"
+        | "UYU"
+        | "UZS"
+        | "VEF"
+        | "VND"
+        | "VUV"
+        | "WST"
+        | "XAF"
+        | "XCD"
+        | "XDR"
+        | "XOF"
+        | "XPF"
+        | "XTS"
+        | "XXX"
+        | "YER"
+        | "ZAR"
+        | "ZMW"
+        | "ZWD";
     };
+    /** @enum {string} */
+    scenario: "TRANSFER";
     /** @description An ISO-8601 formatted timestamp. */
     timestamp: string;
     /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
     transactionId: string;
     /** @enum {string} */
     transactionType: "TRANSFER";
-    /** @enum {string} */
-    scenario: "TRANSFER";
-    /** @description Object containing Amount and Currency of the transfer. */
-    amountCurrency: {
+    /** @description Object containing transfer object. */
+    transactionTypeObject: {
+      /**
+       * @description Specifies if the initiator of the transfer is the Payer or Payee.
+       * @enum {string}
+       */
+      initiator: "PAYER" | "PAYEE";
+      /**
+       * @description Specifies the type of the transaction initiator.
+       * @enum {string}
+       */
+      initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      /** @enum {string} */
+      scenario: "TRANSFER";
+    };
+    transferDetailsResponse: {
       amount: string;
+      /**
+       * @description SEND for send amount, RECEIVE for receive amount.
+       * @enum {string}
+       */
+      amountType: "SEND" | "RECEIVE";
       /** @enum {string} */
       currency:
         | "AED"
@@ -6334,293 +6903,113 @@ export interface components {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-    };
-    /** @description Object containing transfer object. */
-    transactionTypeObject: {
+      extensions?: {
+        key?: string;
+        value?: string;
+      }[];
+      from: {
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+        idSubValue?: string;
+        /**
+         * @description Below are the allowed values for the enumeration.
+         *
+         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+         *
+         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+         *
+         * @enum {string}
+         */
+        idType: "MSISDN" | "ACCOUNT_ID";
+        /** @description The identifier string used to identify the sender. */
+        idValue: string;
+        /** @description Party last name. */
+        lastName?: string;
+        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        merchantClassificationCode?: string;
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
+      homeTransactionId: string;
+      note?: string;
+      /** @description An ISO-8601 formatted timestamp. */
+      timestamp: string;
+      to: {
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+        idSubValue?: string;
+        /**
+         * @description Below are the allowed values for the enumeration.
+         *
+         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+         *
+         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+         *
+         * @enum {string}
+         */
+        idType: "MSISDN" | "ACCOUNT_ID";
+        /** @description The identifier string used to identify the sender. */
+        idValue: string;
+        /** @description Party last name. */
+        lastName?: string;
+        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        merchantClassificationCode?: string;
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
       /** @enum {string} */
-      scenario: "TRANSFER";
+      transactionType: "TRANSFER";
       /**
-       * @description Specifies if the initiator of the transfer is the Payer or Payee.
+       * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
+       *
        * @enum {string}
        */
-      initiator: "PAYER" | "PAYEE";
-      /**
-       * @description Specifies the type of the transaction initiator.
-       * @enum {string}
-       */
-      initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-    };
-    /** @description Object containing transfer object. */
-    ilpPacketData: {
-      /** @description A Mojaloop API quote identifier (UUID). */
-      quoteId: string;
-      /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
-      transactionId: string;
-      /** @description Information about the Payer in the proposed financial transaction. */
-      payer: {
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /**
-         * @description Below are the allowed values for the enumeration.
-         *
-         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-         *
-         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-         *
-         * @enum {string}
-         */
-        idType: "MSISDN" | "ACCOUNT_ID";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-        idSubValue?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-        merchantClassificationCode?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-      };
-      /** @description Information about the Payee in the proposed financial transaction. */
-      payee: {
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /**
-         * @description Below are the allowed values for the enumeration.
-         *
-         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-         *
-         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-         *
-         * @enum {string}
-         */
-        idType: "MSISDN" | "ACCOUNT_ID";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-        idSubValue?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-        merchantClassificationCode?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-      };
-      /** @description Object containing Amount and Currency of the transfer. */
-      amount: {
-        amount: string;
-        /** @enum {string} */
-        currency:
-          | "AED"
-          | "AFN"
-          | "ALL"
-          | "AMD"
-          | "ANG"
-          | "AOA"
-          | "ARS"
-          | "AUD"
-          | "AWG"
-          | "AZN"
-          | "BAM"
-          | "BBD"
-          | "BDT"
-          | "BGN"
-          | "BHD"
-          | "BIF"
-          | "BMD"
-          | "BND"
-          | "BOB"
-          | "BRL"
-          | "BSD"
-          | "BTN"
-          | "BWP"
-          | "BYN"
-          | "BZD"
-          | "CAD"
-          | "CDF"
-          | "CHF"
-          | "CLP"
-          | "CNY"
-          | "COP"
-          | "CRC"
-          | "CUC"
-          | "CUP"
-          | "CVE"
-          | "CZK"
-          | "DJF"
-          | "DKK"
-          | "DOP"
-          | "DZD"
-          | "EGP"
-          | "ERN"
-          | "ETB"
-          | "EUR"
-          | "FJD"
-          | "FKP"
-          | "GBP"
-          | "GEL"
-          | "GGP"
-          | "GHS"
-          | "GIP"
-          | "GMD"
-          | "GNF"
-          | "GTQ"
-          | "GYD"
-          | "HKD"
-          | "HNL"
-          | "HRK"
-          | "HTG"
-          | "HUF"
-          | "IDR"
-          | "ILS"
-          | "IMP"
-          | "INR"
-          | "IQD"
-          | "IRR"
-          | "ISK"
-          | "JEP"
-          | "JMD"
-          | "JOD"
-          | "JPY"
-          | "KES"
-          | "KGS"
-          | "KHR"
-          | "KMF"
-          | "KPW"
-          | "KRW"
-          | "KWD"
-          | "KYD"
-          | "KZT"
-          | "LAK"
-          | "LBP"
-          | "LKR"
-          | "LRD"
-          | "LSL"
-          | "LYD"
-          | "MAD"
-          | "MDL"
-          | "MGA"
-          | "MKD"
-          | "MMK"
-          | "MNT"
-          | "MOP"
-          | "MRO"
-          | "MUR"
-          | "MVR"
-          | "MWK"
-          | "MXN"
-          | "MYR"
-          | "MZN"
-          | "NAD"
-          | "NGN"
-          | "NIO"
-          | "NOK"
-          | "NPR"
-          | "NZD"
-          | "OMR"
-          | "PAB"
-          | "PEN"
-          | "PGK"
-          | "PHP"
-          | "PKR"
-          | "PLN"
-          | "PYG"
-          | "QAR"
-          | "RON"
-          | "RSD"
-          | "RUB"
-          | "RWF"
-          | "SAR"
-          | "SBD"
-          | "SCR"
-          | "SDG"
-          | "SEK"
-          | "SGD"
-          | "SHP"
-          | "SLL"
-          | "SOS"
-          | "SPL"
-          | "SRD"
-          | "STD"
-          | "SVC"
-          | "SYP"
-          | "SZL"
-          | "THB"
-          | "TJS"
-          | "TMT"
-          | "TND"
-          | "TOP"
-          | "TRY"
-          | "TTD"
-          | "TVD"
-          | "TWD"
-          | "TZS"
-          | "UAH"
-          | "UGX"
-          | "USD"
-          | "UYU"
-          | "UZS"
-          | "VEF"
-          | "VND"
-          | "VUV"
-          | "WST"
-          | "XAF"
-          | "XCD"
-          | "XDR"
-          | "XOF"
-          | "XPF"
-          | "XTS"
-          | "XXX"
-          | "YER"
-          | "ZAR"
-          | "ZMW"
-          | "ZWD";
-      };
-      /** @description Object containing transfer object. */
-      transactionType: {
-        /** @enum {string} */
-        scenario: "TRANSFER";
-        /**
-         * @description Specifies if the initiator of the transfer is the Payer or Payee.
-         * @enum {string}
-         */
-        initiator: "PAYER" | "PAYEE";
-        /**
-         * @description Specifies the type of the transaction initiator.
-         * @enum {string}
-         */
-        initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-      };
+      transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
     };
     /** @description A Mojaloop API transfer identifier (UUID). */
     transferId: string;
     transferParty: {
-      /** @enum {string} */
-      type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      /** @description Date of birth in the form YYYY-MM-DD. */
+      dateOfBirth?: string;
+      /** @description Display name of the sender, if known. */
+      displayName?: string;
+      extensionList?: {
+        key?: string;
+        value?: string;
+      }[];
+      /** @description Party first name. */
+      firstName?: string;
+      /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+      fspId?: string;
+      /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+      idSubValue?: string;
       /**
        * @description Below are the allowed values for the enumeration.
        *
@@ -6633,220 +7022,515 @@ export interface components {
       idType: "MSISDN" | "ACCOUNT_ID";
       /** @description The identifier string used to identify the sender. */
       idValue: string;
-      /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-      idSubValue?: string;
-      /** @description Display name of the sender, if known. */
-      displayName?: string;
-      /** @description Party first name. */
-      firstName?: string;
-      /** @description Party middle name. */
-      middleName?: string;
       /** @description Party last name. */
       lastName?: string;
-      /** @description Date of birth in the form YYYY-MM-DD. */
-      dateOfBirth?: string;
       /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
       merchantClassificationCode?: string;
-      /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-      fspId?: string;
-      extensionList?: {
-        key?: string;
-        value?: string;
-      }[];
+      /** @description Party middle name. */
+      middleName?: string;
+      /** @enum {string} */
+      type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
     };
-    /**
-     * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-     *
-     * @enum {string}
-     */
-    transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
     transferRequest: {
-      /** @description A Mojaloop API transfer identifier (UUID). */
-      transferId: string;
+      amount: string;
+      /**
+       * @description SEND for send amount, RECEIVE for receive amount.
+       * @enum {string}
+       */
+      amountType: "SEND" | "RECEIVE";
+      /** @enum {string} */
+      currency:
+        | "AED"
+        | "AFN"
+        | "ALL"
+        | "AMD"
+        | "ANG"
+        | "AOA"
+        | "ARS"
+        | "AUD"
+        | "AWG"
+        | "AZN"
+        | "BAM"
+        | "BBD"
+        | "BDT"
+        | "BGN"
+        | "BHD"
+        | "BIF"
+        | "BMD"
+        | "BND"
+        | "BOB"
+        | "BRL"
+        | "BSD"
+        | "BTN"
+        | "BWP"
+        | "BYN"
+        | "BZD"
+        | "CAD"
+        | "CDF"
+        | "CHF"
+        | "CLP"
+        | "CNY"
+        | "COP"
+        | "CRC"
+        | "CUC"
+        | "CUP"
+        | "CVE"
+        | "CZK"
+        | "DJF"
+        | "DKK"
+        | "DOP"
+        | "DZD"
+        | "EGP"
+        | "ERN"
+        | "ETB"
+        | "EUR"
+        | "FJD"
+        | "FKP"
+        | "GBP"
+        | "GEL"
+        | "GGP"
+        | "GHS"
+        | "GIP"
+        | "GMD"
+        | "GNF"
+        | "GTQ"
+        | "GYD"
+        | "HKD"
+        | "HNL"
+        | "HRK"
+        | "HTG"
+        | "HUF"
+        | "IDR"
+        | "ILS"
+        | "IMP"
+        | "INR"
+        | "IQD"
+        | "IRR"
+        | "ISK"
+        | "JEP"
+        | "JMD"
+        | "JOD"
+        | "JPY"
+        | "KES"
+        | "KGS"
+        | "KHR"
+        | "KMF"
+        | "KPW"
+        | "KRW"
+        | "KWD"
+        | "KYD"
+        | "KZT"
+        | "LAK"
+        | "LBP"
+        | "LKR"
+        | "LRD"
+        | "LSL"
+        | "LYD"
+        | "MAD"
+        | "MDL"
+        | "MGA"
+        | "MKD"
+        | "MMK"
+        | "MNT"
+        | "MOP"
+        | "MRO"
+        | "MUR"
+        | "MVR"
+        | "MWK"
+        | "MXN"
+        | "MYR"
+        | "MZN"
+        | "NAD"
+        | "NGN"
+        | "NIO"
+        | "NOK"
+        | "NPR"
+        | "NZD"
+        | "OMR"
+        | "PAB"
+        | "PEN"
+        | "PGK"
+        | "PHP"
+        | "PKR"
+        | "PLN"
+        | "PYG"
+        | "QAR"
+        | "RON"
+        | "RSD"
+        | "RUB"
+        | "RWF"
+        | "SAR"
+        | "SBD"
+        | "SCR"
+        | "SDG"
+        | "SEK"
+        | "SGD"
+        | "SHP"
+        | "SLL"
+        | "SOS"
+        | "SPL"
+        | "SRD"
+        | "STD"
+        | "SVC"
+        | "SYP"
+        | "SZL"
+        | "THB"
+        | "TJS"
+        | "TMT"
+        | "TND"
+        | "TOP"
+        | "TRY"
+        | "TTD"
+        | "TVD"
+        | "TWD"
+        | "TZS"
+        | "UAH"
+        | "UGX"
+        | "USD"
+        | "UYU"
+        | "UZS"
+        | "VEF"
+        | "VND"
+        | "VUV"
+        | "WST"
+        | "XAF"
+        | "XCD"
+        | "XDR"
+        | "XOF"
+        | "XPF"
+        | "XTS"
+        | "XXX"
+        | "YER"
+        | "ZAR"
+        | "ZMW"
+        | "ZWD";
+      from: {
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+        idSubValue?: string;
+        /**
+         * @description Below are the allowed values for the enumeration.
+         *
+         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+         *
+         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+         *
+         * @enum {string}
+         */
+        idType: "MSISDN" | "ACCOUNT_ID";
+        /** @description The identifier string used to identify the sender. */
+        idValue: string;
+        /** @description Party last name. */
+        lastName?: string;
+        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        merchantClassificationCode?: string;
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
+      ilpPacket: {
+        /** @description Object containing transfer object. */
+        data: {
+          /** @description Object containing Amount and Currency of the transfer. */
+          amount: {
+            amount: string;
+            /** @enum {string} */
+            currency:
+              | "AED"
+              | "AFN"
+              | "ALL"
+              | "AMD"
+              | "ANG"
+              | "AOA"
+              | "ARS"
+              | "AUD"
+              | "AWG"
+              | "AZN"
+              | "BAM"
+              | "BBD"
+              | "BDT"
+              | "BGN"
+              | "BHD"
+              | "BIF"
+              | "BMD"
+              | "BND"
+              | "BOB"
+              | "BRL"
+              | "BSD"
+              | "BTN"
+              | "BWP"
+              | "BYN"
+              | "BZD"
+              | "CAD"
+              | "CDF"
+              | "CHF"
+              | "CLP"
+              | "CNY"
+              | "COP"
+              | "CRC"
+              | "CUC"
+              | "CUP"
+              | "CVE"
+              | "CZK"
+              | "DJF"
+              | "DKK"
+              | "DOP"
+              | "DZD"
+              | "EGP"
+              | "ERN"
+              | "ETB"
+              | "EUR"
+              | "FJD"
+              | "FKP"
+              | "GBP"
+              | "GEL"
+              | "GGP"
+              | "GHS"
+              | "GIP"
+              | "GMD"
+              | "GNF"
+              | "GTQ"
+              | "GYD"
+              | "HKD"
+              | "HNL"
+              | "HRK"
+              | "HTG"
+              | "HUF"
+              | "IDR"
+              | "ILS"
+              | "IMP"
+              | "INR"
+              | "IQD"
+              | "IRR"
+              | "ISK"
+              | "JEP"
+              | "JMD"
+              | "JOD"
+              | "JPY"
+              | "KES"
+              | "KGS"
+              | "KHR"
+              | "KMF"
+              | "KPW"
+              | "KRW"
+              | "KWD"
+              | "KYD"
+              | "KZT"
+              | "LAK"
+              | "LBP"
+              | "LKR"
+              | "LRD"
+              | "LSL"
+              | "LYD"
+              | "MAD"
+              | "MDL"
+              | "MGA"
+              | "MKD"
+              | "MMK"
+              | "MNT"
+              | "MOP"
+              | "MRO"
+              | "MUR"
+              | "MVR"
+              | "MWK"
+              | "MXN"
+              | "MYR"
+              | "MZN"
+              | "NAD"
+              | "NGN"
+              | "NIO"
+              | "NOK"
+              | "NPR"
+              | "NZD"
+              | "OMR"
+              | "PAB"
+              | "PEN"
+              | "PGK"
+              | "PHP"
+              | "PKR"
+              | "PLN"
+              | "PYG"
+              | "QAR"
+              | "RON"
+              | "RSD"
+              | "RUB"
+              | "RWF"
+              | "SAR"
+              | "SBD"
+              | "SCR"
+              | "SDG"
+              | "SEK"
+              | "SGD"
+              | "SHP"
+              | "SLL"
+              | "SOS"
+              | "SPL"
+              | "SRD"
+              | "STD"
+              | "SVC"
+              | "SYP"
+              | "SZL"
+              | "THB"
+              | "TJS"
+              | "TMT"
+              | "TND"
+              | "TOP"
+              | "TRY"
+              | "TTD"
+              | "TVD"
+              | "TWD"
+              | "TZS"
+              | "UAH"
+              | "UGX"
+              | "USD"
+              | "UYU"
+              | "UZS"
+              | "VEF"
+              | "VND"
+              | "VUV"
+              | "WST"
+              | "XAF"
+              | "XCD"
+              | "XDR"
+              | "XOF"
+              | "XPF"
+              | "XTS"
+              | "XXX"
+              | "YER"
+              | "ZAR"
+              | "ZMW"
+              | "ZWD";
+          };
+          /** @description Information about the Payee in the proposed financial transaction. */
+          payee: {
+            /** @description Date of birth in the form YYYY-MM-DD. */
+            dateOfBirth?: string;
+            /** @description Display name of the sender, if known. */
+            displayName?: string;
+            extensionList?: {
+              key?: string;
+              value?: string;
+            }[];
+            /** @description Party first name. */
+            firstName?: string;
+            /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+            fspId?: string;
+            /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+            idSubValue?: string;
+            /**
+             * @description Below are the allowed values for the enumeration.
+             *
+             * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+             *
+             * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+             *
+             * @enum {string}
+             */
+            idType: "MSISDN" | "ACCOUNT_ID";
+            /** @description The identifier string used to identify the sender. */
+            idValue: string;
+            /** @description Party last name. */
+            lastName?: string;
+            /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+            merchantClassificationCode?: string;
+            /** @description Party middle name. */
+            middleName?: string;
+            /** @enum {string} */
+            type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+          };
+          /** @description Information about the Payer in the proposed financial transaction. */
+          payer: {
+            /** @description Date of birth in the form YYYY-MM-DD. */
+            dateOfBirth?: string;
+            /** @description Display name of the sender, if known. */
+            displayName?: string;
+            extensionList?: {
+              key?: string;
+              value?: string;
+            }[];
+            /** @description Party first name. */
+            firstName?: string;
+            /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+            fspId?: string;
+            /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+            idSubValue?: string;
+            /**
+             * @description Below are the allowed values for the enumeration.
+             *
+             * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
+             *
+             * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
+             *
+             * @enum {string}
+             */
+            idType: "MSISDN" | "ACCOUNT_ID";
+            /** @description The identifier string used to identify the sender. */
+            idValue: string;
+            /** @description Party last name. */
+            lastName?: string;
+            /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+            merchantClassificationCode?: string;
+            /** @description Party middle name. */
+            middleName?: string;
+            /** @enum {string} */
+            type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+          };
+          /** @description A Mojaloop API quote identifier (UUID). */
+          quoteId: string;
+          /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
+          transactionId: string;
+          /** @description Object containing transfer object. */
+          transactionType: {
+            /**
+             * @description Specifies if the initiator of the transfer is the Payer or Payee.
+             * @enum {string}
+             */
+            initiator: "PAYER" | "PAYEE";
+            /**
+             * @description Specifies the type of the transaction initiator.
+             * @enum {string}
+             */
+            initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            /** @enum {string} */
+            scenario: "TRANSFER";
+          };
+        };
+      };
+      note?: string;
       /** @description A response to a request for a quote. */
       quote: {
-        /** @description A Mojaloop API quote identifier (UUID). */
-        quoteId: string;
-        /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
-        transactionId: string;
-        /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
-        transferAmount: string;
+        /** @description An ISO-8601 formatted timestamp. */
+        expiration?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Indicates the geographic location from where the transaction was initiated. */
+        geoCode?: {
+          /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+          latitude: string;
+          /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
+          longitude: string;
+        };
+        /** @description Transaction commission from the Payee FSP. */
+        payeeFspCommissionAmount?: string;
         /**
-         * @description The currency of the `transferAmount`.
+         * @description Currency of the `payeeFspCommissionAmount`.
          * @enum {string}
          */
-        transferAmountCurrency:
-          | "AED"
-          | "AFN"
-          | "ALL"
-          | "AMD"
-          | "ANG"
-          | "AOA"
-          | "ARS"
-          | "AUD"
-          | "AWG"
-          | "AZN"
-          | "BAM"
-          | "BBD"
-          | "BDT"
-          | "BGN"
-          | "BHD"
-          | "BIF"
-          | "BMD"
-          | "BND"
-          | "BOB"
-          | "BRL"
-          | "BSD"
-          | "BTN"
-          | "BWP"
-          | "BYN"
-          | "BZD"
-          | "CAD"
-          | "CDF"
-          | "CHF"
-          | "CLP"
-          | "CNY"
-          | "COP"
-          | "CRC"
-          | "CUC"
-          | "CUP"
-          | "CVE"
-          | "CZK"
-          | "DJF"
-          | "DKK"
-          | "DOP"
-          | "DZD"
-          | "EGP"
-          | "ERN"
-          | "ETB"
-          | "EUR"
-          | "FJD"
-          | "FKP"
-          | "GBP"
-          | "GEL"
-          | "GGP"
-          | "GHS"
-          | "GIP"
-          | "GMD"
-          | "GNF"
-          | "GTQ"
-          | "GYD"
-          | "HKD"
-          | "HNL"
-          | "HRK"
-          | "HTG"
-          | "HUF"
-          | "IDR"
-          | "ILS"
-          | "IMP"
-          | "INR"
-          | "IQD"
-          | "IRR"
-          | "ISK"
-          | "JEP"
-          | "JMD"
-          | "JOD"
-          | "JPY"
-          | "KES"
-          | "KGS"
-          | "KHR"
-          | "KMF"
-          | "KPW"
-          | "KRW"
-          | "KWD"
-          | "KYD"
-          | "KZT"
-          | "LAK"
-          | "LBP"
-          | "LKR"
-          | "LRD"
-          | "LSL"
-          | "LYD"
-          | "MAD"
-          | "MDL"
-          | "MGA"
-          | "MKD"
-          | "MMK"
-          | "MNT"
-          | "MOP"
-          | "MRO"
-          | "MUR"
-          | "MVR"
-          | "MWK"
-          | "MXN"
-          | "MYR"
-          | "MZN"
-          | "NAD"
-          | "NGN"
-          | "NIO"
-          | "NOK"
-          | "NPR"
-          | "NZD"
-          | "OMR"
-          | "PAB"
-          | "PEN"
-          | "PGK"
-          | "PHP"
-          | "PKR"
-          | "PLN"
-          | "PYG"
-          | "QAR"
-          | "RON"
-          | "RSD"
-          | "RUB"
-          | "RWF"
-          | "SAR"
-          | "SBD"
-          | "SCR"
-          | "SDG"
-          | "SEK"
-          | "SGD"
-          | "SHP"
-          | "SLL"
-          | "SOS"
-          | "SPL"
-          | "SRD"
-          | "STD"
-          | "SVC"
-          | "SYP"
-          | "SZL"
-          | "THB"
-          | "TJS"
-          | "TMT"
-          | "TND"
-          | "TOP"
-          | "TRY"
-          | "TTD"
-          | "TVD"
-          | "TWD"
-          | "TZS"
-          | "UAH"
-          | "UGX"
-          | "USD"
-          | "UYU"
-          | "UZS"
-          | "VEF"
-          | "VND"
-          | "VUV"
-          | "WST"
-          | "XAF"
-          | "XCD"
-          | "XDR"
-          | "XOF"
-          | "XPF"
-          | "XTS"
-          | "XXX"
-          | "YER"
-          | "ZAR"
-          | "ZMW"
-          | "ZWD";
-        /** @description The amount that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. */
-        payeeReceiveAmount?: string;
-        /**
-         * @description The currency of the `payeeReceiveAmount`.
-         * @enum {string}
-         */
-        payeeReceiveAmountCurrency?:
+        payeeFspCommissionAmountCurrency?:
           | "AED"
           | "AFN"
           | "ALL"
@@ -7182,13 +7866,13 @@ export interface components {
           | "ZAR"
           | "ZMW"
           | "ZWD";
-        /** @description Transaction commission from the Payee FSP. */
-        payeeFspCommissionAmount?: string;
+        /** @description The amount that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees. */
+        payeeReceiveAmount?: string;
         /**
-         * @description Currency of the `payeeFspCommissionAmount`.
+         * @description The currency of the `payeeReceiveAmount`.
          * @enum {string}
          */
-        payeeFspCommissionAmountCurrency?:
+        payeeReceiveAmountCurrency?:
           | "AED"
           | "AFN"
           | "ALL"
@@ -7353,63 +8037,201 @@ export interface components {
           | "ZAR"
           | "ZMW"
           | "ZWD";
-        /** @description An ISO-8601 formatted timestamp. */
-        expiration?: string;
-        /** @description Indicates the geographic location from where the transaction was initiated. */
-        geoCode?: {
-          /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-          latitude: string;
-          /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
-          longitude: string;
-        };
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
+        /** @description A Mojaloop API quote identifier (UUID). */
+        quoteId: string;
+        /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
+        transactionId: string;
+        /** @description The amount of money that the Payer FSP should transfer to the Payee FSP. */
+        transferAmount: string;
+        /**
+         * @description The currency of the `transferAmount`.
+         * @enum {string}
+         */
+        transferAmountCurrency:
+          | "AED"
+          | "AFN"
+          | "ALL"
+          | "AMD"
+          | "ANG"
+          | "AOA"
+          | "ARS"
+          | "AUD"
+          | "AWG"
+          | "AZN"
+          | "BAM"
+          | "BBD"
+          | "BDT"
+          | "BGN"
+          | "BHD"
+          | "BIF"
+          | "BMD"
+          | "BND"
+          | "BOB"
+          | "BRL"
+          | "BSD"
+          | "BTN"
+          | "BWP"
+          | "BYN"
+          | "BZD"
+          | "CAD"
+          | "CDF"
+          | "CHF"
+          | "CLP"
+          | "CNY"
+          | "COP"
+          | "CRC"
+          | "CUC"
+          | "CUP"
+          | "CVE"
+          | "CZK"
+          | "DJF"
+          | "DKK"
+          | "DOP"
+          | "DZD"
+          | "EGP"
+          | "ERN"
+          | "ETB"
+          | "EUR"
+          | "FJD"
+          | "FKP"
+          | "GBP"
+          | "GEL"
+          | "GGP"
+          | "GHS"
+          | "GIP"
+          | "GMD"
+          | "GNF"
+          | "GTQ"
+          | "GYD"
+          | "HKD"
+          | "HNL"
+          | "HRK"
+          | "HTG"
+          | "HUF"
+          | "IDR"
+          | "ILS"
+          | "IMP"
+          | "INR"
+          | "IQD"
+          | "IRR"
+          | "ISK"
+          | "JEP"
+          | "JMD"
+          | "JOD"
+          | "JPY"
+          | "KES"
+          | "KGS"
+          | "KHR"
+          | "KMF"
+          | "KPW"
+          | "KRW"
+          | "KWD"
+          | "KYD"
+          | "KZT"
+          | "LAK"
+          | "LBP"
+          | "LKR"
+          | "LRD"
+          | "LSL"
+          | "LYD"
+          | "MAD"
+          | "MDL"
+          | "MGA"
+          | "MKD"
+          | "MMK"
+          | "MNT"
+          | "MOP"
+          | "MRO"
+          | "MUR"
+          | "MVR"
+          | "MWK"
+          | "MXN"
+          | "MYR"
+          | "MZN"
+          | "NAD"
+          | "NGN"
+          | "NIO"
+          | "NOK"
+          | "NPR"
+          | "NZD"
+          | "OMR"
+          | "PAB"
+          | "PEN"
+          | "PGK"
+          | "PHP"
+          | "PKR"
+          | "PLN"
+          | "PYG"
+          | "QAR"
+          | "RON"
+          | "RSD"
+          | "RUB"
+          | "RWF"
+          | "SAR"
+          | "SBD"
+          | "SCR"
+          | "SDG"
+          | "SEK"
+          | "SGD"
+          | "SHP"
+          | "SLL"
+          | "SOS"
+          | "SPL"
+          | "SRD"
+          | "STD"
+          | "SVC"
+          | "SYP"
+          | "SZL"
+          | "THB"
+          | "TJS"
+          | "TMT"
+          | "TND"
+          | "TOP"
+          | "TRY"
+          | "TTD"
+          | "TVD"
+          | "TWD"
+          | "TZS"
+          | "UAH"
+          | "UGX"
+          | "USD"
+          | "UYU"
+          | "UZS"
+          | "VEF"
+          | "VND"
+          | "VUV"
+          | "WST"
+          | "XAF"
+          | "XCD"
+          | "XDR"
+          | "XOF"
+          | "XPF"
+          | "XTS"
+          | "XXX"
+          | "YER"
+          | "ZAR"
+          | "ZMW"
+          | "ZWD";
       };
       quoteRequestExtensions?: {
         key?: string;
         value?: string;
       }[];
-      from: {
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /**
-         * @description Below are the allowed values for the enumeration.
-         *
-         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-         *
-         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-         *
-         * @enum {string}
-         */
-        idType: "MSISDN" | "ACCOUNT_ID";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-        idSubValue?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-        merchantClassificationCode?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-      };
       to: {
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+        idSubValue?: string;
         /**
          * @description Below are the allowed values for the enumeration.
          *
@@ -7422,480 +8244,34 @@ export interface components {
         idType: "MSISDN" | "ACCOUNT_ID";
         /** @description The identifier string used to identify the sender. */
         idValue: string;
-        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-        idSubValue?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Party middle name. */
-        middleName?: string;
         /** @description Party last name. */
         lastName?: string;
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
         /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
         merchantClassificationCode?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
       };
-      /**
-       * @description SEND for send amount, RECEIVE for receive amount.
-       * @enum {string}
-       */
-      amountType: "SEND" | "RECEIVE";
-      /** @enum {string} */
-      currency:
-        | "AED"
-        | "AFN"
-        | "ALL"
-        | "AMD"
-        | "ANG"
-        | "AOA"
-        | "ARS"
-        | "AUD"
-        | "AWG"
-        | "AZN"
-        | "BAM"
-        | "BBD"
-        | "BDT"
-        | "BGN"
-        | "BHD"
-        | "BIF"
-        | "BMD"
-        | "BND"
-        | "BOB"
-        | "BRL"
-        | "BSD"
-        | "BTN"
-        | "BWP"
-        | "BYN"
-        | "BZD"
-        | "CAD"
-        | "CDF"
-        | "CHF"
-        | "CLP"
-        | "CNY"
-        | "COP"
-        | "CRC"
-        | "CUC"
-        | "CUP"
-        | "CVE"
-        | "CZK"
-        | "DJF"
-        | "DKK"
-        | "DOP"
-        | "DZD"
-        | "EGP"
-        | "ERN"
-        | "ETB"
-        | "EUR"
-        | "FJD"
-        | "FKP"
-        | "GBP"
-        | "GEL"
-        | "GGP"
-        | "GHS"
-        | "GIP"
-        | "GMD"
-        | "GNF"
-        | "GTQ"
-        | "GYD"
-        | "HKD"
-        | "HNL"
-        | "HRK"
-        | "HTG"
-        | "HUF"
-        | "IDR"
-        | "ILS"
-        | "IMP"
-        | "INR"
-        | "IQD"
-        | "IRR"
-        | "ISK"
-        | "JEP"
-        | "JMD"
-        | "JOD"
-        | "JPY"
-        | "KES"
-        | "KGS"
-        | "KHR"
-        | "KMF"
-        | "KPW"
-        | "KRW"
-        | "KWD"
-        | "KYD"
-        | "KZT"
-        | "LAK"
-        | "LBP"
-        | "LKR"
-        | "LRD"
-        | "LSL"
-        | "LYD"
-        | "MAD"
-        | "MDL"
-        | "MGA"
-        | "MKD"
-        | "MMK"
-        | "MNT"
-        | "MOP"
-        | "MRO"
-        | "MUR"
-        | "MVR"
-        | "MWK"
-        | "MXN"
-        | "MYR"
-        | "MZN"
-        | "NAD"
-        | "NGN"
-        | "NIO"
-        | "NOK"
-        | "NPR"
-        | "NZD"
-        | "OMR"
-        | "PAB"
-        | "PEN"
-        | "PGK"
-        | "PHP"
-        | "PKR"
-        | "PLN"
-        | "PYG"
-        | "QAR"
-        | "RON"
-        | "RSD"
-        | "RUB"
-        | "RWF"
-        | "SAR"
-        | "SBD"
-        | "SCR"
-        | "SDG"
-        | "SEK"
-        | "SGD"
-        | "SHP"
-        | "SLL"
-        | "SOS"
-        | "SPL"
-        | "SRD"
-        | "STD"
-        | "SVC"
-        | "SYP"
-        | "SZL"
-        | "THB"
-        | "TJS"
-        | "TMT"
-        | "TND"
-        | "TOP"
-        | "TRY"
-        | "TTD"
-        | "TVD"
-        | "TWD"
-        | "TZS"
-        | "UAH"
-        | "UGX"
-        | "USD"
-        | "UYU"
-        | "UZS"
-        | "VEF"
-        | "VND"
-        | "VUV"
-        | "WST"
-        | "XAF"
-        | "XCD"
-        | "XDR"
-        | "XOF"
-        | "XPF"
-        | "XTS"
-        | "XXX"
-        | "YER"
-        | "ZAR"
-        | "ZMW"
-        | "ZWD";
-      amount: string;
       /** @enum {string} */
       transactionType: "TRANSFER";
-      ilpPacket: {
-        /** @description Object containing transfer object. */
-        data: {
-          /** @description A Mojaloop API quote identifier (UUID). */
-          quoteId: string;
-          /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
-          transactionId: string;
-          /** @description Information about the Payer in the proposed financial transaction. */
-          payer: {
-            /** @enum {string} */
-            type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-            /**
-             * @description Below are the allowed values for the enumeration.
-             *
-             * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-             *
-             * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-             *
-             * @enum {string}
-             */
-            idType: "MSISDN" | "ACCOUNT_ID";
-            /** @description The identifier string used to identify the sender. */
-            idValue: string;
-            /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-            idSubValue?: string;
-            /** @description Display name of the sender, if known. */
-            displayName?: string;
-            /** @description Party first name. */
-            firstName?: string;
-            /** @description Party middle name. */
-            middleName?: string;
-            /** @description Party last name. */
-            lastName?: string;
-            /** @description Date of birth in the form YYYY-MM-DD. */
-            dateOfBirth?: string;
-            /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-            merchantClassificationCode?: string;
-            /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-            fspId?: string;
-            extensionList?: {
-              key?: string;
-              value?: string;
-            }[];
-          };
-          /** @description Information about the Payee in the proposed financial transaction. */
-          payee: {
-            /** @enum {string} */
-            type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-            /**
-             * @description Below are the allowed values for the enumeration.
-             *
-             * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-             *
-             * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-             *
-             * @enum {string}
-             */
-            idType: "MSISDN" | "ACCOUNT_ID";
-            /** @description The identifier string used to identify the sender. */
-            idValue: string;
-            /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-            idSubValue?: string;
-            /** @description Display name of the sender, if known. */
-            displayName?: string;
-            /** @description Party first name. */
-            firstName?: string;
-            /** @description Party middle name. */
-            middleName?: string;
-            /** @description Party last name. */
-            lastName?: string;
-            /** @description Date of birth in the form YYYY-MM-DD. */
-            dateOfBirth?: string;
-            /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-            merchantClassificationCode?: string;
-            /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-            fspId?: string;
-            extensionList?: {
-              key?: string;
-              value?: string;
-            }[];
-          };
-          /** @description Object containing Amount and Currency of the transfer. */
-          amount: {
-            amount: string;
-            /** @enum {string} */
-            currency:
-              | "AED"
-              | "AFN"
-              | "ALL"
-              | "AMD"
-              | "ANG"
-              | "AOA"
-              | "ARS"
-              | "AUD"
-              | "AWG"
-              | "AZN"
-              | "BAM"
-              | "BBD"
-              | "BDT"
-              | "BGN"
-              | "BHD"
-              | "BIF"
-              | "BMD"
-              | "BND"
-              | "BOB"
-              | "BRL"
-              | "BSD"
-              | "BTN"
-              | "BWP"
-              | "BYN"
-              | "BZD"
-              | "CAD"
-              | "CDF"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "CRC"
-              | "CUC"
-              | "CUP"
-              | "CVE"
-              | "CZK"
-              | "DJF"
-              | "DKK"
-              | "DOP"
-              | "DZD"
-              | "EGP"
-              | "ERN"
-              | "ETB"
-              | "EUR"
-              | "FJD"
-              | "FKP"
-              | "GBP"
-              | "GEL"
-              | "GGP"
-              | "GHS"
-              | "GIP"
-              | "GMD"
-              | "GNF"
-              | "GTQ"
-              | "GYD"
-              | "HKD"
-              | "HNL"
-              | "HRK"
-              | "HTG"
-              | "HUF"
-              | "IDR"
-              | "ILS"
-              | "IMP"
-              | "INR"
-              | "IQD"
-              | "IRR"
-              | "ISK"
-              | "JEP"
-              | "JMD"
-              | "JOD"
-              | "JPY"
-              | "KES"
-              | "KGS"
-              | "KHR"
-              | "KMF"
-              | "KPW"
-              | "KRW"
-              | "KWD"
-              | "KYD"
-              | "KZT"
-              | "LAK"
-              | "LBP"
-              | "LKR"
-              | "LRD"
-              | "LSL"
-              | "LYD"
-              | "MAD"
-              | "MDL"
-              | "MGA"
-              | "MKD"
-              | "MMK"
-              | "MNT"
-              | "MOP"
-              | "MRO"
-              | "MUR"
-              | "MVR"
-              | "MWK"
-              | "MXN"
-              | "MYR"
-              | "MZN"
-              | "NAD"
-              | "NGN"
-              | "NIO"
-              | "NOK"
-              | "NPR"
-              | "NZD"
-              | "OMR"
-              | "PAB"
-              | "PEN"
-              | "PGK"
-              | "PHP"
-              | "PKR"
-              | "PLN"
-              | "PYG"
-              | "QAR"
-              | "RON"
-              | "RSD"
-              | "RUB"
-              | "RWF"
-              | "SAR"
-              | "SBD"
-              | "SCR"
-              | "SDG"
-              | "SEK"
-              | "SGD"
-              | "SHP"
-              | "SLL"
-              | "SOS"
-              | "SPL"
-              | "SRD"
-              | "STD"
-              | "SVC"
-              | "SYP"
-              | "SZL"
-              | "THB"
-              | "TJS"
-              | "TMT"
-              | "TND"
-              | "TOP"
-              | "TRY"
-              | "TTD"
-              | "TVD"
-              | "TWD"
-              | "TZS"
-              | "UAH"
-              | "UGX"
-              | "USD"
-              | "UYU"
-              | "UZS"
-              | "VEF"
-              | "VND"
-              | "VUV"
-              | "WST"
-              | "XAF"
-              | "XCD"
-              | "XDR"
-              | "XOF"
-              | "XPF"
-              | "XTS"
-              | "XXX"
-              | "YER"
-              | "ZAR"
-              | "ZMW"
-              | "ZWD";
-          };
-          /** @description Object containing transfer object. */
-          transactionType: {
-            /** @enum {string} */
-            scenario: "TRANSFER";
-            /**
-             * @description Specifies if the initiator of the transfer is the Payer or Payee.
-             * @enum {string}
-             */
-            initiator: "PAYER" | "PAYEE";
-            /**
-             * @description Specifies the type of the transaction initiator.
-             * @enum {string}
-             */
-            initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-          };
-        };
-      };
-      note?: string;
+      /** @description A Mojaloop API transfer identifier (UUID). */
+      transferId: string;
     };
     transferResponse: {
-      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      homeTransactionId: string;
+      /**
+       * @description An ISO-8601 formatted timestamp.
+       * @example 2020-05-19T08:38:08.699-04:00
+       */
+      completedTimestamp?: string;
       /**
        * IlpFulfilment
        * @description Fulfilment that must be attached to the transfer by the Payee.
        * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
        */
       fulfilment?: string;
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
+      homeTransactionId: string;
       /**
        * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
        *
@@ -7903,575 +8279,19 @@ export interface components {
        * @enum {string}
        */
       transferState?: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-      /**
-       * @description An ISO-8601 formatted timestamp.
-       * @example 2020-05-19T08:38:08.699-04:00
-       */
-      completedTimestamp?: string;
     };
-    transferDetailsResponse: {
-      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      homeTransactionId: string;
-      from: {
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /**
-         * @description Below are the allowed values for the enumeration.
-         *
-         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-         *
-         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-         *
-         * @enum {string}
-         */
-        idType: "MSISDN" | "ACCOUNT_ID";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-        idSubValue?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-        merchantClassificationCode?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-      };
-      to: {
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /**
-         * @description Below are the allowed values for the enumeration.
-         *
-         * - MSISDN -  An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.
-         *
-         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.
-         *
-         * @enum {string}
-         */
-        idType: "MSISDN" | "ACCOUNT_ID";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-        idSubValue?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-        merchantClassificationCode?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-      };
-      /**
-       * @description SEND for send amount, RECEIVE for receive amount.
-       * @enum {string}
-       */
-      amountType: "SEND" | "RECEIVE";
-      /** @enum {string} */
-      currency:
-        | "AED"
-        | "AFN"
-        | "ALL"
-        | "AMD"
-        | "ANG"
-        | "AOA"
-        | "ARS"
-        | "AUD"
-        | "AWG"
-        | "AZN"
-        | "BAM"
-        | "BBD"
-        | "BDT"
-        | "BGN"
-        | "BHD"
-        | "BIF"
-        | "BMD"
-        | "BND"
-        | "BOB"
-        | "BRL"
-        | "BSD"
-        | "BTN"
-        | "BWP"
-        | "BYN"
-        | "BZD"
-        | "CAD"
-        | "CDF"
-        | "CHF"
-        | "CLP"
-        | "CNY"
-        | "COP"
-        | "CRC"
-        | "CUC"
-        | "CUP"
-        | "CVE"
-        | "CZK"
-        | "DJF"
-        | "DKK"
-        | "DOP"
-        | "DZD"
-        | "EGP"
-        | "ERN"
-        | "ETB"
-        | "EUR"
-        | "FJD"
-        | "FKP"
-        | "GBP"
-        | "GEL"
-        | "GGP"
-        | "GHS"
-        | "GIP"
-        | "GMD"
-        | "GNF"
-        | "GTQ"
-        | "GYD"
-        | "HKD"
-        | "HNL"
-        | "HRK"
-        | "HTG"
-        | "HUF"
-        | "IDR"
-        | "ILS"
-        | "IMP"
-        | "INR"
-        | "IQD"
-        | "IRR"
-        | "ISK"
-        | "JEP"
-        | "JMD"
-        | "JOD"
-        | "JPY"
-        | "KES"
-        | "KGS"
-        | "KHR"
-        | "KMF"
-        | "KPW"
-        | "KRW"
-        | "KWD"
-        | "KYD"
-        | "KZT"
-        | "LAK"
-        | "LBP"
-        | "LKR"
-        | "LRD"
-        | "LSL"
-        | "LYD"
-        | "MAD"
-        | "MDL"
-        | "MGA"
-        | "MKD"
-        | "MMK"
-        | "MNT"
-        | "MOP"
-        | "MRO"
-        | "MUR"
-        | "MVR"
-        | "MWK"
-        | "MXN"
-        | "MYR"
-        | "MZN"
-        | "NAD"
-        | "NGN"
-        | "NIO"
-        | "NOK"
-        | "NPR"
-        | "NZD"
-        | "OMR"
-        | "PAB"
-        | "PEN"
-        | "PGK"
-        | "PHP"
-        | "PKR"
-        | "PLN"
-        | "PYG"
-        | "QAR"
-        | "RON"
-        | "RSD"
-        | "RUB"
-        | "RWF"
-        | "SAR"
-        | "SBD"
-        | "SCR"
-        | "SDG"
-        | "SEK"
-        | "SGD"
-        | "SHP"
-        | "SLL"
-        | "SOS"
-        | "SPL"
-        | "SRD"
-        | "STD"
-        | "SVC"
-        | "SYP"
-        | "SZL"
-        | "THB"
-        | "TJS"
-        | "TMT"
-        | "TND"
-        | "TOP"
-        | "TRY"
-        | "TTD"
-        | "TVD"
-        | "TWD"
-        | "TZS"
-        | "UAH"
-        | "UGX"
-        | "USD"
-        | "UYU"
-        | "UZS"
-        | "VEF"
-        | "VND"
-        | "VUV"
-        | "WST"
-        | "XAF"
-        | "XCD"
-        | "XDR"
-        | "XOF"
-        | "XPF"
-        | "XTS"
-        | "XXX"
-        | "YER"
-        | "ZAR"
-        | "ZMW"
-        | "ZWD";
-      amount: string;
-      /**
-       * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-       *
-       * @enum {string}
-       */
-      transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-      /** @description An ISO-8601 formatted timestamp. */
-      timestamp: string;
-      /** @enum {string} */
-      transactionType: "TRANSFER";
-      note?: string;
-      extensions?: {
-        key?: string;
-        value?: string;
-      }[];
-    };
+    /**
+     * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
+     *
+     * @enum {string}
+     */
+    transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
     /** @enum {string} */
     transferStatus:
       | "ERROR_OCCURRED"
       | "WAITING_FOR_PARTY_ACCEPTANCE"
       | "WAITING_FOR_QUOTE_ACCEPTANCE"
       | "COMPLETED";
-    /**
-     * TransfersIDPatchResponse
-     * @description PUT /transfers/{transferId} object
-     */
-    fulfilNotification: {
-      /** @description A Mojaloop API transfer identifier (UUID). */
-      transferId?: string;
-      /** @enum {string} */
-      direction?: "INBOUND";
-      quoteRequest?: {
-        headers?: { [key: string]: unknown };
-        body?: { [key: string]: unknown };
-      };
-      quoteResponse?: {
-        headers?: { [key: string]: unknown };
-        body?: { [key: string]: unknown };
-      };
-      prepare?: {
-        headers?: { [key: string]: unknown };
-        body?: { [key: string]: unknown };
-      };
-      fulfil?: {
-        headers?: { [key: string]: unknown };
-        body?: { [key: string]: unknown };
-      };
-      quote?: {
-        request?: { [key: string]: unknown };
-        internalRequest?: { [key: string]: unknown };
-        response?: { [key: string]: unknown };
-        mojaloopResponse?: { [key: string]: unknown };
-        fulfilment?: string;
-      };
-      /** @enum {string} */
-      currentState?:
-        | "ERROR_OCCURRED"
-        | "WAITING_FOR_PARTY_ACCEPTANCE"
-        | "WAITING_FOR_QUOTE_ACCEPTANCE"
-        | "COMPLETED";
-      /** @description This object represents a Mojaloop API error received at any time during the transfer process */
-      lastError?: {
-        /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
-        httpStatusCode?: number;
-        /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
-        mojaloopError?: {
-          /**
-           * ErrorInformation
-           * @description Data model for the complex type ErrorInformation.
-           */
-          errorInformation?: {
-            /**
-             * ErrorCode
-             * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-             * @example 5100
-             */
-            errorCode: string;
-            /**
-             * ErrorDescription
-             * @description Error description string.
-             */
-            errorDescription: string;
-            /**
-             * ExtensionList
-             * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-             */
-            extensionList?: {
-              /** @description Number of Extension elements. */
-              extension: {
-                /**
-                 * ExtensionKey
-                 * @description Extension key.
-                 */
-                key: string;
-                /**
-                 * ExtensionValue
-                 * @description Extension value.
-                 */
-                value: string;
-              }[];
-            };
-          };
-        };
-      };
-      /** @description An ISO-8601 formatted timestamp. */
-      initiatedTimestamp?: string;
-      finalNotification?: {
-        /**
-         * @description An ISO-8601 formatted timestamp.
-         * @example 2020-05-19T08:38:08.699-04:00
-         */
-        completedTimestamp: string;
-        /**
-         * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-         *
-         * @example COMMITTED
-         * @enum {string}
-         */
-        transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-        /** @description Optional extension, specific to deployment. */
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-      };
-    };
-    /** @description Data model for the complex type ExtensionList */
-    extensionListComplex: {
-      /** @description Number of Extension elements */
-      extension: {
-        key?: string;
-        value?: string;
-      }[];
-    };
-    /** @description This object may represent a number of different error object types and so its properties may vary significantly. */
-    generalError: { [key: string]: unknown };
-    /**
-     * IlpFulfilment
-     * @description Fulfilment that must be attached to the transfer by the Payee.
-     * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
-     */
-    IlpFulfilment: string;
-    /**
-     * ErrorCode
-     * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-     * @example 5100
-     */
-    ErrorCode: string;
-    /**
-     * ErrorDescription
-     * @description Error description string.
-     */
-    ErrorDescription: string;
-    /**
-     * ExtensionKey
-     * @description Extension key.
-     */
-    ExtensionKey: string;
-    /**
-     * ExtensionValue
-     * @description Extension value.
-     */
-    ExtensionValue: string;
-    /**
-     * Extension
-     * @description Data model for the complex type Extension.
-     */
-    Extension: {
-      /**
-       * ExtensionKey
-       * @description Extension key.
-       */
-      key: string;
-      /**
-       * ExtensionValue
-       * @description Extension value.
-       */
-      value: string;
-    };
-    /**
-     * ExtensionList
-     * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-     */
-    ExtensionList: {
-      /** @description Number of Extension elements. */
-      extension: {
-        /**
-         * ExtensionKey
-         * @description Extension key.
-         */
-        key: string;
-        /**
-         * ExtensionValue
-         * @description Extension value.
-         */
-        value: string;
-      }[];
-    };
-    /**
-     * ErrorInformation
-     * @description Data model for the complex type ErrorInformation.
-     */
-    ErrorInformation: {
-      /**
-       * ErrorCode
-       * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-       * @example 5100
-       */
-      errorCode: string;
-      /**
-       * ErrorDescription
-       * @description Error description string.
-       */
-      errorDescription: string;
-      /**
-       * ExtensionList
-       * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-       */
-      extensionList?: {
-        /** @description Number of Extension elements. */
-        extension: {
-          /**
-           * ExtensionKey
-           * @description Extension key.
-           */
-          key: string;
-          /**
-           * ExtensionValue
-           * @description Extension value.
-           */
-          value: string;
-        }[];
-      };
-    };
-    mojaloopError: {
-      /**
-       * ErrorInformation
-       * @description Data model for the complex type ErrorInformation.
-       */
-      errorInformation?: {
-        /**
-         * ErrorCode
-         * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-         * @example 5100
-         */
-        errorCode: string;
-        /**
-         * ErrorDescription
-         * @description Error description string.
-         */
-        errorDescription: string;
-        /**
-         * ExtensionList
-         * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-         */
-        extensionList?: {
-          /** @description Number of Extension elements. */
-          extension: {
-            /**
-             * ExtensionKey
-             * @description Extension key.
-             */
-            key: string;
-            /**
-             * ExtensionValue
-             * @description Extension value.
-             */
-            value: string;
-          }[];
-        };
-      };
-    };
-    /** @description This object represents a Mojaloop API error received at any time during the transfer process */
-    transferError: {
-      /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
-      httpStatusCode?: number;
-      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
-      mojaloopError?: {
-        /**
-         * ErrorInformation
-         * @description Data model for the complex type ErrorInformation.
-         */
-        errorInformation?: {
-          /**
-           * ErrorCode
-           * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-           * @example 5100
-           */
-          errorCode: string;
-          /**
-           * ErrorDescription
-           * @description Error description string.
-           */
-          errorDescription: string;
-          /**
-           * ExtensionList
-           * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-           */
-          extensionList?: {
-            /** @description Number of Extension elements. */
-            extension: {
-              /**
-               * ExtensionKey
-               * @description Extension key.
-               */
-              key: string;
-              /**
-               * ExtensionValue
-               * @description Extension value.
-               */
-              value: string;
-            }[];
-          };
-        };
-      };
-    };
     /**
      * CorrelationId
      * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
@@ -9269,6 +9089,51 @@ export interface components {
      * @description FSP identifier.
      */
     FspId: string;
+    /**
+     * ExtensionKey
+     * @description Extension key.
+     */
+    ExtensionKey: string;
+    /**
+     * ExtensionValue
+     * @description Extension value.
+     */
+    ExtensionValue: string;
+    /**
+     * Extension
+     * @description Data model for the complex type Extension.
+     */
+    Extension: {
+      /**
+       * ExtensionKey
+       * @description Extension key.
+       */
+      key: string;
+      /**
+       * ExtensionValue
+       * @description Extension value.
+       */
+      value: string;
+    };
+    /**
+     * ExtensionList
+     * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+     */
+    ExtensionList: {
+      /** @description Number of Extension elements. */
+      extension: {
+        /**
+         * ExtensionKey
+         * @description Extension key.
+         */
+        key: string;
+        /**
+         * ExtensionValue
+         * @description Extension value.
+         */
+        value: string;
+      }[];
+    };
     /**
      * PartyIdInfo
      * @description Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
@@ -10568,6 +10433,12 @@ export interface components {
       };
     };
     /**
+     * IlpFulfilment
+     * @description Fulfilment that must be attached to the transfer by the Payee.
+     * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+     */
+    IlpFulfilment: string;
+    /**
      * TransferState
      * @description Below are the allowed values for the enumeration.
      * - RECEIVED - Next ledger has received the transfer.
@@ -10624,6 +10495,135 @@ export interface components {
            */
           value: string;
         }[];
+      };
+    };
+    /**
+     * ErrorCode
+     * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+     * @example 5100
+     */
+    ErrorCode: string;
+    /**
+     * ErrorDescription
+     * @description Error description string.
+     */
+    ErrorDescription: string;
+    /**
+     * ErrorInformation
+     * @description Data model for the complex type ErrorInformation.
+     */
+    ErrorInformation: {
+      /**
+       * ErrorCode
+       * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+       * @example 5100
+       */
+      errorCode: string;
+      /**
+       * ErrorDescription
+       * @description Error description string.
+       */
+      errorDescription: string;
+      /**
+       * ExtensionList
+       * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+       */
+      extensionList?: {
+        /** @description Number of Extension elements. */
+        extension: {
+          /**
+           * ExtensionKey
+           * @description Extension key.
+           */
+          key: string;
+          /**
+           * ExtensionValue
+           * @description Extension value.
+           */
+          value: string;
+        }[];
+      };
+    };
+    mojaloopError: {
+      /**
+       * ErrorInformation
+       * @description Data model for the complex type ErrorInformation.
+       */
+      errorInformation?: {
+        /**
+         * ErrorCode
+         * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+         * @example 5100
+         */
+        errorCode: string;
+        /**
+         * ErrorDescription
+         * @description Error description string.
+         */
+        errorDescription: string;
+        /**
+         * ExtensionList
+         * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        extensionList?: {
+          /** @description Number of Extension elements. */
+          extension: {
+            /**
+             * ExtensionKey
+             * @description Extension key.
+             */
+            key: string;
+            /**
+             * ExtensionValue
+             * @description Extension value.
+             */
+            value: string;
+          }[];
+        };
+      };
+    };
+    /** @description This object represents a Mojaloop API error received at any time during the transfer process */
+    transferError: {
+      /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
+      httpStatusCode?: number;
+      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
+      mojaloopError?: {
+        /**
+         * ErrorInformation
+         * @description Data model for the complex type ErrorInformation.
+         */
+        errorInformation?: {
+          /**
+           * ErrorCode
+           * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+           * @example 5100
+           */
+          errorCode: string;
+          /**
+           * ErrorDescription
+           * @description Error description string.
+           */
+          errorDescription: string;
+          /**
+           * ExtensionList
+           * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+           */
+          extensionList?: {
+            /** @description Number of Extension elements. */
+            extension: {
+              /**
+               * ExtensionKey
+               * @description Extension key.
+               */
+              key: string;
+              /**
+               * ExtensionValue
+               * @description Extension value.
+               */
+              value: string;
+            }[];
+          };
+        };
       };
     };
     bulkTransactionIndividualTransferResult: {
@@ -13366,10 +13366,10 @@ export interface components {
     400: {
       content: {
         "application/json": {
-          /** @description Error code as string. */
-          statusCode: string;
           /** @description Error message text. */
           message?: string;
+          /** @description Error code as string. */
+          statusCode: string;
         };
       };
     };
@@ -13379,16 +13379,17 @@ export interface components {
     500: {
       content: {
         "application/json": {
-          /** @description Error code as string. */
-          statusCode: string;
           /** @description Error message text. */
           message?: string;
+          /** @description Error code as string. */
+          statusCode: string;
         };
       };
     };
   };
   parameters: {
-    transferId: string;
+    /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
+    idSubValue: string;
     /**
      * @description Below are the allowed values for the enumeration.
      *
@@ -13399,8 +13400,7 @@ export interface components {
     idType: "MSISDN" | "ACCOUNT_ID";
     /** @description Identifier of the party. */
     idValue: string;
-    /** @description Either a sub-identifier of a `{idValue}`, or a sub-type of the `{idType}`, normally a `{personalIdType}` */
-    idSubValue: string;
+    transferId: string;
     /** @description Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request. */
     bulkTransactionId: string;
   };
