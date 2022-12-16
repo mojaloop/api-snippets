@@ -1,4 +1,12 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.0.1](https://github.com/mojaloop/api-snippets/compare/v17.0.0...v17.0.1) (2022-12-16)
+
+
+### Maintenance
+
+* **mojaloop/#3074:** sync DFSP backend api with sdk adapter ([#151](https://github.com/mojaloop/api-snippets/issues/151)) ([89864d0](https://github.com/mojaloop/api-snippets/commit/89864d07297a721321a4ea2288788e5eaf12f174)), closes [mojaloop/#3074](https://github.com/mojaloop/api-snippets/issues/3074)
+* sort SDK backend api, upgrade dependencies and fix inbound misnomer ([#150](https://github.com/mojaloop/api-snippets/issues/150)) ([3d7c380](https://github.com/mojaloop/api-snippets/commit/3d7c380ec41855404c8f80152199941c1d613cb6))
+
 ## [17.0.0](https://github.com/mojaloop/api-snippets/compare/v16.0.6...v17.0.0) (2022-11-11)
 
 
