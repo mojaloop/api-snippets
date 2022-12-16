@@ -63,6 +63,68 @@ export interface paths {
 
 export interface components {
   schemas: {
+    /**
+     * DateofBirth (type Date)
+     * @description Date of Birth of the Party.
+     * @example 1966-06-16
+     */
+    DateOfBirth: string;
+    /**
+     * Extension
+     * @description Data model for the complex type Extension
+     */
+    Extension: {
+      /**
+       * ExtensionKey
+       * @description Extension key.
+       */
+      key: string;
+      /**
+       * ExtensionValue
+       * @description Extension value.
+       */
+      value: string;
+    };
+    /**
+     * ExtensionKey
+     * @description Extension key.
+     */
+    ExtensionKey: string;
+    /**
+     * ExtensionList
+     * @description Data model for the complex type ExtensionList
+     */
+    ExtensionList: {
+      /** @description Number of Extension elements */
+      extension: {
+        /**
+         * ExtensionKey
+         * @description Extension key.
+         */
+        key: string;
+        /**
+         * ExtensionValue
+         * @description Extension value.
+         */
+        value: string;
+      }[];
+    };
+    /**
+     * ExtensionValue
+     * @description Extension value.
+     */
+    ExtensionValue: string;
+    /**
+     * FirstName
+     * @description First name of the Party (Name Type).
+     * @example Henrik
+     */
+    FirstName: string;
+    /**
+     * FspId
+     * @description FSP identifier.
+     */
+    FspId: string;
     /** @description Data model for individual quote in a bulk quote request. */
     IndividualQuote: {
       amount: string;
@@ -1540,6 +1602,461 @@ export interface components {
       /** @description A Mojaloop API transfer identifier (UUID). */
       transferId: string;
     };
+    /**
+     * LastName
+     * @description Last name of the Party (Name Type).
+     * @example Karlsson
+     */
+    LastName: string;
+    /**
+     * MerchantClassificationCode
+     * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+     */
+    MerchantClassificationCode: string;
+    /**
+     * MiddleName
+     * @description Middle name of the Party (Name Type).
+     * @example Johannes
+     */
+    MiddleName: string;
+    /**
+     * Party
+     * @description Data model for the complex type Party.
+     */
+    Party: {
+      /**
+       * MerchantClassificationCode
+       * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+       */
+      merchantClassificationCode?: string;
+      /**
+       * PartyName
+       * @description Name of the Party. Could be a real name or a nickname.
+       */
+      name?: string;
+      /**
+       * PartyIdInfo
+       * @description Data model for the complex type PartyIdInfo.
+       */
+      partyIdInfo: {
+        /**
+         * ExtensionList
+         * @description Data model for the complex type ExtensionList
+         */
+        extensionList?: {
+          /** @description Number of Extension elements */
+          extension: {
+            /**
+             * ExtensionKey
+             * @description Extension key.
+             */
+            key: string;
+            /**
+             * ExtensionValue
+             * @description Extension value.
+             */
+            value: string;
+          }[];
+        };
+        /**
+         * FspId
+         * @description FSP identifier.
+         */
+        fspId?: string;
+        /**
+         * PartyIdType
+         * @description This is a variant based on FSPIOP `PartyIdType` specification.
+         * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+         *
+         * Below are the allowed values for the enumeration.
+         * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+         * Number, that is, the phone number) is used as reference to a participant.
+         * The MSISDN identifier should be in international format according to the
+         * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+         * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+         * international prefix.
+         * - EMAIL - An email is used as reference to a
+         * participant. The format of the email should be according to the informational
+         * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+         * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+         * Examples of personal identification are passport number, birth certificate
+         * number, and national registration number. The identifier number is added in
+         * the PartyIdentifier element. The personal identifier type is added in the
+         * PartySubIdOrType element.
+         * - BUSINESS - A specific Business (for example, an organization or a company)
+         * is used as reference to a participant. The BUSINESS identifier can be in any
+         * format. To make a transaction connected to a specific username or bill number
+         * in a Business, the PartySubIdOrType element should be used.
+         * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+         * specific business or organization is used as reference to a Party.
+         * For referencing a specific device under a specific business or organization,
+         * use the PartySubIdOrType element.
+         * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+         * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+         * as formats can greatly differ depending on country and FSP.
+         * - IBAN - A bank account number or FSP account ID is used as reference to a
+         * participant. The IBAN identifier can consist of up to 34 alphanumeric
+         * characters and should be entered without whitespace.
+         * - ALIAS An alias is used as reference to a participant. The alias should be
+         * created in the FSP as an alternative reference to an account owner.
+         * Another example of an alias is a username in the FSP system.
+         * The ALIAS identifier can be in any format. It is also possible to use the
+         * PartySubIdOrType element for identifying an account under an Alias defined
+         * by the PartyIdentifier.
+         * - CONSENT - TBD
+         * - THIRD_PARTY_LINK - TBD
+         *
+         * @example PERSONAL_ID
+         * @enum {string}
+         */
+        partyIdType:
+          | "MSISDN"
+          | "EMAIL"
+          | "PERSONAL_ID"
+          | "BUSINESS"
+          | "DEVICE"
+          | "ACCOUNT_ID"
+          | "IBAN"
+          | "ALIAS"
+          | "CONSENT"
+          | "THIRD_PARTY_LINK";
+        /**
+         * PartyIdentifier
+         * @description Identifier of the Party.
+         * @example 16135551212
+         */
+        partyIdentifier: string;
+        /**
+         * PartySubIdOrType
+         * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+         */
+        partySubIdOrType?: string;
+      };
+      /**
+       * PartyPersonalInfo
+       * @description Data model for the complex type PartyPersonalInfo.
+       */
+      personalInfo?: {
+        /**
+         * PartyComplexName
+         * @description Data model for the complex type PartyComplexName.
+         */
+        complexName?: {
+          /** @description Display name of the sender if known */
+          displayName?: string;
+          /**
+           * FirstName
+           * @description First name of the Party (Name Type).
+           * @example Henrik
+           */
+          firstName?: string;
+          /** @description The sub identifier string used to identify the sender */
+          idSubValue?: string;
+          /** @enum {string} */
+          idType?:
+            | "MSISDN"
+            | "ACCOUNT_NO"
+            | "EMAIL"
+            | "PERSONAL_ID"
+            | "BUSINESS"
+            | "DEVICE"
+            | "ACCOUNT_ID"
+            | "IBAN"
+            | "ALIAS";
+          /** @description The identifier string used to identify the sender */
+          idValue?: string;
+          /**
+           * LastName
+           * @description Last name of the Party (Name Type).
+           * @example Karlsson
+           */
+          lastName?: string;
+          /**
+           * MiddleName
+           * @description Middle name of the Party (Name Type).
+           * @example Johannes
+           */
+          middleName?: string;
+          /** @enum {string} */
+          type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+        };
+        /**
+         * DateofBirth (type Date)
+         * @description Date of Birth of the Party.
+         * @example 1966-06-16
+         */
+        dateOfBirth?: string;
+      };
+    };
+    /**
+     * PartyComplexName
+     * @description Data model for the complex type PartyComplexName.
+     */
+    PartyComplexName: {
+      /** @description Display name of the sender if known */
+      displayName?: string;
+      /**
+       * FirstName
+       * @description First name of the Party (Name Type).
+       * @example Henrik
+       */
+      firstName?: string;
+      /** @description The sub identifier string used to identify the sender */
+      idSubValue?: string;
+      /** @enum {string} */
+      idType?:
+        | "MSISDN"
+        | "ACCOUNT_NO"
+        | "EMAIL"
+        | "PERSONAL_ID"
+        | "BUSINESS"
+        | "DEVICE"
+        | "ACCOUNT_ID"
+        | "IBAN"
+        | "ALIAS";
+      /** @description The identifier string used to identify the sender */
+      idValue?: string;
+      /**
+       * LastName
+       * @description Last name of the Party (Name Type).
+       * @example Karlsson
+       */
+      lastName?: string;
+      /**
+       * MiddleName
+       * @description Middle name of the Party (Name Type).
+       * @example Johannes
+       */
+      middleName?: string;
+      /** @enum {string} */
+      type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+    };
+    /**
+     * PartyIdInfo
+     * @description Data model for the complex type PartyIdInfo.
+     */
+    PartyIdInfo: {
+      /**
+       * ExtensionList
+       * @description Data model for the complex type ExtensionList
+       */
+      extensionList?: {
+        /** @description Number of Extension elements */
+        extension: {
+          /**
+           * ExtensionKey
+           * @description Extension key.
+           */
+          key: string;
+          /**
+           * ExtensionValue
+           * @description Extension value.
+           */
+          value: string;
+        }[];
+      };
+      /**
+       * FspId
+       * @description FSP identifier.
+       */
+      fspId?: string;
+      /**
+       * PartyIdType
+       * @description This is a variant based on FSPIOP `PartyIdType` specification.
+       * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+       *
+       * Below are the allowed values for the enumeration.
+       * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+       * Number, that is, the phone number) is used as reference to a participant.
+       * The MSISDN identifier should be in international format according to the
+       * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+       * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+       * international prefix.
+       * - EMAIL - An email is used as reference to a
+       * participant. The format of the email should be according to the informational
+       * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+       * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+       * Examples of personal identification are passport number, birth certificate
+       * number, and national registration number. The identifier number is added in
+       * the PartyIdentifier element. The personal identifier type is added in the
+       * PartySubIdOrType element.
+       * - BUSINESS - A specific Business (for example, an organization or a company)
+       * is used as reference to a participant. The BUSINESS identifier can be in any
+       * format. To make a transaction connected to a specific username or bill number
+       * in a Business, the PartySubIdOrType element should be used.
+       * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+       * specific business or organization is used as reference to a Party.
+       * For referencing a specific device under a specific business or organization,
+       * use the PartySubIdOrType element.
+       * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+       * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+       * as formats can greatly differ depending on country and FSP.
+       * - IBAN - A bank account number or FSP account ID is used as reference to a
+       * participant. The IBAN identifier can consist of up to 34 alphanumeric
+       * characters and should be entered without whitespace.
+       * - ALIAS An alias is used as reference to a participant. The alias should be
+       * created in the FSP as an alternative reference to an account owner.
+       * Another example of an alias is a username in the FSP system.
+       * The ALIAS identifier can be in any format. It is also possible to use the
+       * PartySubIdOrType element for identifying an account under an Alias defined
+       * by the PartyIdentifier.
+       * - CONSENT - TBD
+       * - THIRD_PARTY_LINK - TBD
+       *
+       * @example PERSONAL_ID
+       * @enum {string}
+       */
+      partyIdType:
+        | "MSISDN"
+        | "EMAIL"
+        | "PERSONAL_ID"
+        | "BUSINESS"
+        | "DEVICE"
+        | "ACCOUNT_ID"
+        | "IBAN"
+        | "ALIAS"
+        | "CONSENT"
+        | "THIRD_PARTY_LINK";
+      /**
+       * PartyIdentifier
+       * @description Identifier of the Party.
+       * @example 16135551212
+       */
+      partyIdentifier: string;
+      /**
+       * PartySubIdOrType
+       * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+       */
+      partySubIdOrType?: string;
+    };
+    /**
+     * PartyIdType
+     * @description This is a variant based on FSPIOP `PartyIdType` specification.
+     * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+     *
+     * Below are the allowed values for the enumeration.
+     * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+     * Number, that is, the phone number) is used as reference to a participant.
+     * The MSISDN identifier should be in international format according to the
+     * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+     * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+     * international prefix.
+     * - EMAIL - An email is used as reference to a
+     * participant. The format of the email should be according to the informational
+     * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+     * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+     * Examples of personal identification are passport number, birth certificate
+     * number, and national registration number. The identifier number is added in
+     * the PartyIdentifier element. The personal identifier type is added in the
+     * PartySubIdOrType element.
+     * - BUSINESS - A specific Business (for example, an organization or a company)
+     * is used as reference to a participant. The BUSINESS identifier can be in any
+     * format. To make a transaction connected to a specific username or bill number
+     * in a Business, the PartySubIdOrType element should be used.
+     * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+     * specific business or organization is used as reference to a Party.
+     * For referencing a specific device under a specific business or organization,
+     * use the PartySubIdOrType element.
+     * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+     * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+     * as formats can greatly differ depending on country and FSP.
+     * - IBAN - A bank account number or FSP account ID is used as reference to a
+     * participant. The IBAN identifier can consist of up to 34 alphanumeric
+     * characters and should be entered without whitespace.
+     * - ALIAS An alias is used as reference to a participant. The alias should be
+     * created in the FSP as an alternative reference to an account owner.
+     * Another example of an alias is a username in the FSP system.
+     * The ALIAS identifier can be in any format. It is also possible to use the
+     * PartySubIdOrType element for identifying an account under an Alias defined
+     * by the PartyIdentifier.
+     * - CONSENT - TBD
+     * - THIRD_PARTY_LINK - TBD
+     *
+     * @example PERSONAL_ID
+     * @enum {string}
+     */
+    PartyIdType:
+      | "MSISDN"
+      | "EMAIL"
+      | "PERSONAL_ID"
+      | "BUSINESS"
+      | "DEVICE"
+      | "ACCOUNT_ID"
+      | "IBAN"
+      | "ALIAS"
+      | "CONSENT"
+      | "THIRD_PARTY_LINK";
+    /**
+     * PartyIdentifier
+     * @description Identifier of the Party.
+     * @example 16135551212
+     */
+    PartyIdentifier: string;
+    /**
+     * PartyName
+     * @description Name of the Party. Could be a real name or a nickname.
+     */
+    PartyName: string;
+    /**
+     * PartyPersonalInfo
+     * @description Data model for the complex type PartyPersonalInfo.
+     */
+    PartyPersonalInfo: {
+      /**
+       * PartyComplexName
+       * @description Data model for the complex type PartyComplexName.
+       */
+      complexName?: {
+        /** @description Display name of the sender if known */
+        displayName?: string;
+        /**
+         * FirstName
+         * @description First name of the Party (Name Type).
+         * @example Henrik
+         */
+        firstName?: string;
+        /** @description The sub identifier string used to identify the sender */
+        idSubValue?: string;
+        /** @enum {string} */
+        idType?:
+          | "MSISDN"
+          | "ACCOUNT_NO"
+          | "EMAIL"
+          | "PERSONAL_ID"
+          | "BUSINESS"
+          | "DEVICE"
+          | "ACCOUNT_ID"
+          | "IBAN"
+          | "ALIAS";
+        /** @description The identifier string used to identify the sender */
+        idValue?: string;
+        /**
+         * LastName
+         * @description Last name of the Party (Name Type).
+         * @example Karlsson
+         */
+        lastName?: string;
+        /**
+         * MiddleName
+         * @description Middle name of the Party (Name Type).
+         * @example Johannes
+         */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
+      /**
+       * DateofBirth (type Date)
+       * @description Date of Birth of the Party.
+       * @example 1966-06-16
+       */
+      dateOfBirth?: string;
+    };
+    /**
+     * PartySubIdOrType
+     * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+     */
+    PartySubIdOrType: string;
     /** @description Object containing Amount and Currency of the transfer. */
     amountCurrency: {
       amount: string;
@@ -4157,6 +4674,40 @@ export interface components {
       | "ZWD";
     /** @description Date of birth in the form YYYY-MM-DD. */
     dateOfBirth: string;
+    /**
+     * ErrorCode
+     * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
+     */
+    errorCode: string;
+    /**
+     * ErrorDescription
+     * @description Error description string.
+     */
+    errorDescription: string;
+    /**
+     * ErrorInformation
+     * @description A Mojaloop API error information construct.
+     */
+    errorInformation: {
+      /**
+       * ErrorCode
+       * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
+       */
+      errorCode: string;
+      /**
+       * ErrorDescription
+       * @description Error description string.
+       */
+      errorDescription: string;
+      /** @description Data model for the complex type ExtensionList. */
+      extensionList?: {
+        /** @description Number of Extension elements. */
+        extension: {
+          key?: string;
+          value?: string;
+        }[];
+      };
+    };
     errorResponse: {
       /** @description Error message text */
       message?: string;
@@ -4182,100 +4733,6 @@ export interface components {
         value?: string;
       }[];
     };
-    /** @description This object represents a Mojaloop API error received at any time during the transfer process. */
-    transferError: {
-      /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
-      httpStatusCode?: number;
-      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
-      mojaloopError?: {
-        /**
-         * ErrorInformation
-         * @description A Mojaloop API error information construct.
-         */
-        errorInformation?: {
-          /**
-           * ErrorCode
-           * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
-           */
-          errorCode: string;
-          /**
-           * ErrorDescription
-           * @description Error description string.
-           */
-          errorDescription: string;
-          /** @description Data model for the complex type ExtensionList. */
-          extensionList?: {
-            /** @description Number of Extension elements. */
-            extension: {
-              key?: string;
-              value?: string;
-            }[];
-          };
-        };
-      };
-    };
-    /** @description This object may represent a number of different error object types and so its properties may vary significantly. */
-    generalError: { [key: string]: unknown };
-    mojaloopError: {
-      /**
-       * ErrorInformation
-       * @description A Mojaloop API error information construct.
-       */
-      errorInformation?: {
-        /**
-         * ErrorCode
-         * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
-         */
-        errorCode: string;
-        /**
-         * ErrorDescription
-         * @description Error description string.
-         */
-        errorDescription: string;
-        /** @description Data model for the complex type ExtensionList. */
-        extensionList?: {
-          /** @description Number of Extension elements. */
-          extension: {
-            key?: string;
-            value?: string;
-          }[];
-        };
-      };
-    };
-    /**
-     * ErrorInformation
-     * @description A Mojaloop API error information construct.
-     */
-    errorInformation: {
-      /**
-       * ErrorCode
-       * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
-       */
-      errorCode: string;
-      /**
-       * ErrorDescription
-       * @description Error description string.
-       */
-      errorDescription: string;
-      /** @description Data model for the complex type ExtensionList. */
-      extensionList?: {
-        /** @description Number of Extension elements. */
-        extension: {
-          key?: string;
-          value?: string;
-        }[];
-      };
-    };
-    /**
-     * ErrorCode
-     * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
-     */
-    errorCode: string;
-    /**
-     * ErrorDescription
-     * @description Error description string.
-     */
-    errorDescription: string;
     /** @description FSP identifier. */
     fspId: string;
     /**
@@ -4370,6 +4827,8 @@ export interface components {
       /** @description A Mojaloop API transfer identifier (UUID). */
       transferId?: string;
     };
+    /** @description This object may represent a number of different error object types and so its properties may vary significantly. */
+    generalError: { [key: string]: unknown };
     /** @description Indicates the geographic location from where the transaction was initiated. */
     geoCode: {
       /** @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
@@ -4377,6 +4836,7 @@ export interface components {
       /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
       longitude: string;
     };
+    idSubValue: string;
     /** @enum {string} */
     idType:
       | "MSISDN"
@@ -4568,79 +5028,343 @@ export interface components {
           | "ZMW"
           | "ZWD";
       };
-      /** @description Information about the Payee in the proposed financial transaction. */
+      /**
+       * Party
+       * @description Data model for the complex type Party.
+       */
       payee: {
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        idSubValue?: string;
-        /** @enum {string} */
-        idType:
-          | "MSISDN"
-          | "ACCOUNT_NO"
-          | "EMAIL"
-          | "PERSONAL_ID"
-          | "BUSINESS"
-          | "DEVICE"
-          | "ACCOUNT_ID"
-          | "IBAN"
-          | "ALIAS";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        /**
+         * MerchantClassificationCode
+         * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+         */
         merchantClassificationCode?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+        /**
+         * PartyName
+         * @description Name of the Party. Could be a real name or a nickname.
+         */
+        name?: string;
+        /**
+         * PartyIdInfo
+         * @description Data model for the complex type PartyIdInfo.
+         */
+        partyIdInfo: {
+          /**
+           * ExtensionList
+           * @description Data model for the complex type ExtensionList
+           */
+          extensionList?: {
+            /** @description Number of Extension elements */
+            extension: {
+              /**
+               * ExtensionKey
+               * @description Extension key.
+               */
+              key: string;
+              /**
+               * ExtensionValue
+               * @description Extension value.
+               */
+              value: string;
+            }[];
+          };
+          /**
+           * FspId
+           * @description FSP identifier.
+           */
+          fspId?: string;
+          /**
+           * PartyIdType
+           * @description This is a variant based on FSPIOP `PartyIdType` specification.
+           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+           *
+           * Below are the allowed values for the enumeration.
+           * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+           * Number, that is, the phone number) is used as reference to a participant.
+           * The MSISDN identifier should be in international format according to the
+           * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+           * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+           * international prefix.
+           * - EMAIL - An email is used as reference to a
+           * participant. The format of the email should be according to the informational
+           * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+           * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+           * Examples of personal identification are passport number, birth certificate
+           * number, and national registration number. The identifier number is added in
+           * the PartyIdentifier element. The personal identifier type is added in the
+           * PartySubIdOrType element.
+           * - BUSINESS - A specific Business (for example, an organization or a company)
+           * is used as reference to a participant. The BUSINESS identifier can be in any
+           * format. To make a transaction connected to a specific username or bill number
+           * in a Business, the PartySubIdOrType element should be used.
+           * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+           * specific business or organization is used as reference to a Party.
+           * For referencing a specific device under a specific business or organization,
+           * use the PartySubIdOrType element.
+           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+           * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+           * as formats can greatly differ depending on country and FSP.
+           * - IBAN - A bank account number or FSP account ID is used as reference to a
+           * participant. The IBAN identifier can consist of up to 34 alphanumeric
+           * characters and should be entered without whitespace.
+           * - ALIAS An alias is used as reference to a participant. The alias should be
+           * created in the FSP as an alternative reference to an account owner.
+           * Another example of an alias is a username in the FSP system.
+           * The ALIAS identifier can be in any format. It is also possible to use the
+           * PartySubIdOrType element for identifying an account under an Alias defined
+           * by the PartyIdentifier.
+           * - CONSENT - TBD
+           * - THIRD_PARTY_LINK - TBD
+           *
+           * @example PERSONAL_ID
+           * @enum {string}
+           */
+          partyIdType:
+            | "MSISDN"
+            | "EMAIL"
+            | "PERSONAL_ID"
+            | "BUSINESS"
+            | "DEVICE"
+            | "ACCOUNT_ID"
+            | "IBAN"
+            | "ALIAS"
+            | "CONSENT"
+            | "THIRD_PARTY_LINK";
+          /**
+           * PartyIdentifier
+           * @description Identifier of the Party.
+           * @example 16135551212
+           */
+          partyIdentifier: string;
+          /**
+           * PartySubIdOrType
+           * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+           */
+          partySubIdOrType?: string;
+        };
+        /**
+         * PartyPersonalInfo
+         * @description Data model for the complex type PartyPersonalInfo.
+         */
+        personalInfo?: {
+          /**
+           * PartyComplexName
+           * @description Data model for the complex type PartyComplexName.
+           */
+          complexName?: {
+            /** @description Display name of the sender if known */
+            displayName?: string;
+            /**
+             * FirstName
+             * @description First name of the Party (Name Type).
+             * @example Henrik
+             */
+            firstName?: string;
+            /** @description The sub identifier string used to identify the sender */
+            idSubValue?: string;
+            /** @enum {string} */
+            idType?:
+              | "MSISDN"
+              | "ACCOUNT_NO"
+              | "EMAIL"
+              | "PERSONAL_ID"
+              | "BUSINESS"
+              | "DEVICE"
+              | "ACCOUNT_ID"
+              | "IBAN"
+              | "ALIAS";
+            /** @description The identifier string used to identify the sender */
+            idValue?: string;
+            /**
+             * LastName
+             * @description Last name of the Party (Name Type).
+             * @example Karlsson
+             */
+            lastName?: string;
+            /**
+             * MiddleName
+             * @description Middle name of the Party (Name Type).
+             * @example Johannes
+             */
+            middleName?: string;
+            /** @enum {string} */
+            type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+          };
+          /**
+           * DateofBirth (type Date)
+           * @description Date of Birth of the Party.
+           * @example 1966-06-16
+           */
+          dateOfBirth?: string;
+        };
       };
-      /** @description Information about the Payer in the proposed financial transaction. */
+      /**
+       * Party
+       * @description Data model for the complex type Party.
+       */
       payer: {
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        idSubValue?: string;
-        /** @enum {string} */
-        idType:
-          | "MSISDN"
-          | "ACCOUNT_NO"
-          | "EMAIL"
-          | "PERSONAL_ID"
-          | "BUSINESS"
-          | "DEVICE"
-          | "ACCOUNT_ID"
-          | "IBAN"
-          | "ALIAS";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        /**
+         * MerchantClassificationCode
+         * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+         */
         merchantClassificationCode?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+        /**
+         * PartyName
+         * @description Name of the Party. Could be a real name or a nickname.
+         */
+        name?: string;
+        /**
+         * PartyIdInfo
+         * @description Data model for the complex type PartyIdInfo.
+         */
+        partyIdInfo: {
+          /**
+           * ExtensionList
+           * @description Data model for the complex type ExtensionList
+           */
+          extensionList?: {
+            /** @description Number of Extension elements */
+            extension: {
+              /**
+               * ExtensionKey
+               * @description Extension key.
+               */
+              key: string;
+              /**
+               * ExtensionValue
+               * @description Extension value.
+               */
+              value: string;
+            }[];
+          };
+          /**
+           * FspId
+           * @description FSP identifier.
+           */
+          fspId?: string;
+          /**
+           * PartyIdType
+           * @description This is a variant based on FSPIOP `PartyIdType` specification.
+           * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+           *
+           * Below are the allowed values for the enumeration.
+           * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+           * Number, that is, the phone number) is used as reference to a participant.
+           * The MSISDN identifier should be in international format according to the
+           * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+           * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+           * international prefix.
+           * - EMAIL - An email is used as reference to a
+           * participant. The format of the email should be according to the informational
+           * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+           * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+           * Examples of personal identification are passport number, birth certificate
+           * number, and national registration number. The identifier number is added in
+           * the PartyIdentifier element. The personal identifier type is added in the
+           * PartySubIdOrType element.
+           * - BUSINESS - A specific Business (for example, an organization or a company)
+           * is used as reference to a participant. The BUSINESS identifier can be in any
+           * format. To make a transaction connected to a specific username or bill number
+           * in a Business, the PartySubIdOrType element should be used.
+           * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+           * specific business or organization is used as reference to a Party.
+           * For referencing a specific device under a specific business or organization,
+           * use the PartySubIdOrType element.
+           * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+           * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+           * as formats can greatly differ depending on country and FSP.
+           * - IBAN - A bank account number or FSP account ID is used as reference to a
+           * participant. The IBAN identifier can consist of up to 34 alphanumeric
+           * characters and should be entered without whitespace.
+           * - ALIAS An alias is used as reference to a participant. The alias should be
+           * created in the FSP as an alternative reference to an account owner.
+           * Another example of an alias is a username in the FSP system.
+           * The ALIAS identifier can be in any format. It is also possible to use the
+           * PartySubIdOrType element for identifying an account under an Alias defined
+           * by the PartyIdentifier.
+           * - CONSENT - TBD
+           * - THIRD_PARTY_LINK - TBD
+           *
+           * @example PERSONAL_ID
+           * @enum {string}
+           */
+          partyIdType:
+            | "MSISDN"
+            | "EMAIL"
+            | "PERSONAL_ID"
+            | "BUSINESS"
+            | "DEVICE"
+            | "ACCOUNT_ID"
+            | "IBAN"
+            | "ALIAS"
+            | "CONSENT"
+            | "THIRD_PARTY_LINK";
+          /**
+           * PartyIdentifier
+           * @description Identifier of the Party.
+           * @example 16135551212
+           */
+          partyIdentifier: string;
+          /**
+           * PartySubIdOrType
+           * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+           */
+          partySubIdOrType?: string;
+        };
+        /**
+         * PartyPersonalInfo
+         * @description Data model for the complex type PartyPersonalInfo.
+         */
+        personalInfo?: {
+          /**
+           * PartyComplexName
+           * @description Data model for the complex type PartyComplexName.
+           */
+          complexName?: {
+            /** @description Display name of the sender if known */
+            displayName?: string;
+            /**
+             * FirstName
+             * @description First name of the Party (Name Type).
+             * @example Henrik
+             */
+            firstName?: string;
+            /** @description The sub identifier string used to identify the sender */
+            idSubValue?: string;
+            /** @enum {string} */
+            idType?:
+              | "MSISDN"
+              | "ACCOUNT_NO"
+              | "EMAIL"
+              | "PERSONAL_ID"
+              | "BUSINESS"
+              | "DEVICE"
+              | "ACCOUNT_ID"
+              | "IBAN"
+              | "ALIAS";
+            /** @description The identifier string used to identify the sender */
+            idValue?: string;
+            /**
+             * LastName
+             * @description Last name of the Party (Name Type).
+             * @example Karlsson
+             */
+            lastName?: string;
+            /**
+             * MiddleName
+             * @description Middle name of the Party (Name Type).
+             * @example Johannes
+             */
+            middleName?: string;
+            /** @enum {string} */
+            type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+          };
+          /**
+           * DateofBirth (type Date)
+           * @description Date of Birth of the Party.
+           * @example 1966-06-16
+           */
+          dateOfBirth?: string;
+        };
       };
       /** @description A Mojaloop API quote identifier (UUID). */
       quoteId: string;
@@ -4667,6 +5391,32 @@ export interface components {
     latitude: string;
     /** @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. */
     longitude: string;
+    mojaloopError: {
+      /**
+       * ErrorInformation
+       * @description A Mojaloop API error information construct.
+       */
+      errorInformation?: {
+        /**
+         * ErrorCode
+         * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
+         */
+        errorCode: string;
+        /**
+         * ErrorDescription
+         * @description Error description string.
+         */
+        errorDescription: string;
+        /** @description Data model for the complex type ExtensionList. */
+        extensionList?: {
+          /** @description Number of Extension elements. */
+          extension: {
+            key?: string;
+            value?: string;
+          }[];
+        };
+      };
+    };
     money: string;
     otpDetails: {
       /** @description OTP value. */
@@ -5836,287 +6586,12 @@ export interface components {
         | "ZMW"
         | "ZWD";
     };
-    idSubValue: string;
     /** @enum {string} */
     scenario: "TRANSFER";
     /** @description An ISO-8601 formatted timestamp. */
     timestamp: string;
     /** @description ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote. */
     transactionId: string;
-    /** @description Object containing transfer object. */
-    transactionTypeObject: {
-      /** @enum {string} */
-      initiator: "PAYER" | "PAYEE";
-      /**
-       * @description Specifies the type of the transaction initiator.
-       * @enum {string}
-       */
-      initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-      /** @enum {string} */
-      scenario: "TRANSFER";
-    };
-    transferDetailsResponse: {
-      amount: string;
-      /** @enum {string} */
-      amountType: "SEND" | "RECEIVE";
-      /** @enum {string} */
-      currency:
-        | "AED"
-        | "AFN"
-        | "ALL"
-        | "AMD"
-        | "ANG"
-        | "AOA"
-        | "ARS"
-        | "AUD"
-        | "AWG"
-        | "AZN"
-        | "BAM"
-        | "BBD"
-        | "BDT"
-        | "BGN"
-        | "BHD"
-        | "BIF"
-        | "BMD"
-        | "BND"
-        | "BOB"
-        | "BRL"
-        | "BSD"
-        | "BTN"
-        | "BWP"
-        | "BYN"
-        | "BZD"
-        | "CAD"
-        | "CDF"
-        | "CHF"
-        | "CLP"
-        | "CNY"
-        | "COP"
-        | "CRC"
-        | "CUC"
-        | "CUP"
-        | "CVE"
-        | "CZK"
-        | "DJF"
-        | "DKK"
-        | "DOP"
-        | "DZD"
-        | "EGP"
-        | "ERN"
-        | "ETB"
-        | "EUR"
-        | "FJD"
-        | "FKP"
-        | "GBP"
-        | "GEL"
-        | "GGP"
-        | "GHS"
-        | "GIP"
-        | "GMD"
-        | "GNF"
-        | "GTQ"
-        | "GYD"
-        | "HKD"
-        | "HNL"
-        | "HRK"
-        | "HTG"
-        | "HUF"
-        | "IDR"
-        | "ILS"
-        | "IMP"
-        | "INR"
-        | "IQD"
-        | "IRR"
-        | "ISK"
-        | "JEP"
-        | "JMD"
-        | "JOD"
-        | "JPY"
-        | "KES"
-        | "KGS"
-        | "KHR"
-        | "KMF"
-        | "KPW"
-        | "KRW"
-        | "KWD"
-        | "KYD"
-        | "KZT"
-        | "LAK"
-        | "LBP"
-        | "LKR"
-        | "LRD"
-        | "LSL"
-        | "LYD"
-        | "MAD"
-        | "MDL"
-        | "MGA"
-        | "MKD"
-        | "MMK"
-        | "MNT"
-        | "MOP"
-        | "MRO"
-        | "MUR"
-        | "MVR"
-        | "MWK"
-        | "MXN"
-        | "MYR"
-        | "MZN"
-        | "NAD"
-        | "NGN"
-        | "NIO"
-        | "NOK"
-        | "NPR"
-        | "NZD"
-        | "OMR"
-        | "PAB"
-        | "PEN"
-        | "PGK"
-        | "PHP"
-        | "PKR"
-        | "PLN"
-        | "PYG"
-        | "QAR"
-        | "RON"
-        | "RSD"
-        | "RUB"
-        | "RWF"
-        | "SAR"
-        | "SBD"
-        | "SCR"
-        | "SDG"
-        | "SEK"
-        | "SGD"
-        | "SHP"
-        | "SLL"
-        | "SOS"
-        | "SPL"
-        | "SRD"
-        | "STD"
-        | "SVC"
-        | "SYP"
-        | "SZL"
-        | "THB"
-        | "TJS"
-        | "TMT"
-        | "TND"
-        | "TOP"
-        | "TRY"
-        | "TTD"
-        | "TVD"
-        | "TWD"
-        | "TZS"
-        | "UAH"
-        | "UGX"
-        | "USD"
-        | "UYU"
-        | "UZS"
-        | "VEF"
-        | "VND"
-        | "VUV"
-        | "WST"
-        | "XAF"
-        | "XCD"
-        | "XDR"
-        | "XOF"
-        | "XPF"
-        | "XTS"
-        | "XXX"
-        | "YER"
-        | "ZAR"
-        | "ZMW"
-        | "ZWD";
-      extensions?: {
-        key?: string;
-        value?: string;
-      }[];
-      from: {
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        idSubValue?: string;
-        /** @enum {string} */
-        idType:
-          | "MSISDN"
-          | "ACCOUNT_NO"
-          | "EMAIL"
-          | "PERSONAL_ID"
-          | "BUSINESS"
-          | "DEVICE"
-          | "ACCOUNT_ID"
-          | "IBAN"
-          | "ALIAS";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-        merchantClassificationCode?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-      };
-      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      homeTransactionId: string;
-      note?: string;
-      /** @description An ISO-8601 formatted timestamp. */
-      timestamp: string;
-      to: {
-        /** @description Date of birth in the form YYYY-MM-DD. */
-        dateOfBirth?: string;
-        /** @description Display name of the sender, if known. */
-        displayName?: string;
-        extensionList?: {
-          key?: string;
-          value?: string;
-        }[];
-        /** @description Party first name. */
-        firstName?: string;
-        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-        fspId?: string;
-        idSubValue?: string;
-        /** @enum {string} */
-        idType:
-          | "MSISDN"
-          | "ACCOUNT_NO"
-          | "EMAIL"
-          | "PERSONAL_ID"
-          | "BUSINESS"
-          | "DEVICE"
-          | "ACCOUNT_ID"
-          | "IBAN"
-          | "ALIAS";
-        /** @description The identifier string used to identify the sender. */
-        idValue: string;
-        /** @description Party last name. */
-        lastName?: string;
-        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
-        merchantClassificationCode?: string;
-        /** @description Party middle name. */
-        middleName?: string;
-        /** @enum {string} */
-        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-      };
-      /** @enum {string} */
-      transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
-      /**
-       * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-       *
-       * @enum {string}
-       */
-      transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-    };
-    /** @description A Mojaloop API transfer identifier (UUID). */
-    transferId: string;
     /** @description A request for a pull based transfer. */
     transactionRequest: {
       amount: string;
@@ -6393,6 +6868,312 @@ export interface components {
     transactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
     /** @enum {string} */
     transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
+    /** @description Object containing transfer object. */
+    transactionTypeObject: {
+      /** @enum {string} */
+      initiator: "PAYER" | "PAYEE";
+      /**
+       * @description Specifies the type of the transaction initiator.
+       * @enum {string}
+       */
+      initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      /** @enum {string} */
+      scenario: "TRANSFER";
+    };
+    transferDetailsResponse: {
+      amount: string;
+      /** @enum {string} */
+      amountType: "SEND" | "RECEIVE";
+      /** @enum {string} */
+      currency:
+        | "AED"
+        | "AFN"
+        | "ALL"
+        | "AMD"
+        | "ANG"
+        | "AOA"
+        | "ARS"
+        | "AUD"
+        | "AWG"
+        | "AZN"
+        | "BAM"
+        | "BBD"
+        | "BDT"
+        | "BGN"
+        | "BHD"
+        | "BIF"
+        | "BMD"
+        | "BND"
+        | "BOB"
+        | "BRL"
+        | "BSD"
+        | "BTN"
+        | "BWP"
+        | "BYN"
+        | "BZD"
+        | "CAD"
+        | "CDF"
+        | "CHF"
+        | "CLP"
+        | "CNY"
+        | "COP"
+        | "CRC"
+        | "CUC"
+        | "CUP"
+        | "CVE"
+        | "CZK"
+        | "DJF"
+        | "DKK"
+        | "DOP"
+        | "DZD"
+        | "EGP"
+        | "ERN"
+        | "ETB"
+        | "EUR"
+        | "FJD"
+        | "FKP"
+        | "GBP"
+        | "GEL"
+        | "GGP"
+        | "GHS"
+        | "GIP"
+        | "GMD"
+        | "GNF"
+        | "GTQ"
+        | "GYD"
+        | "HKD"
+        | "HNL"
+        | "HRK"
+        | "HTG"
+        | "HUF"
+        | "IDR"
+        | "ILS"
+        | "IMP"
+        | "INR"
+        | "IQD"
+        | "IRR"
+        | "ISK"
+        | "JEP"
+        | "JMD"
+        | "JOD"
+        | "JPY"
+        | "KES"
+        | "KGS"
+        | "KHR"
+        | "KMF"
+        | "KPW"
+        | "KRW"
+        | "KWD"
+        | "KYD"
+        | "KZT"
+        | "LAK"
+        | "LBP"
+        | "LKR"
+        | "LRD"
+        | "LSL"
+        | "LYD"
+        | "MAD"
+        | "MDL"
+        | "MGA"
+        | "MKD"
+        | "MMK"
+        | "MNT"
+        | "MOP"
+        | "MRO"
+        | "MUR"
+        | "MVR"
+        | "MWK"
+        | "MXN"
+        | "MYR"
+        | "MZN"
+        | "NAD"
+        | "NGN"
+        | "NIO"
+        | "NOK"
+        | "NPR"
+        | "NZD"
+        | "OMR"
+        | "PAB"
+        | "PEN"
+        | "PGK"
+        | "PHP"
+        | "PKR"
+        | "PLN"
+        | "PYG"
+        | "QAR"
+        | "RON"
+        | "RSD"
+        | "RUB"
+        | "RWF"
+        | "SAR"
+        | "SBD"
+        | "SCR"
+        | "SDG"
+        | "SEK"
+        | "SGD"
+        | "SHP"
+        | "SLL"
+        | "SOS"
+        | "SPL"
+        | "SRD"
+        | "STD"
+        | "SVC"
+        | "SYP"
+        | "SZL"
+        | "THB"
+        | "TJS"
+        | "TMT"
+        | "TND"
+        | "TOP"
+        | "TRY"
+        | "TTD"
+        | "TVD"
+        | "TWD"
+        | "TZS"
+        | "UAH"
+        | "UGX"
+        | "USD"
+        | "UYU"
+        | "UZS"
+        | "VEF"
+        | "VND"
+        | "VUV"
+        | "WST"
+        | "XAF"
+        | "XCD"
+        | "XDR"
+        | "XOF"
+        | "XPF"
+        | "XTS"
+        | "XXX"
+        | "YER"
+        | "ZAR"
+        | "ZMW"
+        | "ZWD";
+      extensions?: {
+        key?: string;
+        value?: string;
+      }[];
+      from: {
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        idSubValue?: string;
+        /** @enum {string} */
+        idType:
+          | "MSISDN"
+          | "ACCOUNT_NO"
+          | "EMAIL"
+          | "PERSONAL_ID"
+          | "BUSINESS"
+          | "DEVICE"
+          | "ACCOUNT_ID"
+          | "IBAN"
+          | "ALIAS";
+        /** @description The identifier string used to identify the sender. */
+        idValue: string;
+        /** @description Party last name. */
+        lastName?: string;
+        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        merchantClassificationCode?: string;
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
+      homeTransactionId: string;
+      note?: string;
+      /** @description An ISO-8601 formatted timestamp. */
+      timestamp: string;
+      to: {
+        /** @description Date of birth in the form YYYY-MM-DD. */
+        dateOfBirth?: string;
+        /** @description Display name of the sender, if known. */
+        displayName?: string;
+        extensionList?: {
+          key?: string;
+          value?: string;
+        }[];
+        /** @description Party first name. */
+        firstName?: string;
+        /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
+        fspId?: string;
+        idSubValue?: string;
+        /** @enum {string} */
+        idType:
+          | "MSISDN"
+          | "ACCOUNT_NO"
+          | "EMAIL"
+          | "PERSONAL_ID"
+          | "BUSINESS"
+          | "DEVICE"
+          | "ACCOUNT_ID"
+          | "IBAN"
+          | "ALIAS";
+        /** @description The identifier string used to identify the sender. */
+        idValue: string;
+        /** @description Party last name. */
+        lastName?: string;
+        /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+        merchantClassificationCode?: string;
+        /** @description Party middle name. */
+        middleName?: string;
+        /** @enum {string} */
+        type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+      };
+      /** @enum {string} */
+      transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
+      /**
+       * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
+       *
+       * @enum {string}
+       */
+      transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
+    };
+    /** @description This object represents a Mojaloop API error received at any time during the transfer process. */
+    transferError: {
+      /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
+      httpStatusCode?: number;
+      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
+      mojaloopError?: {
+        /**
+         * ErrorInformation
+         * @description A Mojaloop API error information construct.
+         */
+        errorInformation?: {
+          /**
+           * ErrorCode
+           * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
+           */
+          errorCode: string;
+          /**
+           * ErrorDescription
+           * @description Error description string.
+           */
+          errorDescription: string;
+          /** @description Data model for the complex type ExtensionList. */
+          extensionList?: {
+            /** @description Number of Extension elements. */
+            extension: {
+              key?: string;
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+    /** @description A Mojaloop API transfer identifier (UUID). */
+    transferId: string;
     transferParty: {
       /** @description Date of birth in the form YYYY-MM-DD. */
       dateOfBirth?: string;
@@ -6808,79 +7589,343 @@ export interface components {
               | "ZMW"
               | "ZWD";
           };
-          /** @description Information about the Payee in the proposed financial transaction. */
+          /**
+           * Party
+           * @description Data model for the complex type Party.
+           */
           payee: {
-            /** @description Date of birth in the form YYYY-MM-DD. */
-            dateOfBirth?: string;
-            /** @description Display name of the sender, if known. */
-            displayName?: string;
-            extensionList?: {
-              key?: string;
-              value?: string;
-            }[];
-            /** @description Party first name. */
-            firstName?: string;
-            /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-            fspId?: string;
-            idSubValue?: string;
-            /** @enum {string} */
-            idType:
-              | "MSISDN"
-              | "ACCOUNT_NO"
-              | "EMAIL"
-              | "PERSONAL_ID"
-              | "BUSINESS"
-              | "DEVICE"
-              | "ACCOUNT_ID"
-              | "IBAN"
-              | "ALIAS";
-            /** @description The identifier string used to identify the sender. */
-            idValue: string;
-            /** @description Party last name. */
-            lastName?: string;
-            /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+            /**
+             * MerchantClassificationCode
+             * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+             */
             merchantClassificationCode?: string;
-            /** @description Party middle name. */
-            middleName?: string;
-            /** @enum {string} */
-            type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            /**
+             * PartyName
+             * @description Name of the Party. Could be a real name or a nickname.
+             */
+            name?: string;
+            /**
+             * PartyIdInfo
+             * @description Data model for the complex type PartyIdInfo.
+             */
+            partyIdInfo: {
+              /**
+               * ExtensionList
+               * @description Data model for the complex type ExtensionList
+               */
+              extensionList?: {
+                /** @description Number of Extension elements */
+                extension: {
+                  /**
+                   * ExtensionKey
+                   * @description Extension key.
+                   */
+                  key: string;
+                  /**
+                   * ExtensionValue
+                   * @description Extension value.
+                   */
+                  value: string;
+                }[];
+              };
+              /**
+               * FspId
+               * @description FSP identifier.
+               */
+              fspId?: string;
+              /**
+               * PartyIdType
+               * @description This is a variant based on FSPIOP `PartyIdType` specification.
+               * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+               *
+               * Below are the allowed values for the enumeration.
+               * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+               * Number, that is, the phone number) is used as reference to a participant.
+               * The MSISDN identifier should be in international format according to the
+               * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+               * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+               * international prefix.
+               * - EMAIL - An email is used as reference to a
+               * participant. The format of the email should be according to the informational
+               * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+               * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+               * Examples of personal identification are passport number, birth certificate
+               * number, and national registration number. The identifier number is added in
+               * the PartyIdentifier element. The personal identifier type is added in the
+               * PartySubIdOrType element.
+               * - BUSINESS - A specific Business (for example, an organization or a company)
+               * is used as reference to a participant. The BUSINESS identifier can be in any
+               * format. To make a transaction connected to a specific username or bill number
+               * in a Business, the PartySubIdOrType element should be used.
+               * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+               * specific business or organization is used as reference to a Party.
+               * For referencing a specific device under a specific business or organization,
+               * use the PartySubIdOrType element.
+               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+               * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+               * as formats can greatly differ depending on country and FSP.
+               * - IBAN - A bank account number or FSP account ID is used as reference to a
+               * participant. The IBAN identifier can consist of up to 34 alphanumeric
+               * characters and should be entered without whitespace.
+               * - ALIAS An alias is used as reference to a participant. The alias should be
+               * created in the FSP as an alternative reference to an account owner.
+               * Another example of an alias is a username in the FSP system.
+               * The ALIAS identifier can be in any format. It is also possible to use the
+               * PartySubIdOrType element for identifying an account under an Alias defined
+               * by the PartyIdentifier.
+               * - CONSENT - TBD
+               * - THIRD_PARTY_LINK - TBD
+               *
+               * @example PERSONAL_ID
+               * @enum {string}
+               */
+              partyIdType:
+                | "MSISDN"
+                | "EMAIL"
+                | "PERSONAL_ID"
+                | "BUSINESS"
+                | "DEVICE"
+                | "ACCOUNT_ID"
+                | "IBAN"
+                | "ALIAS"
+                | "CONSENT"
+                | "THIRD_PARTY_LINK";
+              /**
+               * PartyIdentifier
+               * @description Identifier of the Party.
+               * @example 16135551212
+               */
+              partyIdentifier: string;
+              /**
+               * PartySubIdOrType
+               * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+               */
+              partySubIdOrType?: string;
+            };
+            /**
+             * PartyPersonalInfo
+             * @description Data model for the complex type PartyPersonalInfo.
+             */
+            personalInfo?: {
+              /**
+               * PartyComplexName
+               * @description Data model for the complex type PartyComplexName.
+               */
+              complexName?: {
+                /** @description Display name of the sender if known */
+                displayName?: string;
+                /**
+                 * FirstName
+                 * @description First name of the Party (Name Type).
+                 * @example Henrik
+                 */
+                firstName?: string;
+                /** @description The sub identifier string used to identify the sender */
+                idSubValue?: string;
+                /** @enum {string} */
+                idType?:
+                  | "MSISDN"
+                  | "ACCOUNT_NO"
+                  | "EMAIL"
+                  | "PERSONAL_ID"
+                  | "BUSINESS"
+                  | "DEVICE"
+                  | "ACCOUNT_ID"
+                  | "IBAN"
+                  | "ALIAS";
+                /** @description The identifier string used to identify the sender */
+                idValue?: string;
+                /**
+                 * LastName
+                 * @description Last name of the Party (Name Type).
+                 * @example Karlsson
+                 */
+                lastName?: string;
+                /**
+                 * MiddleName
+                 * @description Middle name of the Party (Name Type).
+                 * @example Johannes
+                 */
+                middleName?: string;
+                /** @enum {string} */
+                type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+              };
+              /**
+               * DateofBirth (type Date)
+               * @description Date of Birth of the Party.
+               * @example 1966-06-16
+               */
+              dateOfBirth?: string;
+            };
           };
-          /** @description Information about the Payer in the proposed financial transaction. */
+          /**
+           * Party
+           * @description Data model for the complex type Party.
+           */
           payer: {
-            /** @description Date of birth in the form YYYY-MM-DD. */
-            dateOfBirth?: string;
-            /** @description Display name of the sender, if known. */
-            displayName?: string;
-            extensionList?: {
-              key?: string;
-              value?: string;
-            }[];
-            /** @description Party first name. */
-            firstName?: string;
-            /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-            fspId?: string;
-            idSubValue?: string;
-            /** @enum {string} */
-            idType:
-              | "MSISDN"
-              | "ACCOUNT_NO"
-              | "EMAIL"
-              | "PERSONAL_ID"
-              | "BUSINESS"
-              | "DEVICE"
-              | "ACCOUNT_ID"
-              | "IBAN"
-              | "ALIAS";
-            /** @description The identifier string used to identify the sender. */
-            idValue: string;
-            /** @description Party last name. */
-            lastName?: string;
-            /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+            /**
+             * MerchantClassificationCode
+             * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+             */
             merchantClassificationCode?: string;
-            /** @description Party middle name. */
-            middleName?: string;
-            /** @enum {string} */
-            type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+            /**
+             * PartyName
+             * @description Name of the Party. Could be a real name or a nickname.
+             */
+            name?: string;
+            /**
+             * PartyIdInfo
+             * @description Data model for the complex type PartyIdInfo.
+             */
+            partyIdInfo: {
+              /**
+               * ExtensionList
+               * @description Data model for the complex type ExtensionList
+               */
+              extensionList?: {
+                /** @description Number of Extension elements */
+                extension: {
+                  /**
+                   * ExtensionKey
+                   * @description Extension key.
+                   */
+                  key: string;
+                  /**
+                   * ExtensionValue
+                   * @description Extension value.
+                   */
+                  value: string;
+                }[];
+              };
+              /**
+               * FspId
+               * @description FSP identifier.
+               */
+              fspId?: string;
+              /**
+               * PartyIdType
+               * @description This is a variant based on FSPIOP `PartyIdType` specification.
+               * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+               *
+               * Below are the allowed values for the enumeration.
+               * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+               * Number, that is, the phone number) is used as reference to a participant.
+               * The MSISDN identifier should be in international format according to the
+               * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+               * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+               * international prefix.
+               * - EMAIL - An email is used as reference to a
+               * participant. The format of the email should be according to the informational
+               * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+               * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+               * Examples of personal identification are passport number, birth certificate
+               * number, and national registration number. The identifier number is added in
+               * the PartyIdentifier element. The personal identifier type is added in the
+               * PartySubIdOrType element.
+               * - BUSINESS - A specific Business (for example, an organization or a company)
+               * is used as reference to a participant. The BUSINESS identifier can be in any
+               * format. To make a transaction connected to a specific username or bill number
+               * in a Business, the PartySubIdOrType element should be used.
+               * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+               * specific business or organization is used as reference to a Party.
+               * For referencing a specific device under a specific business or organization,
+               * use the PartySubIdOrType element.
+               * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+               * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+               * as formats can greatly differ depending on country and FSP.
+               * - IBAN - A bank account number or FSP account ID is used as reference to a
+               * participant. The IBAN identifier can consist of up to 34 alphanumeric
+               * characters and should be entered without whitespace.
+               * - ALIAS An alias is used as reference to a participant. The alias should be
+               * created in the FSP as an alternative reference to an account owner.
+               * Another example of an alias is a username in the FSP system.
+               * The ALIAS identifier can be in any format. It is also possible to use the
+               * PartySubIdOrType element for identifying an account under an Alias defined
+               * by the PartyIdentifier.
+               * - CONSENT - TBD
+               * - THIRD_PARTY_LINK - TBD
+               *
+               * @example PERSONAL_ID
+               * @enum {string}
+               */
+              partyIdType:
+                | "MSISDN"
+                | "EMAIL"
+                | "PERSONAL_ID"
+                | "BUSINESS"
+                | "DEVICE"
+                | "ACCOUNT_ID"
+                | "IBAN"
+                | "ALIAS"
+                | "CONSENT"
+                | "THIRD_PARTY_LINK";
+              /**
+               * PartyIdentifier
+               * @description Identifier of the Party.
+               * @example 16135551212
+               */
+              partyIdentifier: string;
+              /**
+               * PartySubIdOrType
+               * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+               */
+              partySubIdOrType?: string;
+            };
+            /**
+             * PartyPersonalInfo
+             * @description Data model for the complex type PartyPersonalInfo.
+             */
+            personalInfo?: {
+              /**
+               * PartyComplexName
+               * @description Data model for the complex type PartyComplexName.
+               */
+              complexName?: {
+                /** @description Display name of the sender if known */
+                displayName?: string;
+                /**
+                 * FirstName
+                 * @description First name of the Party (Name Type).
+                 * @example Henrik
+                 */
+                firstName?: string;
+                /** @description The sub identifier string used to identify the sender */
+                idSubValue?: string;
+                /** @enum {string} */
+                idType?:
+                  | "MSISDN"
+                  | "ACCOUNT_NO"
+                  | "EMAIL"
+                  | "PERSONAL_ID"
+                  | "BUSINESS"
+                  | "DEVICE"
+                  | "ACCOUNT_ID"
+                  | "IBAN"
+                  | "ALIAS";
+                /** @description The identifier string used to identify the sender */
+                idValue?: string;
+                /**
+                 * LastName
+                 * @description Last name of the Party (Name Type).
+                 * @example Karlsson
+                 */
+                lastName?: string;
+                /**
+                 * MiddleName
+                 * @description Middle name of the Party (Name Type).
+                 * @example Johannes
+                 */
+                middleName?: string;
+                /** @enum {string} */
+                type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+              };
+              /**
+               * DateofBirth (type Date)
+               * @description Date of Birth of the Party.
+               * @example 1966-06-16
+               */
+              dateOfBirth?: string;
+            };
           };
           /** @description A Mojaloop API quote identifier (UUID). */
           quoteId: string;
@@ -7720,12 +8765,12 @@ export interface components {
   parameters: {
     /** @description Identifier of the bulk transaction to continue as returned in. */
     bulkTransactionId: string;
+    /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+    idSubValue: string;
     /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
     idType: string;
     /** @description The identifier value. */
     idValue: string;
-    /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
-    idSubValue: string;
     requestToPayId: string;
     transferId: string;
   };
@@ -13233,79 +14278,343 @@ export interface operations {
                   | "ZMW"
                   | "ZWD";
               };
-              /** @description Information about the Payee in the proposed financial transaction. */
+              /**
+               * Party
+               * @description Data model for the complex type Party.
+               */
               payee: {
-                /** @description Date of birth in the form YYYY-MM-DD. */
-                dateOfBirth?: string;
-                /** @description Display name of the sender, if known. */
-                displayName?: string;
-                extensionList?: {
-                  key?: string;
-                  value?: string;
-                }[];
-                /** @description Party first name. */
-                firstName?: string;
-                /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-                fspId?: string;
-                idSubValue?: string;
-                /** @enum {string} */
-                idType:
-                  | "MSISDN"
-                  | "ACCOUNT_NO"
-                  | "EMAIL"
-                  | "PERSONAL_ID"
-                  | "BUSINESS"
-                  | "DEVICE"
-                  | "ACCOUNT_ID"
-                  | "IBAN"
-                  | "ALIAS";
-                /** @description The identifier string used to identify the sender. */
-                idValue: string;
-                /** @description Party last name. */
-                lastName?: string;
-                /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+                /**
+                 * MerchantClassificationCode
+                 * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+                 */
                 merchantClassificationCode?: string;
-                /** @description Party middle name. */
-                middleName?: string;
-                /** @enum {string} */
-                type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+                /**
+                 * PartyName
+                 * @description Name of the Party. Could be a real name or a nickname.
+                 */
+                name?: string;
+                /**
+                 * PartyIdInfo
+                 * @description Data model for the complex type PartyIdInfo.
+                 */
+                partyIdInfo: {
+                  /**
+                   * ExtensionList
+                   * @description Data model for the complex type ExtensionList
+                   */
+                  extensionList?: {
+                    /** @description Number of Extension elements */
+                    extension: {
+                      /**
+                       * ExtensionKey
+                       * @description Extension key.
+                       */
+                      key: string;
+                      /**
+                       * ExtensionValue
+                       * @description Extension value.
+                       */
+                      value: string;
+                    }[];
+                  };
+                  /**
+                   * FspId
+                   * @description FSP identifier.
+                   */
+                  fspId?: string;
+                  /**
+                   * PartyIdType
+                   * @description This is a variant based on FSPIOP `PartyIdType` specification.
+                   * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+                   *
+                   * Below are the allowed values for the enumeration.
+                   * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+                   * Number, that is, the phone number) is used as reference to a participant.
+                   * The MSISDN identifier should be in international format according to the
+                   * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+                   * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+                   * international prefix.
+                   * - EMAIL - An email is used as reference to a
+                   * participant. The format of the email should be according to the informational
+                   * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+                   * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+                   * Examples of personal identification are passport number, birth certificate
+                   * number, and national registration number. The identifier number is added in
+                   * the PartyIdentifier element. The personal identifier type is added in the
+                   * PartySubIdOrType element.
+                   * - BUSINESS - A specific Business (for example, an organization or a company)
+                   * is used as reference to a participant. The BUSINESS identifier can be in any
+                   * format. To make a transaction connected to a specific username or bill number
+                   * in a Business, the PartySubIdOrType element should be used.
+                   * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+                   * specific business or organization is used as reference to a Party.
+                   * For referencing a specific device under a specific business or organization,
+                   * use the PartySubIdOrType element.
+                   * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+                   * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+                   * as formats can greatly differ depending on country and FSP.
+                   * - IBAN - A bank account number or FSP account ID is used as reference to a
+                   * participant. The IBAN identifier can consist of up to 34 alphanumeric
+                   * characters and should be entered without whitespace.
+                   * - ALIAS An alias is used as reference to a participant. The alias should be
+                   * created in the FSP as an alternative reference to an account owner.
+                   * Another example of an alias is a username in the FSP system.
+                   * The ALIAS identifier can be in any format. It is also possible to use the
+                   * PartySubIdOrType element for identifying an account under an Alias defined
+                   * by the PartyIdentifier.
+                   * - CONSENT - TBD
+                   * - THIRD_PARTY_LINK - TBD
+                   *
+                   * @example PERSONAL_ID
+                   * @enum {string}
+                   */
+                  partyIdType:
+                    | "MSISDN"
+                    | "EMAIL"
+                    | "PERSONAL_ID"
+                    | "BUSINESS"
+                    | "DEVICE"
+                    | "ACCOUNT_ID"
+                    | "IBAN"
+                    | "ALIAS"
+                    | "CONSENT"
+                    | "THIRD_PARTY_LINK";
+                  /**
+                   * PartyIdentifier
+                   * @description Identifier of the Party.
+                   * @example 16135551212
+                   */
+                  partyIdentifier: string;
+                  /**
+                   * PartySubIdOrType
+                   * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+                   */
+                  partySubIdOrType?: string;
+                };
+                /**
+                 * PartyPersonalInfo
+                 * @description Data model for the complex type PartyPersonalInfo.
+                 */
+                personalInfo?: {
+                  /**
+                   * PartyComplexName
+                   * @description Data model for the complex type PartyComplexName.
+                   */
+                  complexName?: {
+                    /** @description Display name of the sender if known */
+                    displayName?: string;
+                    /**
+                     * FirstName
+                     * @description First name of the Party (Name Type).
+                     * @example Henrik
+                     */
+                    firstName?: string;
+                    /** @description The sub identifier string used to identify the sender */
+                    idSubValue?: string;
+                    /** @enum {string} */
+                    idType?:
+                      | "MSISDN"
+                      | "ACCOUNT_NO"
+                      | "EMAIL"
+                      | "PERSONAL_ID"
+                      | "BUSINESS"
+                      | "DEVICE"
+                      | "ACCOUNT_ID"
+                      | "IBAN"
+                      | "ALIAS";
+                    /** @description The identifier string used to identify the sender */
+                    idValue?: string;
+                    /**
+                     * LastName
+                     * @description Last name of the Party (Name Type).
+                     * @example Karlsson
+                     */
+                    lastName?: string;
+                    /**
+                     * MiddleName
+                     * @description Middle name of the Party (Name Type).
+                     * @example Johannes
+                     */
+                    middleName?: string;
+                    /** @enum {string} */
+                    type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+                  };
+                  /**
+                   * DateofBirth (type Date)
+                   * @description Date of Birth of the Party.
+                   * @example 1966-06-16
+                   */
+                  dateOfBirth?: string;
+                };
               };
-              /** @description Information about the Payer in the proposed financial transaction. */
+              /**
+               * Party
+               * @description Data model for the complex type Party.
+               */
               payer: {
-                /** @description Date of birth in the form YYYY-MM-DD. */
-                dateOfBirth?: string;
-                /** @description Display name of the sender, if known. */
-                displayName?: string;
-                extensionList?: {
-                  key?: string;
-                  value?: string;
-                }[];
-                /** @description Party first name. */
-                firstName?: string;
-                /** @description Mojaloop scheme FSPID of the DFSP which owns the party account. */
-                fspId?: string;
-                idSubValue?: string;
-                /** @enum {string} */
-                idType:
-                  | "MSISDN"
-                  | "ACCOUNT_NO"
-                  | "EMAIL"
-                  | "PERSONAL_ID"
-                  | "BUSINESS"
-                  | "DEVICE"
-                  | "ACCOUNT_ID"
-                  | "IBAN"
-                  | "ALIAS";
-                /** @description The identifier string used to identify the sender. */
-                idValue: string;
-                /** @description Party last name. */
-                lastName?: string;
-                /** @description Up to 4 digits specifying the sender's merchant classification, if known and applicable. */
+                /**
+                 * MerchantClassificationCode
+                 * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+                 */
                 merchantClassificationCode?: string;
-                /** @description Party middle name. */
-                middleName?: string;
-                /** @enum {string} */
-                type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+                /**
+                 * PartyName
+                 * @description Name of the Party. Could be a real name or a nickname.
+                 */
+                name?: string;
+                /**
+                 * PartyIdInfo
+                 * @description Data model for the complex type PartyIdInfo.
+                 */
+                partyIdInfo: {
+                  /**
+                   * ExtensionList
+                   * @description Data model for the complex type ExtensionList
+                   */
+                  extensionList?: {
+                    /** @description Number of Extension elements */
+                    extension: {
+                      /**
+                       * ExtensionKey
+                       * @description Extension key.
+                       */
+                      key: string;
+                      /**
+                       * ExtensionValue
+                       * @description Extension value.
+                       */
+                      value: string;
+                    }[];
+                  };
+                  /**
+                   * FspId
+                   * @description FSP identifier.
+                   */
+                  fspId?: string;
+                  /**
+                   * PartyIdType
+                   * @description This is a variant based on FSPIOP `PartyIdType` specification.
+                   * Main difference being the CONSENT and THIRD_PARTY_LINK enums.
+                   *
+                   * Below are the allowed values for the enumeration.
+                   * - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+                   * Number, that is, the phone number) is used as reference to a participant.
+                   * The MSISDN identifier should be in international format according to the
+                   * [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+                   * Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+                   * international prefix.
+                   * - EMAIL - An email is used as reference to a
+                   * participant. The format of the email should be according to the informational
+                   * [RFC 3696](https://tools.ietf.org/html/rfc3696).
+                   * - PERSONAL_ID - A personal identifier is used as reference to a participant.
+                   * Examples of personal identification are passport number, birth certificate
+                   * number, and national registration number. The identifier number is added in
+                   * the PartyIdentifier element. The personal identifier type is added in the
+                   * PartySubIdOrType element.
+                   * - BUSINESS - A specific Business (for example, an organization or a company)
+                   * is used as reference to a participant. The BUSINESS identifier can be in any
+                   * format. To make a transaction connected to a specific username or bill number
+                   * in a Business, the PartySubIdOrType element should be used.
+                   * - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+                   * specific business or organization is used as reference to a Party.
+                   * For referencing a specific device under a specific business or organization,
+                   * use the PartySubIdOrType element.
+                   * - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+                   * reference to a participant. The ACCOUNT_ID identifier can be in any format,
+                   * as formats can greatly differ depending on country and FSP.
+                   * - IBAN - A bank account number or FSP account ID is used as reference to a
+                   * participant. The IBAN identifier can consist of up to 34 alphanumeric
+                   * characters and should be entered without whitespace.
+                   * - ALIAS An alias is used as reference to a participant. The alias should be
+                   * created in the FSP as an alternative reference to an account owner.
+                   * Another example of an alias is a username in the FSP system.
+                   * The ALIAS identifier can be in any format. It is also possible to use the
+                   * PartySubIdOrType element for identifying an account under an Alias defined
+                   * by the PartyIdentifier.
+                   * - CONSENT - TBD
+                   * - THIRD_PARTY_LINK - TBD
+                   *
+                   * @example PERSONAL_ID
+                   * @enum {string}
+                   */
+                  partyIdType:
+                    | "MSISDN"
+                    | "EMAIL"
+                    | "PERSONAL_ID"
+                    | "BUSINESS"
+                    | "DEVICE"
+                    | "ACCOUNT_ID"
+                    | "IBAN"
+                    | "ALIAS"
+                    | "CONSENT"
+                    | "THIRD_PARTY_LINK";
+                  /**
+                   * PartyIdentifier
+                   * @description Identifier of the Party.
+                   * @example 16135551212
+                   */
+                  partyIdentifier: string;
+                  /**
+                   * PartySubIdOrType
+                   * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+                   */
+                  partySubIdOrType?: string;
+                };
+                /**
+                 * PartyPersonalInfo
+                 * @description Data model for the complex type PartyPersonalInfo.
+                 */
+                personalInfo?: {
+                  /**
+                   * PartyComplexName
+                   * @description Data model for the complex type PartyComplexName.
+                   */
+                  complexName?: {
+                    /** @description Display name of the sender if known */
+                    displayName?: string;
+                    /**
+                     * FirstName
+                     * @description First name of the Party (Name Type).
+                     * @example Henrik
+                     */
+                    firstName?: string;
+                    /** @description The sub identifier string used to identify the sender */
+                    idSubValue?: string;
+                    /** @enum {string} */
+                    idType?:
+                      | "MSISDN"
+                      | "ACCOUNT_NO"
+                      | "EMAIL"
+                      | "PERSONAL_ID"
+                      | "BUSINESS"
+                      | "DEVICE"
+                      | "ACCOUNT_ID"
+                      | "IBAN"
+                      | "ALIAS";
+                    /** @description The identifier string used to identify the sender */
+                    idValue?: string;
+                    /**
+                     * LastName
+                     * @description Last name of the Party (Name Type).
+                     * @example Karlsson
+                     */
+                    lastName?: string;
+                    /**
+                     * MiddleName
+                     * @description Middle name of the Party (Name Type).
+                     * @example Johannes
+                     */
+                    middleName?: string;
+                    /** @enum {string} */
+                    type?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+                  };
+                  /**
+                   * DateofBirth (type Date)
+                   * @description Date of Birth of the Party.
+                   * @example 1966-06-16
+                   */
+                  dateOfBirth?: string;
+                };
               };
               /** @description A Mojaloop API quote identifier (UUID). */
               quoteId: string;
