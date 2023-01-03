@@ -360,6 +360,15 @@ paths:
                         pattern: >-
                           ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
                         type: string
+                      subScenario:
+                        description: >-
+                          Possible sub-scenario, defined locally within the
+                          scheme (UndefinedEnum Type). Based on FSPIOP
+                          TransactionSubScenario.
+                        example: LOCALLY_DEFINED_SUBSCENARIO
+                        pattern: ^[A-Z_]{1,32}$
+                        title: transactionSubScenario
+                        type: string
                       to:
                         properties: *ref_1
                         required: *ref_2
@@ -704,6 +713,15 @@ paths:
                         description: An optional note associated with the quote.
                         maxLength: 128
                         minLength: 1
+                        type: string
+                      subScenario:
+                        description: >-
+                          Possible sub-scenario, defined locally within the
+                          scheme (UndefinedEnum Type). Based on FSPIOP
+                          TransactionSubScenario.
+                        example: LOCALLY_DEFINED_SUBSCENARIO
+                        pattern: ^[A-Z_]{1,32}$
+                        title: transactionSubScenario
                         type: string
                       to:
                         properties: *ref_1
@@ -1139,6 +1157,15 @@ paths:
                   description: A Mojaloop API quote identifier (UUID).
                   pattern: >-
                     ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+                  type: string
+                subScenario:
+                  description: >-
+                    Possible sub-scenario, defined locally within the scheme
+                    (UndefinedEnum Type). Based on FSPIOP
+                    TransactionSubScenario.
+                  example: LOCALLY_DEFINED_SUBSCENARIO
+                  pattern: ^[A-Z_]{1,32}$
+                  title: transactionSubScenario
                   type: string
                 to:
                   description: >-
@@ -1737,6 +1764,15 @@ paths:
                               enum: &ref_69
                                 - TRANSFER
                               type: string
+                            subScenario:
+                              description: >-
+                                Possible sub-scenario, defined locally within
+                                the scheme (UndefinedEnum Type). Based on FSPIOP
+                                TransactionSubScenario.
+                              example: LOCALLY_DEFINED_SUBSCENARIO
+                              pattern: ^[A-Z_]{1,32}$
+                              title: transactionSubScenario
+                              type: string
                           required: &ref_76
                             - scenario
                             - initiator
@@ -1766,6 +1802,15 @@ paths:
                   maxItems: 16
                   minItems: 0
                   type: array
+                subScenario:
+                  description: >-
+                    Possible sub-scenario, defined locally within the scheme
+                    (UndefinedEnum Type). Based on FSPIOP
+                    TransactionSubScenario.
+                  example: LOCALLY_DEFINED_SUBSCENARIO
+                  pattern: ^[A-Z_]{1,32}$
+                  title: transactionSubScenario
+                  type: string
                 to:
                   properties: *ref_1
                   required: *ref_2
@@ -1891,6 +1936,15 @@ paths:
                     type: string
                   note:
                     maxLength: 128
+                    type: string
+                  subScenario:
+                    description: >-
+                      Possible sub-scenario, defined locally within the scheme
+                      (UndefinedEnum Type). Based on FSPIOP
+                      TransactionSubScenario.
+                    example: LOCALLY_DEFINED_SUBSCENARIO
+                    pattern: ^[A-Z_]{1,32}$
+                    title: transactionSubScenario
                     type: string
                   timestamp:
                     description: An ISO-8601 formatted timestamp.
@@ -2623,6 +2677,14 @@ components:
       type: object
     transactionRequestState:
       enum: *ref_74
+      type: string
+    transactionSubScenario:
+      description: >-
+        Possible sub-scenario, defined locally within the scheme (UndefinedEnum
+        Type). Based on FSPIOP TransactionSubScenario.
+      example: LOCALLY_DEFINED_SUBSCENARIO
+      pattern: ^[A-Z_]{1,32}$
+      title: transactionSubScenario
       type: string
     transactionType:
       enum: *ref_11

@@ -489,6 +489,13 @@
         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
         "type": "string"
       },
+      "subScenario": {
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO",
+        "pattern": "^[A-Z_]{1,32}$",
+        "title": "transactionSubScenario",
+        "type": "string"
+      },
       "to": {
         "properties": {
           "dateOfBirth": {
@@ -1728,6 +1735,13 @@
         "description": "An optional note associated with the quote.",
         "maxLength": 128,
         "minLength": 1,
+        "type": "string"
+      },
+      "subScenario": {
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO",
+        "pattern": "^[A-Z_]{1,32}$",
+        "title": "transactionSubScenario",
         "type": "string"
       },
       "to": {
@@ -3100,6 +3114,13 @@
             "quoteId": {
               "description": "A Mojaloop API quote identifier (UUID).",
               "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+              "type": "string"
+            },
+            "subScenario": {
+              "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+              "example": "LOCALLY_DEFINED_SUBSCENARIO",
+              "pattern": "^[A-Z_]{1,32}$",
+              "title": "transactionSubScenario",
               "type": "string"
             },
             "to": {
@@ -5260,6 +5281,13 @@
               "minLength": 1,
               "type": "string"
             },
+            "subScenario": {
+              "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+              "example": "LOCALLY_DEFINED_SUBSCENARIO",
+              "pattern": "^[A-Z_]{1,32}$",
+              "title": "transactionSubScenario",
+              "type": "string"
+            },
             "to": {
               "properties": {
                 "dateOfBirth": {
@@ -6667,6 +6695,13 @@
               "TRANSFER"
             ],
             "type": "string"
+          },
+          "subScenario": {
+            "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+            "example": "LOCALLY_DEFINED_SUBSCENARIO",
+            "pattern": "^[A-Z_]{1,32}$",
+            "title": "transactionSubScenario",
+            "type": "string"
           }
         },
         "required": [
@@ -7339,6 +7374,13 @@
       "quoteId": {
         "description": "A Mojaloop API quote identifier (UUID).",
         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+        "type": "string"
+      },
+      "subScenario": {
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO",
+        "pattern": "^[A-Z_]{1,32}$",
+        "title": "transactionSubScenario",
         "type": "string"
       },
       "to": {
@@ -8721,6 +8763,13 @@
     ],
     "type": "string"
   },
+  "transactionSubScenario": {
+    "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+    "example": "LOCALLY_DEFINED_SUBSCENARIO",
+    "pattern": "^[A-Z_]{1,32}$",
+    "title": "transactionSubScenario",
+    "type": "string"
+  },
   "transactionType": {
     "enum": [
       "TRANSFER",
@@ -8753,6 +8802,13 @@
         "enum": [
           "TRANSFER"
         ],
+        "type": "string"
+      },
+      "subScenario": {
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO",
+        "pattern": "^[A-Z_]{1,32}$",
+        "title": "transactionSubScenario",
         "type": "string"
       }
     },
@@ -9063,6 +9119,13 @@
       },
       "note": {
         "maxLength": 128,
+        "type": "string"
+      },
+      "subScenario": {
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO",
+        "pattern": "^[A-Z_]{1,32}$",
+        "title": "transactionSubScenario",
         "type": "string"
       },
       "timestamp": {
@@ -10252,6 +10315,13 @@
                       "TRANSFER"
                     ],
                     "type": "string"
+                  },
+                  "subScenario": {
+                    "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+                    "example": "LOCALLY_DEFINED_SUBSCENARIO",
+                    "pattern": "^[A-Z_]{1,32}$",
+                    "title": "transactionSubScenario",
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -11076,6 +11146,13 @@
         "maxItems": 16,
         "minItems": 0,
         "type": "array"
+      },
+      "subScenario": {
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO",
+        "pattern": "^[A-Z_]{1,32}$",
+        "title": "transactionSubScenario",
+        "type": "string"
       },
       "to": {
         "properties": {

@@ -471,6 +471,12 @@ export interface components {
       note?: string;
       /** @description A Mojaloop API quote identifier (UUID). */
       quoteId: string;
+      /**
+       * transactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
       to: {
         /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
@@ -1543,6 +1549,12 @@ export interface components {
       initiatorType?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
       /** @description An optional note associated with the quote. */
       note?: string;
+      /**
+       * transactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
       to?: {
         /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
@@ -2625,6 +2637,12 @@ export interface components {
         note?: string;
         /** @description A Mojaloop API quote identifier (UUID). */
         quoteId: string;
+        /**
+         * transactionSubScenario
+         * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+         * @example LOCALLY_DEFINED_SUBSCENARIO
+         */
+        subScenario?: string;
         to: {
           /** @description Date of birth in the form YYYY-MM-DD. */
           dateOfBirth?: string;
@@ -4441,6 +4459,12 @@ export interface components {
         initiatorType?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
         /** @description An optional note associated with the quote. */
         note?: string;
+        /**
+         * transactionSubScenario
+         * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+         * @example LOCALLY_DEFINED_SUBSCENARIO
+         */
+        subScenario?: string;
         to?: {
           /** @description Date of birth in the form YYYY-MM-DD. */
           dateOfBirth?: string;
@@ -5381,6 +5405,12 @@ export interface components {
         initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
         /** @enum {string} */
         scenario: "TRANSFER";
+        /**
+         * transactionSubScenario
+         * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+         * @example LOCALLY_DEFINED_SUBSCENARIO
+         */
+        subScenario?: string;
       };
     };
     /** @enum {string} */
@@ -5837,6 +5867,12 @@ export interface components {
       note?: string;
       /** @description A Mojaloop API quote identifier (UUID). */
       quoteId: string;
+      /**
+       * transactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
       /** @description Information about the Payee in the proposed financial transaction. */
       to: {
         /** @description Date of birth in the form YYYY-MM-DD. */
@@ -6866,6 +6902,12 @@ export interface components {
     };
     /** @enum {string} */
     transactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";
+    /**
+     * transactionSubScenario
+     * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+     * @example LOCALLY_DEFINED_SUBSCENARIO
+     */
+    transactionSubScenario: string;
     /** @enum {string} */
     transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
     /** @description Object containing transfer object. */
@@ -6879,6 +6921,12 @@ export interface components {
       initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
       /** @enum {string} */
       scenario: "TRANSFER";
+      /**
+       * transactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
     };
     transferDetailsResponse: {
       amount: string;
@@ -7093,6 +7141,12 @@ export interface components {
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
       homeTransactionId: string;
       note?: string;
+      /**
+       * transactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
       /** @description An ISO-8601 formatted timestamp. */
       timestamp: string;
       to: {
@@ -7942,6 +7996,12 @@ export interface components {
             initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
             /** @enum {string} */
             scenario: "TRANSFER";
+            /**
+             * transactionSubScenario
+             * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+             * @example LOCALLY_DEFINED_SUBSCENARIO
+             */
+            subScenario?: string;
           };
         };
       };
@@ -8654,6 +8714,12 @@ export interface components {
         key?: string;
         value?: string;
       }[];
+      /**
+       * transactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
       to: {
         /** @description Date of birth in the form YYYY-MM-DD. */
         dateOfBirth?: string;
@@ -9909,6 +9975,12 @@ export interface operations {
             note?: string;
             /** @description A Mojaloop API quote identifier (UUID). */
             quoteId: string;
+            /**
+             * transactionSubScenario
+             * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+             * @example LOCALLY_DEFINED_SUBSCENARIO
+             */
+            subScenario?: string;
             to: {
               /** @description Date of birth in the form YYYY-MM-DD. */
               dateOfBirth?: string;
@@ -11893,6 +11965,12 @@ export interface operations {
             initiatorType?: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
             /** @description An optional note associated with the quote. */
             note?: string;
+            /**
+             * transactionSubScenario
+             * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+             * @example LOCALLY_DEFINED_SUBSCENARIO
+             */
+            subScenario?: string;
             to?: {
               /** @description Date of birth in the form YYYY-MM-DD. */
               dateOfBirth?: string;
@@ -13479,6 +13557,12 @@ export interface operations {
           note?: string;
           /** @description A Mojaloop API quote identifier (UUID). */
           quoteId: string;
+          /**
+           * transactionSubScenario
+           * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+           * @example LOCALLY_DEFINED_SUBSCENARIO
+           */
+          subScenario?: string;
           /** @description Information about the Payee in the proposed financial transaction. */
           to: {
             /** @description Date of birth in the form YYYY-MM-DD. */
@@ -14631,6 +14715,12 @@ export interface operations {
                 initiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
                 /** @enum {string} */
                 scenario: "TRANSFER";
+                /**
+                 * transactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
               };
             };
           };
@@ -15343,6 +15433,12 @@ export interface operations {
             key?: string;
             value?: string;
           }[];
+          /**
+           * transactionSubScenario
+           * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+           * @example LOCALLY_DEFINED_SUBSCENARIO
+           */
+          subScenario?: string;
           to: {
             /** @description Date of birth in the form YYYY-MM-DD. */
             dateOfBirth?: string;
@@ -15611,6 +15707,12 @@ export interface operations {
             /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
             homeTransactionId: string;
             note?: string;
+            /**
+             * transactionSubScenario
+             * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+             * @example LOCALLY_DEFINED_SUBSCENARIO
+             */
+            subScenario?: string;
             /** @description An ISO-8601 formatted timestamp. */
             timestamp: string;
             to: {

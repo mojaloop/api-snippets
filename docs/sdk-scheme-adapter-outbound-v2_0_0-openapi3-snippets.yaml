@@ -516,6 +516,14 @@ paths:
                   enum: &ref_5
                     - TRANSFER
                   description: Type of transaction.
+                subScenario:
+                  title: TransactionSubScenario
+                  type: string
+                  pattern: ^[A-Z_]{1,32}$
+                  description: >-
+                    Possible sub-scenario, defined locally within the scheme
+                    (UndefinedEnum Type).
+                  example: LOCALLY_DEFINED_SUBSCENARIO
                 note:
                   title: Note
                   type: string
@@ -630,6 +638,14 @@ paths:
                     type: string
                     enum: *ref_5
                     description: Type of transaction.
+                  subScenario:
+                    title: TransactionSubScenario
+                    type: string
+                    pattern: ^[A-Z_]{1,32}$
+                    description: >-
+                      Possible sub-scenario, defined locally within the scheme
+                      (UndefinedEnum Type).
+                    example: LOCALLY_DEFINED_SUBSCENARIO
                   note:
                     title: Note
                     type: string
@@ -2082,6 +2098,14 @@ paths:
                         type: string
                         enum: *ref_5
                         description: Type of transaction.
+                      subScenario:
+                        title: TransactionSubScenario
+                        type: string
+                        pattern: ^[A-Z_]{1,32}$
+                        description: >-
+                          Possible sub-scenario, defined locally within the
+                          scheme (UndefinedEnum Type).
+                        example: LOCALLY_DEFINED_SUBSCENARIO
                       ilpPacket:
                         title: IlpPacket
                         type: string
@@ -2361,6 +2385,14 @@ paths:
                         type: string
                         enum: *ref_5
                         description: Type of transaction.
+                      subScenario:
+                        title: TransactionSubScenario
+                        type: string
+                        pattern: ^[A-Z_]{1,32}$
+                        description: >-
+                          Possible sub-scenario, defined locally within the
+                          scheme (UndefinedEnum Type).
+                        example: LOCALLY_DEFINED_SUBSCENARIO
                       note:
                         title: Note
                         type: string
@@ -4455,6 +4487,14 @@ components:
       type: string
       enum: *ref_5
       description: Type of transaction.
+    TransactionSubScenario:
+      title: TransactionSubScenario
+      type: string
+      pattern: ^[A-Z_]{1,32}$
+      description: >-
+        Possible sub-scenario, defined locally within the scheme (UndefinedEnum
+        Type).
+      example: LOCALLY_DEFINED_SUBSCENARIO
     Note:
       title: Note
       type: string
@@ -4821,14 +4861,6 @@ components:
 
         - REFUND - Used for performing a refund of transaction.
       example: DEPOSIT
-    TransactionSubScenario:
-      title: TransactionSubScenario
-      type: string
-      pattern: ^[A-Z_]{1,32}$
-      description: >-
-        Possible sub-scenario, defined locally within the scheme (UndefinedEnum
-        Type).
-      example: LOCALLY_DEFINED_SUBSCENARIO
     TransactionInitiator:
       title: TransactionInitiator
       type: string

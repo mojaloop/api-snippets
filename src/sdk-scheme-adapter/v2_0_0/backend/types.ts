@@ -73,6 +73,7 @@ export namespace Types {
   export type transactionRequestId = components['schemas']['transactionRequestId']
   export type transactionRequestResponse = components['schemas']['transactionRequestResponse']
   export type transactionRequestState = components['schemas']['transactionRequestState']
+  export type transactionSubScenario = components['schemas']['transactionSubScenario']
   export type transactionType = components['schemas']['transactionType']
   export type transactionTypeObject = components['schemas']['transactionTypeObject']
   export type transferDetailsResponse = components['schemas']['transferDetailsResponse']

@@ -443,6 +443,12 @@ export interface paths {
                */
               transactionType: "TRANSFER";
               /**
+               * TransactionSubScenario
+               * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+               * @example LOCALLY_DEFINED_SUBSCENARIO
+               */
+              subScenario?: string;
+              /**
                * Note
                * @description Memo assigned to transaction.
                * @example Note sent to Payee.
@@ -1773,6 +1779,12 @@ export interface paths {
                  */
                 transactionType: "TRANSFER";
                 /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
+                /**
                  * Note
                  * @description Memo assigned to transaction.
                  * @example Note sent to Payee.
@@ -3103,6 +3115,12 @@ export interface paths {
                  * @enum {string}
                  */
                 transactionType: "TRANSFER";
+                /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
                 /**
                  * Note
                  * @description Memo assigned to transaction.
@@ -4435,6 +4453,12 @@ export interface paths {
                  */
                 transactionType: "TRANSFER";
                 /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
+                /**
                  * Note
                  * @description Memo assigned to transaction.
                  * @example Note sent to Payee.
@@ -5755,6 +5779,12 @@ export interface paths {
              */
             transactionType: "TRANSFER";
             /**
+             * TransactionSubScenario
+             * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+             * @example LOCALLY_DEFINED_SUBSCENARIO
+             */
+            subScenario?: string;
+            /**
              * Note
              * @description Memo assigned to transaction.
              * @example Note sent to Payee.
@@ -6308,6 +6338,12 @@ export interface paths {
                * @enum {string}
                */
               transactionType: "TRANSFER";
+              /**
+               * TransactionSubScenario
+               * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+               * @example LOCALLY_DEFINED_SUBSCENARIO
+               */
+              subScenario?: string;
               /**
                * Note
                * @description Memo assigned to transaction.
@@ -7639,6 +7675,12 @@ export interface paths {
                  */
                 transactionType: "TRANSFER";
                 /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
+                /**
                  * Note
                  * @description Memo assigned to transaction.
                  * @example Note sent to Payee.
@@ -8969,6 +9011,12 @@ export interface paths {
                  * @enum {string}
                  */
                 transactionType: "TRANSFER";
+                /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
                 /**
                  * Note
                  * @description Memo assigned to transaction.
@@ -11736,6 +11784,12 @@ export interface paths {
                * @enum {string}
                */
               transactionType?: "TRANSFER";
+              /**
+               * TransactionSubScenario
+               * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+               * @example LOCALLY_DEFINED_SUBSCENARIO
+               */
+              subScenario?: string;
               /**
                * IlpPacket
                * @description Information for recipient (transport layer information).
@@ -15787,6 +15841,12 @@ export interface paths {
                */
               transactionType: "TRANSFER";
               /**
+               * TransactionSubScenario
+               * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+               * @example LOCALLY_DEFINED_SUBSCENARIO
+               */
+              subScenario?: string;
+              /**
                * Note
                * @description Memo assigned to transaction.
                * @example Note sent to Payee.
@@ -16157,6 +16217,12 @@ export interface paths {
                  * @enum {string}
                  */
                 transactionType: "TRANSFER";
+                /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
                 /**
                  * Note
                  * @description Memo assigned to transaction.
@@ -18970,6 +19036,12 @@ export interface paths {
                  */
                 transactionType: "TRANSFER";
                 /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
+                /**
                  * Note
                  * @description Memo assigned to transaction.
                  * @example Note sent to Payee.
@@ -20301,6 +20373,12 @@ export interface paths {
                  */
                 transactionType: "TRANSFER";
                 /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
+                /**
                  * Note
                  * @description Memo assigned to transaction.
                  * @example Note sent to Payee.
@@ -21631,6 +21709,12 @@ export interface paths {
                  * @enum {string}
                  */
                 transactionType: "TRANSFER";
+                /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
                 /**
                  * Note
                  * @description Memo assigned to transaction.
@@ -23471,6 +23555,12 @@ export interface paths {
                */
               transactionType: "TRANSFER";
               /**
+               * TransactionSubScenario
+               * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+               * @example LOCALLY_DEFINED_SUBSCENARIO
+               */
+              subScenario?: string;
+              /**
                * Note
                * @description Memo assigned to transaction.
                * @example Note sent to Payee.
@@ -24800,6 +24890,12 @@ export interface paths {
                  * @enum {string}
                  */
                 transactionType: "TRANSFER";
+                /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
                 /**
                  * Note
                  * @description Memo assigned to transaction.
@@ -26131,6 +26227,12 @@ export interface paths {
                  * @enum {string}
                  */
                 transactionType: "TRANSFER";
+                /**
+                 * TransactionSubScenario
+                 * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+                 * @example LOCALLY_DEFINED_SUBSCENARIO
+                 */
+                subScenario?: string;
                 /**
                  * Note
                  * @description Memo assigned to transaction.
@@ -29001,6 +29103,12 @@ export interface components {
      */
     transferTransactionType: "TRANSFER";
     /**
+     * TransactionSubScenario
+     * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+     * @example LOCALLY_DEFINED_SUBSCENARIO
+     */
+    TransactionSubScenario: string;
+    /**
      * Note
      * @description Memo assigned to transaction.
      * @example Note sent to Payee.
@@ -29402,6 +29510,12 @@ export interface components {
        * @enum {string}
        */
       transactionType: "TRANSFER";
+      /**
+       * TransactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
       /**
        * Note
        * @description Memo assigned to transaction.
@@ -31080,6 +31194,12 @@ export interface components {
        */
       transactionType: "TRANSFER";
       /**
+       * TransactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
+      /**
        * Note
        * @description Memo assigned to transaction.
        * @example Note sent to Payee.
@@ -32406,6 +32526,12 @@ export interface components {
          * @enum {string}
          */
         transactionType: "TRANSFER";
+        /**
+         * TransactionSubScenario
+         * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+         * @example LOCALLY_DEFINED_SUBSCENARIO
+         */
+        subScenario?: string;
         /**
          * Note
          * @description Memo assigned to transaction.
@@ -36248,6 +36374,12 @@ export interface components {
        */
       transactionType?: "TRANSFER";
       /**
+       * TransactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
+      /**
        * IlpPacket
        * @description Information for recipient (transport layer information).
        * @example AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
@@ -36701,6 +36833,12 @@ export interface components {
          */
         transactionType?: "TRANSFER";
         /**
+         * TransactionSubScenario
+         * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+         * @example LOCALLY_DEFINED_SUBSCENARIO
+         */
+        subScenario?: string;
+        /**
          * IlpPacket
          * @description Information for recipient (transport layer information).
          * @example AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
@@ -37125,6 +37263,12 @@ export interface components {
        * @enum {string}
        */
       transactionType: "TRANSFER";
+      /**
+       * TransactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
       /**
        * Note
        * @description Memo assigned to transaction.
@@ -37561,6 +37705,12 @@ export interface components {
          * @enum {string}
          */
         transactionType: "TRANSFER";
+        /**
+         * TransactionSubScenario
+         * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+         * @example LOCALLY_DEFINED_SUBSCENARIO
+         */
+        subScenario?: string;
         /**
          * Note
          * @description Memo assigned to transaction.
@@ -40485,6 +40635,12 @@ export interface components {
          */
         transactionType: "TRANSFER";
         /**
+         * TransactionSubScenario
+         * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+         * @example LOCALLY_DEFINED_SUBSCENARIO
+         */
+        subScenario?: string;
+        /**
          * Note
          * @description Memo assigned to transaction.
          * @example Note sent to Payee.
@@ -40528,12 +40684,6 @@ export interface components {
       | "TRANSFER"
       | "PAYMENT"
       | "REFUND";
-    /**
-     * TransactionSubScenario
-     * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
-     * @example LOCALLY_DEFINED_SUBSCENARIO
-     */
-    TransactionSubScenario: string;
     /**
      * TransactionInitiator
      * @description Below are the allowed values for the enumeration.
@@ -47693,6 +47843,12 @@ export interface components {
            */
           transactionType: "TRANSFER";
           /**
+           * TransactionSubScenario
+           * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+           * @example LOCALLY_DEFINED_SUBSCENARIO
+           */
+          subScenario?: string;
+          /**
            * Note
            * @description Memo assigned to transaction.
            * @example Note sent to Payee.
@@ -49018,6 +49174,12 @@ export interface components {
              * @enum {string}
              */
             transactionType: "TRANSFER";
+            /**
+             * TransactionSubScenario
+             * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+             * @example LOCALLY_DEFINED_SUBSCENARIO
+             */
+            subScenario?: string;
             /**
              * Note
              * @description Memo assigned to transaction.
@@ -50350,6 +50512,12 @@ export interface components {
              */
             transactionType: "TRANSFER";
             /**
+             * TransactionSubScenario
+             * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+             * @example LOCALLY_DEFINED_SUBSCENARIO
+             */
+            subScenario?: string;
+            /**
              * Note
              * @description Memo assigned to transaction.
              * @example Note sent to Payee.
@@ -51680,6 +51848,12 @@ export interface components {
              * @enum {string}
              */
             transactionType: "TRANSFER";
+            /**
+             * TransactionSubScenario
+             * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+             * @example LOCALLY_DEFINED_SUBSCENARIO
+             */
+            subScenario?: string;
             /**
              * Note
              * @description Memo assigned to transaction.
@@ -58772,6 +58946,12 @@ export interface components {
              * @enum {string}
              */
             transactionType: "TRANSFER";
+            /**
+             * TransactionSubScenario
+             * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+             * @example LOCALLY_DEFINED_SUBSCENARIO
+             */
+            subScenario?: string;
             /**
              * Note
              * @description Memo assigned to transaction.

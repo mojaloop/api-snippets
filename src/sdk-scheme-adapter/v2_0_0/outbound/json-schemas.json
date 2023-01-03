@@ -495,6 +495,13 @@
     ],
     "description": "Type of transaction."
   },
+  "TransactionSubScenario": {
+    "title": "TransactionSubScenario",
+    "type": "string",
+    "pattern": "^[A-Z_]{1,32}$",
+    "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+    "example": "LOCALLY_DEFINED_SUBSCENARIO"
+  },
   "Note": {
     "title": "Note",
     "type": "string",
@@ -984,6 +991,13 @@
           "TRANSFER"
         ],
         "description": "Type of transaction."
+      },
+      "subScenario": {
+        "title": "TransactionSubScenario",
+        "type": "string",
+        "pattern": "^[A-Z_]{1,32}$",
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO"
       },
       "note": {
         "title": "Note",
@@ -3055,6 +3069,13 @@
         ],
         "description": "Type of transaction."
       },
+      "subScenario": {
+        "title": "TransactionSubScenario",
+        "type": "string",
+        "pattern": "^[A-Z_]{1,32}$",
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO"
+      },
       "note": {
         "title": "Note",
         "type": "string",
@@ -4673,6 +4694,13 @@
                   "TRANSFER"
                 ],
                 "description": "Type of transaction."
+              },
+              "subScenario": {
+                "title": "TransactionSubScenario",
+                "type": "string",
+                "pattern": "^[A-Z_]{1,32}$",
+                "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+                "example": "LOCALLY_DEFINED_SUBSCENARIO"
               },
               "note": {
                 "title": "Note",
@@ -10114,6 +10142,13 @@
         ],
         "description": "Type of transaction."
       },
+      "subScenario": {
+        "title": "TransactionSubScenario",
+        "type": "string",
+        "pattern": "^[A-Z_]{1,32}$",
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO"
+      },
       "ilpPacket": {
         "title": "IlpPacket",
         "type": "string",
@@ -10700,6 +10735,13 @@
                 "TRANSFER"
               ],
               "description": "Type of transaction."
+            },
+            "subScenario": {
+              "title": "TransactionSubScenario",
+              "type": "string",
+              "pattern": "^[A-Z_]{1,32}$",
+              "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+              "example": "LOCALLY_DEFINED_SUBSCENARIO"
             },
             "ilpPacket": {
               "title": "IlpPacket",
@@ -11304,6 +11346,13 @@
         ],
         "description": "Type of transaction."
       },
+      "subScenario": {
+        "title": "TransactionSubScenario",
+        "type": "string",
+        "pattern": "^[A-Z_]{1,32}$",
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO"
+      },
       "note": {
         "title": "Note",
         "type": "string",
@@ -11864,6 +11913,13 @@
                 "TRANSFER"
               ],
               "description": "Type of transaction."
+            },
+            "subScenario": {
+              "title": "TransactionSubScenario",
+              "type": "string",
+              "pattern": "^[A-Z_]{1,32}$",
+              "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+              "example": "LOCALLY_DEFINED_SUBSCENARIO"
             },
             "note": {
               "title": "Note",
@@ -15372,6 +15428,13 @@
               ],
               "description": "Type of transaction."
             },
+            "subScenario": {
+              "title": "TransactionSubScenario",
+              "type": "string",
+              "pattern": "^[A-Z_]{1,32}$",
+              "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+              "example": "LOCALLY_DEFINED_SUBSCENARIO"
+            },
             "note": {
               "title": "Note",
               "type": "string",
@@ -15446,13 +15509,6 @@
     ],
     "description": "Below are the allowed values for the enumeration.\n- DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.\n- WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.\n- TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.\n- PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.\n- REFUND - Used for performing a refund of transaction.",
     "example": "DEPOSIT"
-  },
-  "TransactionSubScenario": {
-    "title": "TransactionSubScenario",
-    "type": "string",
-    "pattern": "^[A-Z_]{1,32}$",
-    "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
-    "example": "LOCALLY_DEFINED_SUBSCENARIO"
   },
   "TransactionInitiator": {
     "title": "TransactionInitiator",

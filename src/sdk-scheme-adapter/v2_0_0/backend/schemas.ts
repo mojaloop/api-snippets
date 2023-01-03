@@ -73,6 +73,7 @@ export namespace Schemas {
   export const transactionRequestId = JsonSchemas.transactionRequestId
   export const transactionRequestResponse = JsonSchemas.transactionRequestResponse
   export const transactionRequestState = JsonSchemas.transactionRequestState
+  export const transactionSubScenario = JsonSchemas.transactionSubScenario
   export const transactionType = JsonSchemas.transactionType
   export const transactionTypeObject = JsonSchemas.transactionTypeObject
   export const transferDetailsResponse = JsonSchemas.transferDetailsResponse

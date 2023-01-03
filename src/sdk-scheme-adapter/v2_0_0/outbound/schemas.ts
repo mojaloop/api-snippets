@@ -25,6 +25,7 @@ export namespace Schemas {
   export const Currency = JsonSchemas.Currency
   export const Amount = JsonSchemas.Amount
   export const transferTransactionType = JsonSchemas.transferTransactionType
+  export const TransactionSubScenario = JsonSchemas.TransactionSubScenario
   export const Note = JsonSchemas.Note
   export const transferRequest = JsonSchemas.transferRequest
   export const CorrelationId = JsonSchemas.CorrelationId
@@ -86,7 +87,6 @@ export namespace Schemas {
   export const bulkQuoteStatus = JsonSchemas.bulkQuoteStatus
   export const bulkQuoteStatusResponse = JsonSchemas.bulkQuoteStatusResponse
   export const TransactionScenario = JsonSchemas.TransactionScenario
-  export const TransactionSubScenario = JsonSchemas.TransactionSubScenario
   export const TransactionInitiator = JsonSchemas.TransactionInitiator
   export const RefundReason = JsonSchemas.RefundReason
   export const Refund = JsonSchemas.Refund
