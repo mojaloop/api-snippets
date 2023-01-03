@@ -1490,6 +1490,8 @@ components:
           $ref: '#/components/schemas/transactionRequestId'
         transactionType:
           $ref: '#/components/schemas/transactionType'
+        subScenario:
+          $ref: '#/components/schemas/transactionSubScenario'
       required:
         - transactionRequestId
         - to

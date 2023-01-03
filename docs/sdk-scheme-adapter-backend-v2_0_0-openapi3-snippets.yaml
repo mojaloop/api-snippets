@@ -1351,6 +1351,15 @@ paths:
                 transactionType:
                   enum: *ref_11
                   type: string
+                subScenario:
+                  description: >-
+                    Possible sub-scenario, defined locally within the scheme
+                    (UndefinedEnum Type). Based on FSPIOP
+                    TransactionSubScenario.
+                  example: LOCALLY_DEFINED_SUBSCENARIO
+                  pattern: ^[A-Z_]{1,32}$
+                  title: transactionSubScenario
+                  type: string
               required: &ref_71
                 - transactionRequestId
                 - to

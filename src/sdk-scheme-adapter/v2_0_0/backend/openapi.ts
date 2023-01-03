@@ -6888,6 +6888,12 @@ export interface components {
       transactionRequestId: string;
       /** @enum {string} */
       transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
+      /**
+       * transactionSubScenario
+       * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+       * @example LOCALLY_DEFINED_SUBSCENARIO
+       */
+      subScenario?: string;
     };
     /** @description A Mojaloop API transaction request identifier (UUID). */
     transactionRequestId: string;
@@ -13917,6 +13923,12 @@ export interface operations {
           transactionRequestId: string;
           /** @enum {string} */
           transactionType: "TRANSFER" | "DEPOSIT" | "PAYMENT";
+          /**
+           * transactionSubScenario
+           * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type). Based on FSPIOP TransactionSubScenario.
+           * @example LOCALLY_DEFINED_SUBSCENARIO
+           */
+          subScenario?: string;
         };
       };
     };
