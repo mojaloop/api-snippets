@@ -82,8 +82,8 @@
     "@types/responselike": "^1.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
+    "@commitlint/cli": "^17.4.0",
+    "@commitlint/config-conventional": "^17.4.0",
     "@redocly/openapi-cli": "^1.0.0-beta.94",
     "@types/jest": "^29.2.5",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
