@@ -388,11 +388,11 @@ workflows:
             - setup
           filters:
             tags:
-              only: /.*/
+              ignore: /.*/
             branches:
               ignore:
-                - /feature*/
-                - /bugfix*/
+                - master
+                - main
       - test-lint:
           context: org-global
           requires:
