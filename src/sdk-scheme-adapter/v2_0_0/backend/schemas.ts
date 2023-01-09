@@ -69,6 +69,7 @@ export namespace Schemas {
   export const transferResponse = JsonSchemas.transferResponse
   export const transferState = JsonSchemas.transferState
   export const transferStatus = JsonSchemas.transferStatus
+  export const TransactionSubScenario = JsonSchemas.TransactionSubScenario
   export const CorrelationId = JsonSchemas.CorrelationId
   export const bulkTransactionStatus = JsonSchemas.bulkTransactionStatus
   export const autoAcceptPartyOption = JsonSchemas.autoAcceptPartyOption

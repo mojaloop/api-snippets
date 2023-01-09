@@ -4085,7 +4085,7 @@
         }
       },
       "lastError": {
-        "description": "This object represents a Mojaloop API error received at any time during the transfer process",
+        "description": "Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.\n",
         "type": "object",
         "properties": {
           "httpStatusCode": {
@@ -5711,7 +5711,7 @@
                 }
               },
               "lastError": {
-                "description": "This object represents a Mojaloop API error received at any time during the transfer process",
+                "description": "Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.\n",
                 "type": "object",
                 "properties": {
                   "httpStatusCode": {
@@ -8551,17 +8551,17 @@
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
       "fulfilment": {
-        "description": "Fulfilment that must be attached to the transfer by the Payee.",
         "title": "IlpFulfilment",
         "type": "string",
         "pattern": "^[A-Za-z0-9-_]{43}$",
         "maxLength": 48,
+        "description": "Fulfilment that must be attached to the transfer by the Payee.",
         "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
       },
       "extensionList": {
-        "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "title": "ExtensionList",
         "type": "object",
+        "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
             "type": "array",
@@ -8793,17 +8793,17 @@
               "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
             },
             "fulfilment": {
-              "description": "Fulfilment that must be attached to the transfer by the Payee.",
               "title": "IlpFulfilment",
               "type": "string",
               "pattern": "^[A-Za-z0-9-_]{43}$",
               "maxLength": 48,
+              "description": "Fulfilment that must be attached to the transfer by the Payee.",
               "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
             },
             "extensionList": {
-              "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "title": "ExtensionList",
               "type": "object",
+              "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
                   "type": "array",
@@ -9060,17 +9060,17 @@
                       "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
                     },
                     "fulfilment": {
-                      "description": "Fulfilment that must be attached to the transfer by the Payee.",
                       "title": "IlpFulfilment",
                       "type": "string",
                       "pattern": "^[A-Za-z0-9-_]{43}$",
                       "maxLength": 48,
+                      "description": "Fulfilment that must be attached to the transfer by the Payee.",
                       "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
                     },
                     "extensionList": {
-                      "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                       "title": "ExtensionList",
                       "type": "object",
+                      "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                       "properties": {
                         "extension": {
                           "type": "array",
@@ -10868,17 +10868,17 @@
     "description": "A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer",
     "properties": {
       "fulfilment": {
-        "description": "Fulfilment that must be attached to the transfer by the Payee.",
         "title": "IlpFulfilment",
         "type": "string",
         "pattern": "^[A-Za-z0-9-_]{43}$",
         "maxLength": 48,
+        "description": "Fulfilment that must be attached to the transfer by the Payee.",
         "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
       },
       "extensionList": {
-        "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "title": "ExtensionList",
         "type": "object",
+        "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
             "type": "array",
@@ -10949,17 +10949,17 @@
           "description": "A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer",
           "properties": {
             "fulfilment": {
-              "description": "Fulfilment that must be attached to the transfer by the Payee.",
               "title": "IlpFulfilment",
               "type": "string",
               "pattern": "^[A-Za-z0-9-_]{43}$",
               "maxLength": 48,
+              "description": "Fulfilment that must be attached to the transfer by the Payee.",
               "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
             },
             "extensionList": {
-              "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "title": "ExtensionList",
               "type": "object",
+              "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
                   "type": "array",
@@ -12840,9 +12840,9 @@
         "description": "Condition that must be attached to the transfer by the Payer."
       },
       "extensionList": {
-        "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "title": "ExtensionList",
         "type": "object",
+        "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
             "type": "array",
@@ -12881,8 +12881,8 @@
         ]
       },
       "lastError": {
-        "description": "This object represents a Mojaloop API error received at any time during the quote process",
         "type": "object",
+        "description": "This object represents a Mojaloop API error received at any time during the quote process",
         "properties": {
           "httpStatusCode": {
             "type": "integer",
@@ -13864,9 +13864,9 @@
               "description": "Condition that must be attached to the transfer by the Payer."
             },
             "extensionList": {
-              "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "title": "ExtensionList",
               "type": "object",
+              "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
                   "type": "array",
@@ -13905,8 +13905,8 @@
               ]
             },
             "lastError": {
-              "description": "This object represents a Mojaloop API error received at any time during the quote process",
               "type": "object",
+              "description": "This object represents a Mojaloop API error received at any time during the quote process",
               "properties": {
                 "httpStatusCode": {
                   "type": "integer",
@@ -14913,9 +14913,9 @@
                       "description": "Condition that must be attached to the transfer by the Payer."
                     },
                     "extensionList": {
-                      "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                       "title": "ExtensionList",
                       "type": "object",
+                      "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                       "properties": {
                         "extension": {
                           "type": "array",
@@ -14954,8 +14954,8 @@
                       ]
                     },
                     "lastError": {
-                      "description": "This object represents a Mojaloop API error received at any time during the quote process",
                       "type": "object",
+                      "description": "This object represents a Mojaloop API error received at any time during the quote process",
                       "properties": {
                         "httpStatusCode": {
                           "type": "integer",
@@ -18922,8 +18922,8 @@
         ]
       },
       "lastError": {
-        "description": "This object represents a Mojaloop API error received at any time during the transfer process",
         "type": "object",
+        "description": "This object represents a Mojaloop API error received at any time during the transfer process",
         "properties": {
           "httpStatusCode": {
             "type": "integer",
@@ -20117,9 +20117,9 @@
       "party": {
         "properties": {
           "body": {
-            "description": "Data model for the complex type Party.",
             "title": "Party",
             "type": "object",
+            "description": "Data model for the complex type Party.",
             "properties": {
               "partyIdInfo": {
                 "title": "PartyIdInfo",

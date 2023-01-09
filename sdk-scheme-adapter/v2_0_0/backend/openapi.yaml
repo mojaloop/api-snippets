@@ -454,7 +454,7 @@ components:
         quoteId:
           $ref: '#/components/schemas/quoteId'
         subScenario:
-          $ref: '#/components/schemas/transactionSubScenario'
+          $ref: '../components/schemas/TransactionSubScenario.yaml'
         to:
           $ref: '#/components/schemas/transferParty'
         transactionId:
@@ -530,7 +530,7 @@ components:
           minLength: 1
           type: string
         subScenario:
-          $ref: '#/components/schemas/transactionSubScenario'
+          $ref: '../components/schemas/TransactionSubScenario.yaml'
         to:
           $ref: '#/components/schemas/transferParty'
         transactionType:
@@ -865,13 +865,10 @@ components:
       properties:
         errorCode:
           $ref: '#/components/schemas/errorCode'
-          description: Specific error number.
         errorDescription:
           $ref: '#/components/schemas/errorDescription'
-          description: Error description string.
         extensionList:
           $ref: '#/components/schemas/extensionListComplex'
-          description: Optional list of extensions, specific to deployment.
       required:
         - errorCode
         - errorDescription
@@ -936,15 +933,10 @@ components:
           properties:
             completedTimestamp:
               $ref: '#/components/schemas/timestamp'
-              description: Time and date when the transaction was completed.
-              example: '2020-05-19T08:38:08.699-04:00'
             extensionList:
               $ref: '#/components/schemas/extensionList'
-              description: Optional extension, specific to deployment.
             transferState:
               $ref: '#/components/schemas/transferState'
-              description: State of the transfer.
-              example: COMMITTED
           required:
             - completedTimestamp
             - transferState
@@ -1038,21 +1030,16 @@ components:
       properties:
         amount:
           $ref: '#/components/schemas/amountCurrency'
-          description: Amount and currency of the transaction
         payee:
           $ref: '../components/schemas/Party.yaml'
-          description: Information about the Payee in the proposed financial transaction.
         payer:
           $ref: '../components/schemas/Party.yaml'
-          description: Information about the Payer in the proposed financial transaction.
         quoteId:
           $ref: '#/components/schemas/quoteId'
         transactionId:
           $ref: '#/components/schemas/transactionId'
-          description: Identifier for the transaction, decided by the Payer FSP during the creation of the quote.
         transactionType:
           $ref: '#/components/schemas/transactionTypeObject'
-          description: Information about type of transaction and initiator.
       required:
         - quoteId
         - transactionId
@@ -1113,34 +1100,26 @@ components:
       properties:
         amount:
           $ref: '#/components/schemas/money'
-          description: Depending on `amountType`. If SEND - The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction. If RECEIVE - The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities.
         amountType:
           $ref: '#/components/schemas/amountType'
-          description: SEND for send amount, RECEIVE for receive amount.
         currency:
           $ref: '#/components/schemas/currency'
         expiration:
           $ref: '#/components/schemas/timestamp'
-          description: An optional deadline for responding to the quote request.
         extensionList:
           $ref: '#/components/schemas/extensionList'
         feesAmount:
           $ref: '#/components/schemas/money'
-          description: The fees in the transaction. The fees element should be empty if fees should be non-disclosed. The fees element should be non-empty if fees should be disclosed.
         feesCurrency:
           $ref: '#/components/schemas/currency'
         from:
           $ref: '#/components/schemas/transferParty'
-          description: Information about the Payer in the proposed financial transaction.
         geoCode:
           $ref: '#/components/schemas/geoCode'
-          description: Longitude and Latitude of the initiating party. Can be used to detect fraud.
         initiator:
           $ref: '#/components/schemas/initiator'
-          description: Specifies if the initiator of the transfer is the Payer or Payee.
         initiatorType:
           $ref: '#/components/schemas/initiatorType'
-          description: Specifies the type of the transaction initiator.
         note:
           description: An optional note associated with the requested transfer.
           maxLength: 128
@@ -1149,16 +1128,13 @@ components:
         quoteId:
           $ref: '#/components/schemas/quoteId'
         subScenario:
-          $ref: '#/components/schemas/transactionSubScenario'
+          $ref: '../components/schemas/TransactionSubScenario.yaml'
         to:
           $ref: '#/components/schemas/transferParty'
-          description: Information about the Payee in the proposed financial transaction.
         transactionId:
           $ref: '#/components/schemas/transactionId'
-          description: Identifier for the transaction, decided by the Payer FSP during the creation of the quote.
         transactionType:
           $ref: '#/components/schemas/transactionType'
-          description: Type of transaction for which the quote is requested.
       required:
         - quoteId
         - transactionId
@@ -1176,42 +1152,30 @@ components:
       properties:
         expiration:
           $ref: '#/components/schemas/timestamp'
-          description: Timestamp specifying the validity period of the quotation.
         extensionList:
           $ref: '#/components/schemas/extensionList'
         geoCode:
           $ref: '#/components/schemas/geoCode'
-          description: Longitude and Latitude of the Payee. Can be used to detect fraud.
         payeeFspCommissionAmount:
           $ref: '#/components/schemas/money'
-          description: Transaction commission from the Payee FSP.
         payeeFspCommissionAmountCurrency:
           $ref: '#/components/schemas/currency'
-          description: Currency of the `payeeFspCommissionAmount`.
         payeeFspFeeAmount:
           $ref: '#/components/schemas/money'
-          description: Payee FSP’s part of the transaction fee.
         payeeFspFeeAmountCurrency:
           $ref: '#/components/schemas/currency'
-          description: The currency of the `payeeFspFeeAmount`.
         payeeReceiveAmount:
           $ref: '#/components/schemas/money'
-          description: The amount that the Payee should receive in the end-to-end transaction. Optional as the Payee FSP might not want to disclose any optional Payee fees.
         payeeReceiveAmountCurrency:
           $ref: '#/components/schemas/currency'
-          description: The currency of the `payeeReceiveAmount`.
         quoteId:
           $ref: '#/components/schemas/quoteId'
-          description: ID of the quote that this response relates to.
         transactionId:
           $ref: '#/components/schemas/transactionId'
-          description: Identifier for the transaction, decided by the Payer FSP during the creation of the quote.
         transferAmount:
           $ref: '#/components/schemas/money'
-          description: The amount of money that the Payer FSP should transfer to the Payee FSP.
         transferAmountCurrency:
           $ref: '#/components/schemas/currency'
-          description: The currency of the `transferAmount`.
       required:
         - quoteId
         - transactionId
@@ -1259,7 +1223,7 @@ components:
         transactionType:
           $ref: '#/components/schemas/transactionType'
         subScenario:
-          $ref: '#/components/schemas/transactionSubScenario'
+          $ref: '../components/schemas/TransactionSubScenario.yaml'
       required:
         - transactionRequestId
         - to
@@ -1311,11 +1275,10 @@ components:
           $ref: '#/components/schemas/initiator'
         initiatorType:
           $ref: '#/components/schemas/initiatorType'
-          description: Specifies the type of the transaction initiator.
         scenario:
           $ref: '#/components/schemas/scenario'
         subScenario:
-          $ref: '#/components/schemas/transactionSubScenario'
+          $ref: '../components/schemas/TransactionSubScenario.yaml'
       required:
         - scenario
         - initiator
@@ -1340,7 +1303,7 @@ components:
           maxLength: 128
           type: string
         subScenario:
-          $ref: '#/components/schemas/transactionSubScenario'
+          $ref: '../components/schemas/TransactionSubScenario.yaml'
         timestamp:
           $ref: '#/components/schemas/timestamp'
         to:
@@ -1426,7 +1389,7 @@ components:
         quoteRequestExtensions:
           $ref: '#/components/schemas/extensionList'
         subScenario:
-          $ref: '#/components/schemas/transactionSubScenario'
+          $ref: '../components/schemas/TransactionSubScenario.yaml'
         to:
           $ref: '#/components/schemas/transferParty'
         transactionType:
@@ -1448,18 +1411,13 @@ components:
       properties:
         completedTimestamp:
           $ref: '#/components/schemas/timestamp'
-          description: Completed timestamp from the DFSP backend, used for testing purposes to inject a given completed timestamp via a rule.
-          example: '2020-05-19T08:38:08.699-04:00'
         fulfilment:
           $ref: '../components/schemas/IlpFulfilment.yaml'
-          description: Fulfilment from the DFSP backend, used for testing purposes to inject an invalid fulfilment via a rule.
         homeTransactionId:
           description: Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems.
           type: string
         transferState:
           $ref: '#/components/schemas/transferState'
-          description: Transfer state from the DFSP backend, used for testing purposes to inject an desired transfer state via a rule.
-          example: ABORTED
       required:
         - homeTransactionId
       type: object
