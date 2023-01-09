@@ -13,91 +13,65 @@ export interface paths {
       };
     };
   };
-  "/transfers": {
+  "/accounts": {
     /**
-     * The HTTP request `POST /transfers` is used to request the movement of funds from payer DFSP to payee DFSP.
-     * The underlying Mojaloop API has three stages for money transfer:
+     * The HTTP request `POST /accounts` is used to create account information on the Account Lookup Service (ALS) regarding the provided list of identities.
      *
-     *   1. Party lookup. This facilitates a check by the sending party that the destination party is correct before proceeding with a money movement.
-     *   2. Quotation. This facilitates the exchange of fee information and the construction of a cryptographic "contract" between payee and payer DFSPs before funds are transferred.
-     *   3. Transfer. The enactment of the previously agreed "contract"
-     *
-     * This method has several modes of operation.
-     * - If the configuration variables `AUTO_ACCEPT_PARTIES` is set to `"false"` this method will terminate when the payee party has been resolved and return the payee party details.
-     *   If the payee wishes to proceed with the transfer, then a subsequent `PUT /transfers/{transferId}` request (accepting the payee party) is required to continue the operation.
-     *   The scheme adapter will then proceed with quotation stage...
-     *
-     * - If the configuration variable `AUTO_ACCEPT_QUOTES` is set to `"false"` this method will terminate and return the quotation when it has been received from the payee DFSP.
-     *   If the payee wished to proceed with the transfer, then a subsequent `PUT /transfers/{transferId}` request (accepting the quote) is required to continue the operation.
-     *   The scheme adapter will then proceed with the transfer state.
-     *
-     * If the configuration variables `AUTO_ACCEPT_PARTIES` and `AUTO_ACCEPT_QUOTES` are both set to `"true"` this method will block until all three transfer stages are complete. Upon completion it will return the entire set of transfer details received during the operation.
-     *
-     * Combinations of settings for `AUTO_ACCEPT...` configuration variables allow the scheme adapter user to decide which mode of operation best suits their use cases. i.e. the scheme adapter can be configured to "break" the three stage transfer at these points in order to execute backend logic such as party verification, quoted fees assessments etc...
+     * Caller DFSP is used as the account source FSP information
      */
     post: {
       responses: {
-        200: components["responses"]["transferSuccess"];
-        400: components["responses"]["transferBadRequest"];
-        500: components["responses"]["transferServerError"];
-        504: components["responses"]["transferTimeout"];
+        200: components["responses"]["accountsCreationCompleted"];
+        400: components["responses"]["accountsCreationError"];
+        500: components["responses"]["accountsCreationError"];
+        504: components["responses"]["accountsCreationTimeout"];
       };
-      /** Transfer request body */
+      /** Identities list request body */
       requestBody: {
         content: {
-          "application/json": components["schemas"]["transferRequest"];
+          "application/json": components["schemas"]["accountsRequest"];
         };
       };
     };
   };
-  "/transfers/{transferId}": {
-    /** The HTTP request `GET /transfers/{transferId}` is used to get information regarding a transfer created or requested earlier. The `{transferId}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
+  "/bulkQuotes": {
+    /** The HTTP request `POST /bulkQuotes` is used to request a bulk quote to fascilitate funds transfer from payer DFSP to payees' DFSP. */
+    post: {
+      responses: {
+        200: components["responses"]["bulkQuoteSuccess"];
+        400: components["responses"]["bulkQuoteBadRequest"];
+        500: components["responses"]["bulkQuoteServerError"];
+        504: components["responses"]["bulkQuoteTimeout"];
+      };
+      /** Bulk quote request body */
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["bulkQuoteRequest"];
+        };
+      };
+    };
+  };
+  "/bulkQuotes/{bulkQuoteId}": {
+    /** The HTTP request `GET /bulkQuotes/{bulktQuoteId}` is used to get information regarding a bulk quote created or requested earlier. The `{bulkQuoteId}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote. */
     get: {
       parameters: {
         path: {
-          /** Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
-          transferId: components["parameters"]["transferId"];
+          /** Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
+          bulkQuoteId: components["parameters"]["bulkQuoteId"];
         };
       };
       responses: {
-        /** Transfer information successfully retrieved */
+        /** Bulk quote information successfully retrieved */
         200: {
           content: {
-            "application/json": components["schemas"]["transferStatusResponse"];
+            "application/json": components["schemas"]["bulkQuoteStatusResponse"];
           };
         };
-        /** An error occurred processing the transfer */
+        /** An error occurred processing the bulk quote */
         500: {
           content: {
             "application/json": components["schemas"]["errorResponse"];
           };
-        };
-      };
-    };
-    /**
-     * The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage.
-     *
-     * The request body should contain either the "acceptParty" or "acceptQuote" property set to `true` as required to continue the transfer.
-     *
-     * See the description of the `POST /transfers` HTTP method for more information on modes of transfer.
-     */
-    put: {
-      parameters: {
-        path: {
-          /** Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
-          transferId: components["parameters"]["transferId"];
-        };
-      };
-      responses: {
-        200: components["responses"]["transferSuccess"];
-        500: components["responses"]["transferServerError"];
-        504: components["responses"]["transferTimeout"];
-      };
-      requestBody: {
-        content: {
-          "application/json":
-            | components["schemas"]["transferContinuationAcceptParty"]
-            | components["schemas"]["transferContinuationAcceptQuote"];
         };
       };
     };
@@ -189,47 +163,35 @@ export interface paths {
       };
     };
   };
-  "/bulkQuotes": {
-    /** The HTTP request `POST /bulkQuotes` is used to request a bulk quote to fascilitate funds transfer from payer DFSP to payees' DFSP. */
-    post: {
-      responses: {
-        200: components["responses"]["bulkQuoteSuccess"];
-        400: components["responses"]["bulkQuoteBadRequest"];
-        500: components["responses"]["bulkQuoteServerError"];
-        504: components["responses"]["bulkQuoteTimeout"];
-      };
-      /** Bulk quote request body */
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["bulkQuoteRequest"];
-        };
+  "/parties/{Type}/{ID}": {
+    /** The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1). */
+    get: operations["PartiesByTypeAndID"];
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
       };
     };
   };
-  "/bulkQuotes/{bulkQuoteId}": {
-    /** The HTTP request `GET /bulkQuotes/{bulktQuoteId}` is used to get information regarding a bulk quote created or requested earlier. The `{bulkQuoteId}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote. */
-    get: {
-      parameters: {
-        path: {
-          /** Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
-          bulkQuoteId: components["parameters"]["bulkQuoteId"];
-        };
-      };
-      responses: {
-        /** Bulk quote information successfully retrieved */
-        200: {
-          content: {
-            "application/json": components["schemas"]["bulkQuoteStatusResponse"];
-          };
-        };
-        /** An error occurred processing the bulk quote */
-        500: {
-          content: {
-            "application/json": components["schemas"]["errorResponse"];
-          };
-        };
+  "/parties/{Type}/{ID}/{SubId}": {
+    /** The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1). */
+    get: operations["PartiesSubIdByTypeAndID"];
+    parameters: {
+      path: {
+        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+        Type: components["parameters"]["Type"];
+        /** The identifier value. */
+        ID: components["parameters"]["ID"];
+        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+        SubId: components["parameters"]["SubId"];
       };
     };
+  };
+  "/quotes": {
+    /** is used to request quotes from other DFSP */
+    post: operations["QuotesPost"];
   };
   "/requestToPay": {
     /**
@@ -317,76 +279,103 @@ export interface paths {
       };
     };
   };
-  "/accounts": {
+  "/simpleTransfers": {
+    /** is used to request a transfer */
+    post: operations["SimpleTransfersPost"];
+  };
+  "/transfers": {
     /**
-     * The HTTP request `POST /accounts` is used to create account information on the Account Lookup Service (ALS) regarding the provided list of identities.
+     * The HTTP request `POST /transfers` is used to request the movement of funds from payer DFSP to payee DFSP.
+     * The underlying Mojaloop API has three stages for money transfer:
      *
-     * Caller DFSP is used as the account source FSP information
+     *   1. Party lookup. This facilitates a check by the sending party that the destination party is correct before proceeding with a money movement.
+     *   2. Quotation. This facilitates the exchange of fee information and the construction of a cryptographic "contract" between payee and payer DFSPs before funds are transferred.
+     *   3. Transfer. The enactment of the previously agreed "contract"
+     *
+     * This method has several modes of operation.
+     * - If the configuration variables `AUTO_ACCEPT_PARTIES` is set to `"false"` this method will terminate when the payee party has been resolved and return the payee party details.
+     *   If the payee wishes to proceed with the transfer, then a subsequent `PUT /transfers/{transferId}` request (accepting the payee party) is required to continue the operation.
+     *   The scheme adapter will then proceed with quotation stage...
+     *
+     * - If the configuration variable `AUTO_ACCEPT_QUOTES` is set to `"false"` this method will terminate and return the quotation when it has been received from the payee DFSP.
+     *   If the payee wished to proceed with the transfer, then a subsequent `PUT /transfers/{transferId}` request (accepting the quote) is required to continue the operation.
+     *   The scheme adapter will then proceed with the transfer state.
+     *
+     * If the configuration variables `AUTO_ACCEPT_PARTIES` and `AUTO_ACCEPT_QUOTES` are both set to `"true"` this method will block until all three transfer stages are complete. Upon completion it will return the entire set of transfer details received during the operation.
+     *
+     * Combinations of settings for `AUTO_ACCEPT...` configuration variables allow the scheme adapter user to decide which mode of operation best suits their use cases. i.e. the scheme adapter can be configured to "break" the three stage transfer at these points in order to execute backend logic such as party verification, quoted fees assessments etc...
      */
     post: {
       responses: {
-        200: components["responses"]["accountsCreationCompleted"];
-        400: components["responses"]["accountsCreationError"];
-        500: components["responses"]["accountsCreationError"];
-        504: components["responses"]["accountsCreationTimeout"];
+        200: components["responses"]["transferSuccess"];
+        400: components["responses"]["transferBadRequest"];
+        500: components["responses"]["transferServerError"];
+        504: components["responses"]["transferTimeout"];
       };
-      /** Identities list request body */
+      /** Transfer request body */
       requestBody: {
         content: {
-          "application/json": components["schemas"]["accountsRequest"];
+          "application/json": components["schemas"]["transferRequest"];
         };
       };
     };
   };
-  "/parties/{Type}/{ID}": {
-    /** The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1). */
-    get: operations["PartiesByTypeAndID"];
-    parameters: {
-      path: {
-        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
-        Type: components["parameters"]["Type"];
-        /** The identifier value. */
-        ID: components["parameters"]["ID"];
+  "/transfers/{transferId}": {
+    /** The HTTP request `GET /transfers/{transferId}` is used to get information regarding a transfer created or requested earlier. The `{transferId}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
+    get: {
+      parameters: {
+        path: {
+          /** Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
+          transferId: components["parameters"]["transferId"];
+        };
+      };
+      responses: {
+        /** Transfer information successfully retrieved */
+        200: {
+          content: {
+            "application/json": components["schemas"]["transferStatusResponse"];
+          };
+        };
+        /** An error occurred processing the transfer */
+        500: {
+          content: {
+            "application/json": components["schemas"]["errorResponse"];
+          };
+        };
       };
     };
-  };
-  "/parties/{Type}/{ID}/{SubId}": {
-    /** The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1). */
-    get: operations["PartiesSubIdByTypeAndID"];
-    parameters: {
-      path: {
-        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
-        Type: components["parameters"]["Type"];
-        /** The identifier value. */
-        ID: components["parameters"]["ID"];
-        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
-        SubId: components["parameters"]["SubId"];
+    /**
+     * The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage.
+     *
+     * The request body should contain either the "acceptParty" or "acceptQuote" property set to `true` as required to continue the transfer.
+     *
+     * See the description of the `POST /transfers` HTTP method for more information on modes of transfer.
+     */
+    put: {
+      parameters: {
+        path: {
+          /** Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
+          transferId: components["parameters"]["transferId"];
+        };
+      };
+      responses: {
+        200: components["responses"]["transferSuccess"];
+        500: components["responses"]["transferServerError"];
+        504: components["responses"]["transferTimeout"];
+      };
+      requestBody: {
+        content: {
+          "application/json":
+            | components["schemas"]["transferContinuationAcceptParty"]
+            | components["schemas"]["transferContinuationAcceptQuote"];
+        };
       };
     };
-  };
-  "/quotes": {
-    /** is used to request quotes from other DFSP */
-    post: operations["QuotesPost"];
-  };
-  "/simpleTransfers": {
-    /** is used to request a transfer */
-    post: operations["SimpleTransfersPost"];
   };
 }
 
 export interface components {
   schemas: {
-    /**
-     * TransactionInitiatorType
-     * @description Below are the allowed values for the enumeration.
-     * - CONSUMER - Consumer is the initiator of the transaction.
-     * - AGENT - Agent is the initiator of the transaction.
-     * - BUSINESS - Business is the initiator of the transaction.
-     * - DEVICE - Device is the initiator of the transaction.
-     * @example CONSUMER
-     * @enum {string}
-     */
-    TransactionInitiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
     /**
      * PartyIdType
      * @description Below are the allowed values for the enumeration.
@@ -420,91 +409,6 @@ export interface components {
      * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
      */
     PartySubIdOrType: string;
-    /**
-     * Name
-     * @description The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
-     *
-     * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
-     *
-     * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
-     */
-    Name: string;
-    /**
-     * FirstName
-     * @description First name of the Party (Name Type).
-     * @example Henrik
-     */
-    FirstName: string;
-    /**
-     * MiddleName
-     * @description Middle name of the Party (Name Type).
-     * @example Johannes
-     */
-    MiddleName: string;
-    /**
-     * LastName
-     * @description Last name of the Party (Name Type).
-     * @example Karlsson
-     */
-    LastName: string;
-    /**
-     * DateofBirth (type Date)
-     * @description Date of Birth of the Party.
-     * @example 1966-06-16
-     */
-    DateOfBirth: string;
-    /**
-     * MerchantClassificationCode
-     * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
-     */
-    MerchantClassificationCode: string;
-    /**
-     * FspId
-     * @description FSP identifier.
-     */
-    FspId: string;
-    /**
-     * ExtensionKey
-     * @description Extension key.
-     */
-    ExtensionKey: string;
-    /**
-     * ExtensionValue
-     * @description Extension value.
-     */
-    ExtensionValue: string;
-    /**
-     * Extension
-     * @description Data model for the complex type Extension.
-     */
-    Extension: {
-      key: components["schemas"]["ExtensionKey"];
-      value: components["schemas"]["ExtensionValue"];
-    };
-    extensionListEmptiable: components["schemas"]["Extension"][];
-    transferParty: {
-      type?: components["schemas"]["TransactionInitiatorType"];
-      idType: components["schemas"]["PartyIdType"];
-      idValue: components["schemas"]["PartyIdentifier"];
-      idSubValue?: components["schemas"]["PartySubIdOrType"];
-      displayName?: components["schemas"]["Name"];
-      firstName?: components["schemas"]["FirstName"];
-      middleName?: components["schemas"]["MiddleName"];
-      lastName?: components["schemas"]["LastName"];
-      dateOfBirth?: components["schemas"]["DateOfBirth"];
-      merchantClassificationCode?: components["schemas"]["MerchantClassificationCode"];
-      fspId?: components["schemas"]["FspId"];
-      extensionList?: components["schemas"]["extensionListEmptiable"];
-    };
-    /**
-     * AmountType
-     * @description Below are the allowed values for the enumeration AmountType.
-     * - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
-     * - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
-     * @example RECEIVE
-     * @enum {string}
-     */
-    AmountType: "SEND" | "RECEIVE";
     /**
      * Currency
      * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
@@ -675,6 +579,180 @@ export interface components {
       | "ZAR"
       | "ZMW"
       | "ZWD";
+    accountsRequest: {
+      idType: components["schemas"]["PartyIdType"];
+      idValue: components["schemas"]["PartyIdentifier"];
+      idSubValue?: components["schemas"]["PartySubIdOrType"];
+      currency: components["schemas"]["Currency"];
+    }[];
+    /**
+     * CorrelationId
+     * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+     * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+     */
+    CorrelationId: string;
+    errorResponse: {
+      /** @description Error code as string. */
+      statusCode?: string;
+      /** @description Error message text. */
+      message?: string;
+    };
+    accountCreationStatus: {
+      idType: components["schemas"]["PartyIdType"];
+      idValue: components["schemas"]["PartyIdentifier"];
+      idSubValue?: components["schemas"]["PartySubIdOrType"];
+      error?: components["schemas"]["errorResponse"];
+    }[];
+    /** @enum {string} */
+    accountsCreationState: "ERROR_OCCURRED" | "COMPLETED";
+    /**
+     * ErrorCode
+     * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+     * @example 5100
+     */
+    ErrorCode: string;
+    /**
+     * ErrorDescription
+     * @description Error description string.
+     */
+    ErrorDescription: string;
+    /**
+     * ExtensionKey
+     * @description Extension key.
+     */
+    ExtensionKey: string;
+    /**
+     * ExtensionValue
+     * @description Extension value.
+     */
+    ExtensionValue: string;
+    /**
+     * Extension
+     * @description Data model for the complex type Extension.
+     */
+    Extension: {
+      key: components["schemas"]["ExtensionKey"];
+      value: components["schemas"]["ExtensionValue"];
+    };
+    /**
+     * ExtensionList
+     * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+     */
+    ExtensionList: {
+      /** @description Number of Extension elements. */
+      extension: components["schemas"]["Extension"][];
+    };
+    /**
+     * ErrorInformation
+     * @description Data model for the complex type ErrorInformation.
+     */
+    ErrorInformation: {
+      errorCode: components["schemas"]["ErrorCode"];
+      errorDescription: components["schemas"]["ErrorDescription"];
+      extensionList?: components["schemas"]["ExtensionList"];
+    };
+    mojaloopError: {
+      errorInformation?: components["schemas"]["ErrorInformation"];
+    };
+    /** @description This object represents a Mojaloop API error received at any time during the transfer process */
+    transferError: {
+      /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
+      httpStatusCode?: number;
+      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
+      mojaloopError?: components["schemas"]["mojaloopError"];
+    };
+    accountsResponse: {
+      modelId?: components["schemas"]["CorrelationId"];
+      accounts: components["schemas"]["accountsRequest"];
+      response?: components["schemas"]["accountCreationStatus"];
+      currentState?: components["schemas"]["accountsCreationState"];
+      lastError?: components["schemas"]["transferError"];
+      postAccountsResponse?: {
+        body: { [key: string]: unknown };
+        headers?: { [key: string]: unknown };
+      };
+    };
+    errorAccountsResponse: components["schemas"]["errorResponse"] & {
+      executionState: components["schemas"]["accountsResponse"];
+    };
+    /**
+     * TransactionInitiatorType
+     * @description Below are the allowed values for the enumeration.
+     * - CONSUMER - Consumer is the initiator of the transaction.
+     * - AGENT - Agent is the initiator of the transaction.
+     * - BUSINESS - Business is the initiator of the transaction.
+     * - DEVICE - Device is the initiator of the transaction.
+     * @example CONSUMER
+     * @enum {string}
+     */
+    TransactionInitiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+    /**
+     * Name
+     * @description The API data type Name is a JSON String, restricted by a regular expression to avoid characters which are generally not used in a name.
+     *
+     * Regular Expression - The regular expression for restricting the Name type is "^(?!\s*$)[\w .,'-]{1,128}$". The restriction does not allow a string consisting of whitespace only, all Unicode characters are allowed, as well as the period (.) (apostrophe (‘), dash (-), comma (,) and space characters ( ).
+     *
+     * **Note:** In some programming languages, Unicode support must be specifically enabled. For example, if Java is used, the flag UNICODE_CHARACTER_CLASS must be enabled to allow Unicode characters.
+     */
+    Name: string;
+    /**
+     * FirstName
+     * @description First name of the Party (Name Type).
+     * @example Henrik
+     */
+    FirstName: string;
+    /**
+     * MiddleName
+     * @description Middle name of the Party (Name Type).
+     * @example Johannes
+     */
+    MiddleName: string;
+    /**
+     * LastName
+     * @description Last name of the Party (Name Type).
+     * @example Karlsson
+     */
+    LastName: string;
+    /**
+     * DateofBirth (type Date)
+     * @description Date of Birth of the Party.
+     * @example 1966-06-16
+     */
+    DateOfBirth: string;
+    /**
+     * MerchantClassificationCode
+     * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+     */
+    MerchantClassificationCode: string;
+    /**
+     * FspId
+     * @description FSP identifier.
+     */
+    FspId: string;
+    extensionListEmptiable: components["schemas"]["Extension"][];
+    transferParty: {
+      type?: components["schemas"]["TransactionInitiatorType"];
+      idType: components["schemas"]["PartyIdType"];
+      idValue: components["schemas"]["PartyIdentifier"];
+      idSubValue?: components["schemas"]["PartySubIdOrType"];
+      displayName?: components["schemas"]["Name"];
+      firstName?: components["schemas"]["FirstName"];
+      middleName?: components["schemas"]["MiddleName"];
+      lastName?: components["schemas"]["LastName"];
+      dateOfBirth?: components["schemas"]["DateOfBirth"];
+      merchantClassificationCode?: components["schemas"]["MerchantClassificationCode"];
+      fspId?: components["schemas"]["FspId"];
+      extensionList?: components["schemas"]["extensionListEmptiable"];
+    };
+    /**
+     * AmountType
+     * @description Below are the allowed values for the enumeration AmountType.
+     * - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
+     * - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
+     * @example RECEIVE
+     * @enum {string}
+     */
+    AmountType: "SEND" | "RECEIVE";
     /**
      * Amount
      * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
@@ -699,10 +777,12 @@ export interface components {
      * @example Note sent to Payee.
      */
     Note: string;
-    transferRequest: {
-      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      homeTransactionId: string;
-      from: components["schemas"]["transferParty"];
+    /**
+     * IndividualQuote
+     * @description Data model for the complex type 'individualQuote'.
+     */
+    individualQuote: {
+      quoteId: components["schemas"]["CorrelationId"];
       to: components["schemas"]["transferParty"];
       amountType: components["schemas"]["AmountType"];
       currency: components["schemas"]["Currency"];
@@ -710,23 +790,25 @@ export interface components {
       transactionType: components["schemas"]["transferTransactionType"];
       subScenario?: components["schemas"]["TransactionSubScenario"];
       note?: components["schemas"]["Note"];
-      quoteRequestExtensions?: components["schemas"]["extensionListEmptiable"];
-      transferRequestExtensions?: components["schemas"]["extensionListEmptiable"];
-      /** @description Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful is a previous party resolution has been performed. */
-      skipPartyLookup?: boolean;
+      extensions?: components["schemas"]["ExtensionList"];
+    };
+    bulkQuoteRequest: {
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
+      homeTransactionId: string;
+      bulkQuoteId?: components["schemas"]["CorrelationId"];
+      from: components["schemas"]["transferParty"];
+      /** @description List of individual quotes in a bulk quote. */
+      individualQuotes: components["schemas"]["individualQuote"][];
+      extensions?: components["schemas"]["ExtensionList"];
     };
     /**
-     * CorrelationId
-     * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-     * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+     * DateTime
+     * @description The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
+     * @example 2016-05-24T08:38:08.699-04:00
      */
-    CorrelationId: string;
+    DateTime: string;
     /** @enum {string} */
-    transferStatus:
-      | "ERROR_OCCURRED"
-      | "WAITING_FOR_PARTY_ACCEPTANCE"
-      | "WAITING_FOR_QUOTE_ACCEPTANCE"
-      | "COMPLETED";
+    bulkTransferStatus: "ERROR_OCCURRED" | "COMPLETED";
     /**
      * Money
      * @description Data model for the complex type Money.
@@ -735,12 +817,6 @@ export interface components {
       currency: components["schemas"]["Currency"];
       amount: components["schemas"]["Amount"];
     };
-    /**
-     * DateTime
-     * @description The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
-     * @example 2016-05-24T08:38:08.699-04:00
-     */
-    DateTime: string;
     /**
      * Latitude
      * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
@@ -772,143 +848,46 @@ export interface components {
      * @description Condition that must be attached to the transfer by the Payer.
      */
     IlpCondition: string;
-    /**
-     * ExtensionList
-     * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-     */
-    ExtensionList: {
-      /** @description Number of Extension elements. */
-      extension: components["schemas"]["Extension"][];
+    /** @description This object represents a Mojaloop API error received at any time during the quote process */
+    quoteError: {
+      /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
+      httpStatusCode?: number;
+      /** @description If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
+      mojaloopError?: components["schemas"]["mojaloopError"];
     };
-    /**
-     * QuotesIDPutResponse
-     * @description The object sent in the PUT /quotes/{ID} callback.
-     */
-    QuotesIDPutResponse: {
+    individualQuoteResult: {
+      quoteId: components["schemas"]["CorrelationId"];
       transferAmount: components["schemas"]["Money"];
       payeeReceiveAmount?: components["schemas"]["Money"];
       payeeFspFee?: components["schemas"]["Money"];
       payeeFspCommission?: components["schemas"]["Money"];
-      expiration: components["schemas"]["DateTime"];
       geoCode?: components["schemas"]["GeoCode"];
       ilpPacket: components["schemas"]["IlpPacket"];
       condition: components["schemas"]["IlpCondition"];
+      /** @description Optional extension, specific to deployment. */
       extensionList?: components["schemas"]["ExtensionList"];
+      /** @description Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
+      lastError?: components["schemas"]["quoteError"];
     };
-    /**
-     * IlpFulfilment
-     * @description Fulfilment that must be attached to the transfer by the Payee.
-     * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
-     */
-    IlpFulfilment: string;
-    /**
-     * TransferState
-     * @description Below are the allowed values for the enumeration.
-     * - RECEIVED - Next ledger has received the transfer.
-     * - RESERVED - Next ledger has reserved the transfer.
-     * - COMMITTED - Next ledger has successfully performed the transfer.
-     * - ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.
-     * @example RESERVED
-     * @enum {string}
-     */
-    TransferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-    /**
-     * TransfersIDPutResponse
-     * @description The object sent in the PUT /transfers/{ID} callback.
-     */
-    TransfersIDPutResponse: {
-      fulfilment?: components["schemas"]["IlpFulfilment"];
-      completedTimestamp?: components["schemas"]["DateTime"];
-      transferState: components["schemas"]["TransferState"];
-      extensionList?: components["schemas"]["ExtensionList"];
-    };
-    /**
-     * ErrorCode
-     * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-     * @example 5100
-     */
-    ErrorCode: string;
-    /**
-     * ErrorDescription
-     * @description Error description string.
-     */
-    ErrorDescription: string;
-    /**
-     * ErrorInformation
-     * @description Data model for the complex type ErrorInformation.
-     */
-    ErrorInformation: {
-      errorCode: components["schemas"]["ErrorCode"];
-      errorDescription: components["schemas"]["ErrorDescription"];
-      extensionList?: components["schemas"]["ExtensionList"];
-    };
-    mojaloopError: {
-      errorInformation?: components["schemas"]["ErrorInformation"];
-    };
-    /** @description This object represents a Mojaloop API error received at any time during the transfer process */
-    transferError: {
-      /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
-      httpStatusCode?: number;
-      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
-      mojaloopError?: components["schemas"]["mojaloopError"];
-    };
-    transferResponse: {
-      transferId?: components["schemas"]["CorrelationId"];
+    bulkQuoteResponse: {
+      bulkQuoteId: components["schemas"]["CorrelationId"];
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      homeTransactionId: string;
-      from: components["schemas"]["transferParty"];
-      to: components["schemas"]["transferParty"];
-      amountType: components["schemas"]["AmountType"];
-      currency: components["schemas"]["Currency"];
-      amount: components["schemas"]["Amount"];
-      transactionType: components["schemas"]["transferTransactionType"];
-      subScenario?: components["schemas"]["TransactionSubScenario"];
-      note?: components["schemas"]["Note"];
-      currentState?: components["schemas"]["transferStatus"];
-      quoteId?: components["schemas"]["CorrelationId"];
-      getPartiesResponse?: {
-        body: { [key: string]: unknown };
-        headers?: { [key: string]: unknown };
-      };
-      quoteResponse?: {
-        body: components["schemas"]["QuotesIDPutResponse"];
-        headers?: { [key: string]: unknown };
-      };
-      /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
-      quoteResponseSource?: string;
-      fulfil?: {
-        body: components["schemas"]["TransfersIDPutResponse"];
-        headers?: { [key: string]: unknown };
-      };
-      /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
-      lastError?: components["schemas"]["transferError"];
-      /** @description Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful is a previous party resolution has been performed. */
-      skipPartyLookup?: boolean;
+      homeTransactionId?: string;
+      expiration: components["schemas"]["DateTime"];
+      extensionList?: components["schemas"]["ExtensionList"];
+      currentState: components["schemas"]["bulkTransferStatus"];
+      /** @description List of individualQuoteResults in a bulk transfer response. */
+      individualQuoteResults: components["schemas"]["individualQuoteResult"][];
     };
-    errorResponse: {
-      /** @description Error code as string. */
-      statusCode?: string;
-      /** @description Error message text. */
-      message?: string;
+    bulkQuoteErrorResponse: components["schemas"]["errorResponse"] & {
+      bulkQuoteState: components["schemas"]["bulkQuoteResponse"];
     };
-    errorTransferResponse: components["schemas"]["errorResponse"] & {
-      transferState: components["schemas"]["transferResponse"];
-    };
-    transferStatusResponse: {
-      transferId: components["schemas"]["CorrelationId"];
-      currentState: components["schemas"]["transferStatus"];
-      fulfil: {
-        body: components["schemas"]["TransfersIDPutResponse"];
-        headers?: { [key: string]: unknown };
-      };
-    };
-    transferContinuationAcceptParty: {
-      /** @enum {boolean} */
-      acceptParty: true | false;
-    };
-    transferContinuationAcceptQuote: {
-      /** @enum {boolean} */
-      acceptQuote: true | false;
+    /** @enum {string} */
+    bulkQuoteStatus: "ERROR_OCCURRED" | "COMPLETED";
+    bulkQuoteStatusResponse: {
+      bulkQuoteId: components["schemas"]["CorrelationId"];
+      currentState: components["schemas"]["bulkQuoteStatus"];
+      individualQuotes: components["schemas"]["individualQuote"][];
     };
     autoAcceptPartyOption: {
       /** @enum {boolean} */
@@ -1006,8 +985,23 @@ export interface components {
       individualTransfers: components["schemas"]["bulkTransactionIndividualTransfer"][];
       extensions?: components["schemas"]["ExtensionList"];
     };
-    /** @enum {string} */
-    bulkTransferStatus: "ERROR_OCCURRED" | "COMPLETED";
+    /**
+     * TransferState
+     * @description Below are the allowed values for the enumeration.
+     * - RECEIVED - Next ledger has received the transfer.
+     * - RESERVED - Next ledger has reserved the transfer.
+     * - COMMITTED - Next ledger has successfully performed the transfer.
+     * - ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.
+     * @example RESERVED
+     * @enum {string}
+     */
+    TransferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
+    /**
+     * IlpFulfilment
+     * @description Fulfilment that must be attached to the transfer by the Payee.
+     * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+     */
+    IlpFulfilment: string;
     individualTransferResult: {
       transferId: components["schemas"]["CorrelationId"];
       /** @description Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully. */
@@ -1035,11 +1029,19 @@ export interface components {
     bulkTransactionIndividualTransferAccept: {
       transferId: components["schemas"]["CorrelationId"];
     };
+    transferContinuationAcceptParty: {
+      /** @enum {boolean} */
+      acceptParty: true | false;
+    };
     /** @description The object sent back as confirmation of payee parties when autoAcceptParty is false. */
     bulkTransactionContinuationAcceptParty: {
       /** @description List of individual transfers in a bulk transfer with accept party information. */
       individualTransfers: (components["schemas"]["bulkTransactionIndividualTransferAccept"] &
         components["schemas"]["transferContinuationAcceptParty"])[];
+    };
+    transferContinuationAcceptQuote: {
+      /** @enum {boolean} */
+      acceptQuote: true | false;
     };
     /** @description The object sent back as confirmation of quotes when autoAcceptQuotes is false. */
     bulkTransactionContinuationAcceptQuote: {
@@ -1057,13 +1059,6 @@ export interface components {
     bulkTransactionAcceptPartyErrorResponse: components["schemas"]["errorResponse"] & {
       bulkTransferState: components["schemas"]["bulkTransactionContinuationAcceptParty"] &
         components["schemas"]["partyError"];
-    };
-    /** @description This object represents a Mojaloop API error received at any time during the quote process */
-    quoteError: {
-      /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
-      httpStatusCode?: number;
-      /** @description If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
-      mojaloopError?: components["schemas"]["mojaloopError"];
     };
     bulkTransactionAcceptQuoteErrorResponse: components["schemas"]["errorResponse"] &
       ({
@@ -1111,63 +1106,22 @@ export interface components {
       currentState: components["schemas"]["bulkTransferStatus"];
       fulfils: components["schemas"]["individualTransferFulfilment"][];
     };
-    /**
-     * IndividualQuote
-     * @description Data model for the complex type 'individualQuote'.
-     */
-    individualQuote: {
-      quoteId: components["schemas"]["CorrelationId"];
-      to: components["schemas"]["transferParty"];
-      amountType: components["schemas"]["AmountType"];
-      currency: components["schemas"]["Currency"];
-      amount: components["schemas"]["Amount"];
-      transactionType: components["schemas"]["transferTransactionType"];
-      subScenario?: components["schemas"]["TransactionSubScenario"];
-      note?: components["schemas"]["Note"];
-      extensions?: components["schemas"]["ExtensionList"];
-    };
-    bulkQuoteRequest: {
-      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      homeTransactionId: string;
-      bulkQuoteId?: components["schemas"]["CorrelationId"];
-      from: components["schemas"]["transferParty"];
-      /** @description List of individual quotes in a bulk quote. */
-      individualQuotes: components["schemas"]["individualQuote"][];
-      extensions?: components["schemas"]["ExtensionList"];
-    };
-    individualQuoteResult: {
-      quoteId: components["schemas"]["CorrelationId"];
-      transferAmount: components["schemas"]["Money"];
-      payeeReceiveAmount?: components["schemas"]["Money"];
-      payeeFspFee?: components["schemas"]["Money"];
-      payeeFspCommission?: components["schemas"]["Money"];
-      geoCode?: components["schemas"]["GeoCode"];
-      ilpPacket: components["schemas"]["IlpPacket"];
-      condition: components["schemas"]["IlpCondition"];
-      /** @description Optional extension, specific to deployment. */
-      extensionList?: components["schemas"]["ExtensionList"];
-      /** @description Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
-      lastError?: components["schemas"]["quoteError"];
-    };
-    bulkQuoteResponse: {
-      bulkQuoteId: components["schemas"]["CorrelationId"];
-      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      homeTransactionId?: string;
-      expiration: components["schemas"]["DateTime"];
-      extensionList?: components["schemas"]["ExtensionList"];
-      currentState: components["schemas"]["bulkTransferStatus"];
-      /** @description List of individualQuoteResults in a bulk transfer response. */
-      individualQuoteResults: components["schemas"]["individualQuoteResult"][];
-    };
-    bulkQuoteErrorResponse: components["schemas"]["errorResponse"] & {
-      bulkQuoteState: components["schemas"]["bulkQuoteResponse"];
-    };
     /** @enum {string} */
-    bulkQuoteStatus: "ERROR_OCCURRED" | "COMPLETED";
-    bulkQuoteStatusResponse: {
-      bulkQuoteId: components["schemas"]["CorrelationId"];
-      currentState: components["schemas"]["bulkQuoteStatus"];
-      individualQuotes: components["schemas"]["individualQuote"][];
+    async2SyncCurrentState:
+      | "WAITING_FOR_ACTION"
+      | "COMPLETED"
+      | "ERROR_OCCURRED";
+    /**
+     * partiesByIdResponse
+     * @description GET /parties/{Type}/{ID} response object
+     */
+    partiesByIdResponse: {
+      party: {
+        /** @description Information regarding the requested Party. */
+        body: components["schemas"]["Party"];
+        headers: { [key: string]: unknown };
+      };
+      currentState: components["schemas"]["async2SyncCurrentState"];
     };
     /**
      * TransactionScenario
@@ -1226,6 +1180,60 @@ export interface components {
       initiatorType: components["schemas"]["TransactionInitiatorType"];
       refundInfo?: components["schemas"]["Refund"];
       balanceOfPayments?: components["schemas"]["BalanceOfPayments"];
+    };
+    /**
+     * QuotesPostRequest
+     * @description The object sent in the POST /quotes request.
+     */
+    QuotesPostRequest: {
+      quoteId: components["schemas"]["CorrelationId"];
+      transactionId: components["schemas"]["CorrelationId"];
+      transactionRequestId?: components["schemas"]["CorrelationId"];
+      payee: components["schemas"]["Party"];
+      payer: components["schemas"]["Party"];
+      amountType: components["schemas"]["AmountType"];
+      amount: components["schemas"]["Money"];
+      fees?: components["schemas"]["Money"];
+      transactionType: components["schemas"]["TransactionType"];
+      geoCode?: components["schemas"]["GeoCode"];
+      note?: components["schemas"]["Note"];
+      expiration?: components["schemas"]["DateTime"];
+      extensionList?: components["schemas"]["ExtensionList"];
+    };
+    /** simpleQuotesPostRequest */
+    simpleQuotesPostRequest: {
+      /** destination DFSP requested to calculate the quote */
+      fspId: components["schemas"]["FspId"];
+      quotesPostRequest: components["schemas"]["QuotesPostRequest"];
+    };
+    /** QuotesPostResponse */
+    quotesPostResponse: {
+      /**
+       * QuotesIDPutResponse
+       * @description The object sent in the PUT /quotes/{ID} callback.
+       */
+      quotes: {
+        body: {
+          transferAmount: components["schemas"]["Money"];
+          payeeReceiveAmount?: components["schemas"]["Money"];
+          payeeFspFee?: components["schemas"]["Money"];
+          payeeFspCommission?: components["schemas"]["Money"];
+          /**
+           * @description Date and time until when the quotation is valid and can be honored when used in the subsequent transaction.
+           * @example 2016-05-24T08:38:08.699-04:00
+           */
+          expiration: string;
+          geoCode?: components["schemas"]["GeoCode"];
+          ilpPacket: components["schemas"]["IlpPacket"];
+          condition: components["schemas"]["IlpCondition"];
+          extensionList?: components["schemas"]["ExtensionList"];
+        };
+        headers: { [key: string]: unknown };
+      };
+      currentState: components["schemas"]["async2SyncCurrentState"];
+    };
+    errorQuotesResponse: components["schemas"]["errorResponse"] & {
+      [key: string]: unknown;
     };
     requestToPayRequest: {
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
@@ -1288,6 +1296,37 @@ export interface components {
       initiatorType: components["schemas"]["TransactionInitiatorType"];
       note?: components["schemas"]["Note"];
     };
+    /** @enum {string} */
+    transferStatus:
+      | "ERROR_OCCURRED"
+      | "WAITING_FOR_PARTY_ACCEPTANCE"
+      | "WAITING_FOR_QUOTE_ACCEPTANCE"
+      | "COMPLETED";
+    /**
+     * QuotesIDPutResponse
+     * @description The object sent in the PUT /quotes/{ID} callback.
+     */
+    QuotesIDPutResponse: {
+      transferAmount: components["schemas"]["Money"];
+      payeeReceiveAmount?: components["schemas"]["Money"];
+      payeeFspFee?: components["schemas"]["Money"];
+      payeeFspCommission?: components["schemas"]["Money"];
+      expiration: components["schemas"]["DateTime"];
+      geoCode?: components["schemas"]["GeoCode"];
+      ilpPacket: components["schemas"]["IlpPacket"];
+      condition: components["schemas"]["IlpCondition"];
+      extensionList?: components["schemas"]["ExtensionList"];
+    };
+    /**
+     * TransfersIDPutResponse
+     * @description The object sent in the PUT /transfers/{ID} callback.
+     */
+    TransfersIDPutResponse: {
+      fulfilment?: components["schemas"]["IlpFulfilment"];
+      completedTimestamp?: components["schemas"]["DateTime"];
+      transferState: components["schemas"]["TransferState"];
+      extensionList?: components["schemas"]["ExtensionList"];
+    };
     requestToPayTransferResponse: {
       transferId?: components["schemas"]["CorrelationId"];
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
@@ -1308,108 +1347,45 @@ export interface components {
       /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["transferError"];
     };
-    transferContinuationAcceptOTP: {
-      /** @enum {boolean} */
-      acceptOTP: true | false;
-    };
-    accountsRequest: {
-      idType: components["schemas"]["PartyIdType"];
-      idValue: components["schemas"]["PartyIdentifier"];
-      idSubValue?: components["schemas"]["PartySubIdOrType"];
+    transferResponse: {
+      transferId?: components["schemas"]["CorrelationId"];
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
+      homeTransactionId: string;
+      from: components["schemas"]["transferParty"];
+      to: components["schemas"]["transferParty"];
+      amountType: components["schemas"]["AmountType"];
       currency: components["schemas"]["Currency"];
-    }[];
-    accountCreationStatus: {
-      idType: components["schemas"]["PartyIdType"];
-      idValue: components["schemas"]["PartyIdentifier"];
-      idSubValue?: components["schemas"]["PartySubIdOrType"];
-      error?: components["schemas"]["errorResponse"];
-    }[];
-    /** @enum {string} */
-    accountsCreationState: "ERROR_OCCURRED" | "COMPLETED";
-    accountsResponse: {
-      modelId?: components["schemas"]["CorrelationId"];
-      accounts: components["schemas"]["accountsRequest"];
-      response?: components["schemas"]["accountCreationStatus"];
-      currentState?: components["schemas"]["accountsCreationState"];
-      lastError?: components["schemas"]["transferError"];
-      postAccountsResponse?: {
+      amount: components["schemas"]["Amount"];
+      transactionType: components["schemas"]["transferTransactionType"];
+      subScenario?: components["schemas"]["TransactionSubScenario"];
+      note?: components["schemas"]["Note"];
+      currentState?: components["schemas"]["transferStatus"];
+      quoteId?: components["schemas"]["CorrelationId"];
+      getPartiesResponse?: {
         body: { [key: string]: unknown };
         headers?: { [key: string]: unknown };
       };
-    };
-    errorAccountsResponse: components["schemas"]["errorResponse"] & {
-      executionState: components["schemas"]["accountsResponse"];
-    };
-    /** @enum {string} */
-    async2SyncCurrentState:
-      | "WAITING_FOR_ACTION"
-      | "COMPLETED"
-      | "ERROR_OCCURRED";
-    /**
-     * partiesByIdResponse
-     * @description GET /parties/{Type}/{ID} response object
-     */
-    partiesByIdResponse: {
-      party: {
-        /** @description Information regarding the requested Party. */
-        body: components["schemas"]["Party"];
-        headers: { [key: string]: unknown };
+      quoteResponse?: {
+        body: components["schemas"]["QuotesIDPutResponse"];
+        headers?: { [key: string]: unknown };
       };
-      currentState: components["schemas"]["async2SyncCurrentState"];
-    };
-    /**
-     * QuotesPostRequest
-     * @description The object sent in the POST /quotes request.
-     */
-    QuotesPostRequest: {
-      quoteId: components["schemas"]["CorrelationId"];
-      transactionId: components["schemas"]["CorrelationId"];
-      transactionRequestId?: components["schemas"]["CorrelationId"];
-      payee: components["schemas"]["Party"];
-      payer: components["schemas"]["Party"];
-      amountType: components["schemas"]["AmountType"];
-      amount: components["schemas"]["Money"];
-      fees?: components["schemas"]["Money"];
-      transactionType: components["schemas"]["TransactionType"];
-      geoCode?: components["schemas"]["GeoCode"];
-      note?: components["schemas"]["Note"];
-      expiration?: components["schemas"]["DateTime"];
-      extensionList?: components["schemas"]["ExtensionList"];
-    };
-    /** simpleQuotesPostRequest */
-    simpleQuotesPostRequest: {
-      /** destination DFSP requested to calculate the quote */
-      fspId: components["schemas"]["FspId"];
-      quotesPostRequest: components["schemas"]["QuotesPostRequest"];
-    };
-    /** QuotesPostResponse */
-    quotesPostResponse: {
-      /**
-       * QuotesIDPutResponse
-       * @description The object sent in the PUT /quotes/{ID} callback.
-       */
-      quotes: {
-        body: {
-          transferAmount: components["schemas"]["Money"];
-          payeeReceiveAmount?: components["schemas"]["Money"];
-          payeeFspFee?: components["schemas"]["Money"];
-          payeeFspCommission?: components["schemas"]["Money"];
-          /**
-           * @description Date and time until when the quotation is valid and can be honored when used in the subsequent transaction.
-           * @example 2016-05-24T08:38:08.699-04:00
-           */
-          expiration: string;
-          geoCode?: components["schemas"]["GeoCode"];
-          ilpPacket: components["schemas"]["IlpPacket"];
-          condition: components["schemas"]["IlpCondition"];
-          extensionList?: components["schemas"]["ExtensionList"];
-        };
-        headers: { [key: string]: unknown };
+      /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
+      quoteResponseSource?: string;
+      fulfil?: {
+        body: components["schemas"]["TransfersIDPutResponse"];
+        headers?: { [key: string]: unknown };
       };
-      currentState: components["schemas"]["async2SyncCurrentState"];
+      /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
+      lastError?: components["schemas"]["transferError"];
+      /** @description Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful is a previous party resolution has been performed. */
+      skipPartyLookup?: boolean;
     };
-    errorQuotesResponse: components["schemas"]["errorResponse"] & {
-      [key: string]: unknown;
+    errorTransferResponse: components["schemas"]["errorResponse"] & {
+      transferState: components["schemas"]["transferResponse"];
+    };
+    transferContinuationAcceptOTP: {
+      /** @enum {boolean} */
+      acceptOTP: true | false;
     };
     /**
      * TransfersPostRequest
@@ -1441,30 +1417,72 @@ export interface components {
     errorSimpleTransfersResponse: components["schemas"]["errorResponse"] & {
       [key: string]: unknown;
     };
+    transferRequest: {
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
+      homeTransactionId: string;
+      from: components["schemas"]["transferParty"];
+      to: components["schemas"]["transferParty"];
+      amountType: components["schemas"]["AmountType"];
+      currency: components["schemas"]["Currency"];
+      amount: components["schemas"]["Amount"];
+      transactionType: components["schemas"]["transferTransactionType"];
+      subScenario?: components["schemas"]["TransactionSubScenario"];
+      note?: components["schemas"]["Note"];
+      quoteRequestExtensions?: components["schemas"]["extensionListEmptiable"];
+      transferRequestExtensions?: components["schemas"]["extensionListEmptiable"];
+      /** @description Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful is a previous party resolution has been performed. */
+      skipPartyLookup?: boolean;
+    };
+    transferStatusResponse: {
+      transferId: components["schemas"]["CorrelationId"];
+      currentState: components["schemas"]["transferStatus"];
+      fulfil: {
+        body: components["schemas"]["TransfersIDPutResponse"];
+        headers?: { [key: string]: unknown };
+      };
+    };
   };
   responses: {
-    /** Transfer completed successfully */
-    transferSuccess: {
+    /** Accounts creation completed */
+    accountsCreationCompleted: {
       content: {
-        "application/json": components["schemas"]["transferResponse"];
+        "application/json": components["schemas"]["accountsResponse"];
+      };
+    };
+    /** An error occurred creating accounts */
+    accountsCreationError: {
+      content: {
+        "application/json": components["schemas"]["errorAccountsResponse"];
+      };
+    };
+    /** Timeout occurred creating accounts */
+    accountsCreationTimeout: {
+      content: {
+        "application/json": components["schemas"]["errorAccountsResponse"];
+      };
+    };
+    /** Bulk quote completed successfully */
+    bulkQuoteSuccess: {
+      content: {
+        "application/json": components["schemas"]["bulkQuoteResponse"];
       };
     };
     /** Malformed or missing required body, headers or parameters */
-    transferBadRequest: {
+    bulkQuoteBadRequest: {
       content: {
-        "application/json": components["schemas"]["errorTransferResponse"];
+        "application/json": components["schemas"]["bulkQuoteErrorResponse"];
       };
     };
-    /** An error occurred processing the transfer */
-    transferServerError: {
+    /** An error occurred processing the bulk quote */
+    bulkQuoteServerError: {
       content: {
-        "application/json": components["schemas"]["errorTransferResponse"];
+        "application/json": components["schemas"]["bulkQuoteErrorResponse"];
       };
     };
-    /** Timeout occurred processing the transfer */
-    transferTimeout: {
+    /** Timeout occurred processing the bulk quote */
+    bulkQuoteTimeout: {
       content: {
-        "application/json": components["schemas"]["errorTransferResponse"];
+        "application/json": components["schemas"]["bulkQuoteErrorResponse"];
       };
     };
     /** Bulk transfer accepted successfully */
@@ -1495,66 +1513,6 @@ export interface components {
         "application/json": components["schemas"]["bulkTransferResponse"];
       };
     };
-    /** Bulk quote completed successfully */
-    bulkQuoteSuccess: {
-      content: {
-        "application/json": components["schemas"]["bulkQuoteResponse"];
-      };
-    };
-    /** Malformed or missing required body, headers or parameters */
-    bulkQuoteBadRequest: {
-      content: {
-        "application/json": components["schemas"]["bulkQuoteErrorResponse"];
-      };
-    };
-    /** An error occurred processing the bulk quote */
-    bulkQuoteServerError: {
-      content: {
-        "application/json": components["schemas"]["bulkQuoteErrorResponse"];
-      };
-    };
-    /** Timeout occurred processing the bulk quote */
-    bulkQuoteTimeout: {
-      content: {
-        "application/json": components["schemas"]["bulkQuoteErrorResponse"];
-      };
-    };
-    /** Request to Pay completed successfully */
-    requestToPaySuccess: {
-      content: {
-        "application/json": components["schemas"]["requestToPayResponse"];
-      };
-    };
-    /** Transfer completed successfully */
-    requestToPayTransferSuccess: {
-      content: {
-        "application/json": components["schemas"]["requestToPayTransferResponse"];
-      };
-    };
-    /** Malformed or missing required body, headers or parameters */
-    requestToPayTransferBadRequest: {
-      content: {
-        "application/json": components["schemas"]["errorTransferResponse"];
-      };
-    };
-    /** Accounts creation completed */
-    accountsCreationCompleted: {
-      content: {
-        "application/json": components["schemas"]["accountsResponse"];
-      };
-    };
-    /** An error occurred creating accounts */
-    accountsCreationError: {
-      content: {
-        "application/json": components["schemas"]["errorAccountsResponse"];
-      };
-    };
-    /** Timeout occurred creating accounts */
-    accountsCreationTimeout: {
-      content: {
-        "application/json": components["schemas"]["errorAccountsResponse"];
-      };
-    };
     /** PartiesByIdSuccess */
     partiesByIdSuccess: {
       content: {
@@ -1581,6 +1539,42 @@ export interface components {
         "application/json": components["schemas"]["errorQuotesResponse"];
       };
     };
+    /** Request to Pay completed successfully */
+    requestToPaySuccess: {
+      content: {
+        "application/json": components["schemas"]["requestToPayResponse"];
+      };
+    };
+    /** Transfer completed successfully */
+    requestToPayTransferSuccess: {
+      content: {
+        "application/json": components["schemas"]["requestToPayTransferResponse"];
+      };
+    };
+    /** Malformed or missing required body, headers or parameters */
+    requestToPayTransferBadRequest: {
+      content: {
+        "application/json": components["schemas"]["errorTransferResponse"];
+      };
+    };
+    /** An error occurred processing the transfer */
+    transferServerError: {
+      content: {
+        "application/json": components["schemas"]["errorTransferResponse"];
+      };
+    };
+    /** Timeout occurred processing the transfer */
+    transferTimeout: {
+      content: {
+        "application/json": components["schemas"]["errorTransferResponse"];
+      };
+    };
+    /** Transfer completed successfully */
+    transferSuccess: {
+      content: {
+        "application/json": components["schemas"]["transferResponse"];
+      };
+    };
     /** sync response from POST /simpleTransfers */
     simpleTransfersPostSuccess: {
       content: {
@@ -1593,24 +1587,30 @@ export interface components {
         "application/json": components["schemas"]["errorSimpleTransfersResponse"];
       };
     };
+    /** Malformed or missing required body, headers or parameters */
+    transferBadRequest: {
+      content: {
+        "application/json": components["schemas"]["errorTransferResponse"];
+      };
+    };
   };
   parameters: {
-    /** @description Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
-    transferId: components["schemas"]["CorrelationId"];
+    /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
+    bulkQuoteId: components["schemas"]["CorrelationId"];
     /** @description Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request. */
     bulkTransactionId: components["schemas"]["CorrelationId"];
     /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
     bulkTransferId: components["schemas"]["CorrelationId"];
-    /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
-    bulkQuoteId: components["schemas"]["CorrelationId"];
-    /** @description Identifier of the merchant request to pay transfer to continue as returned in the response to a `POST /requestToPayTransfer` request. */
-    requestToPayTransactionId: components["schemas"]["CorrelationId"];
     /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
     Type: string;
     /** @description The identifier value. */
     ID: string;
     /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
     SubId: string;
+    /** @description Identifier of the merchant request to pay transfer to continue as returned in the response to a `POST /requestToPayTransfer` request. */
+    requestToPayTransactionId: components["schemas"]["CorrelationId"];
+    /** @description Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
+    transferId: components["schemas"]["CorrelationId"];
   };
 }
 
