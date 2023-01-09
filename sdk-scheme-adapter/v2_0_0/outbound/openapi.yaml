@@ -22,10 +22,12 @@ info:
 paths:
   /:
     $ref: paths.yaml
-  /transfers:
-    $ref: paths/transfers.yaml
-  /transfers/{transferId}:
-    $ref: paths/transfers_transferId.yaml
+  /accounts:
+    $ref: paths/accounts.yaml
+  /bulkQuotes:
+    $ref: paths/bulkQuotes.yaml
+  /bulkQuotes/{bulkQuoteId}:
+    $ref: paths/bulkQuotes_bulkQuoteId.yaml
   /bulkTransactions:
     $ref: paths/bulkTransactions.yaml
   /bulkTransactions/{bulkTransactionId}:
@@ -34,23 +36,21 @@ paths:
     $ref: paths/bulkTransfers.yaml
   /bulkTransfers/{bulkTransferId}:
     $ref: paths/bulkTransfers_bulkTransferId.yaml
-  /bulkQuotes:
-    $ref: paths/bulkQuotes.yaml
-  /bulkQuotes/{bulkQuoteId}:
-    $ref: paths/bulkQuotes_bulkQuoteId.yaml
-  /requestToPay:
-    $ref: paths/requestToPay.yaml
-  /requestToPayTransfer:
-    $ref: paths/requestToPayTransfer.yaml
-  /requestToPayTransfer/{requestToPayTransactionId}:
-    $ref: paths/requestToPayTransfer_requestToPayTransactionId.yaml
-  /accounts:
-    $ref: paths/accounts.yaml
   /parties/{Type}/{ID}:
     $ref: paths/parties_Type_ID.yaml
   /parties/{Type}/{ID}/{SubId}:
     $ref: paths/parties_Type_ID_SubId.yaml
   /quotes:
     $ref: paths/quotes.yaml
+  /requestToPay:
+    $ref: paths/requestToPay.yaml
+  /requestToPayTransfer:
+    $ref: paths/requestToPayTransfer.yaml
+  /requestToPayTransfer/{requestToPayTransactionId}:
+    $ref: paths/requestToPayTransfer_requestToPayTransactionId.yaml
   /simpleTransfers:
     $ref: paths/simpleTransfers.yaml
+  /transfers:
+    $ref: paths/transfers.yaml
+  /transfers/{transferId}:
+    $ref: paths/transfers_transferId.yaml

@@ -25,6 +25,8 @@ properties:
     $ref: ./Amount.yaml
   transactionType:
     $ref: ./transferTransactionType.yaml
+  subScenario:
+    $ref: ./TransactionSubScenario.yaml
   note:
     $ref: ./Note.yaml
   quoteRequestExtensions:
