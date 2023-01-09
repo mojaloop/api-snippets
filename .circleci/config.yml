@@ -442,7 +442,6 @@ workflows:
           context: org-global
           requires:
             - pr-tools/pr-title-check
-            - test-dependencies
             - test-lint
             - test-unit
             - vulnerability-check
