@@ -2242,11 +2242,6 @@ components:
       type: object
       required:
         - homeTransactionId
-        - transferId
-        - to
-        - amountType
-        - currency
-        - amount
       properties:
         transferId:
           $ref: '#/components/schemas/CorrelationId'

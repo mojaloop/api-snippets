@@ -1104,16 +1104,16 @@ export interface components {
       mojaloopError?: components["schemas"]["mojaloopError"];
     };
     bulkTransactionIndividualTransferResult: {
-      transferId: components["schemas"]["CorrelationId"];
+      transferId?: components["schemas"]["CorrelationId"];
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
       homeTransactionId: string;
       transactionId?: components["schemas"]["CorrelationId"];
-      to: components["schemas"]["Party"];
+      to?: components["schemas"]["Party"];
       /** @description Payer Loan reference */
       reference?: string;
-      amountType: components["schemas"]["AmountType"];
-      currency: components["schemas"]["Currency"];
-      amount: components["schemas"]["Amount"];
+      amountType?: components["schemas"]["AmountType"];
+      currency?: components["schemas"]["Currency"];
+      amount?: components["schemas"]["Amount"];
       note?: components["schemas"]["Note"];
       quoteId?: components["schemas"]["CorrelationId"];
       quoteResponse?: components["schemas"]["QuotesIDPutResponse"];

@@ -13255,12 +13255,7 @@
   "bulkTransactionIndividualTransferResult": {
     "type": "object",
     "required": [
-      "homeTransactionId",
-      "transferId",
-      "to",
-      "amountType",
-      "currency",
-      "amount"
+      "homeTransactionId"
     ],
     "properties": {
       "transferId": {
@@ -15055,12 +15050,7 @@
         "items": {
           "type": "object",
           "required": [
-            "homeTransactionId",
-            "transferId",
-            "to",
-            "amountType",
-            "currency",
-            "amount"
+            "homeTransactionId"
           ],
           "properties": {
             "transferId": {
