@@ -993,60 +993,6 @@ export interface components {
      */
     Note: string;
     /**
-     * Money
-     * @description Data model for the complex type Money.
-     */
-    Money: {
-      currency: components["schemas"]["Currency"];
-      amount: components["schemas"]["Amount"];
-    };
-    /**
-     * Latitude
-     * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
-     * @example +45.4215
-     */
-    Latitude: string;
-    /**
-     * Longitude
-     * @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
-     * @example +75.6972
-     */
-    Longitude: string;
-    /**
-     * GeoCode
-     * @description Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
-     */
-    GeoCode: {
-      latitude: components["schemas"]["Latitude"];
-      longitude: components["schemas"]["Longitude"];
-    };
-    /**
-     * IlpPacket
-     * @description Information for recipient (transport layer information).
-     * @example AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
-     */
-    IlpPacket: string;
-    /**
-     * IlpCondition
-     * @description Condition that must be attached to the transfer by the Payer.
-     */
-    IlpCondition: string;
-    /**
-     * QuotesIDPutResponse
-     * @description The object sent in the PUT /quotes/{ID} callback.
-     */
-    QuotesIDPutResponse: {
-      transferAmount: components["schemas"]["Money"];
-      payeeReceiveAmount?: components["schemas"]["Money"];
-      payeeFspFee?: components["schemas"]["Money"];
-      payeeFspCommission?: components["schemas"]["Money"];
-      expiration: components["schemas"]["DateTime"];
-      geoCode?: components["schemas"]["GeoCode"];
-      ilpPacket: components["schemas"]["IlpPacket"];
-      condition: components["schemas"]["IlpCondition"];
-      extensionList?: components["schemas"]["ExtensionList"];
-    };
-    /**
      * IlpFulfilment
      * @description Fulfilment that must be attached to the transfer by the Payee.
      * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
@@ -1104,19 +1050,19 @@ export interface components {
       mojaloopError?: components["schemas"]["mojaloopError"];
     };
     bulkTransactionIndividualTransferResult: {
-      transferId: components["schemas"]["CorrelationId"];
+      transferId?: components["schemas"]["CorrelationId"];
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
       homeTransactionId: string;
       transactionId?: components["schemas"]["CorrelationId"];
-      to: components["schemas"]["Party"];
+      to?: components["schemas"]["Party"];
       /** @description Payer Loan reference */
       reference?: string;
-      amountType: components["schemas"]["AmountType"];
-      currency: components["schemas"]["Currency"];
-      amount: components["schemas"]["Amount"];
+      amountType?: components["schemas"]["AmountType"];
+      currency?: components["schemas"]["Currency"];
+      amount?: components["schemas"]["Amount"];
       note?: components["schemas"]["Note"];
       quoteId?: components["schemas"]["CorrelationId"];
-      quoteResponse?: components["schemas"]["QuotesIDPutResponse"];
+      quoteResponse?: { [key: string]: unknown };
       fulfil?: components["schemas"]["TransfersIDPutResponse"];
       quoteExtensions?: components["schemas"]["ExtensionList"];
       transferExtensions?: components["schemas"]["ExtensionList"];

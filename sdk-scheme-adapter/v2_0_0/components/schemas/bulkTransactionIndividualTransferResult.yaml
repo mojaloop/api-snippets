@@ -1,11 +1,6 @@
 type: object
 required:
   - homeTransactionId
-  - transferId
-  - to
-  - amountType
-  - currency
-  - amount
 properties:
   transferId:
     $ref: ./CorrelationId.yaml
@@ -32,7 +27,7 @@ properties:
   quoteId:
     $ref: ./CorrelationId.yaml
   quoteResponse:
-    $ref: ./QuotesIDPutResponse.yaml
+    type: object
   fulfil:
     $ref: ./TransfersIDPutResponse.yaml
   quoteExtensions:
