@@ -9387,6 +9387,18 @@
           "extension"
         ]
       },
+      "transferState": {
+        "title": "TransferState",
+        "type": "string",
+        "enum": [
+          "RECEIVED",
+          "RESERVED",
+          "COMMITTED",
+          "ABORTED"
+        ],
+        "description": "Below are the allowed values for the enumeration.\n- RECEIVED - Next ledger has received the transfer.\n- RESERVED - Next ledger has reserved the transfer.\n- COMMITTED - Next ledger has successfully performed the transfer.\n- ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.",
+        "example": "RESERVED"
+      },
       "lastError": {
         "type": "object",
         "description": "This object represents a Mojaloop API error received at any time during the transfer process",
@@ -9628,6 +9640,18 @@
               "required": [
                 "extension"
               ]
+            },
+            "transferState": {
+              "title": "TransferState",
+              "type": "string",
+              "enum": [
+                "RECEIVED",
+                "RESERVED",
+                "COMMITTED",
+                "ABORTED"
+              ],
+              "description": "Below are the allowed values for the enumeration.\n- RECEIVED - Next ledger has received the transfer.\n- RESERVED - Next ledger has reserved the transfer.\n- COMMITTED - Next ledger has successfully performed the transfer.\n- ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.",
+              "example": "RESERVED"
             },
             "lastError": {
               "type": "object",
@@ -9895,6 +9919,18 @@
                       "required": [
                         "extension"
                       ]
+                    },
+                    "transferState": {
+                      "title": "TransferState",
+                      "type": "string",
+                      "enum": [
+                        "RECEIVED",
+                        "RESERVED",
+                        "COMMITTED",
+                        "ABORTED"
+                      ],
+                      "description": "Below are the allowed values for the enumeration.\n- RECEIVED - Next ledger has received the transfer.\n- RESERVED - Next ledger has reserved the transfer.\n- COMMITTED - Next ledger has successfully performed the transfer.\n- ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.",
+                      "example": "RESERVED"
                     },
                     "lastError": {
                       "type": "object",

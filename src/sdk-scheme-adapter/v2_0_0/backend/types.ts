@@ -106,6 +106,7 @@ export namespace Types {
   export type quoteError = components['schemas']['quoteError']
   export type individualQuoteResult = components['schemas']['individualQuoteResult']
   export type IlpFulfilment = components['schemas']['IlpFulfilment']
+  export type TransferState = components['schemas']['TransferState']
   export type transferError = components['schemas']['transferError']
   export type individualTransferResult = components['schemas']['individualTransferResult']
   export type bulkTransactionIndividualTransferResult = components['schemas']['bulkTransactionIndividualTransferResult']

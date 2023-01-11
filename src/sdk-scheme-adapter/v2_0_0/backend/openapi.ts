@@ -1081,6 +1081,17 @@ export interface components {
      * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
      */
     IlpFulfilment: string;
+    /**
+     * TransferState
+     * @description Below are the allowed values for the enumeration.
+     * - RECEIVED - Next ledger has received the transfer.
+     * - RESERVED - Next ledger has reserved the transfer.
+     * - COMMITTED - Next ledger has successfully performed the transfer.
+     * - ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.
+     * @example RESERVED
+     * @enum {string}
+     */
+    TransferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
     /** @description This object represents a Mojaloop API error received at any time during the transfer process */
     transferError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
@@ -1094,6 +1105,7 @@ export interface components {
       fulfilment?: components["schemas"]["IlpFulfilment"];
       /** @description Optional extension, specific to deployment. */
       extensionList?: components["schemas"]["ExtensionList"];
+      transferState?: components["schemas"]["TransferState"];
       lastError?: components["schemas"]["transferError"];
     };
     bulkTransactionIndividualTransferResult: {

@@ -106,6 +106,7 @@ export namespace Schemas {
   export const quoteError = JsonSchemas.quoteError
   export const individualQuoteResult = JsonSchemas.individualQuoteResult
   export const IlpFulfilment = JsonSchemas.IlpFulfilment
+  export const TransferState = JsonSchemas.TransferState
   export const transferError = JsonSchemas.transferError
   export const individualTransferResult = JsonSchemas.individualTransferResult
   export const bulkTransactionIndividualTransferResult = JsonSchemas.bulkTransactionIndividualTransferResult

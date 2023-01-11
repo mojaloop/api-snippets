@@ -1008,6 +1008,7 @@ export interface components {
       fulfilment?: components["schemas"]["IlpFulfilment"];
       /** @description Optional extension, specific to deployment. */
       extensionList?: components["schemas"]["ExtensionList"];
+      transferState?: components["schemas"]["TransferState"];
       lastError?: components["schemas"]["transferError"];
     };
     bulkTransferResponse: {

@@ -12,5 +12,7 @@ properties:
   extensionList:
     $ref: ./ExtensionList.yaml
     description: 'Optional extension, specific to deployment.'
+  transferState:
+    $ref: ./TransferState.yaml
   lastError:
     $ref: ./transferError.yaml

@@ -1611,6 +1611,8 @@ components:
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
           description: Optional extension, specific to deployment.
+        transferState:
+          $ref: '#/components/schemas/TransferState'
         lastError:
           $ref: '#/components/schemas/transferError'
     bulkTransferResponse:
