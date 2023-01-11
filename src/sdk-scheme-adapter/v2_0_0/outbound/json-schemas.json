@@ -740,7 +740,6 @@
         "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
       },
       "mojaloopError": {
-        "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
         "type": "object",
         "properties": {
           "errorInformation": {
@@ -1113,7 +1112,6 @@
             "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
           },
           "mojaloopError": {
-            "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
             "type": "object",
             "properties": {
               "errorInformation": {
@@ -1523,7 +1521,6 @@
                     "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
                   },
                   "mojaloopError": {
-                    "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
                     "type": "object",
                     "properties": {
                       "errorInformation": {
@@ -3176,7 +3173,6 @@
         "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
       },
       "mojaloopError": {
-        "description": "If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
         "type": "object",
         "properties": {
           "errorInformation": {
@@ -4106,15 +4102,14 @@
         ]
       },
       "lastError": {
-        "description": "Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.\n",
         "type": "object",
+        "description": "This object represents a Mojaloop API error received at any time during the quote process",
         "properties": {
           "httpStatusCode": {
             "type": "integer",
             "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
           },
           "mojaloopError": {
-            "description": "If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
             "type": "object",
             "properties": {
               "errorInformation": {
@@ -4189,10 +4184,7 @@
       }
     },
     "required": [
-      "quoteId",
-      "transferAmount",
-      "ilpPacket",
-      "condition"
+      "quoteId"
     ]
   },
   "bulkQuoteResponse": {
@@ -5130,15 +5122,14 @@
               ]
             },
             "lastError": {
-              "description": "Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.\n",
               "type": "object",
+              "description": "This object represents a Mojaloop API error received at any time during the quote process",
               "properties": {
                 "httpStatusCode": {
                   "type": "integer",
                   "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
                 },
                 "mojaloopError": {
-                  "description": "If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
                   "type": "object",
                   "properties": {
                     "errorInformation": {
@@ -5213,10 +5204,7 @@
             }
           },
           "required": [
-            "quoteId",
-            "transferAmount",
-            "ilpPacket",
-            "condition"
+            "quoteId"
           ]
         },
         "description": "List of individualQuoteResults in a bulk transfer response."
@@ -6179,15 +6167,14 @@
                       ]
                     },
                     "lastError": {
-                      "description": "Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.\n",
                       "type": "object",
+                      "description": "This object represents a Mojaloop API error received at any time during the quote process",
                       "properties": {
                         "httpStatusCode": {
                           "type": "integer",
                           "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
                         },
                         "mojaloopError": {
-                          "description": "If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
                           "type": "object",
                           "properties": {
                             "errorInformation": {
@@ -6262,10 +6249,7 @@
                     }
                   },
                   "required": [
-                    "quoteId",
-                    "transferAmount",
-                    "ilpPacket",
-                    "condition"
+                    "quoteId"
                   ]
                 },
                 "description": "List of individualQuoteResults in a bulk transfer response."
@@ -8192,7 +8176,6 @@
             "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
           },
           "mojaloopError": {
-            "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
             "type": "object",
             "properties": {
               "errorInformation": {
@@ -9179,7 +9162,6 @@
                   "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
                 },
                 "mojaloopError": {
-                  "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
                   "type": "object",
                   "properties": {
                     "errorInformation": {
@@ -9339,11 +9321,11 @@
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
       "fulfilment": {
-        "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
         "title": "IlpFulfilment",
         "type": "string",
         "pattern": "^[A-Za-z0-9-_]{43}$",
         "maxLength": 48,
+        "description": "Fulfilment that must be attached to the transfer by the Payee.",
         "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
       },
       "extensionList": {
@@ -9387,6 +9369,18 @@
           "extension"
         ]
       },
+      "transferState": {
+        "title": "TransferState",
+        "type": "string",
+        "enum": [
+          "RECEIVED",
+          "RESERVED",
+          "COMMITTED",
+          "ABORTED"
+        ],
+        "description": "Below are the allowed values for the enumeration.\n- RECEIVED - Next ledger has received the transfer.\n- RESERVED - Next ledger has reserved the transfer.\n- COMMITTED - Next ledger has successfully performed the transfer.\n- ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.",
+        "example": "RESERVED"
+      },
       "lastError": {
         "type": "object",
         "description": "This object represents a Mojaloop API error received at any time during the transfer process",
@@ -9396,7 +9390,6 @@
             "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
           },
           "mojaloopError": {
-            "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
             "type": "object",
             "properties": {
               "errorInformation": {
@@ -9581,11 +9574,11 @@
               "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
             },
             "fulfilment": {
-              "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
               "title": "IlpFulfilment",
               "type": "string",
               "pattern": "^[A-Za-z0-9-_]{43}$",
               "maxLength": 48,
+              "description": "Fulfilment that must be attached to the transfer by the Payee.",
               "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
             },
             "extensionList": {
@@ -9629,6 +9622,18 @@
                 "extension"
               ]
             },
+            "transferState": {
+              "title": "TransferState",
+              "type": "string",
+              "enum": [
+                "RECEIVED",
+                "RESERVED",
+                "COMMITTED",
+                "ABORTED"
+              ],
+              "description": "Below are the allowed values for the enumeration.\n- RECEIVED - Next ledger has received the transfer.\n- RESERVED - Next ledger has reserved the transfer.\n- COMMITTED - Next ledger has successfully performed the transfer.\n- ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.",
+              "example": "RESERVED"
+            },
             "lastError": {
               "type": "object",
               "description": "This object represents a Mojaloop API error received at any time during the transfer process",
@@ -9638,7 +9643,6 @@
                   "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
                 },
                 "mojaloopError": {
-                  "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
                   "type": "object",
                   "properties": {
                     "errorInformation": {
@@ -9848,11 +9852,11 @@
                       "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
                     },
                     "fulfilment": {
-                      "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
                       "title": "IlpFulfilment",
                       "type": "string",
                       "pattern": "^[A-Za-z0-9-_]{43}$",
                       "maxLength": 48,
+                      "description": "Fulfilment that must be attached to the transfer by the Payee.",
                       "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
                     },
                     "extensionList": {
@@ -9896,6 +9900,18 @@
                         "extension"
                       ]
                     },
+                    "transferState": {
+                      "title": "TransferState",
+                      "type": "string",
+                      "enum": [
+                        "RECEIVED",
+                        "RESERVED",
+                        "COMMITTED",
+                        "ABORTED"
+                      ],
+                      "description": "Below are the allowed values for the enumeration.\n- RECEIVED - Next ledger has received the transfer.\n- RESERVED - Next ledger has reserved the transfer.\n- COMMITTED - Next ledger has successfully performed the transfer.\n- ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.",
+                      "example": "RESERVED"
+                    },
                     "lastError": {
                       "type": "object",
                       "description": "This object represents a Mojaloop API error received at any time during the transfer process",
@@ -9905,7 +9921,6 @@
                           "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
                         },
                         "mojaloopError": {
-                          "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
                           "type": "object",
                           "properties": {
                             "errorInformation": {
@@ -10141,7 +10156,6 @@
         "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
       },
       "mojaloopError": {
-        "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
         "type": "object",
         "properties": {
           "errorInformation": {
@@ -10295,7 +10309,6 @@
                     "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
                   },
                   "mojaloopError": {
-                    "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
                     "type": "object",
                     "properties": {
                       "errorInformation": {
@@ -10455,7 +10468,6 @@
                     "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
                   },
                   "mojaloopError": {
-                    "description": "If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
                     "type": "object",
                     "properties": {
                       "errorInformation": {
@@ -11604,11 +11616,11 @@
     "description": "A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer",
     "properties": {
       "fulfilment": {
-        "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
         "title": "IlpFulfilment",
         "type": "string",
         "pattern": "^[A-Za-z0-9-_]{43}$",
         "maxLength": 48,
+        "description": "Fulfilment that must be attached to the transfer by the Payee.",
         "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
       },
       "extensionList": {
@@ -11685,11 +11697,11 @@
           "description": "A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer",
           "properties": {
             "fulfilment": {
-              "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
               "title": "IlpFulfilment",
               "type": "string",
               "pattern": "^[A-Za-z0-9-_]{43}$",
               "maxLength": 48,
+              "description": "Fulfilment that must be attached to the transfer by the Payee.",
               "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
             },
             "extensionList": {
@@ -19085,7 +19097,6 @@
             "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
           },
           "mojaloopError": {
-            "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
             "type": "object",
             "properties": {
               "errorInformation": {
@@ -20673,7 +20684,6 @@
             "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
           },
           "mojaloopError": {
-            "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
             "type": "object",
             "properties": {
               "errorInformation": {
@@ -22286,7 +22296,6 @@
                     "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
                   },
                   "mojaloopError": {
-                    "description": "If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object.",
                     "type": "object",
                     "properties": {
                       "errorInformation": {

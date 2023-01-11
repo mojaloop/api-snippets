@@ -27,9 +27,9 @@ properties:
   quoteId:
     $ref: ./CorrelationId.yaml
   quoteResponse:
-    type: object
+    $ref: ./individualQuoteResult.yaml
   fulfil:
-    $ref: ./TransfersIDPutResponse.yaml
+    $ref: ./individualTransferResult.yaml
   quoteExtensions:
     $ref: ./ExtensionList.yaml
   transferExtensions:

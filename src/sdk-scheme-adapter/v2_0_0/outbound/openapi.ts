@@ -658,7 +658,6 @@ export interface components {
     transferError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
       httpStatusCode?: number;
-      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
       mojaloopError?: components["schemas"]["mojaloopError"];
     };
     accountsResponse: {
@@ -852,21 +851,18 @@ export interface components {
     quoteError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
       httpStatusCode?: number;
-      /** @description If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
       mojaloopError?: components["schemas"]["mojaloopError"];
     };
     individualQuoteResult: {
       quoteId: components["schemas"]["CorrelationId"];
-      transferAmount: components["schemas"]["Money"];
+      transferAmount?: components["schemas"]["Money"];
       payeeReceiveAmount?: components["schemas"]["Money"];
       payeeFspFee?: components["schemas"]["Money"];
       payeeFspCommission?: components["schemas"]["Money"];
       geoCode?: components["schemas"]["GeoCode"];
-      ilpPacket: components["schemas"]["IlpPacket"];
-      condition: components["schemas"]["IlpCondition"];
-      /** @description Optional extension, specific to deployment. */
+      ilpPacket?: components["schemas"]["IlpPacket"];
+      condition?: components["schemas"]["IlpCondition"];
       extensionList?: components["schemas"]["ExtensionList"];
-      /** @description Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["quoteError"];
     };
     bulkQuoteResponse: {
@@ -1004,10 +1000,9 @@ export interface components {
     IlpFulfilment: string;
     individualTransferResult: {
       transferId: components["schemas"]["CorrelationId"];
-      /** @description Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully. */
       fulfilment?: components["schemas"]["IlpFulfilment"];
-      /** @description Optional extension, specific to deployment. */
       extensionList?: components["schemas"]["ExtensionList"];
+      transferState?: components["schemas"]["TransferState"];
       lastError?: components["schemas"]["transferError"];
     };
     bulkTransferResponse: {
@@ -1053,7 +1048,6 @@ export interface components {
     partyError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
       httpStatusCode?: number;
-      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
       mojaloopError?: components["schemas"]["mojaloopError"];
     };
     bulkTransactionAcceptPartyErrorResponse: components["schemas"]["errorResponse"] & {
@@ -1096,9 +1090,7 @@ export interface components {
     };
     /** @description A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer */
     individualTransferFulfilment: {
-      /** @description Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully. */
       fulfilment?: components["schemas"]["IlpFulfilment"];
-      /** @description Optional extension, specific to deployment. */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     bulkTransferStatusResponse: {

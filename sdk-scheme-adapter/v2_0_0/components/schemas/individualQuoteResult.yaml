@@ -18,17 +18,8 @@ properties:
     $ref: ./IlpCondition.yaml
   extensionList:
     $ref: ./ExtensionList.yaml
-    description: 'Optional extension, specific to deployment.'
   lastError:
-    description: >
-      Object representing the last error to occur during a quote process. This
-      may be a Mojaloop API error returned from another entity in the scheme or
-      an object representing other types of error e.g. exceptions that may occur
-      inside the scheme adapter.
     $ref: ./quoteError.yaml
-
 required:
   - quoteId
-  - transferAmount
-  - ilpPacket
-  - condition
+
