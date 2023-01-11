@@ -2189,13 +2189,7 @@ components:
           $ref: '#/components/schemas/IlpCondition'
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
         lastError:
-          description: >
-            Object representing the last error to occur during a quote process.
-            This may be a Mojaloop API error returned from another entity in the
-            scheme or an object representing other types of error e.g.
-            exceptions that may occur inside the scheme adapter.
           $ref: '#/components/schemas/quoteError'
       required:
         - quoteId
@@ -2255,12 +2249,8 @@ components:
           $ref: '#/components/schemas/CorrelationId'
         fulfilment:
           $ref: '#/components/schemas/IlpFulfilment'
-          description: >
-            Fulfilment of the condition specified with the transaction.
-            Mandatory if transfer has completed successfully.
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
         transferState:
           $ref: '#/components/schemas/TransferState'
         lastError:

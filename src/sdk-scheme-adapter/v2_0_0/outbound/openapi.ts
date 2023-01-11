@@ -864,9 +864,7 @@ export interface components {
       geoCode?: components["schemas"]["GeoCode"];
       ilpPacket: components["schemas"]["IlpPacket"];
       condition: components["schemas"]["IlpCondition"];
-      /** @description Optional extension, specific to deployment. */
       extensionList?: components["schemas"]["ExtensionList"];
-      /** @description Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["quoteError"];
     };
     bulkQuoteResponse: {
@@ -1004,9 +1002,7 @@ export interface components {
     IlpFulfilment: string;
     individualTransferResult: {
       transferId: components["schemas"]["CorrelationId"];
-      /** @description Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully. */
       fulfilment?: components["schemas"]["IlpFulfilment"];
-      /** @description Optional extension, specific to deployment. */
       extensionList?: components["schemas"]["ExtensionList"];
       transferState?: components["schemas"]["TransferState"];
       lastError?: components["schemas"]["transferError"];
@@ -1097,9 +1093,7 @@ export interface components {
     };
     /** @description A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer */
     individualTransferFulfilment: {
-      /** @description Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully. */
       fulfilment?: components["schemas"]["IlpFulfilment"];
-      /** @description Optional extension, specific to deployment. */
       extensionList?: components["schemas"]["ExtensionList"];
     };
     bulkTransferStatusResponse: {

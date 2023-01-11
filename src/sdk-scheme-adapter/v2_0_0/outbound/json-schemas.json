@@ -4106,8 +4106,8 @@
         ]
       },
       "lastError": {
-        "description": "Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.\n",
         "type": "object",
+        "description": "This object represents a Mojaloop API error received at any time during the quote process",
         "properties": {
           "httpStatusCode": {
             "type": "integer",
@@ -5130,8 +5130,8 @@
               ]
             },
             "lastError": {
-              "description": "Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.\n",
               "type": "object",
+              "description": "This object represents a Mojaloop API error received at any time during the quote process",
               "properties": {
                 "httpStatusCode": {
                   "type": "integer",
@@ -6179,8 +6179,8 @@
                       ]
                     },
                     "lastError": {
-                      "description": "Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.\n",
                       "type": "object",
+                      "description": "This object represents a Mojaloop API error received at any time during the quote process",
                       "properties": {
                         "httpStatusCode": {
                           "type": "integer",
@@ -9339,11 +9339,11 @@
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
       "fulfilment": {
-        "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
         "title": "IlpFulfilment",
         "type": "string",
         "pattern": "^[A-Za-z0-9-_]{43}$",
         "maxLength": 48,
+        "description": "Fulfilment that must be attached to the transfer by the Payee.",
         "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
       },
       "extensionList": {
@@ -9593,11 +9593,11 @@
               "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
             },
             "fulfilment": {
-              "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
               "title": "IlpFulfilment",
               "type": "string",
               "pattern": "^[A-Za-z0-9-_]{43}$",
               "maxLength": 48,
+              "description": "Fulfilment that must be attached to the transfer by the Payee.",
               "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
             },
             "extensionList": {
@@ -9872,11 +9872,11 @@
                       "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
                     },
                     "fulfilment": {
-                      "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
                       "title": "IlpFulfilment",
                       "type": "string",
                       "pattern": "^[A-Za-z0-9-_]{43}$",
                       "maxLength": 48,
+                      "description": "Fulfilment that must be attached to the transfer by the Payee.",
                       "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
                     },
                     "extensionList": {
@@ -11640,11 +11640,11 @@
     "description": "A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer",
     "properties": {
       "fulfilment": {
-        "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
         "title": "IlpFulfilment",
         "type": "string",
         "pattern": "^[A-Za-z0-9-_]{43}$",
         "maxLength": 48,
+        "description": "Fulfilment that must be attached to the transfer by the Payee.",
         "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
       },
       "extensionList": {
@@ -11721,11 +11721,11 @@
           "description": "A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer",
           "properties": {
             "fulfilment": {
-              "description": "Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully.\n",
               "title": "IlpFulfilment",
               "type": "string",
               "pattern": "^[A-Za-z0-9-_]{43}$",
               "maxLength": 48,
+              "description": "Fulfilment that must be attached to the transfer by the Payee.",
               "example": "WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8"
             },
             "extensionList": {
