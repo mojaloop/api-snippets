@@ -658,7 +658,6 @@ export interface components {
     transferError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
       httpStatusCode?: number;
-      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
       mojaloopError?: components["schemas"]["mojaloopError"];
     };
     accountsResponse: {
@@ -852,7 +851,6 @@ export interface components {
     quoteError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
       httpStatusCode?: number;
-      /** @description If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
       mojaloopError?: components["schemas"]["mojaloopError"];
     };
     individualQuoteResult: {
@@ -1050,7 +1048,6 @@ export interface components {
     partyError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
       httpStatusCode?: number;
-      /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
       mojaloopError?: components["schemas"]["mojaloopError"];
     };
     bulkTransactionAcceptPartyErrorResponse: components["schemas"]["errorResponse"] & {
