@@ -1297,9 +1297,6 @@ components:
           $ref: '#/components/schemas/quoteError'
       required:
         - quoteId
-        - transferAmount
-        - ilpPacket
-        - condition
     bulkQuoteResponse:
       type: object
       required:

@@ -20,9 +20,6 @@ properties:
     $ref: ./ExtensionList.yaml
   lastError:
     $ref: ./quoteError.yaml
-
 required:
   - quoteId
-  - transferAmount
-  - ilpPacket
-  - condition
+

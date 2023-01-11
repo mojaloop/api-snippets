@@ -13225,10 +13225,7 @@
       }
     },
     "required": [
-      "quoteId",
-      "transferAmount",
-      "ilpPacket",
-      "condition"
+      "quoteId"
     ]
   },
   "IlpFulfilment": {
@@ -14821,10 +14818,7 @@
           }
         },
         "required": [
-          "quoteId",
-          "transferAmount",
-          "ilpPacket",
-          "condition"
+          "quoteId"
         ]
       },
       "fulfil": {
@@ -16773,10 +16767,7 @@
                 }
               },
               "required": [
-                "quoteId",
-                "transferAmount",
-                "ilpPacket",
-                "condition"
+                "quoteId"
               ]
             },
             "fulfil": {

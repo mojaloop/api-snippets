@@ -1062,13 +1062,13 @@ export interface components {
     };
     individualQuoteResult: {
       quoteId: components["schemas"]["CorrelationId"];
-      transferAmount: components["schemas"]["Money"];
+      transferAmount?: components["schemas"]["Money"];
       payeeReceiveAmount?: components["schemas"]["Money"];
       payeeFspFee?: components["schemas"]["Money"];
       payeeFspCommission?: components["schemas"]["Money"];
       geoCode?: components["schemas"]["GeoCode"];
-      ilpPacket: components["schemas"]["IlpPacket"];
-      condition: components["schemas"]["IlpCondition"];
+      ilpPacket?: components["schemas"]["IlpPacket"];
+      condition?: components["schemas"]["IlpCondition"];
       extensionList?: components["schemas"]["ExtensionList"];
       lastError?: components["schemas"]["quoteError"];
     };

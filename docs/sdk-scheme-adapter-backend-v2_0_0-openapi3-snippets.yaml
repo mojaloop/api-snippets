@@ -2189,9 +2189,6 @@ components:
           $ref: '#/components/schemas/quoteError'
       required:
         - quoteId
-        - transferAmount
-        - ilpPacket
-        - condition
     IlpFulfilment:
       title: IlpFulfilment
       type: string

@@ -4184,10 +4184,7 @@
       }
     },
     "required": [
-      "quoteId",
-      "transferAmount",
-      "ilpPacket",
-      "condition"
+      "quoteId"
     ]
   },
   "bulkQuoteResponse": {
@@ -5207,10 +5204,7 @@
             }
           },
           "required": [
-            "quoteId",
-            "transferAmount",
-            "ilpPacket",
-            "condition"
+            "quoteId"
           ]
         },
         "description": "List of individualQuoteResults in a bulk transfer response."
@@ -6255,10 +6249,7 @@
                     }
                   },
                   "required": [
-                    "quoteId",
-                    "transferAmount",
-                    "ilpPacket",
-                    "condition"
+                    "quoteId"
                   ]
                 },
                 "description": "List of individualQuoteResults in a bulk transfer response."
