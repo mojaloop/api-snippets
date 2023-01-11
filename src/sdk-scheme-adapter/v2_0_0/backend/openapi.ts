@@ -993,32 +993,44 @@ export interface components {
      */
     Note: string;
     /**
-     * IlpFulfilment
-     * @description Fulfilment that must be attached to the transfer by the Payee.
-     * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+     * Money
+     * @description Data model for the complex type Money.
      */
-    IlpFulfilment: string;
-    /**
-     * TransferState
-     * @description Below are the allowed values for the enumeration.
-     * - RECEIVED - Next ledger has received the transfer.
-     * - RESERVED - Next ledger has reserved the transfer.
-     * - COMMITTED - Next ledger has successfully performed the transfer.
-     * - ABORTED - Next ledger has aborted the transfer due to a rejection or failure to perform the transfer.
-     * @example RESERVED
-     * @enum {string}
-     */
-    TransferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-    /**
-     * TransfersIDPutResponse
-     * @description The object sent in the PUT /transfers/{ID} callback.
-     */
-    TransfersIDPutResponse: {
-      fulfilment?: components["schemas"]["IlpFulfilment"];
-      completedTimestamp?: components["schemas"]["DateTime"];
-      transferState: components["schemas"]["TransferState"];
-      extensionList?: components["schemas"]["ExtensionList"];
+    Money: {
+      currency: components["schemas"]["Currency"];
+      amount: components["schemas"]["Amount"];
     };
+    /**
+     * Latitude
+     * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+     * @example +45.4215
+     */
+    Latitude: string;
+    /**
+     * Longitude
+     * @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+     * @example +75.6972
+     */
+    Longitude: string;
+    /**
+     * GeoCode
+     * @description Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
+     */
+    GeoCode: {
+      latitude: components["schemas"]["Latitude"];
+      longitude: components["schemas"]["Longitude"];
+    };
+    /**
+     * IlpPacket
+     * @description Information for recipient (transport layer information).
+     * @example AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
+     */
+    IlpPacket: string;
+    /**
+     * IlpCondition
+     * @description Condition that must be attached to the transfer by the Payer.
+     */
+    IlpCondition: string;
     /**
      * ErrorCode
      * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
@@ -1042,12 +1054,47 @@ export interface components {
     mojaloopError: {
       errorInformation?: components["schemas"]["ErrorInformation"];
     };
+    /** @description This object represents a Mojaloop API error received at any time during the quote process */
+    quoteError: {
+      /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
+      httpStatusCode?: number;
+      /** @description If a quote process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
+      mojaloopError?: components["schemas"]["mojaloopError"];
+    };
+    individualQuoteResult: {
+      quoteId: components["schemas"]["CorrelationId"];
+      transferAmount: components["schemas"]["Money"];
+      payeeReceiveAmount?: components["schemas"]["Money"];
+      payeeFspFee?: components["schemas"]["Money"];
+      payeeFspCommission?: components["schemas"]["Money"];
+      geoCode?: components["schemas"]["GeoCode"];
+      ilpPacket: components["schemas"]["IlpPacket"];
+      condition: components["schemas"]["IlpCondition"];
+      /** @description Optional extension, specific to deployment. */
+      extensionList?: components["schemas"]["ExtensionList"];
+      /** @description Object representing the last error to occur during a quote process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
+      lastError?: components["schemas"]["quoteError"];
+    };
+    /**
+     * IlpFulfilment
+     * @description Fulfilment that must be attached to the transfer by the Payee.
+     * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+     */
+    IlpFulfilment: string;
     /** @description This object represents a Mojaloop API error received at any time during the transfer process */
     transferError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
       httpStatusCode?: number;
       /** @description If a transfer process results in an error callback during the asynchronous Mojaloop API exchange, this property will contain the underlying Mojaloop API error object. */
       mojaloopError?: components["schemas"]["mojaloopError"];
+    };
+    individualTransferResult: {
+      transferId: components["schemas"]["CorrelationId"];
+      /** @description Fulfilment of the condition specified with the transaction. Mandatory if transfer has completed successfully. */
+      fulfilment?: components["schemas"]["IlpFulfilment"];
+      /** @description Optional extension, specific to deployment. */
+      extensionList?: components["schemas"]["ExtensionList"];
+      lastError?: components["schemas"]["transferError"];
     };
     bulkTransactionIndividualTransferResult: {
       transferId?: components["schemas"]["CorrelationId"];
@@ -1062,8 +1109,8 @@ export interface components {
       amount?: components["schemas"]["Amount"];
       note?: components["schemas"]["Note"];
       quoteId?: components["schemas"]["CorrelationId"];
-      quoteResponse?: { [key: string]: unknown };
-      fulfil?: components["schemas"]["TransfersIDPutResponse"];
+      quoteResponse?: components["schemas"]["individualQuoteResult"];
+      fulfil?: components["schemas"]["individualTransferResult"];
       quoteExtensions?: components["schemas"]["ExtensionList"];
       transferExtensions?: components["schemas"]["ExtensionList"];
       lastError?: components["schemas"]["transferError"];

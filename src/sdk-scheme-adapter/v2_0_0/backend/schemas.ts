@@ -93,14 +93,21 @@ export namespace Schemas {
   export const Party = JsonSchemas.Party
   export const AmountType = JsonSchemas.AmountType
   export const Note = JsonSchemas.Note
-  export const IlpFulfilment = JsonSchemas.IlpFulfilment
-  export const TransferState = JsonSchemas.TransferState
-  export const TransfersIDPutResponse = JsonSchemas.TransfersIDPutResponse
+  export const Money = JsonSchemas.Money
+  export const Latitude = JsonSchemas.Latitude
+  export const Longitude = JsonSchemas.Longitude
+  export const GeoCode = JsonSchemas.GeoCode
+  export const IlpPacket = JsonSchemas.IlpPacket
+  export const IlpCondition = JsonSchemas.IlpCondition
   export const ErrorCode = JsonSchemas.ErrorCode
   export const ErrorDescription = JsonSchemas.ErrorDescription
   export const ErrorInformation = JsonSchemas.ErrorInformation
   export const mojaloopError = JsonSchemas.mojaloopError
+  export const quoteError = JsonSchemas.quoteError
+  export const individualQuoteResult = JsonSchemas.individualQuoteResult
+  export const IlpFulfilment = JsonSchemas.IlpFulfilment
   export const transferError = JsonSchemas.transferError
+  export const individualTransferResult = JsonSchemas.individualTransferResult
   export const bulkTransactionIndividualTransferResult = JsonSchemas.bulkTransactionIndividualTransferResult
   export const bulkTransactionResponse = JsonSchemas.bulkTransactionResponse
 }
