@@ -1,4 +1,12 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.0.2](https://github.com/mojaloop/api-snippets/compare/v17.0.1...v17.0.2) (2023-01-10)
+
+
+### Maintenance
+
+* **mojaloop/#3053:** add support for subscenarios to sdk api and housekeeping ([#152](https://github.com/mojaloop/api-snippets/issues/152)) ([5e8db74](https://github.com/mojaloop/api-snippets/commit/5e8db74bcc923e2ae284d976ff535bf4c49ba260)), closes [mojaloop/#3053](https://github.com/mojaloop/api-snippets/issues/3053) [mojaloop/#3053](https://github.com/mojaloop/api-snippets/issues/3053)
+* update dependencies - remove dep check - temp backend fix  ([#154](https://github.com/mojaloop/api-snippets/issues/154)) ([56f0c62](https://github.com/mojaloop/api-snippets/commit/56f0c62234b139b3c873c75adad7f50220972e83))
+
 ### [17.0.1](https://github.com/mojaloop/api-snippets/compare/v17.0.0...v17.0.1) (2022-12-16)
 
 

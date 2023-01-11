@@ -388,11 +388,11 @@ workflows:
             - setup
           filters:
             tags:
-              only: /.*/
+              ignore: /.*/
             branches:
               ignore:
-                - /feature*/
-                - /bugfix*/
+                - master
+                - main
       - test-lint:
           context: org-global
           requires:
@@ -442,7 +442,6 @@ workflows:
           context: org-global
           requires:
             - pr-tools/pr-title-check
-            - test-dependencies
             - test-lint
             - test-unit
             - vulnerability-check
