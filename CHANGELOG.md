@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.0.3](https://github.com/mojaloop/api-snippets/compare/v17.0.2...v17.0.3) (2023-01-11)
+
+
+### Bug Fixes
+
+* fix outbound response component ([#155](https://github.com/mojaloop/api-snippets/issues/155)) ([23cf247](https://github.com/mojaloop/api-snippets/commit/23cf24787b7e617ac674b576aad83996f89d6639))
+
 ### [17.0.2](https://github.com/mojaloop/api-snippets/compare/v17.0.1...v17.0.2) (2023-01-10)
 
 
