@@ -24,7 +24,7 @@ properties:
   amount:
     $ref: ./Amount.yaml
   transactionType:
-    $ref: ./transferTransactionType.yaml
+    $ref: ./TransactionScenario.yaml
   subScenario:
     $ref: ./TransactionSubScenario.yaml
 
