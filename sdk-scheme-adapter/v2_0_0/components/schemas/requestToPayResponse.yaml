@@ -21,12 +21,10 @@ properties:
     $ref: ./Currency.yaml
   amount:
     $ref: ./Amount.yaml
-  scenario:
-    $ref: ./TransactionType.yaml
-  initiator:
-    $ref: ./TransactionInitiator.yaml
-  initiatorType:
-    $ref: ./TransactionInitiatorType.yaml
+  transactionType:
+    $ref: ./TransactionScenario.yaml
+  subScenario:
+    $ref: ./TransactionSubScenario.yaml
   authenticationType:
     $ref: ./AuthenticationType.yaml
   requestToPayState:

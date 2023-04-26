@@ -1235,9 +1235,8 @@ export interface components {
       amountType: components["schemas"]["AmountType"];
       currency: components["schemas"]["Currency"];
       amount: components["schemas"]["Amount"];
-      scenario: components["schemas"]["TransactionType"];
-      initiator: components["schemas"]["TransactionInitiator"];
-      initiatorType: components["schemas"]["TransactionInitiatorType"];
+      transactionType: components["schemas"]["TransactionScenario"];
+      subScenario?: components["schemas"]["TransactionSubScenario"];
     };
     /**
      * AuthenticationType
@@ -1267,13 +1266,10 @@ export interface components {
       amountType: components["schemas"]["AmountType"];
       currency: components["schemas"]["Currency"];
       amount: components["schemas"]["Amount"];
-      scenario?: components["schemas"]["TransactionType"];
-      initiator?: components["schemas"]["TransactionInitiator"];
-      initiatorType?: components["schemas"]["TransactionInitiatorType"];
+      transactionType: components["schemas"]["TransactionScenario"];
+      subScenario?: components["schemas"]["TransactionSubScenario"];
       authenticationType?: components["schemas"]["AuthenticationType"];
       requestToPayState: components["schemas"]["TransactionRequestState"];
-    } & {
-      transactionType: unknown;
     };
     requestToPayTransferRequest: {
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */

@@ -2060,9 +2060,7 @@ components:
         - amountType
         - currency
         - amount
-        - scenario
-        - initiator
-        - initiatorType
+        - transactionType
       properties:
         homeTransactionId:
           type: string
@@ -2079,12 +2077,10 @@ components:
           $ref: '#/components/schemas/Currency'
         amount:
           $ref: '#/components/schemas/Amount'
-        scenario:
-          $ref: '#/components/schemas/TransactionType'
-        initiator:
-          $ref: '#/components/schemas/TransactionInitiator'
-        initiatorType:
-          $ref: '#/components/schemas/TransactionInitiatorType'
+        transactionType:
+          $ref: '#/components/schemas/TransactionScenario'
+        subScenario:
+          $ref: '#/components/schemas/TransactionSubScenario'
     AuthenticationType:
       title: AuthenticationType
       type: string
@@ -2137,12 +2133,10 @@ components:
           $ref: '#/components/schemas/Currency'
         amount:
           $ref: '#/components/schemas/Amount'
-        scenario:
-          $ref: '#/components/schemas/TransactionType'
-        initiator:
-          $ref: '#/components/schemas/TransactionInitiator'
-        initiatorType:
-          $ref: '#/components/schemas/TransactionInitiatorType'
+        transactionType:
+          $ref: '#/components/schemas/TransactionScenario'
+        subScenario:
+          $ref: '#/components/schemas/TransactionSubScenario'
         authenticationType:
           $ref: '#/components/schemas/AuthenticationType'
         requestToPayState:

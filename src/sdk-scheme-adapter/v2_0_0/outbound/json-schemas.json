@@ -14869,9 +14869,7 @@
       "amountType",
       "currency",
       "amount",
-      "scenario",
-      "initiator",
-      "initiatorType"
+      "transactionType"
     ],
     "properties": {
       "homeTransactionId": {
@@ -15336,113 +15334,25 @@
         "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.",
         "example": "123.45"
       },
-      "scenario": {
-        "title": "TransactionType",
-        "type": "object",
-        "description": "Data model for the complex type TransactionType.",
-        "properties": {
-          "scenario": {
-            "title": "TransactionScenario",
-            "type": "string",
-            "enum": [
-              "DEPOSIT",
-              "WITHDRAWAL",
-              "TRANSFER",
-              "PAYMENT",
-              "REFUND"
-            ],
-            "description": "Below are the allowed values for the enumeration.\n- DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.\n- WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.\n- TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.\n- PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.\n- REFUND - Used for performing a refund of transaction.",
-            "example": "DEPOSIT"
-          },
-          "subScenario": {
-            "title": "TransactionSubScenario",
-            "type": "string",
-            "pattern": "^[A-Z_]{1,32}$",
-            "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
-            "example": "LOCALLY_DEFINED_SUBSCENARIO"
-          },
-          "initiator": {
-            "title": "TransactionInitiator",
-            "type": "string",
-            "enum": [
-              "PAYER",
-              "PAYEE"
-            ],
-            "description": "Below are the allowed values for the enumeration.\n- PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.\n- PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.",
-            "example": "PAYEE"
-          },
-          "initiatorType": {
-            "title": "TransactionInitiatorType",
-            "type": "string",
-            "enum": [
-              "CONSUMER",
-              "AGENT",
-              "BUSINESS",
-              "DEVICE"
-            ],
-            "description": "Below are the allowed values for the enumeration.\n- CONSUMER - Consumer is the initiator of the transaction.\n- AGENT - Agent is the initiator of the transaction.\n- BUSINESS - Business is the initiator of the transaction.\n- DEVICE - Device is the initiator of the transaction.",
-            "example": "CONSUMER"
-          },
-          "refundInfo": {
-            "title": "Refund",
-            "type": "object",
-            "description": "Data model for the complex type Refund.",
-            "properties": {
-              "originalTransactionId": {
-                "title": "CorrelationId",
-                "type": "string",
-                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-                "description": "Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).",
-                "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
-              },
-              "refundReason": {
-                "title": "RefundReason",
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 128,
-                "description": "Reason for the refund.",
-                "example": "Free text indicating reason for the refund."
-              }
-            },
-            "required": [
-              "originalTransactionId"
-            ]
-          },
-          "balanceOfPayments": {
-            "title": "BalanceOfPayments",
-            "type": "string",
-            "pattern": "^[1-9]\\d{2}$",
-            "description": "(BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.",
-            "example": "123"
-          }
-        },
-        "required": [
-          "scenario",
-          "initiator",
-          "initiatorType"
-        ]
-      },
-      "initiator": {
-        "title": "TransactionInitiator",
+      "transactionType": {
+        "title": "TransactionScenario",
         "type": "string",
         "enum": [
-          "PAYER",
-          "PAYEE"
+          "DEPOSIT",
+          "WITHDRAWAL",
+          "TRANSFER",
+          "PAYMENT",
+          "REFUND"
         ],
-        "description": "Below are the allowed values for the enumeration.\n- PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.\n- PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.",
-        "example": "PAYEE"
+        "description": "Below are the allowed values for the enumeration.\n- DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.\n- WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.\n- TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.\n- PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.\n- REFUND - Used for performing a refund of transaction.",
+        "example": "DEPOSIT"
       },
-      "initiatorType": {
-        "title": "TransactionInitiatorType",
+      "subScenario": {
+        "title": "TransactionSubScenario",
         "type": "string",
-        "enum": [
-          "CONSUMER",
-          "AGENT",
-          "BUSINESS",
-          "DEVICE"
-        ],
-        "description": "Below are the allowed values for the enumeration.\n- CONSUMER - Consumer is the initiator of the transaction.\n- AGENT - Agent is the initiator of the transaction.\n- BUSINESS - Business is the initiator of the transaction.\n- DEVICE - Device is the initiator of the transaction.",
-        "example": "CONSUMER"
+        "pattern": "^[A-Z_]{1,32}$",
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO"
       }
     }
   },
@@ -15947,113 +15857,25 @@
         "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.",
         "example": "123.45"
       },
-      "scenario": {
-        "title": "TransactionType",
-        "type": "object",
-        "description": "Data model for the complex type TransactionType.",
-        "properties": {
-          "scenario": {
-            "title": "TransactionScenario",
-            "type": "string",
-            "enum": [
-              "DEPOSIT",
-              "WITHDRAWAL",
-              "TRANSFER",
-              "PAYMENT",
-              "REFUND"
-            ],
-            "description": "Below are the allowed values for the enumeration.\n- DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.\n- WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.\n- TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.\n- PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.\n- REFUND - Used for performing a refund of transaction.",
-            "example": "DEPOSIT"
-          },
-          "subScenario": {
-            "title": "TransactionSubScenario",
-            "type": "string",
-            "pattern": "^[A-Z_]{1,32}$",
-            "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
-            "example": "LOCALLY_DEFINED_SUBSCENARIO"
-          },
-          "initiator": {
-            "title": "TransactionInitiator",
-            "type": "string",
-            "enum": [
-              "PAYER",
-              "PAYEE"
-            ],
-            "description": "Below are the allowed values for the enumeration.\n- PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.\n- PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.",
-            "example": "PAYEE"
-          },
-          "initiatorType": {
-            "title": "TransactionInitiatorType",
-            "type": "string",
-            "enum": [
-              "CONSUMER",
-              "AGENT",
-              "BUSINESS",
-              "DEVICE"
-            ],
-            "description": "Below are the allowed values for the enumeration.\n- CONSUMER - Consumer is the initiator of the transaction.\n- AGENT - Agent is the initiator of the transaction.\n- BUSINESS - Business is the initiator of the transaction.\n- DEVICE - Device is the initiator of the transaction.",
-            "example": "CONSUMER"
-          },
-          "refundInfo": {
-            "title": "Refund",
-            "type": "object",
-            "description": "Data model for the complex type Refund.",
-            "properties": {
-              "originalTransactionId": {
-                "title": "CorrelationId",
-                "type": "string",
-                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-                "description": "Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).",
-                "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
-              },
-              "refundReason": {
-                "title": "RefundReason",
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 128,
-                "description": "Reason for the refund.",
-                "example": "Free text indicating reason for the refund."
-              }
-            },
-            "required": [
-              "originalTransactionId"
-            ]
-          },
-          "balanceOfPayments": {
-            "title": "BalanceOfPayments",
-            "type": "string",
-            "pattern": "^[1-9]\\d{2}$",
-            "description": "(BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.",
-            "example": "123"
-          }
-        },
-        "required": [
-          "scenario",
-          "initiator",
-          "initiatorType"
-        ]
-      },
-      "initiator": {
-        "title": "TransactionInitiator",
+      "transactionType": {
+        "title": "TransactionScenario",
         "type": "string",
         "enum": [
-          "PAYER",
-          "PAYEE"
+          "DEPOSIT",
+          "WITHDRAWAL",
+          "TRANSFER",
+          "PAYMENT",
+          "REFUND"
         ],
-        "description": "Below are the allowed values for the enumeration.\n- PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.\n- PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.",
-        "example": "PAYEE"
+        "description": "Below are the allowed values for the enumeration.\n- DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.\n- WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.\n- TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.\n- PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.\n- REFUND - Used for performing a refund of transaction.",
+        "example": "DEPOSIT"
       },
-      "initiatorType": {
-        "title": "TransactionInitiatorType",
+      "subScenario": {
+        "title": "TransactionSubScenario",
         "type": "string",
-        "enum": [
-          "CONSUMER",
-          "AGENT",
-          "BUSINESS",
-          "DEVICE"
-        ],
-        "description": "Below are the allowed values for the enumeration.\n- CONSUMER - Consumer is the initiator of the transaction.\n- AGENT - Agent is the initiator of the transaction.\n- BUSINESS - Business is the initiator of the transaction.\n- DEVICE - Device is the initiator of the transaction.",
-        "example": "CONSUMER"
+        "pattern": "^[A-Z_]{1,32}$",
+        "description": "Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).",
+        "example": "LOCALLY_DEFINED_SUBSCENARIO"
       },
       "authenticationType": {
         "title": "AuthenticationType",
