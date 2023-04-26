@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.0.4](https://github.com/mojaloop/api-snippets/compare/v17.0.3...v17.0.4) (2023-04-26)
+
+
+### Bug Fixes
+
+* **mojaloop/3285:** transactiontype data type in requesttopay sdkoutbound ([#160](https://github.com/mojaloop/api-snippets/issues/160)) ([474cf1c](https://github.com/mojaloop/api-snippets/commit/474cf1c40023406ee3f3ff7d4d1ad902a517a058))
+
 ### [17.0.3](https://github.com/mojaloop/api-snippets/compare/v17.0.2...v17.0.3) (2023-01-11)
 
 
