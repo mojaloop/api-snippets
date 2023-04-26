@@ -1235,7 +1235,7 @@ export interface components {
       amountType: components["schemas"]["AmountType"];
       currency: components["schemas"]["Currency"];
       amount: components["schemas"]["Amount"];
-      transactionType: components["schemas"]["transferTransactionType"];
+      transactionType: components["schemas"]["TransactionScenario"];
       subScenario?: components["schemas"]["TransactionSubScenario"];
     };
     /**
@@ -1266,7 +1266,7 @@ export interface components {
       amountType: components["schemas"]["AmountType"];
       currency: components["schemas"]["Currency"];
       amount: components["schemas"]["Amount"];
-      transactionType: components["schemas"]["transferTransactionType"];
+      transactionType: components["schemas"]["TransactionScenario"];
       subScenario?: components["schemas"]["TransactionSubScenario"];
       authenticationType?: components["schemas"]["AuthenticationType"];
       requestToPayState: components["schemas"]["TransactionRequestState"];

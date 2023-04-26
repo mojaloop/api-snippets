@@ -2078,7 +2078,7 @@ components:
         amount:
           $ref: '#/components/schemas/Amount'
         transactionType:
-          $ref: '#/components/schemas/transferTransactionType'
+          $ref: '#/components/schemas/TransactionScenario'
         subScenario:
           $ref: '#/components/schemas/TransactionSubScenario'
     AuthenticationType:
@@ -2134,7 +2134,7 @@ components:
         amount:
           $ref: '#/components/schemas/Amount'
         transactionType:
-          $ref: '#/components/schemas/transferTransactionType'
+          $ref: '#/components/schemas/TransactionScenario'
         subScenario:
           $ref: '#/components/schemas/TransactionSubScenario'
         authenticationType:
