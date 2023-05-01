@@ -556,9 +556,7 @@ export interface components {
     /** @description A response to a request for a quote. */
     transactionRequestResponse: {
       transactionId: components["schemas"]["transactionId"];
-      transferAmount?: components["schemas"]["transactionRequestState"];
-    } & {
-      transactionRequestState: unknown;
+      transactionRequestState: components["schemas"]["transactionRequestState"];
     };
     /** @enum {string} */
     transactionRequestState: "RECEIVED" | "PENDING" | "ACCEPTED" | "REJECTED";

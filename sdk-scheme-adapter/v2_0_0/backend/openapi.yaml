@@ -1243,7 +1243,7 @@ components:
       properties:
         transactionId:
           $ref: '#/components/schemas/transactionId'
-        transferAmount:
+        transactionRequestState:
           $ref: '#/components/schemas/transactionRequestState'
       required:
         - transactionId
