@@ -1,16 +1,23 @@
 type: object
 required:
-  - transactionRequestId
+  - requestToPayId
   - from
   - to
   - amountType
   - currency
   - amount
   - transactionType
-  - requestToPayState
+  - currentState
 properties:
+  requestToPayId:
+    $ref: ./CorrelationId.yaml
   transactionRequestId:
     $ref: ./CorrelationId.yaml
+  homeTransactionId:
+    type: string
+    description: >-
+      Transaction ID from the DFSP backend, used to reconcile transactions
+      between the Switch and DFSP backend systems.
   from:
     $ref: ./transferParty.yaml
   to:
@@ -25,7 +32,21 @@ properties:
     $ref: ./TransactionScenario.yaml
   subScenario:
     $ref: ./TransactionSubScenario.yaml
-  authenticationType:
-    $ref: ./AuthenticationType.yaml
-  requestToPayState:
-    $ref: ./TransactionRequestState.yaml
+  currentState:
+    $ref: ./transferStatus.yaml
+  getPartiesResponse:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        type: object
+      headers:
+        type: object
+  lastError:
+    description: >
+      Object representing the last error to occur during a transfer process.
+      This may be a Mojaloop API error returned from another entity in the
+      scheme or an object representing other types of error e.g. exceptions that
+      may occur inside the scheme adapter.
+    $ref: ./transferError.yaml

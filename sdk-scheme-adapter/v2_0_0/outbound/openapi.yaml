@@ -44,6 +44,8 @@ paths:
     $ref: paths/quotes.yaml
   /requestToPay:
     $ref: paths/requestToPay.yaml
+  /requestToPay/{requestToPayId}:
+    $ref: paths/requestToPay_requestToPayId.yaml
   /requestToPayTransfer:
     $ref: paths/requestToPayTransfer.yaml
   /requestToPayTransfer/{requestToPayTransactionId}:
