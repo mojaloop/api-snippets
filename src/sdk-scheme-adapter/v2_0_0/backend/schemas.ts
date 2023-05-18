@@ -111,4 +111,5 @@ export namespace Schemas {
   export const individualTransferResult = JsonSchemas.individualTransferResult
   export const bulkTransactionIndividualTransferResult = JsonSchemas.bulkTransactionIndividualTransferResult
   export const bulkTransactionResponse = JsonSchemas.bulkTransactionResponse
+  export const AuthenticationType = JsonSchemas.AuthenticationType
 }

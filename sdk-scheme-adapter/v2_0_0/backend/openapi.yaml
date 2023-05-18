@@ -133,11 +133,11 @@ paths:
       summary: Requests information relating to a bulk transfer identified by the specified identifier value.
       tags:
         - BulkTransfers
-  /otp/{requestToPayId}:
+  /otp/{transactionRequestId}:
     get:
       operationId: BackendOtpGet
       parameters:
-        - $ref: '#/components/parameters/requestToPayId'
+        - $ref: '#/components/parameters/transactionRequestId'
       responses:
         '200':
           content:
@@ -379,14 +379,12 @@ components:
       required: true
       schema:
         type: string
-    requestToPayId:
+    transactionRequestId:
       in: path
-      name: requestToPayId
+      name: transactionRequestId
       required: true
       schema:
-        maxLength: 128
-        minLength: 1
-        type: string
+        $ref: '#/components/schemas/transactionRequestId'
     transferId:
       in: path
       name: transferId
@@ -1224,6 +1222,8 @@ components:
           $ref: '#/components/schemas/transactionType'
         subScenario:
           $ref: '../components/schemas/TransactionSubScenario.yaml'
+        authenticationType:
+          $ref: '../components/schemas/AuthenticationType.yaml'
       required:
         - transactionRequestId
         - to
@@ -1241,9 +1241,14 @@ components:
     transactionRequestResponse:
       description: A response to a request for a quote.
       properties:
+        homeR2PTransactionId:
+          type: string
+          description: >-
+            Transaction ID from the DFSP backend, used to reconcile transactions
+            between the Switch and DFSP backend systems.
         transactionId:
           $ref: '#/components/schemas/transactionId'
-        transferAmount:
+        transactionRequestState:
           $ref: '#/components/schemas/transactionRequestState'
       required:
         - transactionId
