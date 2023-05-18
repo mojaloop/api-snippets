@@ -557,7 +557,7 @@ export interface components {
     /** @description A response to a request for a quote. */
     transactionRequestResponse: {
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      homeR2PTransactionId?: string;
+      homeTransactionId?: string;
       transactionId: components["schemas"]["transactionId"];
       transactionRequestState: components["schemas"]["transactionRequestState"];
     };
