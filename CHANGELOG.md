@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.1.0](https://github.com/mojaloop/api-snippets/compare/v17.0.4...v17.1.0) (2023-05-19)
+
+
+### Features
+
+* **mojaloop/3345:** enhance payee requesttopay apis ([#162](https://github.com/mojaloop/api-snippets/issues/162)) ([49b31e0](https://github.com/mojaloop/api-snippets/commit/49b31e0eb046483b7cdf868f0305a09a42a47889))
+
 ### [17.0.4](https://github.com/mojaloop/api-snippets/compare/v17.0.3...v17.0.4) (2023-04-26)
 
 
