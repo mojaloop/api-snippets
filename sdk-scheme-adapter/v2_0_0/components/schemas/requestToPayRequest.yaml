@@ -1,6 +1,6 @@
 type: object
 required:
-  - homeTransactionId
+  - homeR2PTransactionId
   - from
   - to
   - amountType
@@ -8,7 +8,7 @@ required:
   - amount
   - transactionType
 properties:
-  homeTransactionId:
+  homeR2PTransactionId:
     type: string
     description: >-
       Transaction ID from the DFSP backend, used to reconcile transactions
@@ -27,4 +27,6 @@ properties:
     $ref: ./TransactionScenario.yaml
   subScenario:
     $ref: ./TransactionSubScenario.yaml
+  authenticationType:
+    $ref: './AuthenticationType.yaml'
 

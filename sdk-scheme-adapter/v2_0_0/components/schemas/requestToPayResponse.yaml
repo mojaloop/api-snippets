@@ -7,7 +7,7 @@ required:
   - currency
   - amount
   - transactionType
-  - requestToPayState
+  - currentState
 properties:
   transactionRequestId:
     $ref: ./CorrelationId.yaml
@@ -25,7 +25,16 @@ properties:
     $ref: ./TransactionScenario.yaml
   subScenario:
     $ref: ./TransactionSubScenario.yaml
-  authenticationType:
-    $ref: ./AuthenticationType.yaml
-  requestToPayState:
-    $ref: ./TransactionRequestState.yaml
+  currentState:
+    $ref: ./requestToPayStatus.yaml
+  getPartiesResponse:
+    $ref: ./getPartiesResponse.yaml
+  transactionRequestResponse:
+    $ref: ./TransactionRequestResponse.yaml
+  lastError:
+    description: >
+      Object representing the last error to occur during a transfer process.
+      This may be a Mojaloop API error returned from another entity in the
+      scheme or an object representing other types of error e.g. exceptions that
+      may occur inside the scheme adapter.
+    $ref: ./transferError.yaml

@@ -111,4 +111,5 @@ export namespace Types {
   export type individualTransferResult = components['schemas']['individualTransferResult']
   export type bulkTransactionIndividualTransferResult = components['schemas']['bulkTransactionIndividualTransferResult']
   export type bulkTransactionResponse = components['schemas']['bulkTransactionResponse']
+  export type AuthenticationType = components['schemas']['AuthenticationType']
 }
