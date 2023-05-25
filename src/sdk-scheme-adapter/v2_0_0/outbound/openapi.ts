@@ -1395,7 +1395,8 @@ export interface components {
     };
     requestToPayTransferRequest: {
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      requestToPayTransactionId: string;
+      homeR2PTransactionId: string;
+      transactionRequestId: components["schemas"]["CorrelationId"];
       from: components["schemas"]["transferParty"];
       to: components["schemas"]["transferParty"];
       amountType: components["schemas"]["AmountType"];
@@ -1405,6 +1406,7 @@ export interface components {
       initiator: components["schemas"]["TransactionInitiator"];
       initiatorType: components["schemas"]["TransactionInitiatorType"];
       note?: components["schemas"]["Note"];
+      authenticationType?: components["schemas"]["AuthenticationType"];
     };
     requestToPayTransferResponse: {
       transferId?: components["schemas"]["CorrelationId"];

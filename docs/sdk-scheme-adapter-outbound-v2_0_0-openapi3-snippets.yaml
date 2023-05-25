@@ -2370,7 +2370,8 @@ components:
     requestToPayTransferRequest:
       type: object
       required:
-        - requestToPayTransactionId
+        - homeR2PTransactionId
+        - transactionRequestId
         - from
         - to
         - amountType
@@ -2380,11 +2381,13 @@ components:
         - initiator
         - initiatorType
       properties:
-        requestToPayTransactionId:
+        homeR2PTransactionId:
           type: string
           description: >-
             Transaction ID from the DFSP backend, used to reconcile transactions
             between the Switch and DFSP backend systems.
+        transactionRequestId:
+          $ref: '#/components/schemas/CorrelationId'
         from:
           $ref: '#/components/schemas/transferParty'
         to:
@@ -2403,6 +2406,8 @@ components:
           $ref: '#/components/schemas/TransactionInitiatorType'
         note:
           $ref: '#/components/schemas/Note'
+        authenticationType:
+          $ref: '#/components/schemas/AuthenticationType'
     requestToPayTransferResponse:
       type: object
       required:

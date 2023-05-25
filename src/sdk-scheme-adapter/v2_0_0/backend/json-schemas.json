@@ -6153,6 +6153,10 @@
   "quoteRequest": {
     "description": "A request for a quote for transfer from the DFSP backend.",
     "properties": {
+      "homeR2PTransactionId": {
+        "type": "string",
+        "description": "Linked homeR2PTransactionId which was generated as part of POST /requestToPay to SDK incase of requestToPay transfer."
+      },
       "amount": {
         "pattern": "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$",
         "type": "string"
@@ -6780,6 +6784,11 @@
           "DEPOSIT",
           "PAYMENT"
         ],
+        "type": "string"
+      },
+      "transactionRequestId": {
+        "description": "A Mojaloop API transaction request identifier (UUID).",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
         "type": "string"
       }
     },
@@ -8659,6 +8668,10 @@
   },
   "transferRequest": {
     "properties": {
+      "homeR2PTransactionId": {
+        "type": "string",
+        "description": "Linked homeR2PTransactionId which was generated as part of POST /requestToPay to SDK incase of requestToPay transfer."
+      },
       "amount": {
         "pattern": "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$",
         "type": "string"
@@ -10408,6 +10421,11 @@
         "description": "A Mojaloop API transfer identifier (UUID).",
         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
         "type": "string"
+      },
+      "transactionRequestId": {
+        "description": "A Mojaloop API transaction request identifier (UUID).",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+        "type": "string"
       }
     },
     "required": [
@@ -10476,6 +10494,27 @@
       "COMPLETED"
     ],
     "type": "string"
+  },
+  "requestToPayCallback": {
+    "description": "Callback for requestToPay.",
+    "properties": {
+      "homeR2PTransactionId": {
+        "type": "string",
+        "description": "Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems."
+      },
+      "transactionRequestState": {
+        "enum": [
+          "RECEIVED",
+          "PENDING",
+          "ACCEPTED",
+          "REJECTED"
+        ],
+        "type": "string"
+      }
+    },
+    "required": [
+      "transactionRequestState"
+    ]
   },
   "TransactionSubScenario": {
     "title": "TransactionSubScenario",
