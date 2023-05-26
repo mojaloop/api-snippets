@@ -2399,7 +2399,9 @@ components:
         amount:
           $ref: '#/components/schemas/Amount'
         scenario:
-          $ref: '#/components/schemas/TransactionType'
+          $ref: '#/components/schemas/TransactionScenario'
+        subScenario:
+          $ref: '#/components/schemas/TransactionSubScenario'
         initiator:
           $ref: '#/components/schemas/TransactionInitiator'
         initiatorType:

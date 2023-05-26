@@ -1402,7 +1402,8 @@ export interface components {
       amountType: components["schemas"]["AmountType"];
       currency: components["schemas"]["Currency"];
       amount: components["schemas"]["Amount"];
-      scenario: components["schemas"]["TransactionType"];
+      scenario: components["schemas"]["TransactionScenario"];
+      subScenario?: components["schemas"]["TransactionSubScenario"];
       initiator: components["schemas"]["TransactionInitiator"];
       initiatorType: components["schemas"]["TransactionInitiatorType"];
       note?: components["schemas"]["Note"];
