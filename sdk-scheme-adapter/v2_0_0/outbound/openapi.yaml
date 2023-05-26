@@ -48,8 +48,8 @@ paths:
     $ref: paths/requestToPay_transactionRequestId.yaml
   /requestToPayTransfer:
     $ref: paths/requestToPayTransfer.yaml
-  /requestToPayTransfer/{requestToPayTransactionId}:
-    $ref: paths/requestToPayTransfer_requestToPayTransactionId.yaml
+  /requestToPayTransfer/{transactionRequestId}:
+    $ref: paths/requestToPayTransfer_transactionRequestId.yaml
   /simpleTransfers:
     $ref: paths/simpleTransfers.yaml
   /transfers:

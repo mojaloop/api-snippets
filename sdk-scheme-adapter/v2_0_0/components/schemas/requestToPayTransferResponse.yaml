@@ -1,6 +1,6 @@
 type: object
 required:
-  - requestToPayTransactionId
+  - transactionRequestId
   - from
   - to
   - amountType
@@ -10,11 +10,13 @@ required:
 properties:
   transferId:
     $ref: ./CorrelationId.yaml
-  requestToPayTransactionId:
+  homeR2PTransactionId:
     type: string
     description: >-
       Transaction ID from the DFSP backend, used to reconcile transactions
       between the Switch and DFSP backend systems.
+  transactionRequestId:
+    $ref: ./CorrelationId.yaml
   from:
     $ref: ./transferParty.yaml
   to:

@@ -275,9 +275,9 @@ export interface paths {
       };
     };
   };
-  "/requestToPayTransfer/{requestToPayTransactionId}": {
+  "/requestToPayTransfer/{transactionRequestId}": {
     /**
-     * The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage.
+     * This request is used to continue a requestToPayTransfer initiated via the `POST /requestToPayTransfer` method that has halted after quotation stage and/or otp stage.
      *
      * The request body should contain either the "acceptOTP" or "acceptQuote" property set to `true` as required to continue the transfer.
      *
@@ -286,8 +286,8 @@ export interface paths {
     put: {
       parameters: {
         path: {
-          /** Identifier of the merchant request to pay transfer to continue as returned in the response to a `POST /requestToPayTransfer` request. */
-          requestToPayTransactionId: components["parameters"]["requestToPayTransactionId"];
+          /** Identifier of the merchant request to pay to continue as returned in the response to a `POST /requestToPay` request. */
+          transactionRequestId: components["parameters"]["transactionRequestId"];
         };
       };
       responses: {
@@ -1411,7 +1411,8 @@ export interface components {
     requestToPayTransferResponse: {
       transferId?: components["schemas"]["CorrelationId"];
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      requestToPayTransactionId: string;
+      homeR2PTransactionId?: string;
+      transactionRequestId: components["schemas"]["CorrelationId"];
       from: components["schemas"]["transferParty"];
       to: components["schemas"]["transferParty"];
       amountType: components["schemas"]["AmountType"];
@@ -1654,8 +1655,6 @@ export interface components {
     SubId: string;
     /** @description Identifier of the merchant request to pay to continue as returned in the response to a `POST /requestToPay` request. */
     transactionRequestId: components["schemas"]["CorrelationId"];
-    /** @description Identifier of the merchant request to pay transfer to continue as returned in the response to a `POST /requestToPayTransfer` request. */
-    requestToPayTransactionId: components["schemas"]["CorrelationId"];
     /** @description Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
     transferId: components["schemas"]["CorrelationId"];
   };

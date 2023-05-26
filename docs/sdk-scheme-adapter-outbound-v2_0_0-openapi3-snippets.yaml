@@ -383,15 +383,15 @@ paths:
           $ref: '#/components/responses/transferServerError'
         '504':
           $ref: '#/components/responses/transferTimeout'
-  /requestToPayTransfer/{requestToPayTransactionId}:
+  /requestToPayTransfer/{transactionRequestId}:
     put:
       summary: >-
         Continues a transfer that has paused at the otp stage in order to accept
         or reject quote
       description: >
-        The HTTP request `PUT /transfers/{transferId}` is used to continue a
-        transfer initiated via the `POST /transfers` method that has halted
-        after party lookup and/or quotation stage.
+        This request is used to continue a requestToPayTransfer initiated via
+        the `POST /requestToPayTransfer` method that has halted after quotation
+        stage and/or otp stage.
 
 
         The request body should contain either the "acceptOTP" or "acceptQuote"
@@ -410,7 +410,7 @@ paths:
                 - $ref: '#/components/schemas/transferContinuationAcceptQuote'
                 - $ref: '#/components/schemas/transferContinuationAcceptOTP'
       parameters:
-        - $ref: '#/components/parameters/requestToPayTransactionId'
+        - $ref: '#/components/parameters/transactionRequestId'
       responses:
         '200':
           $ref: '#/components/responses/transferSuccess'
@@ -2411,7 +2411,7 @@ components:
     requestToPayTransferResponse:
       type: object
       required:
-        - requestToPayTransactionId
+        - transactionRequestId
         - from
         - to
         - amountType
@@ -2421,11 +2421,13 @@ components:
       properties:
         transferId:
           $ref: '#/components/schemas/CorrelationId'
-        requestToPayTransactionId:
+        homeR2PTransactionId:
           type: string
           description: >-
             Transaction ID from the DFSP backend, used to reconcile transactions
             between the Switch and DFSP backend systems.
+        transactionRequestId:
+          $ref: '#/components/schemas/CorrelationId'
         from:
           $ref: '#/components/schemas/transferParty'
         to:
@@ -2808,15 +2810,6 @@ components:
       description: >-
         Identifier of the merchant request to pay to continue as returned in the
         response to a `POST /requestToPay` request.
-    requestToPayTransactionId:
-      name: requestToPayTransactionId
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/CorrelationId'
-      description: >-
-        Identifier of the merchant request to pay transfer to continue as
-        returned in the response to a `POST /requestToPayTransfer` request.
     transferId:
       name: transferId
       in: path
