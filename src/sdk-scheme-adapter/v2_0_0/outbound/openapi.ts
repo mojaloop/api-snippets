@@ -1464,11 +1464,20 @@ export interface components {
       note?: components["schemas"]["Note"];
       currentState?: components["schemas"]["transferStatus"];
       quoteId?: components["schemas"]["CorrelationId"];
-      quoteResponse?: components["schemas"]["QuotesIDPutResponse"];
+      quoteResponse?: {
+        body: components["schemas"]["QuotesIDPutResponse"];
+        headers?: { [key: string]: unknown };
+      };
       /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
       quoteResponseSource?: string;
-      authorizationResponse?: components["schemas"]["AuthorizationIDPutResponse"];
-      fulfil?: components["schemas"]["TransfersIDPutResponse"];
+      authorizationResponse?: {
+        body: components["schemas"]["AuthorizationIDPutResponse"];
+        headers?: { [key: string]: unknown };
+      };
+      fulfil?: {
+        body: components["schemas"]["TransfersIDPutResponse"];
+        headers?: { [key: string]: unknown };
+      };
       /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["transferError"];
     };

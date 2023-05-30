@@ -2529,7 +2529,14 @@ components:
         quoteId:
           $ref: '#/components/schemas/CorrelationId'
         quoteResponse:
-          $ref: '#/components/schemas/QuotesIDPutResponse'
+          type: object
+          required:
+            - body
+          properties:
+            body:
+              $ref: '#/components/schemas/QuotesIDPutResponse'
+            headers:
+              type: object
         quoteResponseSource:
           type: string
           description: >
@@ -2538,9 +2545,23 @@ components:
             account in the case of a FOREX transfer. i.e. it may be a FOREX
             gateway.
         authorizationResponse:
-          $ref: '#/components/schemas/AuthorizationIDPutResponse'
+          type: object
+          required:
+            - body
+          properties:
+            body:
+              $ref: '#/components/schemas/AuthorizationIDPutResponse'
+            headers:
+              type: object
         fulfil:
-          $ref: '#/components/schemas/TransfersIDPutResponse'
+          type: object
+          required:
+            - body
+          properties:
+            body:
+              $ref: '#/components/schemas/TransfersIDPutResponse'
+            headers:
+              type: object
         lastError:
           description: >
             Object representing the last error to occur during a transfer

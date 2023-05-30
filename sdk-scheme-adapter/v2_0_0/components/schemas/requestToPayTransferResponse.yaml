@@ -36,7 +36,14 @@ properties:
   quoteId:
     $ref: ./CorrelationId.yaml
   quoteResponse:
-    $ref: ./QuotesIDPutResponse.yaml
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./QuotesIDPutResponse.yaml
+      headers:
+        type: object
   quoteResponseSource:
     type: string
     description: >
@@ -44,9 +51,23 @@ properties:
       same as the FSPID of the entity which owns the end user account in the
       case of a FOREX transfer. i.e. it may be a FOREX gateway.
   authorizationResponse:
-    $ref: ./AuthorizationIDPutResponse.yaml
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./AuthorizationIDPutResponse.yaml
+      headers:
+        type: object
   fulfil:
-    $ref: ./TransfersIDPutResponse.yaml
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./TransfersIDPutResponse.yaml
+      headers:
+        type: object
   lastError:
     description: >
       Object representing the last error to occur during a transfer process.
