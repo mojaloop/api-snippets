@@ -1409,6 +1409,47 @@ export interface components {
       note?: components["schemas"]["Note"];
       authenticationType?: components["schemas"]["AuthenticationType"];
     };
+    /**
+     * AuthenticationValue
+     * @description Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
+     */
+    AuthenticationValue: Partial<string> &
+      Partial<string> &
+      Partial<{
+        /** @description U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key. */
+        pinValue: string;
+        /**
+         * Integer
+         * @description Sequential counter used for cloning detection. Present only for U2F authentication.
+         */
+        counter: string;
+      }>;
+    /**
+     * AuthenticationInfo
+     * @description Data model for the complex type AuthenticationInfo.
+     */
+    AuthenticationInfo: {
+      authentication: components["schemas"]["AuthenticationType"];
+      authenticationValue: components["schemas"]["AuthenticationValue"];
+    };
+    /**
+     * AuthorizationResponseType
+     * @description Below are the allowed values for the enumeration.
+     * - ENTERED - Consumer entered the authentication value.
+     * - REJECTED - Consumer rejected the transaction.
+     * - RESEND - Consumer requested to resend the authentication value.
+     * @example ENTERED
+     * @enum {string}
+     */
+    AuthorizationResponseType: "ENTERED" | "REJECTED" | "RESEND";
+    /**
+     * QuotesIDPutResponse
+     * @description The object sent in the PUT /authorizations/{ID} callback.
+     */
+    AuthorizationIDPutResponse: {
+      authenticationInfo?: components["schemas"]["AuthenticationInfo"];
+      responseType: components["schemas"]["AuthorizationResponseType"];
+    };
     requestToPayTransferResponse: {
       transferId?: components["schemas"]["CorrelationId"];
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
@@ -1426,6 +1467,7 @@ export interface components {
       quoteResponse?: components["schemas"]["QuotesIDPutResponse"];
       /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
       quoteResponseSource?: string;
+      authorizationResponse?: components["schemas"]["AuthorizationIDPutResponse"];
       fulfil?: components["schemas"]["TransfersIDPutResponse"];
       /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["transferError"];

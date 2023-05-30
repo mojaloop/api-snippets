@@ -43,6 +43,8 @@ properties:
       FSPID of the entity that supplied the quote response. This may not be the
       same as the FSPID of the entity which owns the end user account in the
       case of a FOREX transfer. i.e. it may be a FOREX gateway.
+  authorizationResponse:
+    $ref: ./AuthorizationIDPutResponse.yaml
   fulfil:
     $ref: ./TransfersIDPutResponse.yaml
   lastError:

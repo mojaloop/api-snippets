@@ -1,0 +1,44 @@
+title: AuthenticationValue
+anyOf:
+  - title: OtpValue
+    type: string
+    pattern: ^\d{3,10}$
+    description: >-
+      The API data type OtpValue is a JSON String of 3 to 10 characters,
+      consisting of digits only. Negative numbers are not allowed. One or more
+      leading zeros are allowed.
+  - title: QRCODE
+    type: string
+    minLength: 1
+    maxLength: 64
+    description: QR code used as a One Time Password.
+  - title: U2FPinValue
+    type: object
+    description: >
+      U2F challenge-response, where payer FSP verifies if the response
+      provided by end-user device matches the previously registered key.
+    properties:
+      pinValue:
+        type: string
+        pattern: ^\S{1,64}$
+        minLength: 1
+        maxLength: 64
+        description: >
+          U2F challenge-response, where payer FSP verifies if the response
+          provided by end-user device matches the previously registered key.
+      counter:
+        title: Integer
+        type: string
+        pattern: ^[1-9]\d*$
+        description: >-
+          Sequential counter used for cloning detection. Present only for U2F
+          authentication.
+    required:
+      - pinValue
+      - counter
+pattern: ^\d{3,10}$|^\S{1,64}$
+description: >-
+  Contains the authentication value. The format depends on the
+  authentication type used in the AuthenticationInfo complex type.
+
+

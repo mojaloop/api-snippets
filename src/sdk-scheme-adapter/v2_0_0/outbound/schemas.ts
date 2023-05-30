@@ -109,6 +109,10 @@ export namespace Schemas {
   export const transferResponse = JsonSchemas.transferResponse
   export const errorTransferResponse = JsonSchemas.errorTransferResponse
   export const requestToPayTransferRequest = JsonSchemas.requestToPayTransferRequest
+  export const AuthenticationValue = JsonSchemas.AuthenticationValue
+  export const AuthenticationInfo = JsonSchemas.AuthenticationInfo
+  export const AuthorizationResponseType = JsonSchemas.AuthorizationResponseType
+  export const AuthorizationIDPutResponse = JsonSchemas.AuthorizationIDPutResponse
   export const requestToPayTransferResponse = JsonSchemas.requestToPayTransferResponse
   export const transferContinuationAcceptOTP = JsonSchemas.transferContinuationAcceptOTP
   export const TransfersPostRequest = JsonSchemas.TransfersPostRequest
