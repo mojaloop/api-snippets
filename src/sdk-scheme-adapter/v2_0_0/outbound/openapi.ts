@@ -1443,7 +1443,7 @@ export interface components {
      */
     AuthorizationResponseType: "ENTERED" | "REJECTED" | "RESEND";
     /**
-     * QuotesIDPutResponse
+     * AuthorizationIDPutResponse
      * @description The object sent in the PUT /authorizations/{ID} callback.
      */
     AuthorizationIDPutResponse: {
