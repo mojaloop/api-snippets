@@ -1,4 +1,4 @@
-title: QuotesIDPutResponse
+title: AuthorizationIDPutResponse
 type: object
 description: The object sent in the PUT /authorizations/{ID} callback.
 properties:
