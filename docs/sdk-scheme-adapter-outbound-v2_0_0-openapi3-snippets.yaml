@@ -386,7 +386,7 @@ paths:
   /requestToPayTransfer/{transactionRequestId}:
     put:
       summary: >-
-        Continues a transfer that has paused at the otp stage in order to accept
+        Continues a transfer that has paused at the Authentication stage in order to accept
         or reject quote
       description: >
         This request is used to continue a requestToPayTransfer initiated via
