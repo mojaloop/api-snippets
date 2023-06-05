@@ -390,7 +390,7 @@ paths:
         or reject quote
       description: >
         This request is used to continue a requestToPayTransfer initiated via
-        the `POST /requestToPayTransfer` method that has halted after quotation
+        the `POST /requestToPayTransfer` method that has halted after Quotation
         stage and/or Authentication stage.
 
 
