@@ -391,7 +391,7 @@ paths:
       description: >
         This request is used to continue a requestToPayTransfer initiated via
         the `POST /requestToPayTransfer` method that has halted after quotation
-        stage and/or otp stage.
+        stage and/or Authentication stage.
 
 
         The request body should contain either the "acceptOTP" or "acceptQuote"
