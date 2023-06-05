@@ -275,9 +275,9 @@ export interface paths {
       };
     };
   };
-  "/requestToPayTransfer/{requestToPayTransactionId}": {
+  "/requestToPayTransfer/{transactionRequestId}": {
     /**
-     * The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage.
+     * This request is used to continue a requestToPayTransfer initiated via the `POST /requestToPayTransfer` method that has halted after quotation stage and/or otp stage.
      *
      * The request body should contain either the "acceptOTP" or "acceptQuote" property set to `true` as required to continue the transfer.
      *
@@ -286,8 +286,8 @@ export interface paths {
     put: {
       parameters: {
         path: {
-          /** Identifier of the merchant request to pay transfer to continue as returned in the response to a `POST /requestToPayTransfer` request. */
-          requestToPayTransactionId: components["parameters"]["requestToPayTransactionId"];
+          /** Identifier of the merchant request to pay to continue as returned in the response to a `POST /requestToPay` request. */
+          transactionRequestId: components["parameters"]["transactionRequestId"];
         };
       };
       responses: {
@@ -1395,21 +1395,66 @@ export interface components {
     };
     requestToPayTransferRequest: {
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      requestToPayTransactionId: string;
+      homeR2PTransactionId: string;
+      transactionRequestId: components["schemas"]["CorrelationId"];
       from: components["schemas"]["transferParty"];
       to: components["schemas"]["transferParty"];
       amountType: components["schemas"]["AmountType"];
       currency: components["schemas"]["Currency"];
       amount: components["schemas"]["Amount"];
-      scenario: components["schemas"]["TransactionType"];
+      scenario: components["schemas"]["TransactionScenario"];
+      subScenario?: components["schemas"]["TransactionSubScenario"];
       initiator: components["schemas"]["TransactionInitiator"];
       initiatorType: components["schemas"]["TransactionInitiatorType"];
       note?: components["schemas"]["Note"];
+      authenticationType?: components["schemas"]["AuthenticationType"];
+    };
+    /**
+     * AuthenticationValue
+     * @description Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
+     */
+    AuthenticationValue: Partial<string> &
+      Partial<string> &
+      Partial<{
+        /** @description U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key. */
+        pinValue: string;
+        /**
+         * Integer
+         * @description Sequential counter used for cloning detection. Present only for U2F authentication.
+         */
+        counter: string;
+      }>;
+    /**
+     * AuthenticationInfo
+     * @description Data model for the complex type AuthenticationInfo.
+     */
+    AuthenticationInfo: {
+      authentication: components["schemas"]["AuthenticationType"];
+      authenticationValue: components["schemas"]["AuthenticationValue"];
+    };
+    /**
+     * AuthorizationResponseType
+     * @description Below are the allowed values for the enumeration.
+     * - ENTERED - Consumer entered the authentication value.
+     * - REJECTED - Consumer rejected the transaction.
+     * - RESEND - Consumer requested to resend the authentication value.
+     * @example ENTERED
+     * @enum {string}
+     */
+    AuthorizationResponseType: "ENTERED" | "REJECTED" | "RESEND";
+    /**
+     * AuthorizationIDPutResponse
+     * @description The object sent in the PUT /authorizations/{ID} callback.
+     */
+    AuthorizationIDPutResponse: {
+      authenticationInfo?: components["schemas"]["AuthenticationInfo"];
+      responseType: components["schemas"]["AuthorizationResponseType"];
     };
     requestToPayTransferResponse: {
       transferId?: components["schemas"]["CorrelationId"];
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
-      requestToPayTransactionId: string;
+      homeR2PTransactionId?: string;
+      transactionRequestId: components["schemas"]["CorrelationId"];
       from: components["schemas"]["transferParty"];
       to: components["schemas"]["transferParty"];
       amountType: components["schemas"]["AmountType"];
@@ -1419,10 +1464,20 @@ export interface components {
       note?: components["schemas"]["Note"];
       currentState?: components["schemas"]["transferStatus"];
       quoteId?: components["schemas"]["CorrelationId"];
-      quoteResponse?: components["schemas"]["QuotesIDPutResponse"];
+      quoteResponse?: {
+        body: components["schemas"]["QuotesIDPutResponse"];
+        headers?: { [key: string]: unknown };
+      };
       /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
       quoteResponseSource?: string;
-      fulfil?: components["schemas"]["TransfersIDPutResponse"];
+      authorizationResponse?: {
+        body: components["schemas"]["AuthorizationIDPutResponse"];
+        headers?: { [key: string]: unknown };
+      };
+      fulfil?: {
+        body: components["schemas"]["TransfersIDPutResponse"];
+        headers?: { [key: string]: unknown };
+      };
       /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["transferError"];
     };
@@ -1652,8 +1707,6 @@ export interface components {
     SubId: string;
     /** @description Identifier of the merchant request to pay to continue as returned in the response to a `POST /requestToPay` request. */
     transactionRequestId: components["schemas"]["CorrelationId"];
-    /** @description Identifier of the merchant request to pay transfer to continue as returned in the response to a `POST /requestToPayTransfer` request. */
-    requestToPayTransactionId: components["schemas"]["CorrelationId"];
     /** @description Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
     transferId: components["schemas"]["CorrelationId"];
   };

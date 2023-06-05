@@ -17,6 +17,10 @@ export interface paths {
     /** The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to amend information regarding a bulk transaction, i.e. when autoAcceptParty or autoAcceptQuote  is false then the payer need to provide confirmation to proceed with further processing of the request. The `{bulkTransactionId}` in the URI should contain the `bulkTransactionId` that was used for the creation of the bulk transfer. */
     put: operations["BackendBulkTransactionsPut"];
   };
+  "/requestToPay/{transactionRequestId}": {
+    /** It is used to notify the DFSP backend about the status of the requestToPayTransfer. */
+    put: operations["RequestToPayPut"];
+  };
   "/bulkTransfers": {
     post: operations["BackendBulkTransfersPost"];
   };
@@ -494,6 +498,8 @@ export interface components {
     quoteId: string;
     /** @description A request for a quote for transfer from the DFSP backend. */
     quoteRequest: {
+      /** @description Linked homeR2PTransactionId which was generated as part of POST /requestToPay to SDK incase of requestToPay transfer. */
+      homeR2PTransactionId?: string;
       amount: components["schemas"]["money"];
       amountType: components["schemas"]["amountType"];
       currency: components["schemas"]["currency"];
@@ -512,6 +518,7 @@ export interface components {
       to: components["schemas"]["transferParty"];
       transactionId: components["schemas"]["transactionId"];
       transactionType: components["schemas"]["transactionType"];
+      transactionRequestId?: components["schemas"]["transactionRequestId"];
     };
     /** @description A response to a request for a quote. */
     quoteResponse: {
@@ -617,6 +624,8 @@ export interface components {
       type?: components["schemas"]["payerType"];
     };
     transferRequest: {
+      /** @description Linked homeR2PTransactionId which was generated as part of POST /requestToPay to SDK incase of requestToPay transfer. */
+      homeR2PTransactionId?: string;
       amount: components["schemas"]["money"];
       amountType: components["schemas"]["amountType"];
       currency: components["schemas"]["currency"];
@@ -631,6 +640,7 @@ export interface components {
       to: components["schemas"]["transferParty"];
       transactionType: components["schemas"]["transactionType"];
       transferId: components["schemas"]["transferId"];
+      transactionRequestId?: components["schemas"]["transactionRequestId"];
     };
     transferResponse: {
       completedTimestamp?: components["schemas"]["timestamp"];
@@ -651,6 +661,12 @@ export interface components {
       | "WAITING_FOR_PARTY_ACCEPTANCE"
       | "WAITING_FOR_QUOTE_ACCEPTANCE"
       | "COMPLETED";
+    /** @description Callback for requestToPay. */
+    requestToPayCallback: {
+      /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
+      homeR2PTransactionId?: string;
+      transactionRequestState: components["schemas"]["transactionRequestState"];
+    };
     /**
      * TransactionSubScenario
      * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
@@ -1235,6 +1251,25 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["bulkTransactionResponse"];
+      };
+    };
+  };
+  /** It is used to notify the DFSP backend about the status of the requestToPayTransfer. */
+  RequestToPayPut: {
+    parameters: {
+      path: {
+        transactionRequestId: components["parameters"]["transactionRequestId"];
+      };
+    };
+    responses: {
+      /** OK */
+      200: unknown;
+      400: components["responses"]["400"];
+      500: components["responses"]["500"];
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["requestToPayCallback"];
       };
     };
   };

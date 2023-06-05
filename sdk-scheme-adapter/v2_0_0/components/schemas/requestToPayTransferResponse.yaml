@@ -1,6 +1,6 @@
 type: object
 required:
-  - requestToPayTransactionId
+  - transactionRequestId
   - from
   - to
   - amountType
@@ -10,11 +10,13 @@ required:
 properties:
   transferId:
     $ref: ./CorrelationId.yaml
-  requestToPayTransactionId:
+  homeR2PTransactionId:
     type: string
     description: >-
       Transaction ID from the DFSP backend, used to reconcile transactions
       between the Switch and DFSP backend systems.
+  transactionRequestId:
+    $ref: ./CorrelationId.yaml
   from:
     $ref: ./transferParty.yaml
   to:
@@ -34,15 +36,38 @@ properties:
   quoteId:
     $ref: ./CorrelationId.yaml
   quoteResponse:
-    $ref: ./QuotesIDPutResponse.yaml
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./QuotesIDPutResponse.yaml
+      headers:
+        type: object
   quoteResponseSource:
     type: string
     description: >
       FSPID of the entity that supplied the quote response. This may not be the
       same as the FSPID of the entity which owns the end user account in the
       case of a FOREX transfer. i.e. it may be a FOREX gateway.
+  authorizationResponse:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./AuthorizationIDPutResponse.yaml
+      headers:
+        type: object
   fulfil:
-    $ref: ./TransfersIDPutResponse.yaml
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./TransfersIDPutResponse.yaml
+      headers:
+        type: object
   lastError:
     description: >
       Object representing the last error to occur during a transfer process.

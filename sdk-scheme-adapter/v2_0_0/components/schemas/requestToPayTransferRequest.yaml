@@ -1,6 +1,7 @@
 type: object
 required:
-  - requestToPayTransactionId
+  - homeR2PTransactionId
+  - transactionRequestId
   - from
   - to
   - amountType
@@ -10,11 +11,13 @@ required:
   - initiator
   - initiatorType
 properties:
-  requestToPayTransactionId:
+  homeR2PTransactionId:
     type: string
     description: >-
       Transaction ID from the DFSP backend, used to reconcile transactions
       between the Switch and DFSP backend systems.
+  transactionRequestId:
+    $ref: ./CorrelationId.yaml
   from:
     $ref: ./transferParty.yaml
   to:
@@ -26,10 +29,14 @@ properties:
   amount:
     $ref: ./Amount.yaml
   scenario:
-    $ref: ./TransactionType.yaml
+    $ref: ./TransactionScenario.yaml
+  subScenario:
+    $ref: ./TransactionSubScenario.yaml
   initiator:
     $ref: ./TransactionInitiator.yaml
   initiatorType:
     $ref: ./TransactionInitiatorType.yaml
   note:
     $ref: ./Note.yaml
+  authenticationType:
+    $ref: './AuthenticationType.yaml'

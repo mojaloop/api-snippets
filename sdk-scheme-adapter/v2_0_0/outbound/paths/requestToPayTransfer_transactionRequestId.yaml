@@ -3,9 +3,9 @@ put:
     Continues a transfer that has paused at the otp stage in order to accept or
     reject quote
   description: >
-    The HTTP request `PUT /transfers/{transferId}` is used to continue a
-    transfer initiated via the `POST /transfers` method that has halted after
-    party lookup and/or quotation stage.
+    This request is used to continue a
+    requestToPayTransfer initiated via the `POST /requestToPayTransfer` method that has halted after
+    quotation stage and/or otp stage.
 
 
     The request body should contain either the "acceptOTP" or "acceptQuote"
@@ -24,7 +24,7 @@ put:
             - $ref: ../../components/schemas/transferContinuationAcceptQuote.yaml
             - $ref: ../../components/schemas/transferContinuationAcceptOTP.yaml
   parameters:
-    - $ref: ../../components/parameters/requestToPayTransactionId.yaml
+    - $ref: ../../components/parameters/transactionRequestId.yaml
   responses:
     '200':
       $ref: ../../components/responses/transferSuccess.yaml

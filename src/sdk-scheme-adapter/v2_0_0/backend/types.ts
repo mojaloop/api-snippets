@@ -69,6 +69,7 @@ export namespace Types {
   export type transferResponse = components['schemas']['transferResponse']
   export type transferState = components['schemas']['transferState']
   export type transferStatus = components['schemas']['transferStatus']
+  export type requestToPayCallback = components['schemas']['requestToPayCallback']
   export type TransactionSubScenario = components['schemas']['TransactionSubScenario']
   export type CorrelationId = components['schemas']['CorrelationId']
   export type bulkTransactionStatus = components['schemas']['bulkTransactionStatus']
