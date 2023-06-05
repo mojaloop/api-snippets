@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.2.0](https://github.com/mojaloop/api-snippets/compare/v17.1.0...v17.2.0) (2023-06-05)
+
+
+### Features
+
+* **mojaloop/3347:** enhance the request to pay transfer api process for payer acceptance flow ([#163](https://github.com/mojaloop/api-snippets/issues/163)) ([d24c889](https://github.com/mojaloop/api-snippets/commit/d24c889367132fc0f8ebf35f36726c0cbe9679ed))
+
 ## [17.1.0](https://github.com/mojaloop/api-snippets/compare/v17.0.4...v17.1.0) (2023-05-19)
 
 
