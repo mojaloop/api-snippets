@@ -1,12 +1,9 @@
 {
   "name": "@mojaloop/api-snippets",
-  "version": "17.2.0",
+  "version": "17.2.1",
   "description": "Mojaloop API specification reusable snippets",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "engines": {
-    "node": "=16.x"
-  },
   "scripts": {
     "audit:resolve": "SHELL=sh resolve-audit --production",
     "audit:check": "SHELL=sh check-audit --production",
