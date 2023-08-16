@@ -10,7 +10,7 @@ module.exports = {
     // Upgrading typescript to 5.0.4 causing unit test failures due to breaking changes related to `ttypescript` for 'custom transformers'
     'typescript',
     // TODO: The new version of npm-check-updates uses new Glob v9.x and it is introducing a dependency Package "path-scurry@1.6.1" which is licensed under "BlueOak-1.0.0" which is not permitted by the Mojaloop License Policy
-    'npm-check-updates',
+    //'npm-check-updates',
     // TODO: Upgrading ts-auto-mock is breaking the npm install
     'ts-auto-mock'
   ]
