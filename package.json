@@ -35,13 +35,7 @@
     "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
     "test:unit": "jest --testMatch '**/test/dto/*.(test|spec).ts'"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged; npm run test:unit",
-      "post-commit": "git update-index --again"
-    }
-  },
+  
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix"
   },
