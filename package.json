@@ -70,9 +70,8 @@
     "js-yaml": "^4.1.0",
     "json-refs": "^3.0.15",
     "openapi-types": "^12.1.3",
-    "openapi-typescript": "^5.4.1",
-    "ts-auto-mock": "^3.6.4",
-    "ttypescript": "^1.5.15"
+    "openapi-typescript": "^6.5.0",
+    "ts-auto-mock": "^3.7.1"
   },
   "overrides": {
     "@types/cacheable-request": "^6.0.2",
@@ -107,8 +106,9 @@
     "swagger-cli": "^4.0.4",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
+    "ts-patch": "^3.0.2",
     "tslib": "^2.6.1",
-    "typescript": "^4.9.4"
+    "typescript": "^5.1.6"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
