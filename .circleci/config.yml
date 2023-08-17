@@ -87,7 +87,7 @@ defaults_display_versions: &defaults_display_versions
 executors:
   default-docker:
     working_directory: &WORKING_DIR /home/circleci/project
-    shell: "/bin/sh -leo pipefail" ## Ref: https://circleci.com/docs/env-vars/#alpine-linux
+    shell: "/bin/bash -leo pipefail" ## Ref: https://circleci.com/docs/env-vars/#alpine-linux
     environment:
       BASH_ENV: /etc/profile ## Ref: https://circleci.com/docs/env-vars/#alpine-linux
       NVM_ARCH_UNOFFICIAL_OVERRIDE: x64-musl ## Ref: https://github.com/nvm-sh/nvm/issues/1102#issuecomment-550572252
