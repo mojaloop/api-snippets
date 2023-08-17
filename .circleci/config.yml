@@ -23,7 +23,8 @@ defaults_docker_Dependencies: &defaults_docker_Dependencies |
   apk --no-cache add ca-certificates
   apk --no-cache add curl
   apk --no-cache add openssh-client
-  apk add --no-cache -t build-dependencies make gcc g++ python3 libtool autoconf automake jq
+  apk --no-cache add -t build-dependencies make gcc g++ python3 libtool autoconf automake jq
+  apk --no-cache add bash bash-doc bash-completion
   npm install -g node-gyp
 
 defaults_awsCliDependencies: &defaults_awsCliDependencies |
@@ -87,7 +88,7 @@ defaults_display_versions: &defaults_display_versions
 executors:
   default-docker:
     working_directory: &WORKING_DIR /home/circleci/project
-    shell: "/bin/bash -leo pipefail" ## Ref: https://circleci.com/docs/env-vars/#alpine-linux
+    shell: "/bin/sh -leo pipefail" ## Ref: https://circleci.com/docs/env-vars/#alpine-linux
     environment:
       BASH_ENV: /etc/profile ## Ref: https://circleci.com/docs/env-vars/#alpine-linux
       NVM_ARCH_UNOFFICIAL_OVERRIDE: x64-musl ## Ref: https://github.com/nvm-sh/nvm/issues/1102#issuecomment-550572252
