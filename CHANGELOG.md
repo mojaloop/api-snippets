@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.2.3](https://github.com/mojaloop/api-snippets/compare/v17.2.2...v17.2.3) (2023-08-17)
+
+
+### Bug Fixes
+
+* ci config.yml for missing jq dependency ([#165](https://github.com/mojaloop/api-snippets/issues/165)) ([2b950da](https://github.com/mojaloop/api-snippets/commit/2b950da02a4ef91ae4fbba9618a9e0b9619c6426))
+
 ### [17.2.2](https://github.com/mojaloop/api-snippets/compare/v17.2.0...v17.2.2) (2023-08-17)
 
 
