@@ -26,7 +26,7 @@ defaults_docker_Dependencies: &defaults_docker_Dependencies |
   apk --no-cache add curl
   apk --no-cache add openssh-client
   apk --no-cache add bash bash-doc bash-completion
-  apk --no-cache add -t build-dependencies make gcc g++ python3 libtool autoconf automake
+  apk --no-cache add -t build-dependencies make gcc g++ python3 libtool autoconf automake jq
 
 defaults_awsCliDependencies: &defaults_awsCliDependencies |
   apk --no-cache add aws-cli
