@@ -16,10 +16,8 @@ module.exports = {
   },
   globals: {
     'ts-jest': {
-      compiler: 'ttypescript'
+      compiler: 'ts-patch/compiler'
     }
   },
-  setupFiles: [
-    '<rootDir>config.ts'
-  ]
+  setupFiles: ['<rootDir>config.ts']
 }

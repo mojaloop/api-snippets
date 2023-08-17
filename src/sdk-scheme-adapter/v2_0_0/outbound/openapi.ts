@@ -3,71 +3,83 @@
  * Do not make direct changes to the file.
  */
 
+
 export interface paths {
   "/": {
-    /** This endpoint allows a user of the SDK scheme adapter to check the outbound transfers service is listening. */
+    /**
+     * Health check endpoint
+     * @description This endpoint allows a user of the SDK scheme adapter to check the outbound transfers service is listening.
+     */
     get: {
       responses: {
-        /** Returns empty body if the scheme adapter outbound transfers service is running. */
-        200: unknown;
+        /** @description Returns empty body if the scheme adapter outbound transfers service is running. */
+        200: {
+          content: never;
+        };
       };
     };
   };
   "/accounts": {
     /**
-     * The HTTP request `POST /accounts` is used to create account information on the Account Lookup Service (ALS) regarding the provided list of identities.
+     * Create accounts on the Account Lookup Service
+     * @description The HTTP request `POST /accounts` is used to create account information on the Account Lookup Service (ALS) regarding the provided list of identities.
      *
      * Caller DFSP is used as the account source FSP information
      */
     post: {
+      /** @description Identities list request body */
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["accountsRequest"];
+        };
+      };
       responses: {
         200: components["responses"]["accountsCreationCompleted"];
         400: components["responses"]["accountsCreationError"];
         500: components["responses"]["accountsCreationError"];
         504: components["responses"]["accountsCreationTimeout"];
       };
-      /** Identities list request body */
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["accountsRequest"];
-        };
-      };
     };
   };
   "/bulkQuotes": {
-    /** The HTTP request `POST /bulkQuotes` is used to request a bulk quote to fascilitate funds transfer from payer DFSP to payees' DFSP. */
+    /**
+     * Request bulk quotes for the provided financial transactions
+     * @description The HTTP request `POST /bulkQuotes` is used to request a bulk quote to fascilitate funds transfer from payer DFSP to payees' DFSP.
+     */
     post: {
+      /** @description Bulk quote request body */
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["bulkQuoteRequest"];
+        };
+      };
       responses: {
         200: components["responses"]["bulkQuoteSuccess"];
         400: components["responses"]["bulkQuoteBadRequest"];
         500: components["responses"]["bulkQuoteServerError"];
         504: components["responses"]["bulkQuoteTimeout"];
       };
-      /** Bulk quote request body */
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["bulkQuoteRequest"];
-        };
-      };
     };
   };
   "/bulkQuotes/{bulkQuoteId}": {
-    /** The HTTP request `GET /bulkQuotes/{bulktQuoteId}` is used to get information regarding a bulk quote created or requested earlier. The `{bulkQuoteId}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote. */
+    /**
+     * Retrieves information for a specific bulk quote
+     * @description The HTTP request `GET /bulkQuotes/{bulktQuoteId}` is used to get information regarding a bulk quote created or requested earlier. The `{bulkQuoteId}` in the URI should contain the `bulkQuoteId` that was used for the creation of the bulk quote.
+     */
     get: {
       parameters: {
         path: {
-          /** Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
           bulkQuoteId: components["parameters"]["bulkQuoteId"];
         };
       };
       responses: {
-        /** Bulk quote information successfully retrieved */
+        /** @description Bulk quote information successfully retrieved */
         200: {
           content: {
             "application/json": components["schemas"]["bulkQuoteStatusResponse"];
           };
         };
-        /** An error occurred processing the bulk quote */
+        /** @description An error occurred processing the bulk quote */
         500: {
           content: {
             "application/json": components["schemas"]["errorResponse"];
@@ -77,84 +89,94 @@ export interface paths {
     };
   };
   "/bulkTransactions": {
-    /** The HTTP request `POST /bulkTransactions` is used to request the movement of funds from payer DFSP to payees' DFSP. */
+    /**
+     * Sends money from one account to multiple accounts
+     * @description The HTTP request `POST /bulkTransactions` is used to request the movement of funds from payer DFSP to payees' DFSP.
+     */
     post: {
-      responses: {
-        202: components["responses"]["bulkTransactionAccepted"];
-        400: components["responses"]["bulkTransferBadRequest"];
-        500: components["responses"]["errorResponse"];
-      };
-      /** Bulk transfer request body */
+      /** @description Bulk transfer request body */
       requestBody: {
         content: {
           "application/json": components["schemas"]["bulkTransactionRequest"];
         };
       };
+      responses: {
+        202: components["responses"]["bulkTransactionAccepted"];
+        400: components["responses"]["bulkTransferBadRequest"];
+        500: components["responses"]["errorResponse"];
+      };
     };
   };
   "/bulkTransactions/{bulkTransactionId}": {
-    /** The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to amend information regarding a bulk transaction, i.e. when autoAcceptParty or autoAcceptQuote  is false then the payer need to provide confirmation to proceed with further processing of the request. The `{bulkTransactionId}` in the URI should contain the `bulkTransactionId` that was used for the creation of the bulk transfer. */
+    /**
+     * Amends the bulk transaction request
+     * @description The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to amend information regarding a bulk transaction, i.e. when autoAcceptParty or autoAcceptQuote  is false then the payer need to provide confirmation to proceed with further processing of the request. The `{bulkTransactionId}` in the URI should contain the `bulkTransactionId` that was used for the creation of the bulk transfer.
+     */
     put: {
       parameters: {
         path: {
-          /** Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request. */
           bulkTransactionId: components["parameters"]["bulkTransactionId"];
         };
       };
+      /** @description Bulk transaction request body */
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["bulkTransactionContinuationAcceptParty"] | components["schemas"]["bulkTransactionContinuationAcceptQuote"];
+        };
+      };
       responses: {
-        /** Bulk transaction information successfully amended */
-        202: unknown;
+        /** @description Bulk transaction information successfully amended */
+        202: {
+          content: never;
+        };
         400: components["responses"]["bulkTransactionPutBadRequest"];
-        /** An error occurred processing the bulk transaction */
+        /** @description An error occurred processing the bulk transaction */
         500: {
           content: {
             "application/json": components["schemas"]["errorResponse"];
           };
         };
       };
-      /** Bulk transaction request body */
-      requestBody: {
-        content: {
-          "application/json":
-            | components["schemas"]["bulkTransactionContinuationAcceptParty"]
-            | components["schemas"]["bulkTransactionContinuationAcceptQuote"];
-        };
-      };
     };
   };
   "/bulkTransfers": {
-    /** The HTTP request `POST /bulkTransfers` is used to request the movement of funds from payer DFSP to payees' DFSP. */
+    /**
+     * Sends money from one account to multiple accounts
+     * @description The HTTP request `POST /bulkTransfers` is used to request the movement of funds from payer DFSP to payees' DFSP.
+     */
     post: {
-      responses: {
-        200: components["responses"]["bulkTransferSuccess"];
-        400: components["responses"]["bulkTransferBadRequest"];
-        500: components["responses"]["errorResponse"];
-      };
-      /** Bulk transfer request body */
+      /** @description Bulk transfer request body */
       requestBody: {
         content: {
           "application/json": components["schemas"]["bulkTransferRequest"];
         };
       };
+      responses: {
+        200: components["responses"]["bulkTransferSuccess"];
+        400: components["responses"]["bulkTransferBadRequest"];
+        500: components["responses"]["errorResponse"];
+      };
     };
   };
   "/bulkTransfers/{bulkTransferId}": {
-    /** The HTTP request `GET /bulkTransfers/{bulkTransferId}` is used to get information regarding a bulk transfer created or requested earlier. The `{bulkTransferId}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer. */
+    /**
+     * Retrieves information for a specific bulk transfer
+     * @description The HTTP request `GET /bulkTransfers/{bulkTransferId}` is used to get information regarding a bulk transfer created or requested earlier. The `{bulkTransferId}` in the URI should contain the `bulkTransferId` that was used for the creation of the bulk transfer.
+     */
     get: {
       parameters: {
         path: {
-          /** Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
           bulkTransferId: components["parameters"]["bulkTransferId"];
         };
       };
       responses: {
-        /** Bulk transfer information successfully retrieved */
+        /** @description Bulk transfer information successfully retrieved */
         200: {
           content: {
             "application/json": components["schemas"]["bulkTransferStatusResponse"];
           };
         };
-        /** An error occurred processing the bulk transfer */
+        /** @description An error occurred processing the bulk transfer */
         500: {
           content: {
             "application/json": components["schemas"]["errorResponse"];
@@ -164,66 +186,76 @@ export interface paths {
     };
   };
   "/parties/{Type}/{ID}": {
-    /** The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1). */
+    /**
+     * PartiesByTypeAndID
+     * @description The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1).
+     */
     get: operations["PartiesByTypeAndID"];
     parameters: {
       path: {
-        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
         Type: components["parameters"]["Type"];
-        /** The identifier value. */
         ID: components["parameters"]["ID"];
       };
     };
   };
   "/parties/{Type}/{ID}/{SubId}": {
-    /** The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1). */
+    /**
+     * PartiesSubIdByTypeAndID
+     * @description The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1).
+     */
     get: operations["PartiesSubIdByTypeAndID"];
     parameters: {
       path: {
-        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
         Type: components["parameters"]["Type"];
-        /** The identifier value. */
         ID: components["parameters"]["ID"];
-        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
         SubId: components["parameters"]["SubId"];
       };
     };
   };
   "/quotes": {
-    /** is used to request quotes from other DFSP */
+    /**
+     * Quotes endpoint
+     * @description is used to request quotes from other DFSP
+     */
     post: operations["QuotesPost"];
   };
   "/requestToPay": {
     /**
-     * The HTTP request `POST /requestToPay` is used to support Pull Funds pattern where in a receiver can request for funds from the Sender.
+     * Receiver requesting funds from Sender
+     * @description The HTTP request `POST /requestToPay` is used to support Pull Funds pattern where in a receiver can request for funds from the Sender.
      * The underlying API has two stages:
      *
      *   1. Party lookup. This facilitates a check by the sending party that the destination party is correct before proceeding with a money movement.
      *   2. Transaction Request. This request enables a Payee to request Payer to send electronic funds to the Payee.
      */
     post: {
-      responses: {
-        200: components["responses"]["requestToPaySuccess"];
-      };
-      /** RequestToPay request body */
+      /** @description RequestToPay request body */
       requestBody: {
         content: {
           "application/json": components["schemas"]["requestToPayRequest"];
         };
       };
+      responses: {
+        200: components["responses"]["requestToPaySuccess"];
+      };
     };
   };
   "/requestToPay/{transactionRequestId}": {
     /**
-     * The HTTP request `PUT /requestToPay/{transactionRequestId}` is used to continue a transfer initiated via the `POST /requestToPay` method that has halted after party lookup stage.
+     * Continues a request funds from sender that has paused at the party resolution stage in order to accept or reject party information
+     * @description The HTTP request `PUT /requestToPay/{transactionRequestId}` is used to continue a transfer initiated via the `POST /requestToPay` method that has halted after party lookup stage.
      * The request body should contain the "acceptParty" property set to `true` as required to continue the transfer.
      * See the description of the `POST /requestToPay` HTTP method for more information on modes of transfer.
      */
     put: {
       parameters: {
         path: {
-          /** Identifier of the merchant request to pay to continue as returned in the response to a `POST /requestToPay` request. */
           transactionRequestId: components["parameters"]["transactionRequestId"];
+        };
+      };
+      requestBody?: {
+        content: {
+          "application/json": components["schemas"]["transferContinuationAcceptParty"];
         };
       };
       responses: {
@@ -231,16 +263,12 @@ export interface paths {
         500: components["responses"]["transferServerError"];
         504: components["responses"]["transferTimeout"];
       };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["transferContinuationAcceptParty"];
-        };
-      };
     };
   };
   "/requestToPayTransfer": {
     /**
-     * The HTTP request `POST /requestToPayTransfer` is used to request the movement of funds from payer DFSP to payee DFSP.
+     * Used to trigger funds from customer fsp account to merchant fsp account. This is a follow-up request to requestToPay.
+     * @description The HTTP request `POST /requestToPayTransfer` is used to request the movement of funds from payer DFSP to payee DFSP.
      * The underlying Mojaloop API has three stages for money transfer:
      *
      *   1. Quotation. This facilitates the exchange of fee information and the construction of a cryptographic "contract" between payee and payer DFSPs before funds are transferred.
@@ -261,23 +289,24 @@ export interface paths {
      * Combinations of settings for `AUTO_ACCEPT...` configuration variables allow the scheme adapter user to decide which mode of operation best suits their use cases. i.e. the scheme adapter can be configured to "break" the three stage transfer at these points in order to execute backend logic such as party verification, quoted fees assessments etc...
      */
     post: {
+      /** @description Request To Pay Transfer request body */
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["requestToPayTransferRequest"];
+        };
+      };
       responses: {
         200: components["responses"]["requestToPayTransferSuccess"];
         400: components["responses"]["requestToPayTransferBadRequest"];
         500: components["responses"]["transferServerError"];
         504: components["responses"]["transferTimeout"];
       };
-      /** Request To Pay Transfer request body */
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["requestToPayTransferRequest"];
-        };
-      };
     };
   };
   "/requestToPayTransfer/{transactionRequestId}": {
     /**
-     * This request is used to continue a requestToPayTransfer initiated via the `POST /requestToPayTransfer` method that has halted after quotation stage and/or otp stage.
+     * Continues a transfer that has paused at the otp stage in order to accept or reject quote
+     * @description This request is used to continue a requestToPayTransfer initiated via the `POST /requestToPayTransfer` method that has halted after quotation stage and/or otp stage.
      *
      * The request body should contain either the "acceptOTP" or "acceptQuote" property set to `true` as required to continue the transfer.
      *
@@ -286,8 +315,12 @@ export interface paths {
     put: {
       parameters: {
         path: {
-          /** Identifier of the merchant request to pay to continue as returned in the response to a `POST /requestToPay` request. */
           transactionRequestId: components["parameters"]["transactionRequestId"];
+        };
+      };
+      requestBody?: {
+        content: {
+          "application/json": components["schemas"]["transferContinuationAcceptQuote"] | components["schemas"]["transferContinuationAcceptOTP"];
         };
       };
       responses: {
@@ -295,22 +328,19 @@ export interface paths {
         500: components["responses"]["transferServerError"];
         504: components["responses"]["transferTimeout"];
       };
-      requestBody: {
-        content: {
-          "application/json":
-            | components["schemas"]["transferContinuationAcceptQuote"]
-            | components["schemas"]["transferContinuationAcceptOTP"];
-        };
-      };
     };
   };
   "/simpleTransfers": {
-    /** is used to request a transfer */
+    /**
+     * Simple Transfers endpoint
+     * @description is used to request a transfer
+     */
     post: operations["SimpleTransfersPost"];
   };
   "/transfers": {
     /**
-     * The HTTP request `POST /transfers` is used to request the movement of funds from payer DFSP to payee DFSP.
+     * Sends money from one account to another
+     * @description The HTTP request `POST /transfers` is used to request the movement of funds from payer DFSP to payee DFSP.
      * The underlying Mojaloop API has three stages for money transfer:
      *
      *   1. Party lookup. This facilitates a check by the sending party that the destination party is correct before proceeding with a money movement.
@@ -331,37 +361,39 @@ export interface paths {
      * Combinations of settings for `AUTO_ACCEPT...` configuration variables allow the scheme adapter user to decide which mode of operation best suits their use cases. i.e. the scheme adapter can be configured to "break" the three stage transfer at these points in order to execute backend logic such as party verification, quoted fees assessments etc...
      */
     post: {
+      /** @description Transfer request body */
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["transferRequest"];
+        };
+      };
       responses: {
         200: components["responses"]["transferSuccess"];
         400: components["responses"]["transferBadRequest"];
         500: components["responses"]["transferServerError"];
         504: components["responses"]["transferTimeout"];
       };
-      /** Transfer request body */
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["transferRequest"];
-        };
-      };
     };
   };
   "/transfers/{transferId}": {
-    /** The HTTP request `GET /transfers/{transferId}` is used to get information regarding a transfer created or requested earlier. The `{transferId}` in the URI should contain the `transferId` that was used for the creation of the transfer. */
+    /**
+     * Retrieves information for a specific transfer
+     * @description The HTTP request `GET /transfers/{transferId}` is used to get information regarding a transfer created or requested earlier. The `{transferId}` in the URI should contain the `transferId` that was used for the creation of the transfer.
+     */
     get: {
       parameters: {
         path: {
-          /** Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
           transferId: components["parameters"]["transferId"];
         };
       };
       responses: {
-        /** Transfer information successfully retrieved */
+        /** @description Transfer information successfully retrieved */
         200: {
           content: {
             "application/json": components["schemas"]["transferStatusResponse"];
           };
         };
-        /** An error occurred processing the transfer */
+        /** @description An error occurred processing the transfer */
         500: {
           content: {
             "application/json": components["schemas"]["errorResponse"];
@@ -370,7 +402,8 @@ export interface paths {
       };
     };
     /**
-     * The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage.
+     * Continues a transfer that has paused at the quote stage in order to accept or reject payee party and/or quote
+     * @description The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage.
      *
      * The request body should contain either the "acceptParty" or "acceptQuote" property set to `true` as required to continue the transfer.
      *
@@ -379,8 +412,12 @@ export interface paths {
     put: {
       parameters: {
         path: {
-          /** Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
           transferId: components["parameters"]["transferId"];
+        };
+      };
+      requestBody?: {
+        content: {
+          "application/json": components["schemas"]["transferContinuationAcceptParty"] | components["schemas"]["transferContinuationAcceptQuote"];
         };
       };
       responses: {
@@ -388,16 +425,11 @@ export interface paths {
         500: components["responses"]["transferServerError"];
         504: components["responses"]["transferTimeout"];
       };
-      requestBody: {
-        content: {
-          "application/json":
-            | components["schemas"]["transferContinuationAcceptParty"]
-            | components["schemas"]["transferContinuationAcceptQuote"];
-        };
-      };
     };
   };
 }
+
+export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
@@ -414,15 +446,7 @@ export interface components {
      * - ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier.
      * @enum {string}
      */
-    PartyIdType:
-      | "MSISDN"
-      | "EMAIL"
-      | "PERSONAL_ID"
-      | "BUSINESS"
-      | "DEVICE"
-      | "ACCOUNT_ID"
-      | "IBAN"
-      | "ALIAS";
+    PartyIdType: "MSISDN" | "EMAIL" | "PERSONAL_ID" | "BUSINESS" | "DEVICE" | "ACCOUNT_ID" | "IBAN" | "ALIAS";
     /**
      * PartyIdentifier
      * @description Identifier of the Party.
@@ -439,177 +463,13 @@ export interface components {
      * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
      * @enum {string}
      */
-    Currency:
-      | "AED"
-      | "AFN"
-      | "ALL"
-      | "AMD"
-      | "ANG"
-      | "AOA"
-      | "ARS"
-      | "AUD"
-      | "AWG"
-      | "AZN"
-      | "BAM"
-      | "BBD"
-      | "BDT"
-      | "BGN"
-      | "BHD"
-      | "BIF"
-      | "BMD"
-      | "BND"
-      | "BOB"
-      | "BRL"
-      | "BSD"
-      | "BTN"
-      | "BWP"
-      | "BYN"
-      | "BZD"
-      | "CAD"
-      | "CDF"
-      | "CHF"
-      | "CLP"
-      | "CNY"
-      | "COP"
-      | "CRC"
-      | "CUC"
-      | "CUP"
-      | "CVE"
-      | "CZK"
-      | "DJF"
-      | "DKK"
-      | "DOP"
-      | "DZD"
-      | "EGP"
-      | "ERN"
-      | "ETB"
-      | "EUR"
-      | "FJD"
-      | "FKP"
-      | "GBP"
-      | "GEL"
-      | "GGP"
-      | "GHS"
-      | "GIP"
-      | "GMD"
-      | "GNF"
-      | "GTQ"
-      | "GYD"
-      | "HKD"
-      | "HNL"
-      | "HRK"
-      | "HTG"
-      | "HUF"
-      | "IDR"
-      | "ILS"
-      | "IMP"
-      | "INR"
-      | "IQD"
-      | "IRR"
-      | "ISK"
-      | "JEP"
-      | "JMD"
-      | "JOD"
-      | "JPY"
-      | "KES"
-      | "KGS"
-      | "KHR"
-      | "KMF"
-      | "KPW"
-      | "KRW"
-      | "KWD"
-      | "KYD"
-      | "KZT"
-      | "LAK"
-      | "LBP"
-      | "LKR"
-      | "LRD"
-      | "LSL"
-      | "LYD"
-      | "MAD"
-      | "MDL"
-      | "MGA"
-      | "MKD"
-      | "MMK"
-      | "MNT"
-      | "MOP"
-      | "MRO"
-      | "MUR"
-      | "MVR"
-      | "MWK"
-      | "MXN"
-      | "MYR"
-      | "MZN"
-      | "NAD"
-      | "NGN"
-      | "NIO"
-      | "NOK"
-      | "NPR"
-      | "NZD"
-      | "OMR"
-      | "PAB"
-      | "PEN"
-      | "PGK"
-      | "PHP"
-      | "PKR"
-      | "PLN"
-      | "PYG"
-      | "QAR"
-      | "RON"
-      | "RSD"
-      | "RUB"
-      | "RWF"
-      | "SAR"
-      | "SBD"
-      | "SCR"
-      | "SDG"
-      | "SEK"
-      | "SGD"
-      | "SHP"
-      | "SLL"
-      | "SOS"
-      | "SPL"
-      | "SRD"
-      | "STD"
-      | "SVC"
-      | "SYP"
-      | "SZL"
-      | "THB"
-      | "TJS"
-      | "TMT"
-      | "TND"
-      | "TOP"
-      | "TRY"
-      | "TTD"
-      | "TVD"
-      | "TWD"
-      | "TZS"
-      | "UAH"
-      | "UGX"
-      | "USD"
-      | "UYU"
-      | "UZS"
-      | "VEF"
-      | "VND"
-      | "VUV"
-      | "WST"
-      | "XAF"
-      | "XCD"
-      | "XDR"
-      | "XOF"
-      | "XPF"
-      | "XTS"
-      | "XXX"
-      | "YER"
-      | "ZAR"
-      | "ZMW"
-      | "ZWD";
+    Currency: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
     accountsRequest: {
-      idType: components["schemas"]["PartyIdType"];
-      idValue: components["schemas"]["PartyIdentifier"];
-      idSubValue?: components["schemas"]["PartySubIdOrType"];
-      currency: components["schemas"]["Currency"];
-    }[];
+        idType: components["schemas"]["PartyIdType"];
+        idValue: components["schemas"]["PartyIdentifier"];
+        idSubValue?: components["schemas"]["PartySubIdOrType"];
+        currency: components["schemas"]["Currency"];
+      }[];
     /**
      * CorrelationId
      * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
@@ -623,11 +483,11 @@ export interface components {
       message?: string;
     };
     accountCreationStatus: {
-      idType: components["schemas"]["PartyIdType"];
-      idValue: components["schemas"]["PartyIdentifier"];
-      idSubValue?: components["schemas"]["PartySubIdOrType"];
-      error?: components["schemas"]["errorResponse"];
-    }[];
+        idType: components["schemas"]["PartyIdType"];
+        idValue: components["schemas"]["PartyIdentifier"];
+        idSubValue?: components["schemas"]["PartySubIdOrType"];
+        error?: components["schemas"]["errorResponse"];
+      }[];
     /** @enum {string} */
     accountsCreationState: "ERROR_OCCURRED" | "COMPLETED";
     /**
@@ -692,8 +552,8 @@ export interface components {
       currentState?: components["schemas"]["accountsCreationState"];
       lastError?: components["schemas"]["transferError"];
       postAccountsResponse?: {
-        body: { [key: string]: unknown };
-        headers?: { [key: string]: unknown };
+        body: Record<string, never>;
+        headers?: Record<string, never>;
       };
     };
     errorAccountsResponse: components["schemas"]["errorResponse"] & {
@@ -1056,8 +916,7 @@ export interface components {
     /** @description The object sent back as confirmation of payee parties when autoAcceptParty is false. */
     bulkTransactionContinuationAcceptParty: {
       /** @description List of individual transfers in a bulk transfer with accept party information. */
-      individualTransfers: (components["schemas"]["bulkTransactionIndividualTransferAccept"] &
-        components["schemas"]["transferContinuationAcceptParty"])[];
+      individualTransfers: (components["schemas"]["bulkTransactionIndividualTransferAccept"] & components["schemas"]["transferContinuationAcceptParty"])[];
     };
     transferContinuationAcceptQuote: {
       /** @enum {boolean} */
@@ -1066,8 +925,7 @@ export interface components {
     /** @description The object sent back as confirmation of quotes when autoAcceptQuotes is false. */
     bulkTransactionContinuationAcceptQuote: {
       /** @description List of individual transfers in a bulk transfer. */
-      individualTransfers: (components["schemas"]["bulkTransactionIndividualTransferAccept"] &
-        components["schemas"]["transferContinuationAcceptQuote"])[];
+      individualTransfers: (components["schemas"]["bulkTransactionIndividualTransferAccept"] & components["schemas"]["transferContinuationAcceptQuote"])[];
     };
     /** @description This object represents a Mojaloop API error received at any time during the party discovery process */
     partyError: {
@@ -1075,17 +933,12 @@ export interface components {
       httpStatusCode?: number;
       mojaloopError?: components["schemas"]["mojaloopError"];
     };
-    bulkTransactionAcceptPartyErrorResponse: components["schemas"]["errorResponse"] & {
-      bulkTransferState: components["schemas"]["bulkTransactionContinuationAcceptParty"] &
-        components["schemas"]["partyError"];
-    };
-    bulkTransactionAcceptQuoteErrorResponse: components["schemas"]["errorResponse"] &
-      ({
-        bulkTransferState?: components["schemas"]["bulkTransactionContinuationAcceptQuote"] &
-          components["schemas"]["quoteError"];
-      } & {
-        bulkTansferState: unknown;
-      });
+    bulkTransactionAcceptPartyErrorResponse: components["schemas"]["errorResponse"] & ({
+      bulkTransferState: components["schemas"]["bulkTransactionContinuationAcceptParty"] & components["schemas"]["partyError"];
+    });
+    bulkTransactionAcceptQuoteErrorResponse: components["schemas"]["errorResponse"] & ({
+      bulkTransferState?: components["schemas"]["bulkTransactionContinuationAcceptQuote"] & components["schemas"]["quoteError"];
+    });
     /**
      * IndividualTransfer
      * @description Data model for the complex type 'individualTransfer'.
@@ -1124,10 +977,7 @@ export interface components {
       fulfils: components["schemas"]["individualTransferFulfilment"][];
     };
     /** @enum {string} */
-    async2SyncCurrentState:
-      | "WAITING_FOR_ACTION"
-      | "COMPLETED"
-      | "ERROR_OCCURRED";
+    async2SyncCurrentState: "WAITING_FOR_ACTION" | "COMPLETED" | "ERROR_OCCURRED";
     /**
      * partiesByIdResponse
      * @description GET /parties/{Type}/{ID} response object
@@ -1136,7 +986,7 @@ export interface components {
       party: {
         /** @description Information regarding the requested Party. */
         body: components["schemas"]["Party"];
-        headers: { [key: string]: unknown };
+        headers: Record<string, never>;
       };
       currentState: components["schemas"]["async2SyncCurrentState"];
     };
@@ -1151,12 +1001,7 @@ export interface components {
      * @example DEPOSIT
      * @enum {string}
      */
-    TransactionScenario:
-      | "DEPOSIT"
-      | "WITHDRAWAL"
-      | "TRANSFER"
-      | "PAYMENT"
-      | "REFUND";
+    TransactionScenario: "DEPOSIT" | "WITHDRAWAL" | "TRANSFER" | "PAYMENT" | "REFUND";
     /**
      * TransactionInitiator
      * @description Below are the allowed values for the enumeration.
@@ -1245,13 +1090,11 @@ export interface components {
           condition: components["schemas"]["IlpCondition"];
           extensionList?: components["schemas"]["ExtensionList"];
         };
-        headers: { [key: string]: unknown };
+        headers: Record<string, never>;
       };
       currentState: components["schemas"]["async2SyncCurrentState"];
     };
-    errorQuotesResponse: components["schemas"]["errorResponse"] & {
-      [key: string]: unknown;
-    };
+    errorQuotesResponse: components["schemas"]["errorResponse"] & Record<string, never>;
     /**
      * AuthenticationType
      * @description Below are the allowed values for the enumeration AuthenticationType.
@@ -1275,10 +1118,7 @@ export interface components {
       authenticationType?: components["schemas"]["AuthenticationType"];
     };
     /** @enum {string} */
-    requestToPayStatus:
-      | "ERROR_OCCURRED"
-      | "WAITING_FOR_PARTY_ACCEPTANCE"
-      | "COMPLETED";
+    requestToPayStatus: "ERROR_OCCURRED" | "WAITING_FOR_PARTY_ACCEPTANCE" | "COMPLETED";
     /**
      * getPartiesResponse
      * @description The object sent in the GET /parties/{Type}/{ID} callback.
@@ -1286,7 +1126,7 @@ export interface components {
     getPartiesResponse: {
       /** @description Information regarding the requested Party. */
       body: components["schemas"]["Party"];
-      headers: { [key: string]: unknown };
+      headers: Record<string, never>;
     };
     /**
      * TransactionRequestState
@@ -1309,7 +1149,7 @@ export interface components {
         transactionRequestState: components["schemas"]["TransactionRequestState"];
         extensionList?: components["schemas"]["ExtensionList"];
       };
-      headers: { [key: string]: unknown };
+      headers: Record<string, never>;
     };
     requestToPayResponse: {
       transactionRequestId: components["schemas"]["CorrelationId"];
@@ -1327,11 +1167,7 @@ export interface components {
       lastError?: components["schemas"]["transferError"];
     };
     /** @enum {string} */
-    transferStatus:
-      | "ERROR_OCCURRED"
-      | "WAITING_FOR_PARTY_ACCEPTANCE"
-      | "WAITING_FOR_QUOTE_ACCEPTANCE"
-      | "COMPLETED";
+    transferStatus: "ERROR_OCCURRED" | "WAITING_FOR_PARTY_ACCEPTANCE" | "WAITING_FOR_QUOTE_ACCEPTANCE" | "COMPLETED";
     /**
      * QuotesIDPutResponse
      * @description The object sent in the PUT /quotes/{ID} callback.
@@ -1372,18 +1208,18 @@ export interface components {
       currentState?: components["schemas"]["transferStatus"];
       quoteId?: components["schemas"]["CorrelationId"];
       getPartiesResponse?: {
-        body: { [key: string]: unknown };
-        headers?: { [key: string]: unknown };
+        body: Record<string, never>;
+        headers?: Record<string, never>;
       };
       quoteResponse?: {
         body: components["schemas"]["QuotesIDPutResponse"];
-        headers?: { [key: string]: unknown };
+        headers?: Record<string, never>;
       };
       /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
       quoteResponseSource?: string;
       fulfil?: {
         body: components["schemas"]["TransfersIDPutResponse"];
-        headers?: { [key: string]: unknown };
+        headers?: Record<string, never>;
       };
       /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["transferError"];
@@ -1413,17 +1249,15 @@ export interface components {
      * AuthenticationValue
      * @description Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
      */
-    AuthenticationValue: Partial<string> &
-      Partial<string> &
-      Partial<{
-        /** @description U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key. */
-        pinValue: string;
-        /**
-         * Integer
-         * @description Sequential counter used for cloning detection. Present only for U2F authentication.
-         */
-        counter: string;
-      }>;
+    AuthenticationValue: string | {
+      /** @description U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key. */
+      pinValue: string;
+      /**
+       * Integer
+       * @description Sequential counter used for cloning detection. Present only for U2F authentication.
+       */
+      counter: string;
+    };
     /**
      * AuthenticationInfo
      * @description Data model for the complex type AuthenticationInfo.
@@ -1466,17 +1300,17 @@ export interface components {
       quoteId?: components["schemas"]["CorrelationId"];
       quoteResponse?: {
         body: components["schemas"]["QuotesIDPutResponse"];
-        headers?: { [key: string]: unknown };
+        headers?: Record<string, never>;
       };
       /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
       quoteResponseSource?: string;
       authorizationResponse?: {
         body: components["schemas"]["AuthorizationIDPutResponse"];
-        headers?: { [key: string]: unknown };
+        headers?: Record<string, never>;
       };
       fulfil?: {
         body: components["schemas"]["TransfersIDPutResponse"];
-        headers?: { [key: string]: unknown };
+        headers?: Record<string, never>;
       };
       /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["transferError"];
@@ -1508,13 +1342,11 @@ export interface components {
     simpleTransfersPostResponse: {
       transfer: {
         body: components["schemas"]["TransfersIDPutResponse"];
-        headers: { [key: string]: unknown };
+        headers: Record<string, never>;
       };
       currentState: components["schemas"]["async2SyncCurrentState"];
     };
-    errorSimpleTransfersResponse: components["schemas"]["errorResponse"] & {
-      [key: string]: unknown;
-    };
+    errorSimpleTransfersResponse: components["schemas"]["errorResponse"] & Record<string, never>;
     transferRequest: {
       /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
       homeTransactionId: string;
@@ -1536,88 +1368,88 @@ export interface components {
       currentState: components["schemas"]["transferStatus"];
       fulfil: {
         body: components["schemas"]["TransfersIDPutResponse"];
-        headers?: { [key: string]: unknown };
+        headers?: Record<string, never>;
       };
     };
   };
   responses: {
-    /** Accounts creation completed */
+    /** @description Accounts creation completed */
     accountsCreationCompleted: {
       content: {
         "application/json": components["schemas"]["accountsResponse"];
       };
     };
-    /** An error occurred creating accounts */
+    /** @description An error occurred creating accounts */
     accountsCreationError: {
       content: {
         "application/json": components["schemas"]["errorAccountsResponse"];
       };
     };
-    /** Timeout occurred creating accounts */
+    /** @description Timeout occurred creating accounts */
     accountsCreationTimeout: {
       content: {
         "application/json": components["schemas"]["errorAccountsResponse"];
       };
     };
-    /** Bulk quote completed successfully */
+    /** @description Bulk quote completed successfully */
     bulkQuoteSuccess: {
       content: {
         "application/json": components["schemas"]["bulkQuoteResponse"];
       };
     };
-    /** Malformed or missing required body, headers or parameters */
+    /** @description Malformed or missing required body, headers or parameters */
     bulkQuoteBadRequest: {
       content: {
         "application/json": components["schemas"]["bulkQuoteErrorResponse"];
       };
     };
-    /** An error occurred processing the bulk quote */
+    /** @description An error occurred processing the bulk quote */
     bulkQuoteServerError: {
       content: {
         "application/json": components["schemas"]["bulkQuoteErrorResponse"];
       };
     };
-    /** Timeout occurred processing the bulk quote */
+    /** @description Timeout occurred processing the bulk quote */
     bulkQuoteTimeout: {
       content: {
         "application/json": components["schemas"]["bulkQuoteErrorResponse"];
       };
     };
-    /** Bulk transfer accepted successfully */
-    bulkTransactionAccepted: unknown;
-    /** Malformed or missing required body, headers or parameters */
+    /** @description Bulk transfer accepted successfully */
+    bulkTransactionAccepted: {
+      content: never;
+    };
+    /** @description Malformed or missing required body, headers or parameters */
     bulkTransferBadRequest: {
       content: {
         "application/json": components["schemas"]["bulkTransferErrorResponse"];
       };
     };
-    /** Internal Server Error */
+    /** @description Internal Server Error */
     errorResponse: {
       content: {
         "application/json": components["schemas"]["errorResponse"];
       };
     };
-    /** Malformed or missing required body, headers or parameters */
+    /** @description Malformed or missing required body, headers or parameters */
     bulkTransactionPutBadRequest: {
       content: {
-        "application/json":
-          | components["schemas"]["bulkTransactionAcceptPartyErrorResponse"]
-          | components["schemas"]["bulkTransactionAcceptQuoteErrorResponse"];
+        "application/json": components["schemas"]["bulkTransactionAcceptPartyErrorResponse"] | components["schemas"]["bulkTransactionAcceptQuoteErrorResponse"];
       };
     };
-    /** Bulk transfer completed successfully */
+    /** @description Bulk transfer completed successfully */
     bulkTransferSuccess: {
       content: {
         "application/json": components["schemas"]["bulkTransferResponse"];
       };
     };
-    /** PartiesByIdSuccess */
+    /** @description PartiesByIdSuccess */
     partiesByIdSuccess: {
       content: {
         "application/json": components["schemas"]["partiesByIdResponse"];
       };
     };
-    /** PartiesByIdError404 */
+    /** @description PartiesByIdError404 */
     partiesByIdError404: {
       content: {
         "application/json": {
@@ -1625,67 +1457,67 @@ export interface components {
         };
       };
     };
-    /** sync response from POST /quotes */
+    /** @description sync response from POST /quotes */
     quotesPostSuccess: {
       content: {
         "application/json": components["schemas"]["quotesPostResponse"];
       };
     };
-    /** An error occurred processing the quotes request */
+    /** @description An error occurred processing the quotes request */
     quotesServerError: {
       content: {
         "application/json": components["schemas"]["errorQuotesResponse"];
       };
     };
-    /** Request to Pay completed successfully */
+    /** @description Request to Pay completed successfully */
     requestToPaySuccess: {
       content: {
         "application/json": components["schemas"]["requestToPayResponse"];
       };
     };
-    /** An error occurred processing the transfer */
+    /** @description An error occurred processing the transfer */
     transferServerError: {
       content: {
         "application/json": components["schemas"]["errorTransferResponse"];
       };
     };
-    /** Timeout occurred processing the transfer */
+    /** @description Timeout occurred processing the transfer */
     transferTimeout: {
       content: {
         "application/json": components["schemas"]["errorTransferResponse"];
       };
     };
-    /** Transfer completed successfully */
+    /** @description Transfer completed successfully */
     requestToPayTransferSuccess: {
       content: {
         "application/json": components["schemas"]["requestToPayTransferResponse"];
       };
     };
-    /** Malformed or missing required body, headers or parameters */
+    /** @description Malformed or missing required body, headers or parameters */
     requestToPayTransferBadRequest: {
       content: {
         "application/json": components["schemas"]["errorTransferResponse"];
       };
     };
-    /** Transfer completed successfully */
+    /** @description Transfer completed successfully */
     transferSuccess: {
       content: {
         "application/json": components["schemas"]["transferResponse"];
       };
     };
-    /** sync response from POST /simpleTransfers */
+    /** @description sync response from POST /simpleTransfers */
     simpleTransfersPostSuccess: {
       content: {
         "application/json": components["schemas"]["simpleTransfersPostResponse"];
       };
     };
-    /** An error occurred processing the simple transfers request */
+    /** @description An error occurred processing the simple transfers request */
     simpleTransfersServerError: {
       content: {
         "application/json": components["schemas"]["errorSimpleTransfersResponse"];
       };
     };
-    /** Malformed or missing required body, headers or parameters */
+    /** @description Malformed or missing required body, headers or parameters */
     transferBadRequest: {
       content: {
         "application/json": components["schemas"]["errorTransferResponse"];
@@ -1710,16 +1542,23 @@ export interface components {
     /** @description Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
     transferId: components["schemas"]["CorrelationId"];
   };
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
 }
 
+export type external = Record<string, never>;
+
 export interface operations {
-  /** The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1). */
+
+  /**
+   * PartiesByTypeAndID
+   * @description The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1).
+   */
   PartiesByTypeAndID: {
     parameters: {
       path: {
-        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
         Type: components["parameters"]["Type"];
-        /** The identifier value. */
         ID: components["parameters"]["ID"];
       };
     };
@@ -1728,15 +1567,15 @@ export interface operations {
       404: components["responses"]["partiesByIdError404"];
     };
   };
-  /** The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1). */
+  /**
+   * PartiesSubIdByTypeAndID
+   * @description The HTTP request GET /parties// (or GET /parties///) is used to lookup information regarding the requested Party, defined by ,  and optionally (for example, GET /parties/MSISDN/123456789, or GET /parties/BUSINESS/shoecompany/employee1).
+   */
   PartiesSubIdByTypeAndID: {
     parameters: {
       path: {
-        /** The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
         Type: components["parameters"]["Type"];
-        /** The identifier value. */
         ID: components["parameters"]["ID"];
-        /** A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
         SubId: components["parameters"]["SubId"];
       };
     };
@@ -1745,32 +1584,36 @@ export interface operations {
       404: components["responses"]["partiesByIdError404"];
     };
   };
-  /** is used to request quotes from other DFSP */
+  /**
+   * Quotes endpoint
+   * @description is used to request quotes from other DFSP
+   */
   QuotesPost: {
-    responses: {
-      200: components["responses"]["quotesPostSuccess"];
-      500: components["responses"]["quotesServerError"];
-    };
-    /** Quotes request payload */
+    /** @description Quotes request payload */
     requestBody: {
       content: {
         "application/json": components["schemas"]["simpleQuotesPostRequest"];
       };
     };
-  };
-  /** is used to request a transfer */
-  SimpleTransfersPost: {
     responses: {
-      200: components["responses"]["simpleTransfersPostSuccess"];
-      500: components["responses"]["simpleTransfersServerError"];
+      200: components["responses"]["quotesPostSuccess"];
+      500: components["responses"]["quotesServerError"];
     };
-    /** Simple Transfer request payload */
+  };
+  /**
+   * Simple Transfers endpoint
+   * @description is used to request a transfer
+   */
+  SimpleTransfersPost: {
+    /** @description Simple Transfer request payload */
     requestBody: {
       content: {
         "application/json": components["schemas"]["simpleTransfersPostRequest"];
       };
     };
+    responses: {
+      200: components["responses"]["simpleTransfersPostSuccess"];
+      500: components["responses"]["simpleTransfersServerError"];
+    };
   };
 }
-
-export interface external {}
