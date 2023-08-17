@@ -1,6 +1,6 @@
 {
   "name": "@mojaloop/api-snippets",
-  "version": "17.2.1",
+  "version": "17.2.2",
   "description": "Mojaloop API specification reusable snippets",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -35,7 +35,6 @@
     "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
     "test:unit": "jest --testMatch '**/test/dto/*.(test|spec).ts'"
   },
-  
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix"
   },
