@@ -9,7 +9,7 @@ version: 2.1
 orbs:
   slack: circleci/slack@4.12.5 # Ref: https://github.com/mojaloop/ci-config/tree/master/slack-templates
   pr-tools: mojaloop/pr-tools@0.1.10 # Ref: https://github.com/mojaloop/ci-config/
-  gh: circleci/github-cli@2.1.0
+  gh: circleci/github-cli@2.2.0
 
 ##
 # defaults
@@ -27,9 +27,6 @@ defaults_docker_Dependencies: &defaults_docker_Dependencies |
   apk --no-cache add openssh-client
   apk --no-cache add bash bash-doc bash-completion
   apk --no-cache add -t build-dependencies make gcc g++ python3 libtool autoconf automake jq
-
-defaults_awsCliDependencies: &defaults_awsCliDependencies |
-  apk --no-cache add aws-cli
 
 defaults_license_scanner: &defaults_license_scanner
   name: Install and set up license-scanner
@@ -218,7 +215,7 @@ jobs:
           command: npm -s run test:unit
       - store_artifacts:
           path: ./test/results
-          prefix: test
+          destination: test
       - store_test_results:
           path: ./test/results
 
@@ -240,10 +237,10 @@ jobs:
           command: mkdir -p ./audit/results
       - run:
           name: Check for new npm vulnerabilities
-          command: npm run audit:check --silent -- --json > ./audit/results/auditResults.json
+          command: npm run audit:check -- -o json > ./audit/results/auditResults.json
       - store_artifacts:
           path: ./audit/results
-          prefix: audit
+          destination: audit
 
   audit-licenses:
     executor: default-docker
@@ -254,8 +251,6 @@ jobs:
       - checkout
       - run:
           <<: *defaults_license_scanner
-      - run:
-          <<: *defaults_configure_nvm
       - restore_cache:
           key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
@@ -263,7 +258,7 @@ jobs:
           command: cd /tmp/license-scanner && pathToRepo=$CIRCLE_WORKING_DIRECTORY make run
       - store_artifacts:
           path: /tmp/license-scanner/results
-          prefix: licenses
+          destination: licenses
 
   release:
     executor: default-docker
@@ -272,8 +267,6 @@ jobs:
           name: Install general dependencies
           command: *defaults_docker_Dependencies
       - checkout
-      - run:
-          <<: *defaults_configure_nvm
       - restore_cache:
           name: Restore dependency cache
           keys:
@@ -308,8 +301,6 @@ jobs:
             sudo apt-get update && sudo apt-get install -y git
       - gh/install
       - checkout
-      - run:
-          <<: *defaults_configure_nvm
       - run:
           <<: *defaults_configure_git
       - run:
@@ -429,7 +420,6 @@ jobs:
           template: SLACK_TEMP_RELEASE_FAILURE
 
 workflows:
-  version: 2
   build_and_test:
     jobs:
       - pr-tools/pr-title-check:
