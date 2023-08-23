@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.2.4](https://github.com/mojaloop/api-snippets/compare/v17.2.3...v17.2.4) (2023-08-23)
+
+
+### CI/CD
+
+* **mojaloop/#3454:** remove unneeded configs ([#166](https://github.com/mojaloop/api-snippets/issues/166)) ([29f792f](https://github.com/mojaloop/api-snippets/commit/29f792fa6a7a221a57d3d5bca36f0e57316c9360)), closes [mojaloop/#3454](https://github.com/mojaloop/api-snippets/issues/3454) [mojaloop/#3454](https://github.com/mojaloop/api-snippets/issues/3454)
+
 ### [17.2.3](https://github.com/mojaloop/api-snippets/compare/v17.2.2...v17.2.3) (2023-08-17)
 
 
