@@ -42,7 +42,7 @@ Validate the result file.
 ## Swagger-UI
 
 The snippets specification is previewable using swagger-ui. Swagger-UI files
-are found in `docs/dist/`. Github pages uses the master branch `docs/` folder
+are found in `docs/dist/`. Github pages uses the `main` branch `docs/` folder
 to build the page found at https://docs.mojaloop.io/api-snippets/
 
 ## Dev Tools
