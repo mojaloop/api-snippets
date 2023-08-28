@@ -1369,9 +1369,9 @@ export interface components {
     "FSPIOP-Encryption"?: string;
     /** @description The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
     "FSPIOP-Signature"?: string;
-    /** @description The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
+    /** @description The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/oderayi/mojaloop-specification/blob/master/documents/v1.1-document-set). */
     "FSPIOP-URI"?: string;
-    /** @description The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
+    /** @description The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/oderayi/mojaloop-specification/blob/master/documents/v1.1-document-set). */
     "FSPIOP-HTTP-Method"?: string;
     /** @description The `Accept` header field indicates the version of the API the client would like the server to use. */
     Accept: string;
