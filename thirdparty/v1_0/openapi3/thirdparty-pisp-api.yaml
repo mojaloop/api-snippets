@@ -2327,13 +2327,13 @@ paths:
         schema:
           type: string
         required: false
-        description: 'The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/oderayi/mojaloop-specification/blob/master/documents/v1.1-document-set).'
+        description: 'The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/v1.1-document-set).'
       - name: FSPIOP-HTTP-Method
         in: header
         schema:
           type: string
         required: false
-        description: 'The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/oderayi/mojaloop-specification/blob/master/documents/v1.1-document-set).'
+        description: 'The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/v1.1-document-set).'
     get:
       description: 'The HTTP request `GET /parties/{Type}/{ID}` (or `GET /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET /parties/BUSINESS/shoecompany/employee1`).'
       summary: Look up party information
