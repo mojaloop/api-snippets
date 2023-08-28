@@ -4,14 +4,14 @@ info:
   title: Open API for FSP Interoperability (FSPIOP)
   description: >-
     Based on [API Definition updated on 2020-05-19 Version
-    1.1](https://github.com/mojaloop/mojaloop-specification/blob/master/documents/v1.1-document-set/API%20Definition_v1.1.pdf).
+    1.1](https://github.com/mojaloop/mojaloop-specification/blob/main/documents/v1.1-document-set/API%20Definition_v1.1.pdf).
 
 
     **Note:** The API supports a maximum size of 65536 bytes (64 Kilobytes) in
     the HTTP header.
   license:
     name: CC BY-ND 4.0
-    url: https://github.com/mojaloop/mojaloop-specification/blob/master/LICENSE.md
+    url: https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md
   contact:
     name: Sam Kummary
     url: https://github.com/mojaloop/mojaloop-specification/issues
@@ -3730,7 +3730,7 @@ components:
         API for signature verification, should contain the service URI. Required
         if signature verification is used, for more information, see [the API
         Signature
-        document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+        document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set).
     FSPIOP-HTTP-Method:
       name: FSPIOP-HTTP-Method
       in: header
@@ -3742,7 +3742,7 @@ components:
         by the API for signature verification, should contain the service HTTP
         method. Required if signature verification is used, for more
         information, see [the API Signature
-        document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).
+        document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set).
     Accept:
       name: Accept
       in: header

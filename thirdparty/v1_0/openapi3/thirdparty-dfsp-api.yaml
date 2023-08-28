@@ -8,7 +8,7 @@ info:
     PISPs should implement the accompanying API - Mojaloop Third  Party API (PISP) instead.
   license:
     name: Open API for FSP Interoperability (FSPIOP) (Implementation Friendly Version)
-    url: 'https://github.com/mojaloop/mojaloop-specification/blob/master/LICENSE.md'
+    url: 'https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md'
 servers:
   - url: /
 paths:
@@ -79,20 +79,20 @@ paths:
                 Callback and data model information for GET /accounts/{ID}:
                 Callback - PUT /accounts/{ID} Error Callback - PUT /accounts/{ID}/error Data Model - Empty body
                 The PUT /accounts/{ID} response is used to inform the requester of the result of a request for accounts information. The identifier ID given in the call are the values given in the original request.
-                https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31121--put-accountsid
+                https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31121--put-accountsid
               properties:
                 accountList:
                   title: AccountList
                   type: array
                   description: |-
                     The AccountList data model is used to hold information about the accounts that a party controls.
-                    https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3213-accountlist
+                    https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3213-accountlist
                   items:
                     title: Account
                     type: object
                     description: |-
                       Data model for the complex type Account.
-                      https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3211-account
+                      https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3211-account
                     properties:
                       accountNickname:
                         title: Name
@@ -255,7 +255,7 @@ paths:
                 The HTTP request POST /consentRequests is used to request a DFSP to grant access to one or more accounts owned by a customer of the DFSP for the PISP who sends the request.
                 Callback and data model for POST /consentRequests:
                 Callback: PUT /consentRequests/{ID} Error callback: PUT /consentRequests/{ID}/error Data model - see below url
-                https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31212-post-consentrequests
+                https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31212-post-consentrequests
               properties:
                 consentRequestId:
                   title: CorrelationId
@@ -277,7 +277,7 @@ paths:
                     type: object
                     description: |-
                       The Scope element contains an identifier defining, in the terms of a DFSP, an account on which access types can be requested or granted. It also defines the access types which are requested or granted.
-                      https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32121-scope
+                      https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32121-scope
                     properties:
                       address:
                         title: AccountAddress
@@ -288,7 +288,7 @@ paths:
                           - Underscore (_) - Tilde (~) - Hyphen (-) - Period (.) Addresses MUST NOT end in a period (.) character
                           An entity providing accounts to parties (i.e. a participant) can provide any value for an AccountAddress that is meaningful to that entity. It does not need to provide an address that makes the account identifiable outside the entity's domain.
                           IMPORTANT: The policy for defining addresses and the life-cycle of these is at the discretion of the address space owner (the payer DFSP in this case).
-                          https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
+                          https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
                         pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
                         minLength: 1
                         maxLength: 1023
@@ -571,7 +571,7 @@ paths:
               description: |-
                 Used by: PISP
                 After the user completes an out-of-band authorization with the DFSP, the PISP will receive a token which they can use to prove to the DFSP that the user trusts this PISP.
-                https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31222-patch-consentrequestsid
+                https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31222-patch-consentrequestsid
               properties:
                 authToken:
                   type: string
@@ -699,13 +699,13 @@ paths:
         schema:
           type: string
         required: false
-        description: 'The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).'
+        description: 'The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set).'
       - name: FSPIOP-HTTP-Method
         in: header
         schema:
           type: string
         required: false
-        description: 'The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/master/Specification%20Document%20Set).'
+        description: 'The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set).'
     post:
       tags:
         - consents
@@ -1102,7 +1102,7 @@ paths:
                             - GENERIC
                           description: |-
                             The type of the Credential. - "FIDO" - The credential is based on a FIDO challenge. Its payload is a FIDOPublicKeyCredentialAttestation object. - "GENERIC" - The credential is based on a simple public key validation. Its payload is a GenericCredential object.
-                            https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3226-credentialtype
+                            https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3226-credentialtype
                         status:
                           title: CredentialStatusPending
                           type: string
@@ -1366,7 +1366,7 @@ paths:
                 The HTTP request POST /thirdpartyRequests/authorizations is used to request the validation by a customer for the transfer described in the request.
                 Callback and data model information for POST /thirdpartyRequests/authorizations:
                 Callback - PUT /thirdpartyRequests/authorizations/{ID} Error Callback - PUT /thirdpartyRequests/authorizations/{ID}/error Data Model - See below url
-                https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
+                https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
               type: object
               properties:
                 authorizationRequestId:
@@ -1750,7 +1750,7 @@ paths:
                 The HTTP request POST /thirdpartyRequests/transactions is used to request the creation of a transaction request on the server for the transfer described in the request.
                 Callback and data model information for POST /thirdpartyRequests/transactions:
                 Callback - PUT /thirdpartyRequests/transactions/{ID} Error Callback - PUT /thirdpartyRequests/transactions/{ID}/error Data Model - See link below
-                https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31712-post-thirdpartyrequeststransactions
+                https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31712-post-thirdpartyrequeststransactions
               properties:
                 transactionRequestId:
                   allOf:
@@ -2217,7 +2217,7 @@ paths:
               description: |-
                 Used by: DFSP
                 After a PISP requests the creation of a Third Party Transaction request (POST /thirdpartyRequests/transactions) or the status of a previously created Third Party Transaction request (GET /thirdpartyRequests/transactions/{ID}), the DFSP will send this callback.
-                https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31721-put-thirdpartyrequeststransactionsid
+                https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31721-put-thirdpartyrequeststransactionsid
               properties:
                 transactionRequestState:
                   title: TransactionRequestState
@@ -2284,7 +2284,7 @@ paths:
                 The issuing PISP will expect a response to their request for a transfer which describes the finalized state of the requested transfer.
                 This response will be given by a PATCH call on the /thirdpartyRequests/transactions/{ID} resource.
                 The {ID} given in the query string should be the transactionRequestId which was originally used by the PISP to identify the transaction request.
-                https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
+                https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
               properties:
                 completedTimestamp:
                   title: DateTime
@@ -2449,7 +2449,7 @@ paths:
                         Javascript ArrayBuffer.
                         For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
 
-                        https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32128-fidopublickeycredentialassertion
+                        https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32128-fidopublickeycredentialassertion
                       properties:
                         id:
                           type: string
@@ -2635,7 +2635,7 @@ paths:
               description: |-
                 Used by: Auth Service
                 The callback PUT /thirdpartyRequests/verifications/{ID} is used to inform the client of the result of an authorization check. The {ID} in the URI should contain the authorizationRequestId which was used to request the check, or the {ID} that was used in the GET /thirdpartyRequests/verifications/{ID}.
-                https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31821-put-thirdpartyrequestsverificationsid
+                https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#31821-put-thirdpartyrequestsverificationsid
               properties:
                 authenticationResponse:
                   title: AuthenticationResponse
