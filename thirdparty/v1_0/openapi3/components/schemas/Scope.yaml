@@ -5,7 +5,7 @@ description: >-
   an account on which access types can be requested or granted.
   It also defines the access types which are requested or granted.
 
-  https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32121-scope
+  https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32121-scope
 properties:
   address:
     $ref: ./AccountAddress.yaml

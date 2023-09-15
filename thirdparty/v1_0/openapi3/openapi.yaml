@@ -4,7 +4,7 @@ info:
   title: Thirdparty Snippets
   description: |
     Based on sequence diagrams
-    (https://github.com/mojaloop/pisp/tree/master/docs/out).
+    (https://github.com/mojaloop/pisp/tree/main/docs/out).
     This is a work in progress.
   license:
     name: TBD

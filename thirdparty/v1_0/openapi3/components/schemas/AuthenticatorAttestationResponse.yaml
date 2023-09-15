@@ -3,7 +3,7 @@ type: object
 description: |
   A data model representing an AttestationStatement from WebAuthN.
 
-  https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32129-authenticatorattestationresponse
+  https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#32129-authenticatorattestationresponse
 properties:
   clientDataJSON:
     type: string
