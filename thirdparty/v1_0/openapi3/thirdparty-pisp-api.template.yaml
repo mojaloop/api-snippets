@@ -11,7 +11,7 @@ info:
     Party API (DFSP) instead.
   license:
     name: Open API for FSP Interoperability (FSPIOP) (Implementation Friendly Version)
-    url: https://github.com/mojaloop/mojaloop-specification/blob/master/LICENSE.md
+    url: https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md
 servers:
   - url: /
 paths:

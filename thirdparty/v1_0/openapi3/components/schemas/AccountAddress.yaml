@@ -19,7 +19,7 @@ description: >-
 
   IMPORTANT: The policy for defining addresses and the life-cycle of these is at the discretion of the address space owner (the payer DFSP in this case).
 
-  https://github.com/mojaloop/documentation/blob/master/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
+  https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
 pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
 minLength: 1
 maxLength: 1023
