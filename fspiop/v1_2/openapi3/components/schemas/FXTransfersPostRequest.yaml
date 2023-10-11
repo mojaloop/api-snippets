@@ -1,0 +1,37 @@
+title: FXTransfersPostRequest
+type: object
+description: The object sent in the POST /fxTransfers request.
+properties:
+  fxTransferId:
+    $ref: ./CorrelationId.yaml
+  determiningTransactionId:
+    allOf:
+      - $ref: ./CorrelationId.yaml
+      - description: The transfer ID of the transfer to which this currency conversion relates, if the conversion is part of a transfer. If the conversion is a currency purchase, this field should be omitted.
+  requestingFsp:
+    $ref: ./FspId.yaml
+  respondingFxp:
+    allOf:
+      - $ref: ./FspId.yaml
+      - description: The ID of the FXP which is to execute the currency conversion.
+  sourceAmount:
+    $ref: ./Money.yaml
+  targetAmount:
+    $ref: ./Money.yaml
+  ilpPacket:
+    $ref: ./IlpPacket.yaml
+  condition:
+    $ref: ./IlpCondition.yaml
+  expiration:
+    $ref: ./DateTime.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - fxTransferId
+  - determiningTransactionId
+  - payeeFsp
+  - payerFsp
+  - amount
+  - ilpPacket
+  - condition
+  - expiration

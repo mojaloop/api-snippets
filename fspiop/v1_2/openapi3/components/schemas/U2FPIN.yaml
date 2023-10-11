@@ -1,0 +1,8 @@
+title: U2FPIN
+type: string
+pattern: '^\S{1,64}$'
+minLength: 1
+maxLength: 64
+description: >
+  U2F challenge-response, where payer FSP verifies if the response
+  provided by end-user device matches the previously registered key.

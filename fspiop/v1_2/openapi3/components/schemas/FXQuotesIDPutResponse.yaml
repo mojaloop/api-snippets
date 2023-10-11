@@ -1,0 +1,26 @@
+title: FXQuotesIDPutResponse
+type: object
+description: 'The object sent in the PUT /fxQuotes/{ID} callback.'
+properties:
+  sourceAmount:
+    $ref: ./Money.yaml
+  targetAmount:
+    $ref: ./Money.yaml
+  charge:
+    $ref: ./FXCharge.yaml
+  expiration:
+    $ref: ./DateTime.yaml
+  geoCode:
+    $ref: ./GeoCode.yaml
+  ilpPacket:
+    $ref: ./IlpPacket.yaml
+  condition:
+    $ref: ./IlpCondition.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - sourceAmount
+  - targetAmount
+  - expiration
+  - ilpPacket
+  - condition

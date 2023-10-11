@@ -1,0 +1,9 @@
+title: LastName
+type: string
+minLength: 1
+maxLength: 128
+pattern: >-
+  ^(?!\s*$)[\p{L}\p{gc=Mark}\p{digit}\p{gc=Connector_Punctuation}\p{Join_Control}
+  .,''-]{1,128}$
+description: Last name of the Party (Name Type).
+example: 'Karlsson'

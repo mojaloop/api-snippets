@@ -1,0 +1,13 @@
+title: FXTransfersIDPatchResponse
+type: object
+description: 'PATCH /fxTransfers/{ID} object'
+properties:
+  completedTimestamp:
+    $ref: ./DateTime.yaml
+  fxTransferState:
+    $ref: ./TransferState.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - completedTimestamp
+  - fxTransferState

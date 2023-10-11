@@ -1,0 +1,16 @@
+title: FXTransfersIDPutResponse
+type: object
+description: 'The object sent in the PUT /fxTransfers/{ID} callback.'
+properties:
+  fulfilment:
+    allOf:
+      - $ref: ./IlpFulfilment.yaml
+      - description: The fulfilment of the condition specified for the currency conversion. Mandatory if the conversion has been executed successfully.
+  completedTimestamp:
+    $ref: ./DateTime.yaml
+  fxTransferState:
+    $ref: ./TransferState.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - fxTransferState

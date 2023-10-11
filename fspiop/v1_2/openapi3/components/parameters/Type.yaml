@@ -1,0 +1,6 @@
+name: Type
+in: path
+required: true
+schema:
+  type: string
+description: 'The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.'
