@@ -34,7 +34,8 @@
     "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",
     "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
     "test": "npm run test:unit",
-    "test:unit": "jest --testMatch '**/test/dto/*.(test|spec).ts'"
+    "test:unit": "jest --testMatch '**/test/dto/*.(test|spec).ts'",
+    "dev:watch": "browser-sync start --server 'docs' --cwd 'docs'  --files '*.yaml'"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix"
@@ -79,6 +80,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "audit-ci": "^6.6.1",
+    "browser-sync": "^2.29.3",
     "diff": "^5.1.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
