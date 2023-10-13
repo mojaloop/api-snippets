@@ -586,6 +586,54 @@ export interface paths {
      */
     put: operations["FxTransfersByIDAndErrorPut"];
   };
+  "/services/FXP": {
+    /**
+     * Obtain a list of the DFSPs in the scheme who provide FXP service
+     * @description The HTTP request `GET /services/FXP` is used to request information about the participants in a scheme who offer currency conversion services.
+     */
+    get: operations["ServicesFXPGet"];
+    /** @description The callback `PUT /services/FXP` is used to inform the requester about participants in a scheme who offer currency conversion services. If no participants offer these services, the return object will be blank. */
+    put: operations["ServicesFXPPut"];
+    parameters: {
+      header: {
+        "Content-Type": components["parameters"]["Content-Type"];
+        Date: components["parameters"]["Date"];
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+    };
+  };
+  "/services/FXP/{SourceCurrency}/{TargetCurrency}": {
+    /**
+     * Obtain a list of the DFSPs in the scheme who provide FXP service
+     * @description The HTTP request `GET /services/FXP/{SourceCurrency}/{TargetCurrency}` is used to request information about the participants in a scheme who offer currency conversion services in a particular currency corridor. The required corridor is specified by giving the ISO 4217 currency code for the SourceCurrency and the TargetCurrency.
+     */
+    get: operations["ServicesFXPSourceCurrencyTargetCurrencyGet"];
+    /** @description The callback `PUT /services/FXP/{SourceCurrency}/{TargetCurrency}` is used to inform the requester about participants in a scheme who offer currency conversion services. If no participants offer these services, the return object will be blank. The required corridor is specified by giving the ISO 4217 currency code for the SourceCurrency and the TargetCurrency. */
+    put: operations["ServicesFXPSourceCurrencyTargetCurrencyPut"];
+    parameters: {
+      header: {
+        "Content-Type": components["parameters"]["Content-Type"];
+        Date: components["parameters"]["Date"];
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+      };
+      path: {
+        SourceCurrency: components["parameters"]["SourceCurrency"];
+        TargetCurrency: components["parameters"]["TargetCurrency"];
+      };
+    };
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -764,6 +812,12 @@ export interface components {
       dateOfBirth?: components["schemas"]["DateOfBirth"];
     };
     /**
+     * Currency
+     * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+     * @enum {string}
+     */
+    Currency: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
+    /**
      * Party
      * @description Data model for the complex type Party.
      */
@@ -772,13 +826,9 @@ export interface components {
       merchantClassificationCode?: components["schemas"]["MerchantClassificationCode"];
       name?: components["schemas"]["PartyName"];
       personalInfo?: components["schemas"]["PartyPersonalInfo"];
+      /** @description Currencies in which the party can receive funds. */
+      supportedCurrencies?: components["schemas"]["Currency"][];
     };
-    /**
-     * Currency
-     * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-     * @enum {string}
-     */
-    Currency: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
     /**
      * Amount
      * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
@@ -792,6 +842,20 @@ export interface components {
     Money: {
       currency: components["schemas"]["Currency"];
       amount: components["schemas"]["Amount"];
+    };
+    /**
+     * CurrencyConverter
+     * @description Below are the allowed values for the enumeration CurrencyConverter. - PAYER - Currency conversion should be performed by the payer. - PAYEE - Currency conversion should be performed by the payee.
+     * @enum {string}
+     */
+    CurrencyConverter: "PAYER" | "PAYEE";
+    /**
+     * FxRate
+     * @description The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.
+     */
+    FxRate: {
+      sourceAmount: components["schemas"]["Amount"];
+      targetAmount: components["schemas"]["Amount"];
     };
     /**
      * TransactionScenario
@@ -879,6 +943,9 @@ export interface components {
       payee: components["schemas"]["Party"];
       payer: components["schemas"]["Party"];
       amount: components["schemas"]["Money"];
+      payeeReceiveAmount?: components["schemas"]["Money"];
+      converter?: components["schemas"]["CurrencyConverter"];
+      conversionRate?: components["schemas"]["FxRate"];
       transactionType: components["schemas"]["TransactionType"];
       note?: components["schemas"]["Note"];
       extensionList?: components["schemas"]["ExtensionList"];
@@ -1067,6 +1134,8 @@ export interface components {
       amount: components["schemas"]["Money"];
       fees?: components["schemas"]["Money"];
       transactionType: components["schemas"]["TransactionType"];
+      converter?: components["schemas"]["CurrencyConverter"];
+      conversionRate?: components["schemas"]["FxRate"];
       geoCode?: components["schemas"]["GeoCode"];
       note?: components["schemas"]["Note"];
       expiration?: components["schemas"]["DateTime"];
@@ -1428,6 +1497,22 @@ export interface components {
       conversionState: components["schemas"]["TransferState"];
       extensionList?: components["schemas"]["ExtensionList"];
     };
+    /**
+     * ServicesFXPPutResponse
+     * @description The object sent in the PUT /services/FXP callback.
+     */
+    ServicesFXPPutResponse: {
+      /** @description The FSP Id(s) of the participant(s) who offer currency conversion services. */
+      providers: components["schemas"]["FspId"][];
+    };
+    /**
+     * ServicesFXPSourceCurrencyTargetCurrencyPutResponse
+     * @description The object sent in the PUT /services/FXP/{SourceCurrency}/{TargetCurrency} callback.
+     */
+    ServicesFXPSourceCurrencyTargetCurrencyPutResponse: {
+      /** @description The FSP Id(s) of the participant(s) who offer currency conversion services. */
+      providers: components["schemas"]["FspId"][];
+    };
   };
   responses: {
     /** @description OK */
@@ -1556,6 +1641,10 @@ export interface components {
     "Content-Length"?: number;
     /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
     SubId: string;
+    /** @description ISO 4217 currency code for the source currency. */
+    SourceCurrency: string;
+    /** @description ISO 4217 currency code for the target currency. */
+    TargetCurrency: string;
   };
   requestBodies: never;
   headers: {
@@ -3713,6 +3802,144 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["ErrorInformationObject"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+  };
+  /**
+   * Obtain a list of the DFSPs in the scheme who provide FXP service
+   * @description The HTTP request `GET /services/FXP` is used to request information about the participants in a scheme who offer currency conversion services.
+   */
+  ServicesFXPGet: {
+    parameters: {
+      header: {
+        "Content-Type": components["parameters"]["Content-Type"];
+        Date: components["parameters"]["Date"];
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        Accept: components["parameters"]["Accept"];
+      };
+    };
+    responses: {
+      202: components["responses"]["202"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+  };
+  /** @description The callback `PUT /services/FXP` is used to inform the requester about participants in a scheme who offer currency conversion services. If no participants offer these services, the return object will be blank. */
+  ServicesFXPPut: {
+    parameters: {
+      header: {
+        "Content-Type": components["parameters"]["Content-Type"];
+        Date: components["parameters"]["Date"];
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+    };
+    /** @description The list of participant(s) who offer currency conversion services. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ServicesFXPPutResponse"];
+      };
+    };
+    responses: {
+      200: components["responses"]["200"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+  };
+  /**
+   * Obtain a list of the DFSPs in the scheme who provide FXP service
+   * @description The HTTP request `GET /services/FXP/{SourceCurrency}/{TargetCurrency}` is used to request information about the participants in a scheme who offer currency conversion services in a particular currency corridor. The required corridor is specified by giving the ISO 4217 currency code for the SourceCurrency and the TargetCurrency.
+   */
+  ServicesFXPSourceCurrencyTargetCurrencyGet: {
+    parameters: {
+      header: {
+        "Content-Type": components["parameters"]["Content-Type"];
+        Date: components["parameters"]["Date"];
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        Accept: components["parameters"]["Accept"];
+      };
+      path: {
+        SourceCurrency: components["parameters"]["SourceCurrency"];
+        TargetCurrency: components["parameters"]["TargetCurrency"];
+      };
+    };
+    responses: {
+      202: components["responses"]["202"];
+      400: components["responses"]["400"];
+      401: components["responses"]["401"];
+      403: components["responses"]["403"];
+      404: components["responses"]["404"];
+      405: components["responses"]["405"];
+      406: components["responses"]["406"];
+      501: components["responses"]["501"];
+      503: components["responses"]["503"];
+    };
+  };
+  /** @description The callback `PUT /services/FXP/{SourceCurrency}/{TargetCurrency}` is used to inform the requester about participants in a scheme who offer currency conversion services. If no participants offer these services, the return object will be blank. The required corridor is specified by giving the ISO 4217 currency code for the SourceCurrency and the TargetCurrency. */
+  ServicesFXPSourceCurrencyTargetCurrencyPut: {
+    parameters: {
+      header: {
+        "Content-Type": components["parameters"]["Content-Type"];
+        Date: components["parameters"]["Date"];
+        "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
+        "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
+        "FSPIOP-Destination"?: components["parameters"]["FSPIOP-Destination"];
+        "FSPIOP-Encryption"?: components["parameters"]["FSPIOP-Encryption"];
+        "FSPIOP-Signature"?: components["parameters"]["FSPIOP-Signature"];
+        "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
+        "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
+        "Content-Length"?: components["parameters"]["Content-Length"];
+      };
+      path: {
+        SourceCurrency: components["parameters"]["SourceCurrency"];
+        TargetCurrency: components["parameters"]["TargetCurrency"];
+      };
+    };
+    /** @description The list of participant(s) who offer currency conversion services. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ServicesFXPSourceCurrencyTargetCurrencyPutResponse"];
       };
     };
     responses: {

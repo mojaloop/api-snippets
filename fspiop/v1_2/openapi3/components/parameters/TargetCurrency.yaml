@@ -1,0 +1,6 @@
+name: TargetCurrency
+in: path
+required: true
+schema:
+  type: string
+description: ISO 4217 currency code for the target currency.

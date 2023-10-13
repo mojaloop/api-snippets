@@ -1,0 +1,73 @@
+parameters:
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+get:
+  description: >-
+    The HTTP request `GET /services/FXP` is used to request information about the participants in a scheme who offer currency conversion services.
+  summary: Obtain a list of the DFSPs in the scheme who provide FXP service
+  tags:
+    - servicesFXP
+  operationId: ServicesFXPGet
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    '202':
+      $ref: ../components/responses/202.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml
+put:
+  description: >-
+    The callback `PUT /services/FXP` is used to inform the requester about participants
+    in a scheme who offer currency conversion services. If no participants offer these services, the return object will be blank.
+  tags:
+    - servicesFXP
+  operationId: ServicesFXPPut
+  parameters:
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    description: The list of participant(s) who offer currency conversion services.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/ServicesFXPPutResponse.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/200.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml

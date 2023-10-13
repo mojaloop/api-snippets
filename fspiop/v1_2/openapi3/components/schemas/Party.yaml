@@ -10,5 +10,12 @@ properties:
     $ref: ./PartyName.yaml
   personalInfo:
     $ref: ./PartyPersonalInfo.yaml
+  supportedCurrencies:
+    type: array
+    description: Currencies in which the party can receive funds.
+    items:
+      $ref: ./Currency.yaml
+    minItems: 0
+    maxItems: 16
 required:
   - partyIdInfo

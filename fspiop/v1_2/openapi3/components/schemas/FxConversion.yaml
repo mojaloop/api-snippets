@@ -9,7 +9,7 @@ properties:
   relatedTransactionId:
     allOf:
       - $ref: ./CorrelationId.yaml
-      - description: The transaction ID of the transfer on whose success this currency conversion depends. If this is a bulk currency conversion which is not dependent on a transfer, then this field should be omitted. (VJTODO-Need to confirm about the field name)
+      - description: The transaction ID of the transfer on whose success this currency conversion depends. If this is a bulk currency conversion which is not dependent on a transfer, then this field should be omitted. (VJTODO-Do we need this here? As the field is related to fxTransfer I think)
   initiatingFsp:
     allOf:
       - $ref: ./FspId.yaml

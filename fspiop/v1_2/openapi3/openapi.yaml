@@ -120,3 +120,7 @@ paths:
     $ref: 'paths/fxTransfers_ID.yaml'
   /fxTransfers/{ID}/error:
     $ref: 'paths/fxTransfers_ID_error.yaml'
+  /services/FXP:
+    $ref: 'paths/services_FXP.yaml'
+  /services/FXP/{SourceCurrency}/{TargetCurrency}:
+    $ref: 'paths/services_FXP_SourceCurrency_TargetCurrency.yaml'

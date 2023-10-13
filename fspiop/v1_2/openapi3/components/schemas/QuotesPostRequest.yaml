@@ -20,6 +20,21 @@ properties:
     $ref: ./Money.yaml
   transactionType:
     $ref: ./TransactionType.yaml
+  converter:
+    allOf:
+      - $ref: ./CurrencyConverter.yaml
+      - description: >-
+          An optional field which will allow the payer DFSP to specify which DFSP it wants to undertake currency conversion.
+          This is useful incase of if the sender wants the recipient to receive a specified amount of the target currency,
+          but the payer DFSP does not want to undertake the currency conversion. In this case, the amount of the transfer
+          would be expressed in the target currency and the amountType would be set to RECEIVE.
+  conversionRate:
+    allOf:
+      - $ref: ./FxRate.yaml
+      - description: >-
+          Used by the debtor party if it wants to share information about the currency conversion it proposes to make; or
+          if it is required by scheme rules to share this information. This object contains the amount of the transfer in
+          the source and target currencies, but does not identify the FXP being used.
   geoCode:
     $ref: ./GeoCode.yaml
   note:
