@@ -4,7 +4,7 @@ post:
   summary: Calculate FX quote
   tags:
     - fxQuotes
-  operationId: FXQuotesPost
+  operationId: FxQuotesPost
   parameters:
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
@@ -23,7 +23,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/FXQuotesPostRequest.yaml
+          $ref: ../components/schemas/FxQuotesPostRequest.yaml
   responses:
     '202':
       $ref: ../components/responses/202.yaml

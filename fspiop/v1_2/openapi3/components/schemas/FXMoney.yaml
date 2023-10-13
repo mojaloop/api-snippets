@@ -1,6 +1,6 @@
-title: FXMoney
+title: FxMoney
 type: object
-description: Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.
+description: Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations. (VJTODO-Should the amount field be principalAmount?)
 properties:
   currency:
     $ref: ./Currency.yaml

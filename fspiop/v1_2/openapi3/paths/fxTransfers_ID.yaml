@@ -11,13 +11,13 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 get:
   description: >-
-    The HTTP request `GET /fxTransfers/{ID}` is used to request information regarding
-    a FX transfer created or requested earlier. The `{ID}` in the URI should
+    The HTTP request `GET /fxTransfers/{ID}` s used to request information regarding a request for confirmation
+    of a currency conversion which the sender has previously issued. The `{ID}` in the URI should
     contain the `fxTransferId` that was used for the creation of the FX transfer.
   summary: Retrieve FX transfer information
   tags:
     - fxTransfers
-  operationId: FXTransfersByIDGet
+  operationId: FxTransfersByIDGet
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
@@ -41,15 +41,15 @@ get:
       $ref: ../components/responses/503.yaml
 patch:
   description: >-
-    The HTTP request PATCH /fxTransfers/<ID> is used by a Switch to update the
-    state of a request for execution of a currency conversion.
+    The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester about
+    the final determination by the switch of the transfer a request for execution of a currency conversion.
     The <ID> in the URI should contain the fxTransferId that was used
     for the creation of the FX transfer. Please note that this request does not
     generate a callback.
   summary: Return FX transfer information
   tags:
     - fxTransfers
-  operationId: FXTransfersByIDPatch
+  operationId: FxTransfersByIDPatch
   parameters:
     - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
@@ -58,7 +58,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/FXTransfersIDPatchResponse.yaml
+          $ref: ../components/schemas/FxTransfersIDPatchResponse.yaml
   responses:
     '200':
       $ref: ../components/responses/200.yaml
@@ -80,14 +80,14 @@ patch:
       $ref: ../components/responses/503.yaml
 put:
   description: >-
-    The callback `PUT /fxTransfers/{ID}` is used to inform the client of a
-    requested or created fxTransfers. The `{ID}` in the URI should contain the
+    The callback `PUT /fxTransfers/{ID}` is used to inform the requester about the
+    outcome of a request for execution of a currency conversion. The `{ID}` in the URI should contain the
     `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}`
     that was used in the `GET /fxTransfers/{ID}` request.
   summary: Return FX transfer information
   tags:
     - fxTransfers
-  operationId: FXTransfersByIDPut
+  operationId: FxTransfersByIDPut
   parameters:
     - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
@@ -96,7 +96,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/FXTransfersIDPutResponse.yaml
+          $ref: ../components/schemas/FxTransfersIDPutResponse.yaml
   responses:
     '200':
       $ref: ../components/responses/200.yaml

@@ -11,13 +11,13 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 get:
   description: >-
-    The HTTP request `GET /fxQuotes/{ID}` is used to get information regarding a
-    FX quote created or requested earlier. The `{ID}` in the URI should contain the
+    The HTTP request `GET /fxQuotes/{ID}` is used to request information regarding a request for quotation for a 
+    currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the
     `fxQuoteId` that was used for the creation of the quote.
   summary: Retrieve FX quote information
   tags:
     - fxQuotes
-  operationId: FXQuotesByIDGet
+  operationId: FxQuotesByIDGet
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
@@ -48,7 +48,7 @@ put:
   summary: Return FX quote information
   tags:
     - fxQuotes
-  operationId: FXQuotesByIdPut
+  operationId: FxQuotesByIdPut
   parameters:
     - $ref: ../components/parameters/Content-Length.yaml
   requestBody:
@@ -57,7 +57,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/FXQuotesIDPutResponse.yaml
+          $ref: ../components/schemas/FxQuotesIDPutResponse.yaml
   responses:
     '200':
       $ref: ../components/responses/200.yaml

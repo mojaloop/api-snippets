@@ -2135,7 +2135,7 @@ paths:
       summary: Calculate FX quote
       tags:
         - fxQuotes
-      operationId: FXQuotesPost
+      operationId: FxQuotesPost
       parameters:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Content-Length'
@@ -2154,7 +2154,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FXQuotesPostRequest'
+              $ref: '#/components/schemas/FxQuotesPostRequest'
       responses:
         '202':
           $ref: '#/components/responses/202'
@@ -2188,14 +2188,14 @@ paths:
       - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     get:
       description: >-
-        The HTTP request `GET /fxQuotes/{ID}` is used to get information
-        regarding a FX quote created or requested earlier. The `{ID}` in the URI
-        should contain the `fxQuoteId` that was used for the creation of the
-        quote.
+        The HTTP request `GET /fxQuotes/{ID}` is used to request information
+        regarding a request for quotation for a  currency conversion which the
+        sender has previously issued. The `{ID}` in the URI should contain the
+        `fxQuoteId` that was used for the creation of the quote.
       summary: Retrieve FX quote information
       tags:
         - fxQuotes
-      operationId: FXQuotesByIDGet
+      operationId: FxQuotesByIDGet
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -2227,7 +2227,7 @@ paths:
       summary: Return FX quote information
       tags:
         - fxQuotes
-      operationId: FXQuotesByIdPut
+      operationId: FxQuotesByIdPut
       parameters:
         - $ref: '#/components/parameters/Content-Length'
       requestBody:
@@ -2236,7 +2236,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FXQuotesIDPutResponse'
+              $ref: '#/components/schemas/FxQuotesIDPutResponse'
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -2259,7 +2259,7 @@ paths:
   /fxQuotes/{ID}/error:
     put:
       description: >-
-        If the server is unable to find or create a FX quote, or some other
+        If the FXP is unable to find or create a FX quote, or some other
         processing error occurs, the error callback `PUT /fxQuotes/{ID}/error`
         is used. The `{ID}` in the URI should contain the `fxQuoteId` that was
         used for the creation of the FX quote, or the `{ID}` that was used in
@@ -2267,7 +2267,7 @@ paths:
       summary: Return FX quote information error
       tags:
         - fxQuotes
-      operationId: FXQuotesByIDAndErrorPut
+      operationId: FxQuotesByIDAndErrorPut
       parameters:
         - $ref: '#/components/parameters/ID'
         - $ref: '#/components/parameters/Content-Length'
@@ -2314,7 +2314,7 @@ paths:
       summary: Perform FX transfer
       tags:
         - fxTransfers
-      operationId: FXTransfersPost
+      operationId: FxTransfersPost
       parameters:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Content-Length'
@@ -2333,7 +2333,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FXTransfersPostRequest'
+              $ref: '#/components/schemas/FxTransfersPostRequest'
       responses:
         '202':
           $ref: '#/components/responses/202'
@@ -2367,14 +2367,14 @@ paths:
       - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     get:
       description: >-
-        The HTTP request `GET /fxTransfers/{ID}` is used to request information
-        regarding a FX transfer created or requested earlier. The `{ID}` in the
-        URI should contain the `fxTransferId` that was used for the creation of
-        the FX transfer.
+        The HTTP request `GET /fxTransfers/{ID}` s used to request information
+        regarding a request for confirmation of a currency conversion which the
+        sender has previously issued. The `{ID}` in the URI should contain the
+        `fxTransferId` that was used for the creation of the FX transfer.
       summary: Retrieve FX transfer information
       tags:
         - fxTransfers
-      operationId: FXTransfersByIDGet
+      operationId: FxTransfersByIDGet
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -2398,15 +2398,15 @@ paths:
           $ref: '#/components/responses/503'
     patch:
       description: >-
-        The HTTP request PATCH /fxTransfers/<ID> is used by a Switch to update
-        the state of a request for execution of a currency conversion. The <ID>
-        in the URI should contain the fxTransferId that was used for the
-        creation of the FX transfer. Please note that this request does not
-        generate a callback.
+        The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester
+        about the final determination by the switch of the transfer a request
+        for execution of a currency conversion. The <ID> in the URI should
+        contain the fxTransferId that was used for the creation of the FX
+        transfer. Please note that this request does not generate a callback.
       summary: Return FX transfer information
       tags:
         - fxTransfers
-      operationId: FXTransfersByIDPatch
+      operationId: FxTransfersByIDPatch
       parameters:
         - $ref: '#/components/parameters/Content-Length'
       requestBody:
@@ -2415,7 +2415,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FXTransfersIDPatchResponse'
+              $ref: '#/components/schemas/FxTransfersIDPatchResponse'
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -2437,14 +2437,15 @@ paths:
           $ref: '#/components/responses/503'
     put:
       description: >-
-        The callback `PUT /fxTransfers/{ID}` is used to inform the client of a
-        requested or created fxTransfers. The `{ID}` in the URI should contain
-        the `fxTransferId` that was used for the creation of the FX transfer, or
-        the `{ID}` that was used in the `GET /fxTransfers/{ID}` request.
+        The callback `PUT /fxTransfers/{ID}` is used to inform the requester
+        about the outcome of a request for execution of a currency conversion.
+        The `{ID}` in the URI should contain the `fxTransferId` that was used
+        for the creation of the FX transfer, or the `{ID}` that was used in the
+        `GET /fxTransfers/{ID}` request.
       summary: Return FX transfer information
       tags:
         - fxTransfers
-      operationId: FXTransfersByIDPut
+      operationId: FxTransfersByIDPut
       parameters:
         - $ref: '#/components/parameters/Content-Length'
       requestBody:
@@ -2453,7 +2454,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FXTransfersIDPutResponse'
+              $ref: '#/components/schemas/FxTransfersIDPutResponse'
       responses:
         '200':
           $ref: '#/components/responses/200'
@@ -2484,7 +2485,7 @@ paths:
       summary: Return FX transfer information error
       tags:
         - fxTransfers
-      operationId: FXTransfersByIDAndErrorPut
+      operationId: FxTransfersByIDAndErrorPut
       parameters:
         - $ref: '#/components/parameters/ID'
         - $ref: '#/components/parameters/Content-Length'
@@ -4023,12 +4024,13 @@ components:
           $ref: '#/components/schemas/ExtensionList'
       required:
         - bulkTransferState
-    FXMoney:
-      title: FXMoney
+    FxMoney:
+      title: FxMoney
       type: object
       description: >-
         Data model for the complex type FxMoney; This is based on the type Money
         but allows the amount to be optional to support FX quotations.
+        (VJTODO-Should the amount field be principalAmount?)
       properties:
         currency:
           $ref: '#/components/schemas/Currency'
@@ -4036,61 +4038,12 @@ components:
           $ref: '#/components/schemas/Amount'
       required:
         - currency
-    FXQuotesPostRequest:
-      title: FXQuotesPostRequest
-      type: object
-      description: The object sent in the POST /fxQuotes request.
-      properties:
-        fxQuoteId:
-          $ref: '#/components/schemas/CorrelationId'
-        conversionId:
-          allOf:
-            - $ref: '#/components/schemas/CorrelationId'
-            - description: An end-to-end identifier for the conversion request.
-        initiatingFsp:
-          allOf:
-            - $ref: '#/components/schemas/FspId'
-            - description: The ID of the FSP initiating the conversion request.
-        fxpId:
-          allOf:
-            - $ref: '#/components/schemas/FspId'
-            - description: The ID of the FXP performing the conversion.
-        amountType:
-          allOf:
-            - $ref: '#/components/schemas/AmountType'
-            - description: >-
-                This is the AmountType for the base transaction.  If SEND - then
-                any charges levied by the FXP as part of the transaction will be
-                deducted by the FXP from the amount shown for the target party
-                in the conversion. If RECEIVE - then any charges levied by the
-                FXP as part of the transaction will be added by the FXP to the
-                amount shown for the source party in the conversion.
-        sourceAmount:
-          $ref: '#/components/schemas/FXMoney'
-        targetAmount:
-          $ref: '#/components/schemas/FXMoney'
-        geoCode:
-          $ref: '#/components/schemas/GeoCode'
-        note:
-          $ref: '#/components/schemas/Note'
-        expiration:
-          $ref: '#/components/schemas/DateTime'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
-      required:
-        - fxQuoteId
-        - conversionId
-        - initiatingFsp
-        - fxpId
-        - amountType
-        - sourceAmount
-        - targetAmount
-    FXCharge:
-      title: FXCharge
+    FxCharge:
+      title: FxCharge
       type: object
       description: >-
         An FXP will be able to specify a charge which it proposes to levy on the
-        currency conversion operation using a FXCharge object.
+        currency conversion operation using a FxCharge object.
       properties:
         chargeType:
           type: string
@@ -4111,77 +4064,188 @@ components:
                 target currency.
       required:
         - chargeType
-    FXQuotesIDPutResponse:
-      title: FXQuotesIDPutResponse
+    FxConversion:
+      title: FxConversion
+      type: object
+      description: >-
+        A DFSP will be able to request a currency conversion, and an FX provider
+        will be able to describe its involvement in a proposed transfer, using a
+        FxConversion object.
+      properties:
+        conversionId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: An end-to-end identifier for the conversion request.
+        relatedTransactionId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: >-
+                The transaction ID of the transfer on whose success this
+                currency conversion depends. If this is a bulk currency
+                conversion which is not dependent on a transfer, then this field
+                should be omitted. (VJTODO-Need to confirm about the field name)
+        initiatingFsp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: >-
+                The id of the participant who is requesting a currency
+                conversion. (VJTODO-Should it be source.fspId?)
+        counterPartyFsp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: >-
+                The ID of the FXP performing the conversion. (VJTODO-Need to
+                confirm about the field name, can it be FxpId?)
+        amountType:
+          allOf:
+            - $ref: '#/components/schemas/AmountType'
+            - description: >-
+                This is the AmountType for the base transaction - If SEND - then
+                any charges levied by the FXP as part of the transaction will be
+                deducted by the FXP from the amount shown for the target party
+                in the conversion. If RECEIVE - then any charges levied by the
+                FXP as part of the transaction will be added by the FXP to the
+                amount shown for the source party in the conversion.
+        sourceAmount:
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: >-
+                The amount to be converted, expressed in the source currency.
+                (VJTODO-Should it be source.amount?)
+        targetAmount:
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: >-
+                The converted amount, expressed in the target currency.
+                (VJTODO-Should it be target.amount?)
+        validity:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+            - description: >-
+                The end of the period for which the currency conversion is
+                required to remain valid. (VJTODO-can we rename to expiration?)
+        charges:
+          type: array
+          description: >-
+            One or more charges which the FXP intends to levy as part of the
+            currency conversion, or which the payee DFSP intends to add to the
+            amount transferred.
+          items:
+            $ref: '#/components/schemas/FxCharge'
+          minItems: 0
+          maxItems: 16
+        extensionList:
+          allOf:
+            - $ref: '#/components/schemas/ExtensionList'
+            - description: >-
+                The extension list for the currency conversion request.
+                (VJTODO-Should we move this to the top level or is it part of
+                the the conversion object?)
+      required:
+        - conversionId
+        - initiatingFsp
+        - counterPartyFsp
+        - amountType
+        - sourceAmount
+        - targetAmount
+        - validity
+    FxQuotesPostRequest:
+      title: FxQuotesPostRequest
+      type: object
+      description: The object sent in the POST /fxQuotes request.
+      properties:
+        fxQuoteId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: An end-to-end identifier for the conversion quotation request.
+        conversion:
+          allOf:
+            - $ref: '#/components/schemas/FxConversion'
+            - description: >-
+                The terms of the currency conversion for which a quotation is
+                sought.
+      required:
+        - fxQuoteId
+        - conversion
+    FxQuotesIDPutResponse:
+      title: FxQuotesIDPutResponse
       type: object
       description: The object sent in the PUT /fxQuotes/{ID} callback.
       properties:
-        sourceAmount:
-          $ref: '#/components/schemas/Money'
-        targetAmount:
-          $ref: '#/components/schemas/Money'
-        charge:
-          $ref: '#/components/schemas/FXCharge'
-        expiration:
-          $ref: '#/components/schemas/DateTime'
-        geoCode:
-          $ref: '#/components/schemas/GeoCode'
-        ilpPacket:
-          $ref: '#/components/schemas/IlpPacket'
         condition:
-          $ref: '#/components/schemas/IlpCondition'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          allOf:
+            - $ref: '#/components/schemas/IlpCondition'
+            - description: The ILP condition for the conversion.
+        conversionTerms:
+          allOf:
+            - $ref: '#/components/schemas/FxConversion'
+            - description: >-
+                The terms under which the FXP will undertake the currency
+                conversion proposed by the requester. (VJTODO-Do we need a
+                separate object for conversionTerms as the sourceAmount and
+                targetAmount should contain amount values in the conversionTerms
+                as opposed to the conversion object?)
       required:
         - sourceAmount
         - targetAmount
         - expiration
         - ilpPacket
         - condition
-    FXTransfersPostRequest:
-      title: FXTransfersPostRequest
+    FxTransfersPostRequest:
+      title: FxTransfersPostRequest
       type: object
       description: The object sent in the POST /fxTransfers request.
       properties:
         fxTransferId:
-          $ref: '#/components/schemas/CorrelationId'
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: >-
+                An end-to-end identifier for the confirmation request.
+                (VJTODO-Can it be fxTransferId instead of commitRequestId?)
         determiningTransactionId:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: >-
-                The transfer ID of the transfer to which this currency
+                The transaction ID of the transfer to which this currency
                 conversion relates, if the conversion is part of a transfer. If
-                the conversion is a currency purchase, this field should be
-                omitted.
+                the conversion is a bulk currency purchase, this field should be
+                omitted. (VJTODO-is it determiningTransactionId instead of
+                TransId?)
         requestingFsp:
-          $ref: '#/components/schemas/FspId'
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: Identifier for the FSP who is requesting a currency conversion.
         respondingFxp:
           allOf:
             - $ref: '#/components/schemas/FspId'
-            - description: The ID of the FXP which is to execute the currency conversion.
+            - description: >-
+                Identifier for the FXP who is performing the currency
+                conversion.
         sourceAmount:
-          $ref: '#/components/schemas/Money'
+          allOf:
+            - $ref: '#/components/schemas/Money'
+            - description: The amount being offered for conversion by the requesting FSP.
         targetAmount:
-          $ref: '#/components/schemas/Money'
-        ilpPacket:
-          $ref: '#/components/schemas/IlpPacket'
+          allOf:
+            - $ref: '#/components/schemas/Money'
+            - description: >-
+                The amount which the FXP is to credit to the requesting FSP in
+                the target currency.
         condition:
-          $ref: '#/components/schemas/IlpCondition'
-        expiration:
-          $ref: '#/components/schemas/DateTime'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          allOf:
+            - $ref: '#/components/schemas/IlpCondition'
+            - description: >-
+                ILP condition received by the requesting FSP when the quote was
+                approved.
       required:
         - fxTransferId
-        - determiningTransactionId
-        - payeeFsp
-        - payerFsp
-        - amount
-        - ilpPacket
+        - requestingFsp
+        - respondingFxp
+        - sourceAmount
+        - targetAmount
         - condition
-        - expiration
-    FXTransfersIDPutResponse:
-      title: FXTransfersIDPutResponse
+    FxTransfersIDPutResponse:
+      title: FxTransfersIDPutResponse
       type: object
       description: The object sent in the PUT /fxTransfers/{ID} callback.
       properties:
@@ -4193,27 +4257,47 @@ components:
                 conversion. Mandatory if the conversion has been executed
                 successfully.
         completedTimestamp:
-          $ref: '#/components/schemas/DateTime'
-        fxTransferState:
-          $ref: '#/components/schemas/TransferState'
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+            - description: Time and date when the conversion was executed.
+        conversionState:
+          allOf:
+            - $ref: '#/components/schemas/TransferState'
+            - description: >-
+                The current status of the conversion request. (VJTODO-Do we need
+                to align this with transfers state, like using fxTransferState
+                instead?)
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
       required:
-        - fxTransferState
-    FXTransfersIDPatchResponse:
-      title: FXTransfersIDPatchResponse
+        - conversionState
+    FxTransfersIDPatchResponse:
+      title: FxTransfersIDPatchResponse
       type: object
       description: PATCH /fxTransfers/{ID} object
       properties:
+        fulfilment:
+          allOf:
+            - $ref: '#/components/schemas/IlpFulfilment'
+            - description: >-
+                The fulfilment of the condition specified for the currency
+                conversion. Mandatory if the conversion has been executed
+                successfully. (VJTODO-Do we need this for patch?)
         completedTimestamp:
-          $ref: '#/components/schemas/DateTime'
-        fxTransferState:
-          $ref: '#/components/schemas/TransferState'
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+            - description: Time and date when the conversion was executed.
+        conversionState:
+          allOf:
+            - $ref: '#/components/schemas/TransferState'
+            - description: >-
+                The current status of the conversion request. (VJTODO-Do we need
+                to align this with transfers state, like using fxTransferState
+                instead?)
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
       required:
-        - completedTimestamp
-        - fxTransferState
+        - conversionState
   parameters:
     Type:
       name: Type

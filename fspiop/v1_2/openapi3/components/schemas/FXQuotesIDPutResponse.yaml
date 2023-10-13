@@ -1,23 +1,16 @@
-title: FXQuotesIDPutResponse
+title: FxQuotesIDPutResponse
 type: object
-description: 'The object sent in the PUT /fxQuotes/{ID} callback.'
+description: The object sent in the PUT /fxQuotes/{ID} callback.
 properties:
-  sourceAmount:
-    $ref: ./Money.yaml
-  targetAmount:
-    $ref: ./Money.yaml
-  charge:
-    $ref: ./FXCharge.yaml
-  expiration:
-    $ref: ./DateTime.yaml
-  geoCode:
-    $ref: ./GeoCode.yaml
-  ilpPacket:
-    $ref: ./IlpPacket.yaml
   condition:
-    $ref: ./IlpCondition.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
+    allOf:
+      - $ref: ./IlpCondition.yaml
+      - description: The ILP condition for the conversion.
+  conversionTerms:
+    allOf:
+      - $ref: ./FxConversion.yaml
+      - description: The terms under which the FXP will undertake the currency conversion proposed by the requester. (VJTODO-Do we need a separate object for conversionTerms as the sourceAmount and targetAmount should contain amount values in the conversionTerms as opposed to the conversion object?)
+
 required:
   - sourceAmount
   - targetAmount

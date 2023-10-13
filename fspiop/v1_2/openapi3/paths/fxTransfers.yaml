@@ -4,7 +4,7 @@ post:
   summary: Perform FX transfer
   tags:
     - fxTransfers
-  operationId: FXTransfersPost
+  operationId: FxTransfersPost
   parameters:
     - $ref: ../components/parameters/Accept.yaml
     - $ref: ../components/parameters/Content-Length.yaml
@@ -23,7 +23,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/FXTransfersPostRequest.yaml
+          $ref: ../components/schemas/FxTransfersPostRequest.yaml
   responses:
     '202':
       $ref: ../components/responses/202.yaml

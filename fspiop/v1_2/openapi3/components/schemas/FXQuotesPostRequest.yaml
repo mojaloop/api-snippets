@@ -1,52 +1,15 @@
-title: FXQuotesPostRequest
+title: FxQuotesPostRequest
 type: object
 description: The object sent in the POST /fxQuotes request.
 properties:
   fxQuoteId:
-    $ref: ./CorrelationId.yaml
-  # conversion:
-  #   allOf:
-  #     - $ref: ./FXConversionTerms.yaml
-  #     - description: The terms of the currency conversion for which a quotation is sought.
-  conversionId:
     allOf:
       - $ref: ./CorrelationId.yaml
-      - description: An end-to-end identifier for the conversion request.
-  initiatingFsp:
+      - description: An end-to-end identifier for the conversion quotation request.
+  conversion:
     allOf:
-      - $ref: ./FspId.yaml
-      - description: The ID of the FSP initiating the conversion request.
-  fxpId:
-    allOf:
-      - $ref: ./FspId.yaml
-      - description: The ID of the FXP performing the conversion.
-  amountType:
-    allOf:
-      - $ref: ./AmountType.yaml
-      - description: >-
-          This is the AmountType for the base transaction. 
-          If SEND - then any charges levied by the FXP as part of the transaction will be deducted by the FXP from the amount shown for the target party in the conversion.
-          If RECEIVE - then any charges levied by the FXP as part of the transaction will be added by the FXP to the amount shown for the source party in the conversion.
-  sourceAmount:
-    $ref: ./FXMoney.yaml
-  targetAmount:
-    $ref: ./FXMoney.yaml
-  # transactionType:
-  #   $ref: ./TransactionType.yaml
-  geoCode:
-    $ref: ./GeoCode.yaml
-  note:
-    $ref: ./Note.yaml
-  expiration:
-    $ref: ./DateTime.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
+      - $ref: ./FxConversion.yaml
+      - description: The terms of the currency conversion for which a quotation is sought.
 required:
   - fxQuoteId
-  - conversionId
-  - initiatingFsp
-  - fxpId
-  - amountType
-  - sourceAmount
-  - targetAmount
-  # - transactionType
+  - conversion

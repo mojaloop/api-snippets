@@ -1,6 +1,6 @@
 put:
   description: >-
-    If the server is unable to find or create a FX quote, or some other processing
+    If the FXP is unable to find or create a FX quote, or some other processing
     error occurs, the error callback `PUT /fxQuotes/{ID}/error` is used. The
     `{ID}` in the URI should contain the `fxQuoteId` that was used for the
     creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}`
@@ -8,7 +8,7 @@ put:
   summary: Return FX quote information error
   tags:
     - fxQuotes
-  operationId: FXQuotesByIDAndErrorPut
+  operationId: FxQuotesByIDAndErrorPut
   parameters:
     - $ref: ../components/parameters/ID.yaml
     - $ref: ../components/parameters/Content-Length.yaml

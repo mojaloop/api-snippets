@@ -1,13 +1,20 @@
-title: FXTransfersIDPatchResponse
+title: FxTransfersIDPatchResponse
 type: object
 description: 'PATCH /fxTransfers/{ID} object'
 properties:
+  fulfilment:
+    allOf:
+      - $ref: ./IlpFulfilment.yaml
+      - description: The fulfilment of the condition specified for the currency conversion. Mandatory if the conversion has been executed successfully. (VJTODO-Do we need this for patch?)
   completedTimestamp:
-    $ref: ./DateTime.yaml
-  fxTransferState:
-    $ref: ./TransferState.yaml
+    allOf:
+      - $ref: ./DateTime.yaml
+      - description: Time and date when the conversion was executed.
+  conversionState:
+    allOf:
+      - $ref: ./TransferState.yaml
+      - description: The current status of the conversion request. (VJTODO-Do we need to align this with transfers state, like using fxTransferState instead?)
   extensionList:
     $ref: ./ExtensionList.yaml
 required:
-  - completedTimestamp
-  - fxTransferState
+  - conversionState

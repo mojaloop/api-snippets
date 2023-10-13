@@ -502,19 +502,19 @@ export interface paths {
      * Calculate FX quote
      * @description The HTTP request `POST /fxQuotes` is used to ask an FXP to provide a quotation for a currency conversion.
      */
-    post: operations["FXQuotesPost"];
+    post: operations["FxQuotesPost"];
   };
   "/fxQuotes/{ID}": {
     /**
      * Retrieve FX quote information
-     * @description The HTTP request `GET /fxQuotes/{ID}` is used to get information regarding a FX quote created or requested earlier. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the quote.
+     * @description The HTTP request `GET /fxQuotes/{ID}` is used to request information regarding a request for quotation for a  currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the quote.
      */
-    get: operations["FXQuotesByIDGet"];
+    get: operations["FxQuotesByIDGet"];
     /**
      * Return FX quote information
      * @description The callback `PUT /fxQuotes/{ID}` is used to inform the requester about the  outcome of a request for quotation for a currency conversion.  The `{ID}` in the URI should contain the `fxQuoteId` that was used for the  creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
      */
-    put: operations["FXQuotesByIdPut"];
+    put: operations["FxQuotesByIdPut"];
     parameters: {
       header: {
         "Content-Type": components["parameters"]["Content-Type"];
@@ -535,33 +535,33 @@ export interface paths {
   "/fxQuotes/{ID}/error": {
     /**
      * Return FX quote information error
-     * @description If the server is unable to find or create a FX quote, or some other processing error occurs, the error callback `PUT /fxQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
+     * @description If the FXP is unable to find or create a FX quote, or some other processing error occurs, the error callback `PUT /fxQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
      */
-    put: operations["FXQuotesByIDAndErrorPut"];
+    put: operations["FxQuotesByIDAndErrorPut"];
   };
   "/fxTransfers": {
     /**
      * Perform FX transfer
      * @description The HTTP request `POST /fxTransfers` is used to ask an FXP to confirm the execution of an agreed currency conversion.
      */
-    post: operations["FXTransfersPost"];
+    post: operations["FxTransfersPost"];
   };
   "/fxTransfers/{ID}": {
     /**
      * Retrieve FX transfer information
-     * @description The HTTP request `GET /fxTransfers/{ID}` is used to request information regarding a FX transfer created or requested earlier. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer.
+     * @description The HTTP request `GET /fxTransfers/{ID}` s used to request information regarding a request for confirmation of a currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer.
      */
-    get: operations["FXTransfersByIDGet"];
+    get: operations["FxTransfersByIDGet"];
     /**
      * Return FX transfer information
-     * @description The callback `PUT /fxTransfers/{ID}` is used to inform the client of a requested or created fxTransfers. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}` request.
+     * @description The callback `PUT /fxTransfers/{ID}` is used to inform the requester about the outcome of a request for execution of a currency conversion. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}` request.
      */
-    put: operations["FXTransfersByIDPut"];
+    put: operations["FxTransfersByIDPut"];
     /**
      * Return FX transfer information
-     * @description The HTTP request PATCH /fxTransfers/<ID> is used by a Switch to update the state of a request for execution of a currency conversion. The <ID> in the URI should contain the fxTransferId that was used for the creation of the FX transfer. Please note that this request does not generate a callback.
+     * @description The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester about the final determination by the switch of the transfer a request for execution of a currency conversion. The <ID> in the URI should contain the fxTransferId that was used for the creation of the FX transfer. Please note that this request does not generate a callback.
      */
-    patch: operations["FXTransfersByIDPatch"];
+    patch: operations["FxTransfersByIDPatch"];
     parameters: {
       header: {
         "Content-Type": components["parameters"]["Content-Type"];
@@ -584,7 +584,7 @@ export interface paths {
      * Return FX transfer information error
      * @description If the switch or FXP is unable to find or create a FX transfer, or another processing error occurs, the error callback `PUT /fxTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}`.
      */
-    put: operations["FXTransfersByIDAndErrorPut"];
+    put: operations["FxTransfersByIDAndErrorPut"];
   };
 }
 
@@ -1345,87 +1345,87 @@ export interface components {
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * FXMoney
-     * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.
+     * FxMoney
+     * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations. (VJTODO-Should the amount field be principalAmount?)
      */
-    FXMoney: {
+    FxMoney: {
       currency: components["schemas"]["Currency"];
       amount?: components["schemas"]["Amount"];
     };
     /**
-     * FXQuotesPostRequest
-     * @description The object sent in the POST /fxQuotes request.
+     * FxCharge
+     * @description An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FxCharge object.
      */
-    FXQuotesPostRequest: {
-      fxQuoteId: components["schemas"]["CorrelationId"];
-      conversionId: components["schemas"]["CorrelationId"];
-      initiatingFsp: components["schemas"]["FspId"];
-      fxpId: components["schemas"]["FspId"];
-      amountType: components["schemas"]["AmountType"];
-      sourceAmount: components["schemas"]["FXMoney"];
-      targetAmount: components["schemas"]["FXMoney"];
-      geoCode?: components["schemas"]["GeoCode"];
-      note?: components["schemas"]["Note"];
-      expiration?: components["schemas"]["DateTime"];
-      extensionList?: components["schemas"]["ExtensionList"];
-    };
-    /**
-     * FXCharge
-     * @description An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FXCharge object.
-     */
-    FXCharge: {
+    FxCharge: {
       /** @description A description of the charge which is being levied. */
       chargeType: string;
       sourceAmount?: components["schemas"]["Amount"];
       targetAmount?: components["schemas"]["Amount"];
     };
     /**
-     * FXQuotesIDPutResponse
+     * FxConversion
+     * @description A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
+     */
+    FxConversion: {
+      conversionId: components["schemas"]["CorrelationId"];
+      relatedTransactionId?: components["schemas"]["CorrelationId"];
+      initiatingFsp: components["schemas"]["FspId"];
+      counterPartyFsp: components["schemas"]["FspId"];
+      amountType: components["schemas"]["AmountType"];
+      sourceAmount: components["schemas"]["FxMoney"];
+      targetAmount: components["schemas"]["FxMoney"];
+      validity: components["schemas"]["DateTime"];
+      /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
+      charges?: components["schemas"]["FxCharge"][];
+      extensionList?: components["schemas"]["ExtensionList"];
+    };
+    /**
+     * FxQuotesPostRequest
+     * @description The object sent in the POST /fxQuotes request.
+     */
+    FxQuotesPostRequest: {
+      fxQuoteId: components["schemas"]["CorrelationId"];
+      conversion: components["schemas"]["FxConversion"];
+    };
+    /**
+     * FxQuotesIDPutResponse
      * @description The object sent in the PUT /fxQuotes/{ID} callback.
      */
-    FXQuotesIDPutResponse: {
-      sourceAmount: components["schemas"]["Money"];
-      targetAmount: components["schemas"]["Money"];
-      charge?: components["schemas"]["FXCharge"];
-      expiration: components["schemas"]["DateTime"];
-      geoCode?: components["schemas"]["GeoCode"];
-      ilpPacket: components["schemas"]["IlpPacket"];
+    FxQuotesIDPutResponse: {
       condition: components["schemas"]["IlpCondition"];
-      extensionList?: components["schemas"]["ExtensionList"];
+      conversionTerms?: components["schemas"]["FxConversion"];
     };
     /**
-     * FXTransfersPostRequest
+     * FxTransfersPostRequest
      * @description The object sent in the POST /fxTransfers request.
      */
-    FXTransfersPostRequest: {
+    FxTransfersPostRequest: {
       fxTransferId: components["schemas"]["CorrelationId"];
-      determiningTransactionId: components["schemas"]["CorrelationId"];
-      requestingFsp?: components["schemas"]["FspId"];
-      respondingFxp?: components["schemas"]["FspId"];
-      sourceAmount?: components["schemas"]["Money"];
-      targetAmount?: components["schemas"]["Money"];
-      ilpPacket: components["schemas"]["IlpPacket"];
+      determiningTransactionId?: components["schemas"]["CorrelationId"];
+      requestingFsp: components["schemas"]["FspId"];
+      respondingFxp: components["schemas"]["FspId"];
+      sourceAmount: components["schemas"]["Money"];
+      targetAmount: components["schemas"]["Money"];
       condition: components["schemas"]["IlpCondition"];
-      expiration: components["schemas"]["DateTime"];
-      extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * FXTransfersIDPutResponse
+     * FxTransfersIDPutResponse
      * @description The object sent in the PUT /fxTransfers/{ID} callback.
      */
-    FXTransfersIDPutResponse: {
+    FxTransfersIDPutResponse: {
       fulfilment?: components["schemas"]["IlpFulfilment"];
       completedTimestamp?: components["schemas"]["DateTime"];
-      fxTransferState: components["schemas"]["TransferState"];
+      conversionState: components["schemas"]["TransferState"];
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
-     * FXTransfersIDPatchResponse
+     * FxTransfersIDPatchResponse
      * @description PATCH /fxTransfers/{ID} object
      */
-    FXTransfersIDPatchResponse: {
-      completedTimestamp: components["schemas"]["DateTime"];
-      fxTransferState: components["schemas"]["TransferState"];
+    FxTransfersIDPatchResponse: {
+      fulfilment?: components["schemas"]["IlpFulfilment"];
+      completedTimestamp?: components["schemas"]["DateTime"];
+      conversionState: components["schemas"]["TransferState"];
       extensionList?: components["schemas"]["ExtensionList"];
     };
   };
@@ -3387,7 +3387,7 @@ export interface operations {
    * Calculate FX quote
    * @description The HTTP request `POST /fxQuotes` is used to ask an FXP to provide a quotation for a currency conversion.
    */
-  FXQuotesPost: {
+  FxQuotesPost: {
     parameters: {
       header: {
         Accept: components["parameters"]["Accept"];
@@ -3406,7 +3406,7 @@ export interface operations {
     /** @description Details of the FX quote to be created. */
     requestBody: {
       content: {
-        "application/json": components["schemas"]["FXQuotesPostRequest"];
+        "application/json": components["schemas"]["FxQuotesPostRequest"];
       };
     };
     responses: {
@@ -3423,9 +3423,9 @@ export interface operations {
   };
   /**
    * Retrieve FX quote information
-   * @description The HTTP request `GET /fxQuotes/{ID}` is used to get information regarding a FX quote created or requested earlier. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the quote.
+   * @description The HTTP request `GET /fxQuotes/{ID}` is used to request information regarding a request for quotation for a  currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the quote.
    */
-  FXQuotesByIDGet: {
+  FxQuotesByIDGet: {
     parameters: {
       header: {
         "Content-Type": components["parameters"]["Content-Type"];
@@ -3459,7 +3459,7 @@ export interface operations {
    * Return FX quote information
    * @description The callback `PUT /fxQuotes/{ID}` is used to inform the requester about the  outcome of a request for quotation for a currency conversion.  The `{ID}` in the URI should contain the `fxQuoteId` that was used for the  creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
    */
-  FXQuotesByIdPut: {
+  FxQuotesByIdPut: {
     parameters: {
       header: {
         "Content-Type": components["parameters"]["Content-Type"];
@@ -3480,7 +3480,7 @@ export interface operations {
     /** @description FX Quote information returned. */
     requestBody: {
       content: {
-        "application/json": components["schemas"]["FXQuotesIDPutResponse"];
+        "application/json": components["schemas"]["FxQuotesIDPutResponse"];
       };
     };
     responses: {
@@ -3497,9 +3497,9 @@ export interface operations {
   };
   /**
    * Return FX quote information error
-   * @description If the server is unable to find or create a FX quote, or some other processing error occurs, the error callback `PUT /fxQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
+   * @description If the FXP is unable to find or create a FX quote, or some other processing error occurs, the error callback `PUT /fxQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
    */
-  FXQuotesByIDAndErrorPut: {
+  FxQuotesByIDAndErrorPut: {
     parameters: {
       header: {
         "Content-Length"?: components["parameters"]["Content-Length"];
@@ -3539,7 +3539,7 @@ export interface operations {
    * Perform FX transfer
    * @description The HTTP request `POST /fxTransfers` is used to ask an FXP to confirm the execution of an agreed currency conversion.
    */
-  FXTransfersPost: {
+  FxTransfersPost: {
     parameters: {
       header: {
         Accept: components["parameters"]["Accept"];
@@ -3558,7 +3558,7 @@ export interface operations {
     /** @description Details of the FX transfer to be created. */
     requestBody: {
       content: {
-        "application/json": components["schemas"]["FXTransfersPostRequest"];
+        "application/json": components["schemas"]["FxTransfersPostRequest"];
       };
     };
     responses: {
@@ -3575,9 +3575,9 @@ export interface operations {
   };
   /**
    * Retrieve FX transfer information
-   * @description The HTTP request `GET /fxTransfers/{ID}` is used to request information regarding a FX transfer created or requested earlier. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer.
+   * @description The HTTP request `GET /fxTransfers/{ID}` s used to request information regarding a request for confirmation of a currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer.
    */
-  FXTransfersByIDGet: {
+  FxTransfersByIDGet: {
     parameters: {
       header: {
         "Content-Type": components["parameters"]["Content-Type"];
@@ -3609,9 +3609,9 @@ export interface operations {
   };
   /**
    * Return FX transfer information
-   * @description The callback `PUT /fxTransfers/{ID}` is used to inform the client of a requested or created fxTransfers. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}` request.
+   * @description The callback `PUT /fxTransfers/{ID}` is used to inform the requester about the outcome of a request for execution of a currency conversion. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}` request.
    */
-  FXTransfersByIDPut: {
+  FxTransfersByIDPut: {
     parameters: {
       header: {
         "Content-Type": components["parameters"]["Content-Type"];
@@ -3632,7 +3632,7 @@ export interface operations {
     /** @description Transfer information returned. */
     requestBody: {
       content: {
-        "application/json": components["schemas"]["FXTransfersIDPutResponse"];
+        "application/json": components["schemas"]["FxTransfersIDPutResponse"];
       };
     };
     responses: {
@@ -3649,9 +3649,9 @@ export interface operations {
   };
   /**
    * Return FX transfer information
-   * @description The HTTP request PATCH /fxTransfers/<ID> is used by a Switch to update the state of a request for execution of a currency conversion. The <ID> in the URI should contain the fxTransferId that was used for the creation of the FX transfer. Please note that this request does not generate a callback.
+   * @description The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester about the final determination by the switch of the transfer a request for execution of a currency conversion. The <ID> in the URI should contain the fxTransferId that was used for the creation of the FX transfer. Please note that this request does not generate a callback.
    */
-  FXTransfersByIDPatch: {
+  FxTransfersByIDPatch: {
     parameters: {
       header: {
         "Content-Type": components["parameters"]["Content-Type"];
@@ -3672,7 +3672,7 @@ export interface operations {
     /** @description Transfer notification upon completion. */
     requestBody: {
       content: {
-        "application/json": components["schemas"]["FXTransfersIDPatchResponse"];
+        "application/json": components["schemas"]["FxTransfersIDPatchResponse"];
       };
     };
     responses: {
@@ -3691,7 +3691,7 @@ export interface operations {
    * Return FX transfer information error
    * @description If the switch or FXP is unable to find or create a FX transfer, or another processing error occurs, the error callback `PUT /fxTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}`.
    */
-  FXTransfersByIDAndErrorPut: {
+  FxTransfersByIDAndErrorPut: {
     parameters: {
       header: {
         "Content-Length"?: components["parameters"]["Content-Length"];

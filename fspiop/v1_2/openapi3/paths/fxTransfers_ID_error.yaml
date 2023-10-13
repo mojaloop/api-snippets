@@ -8,7 +8,7 @@ put:
   summary: Return FX transfer information error
   tags:
     - fxTransfers
-  operationId: FXTransfersByIDAndErrorPut
+  operationId: FxTransfersByIDAndErrorPut
   parameters:
     - $ref: ../components/parameters/ID.yaml
     - $ref: ../components/parameters/Content-Length.yaml

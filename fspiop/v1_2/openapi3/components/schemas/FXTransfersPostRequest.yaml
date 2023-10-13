@@ -1,37 +1,44 @@
-title: FXTransfersPostRequest
+title: FxTransfersPostRequest
 type: object
 description: The object sent in the POST /fxTransfers request.
 properties:
   fxTransferId:
-    $ref: ./CorrelationId.yaml
+    allOf:
+      - $ref: ./CorrelationId.yaml
+      - description: An end-to-end identifier for the confirmation request. (VJTODO-Can it be fxTransferId instead of commitRequestId?)
   determiningTransactionId:
     allOf:
       - $ref: ./CorrelationId.yaml
-      - description: The transfer ID of the transfer to which this currency conversion relates, if the conversion is part of a transfer. If the conversion is a currency purchase, this field should be omitted.
+      - description: The transaction ID of the transfer to which this currency conversion relates, if the conversion is part of a transfer. If the conversion is a bulk currency purchase, this field should be omitted. (VJTODO-is it determiningTransactionId instead of TransId?)
   requestingFsp:
-    $ref: ./FspId.yaml
+    allOf:
+      - $ref: ./FspId.yaml
+      - description: Identifier for the FSP who is requesting a currency conversion.
   respondingFxp:
     allOf:
       - $ref: ./FspId.yaml
-      - description: The ID of the FXP which is to execute the currency conversion.
+      - description: Identifier for the FXP who is performing the currency conversion.
   sourceAmount:
-    $ref: ./Money.yaml
+    allOf:
+      - $ref: ./Money.yaml
+      - description: The amount being offered for conversion by the requesting FSP.
   targetAmount:
-    $ref: ./Money.yaml
-  ilpPacket:
-    $ref: ./IlpPacket.yaml
+    allOf:
+      - $ref: ./Money.yaml
+      - description: The amount which the FXP is to credit to the requesting FSP in the target currency.
   condition:
-    $ref: ./IlpCondition.yaml
-  expiration:
-    $ref: ./DateTime.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
+    allOf:
+      - $ref: ./IlpCondition.yaml
+      - description: ILP condition received by the requesting FSP when the quote was approved.
+  # VJTODO-Don't we need expiration and extensionList?
+  # expiration:
+  #   $ref: ./DateTime.yaml
+  # extensionList:
+  #   $ref: ./ExtensionList.yaml
 required:
   - fxTransferId
-  - determiningTransactionId
-  - payeeFsp
-  - payerFsp
-  - amount
-  - ilpPacket
+  - requestingFsp
+  - respondingFxp
+  - sourceAmount
+  - targetAmount
   - condition
-  - expiration
