@@ -1,0 +1,5 @@
+description: Malformed or missing required headers or parameters.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/errorResponse.yaml

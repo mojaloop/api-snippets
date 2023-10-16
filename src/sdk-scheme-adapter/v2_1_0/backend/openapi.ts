@@ -101,6 +101,13 @@ export interface paths {
      */
     put: operations["BackendTransfersPut"];
   };
+  "/fxQuotes": {
+    /**
+     * Calculate FX quote
+     * @description The HTTP request `POST /fxQuotes` is used to ask an FXP backend to provide a quotation for a currency conversion.
+     */
+    post: operations["FxQuotesPost"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -257,15 +264,6 @@ export interface components {
       errorCode: components["schemas"]["errorCode"];
       errorDescription: components["schemas"]["errorDescription"];
       extensionList?: components["schemas"]["extensionListComplex"];
-    };
-    errorResponse: {
-      /** @description Error message text */
-      message?: string;
-      /**
-       * @description Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.
-       * Otherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.
-       */
-      statusCode?: string;
     };
     extensionItem: {
       key?: string;
@@ -486,6 +484,8 @@ export interface components {
       /** @description Party middle name. */
       middleName?: string;
       type?: components["schemas"]["payerType"];
+      /** @description Currencies in which the party can receive funds. */
+      supportedCurrencies?: components["schemas"]["currency"][];
     };
     transferRequest: {
       /** @description Linked homeR2PTransactionId which was generated as part of POST /requestToPay to SDK incase of requestToPay transfer. */
@@ -533,6 +533,15 @@ export interface components {
      * @example LOCALLY_DEFINED_SUBSCENARIO
      */
     TransactionSubScenario: string;
+    errorResponse: {
+      /**
+       * @description Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.
+       * Otherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.
+       */
+      statusCode?: string;
+      /** @description Error message text. */
+      message?: string;
+    };
     /**
      * CorrelationId
      * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
@@ -845,6 +854,51 @@ export interface components {
      * @enum {string}
      */
     AuthenticationType: "OTP" | "QRCODE" | "U2F";
+    /**
+     * FxMoney
+     * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations. (VJTODO-Should the amount field be principalAmount?)
+     */
+    FxMoney: {
+      currency: components["schemas"]["Currency"];
+      amount?: components["schemas"]["Amount"];
+    };
+    /**
+     * FxQuotesPostBackendRequest
+     * @description The object sent in the POST /fxQuotes request.
+     */
+    FxQuotesPostBackendRequest: {
+      fxQuoteId: components["schemas"]["CorrelationId"];
+      /** @description Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems. */
+      homeTransactionId: string;
+      conversionId: components["schemas"]["CorrelationId"];
+      initiatingFsp: components["schemas"]["FspId"];
+      counterPartyFsp: components["schemas"]["FspId"];
+      amountType: components["schemas"]["AmountType"];
+      sourceAmount: components["schemas"]["FxMoney"];
+      targetAmount: components["schemas"]["FxMoney"];
+    };
+    /**
+     * FxCharge
+     * @description An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FxCharge object.
+     */
+    FxCharge: {
+      /** @description A description of the charge which is being levied. */
+      chargeType: string;
+      sourceAmount?: components["schemas"]["Amount"];
+      targetAmount?: components["schemas"]["Amount"];
+    };
+    /**
+     * FxQuotesPostBackendResponse
+     * @description The object sent as a response for the POST /fxQuotes request. The terms under which the FXP will undertake the currency conversion proposed by the requester.
+     */
+    FxQuotesPostBackendResponse: {
+      amountType: components["schemas"]["AmountType"];
+      sourceAmount: components["schemas"]["FxMoney"];
+      targetAmount: components["schemas"]["FxMoney"];
+      validityDurationSec: components["schemas"]["DateTime"];
+      /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
+      charges?: components["schemas"]["FxCharge"][];
+    };
   };
   responses: {
     /** @description Malformed or missing required headers or parameters. */
@@ -853,9 +907,11 @@ export interface components {
         "application/json": components["schemas"]["errorResponse"];
       };
     };
-    /** @description The party specified by the provided identifier type and value is not known to the server. */
+    /** @description Not Found */
     404: {
-      content: never;
+      content: {
+        "application/json": components["schemas"]["errorResponse"];
+      };
     };
     /** @description An error occurred processing the request. */
     500: {
@@ -1237,6 +1293,28 @@ export interface operations {
       200: {
         content: never;
       };
+      500: components["responses"]["500"];
+    };
+  };
+  /**
+   * Calculate FX quote
+   * @description The HTTP request `POST /fxQuotes` is used to ask an FXP backend to provide a quotation for a currency conversion.
+   */
+  FxQuotesPost: {
+    /** @description Details of the FX quote request. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["FxQuotesPostBackendRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["FxQuotesPostBackendResponse"];
+        };
+      };
+      400: components["responses"]["400"];
       500: components["responses"]["500"];
     };
   };

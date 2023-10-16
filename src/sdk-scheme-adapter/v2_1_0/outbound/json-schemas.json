@@ -430,7 +430,7 @@
     "properties": {
       "statusCode": {
         "type": "string",
-        "description": "Error code as string."
+        "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
       },
       "message": {
         "type": "string",
@@ -482,7 +482,7 @@
           "properties": {
             "statusCode": {
               "type": "string",
-              "description": "Error code as string."
+              "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
             },
             "message": {
               "type": "string",
@@ -1085,7 +1085,7 @@
               "properties": {
                 "statusCode": {
                   "type": "string",
-                  "description": "Error code as string."
+                  "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
                 },
                 "message": {
                   "type": "string",
@@ -1207,7 +1207,7 @@
         "properties": {
           "statusCode": {
             "type": "string",
-            "description": "Error code as string."
+            "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
           },
           "message": {
             "type": "string",
@@ -1494,7 +1494,7 @@
                       "properties": {
                         "statusCode": {
                           "type": "string",
-                          "description": "Error code as string."
+                          "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
                         },
                         "message": {
                           "type": "string",
@@ -5934,7 +5934,7 @@
         "properties": {
           "statusCode": {
             "type": "string",
-            "description": "Error code as string."
+            "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
           },
           "message": {
             "type": "string",
@@ -11339,7 +11339,7 @@
         "properties": {
           "statusCode": {
             "type": "string",
-            "description": "Error code as string."
+            "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
           },
           "message": {
             "type": "string",
@@ -11846,7 +11846,7 @@
         "properties": {
           "statusCode": {
             "type": "string",
-            "description": "Error code as string."
+            "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
           },
           "message": {
             "type": "string",
@@ -12005,7 +12005,7 @@
         "properties": {
           "statusCode": {
             "type": "string",
-            "description": "Error code as string."
+            "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
           },
           "message": {
             "type": "string",
@@ -17890,7 +17890,7 @@
         "properties": {
           "statusCode": {
             "type": "string",
-            "description": "Error code as string."
+            "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
           },
           "message": {
             "type": "string",
@@ -23525,7 +23525,7 @@
         "properties": {
           "statusCode": {
             "type": "string",
-            "description": "Error code as string."
+            "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
           },
           "message": {
             "type": "string",
@@ -29364,7 +29364,7 @@
         "properties": {
           "statusCode": {
             "type": "string",
-            "description": "Error code as string."
+            "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
           },
           "message": {
             "type": "string",

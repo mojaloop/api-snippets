@@ -14,7 +14,7 @@ info:
   license:
     name: Apache License Version 2.0, January 2004
     url: http://www.apache.org/licenses/
-  version: 1.2.0
+  version: 2.1.0
 
 paths:
   /:
@@ -41,9 +41,9 @@ paths:
                 $ref: '#/components/schemas/bulkQuoteResponse'
           description: A response to the bulk quote request.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Requests a bulk quote.
       tags:
         - BulkQuotes
@@ -60,11 +60,11 @@ paths:
                 $ref: '#/components/schemas/bulkQuoteResponse'
           description: Response containing details of the requested bulk quote.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '404':
-          $ref: '#/components/responses/404'
+          $ref: ../components/responses/404.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Requests information relating to a bulk quote identified by the specified identifier value.
       tags:
         - BulkQuotes
@@ -83,9 +83,9 @@ paths:
         '202':
           description: Bulk transaction information successfully amended.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Callbacks for the bulk transaction request.
       tags:
         - BulkTransactionsPut
@@ -104,9 +104,9 @@ paths:
         '200':
           description: OK
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Callback for the requestToPay request.
       tags:
         - RequestToPayPut
@@ -127,9 +127,9 @@ paths:
                 $ref: '#/components/schemas/bulkTransferResponse'
           description: The bulk transfer was accepted.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Execute bulk transfer of funds from an external account to internal accounts.
       tags:
         - BulkTransfers
@@ -146,11 +146,11 @@ paths:
                 $ref: '#/components/schemas/bulkTransferResponse'
           description: Response containing details of the requested bulk transfer.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '404':
-          $ref: '#/components/responses/404'
+          $ref: ../components/responses/404.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Requests information relating to a bulk transfer identified by the specified identifier value.
       tags:
         - BulkTransfers
@@ -167,11 +167,11 @@ paths:
                 $ref: '#/components/schemas/otpDetails'
           description: Response containing details of the OTP.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '404':
-          $ref: '#/components/responses/404'
+          $ref: ../components/responses/404.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Requests OTP.
       tags:
         - OTP
@@ -190,11 +190,11 @@ paths:
                 $ref: '#/components/schemas/participantsResponse'
           description: Response containing details of the requested party.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '404':
-          $ref: '#/components/responses/404'
+          $ref: ../components/responses/404.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Asks for the identifier (fspId) of the scheme participant (FSP) that can handle transfers for the specified identifier type and value.
       tags:
         - Participants
@@ -214,11 +214,11 @@ paths:
                 $ref: '#/components/schemas/participantsResponse'
           description: Response containing details of the requested party.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '404':
-          $ref: '#/components/responses/404'
+          $ref: ../components/responses/404.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Asks for the identifier (fspId) of the scheme participant (FSP) that can handle transfers for the specified identifier type and value.
       tags:
         - Participants
@@ -237,11 +237,11 @@ paths:
                 $ref: '#/components/schemas/transferParty'
           description: Response containing details of the requested party.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '404':
-          $ref: '#/components/responses/404'
+          $ref: ../components/responses/404.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Requests information relating to a transfer party identified by the specified identifier type and value.
       tags:
         - Parties
@@ -261,11 +261,11 @@ paths:
                 $ref: '#/components/schemas/transferParty'
           description: Response containing details of the requested party.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '404':
-          $ref: '#/components/responses/404'
+          $ref: ../components/responses/404.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Requests information relating to a transfer party identified by the specified identifier type, value and subId value.
       tags:
         - Parties
@@ -287,9 +287,9 @@ paths:
                 $ref: '#/components/schemas/quoteResponse'
           description: A response to the transfer quotation request.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Requests a quote for the specified transfer.
       tags:
         - Quotes
@@ -310,9 +310,9 @@ paths:
                 $ref: '#/components/schemas/transactionRequestResponse'
           description: A response to the transfer transaction request.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Transaction request that supports pull based transfers.
       tags:
         - TransactionRequest
@@ -334,9 +334,9 @@ paths:
                 $ref: '#/components/schemas/transferResponse'
           description: The transfer was accepted.
         '400':
-          $ref: '#/components/responses/400'
+          $ref: ../components/responses/400.yaml
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Transfers funds from an external account to an internal account.
       tags:
         - Transfers
@@ -354,7 +354,7 @@ paths:
                 $ref: '#/components/schemas/transferDetailsResponse'
           description: The transfer was accepted.
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Retrieves information for a specific transfer.
       tags:
         - Transfers
@@ -373,10 +373,12 @@ paths:
         '200':
           description: The notification was accepted.
         '500':
-          $ref: '#/components/responses/500'
+          $ref: ../components/responses/500.yaml
       summary: Receive notification for a specific transfer.
       tags:
         - Transfers
+  /fxQuotes:
+    $ref: 'paths/fxQuotes.yaml'
 components:
   parameters:
     idSubValue:
@@ -412,21 +414,7 @@ components:
       required: true
       schema:
         type: string
-  responses:
-    '400':
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-      description: Malformed or missing required headers or parameters.
-    '404':
-      description: The party specified by the provided identifier type and value is not known to the server.
-    '500':
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-      description: An error occurred processing the request.
+
   schemas:
     DateOfBirth:
       description: Date of Birth of the Party.
@@ -495,7 +483,7 @@ components:
       description: Data model for failed individual quote in a bulk quote response.
       properties:
         errorResponse:
-          $ref: '#/components/schemas/errorResponse'
+          $ref: ../components/schemas/errorResponse.yaml
         quoteId:
           $ref: '#/components/schemas/quoteId'
       required:
@@ -565,7 +553,7 @@ components:
       description: Data model for individual transfer in a bulk transfer response.
       properties:
         errorResponse:
-          $ref: '#/components/schemas/errorResponse'
+          $ref: ../components/schemas/errorResponse.yaml
         extensionList:
           $ref: '#/components/schemas/extensionList'
         transferId:
@@ -892,17 +880,6 @@ components:
         - errorCode
         - errorDescription
       title: ErrorInformation
-      type: object
-    errorResponse:
-      properties:
-        message:
-          description: Error message text
-          type: string
-        statusCode:
-          description: |
-            Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.
-            Otherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.
-          type: string
       type: object
     extensionItem:
       properties:
@@ -1392,6 +1369,13 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/payerType'
+        supportedCurrencies:
+          type: array
+          description: Currencies in which the party can receive funds.
+          items:
+            $ref: '#/components/schemas/currency'
+          minItems: 0
+          maxItems: 16
       required:
         - idType
         - idValue

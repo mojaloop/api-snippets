@@ -29,7 +29,6 @@ export namespace Schemas {
   export const errorCode = JsonSchemas.errorCode
   export const errorDescription = JsonSchemas.errorDescription
   export const errorInformation = JsonSchemas.errorInformation
-  export const errorResponse = JsonSchemas.errorResponse
   export const extensionItem = JsonSchemas.extensionItem
   export const extensionList = JsonSchemas.extensionList
   export const extensionListComplex = JsonSchemas.extensionListComplex
@@ -71,6 +70,7 @@ export namespace Schemas {
   export const transferStatus = JsonSchemas.transferStatus
   export const requestToPayCallback = JsonSchemas.requestToPayCallback
   export const TransactionSubScenario = JsonSchemas.TransactionSubScenario
+  export const errorResponse = JsonSchemas.errorResponse
   export const CorrelationId = JsonSchemas.CorrelationId
   export const bulkTransactionStatus = JsonSchemas.bulkTransactionStatus
   export const autoAcceptPartyOption = JsonSchemas.autoAcceptPartyOption
@@ -113,4 +113,8 @@ export namespace Schemas {
   export const bulkTransactionIndividualTransferResult = JsonSchemas.bulkTransactionIndividualTransferResult
   export const bulkTransactionResponse = JsonSchemas.bulkTransactionResponse
   export const AuthenticationType = JsonSchemas.AuthenticationType
+  export const FxMoney = JsonSchemas.FxMoney
+  export const FxQuotesPostBackendRequest = JsonSchemas.FxQuotesPostBackendRequest
+  export const FxCharge = JsonSchemas.FxCharge
+  export const FxQuotesPostBackendResponse = JsonSchemas.FxQuotesPostBackendResponse
 }

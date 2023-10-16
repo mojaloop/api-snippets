@@ -1,0 +1,5 @@
+description: An error occurred processing the request.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/errorResponse.yaml

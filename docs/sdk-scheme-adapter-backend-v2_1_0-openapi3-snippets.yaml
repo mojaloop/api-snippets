@@ -22,7 +22,7 @@ info:
   license:
     name: Apache License Version 2.0, January 2004
     url: http://www.apache.org/licenses/
-  version: 1.2.0
+  version: 2.1.0
 paths:
   /:
     get:
@@ -428,6 +428,33 @@ paths:
       summary: Receive notification for a specific transfer.
       tags:
         - Transfers
+  /fxQuotes:
+    post:
+      description: >-
+        The HTTP request `POST /fxQuotes` is used to ask an FXP backend to
+        provide a quotation for a currency conversion.
+      summary: Calculate FX quote
+      tags:
+        - fxQuotes
+      operationId: FxQuotesPost
+      requestBody:
+        description: Details of the FX quote request.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FxQuotesPostBackendRequest'
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FxQuotesPostBackendResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   parameters:
     idSubValue:
@@ -474,23 +501,6 @@ components:
       description: >-
         Identifier of the bulk transaction to continue as returned in the
         response to a `POST /bulkTransaction` request.
-  responses:
-    '400':
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-      description: Malformed or missing required headers or parameters.
-    '404':
-      description: >-
-        The party specified by the provided identifier type and value is not
-        known to the server.
-    '500':
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/errorResponse'
-      description: An error occurred processing the request.
   schemas:
     DateOfBirth:
       title: DateofBirth (type Date)
@@ -979,21 +989,6 @@ components:
         - errorCode
         - errorDescription
       title: ErrorInformation
-      type: object
-    errorResponse:
-      properties:
-        message:
-          description: Error message text
-          type: string
-        statusCode:
-          description: >
-            Backend error code from FSP. Ideally, statusCode is FSPIOP
-            conforming. SDK will use status code to retrieve an FSPIOP error
-            with the same code.
-
-            Otherwise, a suitable generic FSPIOP will be used with the
-            errorResponse in the FSPIOP error message.
-          type: string
       type: object
     extensionItem:
       properties:
@@ -1507,6 +1502,13 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/payerType'
+        supportedCurrencies:
+          type: array
+          description: Currencies in which the party can receive funds.
+          items:
+            $ref: '#/components/schemas/currency'
+          minItems: 0
+          maxItems: 16
       required:
         - idType
         - idValue
@@ -1617,6 +1619,21 @@ components:
         Possible sub-scenario, defined locally within the scheme (UndefinedEnum
         Type).
       example: LOCALLY_DEFINED_SUBSCENARIO
+    errorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: string
+          description: >
+            Backend error code from FSP. Ideally, statusCode is FSPIOP
+            conforming. SDK will use status code to retrieve an FSPIOP error
+            with the same code.
+
+            Otherwise, a suitable generic FSPIOP will be used with the
+            errorResponse in the FSPIOP error message.
+        message:
+          type: string
+          description: Error message text.
     CorrelationId:
       title: CorrelationId
       type: string
@@ -2385,3 +2402,164 @@ components:
         - QRCODE - QR code used as One Time Password.
         - U2F - U2F is a new addition isolated to Thirdparty stream.
       example: OTP
+    FxMoney:
+      title: FxMoney
+      type: object
+      description: >-
+        Data model for the complex type FxMoney; This is based on the type Money
+        but allows the amount to be optional to support FX quotations.
+        (VJTODO-Should the amount field be principalAmount?)
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        amount:
+          $ref: '#/components/schemas/Amount'
+      required:
+        - currency
+    FxQuotesPostBackendRequest:
+      title: FxQuotesPostBackendRequest
+      type: object
+      description: The object sent in the POST /fxQuotes request.
+      properties:
+        fxQuoteId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: An end-to-end identifier for the conversion quotation request.
+        homeTransactionId:
+          description: >-
+            Transaction ID for the FXP backend, used to reconcile transactions
+            between the Switch and FXP backend systems.
+          type: string
+        conversionId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: An end-to-end identifier for the conversion request.
+        initiatingFsp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: >-
+                The id of the participant who is requesting a currency
+                conversion.
+        counterPartyFsp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: The ID of the FXP performing the conversion.
+        amountType:
+          allOf:
+            - $ref: '#/components/schemas/AmountType'
+            - description: >-
+                This is the AmountType for the base transaction - If SEND - then
+                any charges levied by the FXP as part of the transaction will be
+                deducted by the FXP from the amount shown for the target party
+                in the conversion. If RECEIVE - then any charges levied by the
+                FXP as part of the transaction will be added by the FXP to the
+                amount shown for the source party in the conversion.
+        sourceAmount:
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: The amount to be converted, expressed in the source currency.
+        targetAmount:
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: The converted amount, expressed in the target currency.
+      required:
+        - fxQuoteId
+        - homeTransactionId
+        - conversionId
+        - initiatingFsp
+        - counterPartyFsp
+        - amountType
+        - sourceAmount
+        - targetAmount
+    FxCharge:
+      title: FxCharge
+      type: object
+      description: >-
+        An FXP will be able to specify a charge which it proposes to levy on the
+        currency conversion operation using a FxCharge object.
+      properties:
+        chargeType:
+          type: string
+          minLength: 1
+          maxLength: 32
+          description: A description of the charge which is being levied.
+        sourceAmount:
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+            - description: >-
+                The amount of the charge which is being levied, expressed in the
+                source currency.
+        targetAmount:
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+            - description: >-
+                The amount of the charge which is being levied, expressed in the
+                target currency.
+      required:
+        - chargeType
+    FxQuotesPostBackendResponse:
+      title: FxQuotesPostBackendResponse
+      type: object
+      description: >-
+        The object sent as a response for the POST /fxQuotes request. The terms
+        under which the FXP will undertake the currency conversion proposed by
+        the requester.
+      properties:
+        amountType:
+          allOf:
+            - $ref: '#/components/schemas/AmountType'
+            - description: >-
+                This is the AmountType for the base transaction - If SEND - then
+                any charges levied by the FXP as part of the transaction will be
+                deducted by the FXP from the amount shown for the target party
+                in the conversion. If RECEIVE - then any charges levied by the
+                FXP as part of the transaction will be added by the FXP to the
+                amount shown for the source party in the conversion.
+        sourceAmount:
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: The amount to be converted, expressed in the source currency.
+        targetAmount:
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: The converted amount, expressed in the target currency.
+        validityDurationSec:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+            - description: >-
+                The period in seconds for which the currency conversion is
+                required to remain valid.
+        charges:
+          type: array
+          description: >-
+            One or more charges which the FXP intends to levy as part of the
+            currency conversion, or which the payee DFSP intends to add to the
+            amount transferred.
+          items:
+            $ref: '#/components/schemas/FxCharge'
+          minItems: 0
+          maxItems: 16
+      required:
+        - amountType
+        - sourceAmount
+        - targetAmount
+        - validityDurationSec
+  responses:
+    '400':
+      description: Malformed or missing required headers or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+    '500':
+      description: An error occurred processing the request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'

@@ -477,7 +477,10 @@ export interface components {
      */
     CorrelationId: string;
     errorResponse: {
-      /** @description Error code as string. */
+      /**
+       * @description Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.
+       * Otherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.
+       */
       statusCode?: string;
       /** @description Error message text. */
       message?: string;

@@ -18,7 +18,7 @@ info:
   license:
     name: Apache License Version 2.0, January 2004
     url: https://github.com/mojaloop/documentation/blob/main/LICENSE.md
-  version: 1.0.0
+  version: 2.1.0
 paths:
   /:
     get:
@@ -838,7 +838,13 @@ components:
       properties:
         statusCode:
           type: string
-          description: Error code as string.
+          description: >
+            Backend error code from FSP. Ideally, statusCode is FSPIOP
+            conforming. SDK will use status code to retrieve an FSPIOP error
+            with the same code.
+
+            Otherwise, a suitable generic FSPIOP will be used with the
+            errorResponse in the FSPIOP error message.
         message:
           type: string
           description: Error message text.
