@@ -1,0 +1,12 @@
+type: object
+description: >-
+  This object represents a Mojaloop API error received at any time during the
+  party discovery process
+properties:
+  httpStatusCode:
+    type: integer
+    description: >-
+      The HTTP status code returned to the caller. This is the same as the
+      actual HTTP status code returned with the response.
+  mojaloopError:
+    $ref: ./mojaloopError.yaml

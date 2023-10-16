@@ -1,0 +1,27 @@
+title: BulkTransactionResponse
+type: object
+required:
+  - bulkHomeTransactionID
+  - bulkTransactionId
+  - currentState
+  - individualTransferResults
+properties:
+  bulkHomeTransactionID:
+    type: string
+    description: >-
+      Transaction ID from the DFSP backend, used to reconcile transactions
+      between the Switch and DFSP backend systems.
+  bulkTransactionId:
+    $ref: ./CorrelationId.yaml
+  currentState:
+    $ref: ./bulkTransactionStatus.yaml
+  options:
+    $ref: ./bulkTransactionOptions.yaml
+  individualTransferResults:
+    description: List of individual transfer result in a bulk transfer response.
+    type: array
+    minItems: 1
+    items:
+      $ref: ./bulkTransactionIndividualTransferResult.yaml
+  extensions:
+    $ref: ./ExtensionList.yaml

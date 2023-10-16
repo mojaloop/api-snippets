@@ -1,0 +1,34 @@
+title: BulkTransactionIndividualTransfer
+type: object
+description: Data model for the complex type 'bulkTransactionIndividualTransfer'.
+properties:
+  homeTransactionId:
+    type: string
+    description: >-
+      Transaction ID from the DFSP backend, used to reconcile transactions
+      between the Switch and DFSP backend systems.
+  to:
+    $ref: ./Party.yaml
+  reference:
+    description: Payer Loan reference
+    type: string
+  amountType:
+    $ref: ./AmountType.yaml
+  currency:
+    $ref: ./Currency.yaml
+  amount:
+    $ref: ./Amount.yaml
+  note:
+    $ref: ./Note.yaml
+  quoteExtensions:
+    $ref: ./ExtensionList.yaml
+  transferExtensions:
+    $ref: ./ExtensionList.yaml
+  lastError:
+    $ref: ./transferError.yaml
+required:
+  - homeTransactionId
+  - to
+  - amountType
+  - currency
+  - amount

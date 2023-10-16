@@ -1,0 +1,19 @@
+title: PartyIdInfo
+type: object
+description: >-
+  Data model for the complex type PartyIdInfo. An ExtensionList element has been
+  added to this reqeust in version v1.1
+properties:
+  partyIdType:
+    $ref: ./PartyIdType.yaml
+  partyIdentifier:
+    $ref: ./PartyIdentifier.yaml
+  partySubIdOrType:
+    $ref: ./PartySubIdOrType.yaml
+  fspId:
+    $ref: ./FspId.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - partyIdType
+  - partyIdentifier

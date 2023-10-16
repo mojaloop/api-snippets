@@ -1,0 +1,32 @@
+type: object
+required:
+  - homeR2PTransactionId
+  - from
+  - to
+  - amountType
+  - currency
+  - amount
+  - transactionType
+properties:
+  homeR2PTransactionId:
+    type: string
+    description: >-
+      Transaction ID from the DFSP backend, used to reconcile transactions
+      between the Switch and DFSP backend systems.
+  from:
+    $ref: ./transferParty.yaml
+  to:
+    $ref: ./transferParty.yaml
+  amountType:
+    $ref: ./AmountType.yaml
+  currency:
+    $ref: ./Currency.yaml
+  amount:
+    $ref: ./Amount.yaml
+  transactionType:
+    $ref: ./TransactionScenario.yaml
+  subScenario:
+    $ref: ./TransactionSubScenario.yaml
+  authenticationType:
+    $ref: './AuthenticationType.yaml'
+

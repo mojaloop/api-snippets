@@ -1,0 +1,29 @@
+title: IndividualQuote
+type: object
+description: Data model for the complex type 'individualQuote'.
+properties:
+  quoteId:
+    $ref: ./CorrelationId.yaml
+  to:
+    $ref: ./transferParty.yaml
+  amountType:
+    $ref: ./AmountType.yaml
+  currency:
+    $ref: ./Currency.yaml
+  amount:
+    $ref: ./Amount.yaml
+  transactionType:
+    $ref: ./transferTransactionType.yaml
+  subScenario:
+    $ref: ./TransactionSubScenario.yaml
+  note:
+    $ref: ./Note.yaml
+  extensions:
+    $ref: ./ExtensionList.yaml
+required:
+  - quoteId
+  - to
+  - amountType
+  - currency
+  - transactionType
+  - amount

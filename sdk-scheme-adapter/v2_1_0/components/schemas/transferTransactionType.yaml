@@ -1,0 +1,5 @@
+title: transferTransactionType
+type: string
+enum:
+  - TRANSFER
+description: Type of transaction.

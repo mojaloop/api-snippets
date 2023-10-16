@@ -1,0 +1,17 @@
+title: SimpleTransfersPostResponse
+type: object
+properties:
+  transfer:
+    properties:
+      body:
+        $ref: ./TransfersIDPutResponse.yaml
+      headers:
+        type: object
+    required:
+      - body
+      - headers
+  currentState:
+    $ref: ./async2SyncCurrentState.yaml
+required:
+  - transfer
+  - currentState

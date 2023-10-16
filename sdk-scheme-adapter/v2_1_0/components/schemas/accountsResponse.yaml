@@ -1,0 +1,23 @@
+type: object
+required:
+  - accounts
+properties:
+  modelId:
+    $ref: ./CorrelationId.yaml
+  accounts:
+    $ref: ./accountsRequest.yaml
+  response:
+    $ref: ./accountCreationStatus.yaml
+  currentState:
+    $ref: ./accountsCreationState.yaml
+  lastError:
+    $ref: ./transferError.yaml
+  postAccountsResponse:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        type: object
+      headers:
+        type: object

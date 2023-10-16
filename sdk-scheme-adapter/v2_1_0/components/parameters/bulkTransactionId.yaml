@@ -1,0 +1,8 @@
+name: bulkTransactionId
+in: path
+required: true
+schema:
+  $ref: ../schemas/CorrelationId.yaml
+description: >-
+  Identifier of the bulk transaction to continue as returned in the response to a
+  `POST /bulkTransaction` request.

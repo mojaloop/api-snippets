@@ -1,0 +1,27 @@
+type: object
+required:
+  - bulkTransactionId
+  - bulkHomeTransactionID
+  - options
+  - from
+  - individualTransfers
+properties:
+  bulkHomeTransactionID:
+    type: string
+    description: >-
+      Transaction ID from the DFSP backend, used to reconcile transactions
+      between the Switch and DFSP backend systems.
+  bulkTransactionId:
+    $ref: ./CorrelationId.yaml
+  options:
+    $ref: ./bulkTransactionOptions.yaml
+  from:
+    $ref: ./Party.yaml
+  individualTransfers:
+    description: List of individual transfers in a bulk transfer.
+    type: array
+    minItems: 1
+    items:
+      $ref: ./bulkTransactionIndividualTransfer.yaml
+  extensions:
+    $ref: ./ExtensionList.yaml

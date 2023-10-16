@@ -1,0 +1,10 @@
+title: SimpleTransfersPostRequest
+type: object
+properties:
+  fspId:
+    $ref: ./FspId.yaml
+  transfersPostRequest:
+    $ref: ./TransfersPostRequest.yaml
+required:
+  - fspId
+  - transfersPostRequest

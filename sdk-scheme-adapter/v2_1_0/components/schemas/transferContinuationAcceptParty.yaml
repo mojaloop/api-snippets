@@ -1,0 +1,9 @@
+type: object
+required:
+  - acceptParty
+properties:
+  acceptParty:
+    type: boolean
+    enum:
+      - true
+      - false
