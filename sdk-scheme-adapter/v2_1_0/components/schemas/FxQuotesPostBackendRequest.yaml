@@ -6,7 +6,7 @@ properties:
     allOf:
       - $ref: ./CorrelationId.yaml
       - description: An end-to-end identifier for the conversion quotation request.
-  conversion:
+  conversionTerms:
     allOf:
       - $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/FxConversion.yaml
       - description: The terms of the currency conversion for which a quotation is sought.

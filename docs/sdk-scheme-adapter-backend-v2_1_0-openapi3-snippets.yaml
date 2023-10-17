@@ -2637,7 +2637,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: An end-to-end identifier for the conversion quotation request.
-        conversion:
+        conversionTerms:
           allOf:
             - $ref: '#/components/schemas/FxConversion'
             - description: >-

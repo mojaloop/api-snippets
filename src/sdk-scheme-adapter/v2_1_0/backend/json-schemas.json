@@ -22067,7 +22067,7 @@
           }
         ]
       },
-      "conversion": {
+      "conversionTerms": {
         "allOf": [
           {
             "title": "FxConversion",
