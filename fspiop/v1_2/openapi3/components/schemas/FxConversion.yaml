@@ -32,10 +32,10 @@ properties:
     allOf:
       - $ref: ./FxMoney.yaml
       - description: The converted amount, expressed in the target currency. (VJTODO-Should it be target.amount?)
-  validity:
+  expiration:
     allOf:
       - $ref: ./DateTime.yaml
-      - description: The end of the period for which the currency conversion is required to remain valid. (VJTODO-can we rename to expiration?)
+      - description: The end of the period for which the currency conversion is required to remain valid.
   charges:
     type: array
     description: One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred.
@@ -54,4 +54,4 @@ required:
   - amountType
   - sourceAmount
   - targetAmount
-  - validity
+  - expiration

@@ -2370,7 +2370,7 @@ paths:
         The HTTP request `GET /fxTransfers/{ID}` s used to request information
         regarding a request for confirmation of a currency conversion which the
         sender has previously issued. The `{ID}` in the URI should contain the
-        `fxTransferId` that was used for the creation of the FX transfer.
+        `commitRequestId` that was used for the creation of the FX transfer.
       summary: Retrieve FX transfer information
       tags:
         - fxTransfers
@@ -2401,7 +2401,7 @@ paths:
         The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester
         about the final determination by the switch of the transfer a request
         for execution of a currency conversion. The <ID> in the URI should
-        contain the fxTransferId that was used for the creation of the FX
+        contain the commitRequestId that was used for the creation of the FX
         transfer. Please note that this request does not generate a callback.
       summary: Return FX transfer information
       tags:
@@ -2439,7 +2439,7 @@ paths:
       description: >-
         The callback `PUT /fxTransfers/{ID}` is used to inform the requester
         about the outcome of a request for execution of a currency conversion.
-        The `{ID}` in the URI should contain the `fxTransferId` that was used
+        The `{ID}` in the URI should contain the `commitRequestId` that was used
         for the creation of the FX transfer, or the `{ID}` that was used in the
         `GET /fxTransfers/{ID}` request.
       summary: Return FX transfer information
@@ -2480,8 +2480,8 @@ paths:
         If the switch or FXP is unable to find or create a FX transfer, or
         another processing error occurs, the error callback `PUT
         /fxTransfers/{ID}/error` is used. The `{ID}` in the URI should contain
-        the `fxTransferId` that was used for the creation of the FX transfer, or
-        the `{ID}` that was used in the `GET /fxTransfers/{ID}`.
+        the `commitRequestId` that was used for the creation of the FX transfer,
+        or the `{ID}` that was used in the `GET /fxTransfers/{ID}`.
       summary: Return FX transfer information error
       tags:
         - fxTransfers
@@ -3447,7 +3447,7 @@ components:
                 not want to undertake the currency conversion. In this case, the
                 amount of the transfer would be expressed in the target currency
                 and the amountType would be set to RECEIVE.
-        conversionRate:
+        currencyConversion:
           allOf:
             - $ref: '#/components/schemas/FxRate'
             - description: >-
@@ -3779,7 +3779,7 @@ components:
                 not want to undertake the currency conversion. In this case, the
                 amount of the transfer would be expressed in the target currency
                 and the amountType would be set to RECEIVE.
-        conversionRate:
+        currencyConversion:
           allOf:
             - $ref: '#/components/schemas/FxRate'
             - description: >-
@@ -4365,12 +4365,12 @@ components:
             - description: >-
                 The converted amount, expressed in the target currency.
                 (VJTODO-Should it be target.amount?)
-        validity:
+        expiration:
           allOf:
             - $ref: '#/components/schemas/DateTime'
             - description: >-
                 The end of the period for which the currency conversion is
-                required to remain valid. (VJTODO-can we rename to expiration?)
+                required to remain valid.
         charges:
           type: array
           description: >-
@@ -4395,7 +4395,7 @@ components:
         - amountType
         - sourceAmount
         - targetAmount
-        - validity
+        - expiration
     FxQuotesPostRequest:
       title: FxQuotesPostRequest
       type: object
@@ -4405,7 +4405,7 @@ components:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: An end-to-end identifier for the conversion quotation request.
-        conversion:
+        conversionTerms:
           allOf:
             - $ref: '#/components/schemas/FxConversion'
             - description: >-
@@ -4413,7 +4413,7 @@ components:
                 sought.
       required:
         - fxQuoteId
-        - conversion
+        - conversionTerms
     FxQuotesIDPutResponse:
       title: FxQuotesIDPutResponse
       type: object
@@ -4443,12 +4443,10 @@ components:
       type: object
       description: The object sent in the POST /fxTransfers request.
       properties:
-        fxTransferId:
+        commitRequestId:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
-            - description: >-
-                An end-to-end identifier for the confirmation request.
-                (VJTODO-Can it be fxTransferId instead of commitRequestId?)
+            - description: An end-to-end identifier for the confirmation request.
         determiningTransactionId:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
@@ -4485,7 +4483,7 @@ components:
                 ILP condition received by the requesting FSP when the quote was
                 approved.
       required:
-        - fxTransferId
+        - commitRequestId
         - requestingFsp
         - respondingFxp
         - sourceAmount

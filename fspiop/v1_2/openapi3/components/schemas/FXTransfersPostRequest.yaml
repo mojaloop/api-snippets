@@ -2,10 +2,10 @@ title: FxTransfersPostRequest
 type: object
 description: The object sent in the POST /fxTransfers request.
 properties:
-  fxTransferId:
+  commitRequestId:
     allOf:
       - $ref: ./CorrelationId.yaml
-      - description: An end-to-end identifier for the confirmation request. (VJTODO-Can it be fxTransferId instead of commitRequestId?)
+      - description: An end-to-end identifier for the confirmation request.
   determiningTransactionId:
     allOf:
       - $ref: ./CorrelationId.yaml
@@ -36,7 +36,7 @@ properties:
   # extensionList:
   #   $ref: ./ExtensionList.yaml
 required:
-  - fxTransferId
+  - commitRequestId
   - requestingFsp
   - respondingFxp
   - sourceAmount
