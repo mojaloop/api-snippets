@@ -2,7 +2,7 @@ put:
   description: >-
     If the switch or FXP is unable to find or create a FX transfer, or another processing
     error occurs, the error callback `PUT /fxTransfers/{ID}/error` is used. The
-    `{ID}` in the URI should contain the `fxTransferId` that was used for the
+    `{ID}` in the URI should contain the `commitRequestId` that was used for the
     creation of the FX transfer, or the `{ID}` that was used in the `GET
     /fxTransfers/{ID}`.
   summary: Return FX transfer information error

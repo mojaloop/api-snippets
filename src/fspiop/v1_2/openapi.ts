@@ -549,17 +549,17 @@ export interface paths {
   "/fxTransfers/{ID}": {
     /**
      * Retrieve FX transfer information
-     * @description The HTTP request `GET /fxTransfers/{ID}` s used to request information regarding a request for confirmation of a currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer.
+     * @description The HTTP request `GET /fxTransfers/{ID}` s used to request information regarding a request for confirmation of a currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `commitRequestId` that was used for the creation of the FX transfer.
      */
     get: operations["FxTransfersByIDGet"];
     /**
      * Return FX transfer information
-     * @description The callback `PUT /fxTransfers/{ID}` is used to inform the requester about the outcome of a request for execution of a currency conversion. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}` request.
+     * @description The callback `PUT /fxTransfers/{ID}` is used to inform the requester about the outcome of a request for execution of a currency conversion. The `{ID}` in the URI should contain the `commitRequestId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}` request.
      */
     put: operations["FxTransfersByIDPut"];
     /**
      * Return FX transfer information
-     * @description The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester about the final determination by the switch of the transfer a request for execution of a currency conversion. The <ID> in the URI should contain the fxTransferId that was used for the creation of the FX transfer. Please note that this request does not generate a callback.
+     * @description The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester about the final determination by the switch of the transfer a request for execution of a currency conversion. The <ID> in the URI should contain the commitRequestId that was used for the creation of the FX transfer. Please note that this request does not generate a callback.
      */
     patch: operations["FxTransfersByIDPatch"];
     parameters: {
@@ -582,7 +582,7 @@ export interface paths {
   "/fxTransfers/{ID}/error": {
     /**
      * Return FX transfer information error
-     * @description If the switch or FXP is unable to find or create a FX transfer, or another processing error occurs, the error callback `PUT /fxTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}`.
+     * @description If the switch or FXP is unable to find or create a FX transfer, or another processing error occurs, the error callback `PUT /fxTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `commitRequestId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}`.
      */
     put: operations["FxTransfersByIDAndErrorPut"];
   };
@@ -945,7 +945,7 @@ export interface components {
       amount: components["schemas"]["Money"];
       payeeReceiveAmount?: components["schemas"]["Money"];
       converter?: components["schemas"]["CurrencyConverter"];
-      conversionRate?: components["schemas"]["FxRate"];
+      currencyConversion?: components["schemas"]["FxRate"];
       transactionType: components["schemas"]["TransactionType"];
       note?: components["schemas"]["Note"];
       extensionList?: components["schemas"]["ExtensionList"];
@@ -1135,7 +1135,7 @@ export interface components {
       fees?: components["schemas"]["Money"];
       transactionType: components["schemas"]["TransactionType"];
       converter?: components["schemas"]["CurrencyConverter"];
-      conversionRate?: components["schemas"]["FxRate"];
+      currencyConversion?: components["schemas"]["FxRate"];
       geoCode?: components["schemas"]["GeoCode"];
       note?: components["schemas"]["Note"];
       expiration?: components["schemas"]["DateTime"];
@@ -1443,7 +1443,7 @@ export interface components {
       amountType: components["schemas"]["AmountType"];
       sourceAmount: components["schemas"]["FxMoney"];
       targetAmount: components["schemas"]["FxMoney"];
-      validity: components["schemas"]["DateTime"];
+      expiration: components["schemas"]["DateTime"];
       /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
       charges?: components["schemas"]["FxCharge"][];
       extensionList?: components["schemas"]["ExtensionList"];
@@ -1454,7 +1454,7 @@ export interface components {
      */
     FxQuotesPostRequest: {
       fxQuoteId: components["schemas"]["CorrelationId"];
-      conversion: components["schemas"]["FxConversion"];
+      conversionTerms: components["schemas"]["FxConversion"];
     };
     /**
      * FxQuotesIDPutResponse
@@ -1469,7 +1469,7 @@ export interface components {
      * @description The object sent in the POST /fxTransfers request.
      */
     FxTransfersPostRequest: {
-      fxTransferId: components["schemas"]["CorrelationId"];
+      commitRequestId: components["schemas"]["CorrelationId"];
       determiningTransactionId?: components["schemas"]["CorrelationId"];
       requestingFsp: components["schemas"]["FspId"];
       respondingFxp: components["schemas"]["FspId"];
@@ -3664,7 +3664,7 @@ export interface operations {
   };
   /**
    * Retrieve FX transfer information
-   * @description The HTTP request `GET /fxTransfers/{ID}` s used to request information regarding a request for confirmation of a currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer.
+   * @description The HTTP request `GET /fxTransfers/{ID}` s used to request information regarding a request for confirmation of a currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `commitRequestId` that was used for the creation of the FX transfer.
    */
   FxTransfersByIDGet: {
     parameters: {
@@ -3698,7 +3698,7 @@ export interface operations {
   };
   /**
    * Return FX transfer information
-   * @description The callback `PUT /fxTransfers/{ID}` is used to inform the requester about the outcome of a request for execution of a currency conversion. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}` request.
+   * @description The callback `PUT /fxTransfers/{ID}` is used to inform the requester about the outcome of a request for execution of a currency conversion. The `{ID}` in the URI should contain the `commitRequestId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}` request.
    */
   FxTransfersByIDPut: {
     parameters: {
@@ -3738,7 +3738,7 @@ export interface operations {
   };
   /**
    * Return FX transfer information
-   * @description The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester about the final determination by the switch of the transfer a request for execution of a currency conversion. The <ID> in the URI should contain the fxTransferId that was used for the creation of the FX transfer. Please note that this request does not generate a callback.
+   * @description The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester about the final determination by the switch of the transfer a request for execution of a currency conversion. The <ID> in the URI should contain the commitRequestId that was used for the creation of the FX transfer. Please note that this request does not generate a callback.
    */
   FxTransfersByIDPatch: {
     parameters: {
@@ -3778,7 +3778,7 @@ export interface operations {
   };
   /**
    * Return FX transfer information error
-   * @description If the switch or FXP is unable to find or create a FX transfer, or another processing error occurs, the error callback `PUT /fxTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `fxTransferId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}`.
+   * @description If the switch or FXP is unable to find or create a FX transfer, or another processing error occurs, the error callback `PUT /fxTransfers/{ID}/error` is used. The `{ID}` in the URI should contain the `commitRequestId` that was used for the creation of the FX transfer, or the `{ID}` that was used in the `GET /fxTransfers/{ID}`.
    */
   FxTransfersByIDAndErrorPut: {
     parameters: {
