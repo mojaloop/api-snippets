@@ -2597,12 +2597,12 @@ components:
             - description: >-
                 The converted amount, expressed in the target currency.
                 (VJTODO-Should it be target.amount?)
-        validity:
+        expiration:
           allOf:
             - $ref: '#/components/schemas/DateTime'
             - description: >-
                 The end of the period for which the currency conversion is
-                required to remain valid. (VJTODO-can we rename to expiration?)
+                required to remain valid.
         charges:
           type: array
           description: >-
@@ -2627,7 +2627,7 @@ components:
         - amountType
         - sourceAmount
         - targetAmount
-        - validity
+        - expiration
     FxQuotesPostBackendRequest:
       title: FxQuotesPostBackendRequest
       type: object

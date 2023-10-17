@@ -914,7 +914,7 @@ export interface components {
       amountType: components["schemas"]["AmountType"];
       sourceAmount: components["schemas"]["FxMoney"];
       targetAmount: components["schemas"]["FxMoney"];
-      validity: components["schemas"]["DateTime"];
+      expiration: components["schemas"]["DateTime"];
       /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
       charges?: components["schemas"]["FxCharge"][];
       extensionList?: components["schemas"]["ExtensionList"];

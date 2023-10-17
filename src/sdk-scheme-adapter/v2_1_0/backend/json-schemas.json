@@ -21925,7 +21925,7 @@
           }
         ]
       },
-      "validity": {
+      "expiration": {
         "allOf": [
           {
             "title": "DateTime",
@@ -21935,7 +21935,7 @@
             "example": "2016-05-24T08:38:08.699-04:00"
           },
           {
-            "description": "The end of the period for which the currency conversion is required to remain valid. (VJTODO-can we rename to expiration?)"
+            "description": "The end of the period for which the currency conversion is required to remain valid."
           }
         ]
       },
@@ -22045,7 +22045,7 @@
       "amountType",
       "sourceAmount",
       "targetAmount",
-      "validity"
+      "expiration"
     ]
   },
   "FxQuotesPostBackendRequest": {
@@ -22541,7 +22541,7 @@
                   }
                 ]
               },
-              "validity": {
+              "expiration": {
                 "allOf": [
                   {
                     "title": "DateTime",
@@ -22551,7 +22551,7 @@
                     "example": "2016-05-24T08:38:08.699-04:00"
                   },
                   {
-                    "description": "The end of the period for which the currency conversion is required to remain valid. (VJTODO-can we rename to expiration?)"
+                    "description": "The end of the period for which the currency conversion is required to remain valid."
                   }
                 ]
               },
@@ -22661,7 +22661,7 @@
               "amountType",
               "sourceAmount",
               "targetAmount",
-              "validity"
+              "expiration"
             ]
           },
           {
@@ -23158,7 +23158,7 @@
                   }
                 ]
               },
-              "validity": {
+              "expiration": {
                 "allOf": [
                   {
                     "title": "DateTime",
@@ -23168,7 +23168,7 @@
                     "example": "2016-05-24T08:38:08.699-04:00"
                   },
                   {
-                    "description": "The end of the period for which the currency conversion is required to remain valid. (VJTODO-can we rename to expiration?)"
+                    "description": "The end of the period for which the currency conversion is required to remain valid."
                   }
                 ]
               },
@@ -23278,7 +23278,7 @@
               "amountType",
               "sourceAmount",
               "targetAmount",
-              "validity"
+              "expiration"
             ]
           },
           {
