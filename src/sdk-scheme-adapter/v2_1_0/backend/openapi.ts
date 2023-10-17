@@ -396,7 +396,7 @@ export interface components {
       transactionType: components["schemas"]["transactionType"];
       transactionRequestId?: components["schemas"]["transactionRequestId"];
       converter?: components["schemas"]["CurrencyConverter"];
-      conversionRate?: components["schemas"]["FxRate"];
+      currencyConversion?: components["schemas"]["FxRate"];
     };
     /** @description A response to a request for a quote. */
     quoteResponse: {

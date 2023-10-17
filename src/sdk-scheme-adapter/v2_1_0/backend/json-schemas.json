@@ -8568,7 +8568,7 @@
           }
         ]
       },
-      "conversionRate": {
+      "currencyConversion": {
         "allOf": [
           {
             "title": "FxRate",

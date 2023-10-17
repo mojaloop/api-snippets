@@ -1319,7 +1319,7 @@ components:
                 not want to undertake the currency conversion. In this case, the
                 amount of the transfer would be expressed in the target currency
                 and the amountType would be set to RECEIVE.
-        conversionRate:
+        currencyConversion:
           allOf:
             - $ref: '#/components/schemas/FxRate'
             - description: >-
