@@ -1,0 +1,14 @@
+title: FxTransfersPutBackendRequest
+type: object
+description: 'PUT /fxTransfers/{fxTransferId} object'
+properties:
+  completedTimestamp:
+    allOf:
+      - $ref: ./DateTime.yaml
+      - description: Time and date when the conversion was executed.
+  conversionState:
+    allOf:
+      - $ref: ./TransferState.yaml
+      - description: The current status of the conversion request.
+required:
+  - conversionState

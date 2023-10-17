@@ -3,7 +3,7 @@ post:
     The HTTP request `POST /fxQuotes` is used to ask an FXP backend to provide a quotation for a currency conversion.
   summary: Calculate FX quote
   tags:
-    - fxQuotes
+    - Fx
   operationId: FxQuotesPost
   requestBody:
     description: Details of the FX quote request.

@@ -1,0 +1,25 @@
+post:
+  description: >-
+    The HTTP request `POST /fxTransfers` is used to ask an FXP backend to confirm the execution of an agreed currency conversion.
+  summary: Perform FX transfer
+  tags:
+    - Fx
+  operationId: FxTransfersPost
+  requestBody:
+    description: Details of the FX transfer request.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/FxTransfersPostBackendRequest.yaml
+  responses:
+    '200':
+      description: Successful response.
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/FxTransfersPostBackendResponse.yaml
+    '400':
+      $ref: ../../components/responses/400.yaml
+    '500':
+      $ref: ../../components/responses/500.yaml

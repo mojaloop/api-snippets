@@ -1,0 +1,10 @@
+title: FxTransfersPostBackendResponse
+type: object
+description: 'The object sent as a response for the POST /fxTransfers request.'
+properties:
+  conversionState:
+    allOf:
+      - $ref: ./TransferState.yaml
+      - description: The current status of the conversion request.
+required:
+  - conversionState

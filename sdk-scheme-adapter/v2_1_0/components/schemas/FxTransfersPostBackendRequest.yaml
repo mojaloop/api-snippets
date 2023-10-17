@@ -1,0 +1,34 @@
+title: FxTransfersPostBackendRequest
+type: object
+description: The object sent in the POST /fxTransfers request.
+properties:
+  fxTransferId:
+    allOf:
+      - $ref: ./CorrelationId.yaml
+      - description: An end-to-end identifier for the confirmation request.
+  homeTransactionId:
+    description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
+    type: string
+  requestingFsp:
+    allOf:
+      - $ref: ./FspId.yaml
+      - description: Identifier for the FSP who is requesting a currency conversion.
+  respondingFxp:
+    allOf:
+      - $ref: ./FspId.yaml
+      - description: Identifier for the FXP who is performing the currency conversion.
+  sourceAmount:
+    allOf:
+      - $ref: ./Money.yaml
+      - description: The amount being offered for conversion by the requesting FSP.
+  targetAmount:
+    allOf:
+      - $ref: ./Money.yaml
+      - description: The amount which the FXP is to credit to the requesting FSP in the target currency.
+required:
+  - fxTransferId
+  - homeTransactionId
+  - requestingFsp
+  - respondingFxp
+  - sourceAmount
+  - targetAmount

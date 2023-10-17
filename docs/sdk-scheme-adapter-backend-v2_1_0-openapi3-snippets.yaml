@@ -435,7 +435,7 @@ paths:
         provide a quotation for a currency conversion.
       summary: Calculate FX quote
       tags:
-        - fxQuotes
+        - Fx
       operationId: FxQuotesPost
       requestBody:
         description: Details of the FX quote request.
@@ -451,6 +451,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FxQuotesPostBackendResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  /fxTransfers:
+    post:
+      description: >-
+        The HTTP request `POST /fxTransfers` is used to ask an FXP backend to
+        confirm the execution of an agreed currency conversion.
+      summary: Perform FX transfer
+      tags:
+        - Fx
+      operationId: FxTransfersPost
+      requestBody:
+        description: Details of the FX transfer request.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FxTransfersPostBackendRequest'
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FxTransfersPostBackendResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  /fxTransfers/{fxTransferId}:
+    put:
+      description: >-
+        The HTTP request `PUT /fxTransfers/{fxTransferId}` is used to notify an
+        FXP backend about the status of currency conversion.
+      summary: FX Commit Notification
+      tags:
+        - Fx
+      operationId: FxTransfersById
+      requestBody:
+        description: Status of the FX transfer.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FxTransfersPutBackendRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/200'
         '400':
           $ref: '#/components/responses/400'
         '500':
@@ -1258,6 +1308,26 @@ components:
           $ref: '#/components/schemas/transactionType'
         transactionRequestId:
           $ref: '#/components/schemas/transactionRequestId'
+        converter:
+          allOf:
+            - $ref: '#/components/schemas/CurrencyConverter'
+            - description: >-
+                An optional field which will allow the payer DFSP to specify
+                which DFSP it wants to undertake currency conversion. This is
+                useful incase of if the sender wants the recipient to receive a
+                specified amount of the target currency, but the payer DFSP does
+                not want to undertake the currency conversion. In this case, the
+                amount of the transfer would be expressed in the target currency
+                and the amountType would be set to RECEIVE.
+        conversionRate:
+          allOf:
+            - $ref: '#/components/schemas/FxRate'
+            - description: >-
+                Used by the debtor party if it wants to share information about
+                the currency conversion it proposes to make; or if it is
+                required by scheme rules to share this information. This object
+                contains the amount of the transfer in the source and target
+                currencies, but does not identify the FXP being used.
       required:
         - quoteId
         - transactionId
@@ -2389,6 +2459,36 @@ components:
             $ref: '#/components/schemas/bulkTransactionIndividualTransferResult'
         extensions:
           $ref: '#/components/schemas/ExtensionList'
+    CurrencyConverter:
+      title: CurrencyConverter
+      type: string
+      enum:
+        - PAYER
+        - PAYEE
+      description: >-
+        Below are the allowed values for the enumeration CurrencyConverter. -
+        PAYER - Currency conversion should be performed by the payer. - PAYEE -
+        Currency conversion should be performed by the payee.
+    FxRate:
+      title: FxRate
+      type: object
+      description: >-
+        The FxRate object contains information about a currency conversion in
+        the transfer. It can be used by parties to the transfer to exchange
+        information with each other about the exchange rate for the transfer, to
+        ensure that the best rate can be agreed on.
+      properties:
+        sourceAmount:
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+            - description: The amount of the transfer in the source currency.
+        targetAmount:
+          allOf:
+            - $ref: '#/components/schemas/Amount'
+            - description: The amount of the transfer in the target currency.
+      required:
+        - sourceAmount
+        - targetAmount
     AuthenticationType:
       title: AuthenticationType
       type: string
@@ -2544,7 +2644,76 @@ components:
         - sourceAmount
         - targetAmount
         - validityDurationSec
+    FxTransfersPostBackendRequest:
+      title: FxTransfersPostBackendRequest
+      type: object
+      description: The object sent in the POST /fxTransfers request.
+      properties:
+        fxTransferId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: An end-to-end identifier for the confirmation request.
+        homeTransactionId:
+          description: >-
+            Transaction ID for the FXP backend, used to reconcile transactions
+            between the Switch and FXP backend systems.
+          type: string
+        requestingFsp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: Identifier for the FSP who is requesting a currency conversion.
+        respondingFxp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: >-
+                Identifier for the FXP who is performing the currency
+                conversion.
+        sourceAmount:
+          allOf:
+            - $ref: '#/components/schemas/Money'
+            - description: The amount being offered for conversion by the requesting FSP.
+        targetAmount:
+          allOf:
+            - $ref: '#/components/schemas/Money'
+            - description: >-
+                The amount which the FXP is to credit to the requesting FSP in
+                the target currency.
+      required:
+        - fxTransferId
+        - homeTransactionId
+        - requestingFsp
+        - respondingFxp
+        - sourceAmount
+        - targetAmount
+    FxTransfersPostBackendResponse:
+      title: FxTransfersPostBackendResponse
+      type: object
+      description: The object sent as a response for the POST /fxTransfers request.
+      properties:
+        conversionState:
+          allOf:
+            - $ref: '#/components/schemas/TransferState'
+            - description: The current status of the conversion request.
+      required:
+        - conversionState
+    FxTransfersPutBackendRequest:
+      title: FxTransfersPutBackendRequest
+      type: object
+      description: PUT /fxTransfers/{fxTransferId} object
+      properties:
+        completedTimestamp:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+            - description: Time and date when the conversion was executed.
+        conversionState:
+          allOf:
+            - $ref: '#/components/schemas/TransferState'
+            - description: The current status of the conversion request.
+      required:
+        - conversionState
   responses:
+    '200':
+      description: OK
     '400':
       description: Malformed or missing required headers or parameters.
       content:
