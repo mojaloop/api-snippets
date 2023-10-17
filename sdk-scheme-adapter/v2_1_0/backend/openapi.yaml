@@ -381,7 +381,7 @@ paths:
     $ref: 'paths/fxQuotes.yaml'
   /fxTransfers:
     $ref: 'paths/fxTransfers.yaml'
-  /fxTransfers/{fxTransferId}:
+  /fxTransfers/{commitRequestId}:
     $ref: 'paths/fxTransfersById.yaml'
 components:
   parameters:

@@ -115,10 +115,10 @@ export interface paths {
      */
     post: operations["FxTransfersPost"];
   };
-  "/fxTransfers/{fxTransferId}": {
+  "/fxTransfers/{commitRequestId}": {
     /**
      * FX Commit Notification
-     * @description The HTTP request `PUT /fxTransfers/{fxTransferId}` is used to notify an FXP backend about the status of currency conversion.
+     * @description The HTTP request `PUT /fxTransfers/{commitRequestId}` is used to notify an FXP backend about the status of currency conversion.
      */
     put: operations["FxTransfersById"];
   };
@@ -943,7 +943,7 @@ export interface components {
     FxTransfersPostBackendRequest: {
       /** @description Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems. */
       homeTransactionId?: string;
-      fxTransferId: components["schemas"]["CorrelationId"];
+      commitRequestId: components["schemas"]["CorrelationId"];
       determiningTransactionId?: components["schemas"]["CorrelationId"];
       requestingFsp: components["schemas"]["FspId"];
       respondingFxp: components["schemas"]["FspId"];
@@ -965,7 +965,7 @@ export interface components {
     };
     /**
      * FxTransfersPutBackendRequest
-     * @description PUT /fxTransfers/{fxTransferId} object
+     * @description PUT /fxTransfers/{commitRequestId} object
      */
     FxTransfersPutBackendRequest: {
       /** @description Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems. */
@@ -1422,7 +1422,7 @@ export interface operations {
   };
   /**
    * FX Commit Notification
-   * @description The HTTP request `PUT /fxTransfers/{fxTransferId}` is used to notify an FXP backend about the status of currency conversion.
+   * @description The HTTP request `PUT /fxTransfers/{commitRequestId}` is used to notify an FXP backend about the status of currency conversion.
    */
   FxTransfersById: {
     /** @description Status of the FX transfer. */

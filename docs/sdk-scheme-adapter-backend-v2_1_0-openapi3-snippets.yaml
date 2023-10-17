@@ -482,11 +482,11 @@ paths:
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
-  /fxTransfers/{fxTransferId}:
+  /fxTransfers/{commitRequestId}:
     put:
       description: >-
-        The HTTP request `PUT /fxTransfers/{fxTransferId}` is used to notify an
-        FXP backend about the status of currency conversion.
+        The HTTP request `PUT /fxTransfers/{commitRequestId}` is used to notify
+        an FXP backend about the status of currency conversion.
       summary: FX Commit Notification
       tags:
         - Fx
@@ -2677,7 +2677,7 @@ components:
             Transaction ID for the FXP backend, used to reconcile transactions
             between the Switch and FXP backend systems.
           type: string
-        fxTransferId:
+        commitRequestId:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: An end-to-end identifier for the confirmation request.
@@ -2716,7 +2716,7 @@ components:
                 ILP condition received by the requesting FSP when the quote was
                 approved.
       required:
-        - fxTransferId
+        - commitRequestId
         - requestingFsp
         - respondingFxp
         - sourceAmount
@@ -2753,7 +2753,7 @@ components:
     FxTransfersPutBackendRequest:
       title: FxTransfersPutBackendRequest
       type: object
-      description: PUT /fxTransfers/{fxTransferId} object
+      description: PUT /fxTransfers/{commitRequestId} object
       properties:
         homeTransactionId:
           description: >-

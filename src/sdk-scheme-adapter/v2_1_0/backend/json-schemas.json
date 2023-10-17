@@ -23300,7 +23300,7 @@
         "description": "Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.",
         "type": "string"
       },
-      "fxTransferId": {
+      "commitRequestId": {
         "allOf": [
           {
             "title": "CorrelationId",
@@ -23768,7 +23768,7 @@
       }
     },
     "required": [
-      "fxTransferId",
+      "commitRequestId",
       "requestingFsp",
       "respondingFxp",
       "sourceAmount",
@@ -23881,7 +23881,7 @@
   "FxTransfersPutBackendRequest": {
     "title": "FxTransfersPutBackendRequest",
     "type": "object",
-    "description": "PUT /fxTransfers/{fxTransferId} object",
+    "description": "PUT /fxTransfers/{commitRequestId} object",
     "properties": {
       "homeTransactionId": {
         "description": "Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.",

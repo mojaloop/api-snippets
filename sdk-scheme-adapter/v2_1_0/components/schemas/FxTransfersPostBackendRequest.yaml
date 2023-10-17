@@ -5,7 +5,7 @@ properties:
   homeTransactionId:
     description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
     type: string
-  fxTransferId:
+  commitRequestId:
     allOf:
       - $ref: ./CorrelationId.yaml
       - description: An end-to-end identifier for the confirmation request.
@@ -34,7 +34,7 @@ properties:
       - $ref: ./IlpCondition.yaml
       - description: ILP condition received by the requesting FSP when the quote was approved.
 required:
-  - fxTransferId
+  - commitRequestId
   - requestingFsp
   - respondingFxp
   - sourceAmount

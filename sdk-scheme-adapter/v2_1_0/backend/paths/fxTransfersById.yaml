@@ -1,6 +1,6 @@
 put:
   description: >-
-    The HTTP request `PUT /fxTransfers/{fxTransferId}` is used to notify an FXP backend about the status of currency conversion.
+    The HTTP request `PUT /fxTransfers/{commitRequestId}` is used to notify an FXP backend about the status of currency conversion.
   summary: FX Commit Notification
   tags:
     - Fx
