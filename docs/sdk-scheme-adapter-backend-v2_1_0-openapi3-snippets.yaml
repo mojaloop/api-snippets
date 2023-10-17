@@ -2516,61 +2516,6 @@ components:
           $ref: '#/components/schemas/Amount'
       required:
         - currency
-    FxQuotesPostBackendRequest:
-      title: FxQuotesPostBackendRequest
-      type: object
-      description: The object sent in the POST /fxQuotes request.
-      properties:
-        fxQuoteId:
-          allOf:
-            - $ref: '#/components/schemas/CorrelationId'
-            - description: An end-to-end identifier for the conversion quotation request.
-        homeTransactionId:
-          description: >-
-            Transaction ID for the FXP backend, used to reconcile transactions
-            between the Switch and FXP backend systems.
-          type: string
-        conversionId:
-          allOf:
-            - $ref: '#/components/schemas/CorrelationId'
-            - description: An end-to-end identifier for the conversion request.
-        initiatingFsp:
-          allOf:
-            - $ref: '#/components/schemas/FspId'
-            - description: >-
-                The id of the participant who is requesting a currency
-                conversion.
-        counterPartyFsp:
-          allOf:
-            - $ref: '#/components/schemas/FspId'
-            - description: The ID of the FXP performing the conversion.
-        amountType:
-          allOf:
-            - $ref: '#/components/schemas/AmountType'
-            - description: >-
-                This is the AmountType for the base transaction - If SEND - then
-                any charges levied by the FXP as part of the transaction will be
-                deducted by the FXP from the amount shown for the target party
-                in the conversion. If RECEIVE - then any charges levied by the
-                FXP as part of the transaction will be added by the FXP to the
-                amount shown for the source party in the conversion.
-        sourceAmount:
-          allOf:
-            - $ref: '#/components/schemas/FxMoney'
-            - description: The amount to be converted, expressed in the source currency.
-        targetAmount:
-          allOf:
-            - $ref: '#/components/schemas/FxMoney'
-            - description: The converted amount, expressed in the target currency.
-      required:
-        - fxQuoteId
-        - homeTransactionId
-        - conversionId
-        - initiatingFsp
-        - counterPartyFsp
-        - amountType
-        - sourceAmount
-        - targetAmount
     FxCharge:
       title: FxCharge
       type: object
@@ -2597,14 +2542,39 @@ components:
                 target currency.
       required:
         - chargeType
-    FxQuotesPostBackendResponse:
-      title: FxQuotesPostBackendResponse
+    FxConversion:
+      title: FxConversion
       type: object
       description: >-
-        The object sent as a response for the POST /fxQuotes request. The terms
-        under which the FXP will undertake the currency conversion proposed by
-        the requester.
+        A DFSP will be able to request a currency conversion, and an FX provider
+        will be able to describe its involvement in a proposed transfer, using a
+        FxConversion object.
       properties:
+        conversionId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: An end-to-end identifier for the conversion request.
+        relatedTransactionId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: >-
+                The transaction ID of the transfer on whose success this
+                currency conversion depends. If this is a bulk currency
+                conversion which is not dependent on a transfer, then this field
+                should be omitted. (VJTODO-Do we need this here? As the field is
+                related to fxTransfer I think)
+        initiatingFsp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: >-
+                The id of the participant who is requesting a currency
+                conversion. (VJTODO-Should it be source.fspId?)
+        counterPartyFsp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: >-
+                The ID of the FXP performing the conversion. (VJTODO-Need to
+                confirm about the field name, can it be FxpId?)
         amountType:
           allOf:
             - $ref: '#/components/schemas/AmountType'
@@ -2618,17 +2588,21 @@ components:
         sourceAmount:
           allOf:
             - $ref: '#/components/schemas/FxMoney'
-            - description: The amount to be converted, expressed in the source currency.
+            - description: >-
+                The amount to be converted, expressed in the source currency.
+                (VJTODO-Should it be source.amount?)
         targetAmount:
           allOf:
             - $ref: '#/components/schemas/FxMoney'
-            - description: The converted amount, expressed in the target currency.
-        validityDurationSec:
+            - description: >-
+                The converted amount, expressed in the target currency.
+                (VJTODO-Should it be target.amount?)
+        validity:
           allOf:
             - $ref: '#/components/schemas/DateTime'
             - description: >-
-                The period in seconds for which the currency conversion is
-                required to remain valid.
+                The end of the period for which the currency conversion is
+                required to remain valid. (VJTODO-can we rename to expiration?)
         charges:
           type: array
           description: >-
@@ -2639,25 +2613,82 @@ components:
             $ref: '#/components/schemas/FxCharge'
           minItems: 0
           maxItems: 16
+        extensionList:
+          allOf:
+            - $ref: '#/components/schemas/ExtensionList'
+            - description: >-
+                The extension list for the currency conversion request.
+                (VJTODO-Should we move this to the top level or is it part of
+                the the conversion object?)
       required:
+        - conversionId
+        - initiatingFsp
+        - counterPartyFsp
         - amountType
         - sourceAmount
         - targetAmount
-        - validityDurationSec
-    FxTransfersPostBackendRequest:
-      title: FxTransfersPostBackendRequest
+        - validity
+    FxQuotesPostBackendRequest:
+      title: FxQuotesPostBackendRequest
       type: object
-      description: The object sent in the POST /fxTransfers request.
+      description: The object sent in the POST /fxQuotes request.
       properties:
-        fxTransferId:
+        fxQuoteId:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
-            - description: An end-to-end identifier for the confirmation request.
+            - description: An end-to-end identifier for the conversion quotation request.
+        conversion:
+          allOf:
+            - $ref: '#/components/schemas/FxConversion'
+            - description: >-
+                The terms of the currency conversion for which a quotation is
+                sought.
+      required:
+        - fxQuoteId
+        - conversion
+    FxQuotesPostBackendResponse:
+      title: FxQuotesPostBackendResponse
+      type: object
+      description: >-
+        The object sent as a response for the POST /fxQuotes request. The terms
+        under which the FXP will undertake the currency conversion proposed by
+        the requester.
+      properties:
         homeTransactionId:
           description: >-
             Transaction ID for the FXP backend, used to reconcile transactions
             between the Switch and FXP backend systems.
           type: string
+        conversionTerms:
+          allOf:
+            - $ref: '#/components/schemas/FxConversion'
+            - description: >-
+                The terms under which the FXP will undertake the currency
+                conversion proposed by the requester.
+      required:
+        - conversionTerms
+    FxTransfersPostBackendRequest:
+      title: FxTransfersPostBackendRequest
+      type: object
+      description: The object sent in the POST /fxTransfers request.
+      properties:
+        homeTransactionId:
+          description: >-
+            Transaction ID for the FXP backend, used to reconcile transactions
+            between the Switch and FXP backend systems.
+          type: string
+        fxTransferId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: An end-to-end identifier for the confirmation request.
+        determiningTransactionId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: >-
+                The transaction ID of the transfer to which this currency
+                conversion relates, if the conversion is part of a transfer. If
+                the conversion is a bulk currency purchase, this field should be
+                omitted.
         requestingFsp:
           allOf:
             - $ref: '#/components/schemas/FspId'
@@ -2678,9 +2709,14 @@ components:
             - description: >-
                 The amount which the FXP is to credit to the requesting FSP in
                 the target currency.
+        condition:
+          allOf:
+            - $ref: '#/components/schemas/IlpCondition'
+            - description: >-
+                ILP condition received by the requesting FSP when the quote was
+                approved.
       required:
         - fxTransferId
-        - homeTransactionId
         - requestingFsp
         - respondingFxp
         - sourceAmount
@@ -2690,17 +2726,18 @@ components:
       type: object
       description: The object sent as a response for the POST /fxTransfers request.
       properties:
-        conversionState:
+        homeTransactionId:
+          description: >-
+            Transaction ID for the FXP backend, used to reconcile transactions
+            between the Switch and FXP backend systems.
+          type: string
+        fulfilment:
           allOf:
-            - $ref: '#/components/schemas/TransferState'
-            - description: The current status of the conversion request.
-      required:
-        - conversionState
-    FxTransfersPutBackendRequest:
-      title: FxTransfersPutBackendRequest
-      type: object
-      description: PUT /fxTransfers/{fxTransferId} object
-      properties:
+            - $ref: '#/components/schemas/IlpFulfilment'
+            - description: >-
+                The fulfilment of the condition specified for the currency
+                conversion. Mandatory if the conversion has been executed
+                successfully.
         completedTimestamp:
           allOf:
             - $ref: '#/components/schemas/DateTime'
@@ -2709,6 +2746,37 @@ components:
           allOf:
             - $ref: '#/components/schemas/TransferState'
             - description: The current status of the conversion request.
+        extensionList:
+          $ref: '#/components/schemas/ExtensionList'
+      required:
+        - conversionState
+    FxTransfersPutBackendRequest:
+      title: FxTransfersPutBackendRequest
+      type: object
+      description: PUT /fxTransfers/{fxTransferId} object
+      properties:
+        homeTransactionId:
+          description: >-
+            Transaction ID for the FXP backend, used to reconcile transactions
+            between the Switch and FXP backend systems.
+          type: string
+        fulfilment:
+          allOf:
+            - $ref: '#/components/schemas/IlpFulfilment'
+            - description: >-
+                The fulfilment of the condition specified for the currency
+                conversion. Mandatory if the conversion has been executed
+                successfully.
+        completedTimestamp:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+            - description: Time and date when the conversion was executed.
+        conversionState:
+          allOf:
+            - $ref: '#/components/schemas/TransferState'
+            - description: The current status of the conversion request.
+        extensionList:
+          $ref: '#/components/schemas/ExtensionList'
       required:
         - conversionState
   responses:

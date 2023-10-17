@@ -2,34 +2,13 @@ title: FxQuotesPostBackendResponse
 type: object
 description: The object sent as a response for the POST /fxQuotes request. The terms under which the FXP will undertake the currency conversion proposed by the requester.
 properties:
-  amountType:
+  homeTransactionId:
+    description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
+    type: string
+  conversionTerms:
     allOf:
-      - $ref: ./AmountType.yaml
-      - description: This is the AmountType for the base transaction -
-          If SEND - then any charges levied by the FXP as part of the transaction will be deducted by the FXP from the amount shown for the target party in the conversion.
-          If RECEIVE - then any charges levied by the FXP as part of the transaction will be added by the FXP to the amount shown for the source party in the conversion.
-  sourceAmount:
-    allOf:
-      - $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/FxMoney.yaml
-      - description: The amount to be converted, expressed in the source currency.
-  targetAmount:
-    allOf:
-      - $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/FxMoney.yaml
-      - description: The converted amount, expressed in the target currency.
-  validityDurationSec:
-    allOf:
-      - $ref: ./DateTime.yaml
-      - description: The period in seconds for which the currency conversion is required to remain valid.
-  charges:
-    type: array
-    description: One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred.
-    items:
-      $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/FxCharge.yaml
-    minItems: 0
-    maxItems: 16
+      - $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/FxConversion.yaml
+      - description: The terms under which the FXP will undertake the currency conversion proposed by the requester.
 
 required:
-  - amountType
-  - sourceAmount
-  - targetAmount
-  - validityDurationSec
+  - conversionTerms

@@ -2,6 +2,13 @@ title: FxTransfersPutBackendRequest
 type: object
 description: 'PUT /fxTransfers/{fxTransferId} object'
 properties:
+  homeTransactionId:
+    description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
+    type: string
+  fulfilment:
+    allOf:
+      - $ref: ./IlpFulfilment.yaml
+      - description: The fulfilment of the condition specified for the currency conversion. Mandatory if the conversion has been executed successfully.
   completedTimestamp:
     allOf:
       - $ref: ./DateTime.yaml
@@ -10,5 +17,7 @@ properties:
     allOf:
       - $ref: ./TransferState.yaml
       - description: The current status of the conversion request.
+  extensionList:
+    $ref: ./ExtensionList.yaml
 required:
   - conversionState

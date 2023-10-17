@@ -6,41 +6,11 @@ properties:
     allOf:
       - $ref: ./CorrelationId.yaml
       - description: An end-to-end identifier for the conversion quotation request.
-  homeTransactionId:
-    description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
-    type: string
-  conversionId:
+  conversion:
     allOf:
-      - $ref: ./CorrelationId.yaml
-      - description: An end-to-end identifier for the conversion request.
-  initiatingFsp:
-    allOf:
-      - $ref: ./FspId.yaml
-      - description: The id of the participant who is requesting a currency conversion.
-  counterPartyFsp:
-    allOf:
-      - $ref: ./FspId.yaml
-      - description: The ID of the FXP performing the conversion.
-  amountType:
-    allOf:
-      - $ref: ./AmountType.yaml
-      - description: This is the AmountType for the base transaction -
-          If SEND - then any charges levied by the FXP as part of the transaction will be deducted by the FXP from the amount shown for the target party in the conversion.
-          If RECEIVE - then any charges levied by the FXP as part of the transaction will be added by the FXP to the amount shown for the source party in the conversion.
-  sourceAmount:
-    allOf:
-      - $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/FxMoney.yaml
-      - description: The amount to be converted, expressed in the source currency.
-  targetAmount:
-    allOf:
-      - $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/FxMoney.yaml
-      - description: The converted amount, expressed in the target currency.
+      - $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/FxConversion.yaml
+      - description: The terms of the currency conversion for which a quotation is sought.
 required:
   - fxQuoteId
-  - homeTransactionId
-  - conversionId
-  - initiatingFsp
-  - counterPartyFsp
-  - amountType
-  - sourceAmount
-  - targetAmount
+  - conversion
+
