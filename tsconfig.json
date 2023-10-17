@@ -10,7 +10,7 @@
     "node_modules",
   ],
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2022",
     "module": "commonjs",
     "plugins": [
       {
@@ -23,7 +23,7 @@
       "test"
     ],
     "lib": [
-      "esnext"
+      "es2022"
     ],
     "importHelpers": true,
     "declaration": true,
