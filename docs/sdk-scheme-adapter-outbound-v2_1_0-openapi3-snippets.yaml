@@ -553,6 +553,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/errorResponse'
+  /services/FXP:
+    get:
+      description: >-
+        The HTTP request `GET /services/FXP` is used to request information
+        about the participants in a scheme who offer currency conversion
+        services.
+      summary: Obtain a list of the DFSPs in the scheme who provide FXP service
+      tags:
+        - servicesFXP
+      operationId: ServicesFXPGet
+      responses:
+        '200':
+          $ref: '#/components/responses/servicesFXPSucess'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+  /services/FXP/{SourceCurrency}/{TargetCurrency}:
+    get:
+      description: >-
+        The HTTP request `GET /services/FXP/{SourceCurrency}/{TargetCurrency}`
+        is used to request information about the participants in a scheme who
+        offer currency conversion services in a particular currency corridor.
+        The required corridor is specified by giving the ISO 4217 currency code
+        for the SourceCurrency and the TargetCurrency.
+      summary: Obtain a list of the DFSPs in the scheme who provide FXP service
+      tags:
+        - servicesFXP
+      operationId: ServicesFXPSourceCurrencyTargetCurrencyGet
+      parameters:
+        - $ref: '#/components/parameters/SourceCurrency'
+        - $ref: '#/components/parameters/TargetCurrency'
+      responses:
+        '200':
+          $ref: '#/components/responses/servicesFXPSucess'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
 components:
   schemas:
     PartyIdType:
@@ -2723,7 +2762,35 @@ components:
               $ref: '#/components/schemas/TransfersIDPutResponse'
             headers:
               type: object
+    ServicesFXPPutResponse:
+      title: ServicesFXPPutResponse
+      type: object
+      description: The object sent in the PUT /services/FXP callback.
+      properties:
+        providers:
+          type: array
+          description: >-
+            The FSP Id(s) of the participant(s) who offer currency conversion
+            services.
+          items:
+            $ref: '#/components/schemas/FspId'
+          minItems: 0
+          maxItems: 16
+      required:
+        - providers
   responses:
+    '400':
+      description: Malformed or missing required headers or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+    '500':
+      description: An error occurred processing the request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorResponse'
     accountsCreationCompleted:
       description: Accounts creation completed
       content:
@@ -2875,6 +2942,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/errorTransferResponse'
+    servicesFXPSucess:
+      description: >-
+        The response contains participants in a scheme who offer currency
+        conversion services. If no participants offer these services, the return
+        object will be blank.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ServicesFXPPutResponse'
   parameters:
     bulkQuoteId:
       name: bulkQuoteId
@@ -2944,3 +3020,17 @@ components:
       description: >-
         Identifier of the transfer to continue as returned in the response to a
         `POST /transfers` request.
+    SourceCurrency:
+      name: SourceCurrency
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ISO 4217 currency code for the source currency.
+    TargetCurrency:
+      name: TargetCurrency
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ISO 4217 currency code for the target currency.

@@ -2508,7 +2508,6 @@ components:
       description: >-
         Data model for the complex type FxMoney; This is based on the type Money
         but allows the amount to be optional to support FX quotations.
-        (VJTODO-Should the amount field be principalAmount?)
       properties:
         currency:
           $ref: '#/components/schemas/Currency'
@@ -2554,27 +2553,22 @@ components:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: An end-to-end identifier for the conversion request.
-        relatedTransactionId:
+        determiningTransferId:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: >-
                 The transaction ID of the transfer on whose success this
-                currency conversion depends. If this is a bulk currency
-                conversion which is not dependent on a transfer, then this field
-                should be omitted. (VJTODO-Do we need this here? As the field is
-                related to fxTransfer I think)
+                currency conversion depends.
         initiatingFsp:
           allOf:
             - $ref: '#/components/schemas/FspId'
             - description: >-
                 The id of the participant who is requesting a currency
-                conversion. (VJTODO-Should it be source.fspId?)
+                conversion.
         counterPartyFsp:
           allOf:
             - $ref: '#/components/schemas/FspId'
-            - description: >-
-                The ID of the FXP performing the conversion. (VJTODO-Need to
-                confirm about the field name, can it be FxpId?)
+            - description: The ID of the FXP performing the conversion.
         amountType:
           allOf:
             - $ref: '#/components/schemas/AmountType'
@@ -2588,15 +2582,11 @@ components:
         sourceAmount:
           allOf:
             - $ref: '#/components/schemas/FxMoney'
-            - description: >-
-                The amount to be converted, expressed in the source currency.
-                (VJTODO-Should it be source.amount?)
+            - description: The amount to be converted, expressed in the source currency.
         targetAmount:
           allOf:
             - $ref: '#/components/schemas/FxMoney'
-            - description: >-
-                The converted amount, expressed in the target currency.
-                (VJTODO-Should it be target.amount?)
+            - description: The converted amount, expressed in the target currency.
         expiration:
           allOf:
             - $ref: '#/components/schemas/DateTime'
@@ -2616,10 +2606,7 @@ components:
         extensionList:
           allOf:
             - $ref: '#/components/schemas/ExtensionList'
-            - description: >-
-                The extension list for the currency conversion request.
-                (VJTODO-Should we move this to the top level or is it part of
-                the the conversion object?)
+            - description: The extension list for the currency conversion request.
       required:
         - conversionId
         - initiatingFsp

@@ -56,3 +56,7 @@ paths:
     $ref: paths/transfers.yaml
   /transfers/{transferId}:
     $ref: paths/transfers_transferId.yaml
+  /services/FXP:
+    $ref: 'paths/services_FXP.yaml'
+  /services/FXP/{SourceCurrency}/{TargetCurrency}:
+    $ref: 'paths/services_FXP_SourceCurrency_TargetCurrency.yaml'

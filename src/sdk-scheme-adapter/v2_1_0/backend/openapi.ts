@@ -886,7 +886,7 @@ export interface components {
     AuthenticationType: "OTP" | "QRCODE" | "U2F";
     /**
      * FxMoney
-     * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations. (VJTODO-Should the amount field be principalAmount?)
+     * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.
      */
     FxMoney: {
       currency: components["schemas"]["Currency"];
@@ -908,7 +908,7 @@ export interface components {
      */
     FxConversion: {
       conversionId: components["schemas"]["CorrelationId"];
-      relatedTransactionId?: components["schemas"]["CorrelationId"];
+      determiningTransferId?: components["schemas"]["CorrelationId"];
       initiatingFsp: components["schemas"]["FspId"];
       counterPartyFsp: components["schemas"]["FspId"];
       amountType: components["schemas"]["AmountType"];

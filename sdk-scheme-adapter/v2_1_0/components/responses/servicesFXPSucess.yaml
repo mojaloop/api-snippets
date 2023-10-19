@@ -1,0 +1,5 @@
+description: The response contains participants in a scheme who offer currency conversion services. If no participants offer these services, the return object will be blank.
+content:
+  application/json:
+    schema:
+      $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/ServicesFXPPutResponse.yaml

@@ -121,4 +121,5 @@ export namespace Schemas {
   export const errorSimpleTransfersResponse = JsonSchemas.errorSimpleTransfersResponse
   export const transferRequest = JsonSchemas.transferRequest
   export const transferStatusResponse = JsonSchemas.transferStatusResponse
+  export const ServicesFXPPutResponse = JsonSchemas.ServicesFXPPutResponse
 }

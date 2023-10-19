@@ -121,4 +121,5 @@ export namespace Types {
   export type errorSimpleTransfersResponse = components['schemas']['errorSimpleTransfersResponse']
   export type transferRequest = components['schemas']['transferRequest']
   export type transferStatusResponse = components['schemas']['transferStatusResponse']
+  export type ServicesFXPPutResponse = components['schemas']['ServicesFXPPutResponse']
 }

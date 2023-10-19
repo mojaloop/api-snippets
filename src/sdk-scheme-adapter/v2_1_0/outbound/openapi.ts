@@ -427,6 +427,20 @@ export interface paths {
       };
     };
   };
+  "/services/FXP": {
+    /**
+     * Obtain a list of the DFSPs in the scheme who provide FXP service
+     * @description The HTTP request `GET /services/FXP` is used to request information about the participants in a scheme who offer currency conversion services.
+     */
+    get: operations["ServicesFXPGet"];
+  };
+  "/services/FXP/{SourceCurrency}/{TargetCurrency}": {
+    /**
+     * Obtain a list of the DFSPs in the scheme who provide FXP service
+     * @description The HTTP request `GET /services/FXP/{SourceCurrency}/{TargetCurrency}` is used to request information about the participants in a scheme who offer currency conversion services in a particular currency corridor. The required corridor is specified by giving the ISO 4217 currency code for the SourceCurrency and the TargetCurrency.
+     */
+    get: operations["ServicesFXPSourceCurrencyTargetCurrencyGet"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -1378,8 +1392,28 @@ export interface components {
         headers?: Record<string, never>;
       };
     };
+    /**
+     * ServicesFXPPutResponse
+     * @description The object sent in the PUT /services/FXP callback.
+     */
+    ServicesFXPPutResponse: {
+      /** @description The FSP Id(s) of the participant(s) who offer currency conversion services. */
+      providers: components["schemas"]["FspId"][];
+    };
   };
   responses: {
+    /** @description Malformed or missing required headers or parameters. */
+    400: {
+      content: {
+        "application/json": components["schemas"]["errorResponse"];
+      };
+    };
+    /** @description An error occurred processing the request. */
+    500: {
+      content: {
+        "application/json": components["schemas"]["errorResponse"];
+      };
+    };
     /** @description Accounts creation completed */
     accountsCreationCompleted: {
       content: {
@@ -1530,6 +1564,12 @@ export interface components {
         "application/json": components["schemas"]["errorTransferResponse"];
       };
     };
+    /** @description The response contains participants in a scheme who offer currency conversion services. If no participants offer these services, the return object will be blank. */
+    servicesFXPSucess: {
+      content: {
+        "application/json": components["schemas"]["ServicesFXPPutResponse"];
+      };
+    };
   };
   parameters: {
     /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
@@ -1548,6 +1588,10 @@ export interface components {
     transactionRequestId: components["schemas"]["CorrelationId"];
     /** @description Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
     transferId: components["schemas"]["CorrelationId"];
+    /** @description ISO 4217 currency code for the source currency. */
+    SourceCurrency: string;
+    /** @description ISO 4217 currency code for the target currency. */
+    TargetCurrency: string;
   };
   requestBodies: never;
   headers: never;
@@ -1623,6 +1667,34 @@ export interface operations {
     responses: {
       200: components["responses"]["simpleTransfersPostSuccess"];
       500: components["responses"]["simpleTransfersServerError"];
+    };
+  };
+  /**
+   * Obtain a list of the DFSPs in the scheme who provide FXP service
+   * @description The HTTP request `GET /services/FXP` is used to request information about the participants in a scheme who offer currency conversion services.
+   */
+  ServicesFXPGet: {
+    responses: {
+      200: components["responses"]["servicesFXPSucess"];
+      400: components["responses"]["400"];
+      500: components["responses"]["500"];
+    };
+  };
+  /**
+   * Obtain a list of the DFSPs in the scheme who provide FXP service
+   * @description The HTTP request `GET /services/FXP/{SourceCurrency}/{TargetCurrency}` is used to request information about the participants in a scheme who offer currency conversion services in a particular currency corridor. The required corridor is specified by giving the ISO 4217 currency code for the SourceCurrency and the TargetCurrency.
+   */
+  ServicesFXPSourceCurrencyTargetCurrencyGet: {
+    parameters: {
+      path: {
+        SourceCurrency: components["parameters"]["SourceCurrency"];
+        TargetCurrency: components["parameters"]["TargetCurrency"];
+      };
+    };
+    responses: {
+      200: components["responses"]["servicesFXPSucess"];
+      400: components["responses"]["400"];
+      500: components["responses"]["500"];
     };
   };
 }
