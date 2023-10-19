@@ -19,7 +19,7 @@ properties:
   payeeReceiveAmount:
     allOf:
       - $ref: ./Money.yaml
-      - description: The amount that the beneficiary will receive. (VJTODO-Need clarify on this as it is not there in previous transaction object definition)
+      - description: The amount that the beneficiary will receive.
   converter:
     allOf:
       - $ref: ./CurrencyConverter.yaml

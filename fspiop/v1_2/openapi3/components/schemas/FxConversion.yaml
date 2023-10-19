@@ -6,18 +6,18 @@ properties:
     allOf:
       - $ref: ./CorrelationId.yaml
       - description: An end-to-end identifier for the conversion request.
-  relatedTransactionId:
+  determiningTransferId:
     allOf:
       - $ref: ./CorrelationId.yaml
-      - description: The transaction ID of the transfer on whose success this currency conversion depends. If this is a bulk currency conversion which is not dependent on a transfer, then this field should be omitted. (VJTODO-Do we need this here? As the field is related to fxTransfer I think)
+      - description: The transaction ID of the transfer on whose success this currency conversion depends.
   initiatingFsp:
     allOf:
       - $ref: ./FspId.yaml
-      - description: The id of the participant who is requesting a currency conversion. (VJTODO-Should it be source.fspId?)
+      - description: The id of the participant who is requesting a currency conversion.
   counterPartyFsp:
     allOf:
       - $ref: ./FspId.yaml
-      - description: The ID of the FXP performing the conversion. (VJTODO-Need to confirm about the field name, can it be FxpId?)
+      - description: The ID of the FXP performing the conversion.
   amountType:
     allOf:
       - $ref: ./AmountType.yaml
@@ -27,11 +27,11 @@ properties:
   sourceAmount:
     allOf:
       - $ref: ./FxMoney.yaml
-      - description: The amount to be converted, expressed in the source currency. (VJTODO-Should it be source.amount?)
+      - description: The amount to be converted, expressed in the source currency.
   targetAmount:
     allOf:
       - $ref: ./FxMoney.yaml
-      - description: The converted amount, expressed in the target currency. (VJTODO-Should it be target.amount?)
+      - description: The converted amount, expressed in the target currency.
   expiration:
     allOf:
       - $ref: ./DateTime.yaml
@@ -46,7 +46,7 @@ properties:
   extensionList:
     allOf:
       - $ref: ./ExtensionList.yaml
-      - description: The extension list for the currency conversion request. (VJTODO-Should we move this to the top level or is it part of the the conversion object?)
+      - description: The extension list for the currency conversion request.
 required:
   - conversionId
   - initiatingFsp

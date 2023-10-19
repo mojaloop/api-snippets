@@ -13,7 +13,7 @@ properties:
   conversionState:
     allOf:
       - $ref: ./TransferState.yaml
-      - description: The current status of the conversion request. (VJTODO-Do we need to align this with transfers state, like using fxTransferState instead?)
+      - description: The current status of the conversion request.
   extensionList:
     $ref: ./ExtensionList.yaml
 required:
