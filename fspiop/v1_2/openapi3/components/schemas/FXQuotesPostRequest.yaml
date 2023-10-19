@@ -2,7 +2,7 @@ title: FxQuotesPostRequest
 type: object
 description: The object sent in the POST /fxQuotes request.
 properties:
-  fxQuoteId:
+  conversionRequestId:
     allOf:
       - $ref: ./CorrelationId.yaml
       - description: An end-to-end identifier for the conversion quotation request.
@@ -11,5 +11,5 @@ properties:
       - $ref: ./FxConversion.yaml
       - description: The terms of the currency conversion for which a quotation is sought.
 required:
-  - fxQuoteId
+  - conversionRequestId
   - conversionTerms

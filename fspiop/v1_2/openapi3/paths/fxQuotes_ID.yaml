@@ -13,7 +13,7 @@ get:
   description: >-
     The HTTP request `GET /fxQuotes/{ID}` is used to request information regarding a request for quotation for a 
     currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the
-    `fxQuoteId` that was used for the creation of the quote.
+    `conversionRequestId` that was used for the creation of the quote.
   summary: Retrieve FX quote information
   tags:
     - fxQuotes
@@ -43,7 +43,7 @@ put:
   description: >-
     The callback `PUT /fxQuotes/{ID}` is used to inform the requester about the 
     outcome of a request for quotation for a currency conversion. 
-    The `{ID}` in the URI should contain the `fxQuoteId` that was used for the 
+    The `{ID}` in the URI should contain the `conversionRequestId` that was used for the 
     creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
   summary: Return FX quote information
   tags:

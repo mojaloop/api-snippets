@@ -2191,7 +2191,7 @@ paths:
         The HTTP request `GET /fxQuotes/{ID}` is used to request information
         regarding a request for quotation for a  currency conversion which the
         sender has previously issued. The `{ID}` in the URI should contain the
-        `fxQuoteId` that was used for the creation of the quote.
+        `conversionRequestId` that was used for the creation of the quote.
       summary: Retrieve FX quote information
       tags:
         - fxQuotes
@@ -2221,7 +2221,7 @@ paths:
       description: >-
         The callback `PUT /fxQuotes/{ID}` is used to inform the requester about
         the  outcome of a request for quotation for a currency conversion.  The
-        `{ID}` in the URI should contain the `fxQuoteId` that was used for the 
+        `{ID}` in the URI should contain the `conversionRequestId` that was used for the 
         creation of the FX quote, or the `{ID}` that was used in the `GET
         /fxQuotes/{ID}` request.
       summary: Return FX quote information
@@ -2261,7 +2261,7 @@ paths:
       description: >-
         If the FXP is unable to find or create a FX quote, or some other
         processing error occurs, the error callback `PUT /fxQuotes/{ID}/error`
-        is used. The `{ID}` in the URI should contain the `fxQuoteId` that was
+        is used. The `{ID}` in the URI should contain the `conversionRequestId` that was
         used for the creation of the FX quote, or the `{ID}` that was used in
         the `GET /fxQuotes/{ID}` request.
       summary: Return FX quote information error
@@ -4385,7 +4385,7 @@ components:
       type: object
       description: The object sent in the POST /fxQuotes request.
       properties:
-        fxQuoteId:
+        conversionRequestId:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: An end-to-end identifier for the conversion quotation request.
@@ -4396,7 +4396,7 @@ components:
                 The terms of the currency conversion for which a quotation is
                 sought.
       required:
-        - fxQuoteId
+        - conversionRequestId
         - conversionTerms
     FxQuotesIDPutResponse:
       title: FxQuotesIDPutResponse
