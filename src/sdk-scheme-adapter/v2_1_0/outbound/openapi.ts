@@ -1079,6 +1079,20 @@ export interface components {
       balanceOfPayments?: components["schemas"]["BalanceOfPayments"];
     };
     /**
+     * CurrencyConverter
+     * @description Below are the allowed values for the enumeration CurrencyConverter. - PAYER - Currency conversion should be performed by the payer. - PAYEE - Currency conversion should be performed by the payee.
+     * @enum {string}
+     */
+    CurrencyConverter: "PAYER" | "PAYEE";
+    /**
+     * FxRate
+     * @description The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.
+     */
+    FxRate: {
+      sourceAmount: components["schemas"]["Amount"];
+      targetAmount: components["schemas"]["Amount"];
+    };
+    /**
      * QuotesPostRequest
      * @description The object sent in the POST /quotes request.
      */
@@ -1092,6 +1106,8 @@ export interface components {
       amount: components["schemas"]["Money"];
       fees?: components["schemas"]["Money"];
       transactionType: components["schemas"]["TransactionType"];
+      converter?: components["schemas"]["CurrencyConverter"];
+      currencyConversion?: components["schemas"]["FxRate"];
       geoCode?: components["schemas"]["GeoCode"];
       note?: components["schemas"]["Note"];
       expiration?: components["schemas"]["DateTime"];

@@ -92,6 +92,8 @@ export namespace Schemas {
   export const Refund = JsonSchemas.Refund
   export const BalanceOfPayments = JsonSchemas.BalanceOfPayments
   export const TransactionType = JsonSchemas.TransactionType
+  export const CurrencyConverter = JsonSchemas.CurrencyConverter
+  export const FxRate = JsonSchemas.FxRate
   export const QuotesPostRequest = JsonSchemas.QuotesPostRequest
   export const simpleQuotesPostRequest = JsonSchemas.simpleQuotesPostRequest
   export const quotesPostResponse = JsonSchemas.quotesPostResponse

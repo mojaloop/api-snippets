@@ -14424,6 +14424,54 @@
       "initiatorType"
     ]
   },
+  "CurrencyConverter": {
+    "title": "CurrencyConverter",
+    "type": "string",
+    "enum": [
+      "PAYER",
+      "PAYEE"
+    ],
+    "description": "Below are the allowed values for the enumeration CurrencyConverter. - PAYER - Currency conversion should be performed by the payer. - PAYEE - Currency conversion should be performed by the payee."
+  },
+  "FxRate": {
+    "title": "FxRate",
+    "type": "object",
+    "description": "The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.",
+    "properties": {
+      "sourceAmount": {
+        "allOf": [
+          {
+            "title": "Amount",
+            "type": "string",
+            "pattern": "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$",
+            "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.",
+            "example": "123.45"
+          },
+          {
+            "description": "The amount of the transfer in the source currency."
+          }
+        ]
+      },
+      "targetAmount": {
+        "allOf": [
+          {
+            "title": "Amount",
+            "type": "string",
+            "pattern": "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$",
+            "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.",
+            "example": "123.45"
+          },
+          {
+            "description": "The amount of the transfer in the target currency."
+          }
+        ]
+      }
+    },
+    "required": [
+      "sourceAmount",
+      "targetAmount"
+    ]
+  },
   "QuotesPostRequest": {
     "title": "QuotesPostRequest",
     "type": "object",
@@ -15604,6 +15652,68 @@
           "scenario",
           "initiator",
           "initiatorType"
+        ]
+      },
+      "converter": {
+        "allOf": [
+          {
+            "title": "CurrencyConverter",
+            "type": "string",
+            "enum": [
+              "PAYER",
+              "PAYEE"
+            ],
+            "description": "Below are the allowed values for the enumeration CurrencyConverter. - PAYER - Currency conversion should be performed by the payer. - PAYEE - Currency conversion should be performed by the payee."
+          },
+          {
+            "description": "An optional field which will allow the payer DFSP to specify which DFSP it wants to undertake currency conversion. This is useful incase of if the sender wants the recipient to receive a specified amount of the target currency, but the payer DFSP does not want to undertake the currency conversion. In this case, the amount of the transfer would be expressed in the target currency and the amountType would be set to RECEIVE."
+          }
+        ]
+      },
+      "currencyConversion": {
+        "allOf": [
+          {
+            "title": "FxRate",
+            "type": "object",
+            "description": "The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.",
+            "properties": {
+              "sourceAmount": {
+                "allOf": [
+                  {
+                    "title": "Amount",
+                    "type": "string",
+                    "pattern": "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$",
+                    "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.",
+                    "example": "123.45"
+                  },
+                  {
+                    "description": "The amount of the transfer in the source currency."
+                  }
+                ]
+              },
+              "targetAmount": {
+                "allOf": [
+                  {
+                    "title": "Amount",
+                    "type": "string",
+                    "pattern": "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$",
+                    "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.",
+                    "example": "123.45"
+                  },
+                  {
+                    "description": "The amount of the transfer in the target currency."
+                  }
+                ]
+              }
+            },
+            "required": [
+              "sourceAmount",
+              "targetAmount"
+            ]
+          },
+          {
+            "description": "Used by the debtor party if it wants to share information about the currency conversion it proposes to make; or if it is required by scheme rules to share this information. This object contains the amount of the transfer in the source and target currencies, but does not identify the FXP being used."
+          }
         ]
       },
       "geoCode": {
@@ -16889,6 +16999,68 @@
               "scenario",
               "initiator",
               "initiatorType"
+            ]
+          },
+          "converter": {
+            "allOf": [
+              {
+                "title": "CurrencyConverter",
+                "type": "string",
+                "enum": [
+                  "PAYER",
+                  "PAYEE"
+                ],
+                "description": "Below are the allowed values for the enumeration CurrencyConverter. - PAYER - Currency conversion should be performed by the payer. - PAYEE - Currency conversion should be performed by the payee."
+              },
+              {
+                "description": "An optional field which will allow the payer DFSP to specify which DFSP it wants to undertake currency conversion. This is useful incase of if the sender wants the recipient to receive a specified amount of the target currency, but the payer DFSP does not want to undertake the currency conversion. In this case, the amount of the transfer would be expressed in the target currency and the amountType would be set to RECEIVE."
+              }
+            ]
+          },
+          "currencyConversion": {
+            "allOf": [
+              {
+                "title": "FxRate",
+                "type": "object",
+                "description": "The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.",
+                "properties": {
+                  "sourceAmount": {
+                    "allOf": [
+                      {
+                        "title": "Amount",
+                        "type": "string",
+                        "pattern": "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$",
+                        "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.",
+                        "example": "123.45"
+                      },
+                      {
+                        "description": "The amount of the transfer in the source currency."
+                      }
+                    ]
+                  },
+                  "targetAmount": {
+                    "allOf": [
+                      {
+                        "title": "Amount",
+                        "type": "string",
+                        "pattern": "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$",
+                        "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.",
+                        "example": "123.45"
+                      },
+                      {
+                        "description": "The amount of the transfer in the target currency."
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "sourceAmount",
+                  "targetAmount"
+                ]
+              },
+              {
+                "description": "Used by the debtor party if it wants to share information about the currency conversion it proposes to make; or if it is required by scheme rules to share this information. This object contains the amount of the transfer in the source and target currencies, but does not identify the FXP being used."
+              }
             ]
           },
           "geoCode": {

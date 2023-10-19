@@ -92,6 +92,8 @@ export namespace Types {
   export type Refund = components['schemas']['Refund']
   export type BalanceOfPayments = components['schemas']['BalanceOfPayments']
   export type TransactionType = components['schemas']['TransactionType']
+  export type CurrencyConverter = components['schemas']['CurrencyConverter']
+  export type FxRate = components['schemas']['FxRate']
   export type QuotesPostRequest = components['schemas']['QuotesPostRequest']
   export type simpleQuotesPostRequest = components['schemas']['simpleQuotesPostRequest']
   export type quotesPostResponse = components['schemas']['quotesPostResponse']
