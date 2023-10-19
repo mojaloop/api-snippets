@@ -1,7 +1,10 @@
-title: FxQuotesPostBackendRequest
+title: FxQuotesPostOutboundRequest
 type: object
 description: The object sent in the POST /fxQuotes request.
 properties:
+  homeTransactionId:
+    description: Transaction ID for the backend, used to reconcile transactions between the Switch and backend systems.
+    type: string
   conversionRequestId:
     allOf:
       - $ref: ./CorrelationId.yaml

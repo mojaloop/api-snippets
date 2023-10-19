@@ -60,3 +60,7 @@ paths:
     $ref: 'paths/services_FXP.yaml'
   /services/FXP/{SourceCurrency}/{TargetCurrency}:
     $ref: 'paths/services_FXP_SourceCurrency_TargetCurrency.yaml'
+  /fxQuotes:
+    $ref: 'paths/fxQuotes.yaml'
+  /fxTransfers:
+    $ref: 'paths/fxTransfers.yaml'

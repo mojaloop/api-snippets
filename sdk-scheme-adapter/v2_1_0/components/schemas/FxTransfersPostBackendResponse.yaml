@@ -6,18 +6,12 @@ properties:
     description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
     type: string
   fulfilment:
-    allOf:
-      - $ref: ./IlpFulfilment.yaml
-      - description: The fulfilment of the condition specified for the currency conversion. Mandatory if the conversion has been executed successfully.
+    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FxTransfersIDPutResponse.yaml#/properties/fulfilment"
   completedTimestamp:
-    allOf:
-      - $ref: ./DateTime.yaml
-      - description: Time and date when the conversion was executed.
+    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FxTransfersIDPutResponse.yaml#/properties/completedTimestamp"
   conversionState:
-    allOf:
-      - $ref: ./TransferState.yaml
-      - description: The current status of the conversion request.
+    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FxTransfersIDPutResponse.yaml#/properties/conversionState"
   extensionList:
-    $ref: ./ExtensionList.yaml
+    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FxTransfersIDPutResponse.yaml#/properties/extensionList"
 required:
   - conversionState

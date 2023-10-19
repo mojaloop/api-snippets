@@ -1,0 +1,26 @@
+post:
+  description: >-
+    The HTTP request `POST /fxQuotes` is used to ask to provide a quotation for a currency conversion.
+  summary: Calculate FX quote
+  tags:
+    - Fx
+  operationId: FxQuotesPost
+  requestBody:
+    description: Details of the FX quote request.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/FxQuotesPostOutboundRequest.yaml
+  responses:
+    '200':
+      description: Successful response.
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/FxQuotesPostOutboundResponse.yaml
+    '400':
+      $ref: ../../components/responses/400.yaml
+    '500':
+      $ref: ../../components/responses/500.yaml
+

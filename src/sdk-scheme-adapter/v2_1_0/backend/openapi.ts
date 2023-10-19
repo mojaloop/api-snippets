@@ -924,7 +924,7 @@ export interface components {
      * @description The object sent in the POST /fxQuotes request.
      */
     FxQuotesPostBackendRequest: {
-      fxQuoteId: components["schemas"]["CorrelationId"];
+      conversionRequestId: components["schemas"]["CorrelationId"];
       conversionTerms?: components["schemas"]["FxConversion"];
     };
     /**
@@ -936,6 +936,13 @@ export interface components {
       homeTransactionId?: string;
       conversionTerms: components["schemas"]["FxConversion"];
     };
+    commitRequestId: components["schemas"]["CorrelationId"];
+    determiningTransferId: components["schemas"]["CorrelationId"];
+    initiatingFsp: components["schemas"]["FspId"];
+    counterPartyFsp: components["schemas"]["FspId"];
+    sourceAmount: components["schemas"]["Money"];
+    targetAmount: components["schemas"]["Money"];
+    condition: components["schemas"]["IlpCondition"];
     /**
      * FxTransfersPostBackendRequest
      * @description The object sent in the POST /fxTransfers request.
@@ -943,14 +950,17 @@ export interface components {
     FxTransfersPostBackendRequest: {
       /** @description Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems. */
       homeTransactionId?: string;
-      commitRequestId: components["schemas"]["CorrelationId"];
-      determiningTransactionId?: components["schemas"]["CorrelationId"];
-      requestingFsp: components["schemas"]["FspId"];
-      respondingFxp: components["schemas"]["FspId"];
-      sourceAmount: components["schemas"]["Money"];
-      targetAmount: components["schemas"]["Money"];
-      condition?: components["schemas"]["IlpCondition"];
+      commitRequestId: components["schemas"]["commitRequestId"];
+      determiningTransferId?: components["schemas"]["determiningTransferId"];
+      initiatingFsp: components["schemas"]["initiatingFsp"];
+      counterPartyFsp: components["schemas"]["counterPartyFsp"];
+      sourceAmount: components["schemas"]["sourceAmount"];
+      targetAmount: components["schemas"]["targetAmount"];
+      condition?: components["schemas"]["condition"];
     };
+    fulfilment: components["schemas"]["IlpFulfilment"];
+    completedTimestamp: components["schemas"]["DateTime"];
+    conversionState: components["schemas"]["TransferState"];
     /**
      * FxTransfersPostBackendResponse
      * @description The object sent as a response for the POST /fxTransfers request.
@@ -958,9 +968,9 @@ export interface components {
     FxTransfersPostBackendResponse: {
       /** @description Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems. */
       homeTransactionId?: string;
-      fulfilment?: components["schemas"]["IlpFulfilment"];
-      completedTimestamp?: components["schemas"]["DateTime"];
-      conversionState: components["schemas"]["TransferState"];
+      fulfilment?: components["schemas"]["fulfilment"];
+      completedTimestamp?: components["schemas"]["completedTimestamp"];
+      conversionState: components["schemas"]["conversionState"];
       extensionList?: components["schemas"]["ExtensionList"];
     };
     /**
@@ -970,9 +980,9 @@ export interface components {
     FxTransfersPutBackendRequest: {
       /** @description Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems. */
       homeTransactionId?: string;
-      fulfilment?: components["schemas"]["IlpFulfilment"];
-      completedTimestamp?: components["schemas"]["DateTime"];
-      conversionState: components["schemas"]["TransferState"];
+      fulfilment?: components["schemas"]["fulfilment"];
+      completedTimestamp?: components["schemas"]["completedTimestamp"];
+      conversionState: components["schemas"]["conversionState"];
       extensionList?: components["schemas"]["ExtensionList"];
     };
   };

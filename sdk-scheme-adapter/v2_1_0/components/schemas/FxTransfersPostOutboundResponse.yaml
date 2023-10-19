@@ -1,9 +1,9 @@
-title: FxTransfersPutBackendRequest
+title: FxTransfersPostOutboundResponse
 type: object
-description: 'PUT /fxTransfers/{commitRequestId} object'
+description: 'The object sent as a response for the POST /fxTransfers request.'
 properties:
   homeTransactionId:
-    description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
+    description: Transaction ID for the backend, used to reconcile transactions between the Switch and backend systems.
     type: string
   fulfilment:
     $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FxTransfersIDPutResponse.yaml#/properties/fulfilment"

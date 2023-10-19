@@ -1,0 +1,14 @@
+title: FxQuotesPostOutboundResponse
+type: object
+description: The object sent as a response for the POST /fxQuotes request. The terms under which the FXP will undertake the currency conversion proposed by the requester.
+properties:
+  homeTransactionId:
+    description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
+    type: string
+  conversionTerms:
+    allOf:
+      - $ref: ../../../../fspiop/v1_2/openapi3/components/schemas/FxConversion.yaml
+      - description: The terms under which the FXP will undertake the currency conversion proposed by the requester.
+
+required:
+  - conversionTerms

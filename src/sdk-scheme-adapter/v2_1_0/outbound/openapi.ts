@@ -441,6 +441,20 @@ export interface paths {
      */
     get: operations["ServicesFXPSourceCurrencyTargetCurrencyGet"];
   };
+  "/fxQuotes": {
+    /**
+     * Calculate FX quote
+     * @description The HTTP request `POST /fxQuotes` is used to ask to provide a quotation for a currency conversion.
+     */
+    post: operations["FxQuotesPost"];
+  };
+  "/fxTransfers": {
+    /**
+     * Perform FX transfer
+     * @description The HTTP request `POST /fxTransfers` is used to ask to confirm the execution of an agreed currency conversion.
+     */
+    post: operations["FxTransfersPost"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -1400,6 +1414,97 @@ export interface components {
       /** @description The FSP Id(s) of the participant(s) who offer currency conversion services. */
       providers: components["schemas"]["FspId"][];
     };
+    /**
+     * FxMoney
+     * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.
+     */
+    FxMoney: {
+      currency: components["schemas"]["Currency"];
+      amount?: components["schemas"]["Amount"];
+    };
+    /**
+     * FxCharge
+     * @description An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FxCharge object.
+     */
+    FxCharge: {
+      /** @description A description of the charge which is being levied. */
+      chargeType: string;
+      sourceAmount?: components["schemas"]["Amount"];
+      targetAmount?: components["schemas"]["Amount"];
+    };
+    /**
+     * FxConversion
+     * @description A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
+     */
+    FxConversion: {
+      conversionId: components["schemas"]["CorrelationId"];
+      determiningTransferId?: components["schemas"]["CorrelationId"];
+      initiatingFsp: components["schemas"]["FspId"];
+      counterPartyFsp: components["schemas"]["FspId"];
+      amountType: components["schemas"]["AmountType"];
+      sourceAmount: components["schemas"]["FxMoney"];
+      targetAmount: components["schemas"]["FxMoney"];
+      expiration: components["schemas"]["DateTime"];
+      /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
+      charges?: components["schemas"]["FxCharge"][];
+      extensionList?: components["schemas"]["ExtensionList"];
+    };
+    /**
+     * FxQuotesPostOutboundRequest
+     * @description The object sent in the POST /fxQuotes request.
+     */
+    FxQuotesPostOutboundRequest: {
+      /** @description Transaction ID for the backend, used to reconcile transactions between the Switch and backend systems. */
+      homeTransactionId?: string;
+      conversionRequestId: components["schemas"]["CorrelationId"];
+      conversionTerms?: components["schemas"]["FxConversion"];
+    };
+    /**
+     * FxQuotesPostOutboundResponse
+     * @description The object sent as a response for the POST /fxQuotes request. The terms under which the FXP will undertake the currency conversion proposed by the requester.
+     */
+    FxQuotesPostOutboundResponse: {
+      /** @description Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems. */
+      homeTransactionId?: string;
+      conversionTerms: components["schemas"]["FxConversion"];
+    };
+    commitRequestId: components["schemas"]["CorrelationId"];
+    determiningTransferId: components["schemas"]["CorrelationId"];
+    initiatingFsp: components["schemas"]["FspId"];
+    counterPartyFsp: components["schemas"]["FspId"];
+    sourceAmount: components["schemas"]["Money"];
+    targetAmount: components["schemas"]["Money"];
+    condition: components["schemas"]["IlpCondition"];
+    /**
+     * FxTransfersPostOutboundRequest
+     * @description The object sent in the POST /fxTransfers request.
+     */
+    FxTransfersPostOutboundRequest: {
+      /** @description Transaction ID for the backend, used to reconcile transactions between the Switch and backend systems. */
+      homeTransactionId?: string;
+      commitRequestId: components["schemas"]["commitRequestId"];
+      determiningTransferId?: components["schemas"]["determiningTransferId"];
+      initiatingFsp: components["schemas"]["initiatingFsp"];
+      counterPartyFsp: components["schemas"]["counterPartyFsp"];
+      sourceAmount: components["schemas"]["sourceAmount"];
+      targetAmount: components["schemas"]["targetAmount"];
+      condition?: components["schemas"]["condition"];
+    };
+    fulfilment: components["schemas"]["IlpFulfilment"];
+    completedTimestamp: components["schemas"]["DateTime"];
+    conversionState: components["schemas"]["TransferState"];
+    /**
+     * FxTransfersPostOutboundResponse
+     * @description The object sent as a response for the POST /fxTransfers request.
+     */
+    FxTransfersPostOutboundResponse: {
+      /** @description Transaction ID for the backend, used to reconcile transactions between the Switch and backend systems. */
+      homeTransactionId?: string;
+      fulfilment?: components["schemas"]["fulfilment"];
+      completedTimestamp?: components["schemas"]["completedTimestamp"];
+      conversionState: components["schemas"]["conversionState"];
+      extensionList?: components["schemas"]["ExtensionList"];
+    };
   };
   responses: {
     /** @description Malformed or missing required headers or parameters. */
@@ -1693,6 +1798,50 @@ export interface operations {
     };
     responses: {
       200: components["responses"]["servicesFXPSucess"];
+      400: components["responses"]["400"];
+      500: components["responses"]["500"];
+    };
+  };
+  /**
+   * Calculate FX quote
+   * @description The HTTP request `POST /fxQuotes` is used to ask to provide a quotation for a currency conversion.
+   */
+  FxQuotesPost: {
+    /** @description Details of the FX quote request. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["FxQuotesPostOutboundRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["FxQuotesPostOutboundResponse"];
+        };
+      };
+      400: components["responses"]["400"];
+      500: components["responses"]["500"];
+    };
+  };
+  /**
+   * Perform FX transfer
+   * @description The HTTP request `POST /fxTransfers` is used to ask to confirm the execution of an agreed currency conversion.
+   */
+  FxTransfersPost: {
+    /** @description Details of the FX transfer request. */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["FxTransfersPostOutboundRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["FxTransfersPostOutboundResponse"];
+        };
+      };
       400: components["responses"]["400"];
       500: components["responses"]["500"];
     };

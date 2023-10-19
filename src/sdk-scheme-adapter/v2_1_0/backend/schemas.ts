@@ -120,7 +120,17 @@ export namespace Schemas {
   export const FxConversion = JsonSchemas.FxConversion
   export const FxQuotesPostBackendRequest = JsonSchemas.FxQuotesPostBackendRequest
   export const FxQuotesPostBackendResponse = JsonSchemas.FxQuotesPostBackendResponse
+  export const commitRequestId = JsonSchemas.commitRequestId
+  export const determiningTransferId = JsonSchemas.determiningTransferId
+  export const initiatingFsp = JsonSchemas.initiatingFsp
+  export const counterPartyFsp = JsonSchemas.counterPartyFsp
+  export const sourceAmount = JsonSchemas.sourceAmount
+  export const targetAmount = JsonSchemas.targetAmount
+  export const condition = JsonSchemas.condition
   export const FxTransfersPostBackendRequest = JsonSchemas.FxTransfersPostBackendRequest
+  export const fulfilment = JsonSchemas.fulfilment
+  export const completedTimestamp = JsonSchemas.completedTimestamp
+  export const conversionState = JsonSchemas.conversionState
   export const FxTransfersPostBackendResponse = JsonSchemas.FxTransfersPostBackendResponse
   export const FxTransfersPutBackendRequest = JsonSchemas.FxTransfersPutBackendRequest
 }
