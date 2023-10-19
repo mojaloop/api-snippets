@@ -507,12 +507,12 @@ export interface paths {
   "/fxQuotes/{ID}": {
     /**
      * Retrieve FX quote information
-     * @description The HTTP request `GET /fxQuotes/{ID}` is used to request information regarding a request for quotation for a  currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the quote.
+     * @description The HTTP request `GET /fxQuotes/{ID}` is used to request information regarding a request for quotation for a  currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `conversionRequestId` that was used for the creation of the quote.
      */
     get: operations["FxQuotesByIDGet"];
     /**
      * Return FX quote information
-     * @description The callback `PUT /fxQuotes/{ID}` is used to inform the requester about the  outcome of a request for quotation for a currency conversion.  The `{ID}` in the URI should contain the `fxQuoteId` that was used for the  creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
+     * @description The callback `PUT /fxQuotes/{ID}` is used to inform the requester about the  outcome of a request for quotation for a currency conversion.  The `{ID}` in the URI should contain the `conversionRequestId` that was used for the  creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
      */
     put: operations["FxQuotesByIdPut"];
     parameters: {
@@ -535,7 +535,7 @@ export interface paths {
   "/fxQuotes/{ID}/error": {
     /**
      * Return FX quote information error
-     * @description If the FXP is unable to find or create a FX quote, or some other processing error occurs, the error callback `PUT /fxQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
+     * @description If the FXP is unable to find or create a FX quote, or some other processing error occurs, the error callback `PUT /fxQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `conversionRequestId` that was used for the creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
      */
     put: operations["FxQuotesByIDAndErrorPut"];
   };
@@ -1453,7 +1453,7 @@ export interface components {
      * @description The object sent in the POST /fxQuotes request.
      */
     FxQuotesPostRequest: {
-      fxQuoteId: components["schemas"]["CorrelationId"];
+      conversionRequestId: components["schemas"]["CorrelationId"];
       conversionTerms: components["schemas"]["FxConversion"];
     };
     /**
@@ -3512,7 +3512,7 @@ export interface operations {
   };
   /**
    * Retrieve FX quote information
-   * @description The HTTP request `GET /fxQuotes/{ID}` is used to request information regarding a request for quotation for a  currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the quote.
+   * @description The HTTP request `GET /fxQuotes/{ID}` is used to request information regarding a request for quotation for a  currency conversion which the sender has previously issued. The `{ID}` in the URI should contain the `conversionRequestId` that was used for the creation of the quote.
    */
   FxQuotesByIDGet: {
     parameters: {
@@ -3546,7 +3546,7 @@ export interface operations {
   };
   /**
    * Return FX quote information
-   * @description The callback `PUT /fxQuotes/{ID}` is used to inform the requester about the  outcome of a request for quotation for a currency conversion.  The `{ID}` in the URI should contain the `fxQuoteId` that was used for the  creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
+   * @description The callback `PUT /fxQuotes/{ID}` is used to inform the requester about the  outcome of a request for quotation for a currency conversion.  The `{ID}` in the URI should contain the `conversionRequestId` that was used for the  creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
    */
   FxQuotesByIdPut: {
     parameters: {
@@ -3586,7 +3586,7 @@ export interface operations {
   };
   /**
    * Return FX quote information error
-   * @description If the FXP is unable to find or create a FX quote, or some other processing error occurs, the error callback `PUT /fxQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `fxQuoteId` that was used for the creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
+   * @description If the FXP is unable to find or create a FX quote, or some other processing error occurs, the error callback `PUT /fxQuotes/{ID}/error` is used. The `{ID}` in the URI should contain the `conversionRequestId` that was used for the creation of the FX quote, or the `{ID}` that was used in the `GET /fxQuotes/{ID}` request.
    */
   FxQuotesByIDAndErrorPut: {
     parameters: {
