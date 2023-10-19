@@ -1,0 +1,44 @@
+title: FxTransfersPostRequest
+type: object
+description: The object sent in the POST /fxTransfers request.
+properties:
+  commitRequestId:
+    allOf:
+      - $ref: ./CorrelationId.yaml
+      - description: An end-to-end identifier for the confirmation request.
+  determiningTransferId:
+    allOf:
+      - $ref: ./CorrelationId.yaml
+      - description: The transaction ID of the transfer to which this currency conversion relates, if the conversion is part of a transfer. If the conversion is a bulk currency purchase, this field should be omitted.
+  initiatingFsp:
+    allOf:
+      - $ref: ./FspId.yaml
+      - description: Identifier for the FSP who is requesting a currency conversion.
+  counterPartyFsp:
+    allOf:
+      - $ref: ./FspId.yaml
+      - description: Identifier for the FXP who is performing the currency conversion.
+  sourceAmount:
+    allOf:
+      - $ref: ./Money.yaml
+      - description: The amount being offered for conversion by the requesting FSP.
+  targetAmount:
+    allOf:
+      - $ref: ./Money.yaml
+      - description: The amount which the FXP is to credit to the requesting FSP in the target currency.
+  condition:
+    allOf:
+      - $ref: ./IlpCondition.yaml
+      - description: ILP condition received by the requesting FSP when the quote was approved.
+  # VJTODO-Don't we need expiration and extensionList?
+  # expiration:
+  #   $ref: ./DateTime.yaml
+  # extensionList:
+  #   $ref: ./ExtensionList.yaml
+required:
+  - commitRequestId
+  - initiatingFsp
+  - counterPartyFsp
+  - sourceAmount
+  - targetAmount
+  - condition
