@@ -6,15 +6,15 @@ properties:
     allOf:
       - $ref: ./CorrelationId.yaml
       - description: An end-to-end identifier for the confirmation request.
-  determiningTransactionId:
+  determiningTransferId:
     allOf:
       - $ref: ./CorrelationId.yaml
-      - description: The transaction ID of the transfer to which this currency conversion relates, if the conversion is part of a transfer. If the conversion is a bulk currency purchase, this field should be omitted. (VJTODO-is it determiningTransactionId instead of TransId?)
-  requestingFsp:
+      - description: The transaction ID of the transfer to which this currency conversion relates, if the conversion is part of a transfer. If the conversion is a bulk currency purchase, this field should be omitted.
+  initiatingFsp:
     allOf:
       - $ref: ./FspId.yaml
       - description: Identifier for the FSP who is requesting a currency conversion.
-  respondingFxp:
+  counterPartyFsp:
     allOf:
       - $ref: ./FspId.yaml
       - description: Identifier for the FXP who is performing the currency conversion.
@@ -37,8 +37,8 @@ properties:
   #   $ref: ./ExtensionList.yaml
 required:
   - commitRequestId
-  - requestingFsp
-  - respondingFxp
+  - initiatingFsp
+  - counterPartyFsp
   - sourceAmount
   - targetAmount
   - condition

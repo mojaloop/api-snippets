@@ -3432,10 +3432,7 @@ components:
         payeeReceiveAmount:
           allOf:
             - $ref: '#/components/schemas/Money'
-            - description: >-
-                The amount that the beneficiary will receive. (VJTODO-Need
-                clarify on this as it is not there in previous transaction
-                object definition)
+            - description: The amount that the beneficiary will receive.
         converter:
           allOf:
             - $ref: '#/components/schemas/CurrencyConverter'
@@ -4276,7 +4273,6 @@ components:
       description: >-
         Data model for the complex type FxMoney; This is based on the type Money
         but allows the amount to be optional to support FX quotations.
-        (VJTODO-Should the amount field be principalAmount?)
       properties:
         currency:
           $ref: '#/components/schemas/Currency'
@@ -4322,27 +4318,22 @@ components:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: An end-to-end identifier for the conversion request.
-        relatedTransactionId:
+        determiningTransferId:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: >-
                 The transaction ID of the transfer on whose success this
-                currency conversion depends. If this is a bulk currency
-                conversion which is not dependent on a transfer, then this field
-                should be omitted. (VJTODO-Do we need this here? As the field is
-                related to fxTransfer I think)
+                currency conversion depends.
         initiatingFsp:
           allOf:
             - $ref: '#/components/schemas/FspId'
             - description: >-
                 The id of the participant who is requesting a currency
-                conversion. (VJTODO-Should it be source.fspId?)
+                conversion.
         counterPartyFsp:
           allOf:
             - $ref: '#/components/schemas/FspId'
-            - description: >-
-                The ID of the FXP performing the conversion. (VJTODO-Need to
-                confirm about the field name, can it be FxpId?)
+            - description: The ID of the FXP performing the conversion.
         amountType:
           allOf:
             - $ref: '#/components/schemas/AmountType'
@@ -4356,15 +4347,11 @@ components:
         sourceAmount:
           allOf:
             - $ref: '#/components/schemas/FxMoney'
-            - description: >-
-                The amount to be converted, expressed in the source currency.
-                (VJTODO-Should it be source.amount?)
+            - description: The amount to be converted, expressed in the source currency.
         targetAmount:
           allOf:
             - $ref: '#/components/schemas/FxMoney'
-            - description: >-
-                The converted amount, expressed in the target currency.
-                (VJTODO-Should it be target.amount?)
+            - description: The converted amount, expressed in the target currency.
         expiration:
           allOf:
             - $ref: '#/components/schemas/DateTime'
@@ -4384,10 +4371,7 @@ components:
         extensionList:
           allOf:
             - $ref: '#/components/schemas/ExtensionList'
-            - description: >-
-                The extension list for the currency conversion request.
-                (VJTODO-Should we move this to the top level or is it part of
-                the the conversion object?)
+            - description: The extension list for the currency conversion request.
       required:
         - conversionId
         - initiatingFsp
@@ -4428,10 +4412,7 @@ components:
             - $ref: '#/components/schemas/FxConversion'
             - description: >-
                 The terms under which the FXP will undertake the currency
-                conversion proposed by the requester. (VJTODO-Do we need a
-                separate object for conversionTerms as the sourceAmount and
-                targetAmount should contain amount values in the conversionTerms
-                as opposed to the conversion object?)
+                conversion proposed by the requester.
       required:
         - sourceAmount
         - targetAmount
@@ -4447,20 +4428,19 @@ components:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: An end-to-end identifier for the confirmation request.
-        determiningTransactionId:
+        determiningTransferId:
           allOf:
             - $ref: '#/components/schemas/CorrelationId'
             - description: >-
                 The transaction ID of the transfer to which this currency
                 conversion relates, if the conversion is part of a transfer. If
                 the conversion is a bulk currency purchase, this field should be
-                omitted. (VJTODO-is it determiningTransactionId instead of
-                TransId?)
-        requestingFsp:
+                omitted.
+        initiatingFsp:
           allOf:
             - $ref: '#/components/schemas/FspId'
             - description: Identifier for the FSP who is requesting a currency conversion.
-        respondingFxp:
+        counterPartyFsp:
           allOf:
             - $ref: '#/components/schemas/FspId'
             - description: >-
@@ -4484,8 +4464,8 @@ components:
                 approved.
       required:
         - commitRequestId
-        - requestingFsp
-        - respondingFxp
+        - initiatingFsp
+        - counterPartyFsp
         - sourceAmount
         - targetAmount
         - condition
@@ -4508,10 +4488,7 @@ components:
         conversionState:
           allOf:
             - $ref: '#/components/schemas/TransferState'
-            - description: >-
-                The current status of the conversion request. (VJTODO-Do we need
-                to align this with transfers state, like using fxTransferState
-                instead?)
+            - description: The current status of the conversion request.
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
       required:
@@ -4535,10 +4512,7 @@ components:
         conversionState:
           allOf:
             - $ref: '#/components/schemas/TransferState'
-            - description: >-
-                The current status of the conversion request. (VJTODO-Do we need
-                to align this with transfers state, like using fxTransferState
-                instead?)
+            - description: The current status of the conversion request.
         extensionList:
           $ref: '#/components/schemas/ExtensionList'
       required:

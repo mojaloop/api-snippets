@@ -9,7 +9,7 @@ properties:
   conversionTerms:
     allOf:
       - $ref: ./FxConversion.yaml
-      - description: The terms under which the FXP will undertake the currency conversion proposed by the requester. (VJTODO-Do we need a separate object for conversionTerms as the sourceAmount and targetAmount should contain amount values in the conversionTerms as opposed to the conversion object?)
+      - description: The terms under which the FXP will undertake the currency conversion proposed by the requester.
 
 required:
   - sourceAmount
