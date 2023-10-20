@@ -30,7 +30,7 @@ properties:
     allOf:
       - $ref: ./IlpCondition.yaml
       - description: ILP condition received by the requesting FSP when the quote was approved.
-  # VJTODO-Don't we need expiration and extensionList?
+  # TODO: Don't we need expiration and extensionList?
   # expiration:
   #   $ref: ./DateTime.yaml
   # extensionList:
