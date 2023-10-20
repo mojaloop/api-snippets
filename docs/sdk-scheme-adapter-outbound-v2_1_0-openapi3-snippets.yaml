@@ -3017,7 +3017,7 @@ components:
                 sought.
       required:
         - conversionRequestId
-        - conversion
+        - conversionTerms
     FxQuotesPostOutboundResponse:
       title: FxQuotesPostOutboundResponse
       type: object

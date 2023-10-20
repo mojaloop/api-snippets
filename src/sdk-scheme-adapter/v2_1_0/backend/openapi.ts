@@ -925,7 +925,7 @@ export interface components {
      */
     FxQuotesPostBackendRequest: {
       conversionRequestId: components["schemas"]["CorrelationId"];
-      conversionTerms?: components["schemas"]["FxConversion"];
+      conversionTerms: components["schemas"]["FxConversion"];
     };
     /**
      * FxQuotesPostBackendResponse

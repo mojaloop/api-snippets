@@ -22672,7 +22672,7 @@
     },
     "required": [
       "conversionRequestId",
-      "conversion"
+      "conversionTerms"
     ]
   },
   "FxQuotesPostBackendResponse": {

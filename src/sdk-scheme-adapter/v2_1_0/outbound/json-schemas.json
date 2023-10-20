@@ -32065,7 +32065,7 @@
     },
     "required": [
       "conversionRequestId",
-      "conversion"
+      "conversionTerms"
     ]
   },
   "FxQuotesPostOutboundResponse": {

@@ -12,5 +12,5 @@ properties:
       - description: The terms of the currency conversion for which a quotation is sought.
 required:
   - conversionRequestId
-  - conversion
+  - conversionTerms
 

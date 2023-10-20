@@ -1473,7 +1473,7 @@ export interface components {
       /** @description Transaction ID for the backend, used to reconcile transactions between the Switch and backend systems. */
       homeTransactionId?: string;
       conversionRequestId: components["schemas"]["CorrelationId"];
-      conversionTerms?: components["schemas"]["FxConversion"];
+      conversionTerms: components["schemas"]["FxConversion"];
     };
     /**
      * FxQuotesPostOutboundResponse

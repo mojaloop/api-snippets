@@ -2632,7 +2632,7 @@ components:
                 sought.
       required:
         - conversionRequestId
-        - conversion
+        - conversionTerms
     FxQuotesPostBackendResponse:
       title: FxQuotesPostBackendResponse
       type: object
