@@ -1143,7 +1143,7 @@ components:
           $ref: '#/components/schemas/transactionRequestId'
         converter:
             allOf:
-              - $ref: ../../../fspiop/v1_2/openapi3/components/schemas/CurrencyConverter.yaml
+              - $ref: ../../../fspiop/v2_0/openapi3/components/schemas/CurrencyConverter.yaml
               - description: >-
                   An optional field which will allow the payer DFSP to specify which DFSP it wants to undertake currency conversion.
                   This is useful incase of if the sender wants the recipient to receive a specified amount of the target currency,
@@ -1151,7 +1151,7 @@ components:
                   would be expressed in the target currency and the amountType would be set to RECEIVE.
         currencyConversion:
           allOf:
-            - $ref: ../../../fspiop/v1_2/openapi3/components/schemas/FxRate.yaml
+            - $ref: ../../../fspiop/v2_0/openapi3/components/schemas/FxRate.yaml
             - description: >-
                 Used by the debtor party if it wants to share information about the currency conversion it proposes to make; or
                 if it is required by scheme rules to share this information. This object contains the amount of the transfer in

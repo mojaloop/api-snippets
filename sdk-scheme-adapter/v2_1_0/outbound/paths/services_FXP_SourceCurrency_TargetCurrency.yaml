@@ -7,8 +7,8 @@ get:
     - servicesFXP
   operationId: ServicesFXPSourceCurrencyTargetCurrencyGet
   parameters:
-    - $ref: ../../../../fspiop/v1_2/openapi3/components/parameters/SourceCurrency.yaml
-    - $ref: ../../../../fspiop/v1_2/openapi3/components/parameters/TargetCurrency.yaml
+    - $ref: ../../../../fspiop/v2_0/openapi3/components/parameters/SourceCurrency.yaml
+    - $ref: ../../../../fspiop/v2_0/openapi3/components/parameters/TargetCurrency.yaml
   responses:
     '200':
       $ref: ../../components/responses/servicesFXPSucess.yaml

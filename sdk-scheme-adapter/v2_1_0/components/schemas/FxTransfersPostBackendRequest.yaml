@@ -6,19 +6,19 @@ properties:
     description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
     type: string
   commitRequestId:
-    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/commitRequestId"
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/commitRequestId"
   determiningTransferId:
-    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/determiningTransferId"
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/determiningTransferId"
   initiatingFsp:
-    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/initiatingFsp"
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/initiatingFsp"
   counterPartyFsp:
-    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/counterPartyFsp"
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/counterPartyFsp"
   sourceAmount:
-    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/sourceAmount"
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/sourceAmount"
   targetAmount:
-    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/targetAmount"
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/targetAmount"
   condition:
-    $ref: "../../../../fspiop/v1_2/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/condition"
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FXTransfersPostRequest.yaml#/properties/condition"
 
 required:
   - commitRequestId
