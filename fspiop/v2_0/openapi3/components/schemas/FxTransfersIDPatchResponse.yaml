@@ -5,7 +5,7 @@ properties:
   fulfilment:
     allOf:
       - $ref: ./IlpFulfilment.yaml
-      - description: The fulfilment of the condition specified for the currency conversion. Mandatory if the conversion has been executed successfully. (TODO-Do we need this for patch?)
+      - description: The fulfilment of the condition specified for the currency conversion. Mandatory if the conversion has been executed successfully.
   completedTimestamp:
     allOf:
       - $ref: ./DateTime.yaml
