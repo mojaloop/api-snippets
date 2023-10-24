@@ -502,6 +502,7 @@ export interface components {
       type?: components["schemas"]["payerType"];
       /** @description Currencies in which the party can receive funds. */
       supportedCurrencies?: components["schemas"]["currency"][];
+      kycInformation?: components["schemas"]["KYCInformation"];
     };
     transferRequest: {
       /** @description Linked homeR2PTransactionId which was generated as part of POST /requestToPay to SDK incase of requestToPay transfer. */
@@ -543,6 +544,38 @@ export interface components {
       homeR2PTransactionId?: string;
       transactionRequestState: components["schemas"]["transactionRequestState"];
     };
+    /**
+     * KYCInformation
+     * @description KYC information for the party in a form mandated by an individual scheme.
+     * @example {
+     *     "metadata": {
+     *         "format": "JSON",
+     *         "version": "1.0",
+     *         "description": "Data containing KYC Information"
+     *     },
+     *     "data": {
+     *         "name": "John Doe",
+     *         "dob": "1980-05-15",
+     *         "gender": "Male",
+     *         "address": "123 Main Street, Anytown, USA",
+     *         "email": "johndoe@example.com",
+     *         "phone": "+1 555-123-4567",
+     *         "nationality": "US",
+     *         "passport_number": "AB1234567",
+     *         "issue_date": "2010-02-20",
+     *         "expiry_date": "2025-02-20",
+     *         "bank_account_number": "1234567890",
+     *         "bank_name": "Example Bank",
+     *         "employer": "ABC Company",
+     *         "occupation": "Software Engineer",
+     *         "income": "$80,000 per year",
+     *         "marital_status": "Single",
+     *         "dependents": 0,
+     *         "risk_level": "Low"
+     *     }
+     * }
+     */
+    KYCInformation: string;
     /**
      * TransactionSubScenario
      * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
@@ -692,6 +725,7 @@ export interface components {
     PartyPersonalInfo: {
       complexName?: components["schemas"]["PartyComplexName"];
       dateOfBirth?: components["schemas"]["DateOfBirth"];
+      kycInformation?: components["schemas"]["KYCInformation"];
     };
     /**
      * Party

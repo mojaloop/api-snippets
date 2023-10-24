@@ -32,5 +32,7 @@ properties:
       $ref: ./Currency.yaml
     minItems: 0
     maxItems: 16
+  kycInformation:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/PartyPersonalInfo.yaml#/properties/kycInformation"
   extensionList:
     $ref: ./extensionListEmptiable.yaml

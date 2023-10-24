@@ -33,6 +33,7 @@ export namespace Types {
   export type DateOfBirth = components['schemas']['DateOfBirth']
   export type MerchantClassificationCode = components['schemas']['MerchantClassificationCode']
   export type FspId = components['schemas']['FspId']
+  export type KYCInformation = components['schemas']['KYCInformation']
   export type extensionListEmptiable = components['schemas']['extensionListEmptiable']
   export type transferParty = components['schemas']['transferParty']
   export type AmountType = components['schemas']['AmountType']

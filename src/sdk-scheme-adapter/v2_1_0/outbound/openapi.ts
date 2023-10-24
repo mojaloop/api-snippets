@@ -644,6 +644,38 @@ export interface components {
      * @description FSP identifier.
      */
     FspId: string;
+    /**
+     * KYCInformation
+     * @description KYC information for the party in a form mandated by an individual scheme.
+     * @example {
+     *     "metadata": {
+     *         "format": "JSON",
+     *         "version": "1.0",
+     *         "description": "Data containing KYC Information"
+     *     },
+     *     "data": {
+     *         "name": "John Doe",
+     *         "dob": "1980-05-15",
+     *         "gender": "Male",
+     *         "address": "123 Main Street, Anytown, USA",
+     *         "email": "johndoe@example.com",
+     *         "phone": "+1 555-123-4567",
+     *         "nationality": "US",
+     *         "passport_number": "AB1234567",
+     *         "issue_date": "2010-02-20",
+     *         "expiry_date": "2025-02-20",
+     *         "bank_account_number": "1234567890",
+     *         "bank_name": "Example Bank",
+     *         "employer": "ABC Company",
+     *         "occupation": "Software Engineer",
+     *         "income": "$80,000 per year",
+     *         "marital_status": "Single",
+     *         "dependents": 0,
+     *         "risk_level": "Low"
+     *     }
+     * }
+     */
+    KYCInformation: string;
     extensionListEmptiable: components["schemas"]["Extension"][];
     transferParty: {
       type?: components["schemas"]["TransactionInitiatorType"];
@@ -659,6 +691,7 @@ export interface components {
       fspId?: components["schemas"]["FspId"];
       /** @description Currencies in which the party can receive funds. */
       supportedCurrencies?: components["schemas"]["Currency"][];
+      kycInformation?: components["schemas"]["KYCInformation"];
       extensionList?: components["schemas"]["extensionListEmptiable"];
     };
     /**
@@ -860,6 +893,7 @@ export interface components {
     PartyPersonalInfo: {
       complexName?: components["schemas"]["PartyComplexName"];
       dateOfBirth?: components["schemas"]["DateOfBirth"];
+      kycInformation?: components["schemas"]["KYCInformation"];
     };
     /**
      * Party

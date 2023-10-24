@@ -9,7 +9,7 @@ properties:
   name:
     $ref: ./PartyName.yaml
   personalInfo:
-    $ref: ./PartyPersonalInfo.yaml
+    $ref: ../../../../fspiop/v2_0/openapi3/components/schemas/PartyPersonalInfo.yaml
   supportedCurrencies:
     type: array
     description: Currencies in which the party can receive funds.

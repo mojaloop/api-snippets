@@ -69,6 +69,7 @@ export namespace Schemas {
   export const transferState = JsonSchemas.transferState
   export const transferStatus = JsonSchemas.transferStatus
   export const requestToPayCallback = JsonSchemas.requestToPayCallback
+  export const KYCInformation = JsonSchemas.KYCInformation
   export const TransactionSubScenario = JsonSchemas.TransactionSubScenario
   export const errorResponse = JsonSchemas.errorResponse
   export const CorrelationId = JsonSchemas.CorrelationId

@@ -33,6 +33,7 @@ export namespace Schemas {
   export const DateOfBirth = JsonSchemas.DateOfBirth
   export const MerchantClassificationCode = JsonSchemas.MerchantClassificationCode
   export const FspId = JsonSchemas.FspId
+  export const KYCInformation = JsonSchemas.KYCInformation
   export const extensionListEmptiable = JsonSchemas.extensionListEmptiable
   export const transferParty = JsonSchemas.transferParty
   export const AmountType = JsonSchemas.AmountType
