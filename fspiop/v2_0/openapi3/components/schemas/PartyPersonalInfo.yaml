@@ -6,3 +6,5 @@ properties:
     $ref: ./PartyComplexName.yaml
   dateOfBirth:
     $ref: ./DateOfBirth.yaml
+  kycInformation:
+    $ref: ./KYCInformation.yaml
