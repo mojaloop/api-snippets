@@ -3020,6 +3020,42 @@ components:
         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$
       description: Date of Birth of the Party.
       example: '1966-06-16'
+    KYCInformation:
+      title: KYCInformation
+      type: string
+      minLength: 1
+      maxLength: 2048
+      description: >-
+        KYC information for the party in a form mandated by an individual
+        scheme.
+      example: |-
+        {
+            "metadata": {
+                "format": "JSON",
+                "version": "1.0",
+                "description": "Data containing KYC Information"
+            },
+            "data": {
+                "name": "John Doe",
+                "dob": "1980-05-15",
+                "gender": "Male",
+                "address": "123 Main Street, Anytown, USA",
+                "email": "johndoe@example.com",
+                "phone": "+1 555-123-4567",
+                "nationality": "US",
+                "passport_number": "AB1234567",
+                "issue_date": "2010-02-20",
+                "expiry_date": "2025-02-20",
+                "bank_account_number": "1234567890",
+                "bank_name": "Example Bank",
+                "employer": "ABC Company",
+                "occupation": "Software Engineer",
+                "income": "$80,000 per year",
+                "marital_status": "Single",
+                "dependents": 0,
+                "risk_level": "Low"
+            }
+        }
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
@@ -3029,6 +3065,8 @@ components:
           $ref: '#/components/schemas/PartyComplexName'
         dateOfBirth:
           $ref: '#/components/schemas/DateOfBirth'
+        kycInformation:
+          $ref: '#/components/schemas/KYCInformation'
     Currency:
       title: Currency
       description: >-
