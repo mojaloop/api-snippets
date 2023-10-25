@@ -1123,8 +1123,8 @@ export interface components {
      * @description The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.
      */
     FxRate: {
-      sourceAmount: components["schemas"]["Amount"];
-      targetAmount: components["schemas"]["Amount"];
+      sourceAmount: components["schemas"]["Money"];
+      targetAmount: components["schemas"]["Money"];
     };
     /**
      * QuotesPostRequest
@@ -1479,8 +1479,8 @@ export interface components {
     FxCharge: {
       /** @description A description of the charge which is being levied. */
       chargeType: string;
-      sourceAmount?: components["schemas"]["Amount"];
-      targetAmount?: components["schemas"]["Amount"];
+      sourceAmount?: components["schemas"]["Money"];
+      targetAmount?: components["schemas"]["Money"];
     };
     /**
      * FxConversion

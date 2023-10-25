@@ -2520,11 +2520,11 @@ components:
       properties:
         sourceAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
+            - $ref: '#/components/schemas/Money'
             - description: The amount of the transfer in the source currency.
         targetAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
+            - $ref: '#/components/schemas/Money'
             - description: The amount of the transfer in the target currency.
       required:
         - sourceAmount
@@ -2569,13 +2569,13 @@ components:
           description: A description of the charge which is being levied.
         sourceAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
+            - $ref: '#/components/schemas/Money'
             - description: >-
                 The amount of the charge which is being levied, expressed in the
                 source currency.
         targetAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
+            - $ref: '#/components/schemas/Money'
             - description: >-
                 The amount of the charge which is being levied, expressed in the
                 target currency.
