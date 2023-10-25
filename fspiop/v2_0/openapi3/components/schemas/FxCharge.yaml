@@ -9,11 +9,11 @@ properties:
     description: A description of the charge which is being levied.
   sourceAmount:
     allOf:
-      - $ref: ./Amount.yaml
+      - $ref: ./Money.yaml
       - description: The amount of the charge which is being levied, expressed in the source currency.
   targetAmount:
     allOf:
-      - $ref: ./Amount.yaml
+      - $ref: ./Money.yaml
       - description: The amount of the charge which is being levied, expressed in the target currency.
 required:
   - chargeType

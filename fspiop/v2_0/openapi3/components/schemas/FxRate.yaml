@@ -4,11 +4,11 @@ description: The FxRate object contains information about a currency conversion 
 properties:
   sourceAmount:
     allOf:
-      - $ref: ./Amount.yaml
+      - $ref: ./Money.yaml
       - description: The amount of the transfer in the source currency.
   targetAmount:
     allOf:
-      - $ref: ./Amount.yaml
+      - $ref: ./Money.yaml
       - description: The amount of the transfer in the target currency.
 required:
   - sourceAmount
