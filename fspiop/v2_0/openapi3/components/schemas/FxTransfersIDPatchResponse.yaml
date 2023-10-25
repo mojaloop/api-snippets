@@ -2,10 +2,6 @@ title: FxTransfersIDPatchResponse
 type: object
 description: 'PATCH /fxTransfers/{ID} object'
 properties:
-  fulfilment:
-    allOf:
-      - $ref: ./IlpFulfilment.yaml
-      - description: The fulfilment of the condition specified for the currency conversion. Mandatory if the conversion has been executed successfully.
   completedTimestamp:
     allOf:
       - $ref: ./DateTime.yaml

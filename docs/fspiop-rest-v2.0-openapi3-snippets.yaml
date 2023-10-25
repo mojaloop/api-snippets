@@ -3309,11 +3309,11 @@ components:
       properties:
         sourceAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
+            - $ref: '#/components/schemas/Money'
             - description: The amount of the transfer in the source currency.
         targetAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
+            - $ref: '#/components/schemas/Money'
             - description: The amount of the transfer in the target currency.
       required:
         - sourceAmount
@@ -4332,13 +4332,13 @@ components:
           description: A description of the charge which is being levied.
         sourceAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
+            - $ref: '#/components/schemas/Money'
             - description: >-
                 The amount of the charge which is being levied, expressed in the
                 source currency.
         targetAmount:
           allOf:
-            - $ref: '#/components/schemas/Amount'
+            - $ref: '#/components/schemas/Money'
             - description: >-
                 The amount of the charge which is being levied, expressed in the
                 target currency.
@@ -4538,13 +4538,6 @@ components:
       type: object
       description: PATCH /fxTransfers/{ID} object
       properties:
-        fulfilment:
-          allOf:
-            - $ref: '#/components/schemas/IlpFulfilment'
-            - description: >-
-                The fulfilment of the condition specified for the currency
-                conversion. Mandatory if the conversion has been executed
-                successfully.
         completedTimestamp:
           allOf:
             - $ref: '#/components/schemas/DateTime'
