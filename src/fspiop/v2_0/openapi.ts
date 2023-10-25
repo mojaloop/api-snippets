@@ -1494,8 +1494,8 @@ export interface components {
      * @description The object sent in the PUT /fxQuotes/{ID} callback.
      */
     FxQuotesIDPutResponse: {
-      condition: components["schemas"]["IlpCondition"];
-      conversionTerms?: components["schemas"]["FxConversion"];
+      condition?: components["schemas"]["IlpCondition"];
+      conversionTerms: components["schemas"]["FxConversion"];
     };
     /**
      * FxTransfersPostRequest

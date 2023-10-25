@@ -4452,11 +4452,7 @@ components:
                 The terms under which the FXP will undertake the currency
                 conversion proposed by the requester.
       required:
-        - sourceAmount
-        - targetAmount
-        - expiration
-        - ilpPacket
-        - condition
+        - conversionTerms
     FxTransfersPostRequest:
       title: FxTransfersPostRequest
       type: object
