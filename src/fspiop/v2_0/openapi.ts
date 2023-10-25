@@ -1509,6 +1509,7 @@ export interface components {
       sourceAmount: components["schemas"]["Money"];
       targetAmount: components["schemas"]["Money"];
       condition: components["schemas"]["IlpCondition"];
+      expiration?: components["schemas"]["DateTime"];
     };
     /**
      * FxTransfersIDPutResponse
