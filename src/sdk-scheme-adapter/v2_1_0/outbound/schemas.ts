@@ -108,6 +108,10 @@ export namespace Schemas {
   export const requestToPayResponse = JsonSchemas.requestToPayResponse
   export const transferStatus = JsonSchemas.transferStatus
   export const QuotesIDPutResponse = JsonSchemas.QuotesIDPutResponse
+  export const FxMoney = JsonSchemas.FxMoney
+  export const FxCharge = JsonSchemas.FxCharge
+  export const FxConversion = JsonSchemas.FxConversion
+  export const FxQuotesPostOutboundResponse = JsonSchemas.FxQuotesPostOutboundResponse
   export const TransfersIDPutResponse = JsonSchemas.TransfersIDPutResponse
   export const transferResponse = JsonSchemas.transferResponse
   export const errorTransferResponse = JsonSchemas.errorTransferResponse
@@ -124,12 +128,9 @@ export namespace Schemas {
   export const errorSimpleTransfersResponse = JsonSchemas.errorSimpleTransfersResponse
   export const transferRequest = JsonSchemas.transferRequest
   export const transferStatusResponse = JsonSchemas.transferStatusResponse
+  export const transferContinuationAcceptConversion = JsonSchemas.transferContinuationAcceptConversion
   export const ServicesFXPPutResponse = JsonSchemas.ServicesFXPPutResponse
-  export const FxMoney = JsonSchemas.FxMoney
-  export const FxCharge = JsonSchemas.FxCharge
-  export const FxConversion = JsonSchemas.FxConversion
   export const FxQuotesPostOutboundRequest = JsonSchemas.FxQuotesPostOutboundRequest
-  export const FxQuotesPostOutboundResponse = JsonSchemas.FxQuotesPostOutboundResponse
   export const commitRequestId = JsonSchemas.commitRequestId
   export const determiningTransferId = JsonSchemas.determiningTransferId
   export const initiatingFsp = JsonSchemas.initiatingFsp

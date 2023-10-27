@@ -402,10 +402,10 @@ export interface paths {
       };
     };
     /**
-     * Continues a transfer that has paused at the quote stage in order to accept or reject payee party and/or quote
-     * @description The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage.
+     * Continues a transfer that has paused at the quote stage in order to accept or reject payee party and/or quote and/or conversion
+     * @description The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage and/or currency conversion stage.
      *
-     * The request body should contain either the "acceptParty" or "acceptQuote" property set to `true` as required to continue the transfer.
+     * The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" property set to `true` as required to continue the transfer.
      *
      * See the description of the `POST /transfers` HTTP method for more information on modes of transfer.
      */
@@ -417,7 +417,7 @@ export interface paths {
       };
       requestBody?: {
         content: {
-          "application/json": components["schemas"]["transferContinuationAcceptParty"] | components["schemas"]["transferContinuationAcceptQuote"];
+          "application/json": components["schemas"]["transferContinuationAcceptParty"] | components["schemas"]["transferContinuationAcceptQuote"] | components["schemas"]["transferContinuationAcceptConversion"];
         };
       };
       responses: {
@@ -1252,7 +1252,7 @@ export interface components {
       lastError?: components["schemas"]["transferError"];
     };
     /** @enum {string} */
-    transferStatus: "ERROR_OCCURRED" | "WAITING_FOR_PARTY_ACCEPTANCE" | "WAITING_FOR_QUOTE_ACCEPTANCE" | "COMPLETED";
+    transferStatus: "ERROR_OCCURRED" | "WAITING_FOR_PARTY_ACCEPTANCE" | "WAITING_FOR_QUOTE_ACCEPTANCE" | "WAITING_FOR_CONVERSION_ACCEPTANCE" | "COMPLETED";
     /**
      * QuotesIDPutResponse
      * @description The object sent in the PUT /quotes/{ID} callback.
@@ -1267,6 +1267,51 @@ export interface components {
       ilpPacket: components["schemas"]["IlpPacket"];
       condition: components["schemas"]["IlpCondition"];
       extensionList?: components["schemas"]["ExtensionList"];
+    };
+    /**
+     * FxMoney
+     * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.
+     */
+    FxMoney: {
+      currency: components["schemas"]["Currency"];
+      amount?: components["schemas"]["Amount"];
+    };
+    /**
+     * FxCharge
+     * @description An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FxCharge object.
+     */
+    FxCharge: {
+      /** @description A description of the charge which is being levied. */
+      chargeType: string;
+      sourceAmount?: components["schemas"]["Money"];
+      targetAmount?: components["schemas"]["Money"];
+    };
+    /**
+     * FxConversion
+     * @description A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
+     */
+    FxConversion: {
+      conversionId: components["schemas"]["CorrelationId"];
+      determiningTransferId?: components["schemas"]["CorrelationId"];
+      initiatingFsp: components["schemas"]["FspId"];
+      counterPartyFsp: components["schemas"]["FspId"];
+      amountType: components["schemas"]["AmountType"];
+      sourceAmount: components["schemas"]["FxMoney"];
+      targetAmount: components["schemas"]["FxMoney"];
+      expiration: components["schemas"]["DateTime"];
+      /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
+      charges?: components["schemas"]["FxCharge"][];
+      extensionList?: components["schemas"]["ExtensionList"];
+    };
+    /**
+     * FxQuotesPostOutboundResponse
+     * @description The object sent as a response for the POST /fxQuotes request. The terms under which the FXP will undertake the currency conversion proposed by the requester.
+     */
+    FxQuotesPostOutboundResponse: {
+      /** @description Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems. */
+      homeTransactionId?: string;
+      condition?: components["schemas"]["IlpCondition"];
+      conversionTerms: components["schemas"]["FxConversion"];
     };
     /**
      * TransfersIDPutResponse
@@ -1302,6 +1347,13 @@ export interface components {
       };
       /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
       quoteResponseSource?: string;
+      conversionRequestId?: components["schemas"]["CorrelationId"];
+      fxQuotesResponse?: {
+        body: components["schemas"]["FxQuotesPostOutboundResponse"];
+        headers?: Record<string, never>;
+      };
+      /** @description FXPID of the entity that supplied the fxQuotes response. */
+      fxQuotesResponseSource?: string;
       fulfil?: {
         body: components["schemas"]["TransfersIDPutResponse"];
         headers?: Record<string, never>;
@@ -1456,6 +1508,10 @@ export interface components {
         headers?: Record<string, never>;
       };
     };
+    transferContinuationAcceptConversion: {
+      /** @enum {boolean} */
+      acceptConversion: true | false;
+    };
     /**
      * ServicesFXPPutResponse
      * @description The object sent in the PUT /services/FXP callback.
@@ -1465,41 +1521,6 @@ export interface components {
       providers: components["schemas"]["FspId"][];
     };
     /**
-     * FxMoney
-     * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.
-     */
-    FxMoney: {
-      currency: components["schemas"]["Currency"];
-      amount?: components["schemas"]["Amount"];
-    };
-    /**
-     * FxCharge
-     * @description An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FxCharge object.
-     */
-    FxCharge: {
-      /** @description A description of the charge which is being levied. */
-      chargeType: string;
-      sourceAmount?: components["schemas"]["Money"];
-      targetAmount?: components["schemas"]["Money"];
-    };
-    /**
-     * FxConversion
-     * @description A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
-     */
-    FxConversion: {
-      conversionId: components["schemas"]["CorrelationId"];
-      determiningTransferId?: components["schemas"]["CorrelationId"];
-      initiatingFsp: components["schemas"]["FspId"];
-      counterPartyFsp: components["schemas"]["FspId"];
-      amountType: components["schemas"]["AmountType"];
-      sourceAmount: components["schemas"]["FxMoney"];
-      targetAmount: components["schemas"]["FxMoney"];
-      expiration: components["schemas"]["DateTime"];
-      /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
-      charges?: components["schemas"]["FxCharge"][];
-      extensionList?: components["schemas"]["ExtensionList"];
-    };
-    /**
      * FxQuotesPostOutboundRequest
      * @description The object sent in the POST /fxQuotes request.
      */
@@ -1507,15 +1528,6 @@ export interface components {
       /** @description Transaction ID for the backend, used to reconcile transactions between the Switch and backend systems. */
       homeTransactionId?: string;
       conversionRequestId: components["schemas"]["CorrelationId"];
-      conversionTerms: components["schemas"]["FxConversion"];
-    };
-    /**
-     * FxQuotesPostOutboundResponse
-     * @description The object sent as a response for the POST /fxQuotes request. The terms under which the FXP will undertake the currency conversion proposed by the requester.
-     */
-    FxQuotesPostOutboundResponse: {
-      /** @description Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems. */
-      homeTransactionId?: string;
       conversionTerms: components["schemas"]["FxConversion"];
     };
     commitRequestId: components["schemas"]["CorrelationId"];

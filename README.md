@@ -184,3 +184,15 @@ the `npm run build:dto` script is already executing linting with auto-fixing
 there is pre-commit hook setup witch do a linting for staged files.
 ### DTO testing
 - testing of DTO declarations
+
+### Comparing openapi specification - useful commands
+
+For difference:
+```
+docker run --rm -t -v $(pwd)/docs:/docs:ro tufin/oasdiff diff /docs/fspiop-rest-v1.1-openapi3-snippets.yaml /docs/fspiop-rest-v2.0-openapi3-snippets.yaml -f text
+```
+
+For changelog:
+```
+docker run --rm -t -v $(pwd)/docs:/docs:ro tufin/oasdiff changelog /docs/fspiop-rest-v1.1-openapi3-snippets.yaml /docs/fspiop-rest-v2.0-openapi3-snippets.yaml
+```

@@ -1,0 +1,9 @@
+type: object
+required:
+  - acceptConversion
+properties:
+  acceptConversion:
+    type: boolean
+    enum:
+      - true
+      - false

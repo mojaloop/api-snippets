@@ -59,6 +59,21 @@ properties:
       FSPID of the entity that supplied the quote response. This may not be the
       same as the FSPID of the entity which owns the end user account in the
       case of a FOREX transfer. i.e. it may be a FOREX gateway.
+  conversionRequestId:
+    $ref: ./CorrelationId.yaml
+  fxQuotesResponse:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./FxQuotesPostOutboundResponse.yaml
+      headers:
+        type: object
+  fxQuotesResponseSource:
+    type: string
+    description: >
+      FXPID of the entity that supplied the fxQuotes response.
   fulfil:
     type: object
     required:

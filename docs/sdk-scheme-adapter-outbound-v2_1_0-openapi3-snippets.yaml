@@ -497,16 +497,17 @@ paths:
     put:
       summary: >-
         Continues a transfer that has paused at the quote stage in order to
-        accept or reject payee party and/or quote
+        accept or reject payee party and/or quote and/or conversion
       description: >
         The HTTP request `PUT /transfers/{transferId}` is used to continue a
         transfer initiated via the `POST /transfers` method that has halted
-        after party lookup and/or quotation stage.
+        after party lookup and/or quotation stage and/or currency conversion
+        stage.
 
 
         The request body should contain either the "acceptParty" or
-        "acceptQuote" property set to `true` as required to continue the
-        transfer.
+        "acceptQuote" or "acceptConversion" property set to `true` as required
+        to continue the transfer.
 
 
         See the description of the `POST /transfers` HTTP method for more
@@ -520,6 +521,7 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/transferContinuationAcceptParty'
                 - $ref: '#/components/schemas/transferContinuationAcceptQuote'
+                - $ref: '#/components/schemas/transferContinuationAcceptConversion'
       parameters:
         - $ref: '#/components/parameters/transferId'
       responses:
@@ -2432,6 +2434,7 @@ components:
         - ERROR_OCCURRED
         - WAITING_FOR_PARTY_ACCEPTANCE
         - WAITING_FOR_QUOTE_ACCEPTANCE
+        - WAITING_FOR_CONVERSION_ACCEPTANCE
         - COMPLETED
     QuotesIDPutResponse:
       title: QuotesIDPutResponse
@@ -2461,6 +2464,144 @@ components:
         - expiration
         - ilpPacket
         - condition
+    FxMoney:
+      title: FxMoney
+      type: object
+      description: >-
+        Data model for the complex type FxMoney; This is based on the type Money
+        but allows the amount to be optional to support FX quotations.
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        amount:
+          $ref: '#/components/schemas/Amount'
+      required:
+        - currency
+    FxCharge:
+      title: FxCharge
+      type: object
+      description: >-
+        An FXP will be able to specify a charge which it proposes to levy on the
+        currency conversion operation using a FxCharge object.
+      properties:
+        chargeType:
+          type: string
+          minLength: 1
+          maxLength: 32
+          description: A description of the charge which is being levied.
+        sourceAmount:
+          allOf:
+            - $ref: '#/components/schemas/Money'
+            - description: >-
+                The amount of the charge which is being levied, expressed in the
+                source currency.
+        targetAmount:
+          allOf:
+            - $ref: '#/components/schemas/Money'
+            - description: >-
+                The amount of the charge which is being levied, expressed in the
+                target currency.
+      required:
+        - chargeType
+    FxConversion:
+      title: FxConversion
+      type: object
+      description: >-
+        A DFSP will be able to request a currency conversion, and an FX provider
+        will be able to describe its involvement in a proposed transfer, using a
+        FxConversion object.
+      properties:
+        conversionId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: An end-to-end identifier for the conversion request.
+        determiningTransferId:
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: >-
+                The transaction ID of the transfer on whose success this
+                currency conversion depends.
+        initiatingFsp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: >-
+                The id of the participant who is requesting a currency
+                conversion.
+        counterPartyFsp:
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: The ID of the FXP performing the conversion.
+        amountType:
+          allOf:
+            - $ref: '#/components/schemas/AmountType'
+            - description: >-
+                This is the AmountType for the base transaction - If SEND - then
+                any charges levied by the FXP as part of the transaction will be
+                deducted by the FXP from the amount shown for the target party
+                in the conversion. If RECEIVE - then any charges levied by the
+                FXP as part of the transaction will be added by the FXP to the
+                amount shown for the source party in the conversion.
+        sourceAmount:
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: The amount to be converted, expressed in the source currency.
+        targetAmount:
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: The converted amount, expressed in the target currency.
+        expiration:
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+            - description: >-
+                The end of the period for which the currency conversion is
+                required to remain valid.
+        charges:
+          type: array
+          description: >-
+            One or more charges which the FXP intends to levy as part of the
+            currency conversion, or which the payee DFSP intends to add to the
+            amount transferred.
+          items:
+            $ref: '#/components/schemas/FxCharge'
+          minItems: 0
+          maxItems: 16
+        extensionList:
+          allOf:
+            - $ref: '#/components/schemas/ExtensionList'
+            - description: The extension list for the currency conversion request.
+      required:
+        - conversionId
+        - initiatingFsp
+        - counterPartyFsp
+        - amountType
+        - sourceAmount
+        - targetAmount
+        - expiration
+    FxQuotesPostOutboundResponse:
+      title: FxQuotesPostOutboundResponse
+      type: object
+      description: >-
+        The object sent as a response for the POST /fxQuotes request. The terms
+        under which the FXP will undertake the currency conversion proposed by
+        the requester.
+      properties:
+        homeTransactionId:
+          description: >-
+            Transaction ID for the FXP backend, used to reconcile transactions
+            between the Switch and FXP backend systems.
+          type: string
+        condition:
+          allOf:
+            - $ref: '#/components/schemas/IlpCondition'
+            - description: The ILP condition for the conversion.
+        conversionTerms:
+          allOf:
+            - $ref: '#/components/schemas/FxConversion'
+            - description: >-
+                The terms under which the FXP will undertake the currency
+                conversion proposed by the requester.
+      required:
+        - conversionTerms
     TransfersIDPutResponse:
       title: TransfersIDPutResponse
       type: object
@@ -2539,6 +2680,21 @@ components:
             be the same as the FSPID of the entity which owns the end user
             account in the case of a FOREX transfer. i.e. it may be a FOREX
             gateway.
+        conversionRequestId:
+          $ref: '#/components/schemas/CorrelationId'
+        fxQuotesResponse:
+          type: object
+          required:
+            - body
+          properties:
+            body:
+              $ref: '#/components/schemas/FxQuotesPostOutboundResponse'
+            headers:
+              type: object
+        fxQuotesResponseSource:
+          type: string
+          description: |
+            FXPID of the entity that supplied the fxQuotes response.
         fulfil:
           type: object
           required:
@@ -2906,6 +3062,16 @@ components:
               $ref: '#/components/schemas/TransfersIDPutResponse'
             headers:
               type: object
+    transferContinuationAcceptConversion:
+      type: object
+      required:
+        - acceptConversion
+      properties:
+        acceptConversion:
+          type: boolean
+          enum:
+            - true
+            - false
     ServicesFXPPutResponse:
       title: ServicesFXPPutResponse
       type: object
@@ -2922,119 +3088,6 @@ components:
           maxItems: 16
       required:
         - providers
-    FxMoney:
-      title: FxMoney
-      type: object
-      description: >-
-        Data model for the complex type FxMoney; This is based on the type Money
-        but allows the amount to be optional to support FX quotations.
-      properties:
-        currency:
-          $ref: '#/components/schemas/Currency'
-        amount:
-          $ref: '#/components/schemas/Amount'
-      required:
-        - currency
-    FxCharge:
-      title: FxCharge
-      type: object
-      description: >-
-        An FXP will be able to specify a charge which it proposes to levy on the
-        currency conversion operation using a FxCharge object.
-      properties:
-        chargeType:
-          type: string
-          minLength: 1
-          maxLength: 32
-          description: A description of the charge which is being levied.
-        sourceAmount:
-          allOf:
-            - $ref: '#/components/schemas/Money'
-            - description: >-
-                The amount of the charge which is being levied, expressed in the
-                source currency.
-        targetAmount:
-          allOf:
-            - $ref: '#/components/schemas/Money'
-            - description: >-
-                The amount of the charge which is being levied, expressed in the
-                target currency.
-      required:
-        - chargeType
-    FxConversion:
-      title: FxConversion
-      type: object
-      description: >-
-        A DFSP will be able to request a currency conversion, and an FX provider
-        will be able to describe its involvement in a proposed transfer, using a
-        FxConversion object.
-      properties:
-        conversionId:
-          allOf:
-            - $ref: '#/components/schemas/CorrelationId'
-            - description: An end-to-end identifier for the conversion request.
-        determiningTransferId:
-          allOf:
-            - $ref: '#/components/schemas/CorrelationId'
-            - description: >-
-                The transaction ID of the transfer on whose success this
-                currency conversion depends.
-        initiatingFsp:
-          allOf:
-            - $ref: '#/components/schemas/FspId'
-            - description: >-
-                The id of the participant who is requesting a currency
-                conversion.
-        counterPartyFsp:
-          allOf:
-            - $ref: '#/components/schemas/FspId'
-            - description: The ID of the FXP performing the conversion.
-        amountType:
-          allOf:
-            - $ref: '#/components/schemas/AmountType'
-            - description: >-
-                This is the AmountType for the base transaction - If SEND - then
-                any charges levied by the FXP as part of the transaction will be
-                deducted by the FXP from the amount shown for the target party
-                in the conversion. If RECEIVE - then any charges levied by the
-                FXP as part of the transaction will be added by the FXP to the
-                amount shown for the source party in the conversion.
-        sourceAmount:
-          allOf:
-            - $ref: '#/components/schemas/FxMoney'
-            - description: The amount to be converted, expressed in the source currency.
-        targetAmount:
-          allOf:
-            - $ref: '#/components/schemas/FxMoney'
-            - description: The converted amount, expressed in the target currency.
-        expiration:
-          allOf:
-            - $ref: '#/components/schemas/DateTime'
-            - description: >-
-                The end of the period for which the currency conversion is
-                required to remain valid.
-        charges:
-          type: array
-          description: >-
-            One or more charges which the FXP intends to levy as part of the
-            currency conversion, or which the payee DFSP intends to add to the
-            amount transferred.
-          items:
-            $ref: '#/components/schemas/FxCharge'
-          minItems: 0
-          maxItems: 16
-        extensionList:
-          allOf:
-            - $ref: '#/components/schemas/ExtensionList'
-            - description: The extension list for the currency conversion request.
-      required:
-        - conversionId
-        - initiatingFsp
-        - counterPartyFsp
-        - amountType
-        - sourceAmount
-        - targetAmount
-        - expiration
     FxQuotesPostOutboundRequest:
       title: FxQuotesPostOutboundRequest
       type: object
@@ -3057,27 +3110,6 @@ components:
                 sought.
       required:
         - conversionRequestId
-        - conversionTerms
-    FxQuotesPostOutboundResponse:
-      title: FxQuotesPostOutboundResponse
-      type: object
-      description: >-
-        The object sent as a response for the POST /fxQuotes request. The terms
-        under which the FXP will undertake the currency conversion proposed by
-        the requester.
-      properties:
-        homeTransactionId:
-          description: >-
-            Transaction ID for the FXP backend, used to reconcile transactions
-            between the Switch and FXP backend systems.
-          type: string
-        conversionTerms:
-          allOf:
-            - $ref: '#/components/schemas/FxConversion'
-            - description: >-
-                The terms under which the FXP will undertake the currency
-                conversion proposed by the requester.
-      required:
         - conversionTerms
     commitRequestId:
       allOf:
