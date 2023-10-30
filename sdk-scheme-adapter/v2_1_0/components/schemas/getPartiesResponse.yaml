@@ -4,7 +4,6 @@ description: 'The object sent in the GET /parties/{Type}/{ID} callback.'
 properties:
   body:
     $ref: ./Party.yaml
-    description: Information regarding the requested Party.
   headers:
     type: object
 required:

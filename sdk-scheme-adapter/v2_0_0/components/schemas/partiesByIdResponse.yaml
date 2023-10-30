@@ -6,7 +6,6 @@ properties:
     properties:
       body:
         $ref: ./Party.yaml
-        description: Information regarding the requested Party.
       headers:
         type: object
     required:

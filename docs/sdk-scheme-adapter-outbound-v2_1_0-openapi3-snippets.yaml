@@ -2022,7 +2022,6 @@ components:
           properties:
             body:
               $ref: '#/components/schemas/Party'
-              description: Information regarding the requested Party.
             headers:
               type: object
           required:
@@ -2227,7 +2226,6 @@ components:
       type: object
       properties:
         fspId:
-          title: destination DFSP requested to calculate the quote
           $ref: '#/components/schemas/FspId'
         quotesPostRequest:
           $ref: '#/components/schemas/QuotesPostRequest'
@@ -2345,7 +2343,6 @@ components:
       properties:
         body:
           $ref: '#/components/schemas/Party'
-          description: Information regarding the requested Party.
         headers:
           type: object
       required:
@@ -2422,11 +2419,6 @@ components:
         transactionRequestResponse:
           $ref: '#/components/schemas/TransactionRequestResponse'
         lastError:
-          description: >
-            Object representing the last error to occur during a transfer
-            process. This may be a Mojaloop API error returned from another
-            entity in the scheme or an object representing other types of error
-            e.g. exceptions that may occur inside the scheme adapter.
           $ref: '#/components/schemas/transferError'
     transferStatus:
       type: string
@@ -2705,11 +2697,6 @@ components:
             headers:
               type: object
         lastError:
-          description: >
-            Object representing the last error to occur during a transfer
-            process. This may be a Mojaloop API error returned from another
-            entity in the scheme or an object representing other types of error
-            e.g. exceptions that may occur inside the scheme adapter.
           $ref: '#/components/schemas/transferError'
         skipPartyLookup:
           description: >-
@@ -2922,11 +2909,6 @@ components:
             headers:
               type: object
         lastError:
-          description: >
-            Object representing the last error to occur during a transfer
-            process. This may be a Mojaloop API error returned from another
-            entity in the scheme or an object representing other types of error
-            e.g. exceptions that may occur inside the scheme adapter.
           $ref: '#/components/schemas/transferError'
     transferContinuationAcceptOTP:
       type: object

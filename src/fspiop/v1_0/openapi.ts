@@ -1172,7 +1172,6 @@ export interface components {
      * @description The object sent in the PUT /parties/{Type}/{ID} callback.
      */
     PartiesTypeIDPutResponse: {
-      /** @description Information regarding the requested Party. */
       party: components["schemas"]["Party"];
     };
     /**

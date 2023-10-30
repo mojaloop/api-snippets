@@ -84,11 +84,6 @@ properties:
       headers:
         type: object
   lastError:
-    description: >
-      Object representing the last error to occur during a transfer process.
-      This may be a Mojaloop API error returned from another entity in the
-      scheme or an object representing other types of error e.g. exceptions that
-      may occur inside the scheme adapter.
     $ref: ./transferError.yaml
   skipPartyLookup:
     description: >-

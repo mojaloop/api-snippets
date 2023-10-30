@@ -1053,7 +1053,6 @@ export interface components {
      */
     partiesByIdResponse: {
       party: {
-        /** @description Information regarding the requested Party. */
         body: components["schemas"]["Party"];
         headers: Record<string, never>;
       };
@@ -1149,7 +1148,6 @@ export interface components {
     };
     /** simpleQuotesPostRequest */
     simpleQuotesPostRequest: {
-      /** destination DFSP requested to calculate the quote */
       fspId: components["schemas"]["FspId"];
       quotesPostRequest: components["schemas"]["QuotesPostRequest"];
     };
@@ -1209,7 +1207,6 @@ export interface components {
      * @description The object sent in the GET /parties/{Type}/{ID} callback.
      */
     getPartiesResponse: {
-      /** @description Information regarding the requested Party. */
       body: components["schemas"]["Party"];
       headers: Record<string, never>;
     };
@@ -1248,7 +1245,6 @@ export interface components {
       currentState: components["schemas"]["requestToPayStatus"];
       getPartiesResponse?: components["schemas"]["getPartiesResponse"];
       transactionRequestResponse?: components["schemas"]["TransactionRequestResponse"];
-      /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["transferError"];
     };
     /** @enum {string} */
@@ -1358,7 +1354,6 @@ export interface components {
         body: components["schemas"]["TransfersIDPutResponse"];
         headers?: Record<string, never>;
       };
-      /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["transferError"];
       /** @description Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful is a previous party resolution has been performed. */
       skipPartyLookup?: boolean;
@@ -1449,7 +1444,6 @@ export interface components {
         body: components["schemas"]["TransfersIDPutResponse"];
         headers?: Record<string, never>;
       };
-      /** @description Object representing the last error to occur during a transfer process. This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
       lastError?: components["schemas"]["transferError"];
     };
     transferContinuationAcceptOTP: {

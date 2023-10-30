@@ -3313,7 +3313,6 @@ components:
       properties:
         party:
           $ref: '#/components/schemas/Party'
-          description: Information regarding the requested Party.
       required:
         - party
     GeoCode:
