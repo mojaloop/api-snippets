@@ -1,0 +1,50 @@
+title: Transaction
+type: object
+description: >-
+  Data model for the complex type Transaction. The Transaction type is used to
+  carry end-to-end data between the Payer FSP and the Payee FSP in the ILP
+  Packet. Both the transactionId and the quoteId in the data model are decided
+  by the Payer FSP in the POST /quotes request.
+properties:
+  transactionId:
+    $ref: ./CorrelationId.yaml
+  quoteId:
+    $ref: ./CorrelationId.yaml
+  payee:
+    $ref: ./Party.yaml
+  payer:
+    $ref: ./Party.yaml
+  amount:
+    $ref: ./Money.yaml
+  payeeReceiveAmount:
+    allOf:
+      - $ref: ./Money.yaml
+      - description: The amount that the beneficiary will receive.
+  converter:
+    allOf:
+      - $ref: ./CurrencyConverter.yaml
+      - description: >-
+          An optional field which will allow the payer DFSP to specify which DFSP it wants to undertake currency conversion.
+          This is useful incase of if the sender wants the recipient to receive a specified amount of the target currency,
+          but the payer DFSP does not want to undertake the currency conversion. In this case, the amount of the transfer
+          would be expressed in the target currency and the amountType would be set to RECEIVE.
+  currencyConversion:
+    allOf:
+      - $ref: ./FxRate.yaml
+      - description: >-
+          Used by the debtor party if it wants to share information about the currency conversion it proposes to make; or
+          if it is required by scheme rules to share this information. This object contains the amount of the transfer in
+          the source and target currencies, but does not identify the FXP being used.
+  transactionType:
+    $ref: ./TransactionType.yaml
+  note:
+    $ref: ./Note.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - transactionId
+  - quoteId
+  - payee
+  - payer
+  - amount
+  - transactionType

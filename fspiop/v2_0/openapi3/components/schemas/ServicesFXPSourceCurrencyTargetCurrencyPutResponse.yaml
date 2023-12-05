@@ -1,0 +1,13 @@
+title: ServicesFXPSourceCurrencyTargetCurrencyPutResponse
+type: object
+description: 'The object sent in the PUT /services/FXP/{SourceCurrency}/{TargetCurrency} callback.'
+properties:
+  providers:
+    type: array
+    description: The FSP Id(s) of the participant(s) who offer currency conversion services.
+    items:
+      $ref: ./FspId.yaml
+    minItems: 0
+    maxItems: 16
+required:
+  - providers

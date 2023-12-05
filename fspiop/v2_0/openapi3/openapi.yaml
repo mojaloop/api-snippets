@@ -1,0 +1,136 @@
+openapi: 3.0.2
+info:
+  version: '2.0-draft'
+  title: Open API for FSP Interoperability (FSPIOP)
+  description: >-
+    Revision date: 2023-11-23
+    Based on [API Definition updated on 2020-05-19 Version
+    1.1](https://github.com/mojaloop/mojaloop-specification/blob/main/documents/v1.1-document-set/API%20Definition_v1.1.pdf).
+
+    This is implementation friendly version of the API definition.
+
+    It includes the below definitions needed for third-party functionality.
+    - AuthenticationType
+      - U2F enum
+    - AuthenticationValue
+      - oneOf is changed to anyOf
+      - new element is added U2FPinValue
+    - New element U2FPIN
+
+    **Note:** The API supports a maximum size of 65536 bytes (64 Kilobytes) in
+    the HTTP header.
+  license:
+    name: CC BY-ND 4.0
+    url: 'https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md'
+  contact:
+    name: Sam Kummary
+    url: 'https://github.com/mojaloop/mojaloop-specification/issues'
+servers:
+  - url: 'protocol://hostname:<port>/switch/'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+paths:
+  /interface:
+    post:
+      description: >-
+        Essential path to include schema definitions that are not used so that
+        these definitions get included into the openapi-cli bundle api
+        definition so that they get converted into typescript definitions.
+      operationId: test
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: './components/schemas/BinaryString.yaml'
+                - $ref: './components/schemas/BinaryString32.yaml'
+                - $ref: './components/schemas/Date.yaml'
+                - $ref: './components/schemas/Integer.yaml'
+                - $ref: './components/schemas/Name.yaml'
+                - $ref: './components/schemas/PersonalIdentifierType.yaml'
+                - $ref: './components/schemas/TokenCode.yaml'
+                - $ref: './components/schemas/Transaction.yaml'
+                - $ref: './components/schemas/UndefinedEnum.yaml'
+      responses:
+        200:
+          description: Ok
+  /participants/{Type}/{ID}:
+    $ref: 'paths/participants_Type_ID.yaml'
+  /participants/{Type}/{ID}/error:
+    $ref: 'paths/participants_Type_ID_error.yaml'
+  /participants/{Type}/{ID}/{SubId}:
+    $ref: 'paths/participants_Type_ID_SubId.yaml'
+  /participants/{Type}/{ID}/{SubId}/error:
+    $ref: 'paths/participants_Type_ID_SubId_error.yaml'
+  /participants:
+    $ref: 'paths/participants.yaml'
+  /participants/{ID}:
+    $ref: 'paths/participants_ID.yaml'
+  /participants/{ID}/error:
+    $ref: 'paths/participants_ID_error.yaml'
+  /parties/{Type}/{ID}:
+    $ref: 'paths/parties_Type_ID.yaml'
+  /parties/{Type}/{ID}/error:
+    $ref: 'paths/parties_Type_ID_error.yaml'
+  /parties/{Type}/{ID}/{SubId}:
+    $ref: 'paths/parties_Type_ID_SubId.yaml'
+  /parties/{Type}/{ID}/{SubId}/error:
+    $ref: 'paths/parties_Type_ID_SubId_error.yaml'
+  /transactionRequests:
+    $ref: 'paths/transactionRequests.yaml'
+  /transactionRequests/{ID}:
+    $ref: 'paths/transactionRequests_ID.yaml'
+  /transactionRequests/{ID}/error:
+    $ref: 'paths/transactionRequests_ID_error.yaml'
+  /quotes:
+    $ref: 'paths/quotes.yaml'
+  /quotes/{ID}:
+    $ref: 'paths/quotes_ID.yaml'
+  /quotes/{ID}/error:
+    $ref: 'paths/quotes_ID_error.yaml'
+  /authorizations/{ID}:
+    $ref: 'paths/authorizations_ID.yaml'
+  /authorizations/{ID}/error:
+    $ref: 'paths/authorizations_ID_error.yaml'
+  /transfers:
+    $ref: 'paths/transfers.yaml'
+  /transfers/{ID}:
+    $ref: 'paths/transfers_ID.yaml'
+  /transfers/{ID}/error:
+    $ref: 'paths/transfers_ID_error.yaml'
+  /transactions/{ID}:
+    $ref: 'paths/transactions_ID.yaml'
+  /transactions/{ID}/error:
+    $ref: 'paths/transactions_ID_error.yaml'
+  /bulkQuotes:
+    $ref: 'paths/bulkQuotes.yaml'
+  /bulkQuotes/{ID}:
+    $ref: 'paths/bulkQuotes_ID.yaml'
+  /bulkQuotes/{ID}/error:
+    $ref: 'paths/bulkQuotes_ID_error.yaml'
+  /bulkTransfers:
+    $ref: 'paths/bulkTransfers.yaml'
+  /bulkTransfers/{ID}:
+    $ref: 'paths/bulkTransfers_ID.yaml'
+  /bulkTransfers/{ID}/error:
+    $ref: 'paths/bulkTransfers_ID_error.yaml'
+  /fxQuotes:
+    $ref: 'paths/fxQuotes.yaml'
+  /fxQuotes/{ID}:
+    $ref: 'paths/fxQuotes_ID.yaml'
+  /fxQuotes/{ID}/error:
+    $ref: 'paths/fxQuotes_ID_error.yaml'
+  /fxTransfers:
+    $ref: 'paths/fxTransfers.yaml'
+  /fxTransfers/{ID}:
+    $ref: 'paths/fxTransfers_ID.yaml'
+  /fxTransfers/{ID}/error:
+    $ref: 'paths/fxTransfers_ID_error.yaml'
+  /services/FXP:
+    $ref: 'paths/services_FXP.yaml'
+  /services/FXP/{SourceCurrency}/{TargetCurrency}:
+    $ref: 'paths/services_FXP_SourceCurrency_TargetCurrency.yaml'

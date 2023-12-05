@@ -1,0 +1,110 @@
+parameters:
+  - $ref: ../components/parameters/ID.yaml
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+get:
+  description: >-
+    The HTTP request `GET /authorizations/{ID}` is used to request the Payer to
+    enter the applicable credentials in the Payee FSP system. The `{ID}` in the
+    URI should contain the `transactionRequestID`, received from the `POST
+    /transactionRequests` service earlier in the process. This request requires
+    a query string to be included in the URI, with the following key-value
+    pairs*:*
+
+
+    - `authenticationType={Type}`, where `{Type}` value is a valid
+    authentication type from the enumeration `AuthenticationType`.
+
+
+    - `retriesLeft=={NrOfRetries}`, where `{NrOfRetries}` is the number of
+    retries left before the financial transaction is rejected. `{NrOfRetries}`
+    must be expressed in the form of the data type `Integer`. `retriesLeft=1`
+    means that this is the last retry before the financial transaction is
+    rejected.
+
+
+    - `amount={Amount}`, where `{Amount}` is the transaction amount that will be
+    withdrawn from the Payer’s account. `{Amount}` must be expressed in the form
+    of the data type `Amount`.
+
+
+    - `currency={Currency}`, where `{Currency}` is the transaction currency for
+    the amount that will be withdrawn from the Payer’s account. The `{Currency}`
+    value must be expressed in the form of the enumeration `CurrencyCode`.
+
+
+    The following is an example URI containing all the required key-value pairs
+    in the query string*:*
+
+
+    `GET
+    /authorization/3d492671-b7af-4f3f-88de-76169b1bdf88?authenticationType=OTP&retriesLeft=2&amount=102&currency=USD`
+  summary: Perform authorization
+  tags:
+    - authorizations
+  operationId: AuthorizationsByIDGet
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    '202':
+      $ref: ../components/responses/202.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml
+put:
+  description: >-
+    The callback `PUT /authorizations/{ID}` is used to inform the client of the
+    result of a previously-requested authorization. The `{ID}` in the URI should
+    contain the `{ID}` that was used in the `GET /authorizations/{ID}` request.
+  summary: Return authorization result
+  tags:
+    - authorizations
+  operationId: AuthorizationsByIDPut
+  parameters:
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    description: Authorization result returned.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AuthorizationsIDPutResponse.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/200.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml

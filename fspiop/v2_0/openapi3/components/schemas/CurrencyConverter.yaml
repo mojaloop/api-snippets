@@ -1,0 +1,9 @@
+title: CurrencyConverter
+type: string
+enum:
+  - PAYER
+  - PAYEE
+description: >-
+  Below are the allowed values for the enumeration CurrencyConverter.
+  - PAYER - Currency conversion should be performed by the payer.
+  - PAYEE - Currency conversion should be performed by the payee.

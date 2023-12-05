@@ -1,0 +1,16 @@
+title: FxTransfersIDPatchResponse
+type: object
+description: 'PATCH /fxTransfers/{ID} object'
+properties:
+  completedTimestamp:
+    allOf:
+      - $ref: ./DateTime.yaml
+      - description: Time and date when the conversion was executed.
+  conversionState:
+    allOf:
+      - $ref: ./TransferState.yaml
+      - description: The current status of the conversion request.
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - conversionState

@@ -1,0 +1,6 @@
+name: SourceCurrency
+in: path
+required: true
+schema:
+  type: string
+description: ISO 4217 currency code for the source currency.
