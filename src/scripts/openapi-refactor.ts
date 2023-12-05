@@ -32,6 +32,7 @@
 
 import fs from 'fs'
 import yaml from 'js-yaml'
+import { stringifyYaml } from '@redocly/openapi-core'
 
 const myArgs = process.argv.slice(2)
 if (myArgs.length !== 2) {
@@ -63,6 +64,15 @@ if (openapi.components.parameters) {
   openapi.components.parameters = sortedComponentParameters
 }
 
-fs.writeFileSync(outputFile, yaml.dump(openapi, { indent: 2 }))
+// Deleting unnecessary paths those are added as a workaround for the openapi-cli bundle issue
+delete openapi.paths['/interface']
 
-console.log(`Sorted components in ${outputFile}`)
+fs.writeFileSync(
+  outputFile,
+  stringifyYaml(openapi, {
+    quotingType: '"',
+    forceQuotes: false
+  })
+)
+
+console.log(`Refactored the specification in ${outputFile}`)
