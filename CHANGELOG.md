@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.3.0](https://github.com/mojaloop/api-snippets/compare/v17.2.5...v17.3.0) (2023-12-05)
+
+
+### Features
+
+* **mojaloop/3483:** add fx apis ([#169](https://github.com/mojaloop/api-snippets/issues/169)) ([438c01a](https://github.com/mojaloop/api-snippets/commit/438c01ae2a9a9ac8af6213f0f291c3d565a45b5e))
+
 ### [17.2.5](https://github.com/mojaloop/api-snippets/compare/v17.2.4...v17.2.5) (2023-09-20)
 
 
