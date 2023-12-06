@@ -1,0 +1,33 @@
+put:
+  summary: Amends the bulk transaction request
+  description: >-
+    The HTTP request `PUT /bulkTransactions/{bulkTransactionId}` is used to amend
+    information regarding a bulk transaction, i.e. when autoAcceptParty or
+    autoAcceptQuote  is false then the payer need to provide confirmation to
+    proceed with further processing of the request. The `{bulkTransactionId}` in
+    the URI should contain the `bulkTransactionId` that was used for the
+    creation of the bulk transfer.
+  tags:
+    - BulkTransactions
+  parameters:
+    - $ref: ../../components/parameters/bulkTransactionId.yaml
+  requestBody:
+    description: Bulk transaction request body
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: ../../components/schemas/bulkTransactionContinuationAcceptParty.yaml
+            - $ref: ../../components/schemas/bulkTransactionContinuationAcceptQuote.yaml
+    required: true
+  responses:
+    '202':
+      description: Bulk transaction information successfully amended
+    '400':
+      $ref: ../../components/responses/bulkTransactionPutBadRequest.yaml
+    '500':
+      description: An error occurred processing the bulk transaction
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/errorResponse.yaml

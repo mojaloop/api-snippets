@@ -1,0 +1,8 @@
+description: PartiesByIdError404
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        errorInformation:
+          $ref: ../schemas/ErrorInformation.yaml

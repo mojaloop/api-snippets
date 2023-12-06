@@ -1,0 +1,18 @@
+get:
+  description: >-
+    The HTTP request `GET /services/FXP/{SourceCurrency}/{TargetCurrency}` is used to request information about the participants in a scheme who offer currency conversion services in a particular currency corridor.
+    The required corridor is specified by giving the ISO 4217 currency code for the SourceCurrency and the TargetCurrency.
+  summary: Obtain a list of the DFSPs in the scheme who provide FXP service
+  tags:
+    - servicesFXP
+  operationId: ServicesFXPSourceCurrencyTargetCurrencyGet
+  parameters:
+    - $ref: ../../../../fspiop/v2_0/openapi3/components/parameters/SourceCurrency.yaml
+    - $ref: ../../../../fspiop/v2_0/openapi3/components/parameters/TargetCurrency.yaml
+  responses:
+    '200':
+      $ref: ../../components/responses/servicesFXPSucess.yaml
+    '400':
+      $ref: ../../components/responses/400.yaml
+    '500':
+      $ref: ../../components/responses/500.yaml

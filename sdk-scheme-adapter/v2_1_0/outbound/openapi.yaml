@@ -1,0 +1,66 @@
+openapi: 3.0.1
+info:
+  title: Mojaloop SDK Outbound Scheme Adapter API
+  description: >
+    Specification for the Mojaloop SDK Scheme Adapter Outbound Transfers API
+
+
+    This API can be used by DFSP backends to simplify the process of sending
+    funds to other parties within a Mojaloop scheme.
+
+
+    Please see other documentation on
+    https://github.com/mojaloop/sdk-scheme-adapter for more information.
+
+
+    **Note on terminology:** The term "Switch" is equal to the term "Hub", and
+    the term "FSP" is equal to the term "DFSP".
+  license:
+    name: Apache License Version 2.0, January 2004
+    url: https://github.com/mojaloop/documentation/blob/main/LICENSE.md
+  version: 2.1.0
+paths:
+  /:
+    $ref: paths.yaml
+  /accounts:
+    $ref: paths/accounts.yaml
+  /bulkQuotes:
+    $ref: paths/bulkQuotes.yaml
+  /bulkQuotes/{bulkQuoteId}:
+    $ref: paths/bulkQuotes_bulkQuoteId.yaml
+  /bulkTransactions:
+    $ref: paths/bulkTransactions.yaml
+  /bulkTransactions/{bulkTransactionId}:
+    $ref: paths/bulkTransactions_bulkTransactionId.yaml
+  /bulkTransfers:
+    $ref: paths/bulkTransfers.yaml
+  /bulkTransfers/{bulkTransferId}:
+    $ref: paths/bulkTransfers_bulkTransferId.yaml
+  /parties/{Type}/{ID}:
+    $ref: paths/parties_Type_ID.yaml
+  /parties/{Type}/{ID}/{SubId}:
+    $ref: paths/parties_Type_ID_SubId.yaml
+  /quotes:
+    $ref: paths/quotes.yaml
+  /requestToPay:
+    $ref: paths/requestToPay.yaml
+  /requestToPay/{transactionRequestId}:
+    $ref: paths/requestToPay_transactionRequestId.yaml
+  /requestToPayTransfer:
+    $ref: paths/requestToPayTransfer.yaml
+  /requestToPayTransfer/{transactionRequestId}:
+    $ref: paths/requestToPayTransfer_transactionRequestId.yaml
+  /simpleTransfers:
+    $ref: paths/simpleTransfers.yaml
+  /transfers:
+    $ref: paths/transfers.yaml
+  /transfers/{transferId}:
+    $ref: paths/transfers_transferId.yaml
+  /services/FXP:
+    $ref: 'paths/services_FXP.yaml'
+  /services/FXP/{SourceCurrency}/{TargetCurrency}:
+    $ref: 'paths/services_FXP_SourceCurrency_TargetCurrency.yaml'
+  /fxQuotes:
+    $ref: 'paths/fxQuotes.yaml'
+  /fxTransfers:
+    $ref: 'paths/fxTransfers.yaml'

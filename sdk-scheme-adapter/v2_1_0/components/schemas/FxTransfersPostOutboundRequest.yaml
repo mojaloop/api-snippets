@@ -1,0 +1,28 @@
+title: FxTransfersPostOutboundRequest
+type: object
+description: The object sent in the POST /fxTransfers request.
+properties:
+  homeTransactionId:
+    description: Transaction ID for the backend, used to reconcile transactions between the Switch and backend systems.
+    type: string
+  commitRequestId:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersPostRequest.yaml#/properties/commitRequestId"
+  determiningTransferId:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersPostRequest.yaml#/properties/determiningTransferId"
+  initiatingFsp:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersPostRequest.yaml#/properties/initiatingFsp"
+  counterPartyFsp:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersPostRequest.yaml#/properties/counterPartyFsp"
+  sourceAmount:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersPostRequest.yaml#/properties/sourceAmount"
+  targetAmount:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersPostRequest.yaml#/properties/targetAmount"
+  condition:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersPostRequest.yaml#/properties/condition"
+
+required:
+  - commitRequestId
+  - initiatingFsp
+  - counterPartyFsp
+  - sourceAmount
+  - targetAmount

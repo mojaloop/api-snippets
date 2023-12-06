@@ -1,0 +1,13 @@
+description: The object sent back as confirmation of quotes when autoAcceptQuotes is false.
+type: object
+required:
+  - individualTransfers
+properties:
+  individualTransfers:
+    description: List of individual transfers in a bulk transfer.
+    type: array
+    minItems: 1
+    items:
+      allOf:
+        - $ref: ./bulkTransactionIndividualTransferAccept.yaml
+        - $ref: ./transferContinuationAcceptQuote.yaml

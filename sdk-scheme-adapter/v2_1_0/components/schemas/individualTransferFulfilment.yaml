@@ -1,0 +1,9 @@
+type: object
+description: >-
+  A Mojaloop API transfer fulfilment for individual transfers in a bulk
+  transfer
+properties:
+  fulfilment:
+    $ref: ./IlpFulfilment.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml

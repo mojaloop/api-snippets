@@ -1,0 +1,9 @@
+type: object
+required:
+  - currency
+  - amount
+properties:
+  currency:
+    $ref: ./Currency.yaml
+  amount:
+    $ref: ./Amount.yaml

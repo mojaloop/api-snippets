@@ -1,0 +1,21 @@
+title: Party
+type: object
+description: Data model for the complex type Party.
+properties:
+  partyIdInfo:
+    $ref: ./PartyIdInfo.yaml
+  merchantClassificationCode:
+    $ref: ./MerchantClassificationCode.yaml
+  name:
+    $ref: ./PartyName.yaml
+  personalInfo:
+    $ref: ../../../../fspiop/v2_0/openapi3/components/schemas/PartyPersonalInfo.yaml
+  supportedCurrencies:
+    type: array
+    description: Currencies in which the party can receive funds.
+    items:
+      $ref: ./Currency.yaml
+    minItems: 0
+    maxItems: 16
+required:
+  - partyIdInfo

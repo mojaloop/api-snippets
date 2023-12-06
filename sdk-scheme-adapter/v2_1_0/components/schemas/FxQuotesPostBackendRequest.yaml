@@ -1,0 +1,16 @@
+title: FxQuotesPostBackendRequest
+type: object
+description: The object sent in the POST /fxQuotes request.
+properties:
+  conversionRequestId:
+    allOf:
+      - $ref: ./CorrelationId.yaml
+      - description: An end-to-end identifier for the conversion quotation request.
+  conversionTerms:
+    allOf:
+      - $ref: ../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml
+      - description: The terms of the currency conversion for which a quotation is sought.
+required:
+  - conversionRequestId
+  - conversionTerms
+

@@ -790,7 +790,7 @@ export interface components {
      * @enum {string}
      */
     TransferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
-    /** @description This object represents a Mojaloop API error received at any time during the transfer process */
+    /** @description This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter. */
     transferError: {
       /** @description The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response. */
       httpStatusCode?: number;

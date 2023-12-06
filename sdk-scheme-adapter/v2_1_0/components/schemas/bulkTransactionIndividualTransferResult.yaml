@@ -1,0 +1,38 @@
+type: object
+required:
+  - homeTransactionId
+properties:
+  transferId:
+    $ref: ./CorrelationId.yaml
+  homeTransactionId:
+    type: string
+    description: >-
+      Transaction ID from the DFSP backend, used to reconcile transactions
+      between the Switch and DFSP backend systems.
+  transactionId:
+    $ref: ./CorrelationId.yaml
+  to:
+    $ref: ./Party.yaml
+  reference:
+    description: Payer Loan reference
+    type: string
+  amountType:
+    $ref: ./AmountType.yaml
+  currency:
+    $ref: ./Currency.yaml
+  amount:
+    $ref: ./Amount.yaml
+  note:
+    $ref: ./Note.yaml
+  quoteId:
+    $ref: ./CorrelationId.yaml
+  quoteResponse:
+    $ref: ./individualQuoteResult.yaml
+  fulfil:
+    $ref: ./individualTransferResult.yaml
+  quoteExtensions:
+    $ref: ./ExtensionList.yaml
+  transferExtensions:
+    $ref: ./ExtensionList.yaml
+  lastError:
+    $ref: ./transferError.yaml

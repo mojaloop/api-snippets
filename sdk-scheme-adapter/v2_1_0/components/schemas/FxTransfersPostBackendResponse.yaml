@@ -1,0 +1,17 @@
+title: FxTransfersPostBackendResponse
+type: object
+description: 'The object sent as a response for the POST /fxTransfers request.'
+properties:
+  homeTransactionId:
+    description: Transaction ID for the FXP backend, used to reconcile transactions between the Switch and FXP backend systems.
+    type: string
+  fulfilment:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersIDPutResponse.yaml#/properties/fulfilment"
+  completedTimestamp:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersIDPutResponse.yaml#/properties/completedTimestamp"
+  conversionState:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersIDPutResponse.yaml#/properties/conversionState"
+  extensionList:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxTransfersIDPutResponse.yaml#/properties/extensionList"
+required:
+  - conversionState

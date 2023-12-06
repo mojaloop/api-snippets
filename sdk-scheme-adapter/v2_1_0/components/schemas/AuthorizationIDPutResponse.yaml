@@ -1,0 +1,10 @@
+title: AuthorizationIDPutResponse
+type: object
+description: The object sent in the PUT /authorizations/{ID} callback.
+properties:
+  authenticationInfo:
+    $ref: ./AuthenticationInfo.yaml
+  responseType:
+    $ref: ./AuthorizationResponseType.yaml
+required:
+  - responseType

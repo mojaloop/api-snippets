@@ -1,0 +1,15 @@
+get:
+  description: >-
+    The HTTP request `GET /services/FXP` is used to request information about the participants in a scheme who offer currency conversion services.
+  summary: Obtain a list of the DFSPs in the scheme who provide FXP service
+  tags:
+    - servicesFXP
+  operationId: ServicesFXPGet
+  responses:
+    '200':
+      $ref: ../../components/responses/servicesFXPSucess.yaml
+    '400':
+      $ref: ../../components/responses/400.yaml
+    '500':
+      $ref: ../../components/responses/500.yaml
+

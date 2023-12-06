@@ -1,0 +1,15 @@
+type: array
+items:
+  type: object
+  required:
+    - idType
+    - idValue
+  properties:
+    idType:
+      $ref: ./PartyIdType.yaml
+    idValue:
+      $ref: ./PartyIdentifier.yaml
+    idSubValue:
+      $ref: ./PartySubIdOrType.yaml
+    error:
+      $ref: ./errorResponse.yaml

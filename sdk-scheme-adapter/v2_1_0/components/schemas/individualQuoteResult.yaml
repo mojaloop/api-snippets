@@ -1,0 +1,25 @@
+type: object
+properties:
+  quoteId:
+    $ref: ./CorrelationId.yaml
+  transferAmount:
+    $ref: ./Money.yaml
+  payeeReceiveAmount:
+    $ref: ./Money.yaml
+  payeeFspFee:
+    $ref: ./Money.yaml
+  payeeFspCommission:
+    $ref: ./Money.yaml
+  geoCode:
+    $ref: ./GeoCode.yaml
+  ilpPacket:
+    $ref: ./IlpPacket.yaml
+  condition:
+    $ref: ./IlpCondition.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+  lastError:
+    $ref: ./quoteError.yaml
+required:
+  - quoteId
+

@@ -1,0 +1,14 @@
+type: object
+required:
+  - transferId
+properties:
+  transferId:
+    $ref: ./CorrelationId.yaml
+  fulfilment:
+    $ref: ./IlpFulfilment.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+  transferState:
+    $ref: ./TransferState.yaml
+  lastError:
+    $ref: ./transferError.yaml

@@ -1,0 +1,93 @@
+type: object
+required:
+  - homeTransactionId
+  - from
+  - to
+  - amountType
+  - currency
+  - amount
+  - transactionType
+properties:
+  transferId:
+    $ref: ./CorrelationId.yaml
+  homeTransactionId:
+    type: string
+    description: >-
+      Transaction ID from the DFSP backend, used to reconcile transactions
+      between the Switch and DFSP backend systems.
+  from:
+    $ref: ./transferParty.yaml
+  to:
+    $ref: ./transferParty.yaml
+  amountType:
+    $ref: ./AmountType.yaml
+  currency:
+    $ref: ./Currency.yaml
+  amount:
+    $ref: ./Amount.yaml
+  transactionType:
+    $ref: ./transferTransactionType.yaml
+  subScenario:
+    $ref: ./TransactionSubScenario.yaml
+  note:
+    $ref: ./Note.yaml
+  currentState:
+    $ref: ./transferStatus.yaml
+  quoteId:
+    $ref: ./CorrelationId.yaml
+  getPartiesResponse:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        type: object
+      headers:
+        type: object
+  quoteResponse:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./QuotesIDPutResponse.yaml
+      headers:
+        type: object
+  quoteResponseSource:
+    type: string
+    description: >
+      FSPID of the entity that supplied the quote response. This may not be the
+      same as the FSPID of the entity which owns the end user account in the
+      case of a FOREX transfer. i.e. it may be a FOREX gateway.
+  conversionRequestId:
+    $ref: ./CorrelationId.yaml
+  fxQuotesResponse:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./FxQuotesPostOutboundResponse.yaml
+      headers:
+        type: object
+  fxQuotesResponseSource:
+    type: string
+    description: >
+      FXPID of the entity that supplied the fxQuotes response.
+  fulfil:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        $ref: ./TransfersIDPutResponse.yaml
+      headers:
+        type: object
+  lastError:
+    $ref: ./transferError.yaml
+  skipPartyLookup:
+    description: >-
+      Set to true if supplying an FSPID for the payee party and no party
+      resolution is needed. This may be useful is a previous party resolution
+      has been performed.
+    type: boolean

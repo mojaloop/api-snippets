@@ -1,0 +1,29 @@
+put:
+  summary: >-
+    Continues a request funds from sender that has paused at the party resolution stage in order to accept or
+    reject party information
+  description: >
+    The HTTP request `PUT /requestToPay/{transactionRequestId}` is used to continue a
+    transfer initiated via the `POST /requestToPay` method that has halted after
+    party lookup stage.
+
+    The request body should contain the "acceptParty" property set to `true` as required to continue the transfer.
+
+    See the description of the `POST /requestToPay` HTTP method for more
+    information on modes of transfer.
+  tags:
+    - RequestToPay
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/transferContinuationAcceptParty.yaml
+  parameters:
+    - $ref: ../../components/parameters/transactionRequestId.yaml
+  responses:
+    '200':
+      $ref: ../../components/responses/requestToPaySuccess.yaml
+    '500':
+      $ref: ../../components/responses/transferServerError.yaml
+    '504':
+      $ref: ../../components/responses/transferTimeout.yaml
