@@ -1,6 +1,6 @@
 import { Schemas } from '../../lib/thirdparty'
 
-describe('thirdparty', () => {
+describe('thirdparty_v1_0', () => {
   const accountAddress: Schemas.AccountAddress = 'account-id'
   const currency: Schemas.Currency = 'USD'
   const name: Schemas.Name = 'name'
