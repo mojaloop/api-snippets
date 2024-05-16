@@ -1,0 +1,60 @@
+title: tppTransactionRequestPostRequest
+type: object
+description: >-
+  Used by: PISP
+
+  The HTTP request POST /tppTransationRequest is used to request the creation of a transaction request on the server for the transfer described in the request.
+
+  Callback and data model information for POST /tppTransationRequest:
+
+  Callback - PUT /tppTransationRequest/{ID}
+  Error Callback - PUT /tppTransationRequest/{ID}/error
+properties:
+  transactionRequestId:
+    allOf:
+      - $ref: ./CorrelationId.yaml
+    description: >
+      Common ID between the PISP and the Payer DFSP for the transaction request object.
+      The ID should be reused for resends of the same transaction request.
+      A new ID should be generated for each new transaction request.
+  payee:
+    allOf:
+      - $ref: ./Party.yaml
+    description: Information about the Payee in the proposed financial transaction.
+  payer:
+    allOf:
+      - $ref: ./PartyIdInfo.yaml
+    description: Information about the Payer in the proposed financial transaction.
+  amountType:
+    allOf:
+      - $ref: ./AmountType.yaml
+    description: 'SEND for sendAmount, RECEIVE for receiveAmount.'
+  amount:
+    allOf:
+      - $ref: ./Money.yaml
+    description: Requested amount to be transferred from the Payer to Payee.
+  transactionType:
+    allOf:
+      - $ref: ./TransactionType.yaml
+    description: Type of transaction.
+  note:
+    type: string
+    minLength: 1
+    maxLength: 256
+    description: A memo that will be attached to the transaction.
+  expiration:
+    type: string
+    description: >
+      Date and time until when the transaction request is valid. It can be set
+      to get a quick failure in case the peer FSP takes too long to respond.
+    example: '2016-05-24T08:38:08.699-04:00'
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - transactionRequestId
+  - payee
+  - payer
+  - amountType
+  - amount
+  - transactionType
+  - expiration

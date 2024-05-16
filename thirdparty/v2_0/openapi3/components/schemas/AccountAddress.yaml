@@ -1,0 +1,25 @@
+title: AccountAddress
+type: string
+description: >-
+  The AccountAddress data type is a variable length string with a maximum size
+  of 1023 characters and consists of:
+
+  Alphanumeric characters, upper or lower case. (Addresses are case-sensitive
+  so that they can contain data encoded in formats such as base64url.)
+
+  - Underscore (_)
+  - Tilde (~)
+  - Hyphen (-)
+  - Period (.) Addresses MUST NOT end in a period (.) character
+
+  An entity providing accounts to parties (i.e. a participant) can provide any
+  value for an AccountAddress that is meaningful to that entity.
+  It does not need to provide an address that makes the account identifiable
+  outside the entity's domain.
+
+  IMPORTANT: The policy for defining addresses and the life-cycle of these is at the discretion of the address space owner (the payer DFSP in this case).
+
+  https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v1.0.1/api/thirdparty/data-models.md#3212-accountaddress
+pattern: '^([0-9A-Za-z_~\-\.]+[0-9A-Za-z_~\-])$'
+minLength: 1
+maxLength: 1023

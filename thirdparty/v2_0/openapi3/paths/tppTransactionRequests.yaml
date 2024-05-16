@@ -1,0 +1,48 @@
+parameters:
+  #Headers
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+post:
+  operationId: tppTransactionsPost
+  summary: tppTransactionsPost
+  description: |
+    The `/tppTransactionRequests` resource is analogous to the `/transactionRequests` resource described fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee, or a request to pay request from a named payer into the customer's account.
+  tags:
+    - transaction Requests
+  parameters:
+    #Headers
+    - $ref: ../components/parameters/Accept.yaml
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    description: Transaction request to be created.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/tppTransactionRequestPostRequest.yaml
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml

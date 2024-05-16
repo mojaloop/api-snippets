@@ -1,0 +1,30 @@
+title: AccountRequestPostRequest
+type: object
+description: >-
+  Used by: PISP
+
+  This is the message that the DFSP sends to the PISP to inform the PISP that 
+  the accountRequest has been accepted, and to communicate to the PISP which 
+  `authChannel` it should use to authenticate their user with. I.e. it is a response to a
+  POST /tppAccountsRequest request, or a GET /tppAccountsRequest/{ID} request.
+
+  When a PISP requests a series of permissions from a DFSP on behalf of a DFSP's customer, 
+  not all the permissions requested may be granted by the DFSP. Conversely, 
+  the out-of-loop authorization process may result in additional privileges 
+  being granted by the account holder to the PISP. The `PUT /tppAccountsRequest/<ID>` 
+  resource returns the current state of the permissions relating to a particular authorization request. 
+    
+properties:
+  authChannels:
+    $ref: ./ConsentRequestChannelType.yaml
+  callbackUri:
+    $ref: ./Uri.yaml
+  authUri:
+    $ref: ./Uri.yaml
+  authToken:
+    $ref: ./BinaryString.yaml
+  #   The callback uri that the user will be redirected to after completing the
+  #   out of band WEB authentication with the DFSP. Used to allow the DFSP to
+  #   whitelist the PISP's url ahead of time.
+required:
+  - authChannels

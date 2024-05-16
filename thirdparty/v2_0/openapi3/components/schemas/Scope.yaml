@@ -1,0 +1,20 @@
+title: Scope
+type: object
+description: >-
+  The Scope element contains an identifier defining, in the terms of a DFSP,
+  an account on which access types can be requested or granted.
+  It also defines the access types which are requested or granted.
+
+  https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#32121-scope
+properties:
+  address:
+    $ref: ./AccountAddress.yaml
+  actions:
+    type: array
+    minItems: 1
+    maxItems: 32
+    items:
+      $ref: ./ScopeAction.yaml
+required:
+  - address
+  - actions

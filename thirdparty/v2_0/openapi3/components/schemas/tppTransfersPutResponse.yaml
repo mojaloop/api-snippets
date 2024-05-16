@@ -1,0 +1,25 @@
+title: tppTransfersPutResponse
+type: object
+description: >-
+  Used by: DFSP
+
+  The issuing PISP will expect a response to their request for a transfer
+  which describes the finalized state of the requested transfer.
+
+  This response will be given by a PUT callback call on the
+  /tppTransfers/{ID} resource.
+
+  The {ID} given in the query string should be the executionRequestId which
+  was originally used by the PISP to initiate the transaction.
+
+  https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#31612-post-thirdpartyrequestsauthorizations
+properties:
+  completedTimestamp:
+    $ref: ./DateTime.yaml
+  transactionState:
+    $ref: ./TransactionState.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - transactionRequestState
+  - transactionState

@@ -1,0 +1,10 @@
+title: tppAuthorizationsIDPutResponseRejected
+type: object
+description: 'The object sent in the PUT /tppAuthorizations/{ID} callback.'
+properties:
+  responseType:
+    $ref: ./AuthorizationResponseTypeRejected.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - responseType

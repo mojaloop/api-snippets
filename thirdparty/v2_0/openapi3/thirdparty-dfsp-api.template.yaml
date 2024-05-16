@@ -1,0 +1,65 @@
+openapi: 3.0.2
+info:
+  title: Mojaloop Third Party API (DFSP)
+  version: '2.0'
+  description: >
+    A Mojaloop API for DFSPs supporting Third Party functions.
+
+    DFSPs who want to enable Payment Initiation Service Providers
+    (PISPs) to perform actions on behalf of a DFSP's user should 
+    implement this API.
+
+    PISPs should implement the accompanying API - Mojaloop Third 
+    Party API (PISP) instead.
+  license:
+    name: Open API for FSP Interoperability (FSPIOP) (Implementation Friendly Version)
+    url: https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md
+servers:
+  - url: /
+paths:
+  /tppAccountRequest:
+    $ref: paths/tppAccountRequest.yaml
+  /tppAccountRequest/{ID}:
+    $ref: paths/tppAccountRequest_ID.yaml
+  /tppAccountRequest/{ID}/error:
+    $ref: paths/tppAccountRequest_ID_error.yaml
+  /tppAccounts/{ID}:
+    $ref: 'paths/tppAccounts_ID.yaml'
+  /tppAccounts/{ID}/error:
+    $ref: 'paths/tppAccounts_ID_error.yaml'
+  /tppConsentRequests:
+    $ref: 'paths/tppConsentRequests.yaml'
+  /tppConsentRequests/{ID}:
+    $ref: 'paths/tppConsentRequests_ID.yaml'
+  /tppConsentRequests/{ID}/error:
+    $ref: 'paths/tppConsentRequests_ID_error.yaml'
+  /tppConsents:
+    $ref: 'paths/tppConsents.yaml'
+  /tppConsents/{ID}:
+    $ref: 'paths/tppConsents_ID.yaml'
+  /tppConsents/{ID}/error:
+    $ref: 'paths/tppConsents_ID_error.yaml'
+  /tppTransactionRequests:
+    $ref: paths/tppTransactionRequests.yaml
+  /tppTransactionRequests/{ID}:
+    $ref: paths/tppTransactionRequests_ID.yaml
+  /tppTransactionRequests/{ID}/error:
+    $ref: paths/tppTransactionRequests_ID_error.yaml
+  /tppTransfers:
+    $ref: 'paths/tppTransfers.yaml'
+  /tppTransfers/{ID}:
+    $ref: 'paths/tppTransfers_ID.yaml'
+  /tppTransfers/{ID}/error:
+    $ref: 'paths/tppTransfers_ID_error.yaml'
+  /tppVerifications:
+    $ref: 'paths/tppVerifications.yaml'
+  /tppVerifications/{ID}:
+    $ref: 'paths/tppVerifications_ID.yaml'
+  /tppVerifications/{ID}/error:
+    $ref: 'paths/tppVerifications_ID_error.yaml'
+  /tppAuthorizations:
+    $ref: 'paths/tppAuthorizations.yaml'
+  /tppAuthorizations/{ID}:
+    $ref: 'paths/tppAuthorizations_ID.yaml'
+  /tppAuthorizations/{ID}/error:
+    $ref: 'paths/tppAuthorizations_ID_error.yaml'

@@ -1,0 +1,16 @@
+title: ConsentRequestsIDPatchRequest
+type: object
+description: >-
+  Used by: PISP
+
+  After the user completes an out-of-band authorization with the DFSP,
+  the PISP will receive a token which they can use to prove to the DFSP
+  that the user trusts this PISP.
+
+properties:
+  authToken:
+    $ref: ./BinaryString.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - authToken

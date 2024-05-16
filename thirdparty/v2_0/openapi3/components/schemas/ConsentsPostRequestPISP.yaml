@@ -1,0 +1,32 @@
+title: ConsentPostRequestPISP
+type: object
+description: |
+  The provisional Consent object sent by the DFSP in `POST /tppConsents`.
+properties:
+  consentId:
+    allOf:
+      - $ref: ./CorrelationId.yaml
+    description: |
+      Common ID between the PISP and the Payer DFSP for the consent object. The ID
+      should be reused for re-sends of the same consent. A new ID should be generated
+      for each new consent.
+  consentRequestId:
+    allOf:
+      - $ref: ./CorrelationId.yaml
+    description: |
+      The ID given to the original consent request on which this consent is based.
+  scopes:
+    type: array
+    minLength: 1
+    maxLength: 256
+    items:
+      $ref: ./Scope.yaml
+  status:
+    $ref: ./ConsentStatus.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - consentId
+  - consentRequestId
+  - scopes
+  - status

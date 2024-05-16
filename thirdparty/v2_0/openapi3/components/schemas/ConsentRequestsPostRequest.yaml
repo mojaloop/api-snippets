@@ -1,0 +1,44 @@
+title: ConsentRequestsPostRequest
+type: object
+description: >-
+  Used by: PISP
+
+  The HTTP request POST /tppConsentRequests is used to request a DFSP to grant
+  access to one or more accounts owned by a customer of the DFSP for the
+  PISP who sends the request.
+
+  Callback and data model for POST /tppConsentRequests:
+
+  Callback: PUT /tppConsentRequests/{ID}
+  Error callback: PUT /tppConsentRequests/{ID}/error
+
+properties:
+  consentRequestId:
+    $ref: ./CorrelationId.yaml
+  partyIdInfo:
+    $ref: ./PartyIdInfo.yaml
+  scopes:
+    type: array
+    minLength: 1
+    maxLength: 256
+    items:
+      $ref: ./Scope.yaml
+  authChannels:
+    type: array
+    minLength: 1
+    maxLength: 256
+    items:
+      $ref: ./ConsentRequestChannelType.yaml
+  #   The callback uri that the user will be redirected to after completing the
+  #   out of band WEB authentication with the DFSP. Used to allow the DFSP to
+  #   whitelist the PISP's url ahead of time.
+  callbackUri:
+    $ref: ./Uri.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - consentRequestId
+  - partyIdInfo
+  - scopes
+  - authChannels
+  - callbackUri

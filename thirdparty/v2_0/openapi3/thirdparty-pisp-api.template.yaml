@@ -1,0 +1,69 @@
+openapi: 3.0.1
+info:
+  title: Mojaloop Third Party API (PISP)
+  version: "2.0"
+  description: >
+    A Mojaloop API for Payment Initiation Service Providers (PISPs) to
+    perform Third Party functions on DFSPs' User's accounts.
+
+    DFSPs who want to enable Payment Initiation Service Providers
+    (PISPs) should implement the accompanying API - Mojaloop Third
+    Party API (DFSP) instead.
+  license:
+    name: Open API for FSP Interoperability (FSPIOP) (Implementation Friendly Version)
+    url: https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md
+servers:
+  - url: /
+paths:
+  /services/{ServiceType}:
+    $ref: 'paths/services_ServiceType.yaml'
+  /services/{ServiceType}/error:
+    $ref: 'paths/services_ServiceType_error.yaml'
+  /tppAccountRequest:
+    $ref: paths/tppAccountRequest.yaml
+  /tppAccountRequest/{ID}:
+    $ref: paths/tppAccountRequest_ID.yaml
+  /tppAccountRequest/{ID}/error:
+    $ref: paths/tppAccountRequest_ID_error.yaml
+  /tppAccounts/{ID}:
+    $ref: 'paths/tppAccounts_ID.yaml'
+  /tppAccounts/{ID}/error:
+    $ref: 'paths/tppAccounts_ID_error.yaml'
+  /tppConsentRequests:
+    $ref: 'paths/tppConsentRequests.yaml'
+  /tppConsentRequests/{ID}:
+    $ref: 'paths/tppConsentRequests_ID.yaml'
+  /tppConsentRequests/{ID}/error:
+    $ref: 'paths/tppConsentRequests_ID_error.yaml'
+  /tppConsents:
+    $ref: 'paths/tppConsents.yaml'
+  /tppConsents/{ID}:
+    $ref: 'paths/tppConsents_ID.yaml'
+  /tppConsents/{ID}/error:
+    $ref: 'paths/tppConsents_ID_error.yaml'
+  /tppTransactionRequests:
+    $ref: paths/tppTransactionRequests.yaml
+  /tppTransactionRequests/{ID}:
+    $ref: paths/tppTransactionRequests_ID.yaml
+  /tppTransactionRequests/{ID}/error:
+    $ref: paths/tppTransactionRequests_ID_error.yaml
+  /tppTransfers:
+    $ref: 'paths/tppTransfers.yaml'
+  /tppTransfers/{ID}:
+    $ref: 'paths/tppTransfers_ID.yaml'
+  /tppTransfers/{ID}/error:
+    $ref: 'paths/tppTransfers_ID_error.yaml'
+  /tppAuthorizations:
+    $ref: 'paths/tppAuthorizations.yaml'
+  /tppAuthorizations/{ID}:
+    $ref: 'paths/tppAuthorizations_ID.yaml'
+  /tppAuthorizations/{ID}/error:
+    $ref: 'paths/tppAuthorizations_ID_error.yaml'
+  /parties/{Type}/{ID}:
+    $ref: '../../../fspiop/v1_1/openapi3/paths/parties_Type_ID.yaml'
+  /parties/{Type}/{ID}/error:
+    $ref: '../../../fspiop/v1_1/openapi3/paths/parties_Type_ID_error.yaml'
+  /parties/{Type}/{ID}/{SubId}:
+    $ref: '../../../fspiop/v1_1/openapi3/paths/parties_Type_ID_SubId.yaml'
+  /parties/{Type}/{ID}/{SubId}/error:
+    $ref: '../../../fspiop/v1_1/openapi3/paths/parties_Type_ID_SubId_error.yaml'

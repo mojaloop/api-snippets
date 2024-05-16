@@ -1,0 +1,17 @@
+title: Account
+type: object
+description: >-
+  Data model for the complex type Account.
+
+  https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#3211-account
+properties:
+  accountNickname:
+    $ref: ./Name.yaml
+  address:
+    $ref: ./AccountAddress.yaml
+  currency:
+    $ref: ./Currency.yaml
+required:
+  - accountNickname
+  - address
+  - currency

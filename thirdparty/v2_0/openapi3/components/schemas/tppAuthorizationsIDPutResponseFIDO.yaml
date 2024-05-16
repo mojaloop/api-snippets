@@ -1,0 +1,15 @@
+title: tppAuthorizationsIDPutResponseFIDO
+type: object
+description: 'The object sent in the PUT /tppAuthorizations/{ID} callback.'
+properties:
+  responseType:
+    $ref: ./AuthorizationResponseTypeAccepted.yaml
+  signedPayload:
+    $ref: ./SignedPayloadFIDO.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - responseType
+  - signedPayload
+additionalProperties: false
+

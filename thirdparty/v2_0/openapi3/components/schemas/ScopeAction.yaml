@@ -1,0 +1,14 @@
+title: ScopeAction
+type: string
+description: |
+  The ScopeAction element contains an access type which a PISP can request
+  from a DFSP, or which a DFSP can grant to a PISP.
+  It must be a member of the appropriate enumeration.
+
+  - ACCOUNTS_GET_BALANCE: PISP can request a balance for the linked account
+  - ACCOUNTS_TRANSFER: PISP can request a transfer of funds from the linked account in the DFSP
+  - ACCOUNTS_STATEMENT: PISP can request a statement of individual transactions on a user's account
+enum:
+  - ACCOUNTS_GET_BALANCE
+  - ACCOUNTS_TRANSFER
+  - ACCOUNTS_STATEMENT

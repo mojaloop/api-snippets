@@ -1,0 +1,11 @@
+title: SignedPayloadFIDO
+type: object
+properties:
+  signedPayloadType:
+    $ref: ./SignedPayloadTypeFIDO.yaml
+  fidoSignedPayload:
+    $ref: ./FIDOPublicKeyCredentialAssertion.yaml
+required:
+  - signedPayloadType
+  - fidoSignedPayload
+additionalProperties: false

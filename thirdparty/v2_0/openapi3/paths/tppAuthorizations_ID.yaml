@@ -1,0 +1,86 @@
+parameters:
+  #Path
+  - $ref: ../components/parameters/ID.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+get:
+  description: |
+    The HTTP request **GET /tppAuthorizations/**_{ID}_ is used to get information relating
+    to a previously issued authorization request. The *{ID}* in the request should match the
+    `authorizationRequestId` which was given when the authorization request was created.
+  operationId: tppGetAuthorizationsById
+  summary: ttpGetAuthorizationsById
+  tags:
+    - authorizations
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
+put:
+  description: |
+    After receiving the **POST /tppAuthorizations**, the PISP will present the details of the
+    transaction to their user, and request that the client sign the `challenge` field using the credential
+    they previously registered.
+
+    The signed challenge will be sent back by the PISP in **PUT /tppAuthorizations/**_{ID}_:
+
+  operationId: tppPutAuthorizationsById
+  summary: tppPutAuthorizationsById
+  tags:
+    - authorizations
+  parameters:
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    description: Signed authorization object
+    required: true
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: '../components/schemas/tppAuthorizationsIDPutResponseRejected.yaml'
+            - $ref: '../components/schemas/tppAuthorizationsIDPutResponseFIDO.yaml'
+            - $ref: '../components/schemas/tppAuthorizationsIDPutResponseGeneric.yaml'
+  responses:
+    200:
+      $ref: ../components/responses/200.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml

@@ -1,0 +1,8 @@
+title: AuthorizationResponseType
+description: |
+  Enum containing authorization response information; if the customer 
+  accepted the terms of the transfer, or rejected the terms.
+type: string
+enum:
+  - ACCEPTED
+  - REJECTED

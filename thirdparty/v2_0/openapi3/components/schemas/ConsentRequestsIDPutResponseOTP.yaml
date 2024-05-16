@@ -1,0 +1,30 @@
+title: ConsentRequestsIDPutResponseOTP
+type: object
+description: |
+  The object sent in a `PUT /tppConsentRequests/{ID}` request.
+
+  Schema used in the request consent phase of the account linking OTP/SMS flow.
+properties:
+  scopes:
+    type: array
+    minLength: 1
+    maxLength: 256
+    items:
+      $ref: ./Scope.yaml
+  authChannels:
+    type: array
+    minLength: 1
+    maxLength: 1
+    items:
+      $ref: ./ConsentRequestChannelTypeOTP.yaml
+  # The callback uri that the user will be redirected to after completing the
+  # out of band WEB authentication with the DFSP. Used to allow the DFSP to
+  # whitelist the PISP's url ahead of time.
+  callbackUri:
+    $ref: ./Uri.yaml
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - scopes
+  - authChannels
+additionalProperties: false

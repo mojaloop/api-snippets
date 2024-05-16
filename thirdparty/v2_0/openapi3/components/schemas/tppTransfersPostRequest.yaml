@@ -1,0 +1,19 @@
+title: tppTransfersPostRequest
+type: object
+description: 'The object sent in the PUT /tppAuthorizations/{ID} callback.'
+properties:
+  executionRequestId:
+    $ref: ./CorrelationId.yaml
+  transactionRequestId:
+    $ref: ./CorrelationId.yaml
+  authenticationInfo:
+    oneOf:
+      - $ref: './TransfersPostRequestGeneric.yaml'
+      - $ref: './TransfersPostRequestFIDO.yaml'    
+  extensionList:
+    $ref: ./ExtensionList.yaml
+required:
+  - executionRequestId
+  - transactionRequestId
+  - authenticationInfo
+additionalProperties: false
