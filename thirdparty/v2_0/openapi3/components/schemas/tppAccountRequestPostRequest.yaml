@@ -18,7 +18,11 @@ properties:
   partyItentifier:
     $ref: '../../../../../fspiop/v2_0/openapi3/components/schemas/PartyIdentifier.yaml'
   authChannels:
-    $ref: ./ConsentRequestChannelType.yaml
+    type: array
+    minLength: 1
+    maxLength: 256
+    items:
+      $ref: ./ConsentRequestChannelType.yaml
   #   The callback uri that the user will be redirected to after completing the
   #   out of band WEB authentication with the DFSP. Used to allow the DFSP to
   #   whitelist the PISP's url ahead of time.

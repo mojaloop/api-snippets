@@ -33,12 +33,12 @@ export interface paths {
   };
   "/tppAccountRequest/{ID}": {
     /**
-     * PostAccountRequest
-     * @description The `POST /tppAccountsRequest/{ID}` is used to request access from the user to distribute account information from the user DFSP to the PISP.
+     * GetAccountRequest
+     * @description The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountRequest/ call.
      * The *{ID}* in the URI should contain the accountRequestId that was assigned to the
      * request by the PISP when the PISP originated the request. The result is return via the PUT callback.
      */
-    get: operations["PostAccountRequest"];
+    get: operations["GetAccountRequest"];
     /**
      * UpdateAccountRequest
      * @description A DFSP uses this callback to (1) inform the PISP that the accountRequest has been accepted,
@@ -97,7 +97,10 @@ export interface paths {
     /**
      * GetAccountsByUserId
      * @description The HTTP request `GET /tppAccounts/{ID}/{SignedChallenge}` is used to retrieve the list of potential accounts available for linking.
-     * The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountRequest/` callback. (For example, GET /tppAccounts/12345/56789).
+     * The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountRequest/` callback.
+     *
+     * The signed challenge must match the authentication channel that was selected by the DFSP. For example, if the WEB authentication channel was selected by the DFSP, then signed challenge needs to be authToken, otherwise if the OTP channel was selected, then it needs to be the OTP that was entered by the party.
+     * (For example, GET /tppAccounts/12345/56789).
      */
     get: operations["GetAccountsByUserId"];
     /**
@@ -1399,8 +1402,8 @@ export interface components {
      */
     tppAccountRequestPostRequest: {
       accountRequestId: components["schemas"]["CorrelationId"];
-      partyIdInfo: components["schemas"]["PartyIdInfo"];
-      authChannels: components["schemas"]["ConsentRequestChannelType"];
+      partyItentifier?: components["schemas"]["PartyIdentifier"];
+      authChannels: components["schemas"]["ConsentRequestChannelType"][];
       callbackUri: components["schemas"]["Uri"];
     };
     /**
@@ -1413,13 +1416,13 @@ export interface components {
     /** @description The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters. */
     BinaryString: string;
     /**
-     * AccountRequestPostRequest
+     * AccountRequestPutResponse
      * @description Used by: PISP
      * This is the message that the DFSP sends to the PISP to inform the PISP that  the accountRequest has been accepted, and to communicate to the PISP which  `authChannel` it should use to authenticate their user with. I.e. it is a response to a POST /tppAccountsRequest request, or a GET /tppAccountsRequest/{ID} request.
      * When a PISP requests a series of permissions from a DFSP on behalf of a DFSP's customer,  not all the permissions requested may be granted by the DFSP. Conversely,  the out-of-loop authorization process may result in additional privileges  being granted by the account holder to the PISP. The `PUT /tppAccountsRequest/<ID>`  resource returns the current state of the permissions relating to a particular authorization request.
      */
-    tppAccountRequestResponse: {
-      authChannels: components["schemas"]["ConsentRequestChannelType"];
+    tppAccountRequestPutResponse: {
+      authChannel?: components["schemas"]["ConsentRequestChannelType"];
       callbackUri?: components["schemas"]["Uri"];
       authUri?: components["schemas"]["Uri"];
       authToken?: components["schemas"]["BinaryString"];
@@ -2272,12 +2275,12 @@ export interface operations {
     };
   };
   /**
-   * PostAccountRequest
-   * @description The `POST /tppAccountsRequest/{ID}` is used to request access from the user to distribute account information from the user DFSP to the PISP.
+   * GetAccountRequest
+   * @description The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountRequest/ call.
    * The *{ID}* in the URI should contain the accountRequestId that was assigned to the
    * request by the PISP when the PISP originated the request. The result is return via the PUT callback.
    */
-  PostAccountRequest: {
+  GetAccountRequest: {
     parameters: {
       header: {
         "Content-Type": components["parameters"]["Content-Type"];
@@ -2340,7 +2343,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["tppAccountRequestResponse"];
+        "application/json": components["schemas"]["tppAccountRequestPutResponse"];
       };
     };
     responses: {
@@ -2398,7 +2401,10 @@ export interface operations {
   /**
    * GetAccountsByUserId
    * @description The HTTP request `GET /tppAccounts/{ID}/{SignedChallenge}` is used to retrieve the list of potential accounts available for linking.
-   * The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountRequest/` callback. (For example, GET /tppAccounts/12345/56789).
+   * The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountRequest/` callback.
+   *
+   * The signed challenge must match the authentication channel that was selected by the DFSP. For example, if the WEB authentication channel was selected by the DFSP, then signed challenge needs to be authToken, otherwise if the OTP channel was selected, then it needs to be the OTP that was entered by the party.
+   * (For example, GET /tppAccounts/12345/56789).
    */
   GetAccountsByUserId: {
     parameters: {

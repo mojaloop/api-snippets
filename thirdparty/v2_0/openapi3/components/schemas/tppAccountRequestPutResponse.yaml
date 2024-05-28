@@ -1,4 +1,4 @@
-title: AccountRequestPostRequest
+title: AccountRequestPutResponse
 type: object
 description: >-
   Used by: PISP
@@ -15,7 +15,7 @@ description: >-
   resource returns the current state of the permissions relating to a particular authorization request. 
     
 properties:
-  authChannels:
+  authChannel:
     $ref: ./ConsentRequestChannelType.yaml
   callbackUri:
     $ref: ./Uri.yaml
