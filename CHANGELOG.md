@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.5.1](https://github.com/mojaloop/api-snippets/compare/v17.5.0...v17.5.1) (2024-06-03)
+
+
+### Maintenance
+
+* exported fspiop v2_0 ([#173](https://github.com/mojaloop/api-snippets/issues/173)) ([dde1b84](https://github.com/mojaloop/api-snippets/commit/dde1b8492698cd8fe368544d7d60801fe6472ada))
+
 ## [17.5.0](https://github.com/mojaloop/api-snippets/compare/v17.4.0...v17.5.0) (2024-06-03)
 
 
