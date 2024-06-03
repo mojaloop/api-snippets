@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.5.0](https://github.com/mojaloop/api-snippets/compare/v17.4.0...v17.5.0) (2024-06-03)
+
+
+### Features
+
+* enable schemas for fspiop 2 0 ([#172](https://github.com/mojaloop/api-snippets/issues/172)) ([284b397](https://github.com/mojaloop/api-snippets/commit/284b397b12e8b75b0fbc109488ca24e9b4cc5410))
+
 ## [17.4.0](https://github.com/mojaloop/api-snippets/compare/v17.3.0...v17.4.0) (2023-12-06)
 
 
