@@ -2,3 +2,5 @@ node_modules/**/*.js
 .circleci/*
 config.ts
 **/openapi.ts
+**/schemas.ts
+**/types.ts
