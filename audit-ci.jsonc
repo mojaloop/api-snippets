@@ -4,6 +4,7 @@
     // Only use one of ["low": true, "moderate": true, "high": true, "critical": true]
     "moderate": true,
     "allowlist": [
+        "GHSA-2p57-rm9w-gvfp", // socks>ip
         "GHSA-wf5p-g6vw-rhxx" // https://github.com/advisories/GHSA-wf5p-g6vw-rhxx
     ]
 }
