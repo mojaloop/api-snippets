@@ -1,7 +1,6 @@
 title: CashAccount40
 type: object
 description: |
-  CashAccount40
   Provides the details to identify an account.
 properties:
   Id:

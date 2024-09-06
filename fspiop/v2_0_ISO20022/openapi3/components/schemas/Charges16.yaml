@@ -1,7 +1,6 @@
 title: Charges16
 description: |
-  Charges16
-  Unsure on description.
+  NOTE: Unsure on description.
 type: object
 properties:
   Amt:

@@ -1,7 +1,5 @@
 title: GroupHeader129
 description: >
-  GroupHeader129
-
   Set of characteristics shared by all individual transactions included in the
   message.
 type: object

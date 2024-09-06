@@ -1,7 +1,5 @@
 title: GroupHeader113
 description: >
-  GroupHeader113
-
   Set of characteristics shared by all individual transactions included in the
   message.
 type: object

@@ -1,7 +1,6 @@
 title: AccountSchemeName1Choice
 type: object
 description: |
-  AccountSchemeName1Choice
   Sets of elements to identify a name of the identification scheme.
 properties:
   Cd:

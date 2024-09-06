@@ -1,6 +1,6 @@
 title: CryptographicLockChoice
 description: |
-  Unsure on description.
+  NOTE: Unsure on description.
 type: object
 properties:
   IlpV4PrepPacket:

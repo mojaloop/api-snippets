@@ -1,8 +1,6 @@
 title: BranchAndFinancialInstitutionIdentification6
 type: object
 description: >
-  BranchAndFinancialInstitutionIdentification6
-
   Unique and unambiguous identification of a financial institution or a branch
   of a financial institution.
 properties:

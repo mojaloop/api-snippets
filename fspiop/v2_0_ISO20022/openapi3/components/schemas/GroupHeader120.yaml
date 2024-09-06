@@ -1,7 +1,5 @@
 title: GroupHeader120
 description: >
-  GroupHeader120
-
   Set of characteristics shared by all individual transactions included in the
   message.
 type: object

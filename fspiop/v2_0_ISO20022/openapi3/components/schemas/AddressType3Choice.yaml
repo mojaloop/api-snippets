@@ -1,7 +1,6 @@
 title: AddressType3Choice
 type: object
 description: |
-  AddressType3Choice
   Choice of formats for the type of address.
 properties:
   Cd:

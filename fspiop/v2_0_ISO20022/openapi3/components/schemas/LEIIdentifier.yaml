@@ -1,5 +1,5 @@
 title: LEIIdentifier
-description: |
+description: >
   Legal Entity Identifier is a code allocated to a party as described in
   ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
   ^([0-9A-Z]{18,18}[0-9]{2,2})$

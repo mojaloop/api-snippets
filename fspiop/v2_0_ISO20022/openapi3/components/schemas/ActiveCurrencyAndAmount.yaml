@@ -1,6 +1,6 @@
 title: ActiveCurrencyAndAmount
 type: object
-description: |
+description: >
   A number of monetary units specified in an active currency where the
   unit of currency is explicit and compliant with ISO 4217.
 properties:

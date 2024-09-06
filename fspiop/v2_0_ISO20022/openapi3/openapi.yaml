@@ -1,24 +1,9 @@
 openapi: 3.0.2
 info:
-  version: 2.0-draft
+  version: 2.0-ISO20022
   title: Open API for FSP Interoperability (FSPIOP)
   description: >-
-    Revision date: 2023-11-23 Based on [API Definition updated on 2020-05-19
-    Version
-    1.1](https://github.com/mojaloop/mojaloop-specification/blob/main/documents/v1.1-document-set/API%20Definition_v1.1.pdf).
-
-    This is implementation friendly version of the API definition.
-
-    It includes the below definitions needed for third-party functionality. -
-    AuthenticationType
-      - U2F enum
-    - AuthenticationValue
-      - oneOf is changed to anyOf
-      - new element is added U2FPinValue
-    - New element U2FPIN
-
-    **Note:** The API supports a maximum size of 65536 bytes (64 Kilobytes) in
-    the HTTP header.
+    IN PROGRESS
   license:
     name: CC BY-ND 4.0
     url: https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md

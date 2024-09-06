@@ -1,7 +1,6 @@
 title: OrganisationIdentificationSchemeName1Choice
 description: |
   Choice of format for the organisation identification.
-  NOTE: make oneOf
 type: object
 properties:
   Cd:

@@ -1,8 +1,6 @@
 title: BICFIDec2014Identifier
 type: string
-description: >
-  BICFIDec2014Identifier
-
+description: |
   Code allocated to a financial institution by the ISO 9362 Registration
 
   Authority as described in ISO 9362: 2014
