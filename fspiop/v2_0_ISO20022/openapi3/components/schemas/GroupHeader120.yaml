@@ -1,0 +1,17 @@
+title: GroupHeader120
+description: >
+  GroupHeader120
+
+  Set of characteristics shared by all individual transactions included in the
+  message.
+type: object
+properties:
+  MsgId:
+    $ref: ./Max35Text.yaml
+  CreDtTm:
+    $ref: ./ISODateTime.yaml
+  TxInfAndSts:
+    $ref: ./PaymentTransaction163.yaml
+required:
+  - MsgId
+  - CreDtTm

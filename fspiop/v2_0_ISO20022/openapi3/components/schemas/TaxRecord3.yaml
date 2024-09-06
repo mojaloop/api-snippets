@@ -1,0 +1,23 @@
+title: TaxRecord3
+description: |
+  Set of elements used to define the tax record.
+type: object
+properties:
+  Tp:
+    $ref: ./Max35Text.yaml
+  Ctgy:
+    $ref: ./Max35Text.yaml
+  CtgyDtls:
+    $ref: ./Max35Text.yaml
+  DbtrSts:
+    $ref: ./Max35Text.yaml
+  CertId:
+    $ref: ./Max35Text.yaml
+  FrmsCd:
+    $ref: ./Max35Text.yaml
+  Prd:
+    $ref: ./TaxPeriod3.yaml
+  TaxAmt:
+    $ref: ./TaxAmount3.yaml
+  AddtlInf:
+    $ref: ./Max140Text.yaml

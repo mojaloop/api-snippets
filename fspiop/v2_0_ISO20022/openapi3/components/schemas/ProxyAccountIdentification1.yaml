@@ -1,0 +1,11 @@
+title: ProxyAccountIdentification1
+description: |
+  Information related to a proxy identification of the account.
+type: object
+properties:
+  Tp:
+    $ref: ./ProxyAccountType1Choice.yaml
+  Id:
+    $ref: ./Max2048Text.yaml
+required:
+  - Id

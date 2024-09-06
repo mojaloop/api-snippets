@@ -1,0 +1,17 @@
+title: DateAndPlaceOfBirth1
+description: |
+  Details about date and place of birth of a person.
+type: object
+properties:
+  BirthDt:
+    $ref: ./ISODate.yaml
+  PrvcOfBirth:
+    $ref: ./Max35Text.yaml
+  CityOfBirth:
+    $ref: ./Max35Text.yaml
+  CtryOfBirth:
+    $ref: ./CountryCode.yaml
+required:
+  - BirthDt
+  - CityOfBirth
+  - CtryOfBirth

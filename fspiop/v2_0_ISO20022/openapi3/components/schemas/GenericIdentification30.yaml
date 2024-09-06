@@ -1,0 +1,12 @@
+title: GenericIdentification30
+type: object
+properties:
+  Id:
+    $ref: ./Exact4AlphaNumericText.yaml
+  Issr:
+    $ref: ./Max35Text.yaml
+  SchmeNm:
+    $ref: ./Max35Text.yaml
+required:
+  - Id
+  - Issr

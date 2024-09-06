@@ -1,0 +1,11 @@
+title: OrganisationIdentification29
+description: |
+  Unique and unambiguous way to identify an organisation.
+type: object
+properties:
+  AnyBIC:
+    $ref: ./AnyBICDec2014Identifier.yaml
+  LEI:
+    $ref: ./LEIIdentifier.yaml
+  Othr:
+    $ref: ./GenericOrganisationIdentification1.yaml

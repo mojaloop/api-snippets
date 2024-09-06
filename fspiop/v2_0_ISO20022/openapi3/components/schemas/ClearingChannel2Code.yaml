@@ -1,0 +1,21 @@
+title: ClearingChannel2Code
+description: >
+  Specifies the clearing channel for the routing of the transaction, as part of
+  the payment type identification.
+
+  RTGS RealTimeGrossSettlementSystem Clearing channel is a real-time gross
+  settlement system.
+
+  RTNS RealTimeNetSettlementSystem Clearing channel is a real-time net
+  settlement system.
+
+  MPNS MassPaymentNetSystem Clearing channel is a mass payment  net settlement
+  system.
+
+  BOOK BookTransfer Payment through internal book transfer.
+type: string
+enum:
+  - RTGS
+  - RTNS
+  - MPNS
+  - BOOK

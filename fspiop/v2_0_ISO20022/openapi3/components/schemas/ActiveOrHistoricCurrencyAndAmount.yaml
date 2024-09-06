@@ -1,0 +1,13 @@
+title: ActiveOrHistoricCurrencyAndAmount
+type: object
+description: >
+  A number of monetary units specified in an active or a historic currency where
+  the unit of currency is explicit and compliant with ISO 4217.
+properties:
+  ActiveOrHistoricCurrencyAndAmount:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount_SimpleType.yaml
+  Ccy:
+    $ref: ./ActiveOrHistoricCurrencyCode.yaml
+required:
+  - ActiveOrHistoricCurrencyAndAmount
+  - Ccy

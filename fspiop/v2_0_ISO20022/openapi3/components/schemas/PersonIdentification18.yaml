@@ -1,0 +1,9 @@
+title: PersonIdentification18
+description: |
+  Unique and unambiguous way to identify a person.
+type: object
+properties:
+  DtAndPlcOfBirth:
+    $ref: ./DateAndPlaceOfBirth1.yaml
+  Othr:
+    $ref: ./GenericPersonIdentification2.yaml

@@ -1,0 +1,10 @@
+title: Fxecute_FinancialInstitutionCreditTransferV12
+type: object
+properties:
+  GrpHdr:
+    $ref: ./GroupHeader129.yaml
+  CdtTrfTxInf:
+    $ref: ./CreditTransferTransaction68.yaml
+required:
+  - GrpHdr
+  - CdtTrfTxInf

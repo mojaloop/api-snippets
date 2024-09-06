@@ -1,0 +1,9 @@
+title: SettlementMethod1Code
+description: |
+  Specifies the method used to settle the credit transfer instruction.
+type: string
+enum:
+  - INDA
+  - INGA
+  - COVE
+  - CLRG

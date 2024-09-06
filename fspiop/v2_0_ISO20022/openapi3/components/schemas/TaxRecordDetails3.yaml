@@ -1,0 +1,11 @@
+title: TaxRecordDetails3
+description: |
+  Details on the tax period and amount
+type: object
+properties:
+  Prd:
+    $ref: ./TaxPeriod3.yaml
+  Amt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+required:
+  - Amt

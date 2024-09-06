@@ -1,0 +1,12 @@
+title: ClearingSystemMemberIdentification2
+description: >
+  Unique identification, as assigned by a clearing system, to unambiguously
+  identify a member of the clearing system.
+type: object
+properties:
+  ClrSysId:
+    $ref: ./ClearingSystemIdentification2Choice.yaml
+  MmbId:
+    $ref: ./Max35Text.yaml
+required:
+  - MmbId

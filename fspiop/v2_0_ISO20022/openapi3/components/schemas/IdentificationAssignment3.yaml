@@ -1,0 +1,16 @@
+title: IdentificationAssignment3
+type: object
+properties:
+  MsgId:
+    $ref: ./Max35Text.yaml
+  CreDtTm:
+    $ref: ./ISODateTime.yaml
+  Assgnr:
+    $ref: ./Party40Choice.yaml
+  Assgne:
+    $ref: ./Party40Choice.yaml
+required:
+  - MsgId
+  - CreDtTm
+  - Assgnr
+  - Assgne

@@ -1,0 +1,15 @@
+title: PartyIdentification135
+description: |
+  Specifies the identification of a person or an organisation.
+type: object
+properties:
+  Nm:
+    $ref: ./Max140Text.yaml
+  PstlAdr:
+    $ref: ./PostalAddress24.yaml
+  Id:
+    $ref: ./Party38Choice.yaml
+  CtryOfRes:
+    $ref: ./CountryCode.yaml
+  CtctDtls:
+    $ref: ./Contact4.yaml

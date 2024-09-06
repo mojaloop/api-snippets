@@ -1,0 +1,10 @@
+title: PreferredContactMethod2Code
+description: |
+  Preferred method used to reach the individual contact within an organisation.
+type: string
+enum:
+  - LETT
+  - MAIL
+  - PHON
+  - FAXX
+  - CELL

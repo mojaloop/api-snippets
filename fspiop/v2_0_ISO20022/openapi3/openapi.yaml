@@ -1,0 +1,68 @@
+openapi: 3.0.2
+info:
+  version: 2.0-draft
+  title: Open API for FSP Interoperability (FSPIOP)
+  description: >-
+    Revision date: 2023-11-23 Based on [API Definition updated on 2020-05-19
+    Version
+    1.1](https://github.com/mojaloop/mojaloop-specification/blob/main/documents/v1.1-document-set/API%20Definition_v1.1.pdf).
+
+    This is implementation friendly version of the API definition.
+
+    It includes the below definitions needed for third-party functionality. -
+    AuthenticationType
+      - U2F enum
+    - AuthenticationValue
+      - oneOf is changed to anyOf
+      - new element is added U2FPinValue
+    - New element U2FPIN
+
+    **Note:** The API supports a maximum size of 65536 bytes (64 Kilobytes) in
+    the HTTP header.
+  license:
+    name: CC BY-ND 4.0
+    url: https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md
+  contact:
+    name: Sam Kummary
+    url: https://github.com/mojaloop/mojaloop-specification/issues
+servers:
+  - url: 'protocol://hostname:<port>/switch/'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+paths:
+  /parties/{Type}/{ID}:
+    $ref: paths/parties_{Type}_{ID}.yaml
+  /parties/{Type}/{ID}/error:
+    $ref: paths/parties_{Type}_{ID}_error.yaml
+  /parties/{Type}/{ID}/{SubId}:
+    $ref: paths/parties_{Type}_{ID}_{SubId}.yaml
+  /parties/{Type}/{ID}/{SubId}/error:
+    $ref: paths/parties_{Type}_{ID}_{SubId}_error.yaml
+  /quotes:
+    $ref: paths/quotes.yaml
+  /quotes/{ID}:
+    $ref: paths/quotes_{ID}.yaml
+  /quotes/{ID}/error:
+    $ref: paths/quotes_{ID}_error.yaml
+  /transfers:
+    $ref: paths/transfers.yaml
+  /transfers/{ID}:
+    $ref: paths/transfers_{ID}.yaml
+  /transfers/{ID}/error:
+    $ref: paths/transfers_{ID}_error.yaml
+  /fxQuotes:
+    $ref: paths/fxQuotes.yaml
+  /fxQuotes/{ID}:
+    $ref: paths/fxQuotes_{ID}.yaml
+  /fxQuotes/{ID}/error:
+    $ref: paths/fxQuotes_{ID}_error.yaml
+  /fxTransfers:
+    $ref: paths/fxTransfers.yaml
+  /fxTransfers/{ID}:
+    $ref: paths/fxTransfers_{ID}.yaml
+  /fxTransfers/{ID}/error:
+    $ref: paths/fxTransfers_{ID}_error.yaml

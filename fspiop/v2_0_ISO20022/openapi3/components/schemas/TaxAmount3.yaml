@@ -1,0 +1,13 @@
+title: TaxAmount3
+description: |
+  Information on the amount of the tax record.
+type: object
+properties:
+  Rate:
+    $ref: ./PercentageRate.yaml
+  TaxblBaseAmt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  TtlAmt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  Dtls:
+    $ref: ./TaxRecordDetails3.yaml

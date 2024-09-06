@@ -1,0 +1,7 @@
+title: ExternalAccountIdentification1Code
+description: >
+  Specifies the external account identification scheme name code in the format
+  of character string with a maximum length of 4 characters.
+type: string
+minLength: 1
+maxLength: 4

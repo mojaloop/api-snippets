@@ -1,0 +1,14 @@
+title: ServiceLevel8Choice
+description: |
+  Details about a service level.
+type: object
+properties:
+  Cd:
+    $ref: ./ExternalServiceLevel1Code.yaml
+  Prtry:
+    $ref: ./Max35Text.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry

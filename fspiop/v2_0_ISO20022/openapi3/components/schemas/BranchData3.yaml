@@ -1,0 +1,14 @@
+title: BranchData3
+type: object
+description: >
+  Information that locates and identifies a specific branch of a financial
+  institution.
+properties:
+  Id:
+    $ref: ./Max35Text.yaml
+  LEI:
+    $ref: ./LEIIdentifier.yaml
+  Nm:
+    $ref: ./Max140Text.yaml
+  PstlAdr:
+    $ref: ./PostalAddress24.yaml

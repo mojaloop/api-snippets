@@ -1,0 +1,10 @@
+description: >
+  ExternalCategoryPurpose1Code
+
+  Specifies the category purpose, as published in an external category purpose
+  code list.
+
+  External code sets can be downloaded from www.iso20022.org.
+maxLength: 4
+minLength: 1
+type: string

@@ -1,0 +1,6 @@
+title: Max35Text
+description: |
+  Specifies a character string with a maximum length of 35 characters.
+type: string
+minLength: 1
+maxLength: 35

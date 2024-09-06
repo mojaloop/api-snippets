@@ -1,0 +1,15 @@
+title: FinancialInstitutionIdentification23
+type: object
+properties:
+  BICFI:
+    $ref: ./BICFIDec2014Identifier.yaml
+  ClrSysMmbId:
+    $ref: ./ClearingSystemMemberIdentification2.yaml
+  LEI:
+    $ref: ./LEIIdentifier.yaml
+  Nm:
+    $ref: ./Max140Text.yaml
+  PstlAdr:
+    $ref: ./PostalAddress27.yaml
+  Othr:
+    $ref: ./GenericFinancialIdentification1.yaml

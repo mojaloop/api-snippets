@@ -1,0 +1,11 @@
+title: OtherContact1
+description: |
+  Communication device number or electronic address used for communication.
+type: object
+properties:
+  ChanlTp:
+    $ref: ./Max4Text.yaml
+  Id:
+    $ref: ./Max128Text.yaml
+required:
+  - ChanlTp

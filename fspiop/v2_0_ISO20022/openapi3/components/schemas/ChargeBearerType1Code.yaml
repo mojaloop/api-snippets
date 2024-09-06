@@ -1,0 +1,22 @@
+title: ChargeBearerType1Code
+description: >
+  Specifies which party(ies) will pay charges due for processing of the
+  instruction.
+
+  DEBT BorneByDebtor All transaction charges are to be borne by the debtor.
+
+  CRED BorneByCreditor All transaction charges are to be borne by the creditor.
+
+  SHAR Shared In a credit transfer context, means that transaction charges on
+  the sender side are to be borne by the debtor, transaction charges on the receiver side are to
+  be borne by the creditor. In a direct debit context, means that transaction charges on the sender side
+  are to be borne by the creditor, transaction charges on the receiver
+
+  SLEV FollowingServiceLevel Charges are to be applied following the rules
+  agreed in the service level.
+type: string
+enum:
+  - DEBT
+  - CRED
+  - SHAR
+  - SLEV

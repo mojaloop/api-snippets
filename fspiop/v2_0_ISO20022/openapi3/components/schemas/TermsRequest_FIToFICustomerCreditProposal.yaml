@@ -1,0 +1,7 @@
+title: TermsRequest_FIToFICustomerCreditProposal
+type: object
+properties:
+  GrpHdr:
+    $ref: ./GroupHeader129.yaml
+required:
+  - GrpHdr

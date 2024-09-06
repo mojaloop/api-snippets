@@ -1,0 +1,12 @@
+title: GetPartiesError_IdentificationVerificationReportV03
+type: object
+properties:
+  Assgnmt:
+    $ref: ./IdentificationAssignment3.yaml
+  Rpt:
+    $ref: ./VerificationReport4.yaml
+  SplmtryData:
+    $ref: ./SupplementaryData1.yaml
+required:
+  - Assgnmt
+  - Rpt

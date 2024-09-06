@@ -1,0 +1,12 @@
+title: DatePeriod2
+description: |
+  Range of time defined by a start date and an end date.
+type: object
+properties:
+  FrDt:
+    $ref: ./ISODate.yaml
+  ToDt:
+    $ref: ./ISODate.yaml
+required:
+  - FrDt
+  - ToDt

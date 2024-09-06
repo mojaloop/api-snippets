@@ -1,0 +1,9 @@
+title: TaxAuthorisation1
+description: |
+  Details of an authorised tax paying party.
+type: object
+properties:
+  Titl:
+    $ref: ./Max35Text.yaml
+  Nm:
+    $ref: ./Max140Text.yaml

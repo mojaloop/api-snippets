@@ -1,0 +1,14 @@
+title: BranchAndFinancialInstitutionIdentification6
+type: object
+description: >
+  BranchAndFinancialInstitutionIdentification6
+
+  Unique and unambiguous identification of a financial institution or a branch
+  of a financial institution.
+properties:
+  FinInstnId:
+    $ref: ./FinancialInstitutionIdentification18.yaml
+  BrnchId:
+    $ref: ./BranchData3.yaml
+required:
+  - FinInstnId

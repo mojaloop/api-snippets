@@ -1,0 +1,13 @@
+title: ActiveCurrencyAndAmount
+type: object
+description: |
+  A number of monetary units specified in an active currency where the
+  unit of currency is explicit and compliant with ISO 4217.
+properties:
+  ActiveCurrencyAndAmount:
+    $ref: ./ActiveCurrencyAndAmount_SimpleType.yaml
+  Ccy:
+    $ref: ./ActiveCurrencyCode.yaml
+required:
+  - ActiveCurrencyAndAmount
+  - Ccy

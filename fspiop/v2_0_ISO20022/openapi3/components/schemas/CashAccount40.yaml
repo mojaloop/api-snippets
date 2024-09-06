@@ -1,0 +1,16 @@
+title: CashAccount40
+type: object
+description: |
+  CashAccount40
+  Provides the details to identify an account.
+properties:
+  Id:
+    $ref: ./AccountIdentification4Choice.yaml
+  Tp:
+    $ref: ./CashAccountType2Choice.yaml
+  Ccy:
+    $ref: ./ActiveOrHistoricCurrencyCode.yaml
+  Nm:
+    $ref: ./Max70Text.yaml
+  Prxy:
+    $ref: ./ProxyAccountIdentification1.yaml

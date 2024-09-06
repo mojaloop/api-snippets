@@ -1,0 +1,14 @@
+title: Party40Choice
+description: |
+  Nature or use of the account.
+type: object
+properties:
+  Pty:
+    $ref: ./PartyIdentification135.yaml
+  Agt:
+    $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
+oneOf:
+  - required:
+      - Pty
+  - required:
+      - Agt

@@ -1,0 +1,15 @@
+title: ClearingSystemIdentification2Choice
+description: |
+  ClearingSystemIdentification2Choice
+  Choice of a clearing system identifier.
+type: object
+properties:
+  Cd:
+    $ref: ./ExternalClearingSystemIdentification1Code.yaml
+  Prtry:
+    $ref: ./Max35Text.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry

@@ -1,0 +1,28 @@
+title: GroupHeader113
+description: >
+  GroupHeader113
+
+  Set of characteristics shared by all individual transactions included in the
+  message.
+type: object
+properties:
+  MsgId:
+    $ref: ./Max35Text.yaml
+  CreDtTm:
+    $ref: ./ISODateTime.yaml
+  NbOfTxs:
+    $ref: ./Max15NumericText.yaml
+  TtlIntrBkSttlmAmt:
+    $ref: ./ActiveCurrencyAndAmount.yaml
+  SttlmInf:
+    $ref: ./SettlementInstruction15.yaml
+  PmtTpInf:
+    $ref: ./PaymentTypeInformation28.yaml
+  CdtTrfTxInf:
+    $ref: ./CreditTransferTransaction68.yaml
+required:
+  - MsgId
+  - CreDtTm
+  - NbOfTxs
+  - SttlmInf
+  - CdtTrfTxInf

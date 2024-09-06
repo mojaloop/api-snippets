@@ -1,0 +1,14 @@
+title: Party38Choice
+description: |
+  Nature or use of the account.
+type: object
+properties:
+  OrgId:
+    $ref: ./OrganisationIdentification29.yaml
+  PrvtId:
+    $ref: ./PersonIdentification13.yaml
+oneOf:
+  - required:
+      - OrgId
+  - required:
+      - PrvtId

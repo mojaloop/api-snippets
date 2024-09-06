@@ -1,0 +1,42 @@
+title: PostalAddress27
+type: object
+description: >
+  Information that locates and identifies a specific address, as defined by
+  postal services.
+properties:
+  AdrTp:
+    $ref: ./AddressType3Choice.yaml
+  CareOf:
+    $ref: ./Max140Text.yaml
+  Dept:
+    $ref: ./Max70Text.yaml
+  SubDept:
+    $ref: ./Max70Text.yaml
+  StrtNm:
+    $ref: ./Max140Text.yaml
+  BldgNb:
+    $ref: ./Max16Text.yaml
+  BldgNm:
+    $ref: ./Max140Text.yaml
+  Flr:
+    $ref: ./Max70Text.yaml
+  UnitNb:
+    $ref: ./Max16Text.yaml
+  PstBx:
+    $ref: ./Max16Text.yaml
+  Room:
+    $ref: ./Max70Text.yaml
+  PstCd:
+    $ref: ./Max16Text.yaml
+  TwnNm:
+    $ref: ./Max140Text.yaml
+  TwnLctnNm:
+    $ref: ./Max140Text.yaml
+  DstrctNm:
+    $ref: ./Max140Text.yaml
+  CtrySubDvsn:
+    $ref: ./Max35Text.yaml
+  Ctry:
+    $ref: ./CountryCode.yaml
+  AdrLine:
+    $ref: ./Max70Text.yaml

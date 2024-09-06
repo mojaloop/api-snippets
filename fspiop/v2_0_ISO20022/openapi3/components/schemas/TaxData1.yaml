@@ -1,0 +1,28 @@
+title: TaxData1
+description: >
+  Details about tax paid, or to be paid, to the government in accordance with
+  the law, including pre-defined parameters such as thresholds and type of account.
+type: object
+properties:
+  Cdtr:
+    $ref: ./TaxParty1.yaml
+  Dbtr:
+    $ref: ./TaxParty2.yaml
+  UltmtDbtr:
+    $ref: ./TaxParty2.yaml
+  AdmstnZone:
+    $ref: ./Max35Text.yaml
+  RefNb:
+    $ref: ./Max140Text.yaml
+  Mtd:
+    $ref: ./Max35Text.yaml
+  TtlTaxblBaseAmt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  TtlTaxAmt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  Dt:
+    $ref: ./ISODate.yaml
+  SeqNb:
+    $ref: ./Number.yaml
+  Rcrd:
+    $ref: ./TaxRecord3.yaml

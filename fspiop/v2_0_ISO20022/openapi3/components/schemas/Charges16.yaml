@@ -1,0 +1,15 @@
+title: Charges16
+description: |
+  Charges16
+  Unsure on description.
+type: object
+properties:
+  Amt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  Agt:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  Tp:
+    $ref: ./ChargeType3Choice.yaml
+required:
+  - Amt
+  - Agt

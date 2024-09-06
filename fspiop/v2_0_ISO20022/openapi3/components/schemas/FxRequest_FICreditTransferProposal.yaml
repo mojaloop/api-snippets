@@ -1,0 +1,7 @@
+title: FxRequest_FICreditTransferProposal
+type: object
+properties:
+  GrpHdr:
+    $ref: ./GroupHeader113.yaml
+required:
+  - GrpHdr

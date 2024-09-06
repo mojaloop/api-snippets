@@ -1,0 +1,10 @@
+description: |
+  NamePrefix2Code
+  Specifies the terms used to formally address a person.
+enum:
+  - DOCT
+  - MADM
+  - MISS
+  - MIST
+  - MIKS
+type: string

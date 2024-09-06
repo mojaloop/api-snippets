@@ -1,0 +1,30 @@
+title: PaymentTransaction163
+description: >
+  Provides further details on the original transactions, to which the status
+  report message refers.
+type: object
+properties:
+  StsId:
+    $ref: ./Max35Text.yaml
+  OrgnlInstrId:
+    $ref: ./Max35Text.yaml
+  OrgnlEndToEndId:
+    $ref: ./Max35Text.yaml
+  OrgnlTxId:
+    $ref: ./Max35Text.yaml
+  OrgnlUETR:
+    $ref: ./UUIDv4Identifier.yaml
+  TxSts:
+    $ref: ./ExternalPaymentTransactionStatus1Code.yaml
+  StsRsnInf:
+    $ref: ./StatusReasonInformation14.yaml
+  AccptncDtTm:
+    $ref: ./ISODateTime.yaml
+  AcctSvcrRef:
+    $ref: ./Max35Text.yaml
+  ClrSysRef:
+    $ref: ./Max35Text.yaml
+  ExctnConf:
+    $ref: ./Exact32HexBinaryText.yaml
+  SplmtryData:
+    $ref: ./SupplementaryData1.yaml

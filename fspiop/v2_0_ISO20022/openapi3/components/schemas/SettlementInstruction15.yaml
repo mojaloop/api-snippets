@@ -1,0 +1,11 @@
+title: SettlementInstruction15
+description: |
+  NOTE: Unsure on description.
+type: object
+properties:
+  SttlmMtd:
+    $ref: ./SettlementMethod1Code.yaml
+  PmtTpInf:
+    $ref: ./PaymentTypeInformation28.yaml
+required:
+  - SttlmMtd

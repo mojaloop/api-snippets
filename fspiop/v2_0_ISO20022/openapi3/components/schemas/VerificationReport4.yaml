@@ -1,0 +1,16 @@
+title: VerificationReport4
+type: object
+properties:
+  OrgnlId:
+    $ref: ./Max35Text.yaml
+  Vrfctn:
+    $ref: ./IdentificationVerificationIndicator.yaml
+  Rsn:
+    $ref: ./VerificationReason1Choice.yaml
+  OrgnlPtyAndAcctId:
+    $ref: ./IdentificationInformation4.yaml
+  UpdtdPtyAndAcctId:
+    $ref: ./IdentificationInformation4.yaml
+required:
+  - OrgnlId
+  - Vrfctn

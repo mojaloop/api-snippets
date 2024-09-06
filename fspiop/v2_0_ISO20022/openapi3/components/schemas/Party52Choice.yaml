@@ -1,0 +1,14 @@
+title: Party52Choice
+description: |
+  Nature or use of the account.
+type: object
+properties:
+  OrgId:
+    $ref: ./OrganisationIdentification39.yaml
+  PrvtId:
+    $ref: ./PersonIdentification18.yaml
+oneOf:
+  - required:
+      - OrgId
+  - required:
+      - PrvtId

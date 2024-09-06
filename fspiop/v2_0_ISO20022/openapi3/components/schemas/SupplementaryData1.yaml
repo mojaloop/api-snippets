@@ -1,0 +1,12 @@
+title: SupplementaryData1
+description: >
+  Additional information that can not be captured in the structured fields
+  and/or any other specific block.
+type: object
+properties:
+  PlcAndNm:
+    $ref: ./Max350Text.yaml
+  Envlp:
+    $ref: ./SupplementaryDataEnvelope1.yaml
+required:
+  - Envlp

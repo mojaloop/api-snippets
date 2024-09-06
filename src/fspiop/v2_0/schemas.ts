@@ -87,8 +87,7 @@ export namespace Schemas {
   export const Refund = JsonSchemas.Refund
   export const RefundReason = JsonSchemas.RefundReason
   export const ServicesFXPPutResponse = JsonSchemas.ServicesFXPPutResponse
-  export const ServicesFXPSourceCurrencyTargetCurrencyPutResponse =
-    JsonSchemas.ServicesFXPSourceCurrencyTargetCurrencyPutResponse
+  export const ServicesFXPSourceCurrencyTargetCurrencyPutResponse = JsonSchemas.ServicesFXPSourceCurrencyTargetCurrencyPutResponse
   export const TokenCode = JsonSchemas.TokenCode
   export const Transaction = JsonSchemas.Transaction
   export const TransactionInitiator = JsonSchemas.TransactionInitiator

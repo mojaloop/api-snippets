@@ -1,0 +1,11 @@
+title: PacsError_FIToFIPaymentStatusReportV15
+type: object
+properties:
+  GrpHdr:
+    $ref: ./GroupHeader120.yaml
+  TxInfAndSts:
+    $ref: ./PaymentTransaction163.yaml
+  SplmtryData:
+    $ref: ./SupplementaryData1.yaml
+required:
+  - GrpHdr

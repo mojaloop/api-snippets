@@ -1,0 +1,11 @@
+title: RegulatoryReporting3
+description: |
+  Information needed due to regulatory and/or statutory requirements.
+type: object
+properties:
+  DbtCdtRptgInd:
+    $ref: ./RegulatoryReportingType1Code.yaml
+  Authrty:
+    $ref: ./RegulatoryAuthority2.yaml
+  Dtls:
+    $ref: ./StructuredRegulatoryReporting3.yaml

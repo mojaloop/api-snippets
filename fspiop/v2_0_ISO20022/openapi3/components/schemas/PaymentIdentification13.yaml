@@ -1,0 +1,17 @@
+title: PaymentIdentification13
+description: |
+  Provides further means of referencing a payment transaction.
+type: object
+properties:
+  InstrId:
+    $ref: ./Max35Text.yaml
+  EndToEndId:
+    $ref: ./Max35Text.yaml
+  TxId:
+    $ref: ./Max35Text.yaml
+  UETR:
+    $ref: ./UUIDv4Identifier.yaml
+  ClrSysRef:
+    $ref: ./Max35Text.yaml
+required:
+  - EndToEndId

@@ -1,0 +1,14 @@
+title: StatusReason6Choice
+description: |
+  Unsure on description.
+type: object
+properties:
+  Cd:
+    $ref: ./ExternalStatusReason1Code.yaml
+  Prtry:
+    $ref: ./Max35Text.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry

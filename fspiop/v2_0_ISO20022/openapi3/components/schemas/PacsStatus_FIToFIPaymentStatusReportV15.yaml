@@ -1,0 +1,9 @@
+title: PacsStatus_FIToFIPaymentStatusReportV15
+description: |
+  Unsure on description.
+type: object
+properties:
+  GrpHdr:
+    $ref: ./GroupHeader120.yaml
+required:
+  - GrpHdr

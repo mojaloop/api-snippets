@@ -1,0 +1,10 @@
+title: FxResponse_FICreditTransferConfirmation
+type: object
+properties:
+  GrpHdr:
+    $ref: ./GroupHeader113.yaml
+  CdtTrfTxInf:
+    $ref: ./CreditTransferTransaction68.yaml
+required:
+  - GrpHdr
+  - CdtTrfTxInf

@@ -1,0 +1,17 @@
+title: StructuredRegulatoryReporting3
+description: |
+  Unsure on description.
+type: object
+properties:
+  Tp:
+    $ref: ./Max35Text.yaml
+  Dt:
+    $ref: ./ISODate.yaml
+  Ctry:
+    $ref: ./CountryCode.yaml
+  Cd:
+    $ref: ./Max10Text.yaml
+  Amt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  Inf:
+    $ref: ./Max35Text.yaml

@@ -1,0 +1,35 @@
+title: CreditTransferTransaction68
+description: >
+  Provides further details specific to the individual transaction(s) included in
+  the message.
+type: object
+properties:
+  PmtId:
+    $ref: ./PaymentIdentification13.yaml
+  PmtTpInf:
+    $ref: ./PaymentTypeInformation28.yaml
+  IntrBkSttlmAmt:
+    $ref: ./ActiveCurrencyAndAmount.yaml
+  Dbtr:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  DbtrAcct:
+    $ref: ./CashAccount40.yaml
+  DbtrAgt:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  CdtrAgt:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  Cdtr:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  CdtrAcct:
+    $ref: ./CashAccount40.yaml
+  InstrForCdtrAgt:
+    $ref: ./InstructionForCreditorAgent3.yaml
+  Purp:
+    $ref: ./Purpose2Choice.yaml
+  VrfctnOfTerms:
+    $ref: ./CryptographicLockChoice.yaml
+required:
+  - PmtId
+  - IntrBkSttlmAmt
+  - Dbtr
+  - Cdtr

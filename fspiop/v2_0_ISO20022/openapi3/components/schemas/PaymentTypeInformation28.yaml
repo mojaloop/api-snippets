@@ -1,0 +1,15 @@
+title: PaymentTypeInformation28
+description: |
+  Provides further details of the type of payment.
+type: object
+properties:
+  InstrPrty:
+    $ref: ./Priority2Code.yaml
+  ClrChanl:
+    $ref: ./ClearingChannel2Code.yaml
+  SvcLvl:
+    $ref: ./ServiceLevel8Choice.yaml
+  LclInstrm:
+    $ref: ./LocalInstrument2Choice.yaml
+  CtgyPurp:
+    $ref: ./CategoryPurpose1Choice.yaml

@@ -1,0 +1,9 @@
+title: GenericIdentification3
+type: object
+properties:
+  Id:
+    $ref: ./Max35Text.yaml
+  Issr:
+    $ref: ./Max35Text.yaml
+required:
+  - Id

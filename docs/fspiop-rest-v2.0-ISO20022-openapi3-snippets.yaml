@@ -1,0 +1,3440 @@
+openapi: 3.0.2
+info:
+  version: 2.0-draft
+  title: Open API for FSP Interoperability (FSPIOP)
+  description: >-
+    Revision date: 2023-11-23 Based on [API Definition updated on 2020-05-19
+    Version
+    1.1](https://github.com/mojaloop/mojaloop-specification/blob/main/documents/v1.1-document-set/API%20Definition_v1.1.pdf).
+
+    This is implementation friendly version of the API definition.
+
+    It includes the below definitions needed for third-party functionality. -
+    AuthenticationType
+      - U2F enum
+    - AuthenticationValue
+      - oneOf is changed to anyOf
+      - new element is added U2FPinValue
+    - New element U2FPIN
+
+    **Note:** The API supports a maximum size of 65536 bytes (64 Kilobytes) in
+    the HTTP header.
+  license:
+    name: CC BY-ND 4.0
+    url: https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md
+  contact:
+    name: Sam Kummary
+    url: https://github.com/mojaloop/mojaloop-specification/issues
+servers:
+  - url: protocol://hostname:<port>/switch/
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+paths:
+  /parties/{Type}/{ID}:
+    parameters:
+      - $ref: "#/components/parameters/Type"
+      - $ref: "#/components/parameters/ID"
+      - $ref: "#/components/parameters/Content-Type"
+      - $ref: "#/components/parameters/Date"
+      - $ref: "#/components/parameters/X-Forwarded-For"
+      - $ref: "#/components/parameters/FSPIOP-Source"
+      - $ref: "#/components/parameters/FSPIOP-Destination"
+      - $ref: "#/components/parameters/FSPIOP-Encryption"
+      - $ref: "#/components/parameters/FSPIOP-Signature"
+      - $ref: "#/components/parameters/FSPIOP-URI"
+      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+    get:
+      description: >-
+        The HTTP request `GET /parties/{Type}/{ID}` (or `GET
+        /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding
+        the requested Party, defined by `{Type}`, `{ID}` and optionally
+        `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET
+        /parties/BUSINESS/shoecompany/employee1`).
+      summary: Look up party information
+      tags:
+        - parties
+      operationId: PartiesByTypeAndID
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+    put:
+      description: >-
+        The callback `PUT /parties/{Type}/{ID}` (or `PUT
+        /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a
+        successful result of the Party information lookup.
+      summary: Return party information
+      tags:
+        - parties
+      operationId: PartiesByTypeAndID2
+      parameters:
+        - $ref: "#/components/parameters/Content-Length"
+      requestBody:
+        description: Party information returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/GetParties_IdentificationVerificationReportV03
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /parties/{Type}/{ID}/error:
+    put:
+      description: >-
+        If the server is unable to find Party information of the provided
+        identity, or another processing error occurred, the error callback `PUT
+        /parties/{Type}/{ID}/error` (or `PUT /parties/{Type}/{ID}/{SubI}/error`)
+        is used.
+      summary: Return party information error
+      tags:
+        - parties
+      operationId: PartiesErrorByTypeAndID
+      parameters:
+        - $ref: "#/components/parameters/Type"
+        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the error returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/GetPartiesError_IdentificationVerificationReportV03
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /parties/{Type}/{ID}/{SubId}:
+    parameters:
+      - $ref: "#/components/parameters/Type"
+      - $ref: "#/components/parameters/ID"
+      - $ref: "#/components/parameters/SubId"
+      - $ref: "#/components/parameters/Content-Type"
+      - $ref: "#/components/parameters/Date"
+      - $ref: "#/components/parameters/X-Forwarded-For"
+      - $ref: "#/components/parameters/FSPIOP-Source"
+      - $ref: "#/components/parameters/FSPIOP-Destination"
+      - $ref: "#/components/parameters/FSPIOP-Encryption"
+      - $ref: "#/components/parameters/FSPIOP-Signature"
+      - $ref: "#/components/parameters/FSPIOP-URI"
+      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+    get:
+      description: >-
+        The HTTP request `GET /parties/{Type}/{ID}` (or `GET
+        /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding
+        the requested Party, defined by `{Type}`, `{ID}` and optionally
+        `{SubId}` (for example, `GET /parties/MSISDN/123456789`, or `GET
+        /parties/BUSINESS/shoecompany/employee1`).
+      summary: Look up party information
+      tags:
+        - parties
+      operationId: PartiesSubIdByTypeAndID
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+    put:
+      description: >-
+        The callback `PUT /parties/{Type}/{ID}` (or `PUT
+        /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a
+        successful result of the Party information lookup.
+      summary: Return party information
+      tags:
+        - parties
+      operationId: PartiesSubIdByTypeAndIDPut
+      parameters:
+        - $ref: "#/components/parameters/Content-Length"
+      requestBody:
+        description: Party information returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/GetParties_IdentificationVerificationReportV03
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /parties/{Type}/{ID}/{SubId}/error:
+    put:
+      description: >-
+        If the server is unable to find Party information of the provided
+        identity, or another processing error occurred, the error callback `PUT
+        /parties/{Type}/{ID}/error` (or `PUT
+        /parties/{Type}/{ID}/{SubId}/error`) is used.
+      summary: Return party information error
+      tags:
+        - parties
+      operationId: PartiesSubIdErrorByTypeAndID
+      parameters:
+        - $ref: "#/components/parameters/Type"
+        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/SubId"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the error returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/GetPartiesError_IdentificationVerificationReportV03
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /quotes:
+    post:
+      description: >-
+        The HTTP request `POST /quotes` is used to request the creation of a
+        quote for the provided financial transaction in the server.
+      summary: Calculate quote
+      tags:
+        - quotes
+      operationId: Quotes
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the quote to be created.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TermsRequest_FIToFICustomerCreditProposal"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /quotes/{ID}:
+    parameters:
+      - $ref: "#/components/parameters/ID"
+      - $ref: "#/components/parameters/Content-Type"
+      - $ref: "#/components/parameters/Date"
+      - $ref: "#/components/parameters/X-Forwarded-For"
+      - $ref: "#/components/parameters/FSPIOP-Source"
+      - $ref: "#/components/parameters/FSPIOP-Destination"
+      - $ref: "#/components/parameters/FSPIOP-Encryption"
+      - $ref: "#/components/parameters/FSPIOP-Signature"
+      - $ref: "#/components/parameters/FSPIOP-URI"
+      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+    get:
+      description: >-
+        The HTTP request `GET /quotes/{ID}` is used to get information regarding
+        a quote created or requested earlier. The `{ID}` in the URI should
+        contain the `quoteId` that was used for the creation of the quote.
+      summary: Retrieve quote information
+      tags:
+        - quotes
+      operationId: QuotesByID
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+    put:
+      description: >-
+        The callback `PUT /quotes/{ID}` is used to inform the client of a
+        requested or created quote. The `{ID}` in the URI should contain the
+        `quoteId` that was used for the creation of the quote, or the `{ID}`
+        that was used in the `GET /quotes/{ID}` request.
+      summary: Return quote information
+      tags:
+        - quotes
+      operationId: QuotesByID1
+      parameters:
+        - $ref: "#/components/parameters/Content-Length"
+      requestBody:
+        description: Quote information returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/TermsResponse_FIToFICustomerCreditConfirmation
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /quotes/{ID}/error:
+    put:
+      description: >-
+        If the server is unable to find or create a quote, or some other
+        processing error occurs, the error callback `PUT /quotes/{ID}/error` is
+        used. The `{ID}` in the URI should contain the `quoteId` that was used
+        for the creation of the quote, or the `{ID}` that was used in the `GET
+        /quotes/{ID}` request.
+      summary: Return quote information error
+      tags:
+        - quotes
+      operationId: QuotesByIDAndError
+      parameters:
+        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the error returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PacsError_FIToFIPaymentStatusReportV15"
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /transfers:
+    post:
+      description: >-
+        The HTTP request `POST /transfers` is used to request the creation of a
+        transfer for the next ledger, and a financial transaction for the Payee
+        FSP.
+      summary: Perform transfer
+      tags:
+        - transfers
+      operationId: transfers
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the transfer to be created.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Execute_FIToFICustomerCreditTransferV13"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /transfers/{ID}:
+    parameters:
+      - $ref: "#/components/parameters/ID"
+      - $ref: "#/components/parameters/Content-Type"
+      - $ref: "#/components/parameters/Date"
+      - $ref: "#/components/parameters/X-Forwarded-For"
+      - $ref: "#/components/parameters/FSPIOP-Source"
+      - $ref: "#/components/parameters/FSPIOP-Destination"
+      - $ref: "#/components/parameters/FSPIOP-Encryption"
+      - $ref: "#/components/parameters/FSPIOP-Signature"
+      - $ref: "#/components/parameters/FSPIOP-URI"
+      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+    get:
+      description: >-
+        The HTTP request `GET /transfers/{ID}` is used to get information
+        regarding a transfer created or requested earlier. The `{ID}` in the URI
+        should contain the `transferId` that was used for the creation of the
+        transfer.
+      summary: Retrieve transfer information
+      tags:
+        - transfers
+      operationId: TransfersByIDGet
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+    patch:
+      description: >-
+        The HTTP request PATCH /transfers/<ID> is used by a Switch to update the
+        state of a previously reserved transfer, if the Payee FSP has requested
+        a commit notification when the Switch has completed processing of the
+        transfer. The <ID> in the URI should contain the transferId that was
+        used for the creation of the transfer. Please note that this request
+        does not generate a callback.
+      summary: Return transfer information
+      tags:
+        - transfers
+      operationId: TransfersByIDPatch
+      parameters:
+        - $ref: "#/components/parameters/Content-Length"
+      requestBody:
+        description: Transfer notification upon completion.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15"
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+    put:
+      description: >-
+        The callback `PUT /transfers/{ID}` is used to inform the client of a
+        requested or created transfer. The `{ID}` in the URI should contain the
+        `transferId` that was used for the creation of the transfer, or the
+        `{ID}` that was used in the `GET /transfers/{ID}` request.
+      summary: Return transfer information
+      tags:
+        - transfers
+      operationId: TransfersByIDPut
+      parameters:
+        - $ref: "#/components/parameters/Content-Length"
+      requestBody:
+        description: Transfer information returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15"
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /transfers/{ID}/error:
+    put:
+      description: >-
+        If the server is unable to find or create a transfer, or another
+        processing error occurs, the error callback `PUT /transfers/{ID}/error`
+        is used. The `{ID}` in the URI should contain the `transferId` that was
+        used for the creation of the transfer, or the `{ID}` that was used in
+        the `GET /transfers/{ID}`.
+      summary: Return transfer information error
+      tags:
+        - transfers
+      operationId: TransfersByIDAndError
+      parameters:
+        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the error returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PacsError_FIToFIPaymentStatusReportV15"
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /fxQuotes:
+    post:
+      description: >-
+        The HTTP request `POST /fxQuotes` is used to ask an FXP to provide a
+        quotation for a currency conversion.
+      summary: Calculate FX quote
+      tags:
+        - fxQuotes
+      operationId: FxQuotesPost
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the FX quote to be created.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FxRequest_FICreditTransferProposal"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /fxQuotes/{ID}:
+    parameters:
+      - $ref: "#/components/parameters/ID"
+      - $ref: "#/components/parameters/Content-Type"
+      - $ref: "#/components/parameters/Date"
+      - $ref: "#/components/parameters/X-Forwarded-For"
+      - $ref: "#/components/parameters/FSPIOP-Source"
+      - $ref: "#/components/parameters/FSPIOP-Destination"
+      - $ref: "#/components/parameters/FSPIOP-Encryption"
+      - $ref: "#/components/parameters/FSPIOP-Signature"
+      - $ref: "#/components/parameters/FSPIOP-URI"
+      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+    get:
+      description: >-
+        The HTTP request `GET /fxQuotes/{ID}` is used to request information
+        regarding a request for quotation for a  currency conversion which the
+        sender has previously issued. The `{ID}` in the URI should contain the
+        `conversionRequestId` that was used for the creation of the quote.
+      summary: Retrieve FX quote information
+      tags:
+        - fxQuotes
+      operationId: FxQuotesByIDGet
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+    put:
+      description: >-
+        The callback `PUT /fxQuotes/{ID}` is used to inform the requester about
+        the outcome of a request for quotation for a currency conversion.  The
+        `{ID}` in the URI should contain the `conversionRequestId` that was used
+        for the creation of the FX quote, or the `{ID}` that was used in the
+        `GET /fxQuotes/{ID}` request.
+      summary: Return FX quote information
+      tags:
+        - fxQuotes
+      operationId: FxQuotesByIdPut
+      parameters:
+        - $ref: "#/components/parameters/Content-Length"
+      requestBody:
+        description: FX Quote information returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FxResponse_FICreditTransferConfirmation"
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /fxQuotes/{ID}/error:
+    put:
+      description: >-
+        If the FXP is unable to find or create a FX quote, or some other
+        processing error occurs, the error callback `PUT /fxQuotes/{ID}/error`
+        is used. The `{ID}` in the URI should contain the `conversionRequestId`
+        that was used for the creation of the FX quote, or the `{ID}` that was
+        used in the `GET /fxQuotes/{ID}` request.
+      summary: Return FX quote information error
+      tags:
+        - fxQuotes
+      operationId: FxQuotesByIDAndErrorPut
+      parameters:
+        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the error returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PacsError_FIToFIPaymentStatusReportV15"
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /fxTransfers:
+    post:
+      description: >-
+        The HTTP request `POST /fxTransfers` is used to ask an FXP to confirm
+        the execution of an agreed currency conversion.
+      summary: Perform FX transfer
+      tags:
+        - fxTransfers
+      operationId: FxTransfersPost
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the FX transfer to be created.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/Fxecute_FinancialInstitutionCreditTransferV12
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /fxTransfers/{ID}:
+    parameters:
+      - $ref: "#/components/parameters/ID"
+      - $ref: "#/components/parameters/Content-Type"
+      - $ref: "#/components/parameters/Date"
+      - $ref: "#/components/parameters/X-Forwarded-For"
+      - $ref: "#/components/parameters/FSPIOP-Source"
+      - $ref: "#/components/parameters/FSPIOP-Destination"
+      - $ref: "#/components/parameters/FSPIOP-Encryption"
+      - $ref: "#/components/parameters/FSPIOP-Signature"
+      - $ref: "#/components/parameters/FSPIOP-URI"
+      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+    get:
+      description: >-
+        The HTTP request `GET /fxTransfers/{ID}` s used to request information
+        regarding a request for confirmation of a currency conversion which the
+        sender has previously issued. The `{ID}` in the URI should contain the
+        `commitRequestId` that was used for the creation of the FX transfer.
+      summary: Retrieve FX transfer information
+      tags:
+        - fxTransfers
+      operationId: FxTransfersByIDGet
+      parameters:
+        - $ref: "#/components/parameters/Accept"
+      responses:
+        "202":
+          $ref: "#/components/responses/202"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+    patch:
+      description: >-
+        The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester
+        about the final determination by the switch of the transfer a request
+        for execution of a currency conversion. The <ID> in the URI should
+        contain the commitRequestId that was used for the creation of the FX
+        transfer. Please note that this request does not generate a callback.
+      summary: Return FX transfer information
+      tags:
+        - fxTransfers
+      operationId: FxTransfersByIDPatch
+      parameters:
+        - $ref: "#/components/parameters/Content-Length"
+      requestBody:
+        description: Transfer notification upon completion.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15"
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+    put:
+      description: >-
+        The callback `PUT /fxTransfers/{ID}` is used to inform the requester
+        about the outcome of a request for execution of a currency conversion.
+        The `{ID}` in the URI should contain the `commitRequestId` that was used
+        for the creation of the FX transfer, or the `{ID}` that was used in the
+        `GET /fxTransfers/{ID}` request.
+      summary: Return FX transfer information
+      tags:
+        - fxTransfers
+      operationId: FxTransfersByIDPut
+      parameters:
+        - $ref: "#/components/parameters/Content-Length"
+      requestBody:
+        description: Transfer information returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15"
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+  /fxTransfers/{ID}/error:
+    put:
+      description: >-
+        If the switch or FXP is unable to find or create a FX transfer, or
+        another processing error occurs, the error callback `PUT
+        /fxTransfers/{ID}/error` is used. The `{ID}` in the URI should contain
+        the `commitRequestId` that was used for the creation of the FX transfer,
+        or the `{ID}` that was used in the `GET /fxTransfers/{ID}`.
+      summary: Return FX transfer information error
+      tags:
+        - fxTransfers
+      operationId: FxTransfersByIDAndErrorPut
+      parameters:
+        - $ref: "#/components/parameters/ID"
+        - $ref: "#/components/parameters/Content-Length"
+        - $ref: "#/components/parameters/Content-Type"
+        - $ref: "#/components/parameters/Date"
+        - $ref: "#/components/parameters/X-Forwarded-For"
+        - $ref: "#/components/parameters/FSPIOP-Source"
+        - $ref: "#/components/parameters/FSPIOP-Destination"
+        - $ref: "#/components/parameters/FSPIOP-Encryption"
+        - $ref: "#/components/parameters/FSPIOP-Signature"
+        - $ref: "#/components/parameters/FSPIOP-URI"
+        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      requestBody:
+        description: Details of the error returned.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PacsError_FIToFIPaymentStatusReportV15"
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+components:
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      schema:
+        type: string
+      description: >-
+        The `Accept` header field indicates the version of the API the client
+        would like the server to use.
+    Content-Length:
+      name: Content-Length
+      in: header
+      required: false
+      schema:
+        type: integer
+      description: >-
+        The `Content-Length` header field indicates the anticipated size of the
+        payload body. Only sent if there is a body.
+
+
+        **Note:** The API supports a maximum size of 5242880 bytes (5
+        Megabytes).
+    Content-Type:
+      name: Content-Type
+      in: header
+      schema:
+        type: string
+      required: true
+      description: >-
+        The `Content-Type` header indicates the specific version of the API used
+        to send the payload body.
+    Date:
+      name: Date
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The `Date` header field indicates the date when the request was sent.
+    FSPIOP-Destination:
+      name: FSPIOP-Destination
+      in: header
+      schema:
+        type: string
+      required: false
+      description: >-
+        The `FSPIOP-Destination` header field is a non-HTTP standard field used
+        by the API for HTTP header based routing of requests and responses to
+        the destination. The field must be set by the original sender of the
+        request if the destination is known (valid for all services except GET
+        /parties) so that any entities between the client and the server do not
+        need to parse the payload for routing purposes. If the destination is
+        not known (valid for service GET /parties), the field should be left
+        empty.
+    FSPIOP-Encryption:
+      name: FSPIOP-Encryption
+      in: header
+      schema:
+        type: string
+      required: false
+      description: >-
+        The `FSPIOP-Encryption` header field is a non-HTTP standard field used
+        by the API for applying end-to-end encryption of the request.
+    FSPIOP-HTTP-Method:
+      name: FSPIOP-HTTP-Method
+      in: header
+      schema:
+        type: string
+      required: false
+      description: >-
+        The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used
+        by the API for signature verification, should contain the service HTTP
+        method. Required if signature verification is used, for more
+        information, see [the API Signature
+        document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set).
+    FSPIOP-Signature:
+      name: FSPIOP-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+      description: >-
+        The `FSPIOP-Signature` header field is a non-HTTP standard field used by
+        the API for applying an end-to-end request signature.
+    FSPIOP-Source:
+      name: FSPIOP-Source
+      in: header
+      schema:
+        type: string
+      required: true
+      description: >-
+        The `FSPIOP-Source` header field is a non-HTTP standard field used by
+        the API for identifying the sender of the HTTP request. The field should
+        be set by the original sender of the request. Required for routing and
+        signature verification (see header field `FSPIOP-Signature`).
+    FSPIOP-URI:
+      name: FSPIOP-URI
+      in: header
+      schema:
+        type: string
+      required: false
+      description: >-
+        The `FSPIOP-URI` header field is a non-HTTP standard field used by the
+        API for signature verification, should contain the service URI. Required
+        if signature verification is used, for more information, see [the API
+        Signature
+        document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set).
+    ID:
+      name: ID
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The identifier value.
+    SubId:
+      name: SubId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: >-
+        A sub-identifier of the party identifier, or a sub-type of the party
+        identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`.
+    Type:
+      name: Type
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`.
+    X-Forwarded-For:
+      name: X-Forwarded-For
+      in: header
+      schema:
+        type: string
+      required: false
+      description: >-
+        The `X-Forwarded-For` header field is an unofficially accepted standard
+        used for informational purposes of the originating client IP address, as
+        a request might pass multiple proxies, firewalls, and so on. Multiple
+        `X-Forwarded-For` values should be expected and supported by
+        implementers of the API.
+
+
+        **Note:** An alternative to `X-Forwarded-For` is defined in [RFC
+        7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
+        7239 is less-used and supported than `X-Forwarded-For`.
+  responses:
+    "200":
+      description: OK
+    "202":
+      description: Accepted
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInformationResponse"
+      headers:
+        Content-Length:
+          $ref: "#/components/headers/Content-Length"
+        Content-Type:
+          $ref: "#/components/headers/Content-Type"
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInformationResponse"
+      headers:
+        Content-Length:
+          $ref: "#/components/headers/Content-Length"
+        Content-Type:
+          $ref: "#/components/headers/Content-Type"
+    "403":
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInformationResponse"
+      headers:
+        Content-Length:
+          $ref: "#/components/headers/Content-Length"
+        Content-Type:
+          $ref: "#/components/headers/Content-Type"
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInformationResponse"
+      headers:
+        Content-Length:
+          $ref: "#/components/headers/Content-Length"
+        Content-Type:
+          $ref: "#/components/headers/Content-Type"
+    "405":
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInformationResponse"
+      headers:
+        Content-Length:
+          $ref: "#/components/headers/Content-Length"
+        Content-Type:
+          $ref: "#/components/headers/Content-Type"
+    "406":
+      description: Not Acceptable
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInformationResponse"
+      headers:
+        Content-Length:
+          $ref: "#/components/headers/Content-Length"
+        Content-Type:
+          $ref: "#/components/headers/Content-Type"
+    "501":
+      description: Not Implemented
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInformationResponse"
+      headers:
+        Content-Length:
+          $ref: "#/components/headers/Content-Length"
+        Content-Type:
+          $ref: "#/components/headers/Content-Type"
+    "503":
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorInformationResponse"
+      headers:
+        Content-Length:
+          $ref: "#/components/headers/Content-Length"
+        Content-Type:
+          $ref: "#/components/headers/Content-Type"
+  headers:
+    Content-Length:
+      required: false
+      schema:
+        type: integer
+      description: >-
+        The `Content-Length` header field indicates the anticipated size of the
+        payload body. Only sent if there is a body.
+
+
+        **Note:** The API supports a maximum size of 5242880 bytes (5
+        Megabytes).
+    Content-Type:
+      schema:
+        type: string
+      required: true
+      description: >-
+        The `Content-Type` header indicates the specific version of the API used
+        to send the payload body.
+  schemas:
+    AccountIdentification4Choice:
+      title: AccountIdentification4Choice
+      type: object
+      description: >
+        Specifies the unique identification of an account as assigned by the
+        account servicer.
+      properties:
+        IBAN:
+          $ref: "#/components/schemas/IBAN2007Identifier"
+        Othr:
+          $ref: "#/components/schemas/GenericAccountIdentification1"
+      oneOf:
+        - required:
+            - IBAN
+        - required:
+            - Othr
+    AccountSchemeName1Choice:
+      title: AccountSchemeName1Choice
+      type: object
+      description: |
+        AccountSchemeName1Choice
+        Sets of elements to identify a name of the identification scheme.
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalAccountIdentification1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    ActiveCurrencyAndAmount:
+      title: ActiveCurrencyAndAmount
+      type: object
+      description: |
+        A number of monetary units specified in an active currency where the
+        unit of currency is explicit and compliant with ISO 4217.
+      properties:
+        ActiveCurrencyAndAmount:
+          $ref: "#/components/schemas/ActiveCurrencyAndAmount_SimpleType"
+        Ccy:
+          $ref: "#/components/schemas/ActiveCurrencyCode"
+      required:
+        - ActiveCurrencyAndAmount
+        - Ccy
+    ActiveCurrencyAndAmount_SimpleType:
+      title: ActiveCurrencyAndAmount_SimpleType
+      type: string
+      pattern: ^/^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$/g$
+    ActiveCurrencyCode:
+      title: ActiveCurrencyCode
+      type: string
+      pattern: ^ [A-Z]{3,3}$
+      description: >
+        A code allocated to a currency by a Maintenance Agency under an
+        international identification scheme as described in the latest edition
+        of the international standard ISO 4217 "Codes for the representation of
+        currencies and funds".
+    ActiveOrHistoricCurrencyAndAmount:
+      title: ActiveOrHistoricCurrencyAndAmount
+      type: object
+      description: >
+        A number of monetary units specified in an active or a historic currency
+        where the unit of currency is explicit and compliant with ISO 4217.
+      properties:
+        ActiveOrHistoricCurrencyAndAmount:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount_SimpleType"
+        Ccy:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyCode"
+      required:
+        - ActiveOrHistoricCurrencyAndAmount
+        - Ccy
+    ActiveOrHistoricCurrencyAndAmount_SimpleType:
+      title: ActiveOrHistoricCurrencyAndAmount_SimpleType
+      type: string
+      pattern: ^/^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$/g$
+    ActiveOrHistoricCurrencyCode:
+      title: ActiveOrHistoricCurrencyCode
+      type: string
+      description: >
+        A code allocated to a currency by a Maintenance Agency under an
+        international identification scheme, as described in the latest edition
+        of the international standard ISO 4217 "Codes for the representation of
+        currencies and funds".
+      pattern: ^ [A-Z]{3,3}$
+    AddressType2Code:
+      description: |
+        AddressType2Code
+        Specifies the type of address.
+      enum:
+        - ADDR
+        - PBOX
+        - HOME
+        - BIZZ
+        - MLTO
+        - DLVY
+      type: string
+    AddressType3Choice:
+      title: AddressType3Choice
+      type: object
+      description: |
+        AddressType3Choice
+        Choice of formats for the type of address.
+      properties:
+        Cd:
+          $ref: "#/components/schemas/AddressType2Code"
+        Prtry:
+          $ref: "#/components/schemas/GenericIdentification30"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    AnyBICDec2014Identifier:
+      title: AnyBICDec2014Identifier
+      type: string
+      description: >
+        AnyBICDec2014Identifier
+
+        Code allocated to a financial or non-financial institution by the
+
+        ISO 9362 Registration Authority, as described in ISO 9362: 2014
+
+        - "Banking - Banking telecommunication messages - Business identifier
+        code (BIC)".
+      pattern: ^ [A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
+    BICFIDec2014Identifier:
+      title: BICFIDec2014Identifier
+      type: string
+      description: >
+        BICFIDec2014Identifier
+
+        Code allocated to a financial institution by the ISO 9362 Registration
+
+        Authority as described in ISO 9362: 2014
+
+        - "Banking - Banking telecommunication messages - Business identifier
+        code (BIC)".
+      pattern: ^ [A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
+    BaseOneRate:
+      title: BaseOneRate
+      type: string
+      description: |
+        BaseOneRate
+        Rate expressed as a decimal, for example, 0.7 is 7/10 and 70%.
+      pattern: ^/^(?=[\d\-\.\,]{1,11}$)([\d\-\,\.]{1,10})?$/g$
+    BranchAndFinancialInstitutionIdentification6:
+      title: BranchAndFinancialInstitutionIdentification6
+      type: object
+      description: >
+        BranchAndFinancialInstitutionIdentification6
+
+        Unique and unambiguous identification of a financial institution or a
+        branch of a financial institution.
+      properties:
+        FinInstnId:
+          $ref: "#/components/schemas/FinancialInstitutionIdentification18"
+        BrnchId:
+          $ref: "#/components/schemas/BranchData3"
+      required:
+        - FinInstnId
+    BranchAndFinancialInstitutionIdentification8:
+      title: BranchAndFinancialInstitutionIdentification8
+      type: object
+      description: >
+        BranchAndFinancialInstitutionIdentification8
+
+        Unique and unambiguous identification of a financial institution or a
+        branch of a financial institution.
+      properties:
+        FinInstnId:
+          $ref: "#/components/schemas/FinancialInstitutionIdentification23"
+        BrnchId:
+          $ref: "#/components/schemas/BranchData5"
+      required:
+        - FinInstnId
+    BranchData3:
+      title: BranchData3
+      type: object
+      description: >
+        Information that locates and identifies a specific branch of a financial
+        institution.
+      properties:
+        Id:
+          $ref: "#/components/schemas/Max35Text"
+        LEI:
+          $ref: "#/components/schemas/LEIIdentifier"
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+        PstlAdr:
+          $ref: "#/components/schemas/PostalAddress24"
+    BranchData5:
+      title: BranchData5
+      description: >
+        Information that locates and identifies a specific branch of a financial
+        institution.
+      type: object
+      properties:
+        Id:
+          $ref: "#/components/schemas/Max35Text"
+        LEI:
+          $ref: "#/components/schemas/LEIIdentifier"
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+        PstlAdr:
+          $ref: "#/components/schemas/PostalAddress27"
+    CashAccount40:
+      title: CashAccount40
+      type: object
+      description: |
+        CashAccount40
+        Provides the details to identify an account.
+      properties:
+        Id:
+          $ref: "#/components/schemas/AccountIdentification4Choice"
+        Tp:
+          $ref: "#/components/schemas/CashAccountType2Choice"
+        Ccy:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyCode"
+        Nm:
+          $ref: "#/components/schemas/Max70Text"
+        Prxy:
+          $ref: "#/components/schemas/ProxyAccountIdentification1"
+    CashAccountType2Choice:
+      title: CashAccountType2Choice
+      description: |
+        CashAccountType2Choice
+        Specifies the nature, or use of the account.
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalCashAccountType1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    CategoryPurpose1Choice:
+      title: CategoryPurpose1Choice
+      description: >
+        CategoryPurpose1Choice
+
+        Contains details about high level purpose of the mandate based on a set
+        of pre-defined categories.
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalCategoryPurpose1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    ChargeBearerType1Code:
+      title: ChargeBearerType1Code
+      description: >
+        Specifies which party(ies) will pay charges due for processing of the
+        instruction.
+
+        DEBT BorneByDebtor All transaction charges are to be borne by the
+        debtor.
+
+        CRED BorneByCreditor All transaction charges are to be borne by the
+        creditor.
+
+        SHAR Shared In a credit transfer context, means that transaction charges
+        on the sender side are to be borne by the debtor, transaction charges on
+        the receiver side are to be borne by the creditor. In a direct debit
+        context, means that transaction charges on the sender side are to be
+        borne by the creditor, transaction charges on the receiver
+
+        SLEV FollowingServiceLevel Charges are to be applied following the rules
+        agreed in the service level.
+      type: string
+      enum:
+        - DEBT
+        - CRED
+        - SHAR
+        - SLEV
+    ChargeType3Choice:
+      title: ChargeType3Choice
+      description: ChargeType3Choice Specifies the type of charge.
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalChargeType1Code"
+        Prtry:
+          $ref: "#/components/schemas/GenericIdentification3"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    Charges16:
+      title: Charges16
+      description: |
+        Charges16
+        Unsure on description.
+      type: object
+      properties:
+        Amt:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+        Agt:
+          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+        Tp:
+          $ref: "#/components/schemas/ChargeType3Choice"
+      required:
+        - Amt
+        - Agt
+    ClearingChannel2Code:
+      title: ClearingChannel2Code
+      description: >
+        Specifies the clearing channel for the routing of the transaction, as
+        part of the payment type identification.
+
+        RTGS RealTimeGrossSettlementSystem Clearing channel is a real-time gross
+        settlement system.
+
+        RTNS RealTimeNetSettlementSystem Clearing channel is a real-time net
+        settlement system.
+
+        MPNS MassPaymentNetSystem Clearing channel is a mass payment  net
+        settlement system.
+
+        BOOK BookTransfer Payment through internal book transfer.
+      type: string
+      enum:
+        - RTGS
+        - RTNS
+        - MPNS
+        - BOOK
+    ClearingSystemIdentification2Choice:
+      title: ClearingSystemIdentification2Choice
+      description: |
+        ClearingSystemIdentification2Choice
+        Choice of a clearing system identifier.
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalClearingSystemIdentification1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    ClearingSystemMemberIdentification2:
+      title: ClearingSystemMemberIdentification2
+      description: >
+        Unique identification, as assigned by a clearing system, to
+        unambiguously identify a member of the clearing system.
+      type: object
+      properties:
+        ClrSysId:
+          $ref: "#/components/schemas/ClearingSystemIdentification2Choice"
+        MmbId:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - MmbId
+    Contact13:
+      title: Contact13
+      description: |
+        Specifies the details of the contact person.
+      type: object
+      properties:
+        NmPrfx:
+          $ref: "#/components/schemas/NamePrefix2Code"
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+        PhneNb:
+          $ref: "#/components/schemas/PhoneNumber"
+        MobNb:
+          $ref: "#/components/schemas/PhoneNumber"
+        FaxNb:
+          $ref: "#/components/schemas/PhoneNumber"
+        URLAdr:
+          $ref: "#/components/schemas/Max2048Text"
+        EmailAdr:
+          $ref: "#/components/schemas/Max256Text"
+        EmailPurp:
+          $ref: "#/components/schemas/Max35Text"
+        JobTitl:
+          $ref: "#/components/schemas/Max35Text"
+        Rspnsblty:
+          $ref: "#/components/schemas/Max35Text"
+        Dept:
+          $ref: "#/components/schemas/Max70Text"
+        Othr:
+          $ref: "#/components/schemas/OtherContact1"
+        PrefrdMtd:
+          $ref: "#/components/schemas/PreferredContactMethod2Code"
+    Contact4:
+      title: Contact4
+      description: |
+        Specifies the details of the contact person.
+      type: object
+      properties:
+        NmPrfx:
+          $ref: "#/components/schemas/NamePrefix2Code"
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+        PhneNb:
+          $ref: "#/components/schemas/PhoneNumber"
+        MobNb:
+          $ref: "#/components/schemas/PhoneNumber"
+        FaxNb:
+          $ref: "#/components/schemas/PhoneNumber"
+        EmailAdr:
+          $ref: "#/components/schemas/Max2048Text"
+        EmailPurp:
+          $ref: "#/components/schemas/Max35Text"
+        JobTitl:
+          $ref: "#/components/schemas/Max35Text"
+        Rspnsblty:
+          $ref: "#/components/schemas/Max35Text"
+        Dept:
+          $ref: "#/components/schemas/Max70Text"
+        Othr:
+          $ref: "#/components/schemas/OtherContact1"
+        PrefrdMtd:
+          $ref: "#/components/schemas/PreferredContactMethod1Code"
+    CountryCode:
+      title: CountryCode
+      type: string
+      pattern: ^ [A-Z]{2,2}$
+    CreditTransferTransaction67:
+      title: CreditTransferTransaction67
+      description: >
+        Provides further details specific to the individual transaction(s)
+        included in the message.
+      type: object
+      properties:
+        PmtId:
+          $ref: "#/components/schemas/PaymentIdentification13"
+        PmtTpInf:
+          $ref: "#/components/schemas/PaymentTypeInformation28"
+        IntrBkSttlmAmt:
+          $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+        InstdAmt:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+        XchgRate:
+          $ref: "#/components/schemas/BaseOneRate"
+        ChrgBr:
+          $ref: "#/components/schemas/ChargeBearerType1Code"
+        ChrgsInf:
+          $ref: "#/components/schemas/Charges16"
+        Dbtr:
+          $ref: "#/components/schemas/PartyIdentification272"
+        DbtrAcct:
+          $ref: "#/components/schemas/CashAccount40"
+        DbtrAgt:
+          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+        CdtrAgt:
+          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+        Cdtr:
+          $ref: "#/components/schemas/PartyIdentification272"
+        CdtrAcct:
+          $ref: "#/components/schemas/CashAccount40"
+        InstrForCdtrAgt:
+          $ref: "#/components/schemas/InstructionForCreditorAgent3"
+        InstrForNxtAgt:
+          $ref: "#/components/schemas/InstructionForNextAgent1"
+        Purp:
+          $ref: "#/components/schemas/Purpose2Choice"
+        RgltryRptg:
+          $ref: "#/components/schemas/RegulatoryReporting3"
+        Tax:
+          $ref: "#/components/schemas/TaxData1"
+        VrfctnOfTerms:
+          $ref: "#/components/schemas/CryptographicLockChoice"
+      required:
+        - PmtId
+        - IntrBkSttlmAmt
+        - ChrgBr
+        - Dbtr
+        - DbtrAgt
+        - CdtrAgt
+        - Cdtr
+    CreditTransferTransaction68:
+      title: CreditTransferTransaction68
+      description: >
+        Provides further details specific to the individual transaction(s)
+        included in the message.
+      type: object
+      properties:
+        PmtId:
+          $ref: "#/components/schemas/PaymentIdentification13"
+        PmtTpInf:
+          $ref: "#/components/schemas/PaymentTypeInformation28"
+        IntrBkSttlmAmt:
+          $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+        Dbtr:
+          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+        DbtrAcct:
+          $ref: "#/components/schemas/CashAccount40"
+        DbtrAgt:
+          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+        CdtrAgt:
+          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+        Cdtr:
+          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+        CdtrAcct:
+          $ref: "#/components/schemas/CashAccount40"
+        InstrForCdtrAgt:
+          $ref: "#/components/schemas/InstructionForCreditorAgent3"
+        Purp:
+          $ref: "#/components/schemas/Purpose2Choice"
+        VrfctnOfTerms:
+          $ref: "#/components/schemas/CryptographicLockChoice"
+      required:
+        - PmtId
+        - IntrBkSttlmAmt
+        - Dbtr
+        - Cdtr
+    CryptographicLockChoice:
+      title: CryptographicLockChoice
+      description: |
+        Unsure on description.
+      type: object
+      properties:
+        IlpV4PrepPacket:
+          $ref: "#/components/schemas/hexBinary"
+        Sh256Sgntr:
+          $ref: "#/components/schemas/Exact32HexBinaryText"
+      oneOf:
+        - required:
+            - IlpV4PrepPacket
+        - required:
+            - Sh256Sgntr
+    DateAndPlaceOfBirth1:
+      title: DateAndPlaceOfBirth1
+      description: |
+        Details about date and place of birth of a person.
+      type: object
+      properties:
+        BirthDt:
+          $ref: "#/components/schemas/ISODate"
+        PrvcOfBirth:
+          $ref: "#/components/schemas/Max35Text"
+        CityOfBirth:
+          $ref: "#/components/schemas/Max35Text"
+        CtryOfBirth:
+          $ref: "#/components/schemas/CountryCode"
+      required:
+        - BirthDt
+        - CityOfBirth
+        - CtryOfBirth
+    DatePeriod2:
+      title: DatePeriod2
+      description: |
+        Range of time defined by a start date and an end date.
+      type: object
+      properties:
+        FrDt:
+          $ref: "#/components/schemas/ISODate"
+        ToDt:
+          $ref: "#/components/schemas/ISODate"
+      required:
+        - FrDt
+        - ToDt
+    ErrorCode:
+      title: ErrorCode
+      type: string
+      pattern: ^[1-9]\d{3}$
+      description: >-
+        The API data type ErrorCode is a JSON String of four characters,
+        consisting of digits only. Negative numbers are not allowed. A leading
+        zero is not allowed. Each error code in the API is a four-digit number,
+        for example, 1234, where the first number (1 in the example) represents
+        the high-level error category, the second number (2 in the example)
+        represents the low-level error category, and the last two numbers (34 in
+        the example) represent the specific error.
+      example: "5100"
+    ErrorDescription:
+      title: ErrorDescription
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Error description string.
+    ErrorInformation:
+      title: ErrorInformation
+      type: object
+      description: Data model for the complex type ErrorInformation.
+      properties:
+        errorCode:
+          $ref: "#/components/schemas/ErrorCode"
+        errorDescription:
+          $ref: "#/components/schemas/ErrorDescription"
+        extensionList:
+          $ref: "#/components/schemas/ExtensionList"
+      required:
+        - errorCode
+        - errorDescription
+    ErrorInformationResponse:
+      title: ErrorInformationResponse
+      type: object
+      description: >-
+        Data model for the complex type object that contains an optional element
+        ErrorInformation used along with 4xx and 5xx responses.
+      properties:
+        errorInformation:
+          $ref: "#/components/schemas/ErrorInformation"
+    Exact32HexBinaryText:
+      title: Exact32HexBinaryText
+      description: |
+        Specifies a hexadecimal string with a length of 32 characters.
+      type: string
+      pattern: ^ ([0-9A-F][0-9A-F]){32}$
+    Exact4AlphaNumericText:
+      title: Exact4AlphaNumericText
+      description: |
+        Specifies an alphanumeric string with a length of 4 characters.
+      type: string
+      pattern: ^ [a-zA-Z0-9]{4}$
+    Execute_FIToFICustomerCreditTransferV13:
+      title: Execute_FIToFICustomerCreditTransferV13
+      type: object
+      properties:
+        GrpHdr:
+          $ref: "#/components/schemas/GroupHeader129"
+        CdtTrfTxInf:
+          $ref: "#/components/schemas/CreditTransferTransaction67"
+      required:
+        - GrpHdr
+        - CdtTrfTxInf
+    Extension:
+      title: Extension
+      type: object
+      description: Data model for the complex type Extension.
+      properties:
+        key:
+          $ref: "#/components/schemas/ExtensionKey"
+        value:
+          $ref: "#/components/schemas/ExtensionValue"
+      required:
+        - key
+        - value
+    ExtensionKey:
+      title: ExtensionKey
+      type: string
+      minLength: 1
+      maxLength: 32
+      description: Extension key.
+    ExtensionList:
+      title: ExtensionList
+      type: object
+      description: >-
+        Data model for the complex type ExtensionList. An optional list of
+        extensions, specific to deployment.
+      properties:
+        extension:
+          type: array
+          items:
+            $ref: "#/components/schemas/Extension"
+          minItems: 1
+          maxItems: 16
+          description: Number of Extension elements.
+      required:
+        - extension
+    ExtensionValue:
+      title: ExtensionValue
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Extension value.
+    ExternalAccountIdentification1Code:
+      title: ExternalAccountIdentification1Code
+      description: >
+        Specifies the external account identification scheme name code in the
+        format of character string with a maximum length of 4 characters.
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalCashAccountType1Code:
+      title: ExternalCashAccountType1Code
+      description: >
+        Specifies the nature, or use, of the cash account in the format of
+        character string with a maximum length of 4 characters.
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalCategoryPurpose1Code:
+      description: >
+        ExternalCategoryPurpose1Code
+
+        Specifies the category purpose, as published in an external category
+        purpose code list.
+
+        External code sets can be downloaded from www.iso20022.org.
+      maxLength: 4
+      minLength: 1
+      type: string
+    ExternalChargeType1Code:
+      title: ExternalChargeType1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalClearingSystemIdentification1Code:
+      title: ExternalClearingSystemIdentification1Code
+      type: string
+      minLength: 1
+      maxLength: 5
+    ExternalCreditorAgentInstruction1Code:
+      title: ExternalCreditorAgentInstruction1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalFinancialInstitutionIdentification1Code:
+      title: ExternalFinancialInstitutionIdentification1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalLocalInstrument1Code:
+      title: ExternalLocalInstrument1Code
+      type: string
+      minLength: 1
+      maxLength: 35
+    ExternalOrganisationIdentification1Code:
+      title: ExternalOrganisationIdentification1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalPaymentTransactionStatus1Code:
+      title: ExternalPaymentTransactionStatus1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalPersonIdentification1Code:
+      title: ExternalPersonIdentification1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalProxyAccountType1Code:
+      title: ExternalProxyAccountType1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalPurpose1Code:
+      title: ExternalPurpose1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalServiceLevel1Code:
+      title: ExternalServiceLevel1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalStatusReason1Code:
+      title: ExternalStatusReason1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    ExternalVerificationReason1Code:
+      title: ExternalVerificationReason1Code
+      type: string
+      minLength: 1
+      maxLength: 4
+    FinancialIdentificationSchemeName1Choice:
+      title: FinancialIdentificationSchemeName1Choice
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalFinancialInstitutionIdentification1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    FinancialInstitutionIdentification18:
+      title: FinancialInstitutionIdentification18
+      type: object
+      properties:
+        BICFI:
+          $ref: "#/components/schemas/BICFIDec2014Identifier"
+        ClrSysMmbId:
+          $ref: "#/components/schemas/ClearingSystemMemberIdentification2"
+        LEI:
+          $ref: "#/components/schemas/LEIIdentifier"
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+        PstlAdr:
+          $ref: "#/components/schemas/PostalAddress24"
+        Othr:
+          $ref: "#/components/schemas/GenericFinancialIdentification1"
+    FinancialInstitutionIdentification23:
+      title: FinancialInstitutionIdentification23
+      type: object
+      properties:
+        BICFI:
+          $ref: "#/components/schemas/BICFIDec2014Identifier"
+        ClrSysMmbId:
+          $ref: "#/components/schemas/ClearingSystemMemberIdentification2"
+        LEI:
+          $ref: "#/components/schemas/LEIIdentifier"
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+        PstlAdr:
+          $ref: "#/components/schemas/PostalAddress27"
+        Othr:
+          $ref: "#/components/schemas/GenericFinancialIdentification1"
+    FxRequest_FICreditTransferProposal:
+      title: FxRequest_FICreditTransferProposal
+      type: object
+      properties:
+        GrpHdr:
+          $ref: "#/components/schemas/GroupHeader113"
+      required:
+        - GrpHdr
+    FxResponse_FICreditTransferConfirmation:
+      title: FxResponse_FICreditTransferConfirmation
+      type: object
+      properties:
+        GrpHdr:
+          $ref: "#/components/schemas/GroupHeader113"
+        CdtTrfTxInf:
+          $ref: "#/components/schemas/CreditTransferTransaction68"
+      required:
+        - GrpHdr
+        - CdtTrfTxInf
+    Fxecute_FinancialInstitutionCreditTransferV12:
+      title: Fxecute_FinancialInstitutionCreditTransferV12
+      type: object
+      properties:
+        GrpHdr:
+          $ref: "#/components/schemas/GroupHeader129"
+        CdtTrfTxInf:
+          $ref: "#/components/schemas/CreditTransferTransaction68"
+      required:
+        - GrpHdr
+        - CdtTrfTxInf
+    GenericAccountIdentification1:
+      title: GenericAccountIdentification1
+      type: object
+      properties:
+        Id:
+          $ref: "#/components/schemas/Max34Text"
+        SchmeNm:
+          $ref: "#/components/schemas/AccountSchemeName1Choice"
+        Issr:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - Id
+    GenericFinancialIdentification1:
+      title: GenericFinancialIdentification1
+      type: object
+      properties:
+        Id:
+          $ref: "#/components/schemas/Max35Text"
+        SchmeNm:
+          $ref: "#/components/schemas/FinancialIdentificationSchemeName1Choice"
+        Issr:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - Id
+    GenericIdentification3:
+      title: GenericIdentification3
+      type: object
+      properties:
+        Id:
+          $ref: "#/components/schemas/Max35Text"
+        Issr:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - Id
+    GenericIdentification30:
+      title: GenericIdentification30
+      type: object
+      properties:
+        Id:
+          $ref: "#/components/schemas/Exact4AlphaNumericText"
+        Issr:
+          $ref: "#/components/schemas/Max35Text"
+        SchmeNm:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - Id
+        - Issr
+    GenericOrganisationIdentification1:
+      title: GenericOrganisationIdentification1
+      type: object
+      properties:
+        Id:
+          $ref: "#/components/schemas/Max35Text"
+        SchmeNm:
+          $ref: "#/components/schemas/OrganisationIdentificationSchemeName1Choice"
+        Issr:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - Id
+    GenericOrganisationIdentification3:
+      title: GenericOrganisationIdentification3
+      type: object
+      properties:
+        Id:
+          $ref: "#/components/schemas/Max256Text"
+        SchmeNm:
+          $ref: "#/components/schemas/OrganisationIdentificationSchemeName1Choice"
+        Issr:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - Id
+    GenericPersonIdentification1:
+      title: GenericPersonIdentification1
+      type: object
+      properties:
+        Id:
+          $ref: "#/components/schemas/Max35Text"
+        SchmeNm:
+          $ref: "#/components/schemas/PersonIdentificationSchemeName1Choice"
+        Issr:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - Id
+    GenericPersonIdentification2:
+      title: GenericPersonIdentification2
+      type: object
+      properties:
+        Id:
+          $ref: "#/components/schemas/Max256Text"
+        SchmeNm:
+          $ref: "#/components/schemas/PersonIdentificationSchemeName1Choice"
+        Issr:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - Id
+    GetPartiesError_IdentificationVerificationReportV03:
+      title: GetPartiesError_IdentificationVerificationReportV03
+      type: object
+      properties:
+        Assgnmt:
+          $ref: "#/components/schemas/IdentificationAssignment3"
+        Rpt:
+          $ref: "#/components/schemas/VerificationReport4"
+        SplmtryData:
+          $ref: "#/components/schemas/SupplementaryData1"
+      required:
+        - Assgnmt
+        - Rpt
+    GetParties_IdentificationVerificationReportV03:
+      title: GetParties_IdentificationVerificationReportV03
+      type: object
+      properties:
+        Assgnmt:
+          $ref: "#/components/schemas/IdentificationAssignment3"
+        Rpt:
+          $ref: "#/components/schemas/VerificationReport4"
+        SplmtryData:
+          $ref: "#/components/schemas/SupplementaryData1"
+      required:
+        - Assgnmt
+        - Rpt
+    GroupHeader113:
+      title: GroupHeader113
+      description: >
+        GroupHeader113
+
+        Set of characteristics shared by all individual transactions included in
+        the message.
+      type: object
+      properties:
+        MsgId:
+          $ref: "#/components/schemas/Max35Text"
+        CreDtTm:
+          $ref: "#/components/schemas/ISODateTime"
+        NbOfTxs:
+          $ref: "#/components/schemas/Max15NumericText"
+        TtlIntrBkSttlmAmt:
+          $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+        SttlmInf:
+          $ref: "#/components/schemas/SettlementInstruction15"
+        PmtTpInf:
+          $ref: "#/components/schemas/PaymentTypeInformation28"
+        CdtTrfTxInf:
+          $ref: "#/components/schemas/CreditTransferTransaction68"
+      required:
+        - MsgId
+        - CreDtTm
+        - NbOfTxs
+        - SttlmInf
+        - CdtTrfTxInf
+    GroupHeader120:
+      title: GroupHeader120
+      description: >
+        GroupHeader120
+
+        Set of characteristics shared by all individual transactions included in
+        the message.
+      type: object
+      properties:
+        MsgId:
+          $ref: "#/components/schemas/Max35Text"
+        CreDtTm:
+          $ref: "#/components/schemas/ISODateTime"
+        TxInfAndSts:
+          $ref: "#/components/schemas/PaymentTransaction163"
+      required:
+        - MsgId
+        - CreDtTm
+    GroupHeader129:
+      title: GroupHeader129
+      description: >
+        GroupHeader129
+
+        Set of characteristics shared by all individual transactions included in
+        the message.
+      type: object
+      properties:
+        MsgId:
+          $ref: "#/components/schemas/Max35Text"
+        CreDtTm:
+          $ref: "#/components/schemas/ISODateTime"
+        PmtInstrXpryDtTm:
+          $ref: "#/components/schemas/ISODateTime"
+        NbOfTxs:
+          $ref: "#/components/schemas/Max15NumericText"
+        SttlmInf:
+          $ref: "#/components/schemas/SettlementInstruction15"
+        CdtTrfTxInf:
+          $ref: "#/components/schemas/CreditTransferTransaction67"
+      required:
+        - MsgId
+        - CreDtTm
+        - NbOfTxs
+        - SttlmInf
+        - CdtTrfTxInf
+    IBAN2007Identifier:
+      title: IBAN2007Identifier
+      description: >
+        IBAN2007Identifier
+
+        The International Bank Account Number is a code used internationally by
+        financial institutions to uniquely identify the account of a customer at
+        a financial institution as described in the 2007 edition of the ISO
+        13616 standard "Banking and related financial services -
+
+        International Bank Account Number (IBAN)" and replaced by the more
+        recent edition of the standard.
+      type: string
+      pattern: ^ [A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$
+    ISODate:
+      title: ISODate
+      description: |
+        A particular point in the progression of time in a calendar year
+        expressed in the YYYY-MM-DD format. This representation is defined in
+        "XML Schema Part 2: Datatypes Second Edition -
+        W3C Recommendation 28 October 2004" which is aligned with ISO 8601.
+      type: string
+      format: date
+    ISODateTime:
+      title: ISODateTime
+      description: >
+        A particular point in the progression of time defined by a mandatory
+
+        date and a mandatory time component, expressed in either UTC time
+
+        format (YYYY-MM-DDThh:mm:ss.sssZ), local time with UTC offset format
+
+        (YYYY-MM-DDThh:mm:ss.sss+/-hh:mm), or local time format
+
+        (YYYY-MM-DDThh:mm:ss.sss). These representations are defined in
+
+        "XML Schema Part 2: Datatypes Second Edition -
+
+        W3C Recommendation 28 October 2004" which is aligned with ISO 8601.
+
+        Note on the time format:
+
+        1) beginning / end of calendar day
+
+        00:00:00 = the beginning of a calendar day
+
+        24:00:00 = the end of a calendar day
+
+        2) fractions of second in time format
+
+        Decimal fractions of seconds may be included. In this case, the
+
+        involved parties shall agree on the maximum number of digits that are
+        allowed.
+      type: string
+      format: datetime
+    ISOYear:
+      title: ISOYear
+      description: |
+        ISOYear
+        Year represented by YYYY (ISO 8601).
+      type: string
+      pattern: ^\d{4}(Z|([+-]\d{2}:\d{2})){0,1}$
+    IdentificationAssignment3:
+      title: IdentificationAssignment3
+      type: object
+      properties:
+        MsgId:
+          $ref: "#/components/schemas/Max35Text"
+        CreDtTm:
+          $ref: "#/components/schemas/ISODateTime"
+        Assgnr:
+          $ref: "#/components/schemas/Party40Choice"
+        Assgne:
+          $ref: "#/components/schemas/Party40Choice"
+      required:
+        - MsgId
+        - CreDtTm
+        - Assgnr
+        - Assgne
+    IdentificationInformation4:
+      title: IdentificationInformation4
+      type: object
+      properties:
+        Pty:
+          $ref: "#/components/schemas/PartyIdentification135"
+        Acct:
+          $ref: "#/components/schemas/CashAccount40"
+        Agt:
+          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+    IdentificationVerificationIndicator:
+      title: IdentificationVerificationIndicator
+      type: boolean
+    Instruction4Code:
+      title: Instruction4Code
+      description: >
+        Specifies further instructions concerning the processing of a payment
+        instruction, provided by the sending clearing agent to the next
+        agent(s).
+
+        PHOA PhoneNextAgent Please advise/contact next agent by phone.
+
+        TELA TelecomNextAgent Please advise/contact next agent by the most
+        efficient means of telecommunication.
+      type: string
+      enum:
+        - PHOA
+        - TELA
+    InstructionForCreditorAgent3:
+      title: InstructionForCreditorAgent3
+      description: >
+        Further information related to the processing of the payment
+        instruction,
+
+        provided by the initiating party, and intended for the creditor agent
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalCreditorAgentInstruction1Code"
+        InstrInf:
+          $ref: "#/components/schemas/Max140Text"
+    InstructionForNextAgent1:
+      title: InstructionForNextAgent1
+      description: >
+        Further information related to the processing of the payment
+        instruction,
+
+        provided by the initiating party, and intended for the creditor agent
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/Instruction4Code"
+        InstrInf:
+          $ref: "#/components/schemas/Max140Text"
+    LEIIdentifier:
+      title: LEIIdentifier
+      description: |
+        Legal Entity Identifier is a code allocated to a party as described in
+        ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
+        ^([0-9A-Z]{18,18}[0-9]{2,2})$
+      type: string
+      pattern: ^ [A-Z0-9]{18,18}[0-9]{2,2}$
+    LocalInstrument2Choice:
+      title: LocalInstrument2Choice
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalLocalInstrument1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    Max105Text:
+      title: Max105Text
+      description: |
+        Specifies a character string with a maximum length of 105 characters.
+      type: string
+      minLength: 1
+      maxLength: 105
+    Max10Text:
+      title: Max10Text
+      description: |
+        Specifies a character string with a maximum length of 10 characters.
+      type: string
+      minLength: 1
+      maxLength: 10
+    Max128Text:
+      title: Max128Text
+      description: |
+        Specifies a character string with a maximum length of 128 characters.
+      type: string
+      minLength: 1
+      maxLength: 128
+    Max140Text:
+      title: Max140Text
+      description: |
+        Specifies a character string with a maximum length of 140 characters.
+      type: string
+      minLength: 1
+      maxLength: 140
+    Max15NumericText:
+      title: Max15NumericText
+      description: |
+        Specifies a numeric string with a maximum length of 15 digits.
+      type: string
+      pattern: ^ [0-9]{1,15}$
+    Max16Text:
+      title: Max16Text
+      description: |
+        Specifies a character string with a maximum length of 16 characters.
+      type: string
+      minLength: 1
+      maxLength: 16
+    Max2048Text:
+      title: Max2048Text
+      description: |
+        Specifies a character string with a maximum length of 2048 characters.
+      type: string
+      minLength: 1
+      maxLength: 2048
+    Max256Text:
+      title: Max256Text
+      description: |
+        Specifies a character string with a maximum length of 256 characters.
+      type: string
+      minLength: 1
+      maxLength: 256
+    Max34Text:
+      title: Max34Text
+      description: |
+        Specifies a character string with a maximum length of 34 characters.
+      type: string
+      minLength: 1
+      maxLength: 34
+    Max350Text:
+      title: Max350Text
+      description: |
+        Specifies a character string with a maximum length of 350 characters.
+      type: string
+      minLength: 1
+      maxLength: 350
+    Max35Text:
+      title: Max35Text
+      description: |
+        Specifies a character string with a maximum length of 35 characters.
+      type: string
+      minLength: 1
+      maxLength: 35
+    Max4Text:
+      title: Max4Text
+      description: |
+        Specifies a character string with a maximum length of 4 characters.
+      type: string
+      minLength: 1
+      maxLength: 4
+    Max70Text:
+      title: Max70Text
+      description: |
+        Specifies a character string with a maximum length of 70 characters.
+      type: string
+      minLength: 1
+      maxLength: 70
+    NamePrefix2Code:
+      description: |
+        NamePrefix2Code
+        Specifies the terms used to formally address a person.
+      enum:
+        - DOCT
+        - MADM
+        - MISS
+        - MIST
+        - MIKS
+      type: string
+    Number:
+      title: Number
+      type: string
+      pattern: ^/^[\d\-\.\,]{1,18}$/g$
+    OrganisationIdentification29:
+      title: OrganisationIdentification29
+      description: |
+        Unique and unambiguous way to identify an organisation.
+      type: object
+      properties:
+        AnyBIC:
+          $ref: "#/components/schemas/AnyBICDec2014Identifier"
+        LEI:
+          $ref: "#/components/schemas/LEIIdentifier"
+        Othr:
+          $ref: "#/components/schemas/GenericOrganisationIdentification1"
+    OrganisationIdentification39:
+      title: OrganisationIdentification39
+      description: |
+        Unique and unambiguous way to identify an organisation.
+      type: object
+      properties:
+        AnyBIC:
+          $ref: "#/components/schemas/AnyBICDec2014Identifier"
+        LEI:
+          $ref: "#/components/schemas/LEIIdentifier"
+        Othr:
+          $ref: "#/components/schemas/GenericOrganisationIdentification3"
+    OrganisationIdentificationSchemeName1Choice:
+      title: OrganisationIdentificationSchemeName1Choice
+      description: |
+        Choice of format for the organisation identification.
+        NOTE: make oneOf
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalOrganisationIdentification1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    OtherContact1:
+      title: OtherContact1
+      description: >
+        Communication device number or electronic address used for
+        communication.
+      type: object
+      properties:
+        ChanlTp:
+          $ref: "#/components/schemas/Max4Text"
+        Id:
+          $ref: "#/components/schemas/Max128Text"
+      required:
+        - ChanlTp
+    PacsError_FIToFIPaymentStatusReportV15:
+      title: PacsError_FIToFIPaymentStatusReportV15
+      type: object
+      properties:
+        GrpHdr:
+          $ref: "#/components/schemas/GroupHeader120"
+        TxInfAndSts:
+          $ref: "#/components/schemas/PaymentTransaction163"
+        SplmtryData:
+          $ref: "#/components/schemas/SupplementaryData1"
+      required:
+        - GrpHdr
+    PacsStatus_FIToFIPaymentStatusReportV15:
+      title: PacsStatus_FIToFIPaymentStatusReportV15
+      description: |
+        Unsure on description.
+      type: object
+      properties:
+        GrpHdr:
+          $ref: "#/components/schemas/GroupHeader120"
+      required:
+        - GrpHdr
+    Party38Choice:
+      title: Party38Choice
+      description: |
+        Nature or use of the account.
+      type: object
+      properties:
+        OrgId:
+          $ref: "#/components/schemas/OrganisationIdentification29"
+        PrvtId:
+          $ref: "#/components/schemas/PersonIdentification13"
+      oneOf:
+        - required:
+            - OrgId
+        - required:
+            - PrvtId
+    Party40Choice:
+      title: Party40Choice
+      description: |
+        Nature or use of the account.
+      type: object
+      properties:
+        Pty:
+          $ref: "#/components/schemas/PartyIdentification135"
+        Agt:
+          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+      oneOf:
+        - required:
+            - Pty
+        - required:
+            - Agt
+    Party52Choice:
+      title: Party52Choice
+      description: |
+        Nature or use of the account.
+      type: object
+      properties:
+        OrgId:
+          $ref: "#/components/schemas/OrganisationIdentification39"
+        PrvtId:
+          $ref: "#/components/schemas/PersonIdentification18"
+      oneOf:
+        - required:
+            - OrgId
+        - required:
+            - PrvtId
+    PartyIdentification135:
+      title: PartyIdentification135
+      description: |
+        Specifies the identification of a person or an organisation.
+      type: object
+      properties:
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+        PstlAdr:
+          $ref: "#/components/schemas/PostalAddress24"
+        Id:
+          $ref: "#/components/schemas/Party38Choice"
+        CtryOfRes:
+          $ref: "#/components/schemas/CountryCode"
+        CtctDtls:
+          $ref: "#/components/schemas/Contact4"
+    PartyIdentification272:
+      title: PartyIdentification272
+      description: |
+        Specifies the identification of a person or an organisation.
+      type: object
+      properties:
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+        PstlAdr:
+          $ref: "#/components/schemas/PostalAddress27"
+        Id:
+          $ref: "#/components/schemas/Party52Choice"
+        CtryOfRes:
+          $ref: "#/components/schemas/CountryCode"
+        CtctDtls:
+          $ref: "#/components/schemas/Contact13"
+    PaymentIdentification13:
+      title: PaymentIdentification13
+      description: |
+        Provides further means of referencing a payment transaction.
+      type: object
+      properties:
+        InstrId:
+          $ref: "#/components/schemas/Max35Text"
+        EndToEndId:
+          $ref: "#/components/schemas/Max35Text"
+        TxId:
+          $ref: "#/components/schemas/Max35Text"
+        UETR:
+          $ref: "#/components/schemas/UUIDv4Identifier"
+        ClrSysRef:
+          $ref: "#/components/schemas/Max35Text"
+      required:
+        - EndToEndId
+    PaymentTransaction163:
+      title: PaymentTransaction163
+      description: >
+        Provides further details on the original transactions, to which the
+        status report message refers.
+      type: object
+      properties:
+        StsId:
+          $ref: "#/components/schemas/Max35Text"
+        OrgnlInstrId:
+          $ref: "#/components/schemas/Max35Text"
+        OrgnlEndToEndId:
+          $ref: "#/components/schemas/Max35Text"
+        OrgnlTxId:
+          $ref: "#/components/schemas/Max35Text"
+        OrgnlUETR:
+          $ref: "#/components/schemas/UUIDv4Identifier"
+        TxSts:
+          $ref: "#/components/schemas/ExternalPaymentTransactionStatus1Code"
+        StsRsnInf:
+          $ref: "#/components/schemas/StatusReasonInformation14"
+        AccptncDtTm:
+          $ref: "#/components/schemas/ISODateTime"
+        AcctSvcrRef:
+          $ref: "#/components/schemas/Max35Text"
+        ClrSysRef:
+          $ref: "#/components/schemas/Max35Text"
+        ExctnConf:
+          $ref: "#/components/schemas/Exact32HexBinaryText"
+        SplmtryData:
+          $ref: "#/components/schemas/SupplementaryData1"
+    PaymentTypeInformation28:
+      title: PaymentTypeInformation28
+      description: |
+        Provides further details of the type of payment.
+      type: object
+      properties:
+        InstrPrty:
+          $ref: "#/components/schemas/Priority2Code"
+        ClrChanl:
+          $ref: "#/components/schemas/ClearingChannel2Code"
+        SvcLvl:
+          $ref: "#/components/schemas/ServiceLevel8Choice"
+        LclInstrm:
+          $ref: "#/components/schemas/LocalInstrument2Choice"
+        CtgyPurp:
+          $ref: "#/components/schemas/CategoryPurpose1Choice"
+    PercentageRate:
+      title: PercentageRate
+      type: string
+      pattern: ^/^(?=[\d\-\.\,]{1,11}$)([\d\-\,\.]{1,10})?$/g$
+    PersonIdentification13:
+      title: PersonIdentification13
+      description: |
+        Unique and unambiguous way to identify a person.
+      type: object
+      properties:
+        DtAndPlcOfBirth:
+          $ref: "#/components/schemas/DateAndPlaceOfBirth1"
+        Othr:
+          $ref: "#/components/schemas/GenericPersonIdentification1"
+    PersonIdentification18:
+      title: PersonIdentification18
+      description: |
+        Unique and unambiguous way to identify a person.
+      type: object
+      properties:
+        DtAndPlcOfBirth:
+          $ref: "#/components/schemas/DateAndPlaceOfBirth1"
+        Othr:
+          $ref: "#/components/schemas/GenericPersonIdentification2"
+    PersonIdentificationSchemeName1Choice:
+      title: PersonIdentificationSchemeName1Choice
+      description: |
+        Sets of elements to identify a name of the identification scheme.
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalPersonIdentification1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    PhoneNumber:
+      title: PhoneNumber
+      type: string
+      pattern: ^ \+[0-9]{1,3}-[0-9()+\-]{1,30}$
+    PostalAddress24:
+      title: PostalAddress24
+      type: object
+      description: >
+        Information that locates and identifies a specific address, as defined
+        by postal services.
+      properties:
+        AdrTp:
+          $ref: "#/components/schemas/AddressType3Choice"
+        Dept:
+          $ref: "#/components/schemas/Max70Text"
+        SubDept:
+          $ref: "#/components/schemas/Max70Text"
+        StrtNm:
+          $ref: "#/components/schemas/Max70Text"
+        BldgNb:
+          $ref: "#/components/schemas/Max16Text"
+        BldgNm:
+          $ref: "#/components/schemas/Max35Text"
+        Flr:
+          $ref: "#/components/schemas/Max70Text"
+        PstBx:
+          $ref: "#/components/schemas/Max16Text"
+        Room:
+          $ref: "#/components/schemas/Max70Text"
+        PstCd:
+          $ref: "#/components/schemas/Max16Text"
+        TwnNm:
+          $ref: "#/components/schemas/Max35Text"
+        TwnLctnNm:
+          $ref: "#/components/schemas/Max35Text"
+        DstrctNm:
+          $ref: "#/components/schemas/Max35Text"
+        CtrySubDvsn:
+          $ref: "#/components/schemas/Max35Text"
+        Ctry:
+          $ref: "#/components/schemas/CountryCode"
+        AdrLine:
+          $ref: "#/components/schemas/Max70Text"
+    PostalAddress27:
+      title: PostalAddress27
+      type: object
+      description: >
+        Information that locates and identifies a specific address, as defined
+        by postal services.
+      properties:
+        AdrTp:
+          $ref: "#/components/schemas/AddressType3Choice"
+        CareOf:
+          $ref: "#/components/schemas/Max140Text"
+        Dept:
+          $ref: "#/components/schemas/Max70Text"
+        SubDept:
+          $ref: "#/components/schemas/Max70Text"
+        StrtNm:
+          $ref: "#/components/schemas/Max140Text"
+        BldgNb:
+          $ref: "#/components/schemas/Max16Text"
+        BldgNm:
+          $ref: "#/components/schemas/Max140Text"
+        Flr:
+          $ref: "#/components/schemas/Max70Text"
+        UnitNb:
+          $ref: "#/components/schemas/Max16Text"
+        PstBx:
+          $ref: "#/components/schemas/Max16Text"
+        Room:
+          $ref: "#/components/schemas/Max70Text"
+        PstCd:
+          $ref: "#/components/schemas/Max16Text"
+        TwnNm:
+          $ref: "#/components/schemas/Max140Text"
+        TwnLctnNm:
+          $ref: "#/components/schemas/Max140Text"
+        DstrctNm:
+          $ref: "#/components/schemas/Max140Text"
+        CtrySubDvsn:
+          $ref: "#/components/schemas/Max35Text"
+        Ctry:
+          $ref: "#/components/schemas/CountryCode"
+        AdrLine:
+          $ref: "#/components/schemas/Max70Text"
+    PreferredContactMethod1Code:
+      title: PreferredContactMethod1Code
+      description: >
+        Preferred method used to reach the individual contact within an
+        organisation.
+      type: string
+      enum:
+        - LETT
+        - MAIL
+        - PHON
+        - FAXX
+        - CELL
+    PreferredContactMethod2Code:
+      title: PreferredContactMethod2Code
+      description: >
+        Preferred method used to reach the individual contact within an
+        organisation.
+      type: string
+      enum:
+        - LETT
+        - MAIL
+        - PHON
+        - FAXX
+        - CELL
+    Priority2Code:
+      title: Priority2Code
+      description: >
+        Indicator of the urgency or order of importance that the instructing
+        party would like the instructed party to apply to the processing of the
+        instruction.
+      type: string
+      enum:
+        - HIGH
+        - NORM
+    ProxyAccountIdentification1:
+      title: ProxyAccountIdentification1
+      description: |
+        Information related to a proxy identification of the account.
+      type: object
+      properties:
+        Tp:
+          $ref: "#/components/schemas/ProxyAccountType1Choice"
+        Id:
+          $ref: "#/components/schemas/Max2048Text"
+      required:
+        - Id
+    ProxyAccountType1Choice:
+      title: ProxyAccountType1Choice
+      type: object
+      description: |
+        NOTE: Unsure on description.
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalProxyAccountType1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    Purpose2Choice:
+      title: Purpose2Choice
+      description: >
+        Specifies the underlying reason for the payment transaction.
+
+        Usage: Purpose is used by the end-customers, that is initiating party,
+        (ultimate) debtor, (ultimate) creditor to provide information concerning
+        the nature of the payment. Purpose is a content element, which is not
+        used for processing by any of the agents involved in the payment chain.
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalPurpose1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    RegulatoryAuthority2:
+      title: RegulatoryAuthority2
+      description: >
+        Information about an entity requiring the regulatory reporting
+        information.
+      type: object
+      properties:
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+        Ctry:
+          $ref: "#/components/schemas/CountryCode"
+    RegulatoryReporting3:
+      title: RegulatoryReporting3
+      description: |
+        Information needed due to regulatory and/or statutory requirements.
+      type: object
+      properties:
+        DbtCdtRptgInd:
+          $ref: "#/components/schemas/RegulatoryReportingType1Code"
+        Authrty:
+          $ref: "#/components/schemas/RegulatoryAuthority2"
+        Dtls:
+          $ref: "#/components/schemas/StructuredRegulatoryReporting3"
+    RegulatoryReportingType1Code:
+      title: RegulatoryReportingType1Code
+      description: >
+        Identifies whether the regulatory reporting information applies to the
+        debit side, to the credit side or to both debit and credit sides of the
+        transaction.
+      type: string
+      enum:
+        - CRED
+        - DEBT
+        - BOTH
+    ServiceLevel8Choice:
+      title: ServiceLevel8Choice
+      description: |
+        Details about a service level.
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalServiceLevel1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    SettlementInstruction15:
+      title: SettlementInstruction15
+      description: |
+        NOTE: Unsure on description.
+      type: object
+      properties:
+        SttlmMtd:
+          $ref: "#/components/schemas/SettlementMethod1Code"
+        PmtTpInf:
+          $ref: "#/components/schemas/PaymentTypeInformation28"
+      required:
+        - SttlmMtd
+    SettlementMethod1Code:
+      title: SettlementMethod1Code
+      description: |
+        Specifies the method used to settle the credit transfer instruction.
+      type: string
+      enum:
+        - INDA
+        - INGA
+        - COVE
+        - CLRG
+    StatusReason6Choice:
+      title: StatusReason6Choice
+      description: |
+        Unsure on description.
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalStatusReason1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    StatusReasonInformation14:
+      title: StatusReasonInformation14
+      description: |
+        Unsure on description.
+      type: object
+      properties:
+        Orgtr:
+          $ref: "#/components/schemas/PartyIdentification272"
+        Rsn:
+          $ref: "#/components/schemas/StatusReason6Choice"
+        AddtlInf:
+          $ref: "#/components/schemas/Max105Text"
+    StructuredRegulatoryReporting3:
+      title: StructuredRegulatoryReporting3
+      description: |
+        Unsure on description.
+      type: object
+      properties:
+        Tp:
+          $ref: "#/components/schemas/Max35Text"
+        Dt:
+          $ref: "#/components/schemas/ISODate"
+        Ctry:
+          $ref: "#/components/schemas/CountryCode"
+        Cd:
+          $ref: "#/components/schemas/Max10Text"
+        Amt:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+        Inf:
+          $ref: "#/components/schemas/Max35Text"
+    SupplementaryData1:
+      title: SupplementaryData1
+      description: >
+        Additional information that can not be captured in the structured fields
+        and/or any other specific block.
+      type: object
+      properties:
+        PlcAndNm:
+          $ref: "#/components/schemas/Max350Text"
+        Envlp:
+          $ref: "#/components/schemas/SupplementaryDataEnvelope1"
+      required:
+        - Envlp
+    SupplementaryDataEnvelope1:
+      title: SupplementaryDataEnvelope1
+      description: |
+        Unsure on description.
+      type: object
+    TaxAmount3:
+      title: TaxAmount3
+      description: |
+        Information on the amount of the tax record.
+      type: object
+      properties:
+        Rate:
+          $ref: "#/components/schemas/PercentageRate"
+        TaxblBaseAmt:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+        TtlAmt:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+        Dtls:
+          $ref: "#/components/schemas/TaxRecordDetails3"
+    TaxAuthorisation1:
+      title: TaxAuthorisation1
+      description: |
+        Details of an authorised tax paying party.
+      type: object
+      properties:
+        Titl:
+          $ref: "#/components/schemas/Max35Text"
+        Nm:
+          $ref: "#/components/schemas/Max140Text"
+    TaxData1:
+      title: TaxData1
+      description: >
+        Details about tax paid, or to be paid, to the government in accordance
+        with the law, including pre-defined parameters such as thresholds and
+        type of account.
+      type: object
+      properties:
+        Cdtr:
+          $ref: "#/components/schemas/TaxParty1"
+        Dbtr:
+          $ref: "#/components/schemas/TaxParty2"
+        UltmtDbtr:
+          $ref: "#/components/schemas/TaxParty2"
+        AdmstnZone:
+          $ref: "#/components/schemas/Max35Text"
+        RefNb:
+          $ref: "#/components/schemas/Max140Text"
+        Mtd:
+          $ref: "#/components/schemas/Max35Text"
+        TtlTaxblBaseAmt:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+        TtlTaxAmt:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+        Dt:
+          $ref: "#/components/schemas/ISODate"
+        SeqNb:
+          $ref: "#/components/schemas/Number"
+        Rcrd:
+          $ref: "#/components/schemas/TaxRecord3"
+    TaxParty1:
+      title: TaxParty1
+      description: |
+        Details about the entity involved in the tax paid or to be paid.
+      type: object
+      properties:
+        TaxId:
+          $ref: "#/components/schemas/Max35Text"
+        RegnId:
+          $ref: "#/components/schemas/Max35Text"
+        TaxTp:
+          $ref: "#/components/schemas/Max35Text"
+    TaxParty2:
+      title: TaxParty2
+      description: |
+        Details about the entity involved in the tax paid or to be paid.
+      type: object
+      properties:
+        TaxId:
+          $ref: "#/components/schemas/Max35Text"
+        RegnId:
+          $ref: "#/components/schemas/Max35Text"
+        TaxTp:
+          $ref: "#/components/schemas/Max35Text"
+        Authstn:
+          $ref: "#/components/schemas/TaxAuthorisation1"
+    TaxPeriod3:
+      title: TaxPeriod3
+      description: |
+        Period of time details related to the tax payment.
+      type: object
+      properties:
+        Yr:
+          $ref: "#/components/schemas/ISOYear"
+        Tp:
+          $ref: "#/components/schemas/TaxRecordPeriod1Code"
+        FrToDt:
+          $ref: "#/components/schemas/DatePeriod2"
+    TaxRecord3:
+      title: TaxRecord3
+      description: |
+        Set of elements used to define the tax record.
+      type: object
+      properties:
+        Tp:
+          $ref: "#/components/schemas/Max35Text"
+        Ctgy:
+          $ref: "#/components/schemas/Max35Text"
+        CtgyDtls:
+          $ref: "#/components/schemas/Max35Text"
+        DbtrSts:
+          $ref: "#/components/schemas/Max35Text"
+        CertId:
+          $ref: "#/components/schemas/Max35Text"
+        FrmsCd:
+          $ref: "#/components/schemas/Max35Text"
+        Prd:
+          $ref: "#/components/schemas/TaxPeriod3"
+        TaxAmt:
+          $ref: "#/components/schemas/TaxAmount3"
+        AddtlInf:
+          $ref: "#/components/schemas/Max140Text"
+    TaxRecordDetails3:
+      title: TaxRecordDetails3
+      description: |
+        Details on the tax period and amount
+      type: object
+      properties:
+        Prd:
+          $ref: "#/components/schemas/TaxPeriod3"
+        Amt:
+          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+      required:
+        - Amt
+    TaxRecordPeriod1Code:
+      title: TaxRecordPeriod1Code
+      description: |
+        Specifies the period related to the tax payment
+
+        MM01 FirstMonth Tax is related to the second month of the period.
+        MM02 SecondMonth Tax is related to the first month of the period.
+        MM03 ThirdMonth Tax is related to the third month of the period.
+        MM04 FourthMonth Tax is related to the fourth month of the period.
+        MM05 FifthMonth Tax is related to the fifth month of the period.
+        MM06 SixthMonth Tax is related to the sixth month of the period.
+        MM07 SeventhMonth Tax is related to the seventh month of the period.
+        MM08 EighthMonth Tax is related to the eighth month of the period.
+        MM09 NinthMonth Tax is related to the ninth month of the period.
+        MM10 TenthMonth Tax is related to the tenth month of the period.
+        MM11 EleventhMonth Tax is related to the eleventh month of the period.
+        MM12 TwelfthMonth Tax is related to the twelfth month of the period.
+        QTR1 FirstQuarter Tax is related to the first quarter of the period.
+        QTR2 SecondQuarter Tax is related to the second quarter of the period.
+        QTR3 ThirdQuarter Tax is related to the third quarter of the period.
+        QTR4 FourthQuarter Tax is related to the forth quarter of the period.
+        HLF1 FirstHalf Tax is related to the first half of the period.
+        HLF2 SecondHalf Tax is related to the second half of the period.
+      type: string
+      enum:
+        - MM01
+        - MM02
+        - MM03
+        - MM04
+        - MM05
+        - MM06
+        - MM07
+        - MM08
+        - MM09
+        - MM10
+        - MM11
+        - MM12
+        - QTR1
+        - QTR2
+        - QTR3
+        - QTR4
+        - HLF1
+        - HLF2
+    TermsRequest_FIToFICustomerCreditProposal:
+      title: TermsRequest_FIToFICustomerCreditProposal
+      type: object
+      properties:
+        GrpHdr:
+          $ref: "#/components/schemas/GroupHeader129"
+      required:
+        - GrpHdr
+    TermsResponse_FIToFICustomerCreditConfirmation:
+      title: TermsResponse_FIToFICustomerCreditConfirmation
+      type: object
+      properties:
+        GrpHdr:
+          $ref: "#/components/schemas/GroupHeader129"
+        CdtTrfTxInf:
+          $ref: "#/components/schemas/CreditTransferTransaction67"
+      required:
+        - GrpHdr
+        - CdtTrfTxInf
+    UUIDv4Identifier:
+      title: UUIDv4Identifier
+      type: string
+      pattern: ^ [a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$
+    VerificationReason1Choice:
+      title: VerificationReason1Choice
+      type: object
+      properties:
+        Cd:
+          $ref: "#/components/schemas/ExternalVerificationReason1Code"
+        Prtry:
+          $ref: "#/components/schemas/Max35Text"
+      oneOf:
+        - required:
+            - Cd
+        - required:
+            - Prtry
+    VerificationReport4:
+      title: VerificationReport4
+      type: object
+      properties:
+        OrgnlId:
+          $ref: "#/components/schemas/Max35Text"
+        Vrfctn:
+          $ref: "#/components/schemas/IdentificationVerificationIndicator"
+        Rsn:
+          $ref: "#/components/schemas/VerificationReason1Choice"
+        OrgnlPtyAndAcctId:
+          $ref: "#/components/schemas/IdentificationInformation4"
+        UpdtdPtyAndAcctId:
+          $ref: "#/components/schemas/IdentificationInformation4"
+      required:
+        - OrgnlId
+        - Vrfctn
+    hexBinary:
+      title: hexBinary
+      type: string
+      pattern: ^(0x|0X)?[a-fA-F0-9]+$

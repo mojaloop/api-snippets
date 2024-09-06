@@ -1,0 +1,10 @@
+title: Execute_FIToFICustomerCreditTransferV13
+type: object
+properties:
+  GrpHdr:
+    $ref: ./GroupHeader129.yaml
+  CdtTrfTxInf:
+    $ref: ./CreditTransferTransaction67.yaml
+required:
+  - GrpHdr
+  - CdtTrfTxInf

@@ -1,0 +1,12 @@
+title: VerificationReason1Choice
+type: object
+properties:
+  Cd:
+    $ref: ./ExternalVerificationReason1Code.yaml
+  Prtry:
+    $ref: ./Max35Text.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry
