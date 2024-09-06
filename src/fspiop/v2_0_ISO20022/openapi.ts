@@ -521,8 +521,7 @@ export interface components {
         } & (unknown | unknown);
         /**
          * AccountSchemeName1Choice
-         * @description AccountSchemeName1Choice
-         *     Sets of elements to identify a name of the identification scheme.
+         * @description Sets of elements to identify a name of the identification scheme.
          *
          */
         AccountSchemeName1Choice: {
@@ -531,8 +530,7 @@ export interface components {
         } & (unknown | unknown);
         /**
          * ActiveCurrencyAndAmount
-         * @description A number of monetary units specified in an active currency where the
-         *     unit of currency is explicit and compliant with ISO 4217.
+         * @description A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
          *
          */
         ActiveCurrencyAndAmount: {
@@ -544,7 +542,6 @@ export interface components {
         /**
          * ActiveCurrencyCode
          * @description A code allocated to a currency by a Maintenance Agency under an international identification scheme as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
-         *
          */
         ActiveCurrencyCode: string;
         /**
@@ -573,8 +570,7 @@ export interface components {
         AddressType2Code: "ADDR" | "PBOX" | "HOME" | "BIZZ" | "MLTO" | "DLVY";
         /**
          * AddressType3Choice
-         * @description AddressType3Choice
-         *     Choice of formats for the type of address.
+         * @description Choice of formats for the type of address.
          *
          */
         AddressType3Choice: {
@@ -592,24 +588,23 @@ export interface components {
         AnyBICDec2014Identifier: string;
         /**
          * BICFIDec2014Identifier
-         * @description BICFIDec2014Identifier
-         *     Code allocated to a financial institution by the ISO 9362 Registration
+         * @description Code allocated to a financial institution by the ISO 9362 Registration
+         *
          *     Authority as described in ISO 9362: 2014
+         *
          *     - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
          *
          */
         BICFIDec2014Identifier: string;
         /**
          * BaseOneRate
-         * @description BaseOneRate
-         *     Rate expressed as a decimal, for example, 0.7 is 7/10 and 70%.
+         * @description Rate expressed as a decimal, for example, 0.7 is 7/10 and 70%.
          *
          */
         BaseOneRate: string;
         /**
          * BranchAndFinancialInstitutionIdentification6
-         * @description BranchAndFinancialInstitutionIdentification6
-         *     Unique and unambiguous identification of a financial institution or a branch of a financial institution.
+         * @description Unique and unambiguous identification of a financial institution or a branch of a financial institution.
          *
          */
         BranchAndFinancialInstitutionIdentification6: {
@@ -618,8 +613,7 @@ export interface components {
         };
         /**
          * BranchAndFinancialInstitutionIdentification8
-         * @description BranchAndFinancialInstitutionIdentification8
-         *     Unique and unambiguous identification of a financial institution or a branch of a financial institution.
+         * @description Unique and unambiguous identification of a financial institution or a branch of a financial institution.
          *
          */
         BranchAndFinancialInstitutionIdentification8: {
@@ -650,8 +644,7 @@ export interface components {
         };
         /**
          * CashAccount40
-         * @description CashAccount40
-         *     Provides the details to identify an account.
+         * @description Provides the details to identify an account.
          *
          */
         CashAccount40: {
@@ -663,8 +656,7 @@ export interface components {
         };
         /**
          * CashAccountType2Choice
-         * @description CashAccountType2Choice
-         *     Specifies the nature, or use of the account.
+         * @description Specifies the nature, or use of the account.
          *
          */
         CashAccountType2Choice: {
@@ -673,8 +665,7 @@ export interface components {
         } & (unknown | unknown);
         /**
          * CategoryPurpose1Choice
-         * @description CategoryPurpose1Choice
-         *     Contains details about high level purpose of the mandate based on a set of pre-defined categories.
+         * @description Contains details about high level purpose of the mandate based on a set of pre-defined categories.
          *
          */
         CategoryPurpose1Choice: {
@@ -702,8 +693,7 @@ export interface components {
         } & (unknown | unknown);
         /**
          * Charges16
-         * @description Charges16
-         *     Unsure on description.
+         * @description NOTE: Unsure on description.
          *
          */
         Charges16: {
@@ -724,8 +714,7 @@ export interface components {
         ClearingChannel2Code: "RTGS" | "RTNS" | "MPNS" | "BOOK";
         /**
          * ClearingSystemIdentification2Choice
-         * @description ClearingSystemIdentification2Choice
-         *     Choice of a clearing system identifier.
+         * @description Choice of a clearing system identifier.
          *
          */
         ClearingSystemIdentification2Choice: {
@@ -829,7 +818,7 @@ export interface components {
         };
         /**
          * CryptographicLockChoice
-         * @description Unsure on description.
+         * @description NOTE: Unsure on description.
          *
          */
         CryptographicLockChoice: {
@@ -879,6 +868,7 @@ export interface components {
         /**
          * ErrorInformationResponse
          * @description Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
+         *
          */
         ErrorInformationResponse: {
             errorInformation?: components["schemas"]["ErrorInformation"];
@@ -916,6 +906,7 @@ export interface components {
         /**
          * ExtensionList
          * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         *
          */
         ExtensionList: {
             /** @description Number of Extension elements. */
@@ -938,8 +929,7 @@ export interface components {
          *
          */
         ExternalCashAccountType1Code: string;
-        /** @description ExternalCategoryPurpose1Code
-         *     Specifies the category purpose, as published in an external category purpose code list.
+        /** @description Specifies the category purpose, as published in an external category purpose code list.
          *     External code sets can be downloaded from www.iso20022.org.
          *      */
         ExternalCategoryPurpose1Code: string;
@@ -1067,8 +1057,7 @@ export interface components {
         };
         /**
          * GroupHeader113
-         * @description GroupHeader113
-         *     Set of characteristics shared by all individual transactions included in the message.
+         * @description Set of characteristics shared by all individual transactions included in the message.
          *
          */
         GroupHeader113: {
@@ -1082,8 +1071,7 @@ export interface components {
         };
         /**
          * GroupHeader120
-         * @description GroupHeader120
-         *     Set of characteristics shared by all individual transactions included in the message.
+         * @description Set of characteristics shared by all individual transactions included in the message.
          *
          */
         GroupHeader120: {
@@ -1093,8 +1081,7 @@ export interface components {
         };
         /**
          * GroupHeader129
-         * @description GroupHeader129
-         *     Set of characteristics shared by all individual transactions included in the message.
+         * @description Set of characteristics shared by all individual transactions included in the message.
          *
          */
         GroupHeader129: {
@@ -1107,8 +1094,7 @@ export interface components {
         };
         /**
          * IBAN2007Identifier
-         * @description IBAN2007Identifier
-         *     The International Bank Account Number is a code used internationally by financial institutions to uniquely identify the account of a customer at a financial institution as described in the 2007 edition of the ISO 13616 standard "Banking and related financial services -
+         * @description The International Bank Account Number is a code used internationally by financial institutions to uniquely identify the account of a customer at a financial institution as described in the 2007 edition of the ISO 13616 standard "Banking and related financial services -
          *     International Bank Account Number (IBAN)" and replaced by the more recent edition of the standard.
          *
          */
@@ -1116,10 +1102,7 @@ export interface components {
         /**
          * ISODate
          * Format: date
-         * @description A particular point in the progression of time in a calendar year
-         *     expressed in the YYYY-MM-DD format. This representation is defined in
-         *     "XML Schema Part 2: Datatypes Second Edition -
-         *     W3C Recommendation 28 October 2004" which is aligned with ISO 8601.
+         * @description A particular point in the progression of time in a calendar year expressed in the YYYY-MM-DD format. This representation is defined in "XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004" which is aligned with ISO 8601.
          *
          */
         ISODate: string;
@@ -1133,10 +1116,12 @@ export interface components {
          *     (YYYY-MM-DDThh:mm:ss.sss). These representations are defined in
          *     "XML Schema Part 2: Datatypes Second Edition -
          *     W3C Recommendation 28 October 2004" which is aligned with ISO 8601.
+         *
          *     Note on the time format:
          *     1) beginning / end of calendar day
          *     00:00:00 = the beginning of a calendar day
          *     24:00:00 = the end of a calendar day
+         *
          *     2) fractions of second in time format
          *     Decimal fractions of seconds may be included. In this case, the
          *     involved parties shall agree on the maximum number of digits that are allowed.
@@ -1145,8 +1130,7 @@ export interface components {
         ISODateTime: string;
         /**
          * ISOYear
-         * @description ISOYear
-         *     Year represented by YYYY (ISO 8601).
+         * @description Year represented by YYYY (ISO 8601).
          *
          */
         ISOYear: string;
@@ -1176,8 +1160,7 @@ export interface components {
         Instruction4Code: "PHOA" | "TELA";
         /**
          * InstructionForCreditorAgent3
-         * @description Further information related to the processing of the payment instruction,
-         *     provided by the initiating party, and intended for the creditor agent
+         * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent.
          *
          */
         InstructionForCreditorAgent3: {
@@ -1186,8 +1169,7 @@ export interface components {
         };
         /**
          * InstructionForNextAgent1
-         * @description Further information related to the processing of the payment instruction,
-         *     provided by the initiating party, and intended for the creditor agent
+         * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent.
          *
          */
         InstructionForNextAgent1: {
@@ -1196,9 +1178,7 @@ export interface components {
         };
         /**
          * LEIIdentifier
-         * @description Legal Entity Identifier is a code allocated to a party as described in
-         *     ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
-         *     ^([0-9A-Z]{18,18}[0-9]{2,2})$
+         * @description Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)". ^([0-9A-Z]{18,18}[0-9]{2,2})$
          *
          */
         LEIIdentifier: string;
@@ -1286,8 +1266,7 @@ export interface components {
          */
         Max70Text: string;
         /**
-         * @description NamePrefix2Code
-         *     Specifies the terms used to formally address a person.
+         * @description Specifies the terms used to formally address a person.
          *
          * @enum {string}
          */
@@ -1317,7 +1296,6 @@ export interface components {
         /**
          * OrganisationIdentificationSchemeName1Choice
          * @description Choice of format for the organisation identification.
-         *     NOTE: make oneOf
          *
          */
         OrganisationIdentificationSchemeName1Choice: {
