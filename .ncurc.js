@@ -7,6 +7,8 @@ module.exports = {
     '@redocly/cli',
     '@redocly/openapi-core',
     // Updating eslint breaks the build
-    'eslint'
+    'eslint',
+    // Breaks peer dependencies with v7+
+    'eslint-plugin-promise',
   ]
 }
