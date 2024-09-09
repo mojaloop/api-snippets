@@ -1,0 +1,38 @@
+title: TaxRecord3
+description: |
+  Set of elements used to define the tax record.
+type: object
+properties:
+  Tp:
+    $ref: ./Max35Text.yaml
+  Ctgy:
+    $ref: ./Max35Text.yaml
+  CtgyDtls:
+    $ref: ./Max35Text.yaml
+  DbtrSts:
+    $ref: ./Max35Text.yaml
+  CertId:
+    $ref: ./Max35Text.yaml
+  FrmsCd:
+    $ref: ./Max35Text.yaml
+  Prd:
+    $ref: ./TaxPeriod3.yaml
+  TaxAmt:
+    $ref: ./TaxAmount3.yaml
+  AddtlInf:
+    $ref: ./Max140Text.yaml
+example:
+  Tp: VAT
+  Ctgy: A
+  CtgyDtls: Standard
+  DbtrSts: Resident
+  CertId: 123456789
+  FrmsCd: 123456789
+  Prd:
+    FrstDay: '2019-01-01'
+    LastDay: '2019-12-31'
+  TaxAmt:
+    Rate: 0.2
+    TaxblBaseAmt: 1000
+    TtlAmt: 200
+  AddtlInf: VAT applicable

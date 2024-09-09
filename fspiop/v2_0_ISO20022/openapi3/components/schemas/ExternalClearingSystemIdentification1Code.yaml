@@ -1,0 +1,5 @@
+title: ExternalClearingSystemIdentification1Code
+type: string
+minLength: 1
+maxLength: 5
+example: 12345

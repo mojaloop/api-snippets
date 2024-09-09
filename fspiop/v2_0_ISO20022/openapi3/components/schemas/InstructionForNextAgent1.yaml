@@ -1,0 +1,13 @@
+title: InstructionForNextAgent1
+description: >
+  Further information related to the processing of the payment instruction,
+  provided by the initiating party, and intended for the creditor agent.
+type: object
+properties:
+  Cd:
+    $ref: ./Instruction4Code.yaml
+  InstrInf:
+    $ref: ./Max140Text.yaml
+example:
+  Cd: PHOA
+  InstrInf: Please advise/contact next agent by phone

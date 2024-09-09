@@ -1,0 +1,25 @@
+title: Charges16
+description: |
+  NOTE: Unsure on description.
+type: object
+properties:
+  Amt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  Agt:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  Tp:
+    $ref: ./ChargeType3Choice.yaml
+required:
+  - Amt
+  - Agt
+example:
+  Amt:
+    ActiveOrHistoricCurrencyAndAmount: 123.45
+    Ccy: USD
+  Agt:
+    BrnchId:
+      Id: BRANCHID
+    FinInstnId:
+      BICFI: BICFI
+  Tp:
+    Cd: SHAR

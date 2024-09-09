@@ -1,0 +1,16 @@
+title: CryptographicLockChoice
+description: |
+  NOTE: Unsure on description.
+type: object
+properties:
+  IlpV4PrepPacket:
+    $ref: ./hexBinary.yaml
+  Sh256Sgntr:
+    $ref: ./Exact32HexBinaryText.yaml
+oneOf:
+  - required:
+      - IlpV4PrepPacket
+  - required:
+      - Sh256Sgntr
+example:
+  IlpV4PrepPacket: 1234567890ABCDEF

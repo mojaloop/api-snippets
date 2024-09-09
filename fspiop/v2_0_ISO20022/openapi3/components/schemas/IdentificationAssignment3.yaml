@@ -1,0 +1,33 @@
+title: IdentificationAssignment3
+type: object
+properties:
+  MsgId:
+    $ref: ./Max35Text.yaml
+  CreDtTm:
+    $ref: ./ISODateTime.yaml
+  Assgnr:
+    $ref: ./Party40Choice.yaml
+  Assgne:
+    $ref: ./Party40Choice.yaml
+required:
+  - MsgId
+  - CreDtTm
+  - Assgnr
+  - Assgne
+example:
+  MsgId: 123
+  CreDtTm: '2020-01-01T00:00:00Z'
+  Assgnr:
+    OrgId:
+      Othr:
+        Id: 123
+        SchmeNm:
+          Cd: BIC
+        Issr: BIC
+  Assgne:
+    OrgId:
+      Othr:
+        Id: 123
+        SchmeNm:
+          Cd: BIC
+        Issr: BIC

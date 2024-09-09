@@ -1,0 +1,16 @@
+title: GenericOrganisationIdentification3
+type: object
+properties:
+  Id:
+    $ref: ./Max256Text.yaml
+  SchmeNm:
+    $ref: ./OrganisationIdentificationSchemeName1Choice.yaml
+  Issr:
+    $ref: ./Max35Text.yaml
+required:
+  - Id
+example:
+  Id: 123
+  SchmeNm:
+    Cd: BIC
+  Issr: BIC

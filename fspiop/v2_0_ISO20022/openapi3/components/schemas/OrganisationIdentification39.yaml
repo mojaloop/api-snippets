@@ -1,0 +1,19 @@
+title: OrganisationIdentification39
+description: |
+  Unique and unambiguous way to identify an organisation.
+type: object
+properties:
+  AnyBIC:
+    $ref: ./AnyBICDec2014Identifier.yaml
+  LEI:
+    $ref: ./LEIIdentifier.yaml
+  Othr:
+    $ref: ./GenericOrganisationIdentification3.yaml
+example:
+  AnyBIC: BICFI
+  LEI: 529900T8BM49AURSDO55
+  Othr:
+    Id: 123
+    SchmeNm:
+      Cd: BIC
+    Issr: BIC

@@ -1,0 +1,16 @@
+title: CashAccountType2Choice
+description: |
+  Specifies the nature, or use of the account.
+type: object
+properties:
+  Cd:
+    $ref: ./ExternalCashAccountType1Code.yaml
+  Prtry:
+    $ref: ./Max35Text.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry
+example:
+  Cd: CACC

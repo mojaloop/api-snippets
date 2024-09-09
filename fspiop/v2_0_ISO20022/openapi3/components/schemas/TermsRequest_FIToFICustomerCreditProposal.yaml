@@ -1,0 +1,25 @@
+title: TermsRequest_FIToFICustomerCreditProposal
+type: object
+properties:
+  GrpHdr:
+    $ref: ./GroupHeader129.yaml
+required:
+  - GrpHdr
+example:
+  GrpHdr:
+    MsgId: 123456789
+    CreDtTm: '2020-01-01T00:00:00Z'
+    NbOfTxs: 1
+    CtrlSum: 100.00
+    InitgPty:
+      Nm: Initiating Party Name
+      Id:
+        OrgId:
+          Othr:
+            - Id: 123456789
+              SchmeNm:
+                Cd: BBA
+                Prtry: Party Identification Scheme Name
+    FwdgAgt:
+      FinInstnId:
+        BICFI: BBBBBBBB

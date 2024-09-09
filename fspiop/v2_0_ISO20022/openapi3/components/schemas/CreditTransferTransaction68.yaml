@@ -1,0 +1,69 @@
+title: CreditTransferTransaction68
+description: >
+  Provides further details specific to the individual transaction(s) included in
+  the message.
+type: object
+properties:
+  PmtId:
+    $ref: ./PaymentIdentification13.yaml
+  PmtTpInf:
+    $ref: ./PaymentTypeInformation28.yaml
+  IntrBkSttlmAmt:
+    $ref: ./ActiveCurrencyAndAmount.yaml
+  Dbtr:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  DbtrAcct:
+    $ref: ./CashAccount40.yaml
+  DbtrAgt:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  CdtrAgt:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  Cdtr:
+    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+  CdtrAcct:
+    $ref: ./CashAccount40.yaml
+  InstrForCdtrAgt:
+    $ref: ./InstructionForCreditorAgent3.yaml
+  Purp:
+    $ref: ./Purpose2Choice.yaml
+  VrfctnOfTerms:
+    $ref: ./CryptographicLockChoice.yaml
+required:
+  - PmtId
+  - IntrBkSttlmAmt
+  - Dbtr
+  - Cdtr
+example:
+  PmtId:
+    InstrId: INSTRID
+    EndToEndId: ENDTOENDID
+  PmtTpInf:
+    LclInstrm:
+      Cd: CHQB
+      Prtry: PROPRIETARY
+  IntrBkSttlmAmt:
+    Amount: 123.45
+    Ccy: EUR
+  Dbtr:
+    Nm: Debtor Name
+  DbtrAcct:
+    Id:
+      IBAN: IBAN
+  DbtrAgt:
+    FinInstnId:
+      BICFI: BICFI
+  CdtrAgt:
+    FinInstnId:
+      BICFI: BICFI
+  Cdtr:
+    Nm: Creditor Name
+  CdtrAcct:
+    Id:
+      IBAN: IBAN
+  InstrForCdtrAgt:
+    Cd: INSTRUCTION
+  Purp:
+    Cd: CHAR
+  VrfctnOfTerms:
+    Cntt: CONTENT
+    CnttTp: PROPRIETARY

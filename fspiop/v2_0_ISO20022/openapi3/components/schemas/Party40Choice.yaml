@@ -1,0 +1,37 @@
+title: Party40Choice
+description: |
+  Nature or use of the account.
+type: object
+properties:
+  Pty:
+    $ref: ./PartyIdentification135.yaml
+  Agt:
+    $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
+oneOf:
+  - required:
+      - Pty
+  - required:
+      - Agt
+example:
+  Pty:
+    Nm: Name
+    PstlAdr:
+      Ctry: US
+      AdrLine:
+        - Line1
+        - Line2
+    Id:
+      OrgId:
+        AnyBIC: BIC
+  Agt:
+    FinInstnId:
+      BICFI: BUKBGB22
+    BrnchId:
+      Id: 12345
+      Nm: Oxford Street Branch
+      PstlAdr:
+        Ctry: GB
+        AdrLine:
+          - 1 Oxford Street
+          - London
+          - UK

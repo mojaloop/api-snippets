@@ -1,0 +1,29 @@
+title: TaxAmount3
+description: |
+  Information on the amount of the tax record.
+type: object
+properties:
+  Rate:
+    $ref: ./PercentageRate.yaml
+  TaxblBaseAmt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  TtlAmt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  Dtls:
+    $ref: ./TaxRecordDetails3.yaml
+example:
+  Rate: 0.0
+  TaxblBaseAmt:
+    Ccy: EUR
+    Amt: 0
+  TtlAmt:
+    Ccy: EUR
+    Amt: 0
+  Dtls:
+    Tp: T1
+    Ctry: CH
+    Cd: CHF
+    Amt:
+      Ccy: CHF
+      Amt: 1000
+    Inf: 12345

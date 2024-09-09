@@ -1,0 +1,36 @@
+title: Contact4
+description: |
+  Specifies the details of the contact person.
+type: object
+properties:
+  NmPrfx:
+    $ref: ./NamePrefix2Code.yaml
+  Nm:
+    $ref: ./Max140Text.yaml
+  PhneNb:
+    $ref: ./PhoneNumber.yaml
+  MobNb:
+    $ref: ./PhoneNumber.yaml
+  FaxNb:
+    $ref: ./PhoneNumber.yaml
+  EmailAdr:
+    $ref: ./Max2048Text.yaml
+  EmailPurp:
+    $ref: ./Max35Text.yaml
+  JobTitl:
+    $ref: ./Max35Text.yaml
+  Rspnsblty:
+    $ref: ./Max35Text.yaml
+  Dept:
+    $ref: ./Max70Text.yaml
+  Othr:
+    $ref: ./OtherContact1.yaml
+  PrefrdMtd:
+    $ref: ./PreferredContactMethod1Code.yaml
+example:
+  NmPrfx: Mr
+  Nm: John Doe
+  PhneNb: +123-123-321
+  MobNb: +123-123-321
+  FaxNb: +123-123-321
+  EmailAdr: example@example.com

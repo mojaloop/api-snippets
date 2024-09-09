@@ -1,0 +1,10 @@
+description: |
+  Specifies the terms used to formally address a person.
+enum:
+  - DOCT
+  - MADM
+  - MISS
+  - MIST
+  - MIKS
+type: string
+example: DOCT

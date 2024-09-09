@@ -87,8 +87,7 @@ export namespace Types {
   export type Refund = components['schemas']['Refund']
   export type RefundReason = components['schemas']['RefundReason']
   export type ServicesFXPPutResponse = components['schemas']['ServicesFXPPutResponse']
-  export type ServicesFXPSourceCurrencyTargetCurrencyPutResponse =
-    components['schemas']['ServicesFXPSourceCurrencyTargetCurrencyPutResponse']
+  export type ServicesFXPSourceCurrencyTargetCurrencyPutResponse = components['schemas']['ServicesFXPSourceCurrencyTargetCurrencyPutResponse']
   export type TokenCode = components['schemas']['TokenCode']
   export type Transaction = components['schemas']['Transaction']
   export type TransactionInitiator = components['schemas']['TransactionInitiator']

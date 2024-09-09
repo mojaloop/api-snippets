@@ -1,0 +1,16 @@
+title: ProxyAccountType1Choice
+type: object
+description: |
+  NOTE: Unsure on description.
+properties:
+  Cd:
+    $ref: ./ExternalProxyAccountType1Code.yaml
+  Prtry:
+    $ref: ./Max35Text.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry
+example:
+  Cd: CH03

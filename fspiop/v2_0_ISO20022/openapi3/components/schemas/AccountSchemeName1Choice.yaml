@@ -1,0 +1,16 @@
+title: AccountSchemeName1Choice
+type: object
+description: |
+  Sets of elements to identify a name of the identification scheme.
+properties:
+  Cd:
+    $ref: ./ExternalAccountIdentification1Code.yaml
+  Prtry:
+    $ref: ./Max35Text.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry
+example:
+  Cd: 1111

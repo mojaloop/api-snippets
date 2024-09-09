@@ -1,0 +1,24 @@
+title: CashAccount40
+type: object
+description: |
+  Provides the details to identify an account.
+properties:
+  Id:
+    $ref: ./AccountIdentification4Choice.yaml
+  Tp:
+    $ref: ./CashAccountType2Choice.yaml
+  Ccy:
+    $ref: ./ActiveOrHistoricCurrencyCode.yaml
+  Nm:
+    $ref: ./Max70Text.yaml
+  Prxy:
+    $ref: ./ProxyAccountIdentification1.yaml
+example:
+  Id:
+    IBAN: BE71096123456769
+  Tp:
+    Cd: CACC
+  Ccy: EUR
+  Nm: My account
+  Prxy:
+    Id: 12345

@@ -1,0 +1,7 @@
+title: Max70Text
+description: |
+  Specifies a character string with a maximum length of 70 characters.
+type: string
+minLength: 1
+maxLength: 70
+example: 1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890

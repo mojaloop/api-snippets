@@ -1,0 +1,35 @@
+title: GroupHeader120
+description: >
+  Set of characteristics shared by all individual transactions included in the
+  message.
+type: object
+properties:
+  MsgId:
+    $ref: ./Max35Text.yaml
+  CreDtTm:
+    $ref: ./ISODateTime.yaml
+  TxInfAndSts:
+    $ref: ./PaymentTransaction163.yaml
+required:
+  - MsgId
+  - CreDtTm
+example:
+  MsgId: 12345
+  CreDtTm: '2020-01-01T00:00:00Z'
+  TxInfAndSts:
+    StsId: 12345
+    OrgnlInstrId: 12345
+    OrgnlEndToEndId: 12345
+    OrgnlTxId: 12345
+    OrgnlUETR: 123e4567-e89b-12d3-a456-426614174000
+    TxSts: RJCT
+    StsRsnInf:
+      Rsn: RSN
+      AddtlInf: ADDITIONAL
+    AccptncDtTm: '2020-01-01T00:00:00Z'
+    AcctSvcrRef: ACCTSVCRREF
+    ClrSysRef: CLRSYSREF
+    ExctnConf: 1234567890ABCDEF
+    SplmtryData:
+      PlcAndNm: PLACE
+      Envlp: ENVELOPE

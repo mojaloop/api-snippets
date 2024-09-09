@@ -1,0 +1,57 @@
+title: TaxData1
+description: >
+  Details about tax paid, or to be paid, to the government in accordance with
+  the law, including pre-defined parameters such as thresholds and type of account.
+type: object
+properties:
+  Cdtr:
+    $ref: ./TaxParty1.yaml
+  Dbtr:
+    $ref: ./TaxParty2.yaml
+  UltmtDbtr:
+    $ref: ./TaxParty2.yaml
+  AdmstnZone:
+    $ref: ./Max35Text.yaml
+  RefNb:
+    $ref: ./Max140Text.yaml
+  Mtd:
+    $ref: ./Max35Text.yaml
+  TtlTaxblBaseAmt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  TtlTaxAmt:
+    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+  Dt:
+    $ref: ./ISODate.yaml
+  SeqNb:
+    $ref: ./Number.yaml
+  Rcrd:
+    $ref: ./TaxRecord3.yaml
+example:
+  Cdtr:
+    Titl: Mr
+    Nm: John Doe
+  Dbtr:
+    Titl: Mr
+    Nm: John Doe
+  UltmtDbtr:
+    Titl: Mr
+    Nm: John Doe
+  AdmstnZone: CH
+  RefNb: 12345
+  Mtd: A
+  TtlTaxblBaseAmt:
+    Ccy: CHF
+    Amt: 1000
+  TtlTaxAmt:
+    Ccy: CHF
+    Amt: 100
+  Dt: '2018-01-01'
+  SeqNb: 1
+  Rcrd:
+    Tp: T1
+    Ctry: CH
+    Cd: CHF
+    Amt:
+      Ccy: CHF
+      Amt: 1000
+    Inf: 12345

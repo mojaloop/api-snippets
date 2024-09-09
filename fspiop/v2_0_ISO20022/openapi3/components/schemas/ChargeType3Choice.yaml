@@ -1,0 +1,15 @@
+title: ChargeType3Choice
+description: ChargeType3Choice Specifies the type of charge.
+type: object
+properties:
+  Cd:
+    $ref: ./ExternalChargeType1Code.yaml
+  Prtry:
+    $ref: ./GenericIdentification3.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry
+example:
+  Cd: CASH

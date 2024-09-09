@@ -1,0 +1,81 @@
+title: FxResponse_FICreditTransferConfirmation
+type: object
+properties:
+  GrpHdr:
+    $ref: ./GroupHeader113.yaml
+  CdtTrfTxInf:
+    $ref: ./CreditTransferTransaction68.yaml
+required:
+  - GrpHdr
+  - CdtTrfTxInf
+example:
+  GrpHdr:
+    MsgId: 20191122-123456
+    CreDtTm: '2019-11-22T12:34:56'
+    NbOfTxs: 1
+    CtrlSum: 100.00
+    InitgPty:
+      Nm: Initiating Party Name
+    MsgRcpt:
+      Nm: Message Recipient Name
+  CdtTrfTxInf:
+    PmtId:
+      InstrId: 20191122-123456
+      EndToEndId: 20191122-123456
+    PmtTpInf:
+      InstrPrty: NORM
+      CtgyPurp: SUPP
+    IntrBkSttlmAmt:
+      Amt: 100.00
+      Ccy: EUR
+    ChrgBr: SLEV
+    Cdtr:
+      Nm: Creditor Name
+    CdtrAcct:
+      Id:
+        IBAN: BE71096123456769
+      Tp:
+        Cd: CACC
+      Ccy: EUR
+      Nm: My account
+    CdtrAgt:
+      FinInstnId:
+        BICFI: BNBABEBB
+    CdtrAgtAcct:
+      Id:
+        IBAN: BE71096123456769
+      Tp:
+        Cd: CACC
+      Ccy: EUR
+      Nm: My account
+    Dbtr:
+      Nm: Debtor Name
+    DbtrAcct:
+      Id:
+        IBAN: BE71096123456769
+      Tp:
+        Cd: CACC
+      Ccy: EUR
+      Nm: My account
+    DbtrAgt:
+      FinInstnId:
+        BICFI: BNBABEBB
+    DbtrAgtAcct:
+      Id:
+        IBAN: BE71096123456769
+      Tp:
+        Cd: CACC
+      Ccy: EUR
+      Nm: My account
+    RmtInf:
+      Ustrd: Remittance Information
+    RgltryRptg:
+      Dbtr:
+        Nm: Debtor Name
+      DbtrAcct:
+        Id:
+          IBAN: BE71096123456769
+        Tp:
+          Cd: CACC
+        Ccy: EUR
+        Nm: My account

@@ -1,0 +1,16 @@
+title: GenericAccountIdentification1
+type: object
+properties:
+  Id:
+    $ref: ./Max34Text.yaml
+  SchmeNm:
+    $ref: ./AccountSchemeName1Choice.yaml
+  Issr:
+    $ref: ./Max35Text.yaml
+required:
+  - Id
+example:
+  Id: 123
+  SchmeNm:
+    Cd: IBAN
+  Issr: BIC

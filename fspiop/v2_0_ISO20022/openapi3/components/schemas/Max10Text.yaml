@@ -1,0 +1,7 @@
+title: Max10Text
+description: |
+  Specifies a character string with a maximum length of 10 characters.
+type: string
+minLength: 1
+maxLength: 10
+example: 1234567890

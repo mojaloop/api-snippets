@@ -1,0 +1,15 @@
+title: TaxParty1
+description: |
+  Details about the entity involved in the tax paid or to be paid.
+type: object
+properties:
+  TaxId:
+    $ref: ./Max35Text.yaml
+  RegnId:
+    $ref: ./Max35Text.yaml
+  TaxTp:
+    $ref: ./Max35Text.yaml
+example:
+  TaxId: 123456789
+  RegnId: 123456789
+  TaxTp: VAT

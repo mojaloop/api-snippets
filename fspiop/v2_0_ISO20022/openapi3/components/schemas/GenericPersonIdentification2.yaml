@@ -1,0 +1,16 @@
+title: GenericPersonIdentification2
+type: object
+properties:
+  Id:
+    $ref: ./Max256Text.yaml
+  SchmeNm:
+    $ref: ./PersonIdentificationSchemeName1Choice.yaml
+  Issr:
+    $ref: ./Max35Text.yaml
+required:
+  - Id
+example:
+  Id: 123
+  SchmeNm:
+    Cd: DRLC
+  Issr: BIC

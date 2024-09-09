@@ -1,0 +1,17 @@
+title: AccountIdentification4Choice
+type: object
+description: >
+  Specifies the unique identification of an account as assigned by the account
+  servicer.
+properties:
+  IBAN:
+    $ref: ./IBAN2007Identifier.yaml
+  Othr:
+    $ref: ./GenericAccountIdentification1.yaml
+oneOf:
+  - required:
+      - IBAN
+  - required:
+      - Othr
+example:
+  IBAN: BE71096123456769

@@ -1,0 +1,23 @@
+title: BranchData5
+description: >
+  Information that locates and identifies a specific branch of a financial
+  institution.
+type: object
+properties:
+  Id:
+    $ref: ./Max35Text.yaml
+  LEI:
+    $ref: ./LEIIdentifier.yaml
+  Nm:
+    $ref: ./Max140Text.yaml
+  PstlAdr:
+    $ref: ./PostalAddress27.yaml
+example:
+  Id: 123
+  Nm: Oxford Street Branch
+  PstlAdr:
+    Ctry: GB
+    AdrLine:
+      - 1 Oxford Street
+      - London
+      - UK

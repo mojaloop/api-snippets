@@ -1,0 +1,12 @@
+title: GenericIdentification3
+type: object
+properties:
+  Id:
+    $ref: ./Max35Text.yaml
+  Issr:
+    $ref: ./Max35Text.yaml
+required:
+  - Id
+example:
+  Id: 123
+  Issr: BIC

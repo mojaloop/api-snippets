@@ -1,0 +1,21 @@
+title: Party38Choice
+description: |
+  Nature or use of the account.
+type: object
+properties:
+  OrgId:
+    $ref: ./OrganisationIdentification29.yaml
+  PrvtId:
+    $ref: ./PersonIdentification13.yaml
+oneOf:
+  - required:
+      - OrgId
+  - required:
+      - PrvtId
+example:
+  OrgId:
+    AnyBIC: BIC
+  PrvtId:
+    DtAndPlcOfBirth:
+      Dt: '2018-01-01'
+      CityOfBirth: City

@@ -1,0 +1,27 @@
+title: StatusReasonInformation14
+description: |
+  Unsure on description.
+type: object
+properties:
+  Orgtr:
+    $ref: ./PartyIdentification272.yaml
+  Rsn:
+    $ref: ./StatusReason6Choice.yaml
+  AddtlInf:
+    $ref: ./Max105Text.yaml
+example:
+  Orgtr:
+    Nm: Name
+    PstlAdr:
+      AdrTp: ADDR
+      Dept: Department
+      SubDept: SubDepartment
+      StrtNm: StreetName
+      BldgNb: BuildingNumber
+      PstCd: PostCode
+      TwnNm: TownName
+      CtrySubDvsn: CountrySubDivision
+      Ctry: Country
+  Rsn:
+    Cd: AGNT
+  AddtlInf: AdditionalInformation

@@ -1,0 +1,34 @@
+title: PartyIdentification135
+description: |
+  Specifies the identification of a person or an organisation.
+type: object
+properties:
+  Nm:
+    $ref: ./Max140Text.yaml
+  PstlAdr:
+    $ref: ./PostalAddress24.yaml
+  Id:
+    $ref: ./Party38Choice.yaml
+  CtryOfRes:
+    $ref: ./CountryCode.yaml
+  CtctDtls:
+    $ref: ./Contact4.yaml
+example:
+  Nm: John Doe
+  PstlAdr:
+    Ctry: BE
+    AdrLine:
+      - Rue du Marché 45
+      - Brussels
+      - BE
+  Id:
+    OrgId:
+      AnyBIC: CCCCUS33
+  CtryOfRes: BE
+  CtctDtls:
+    NmPrfx: Mr
+    Nm: John Doe
+    PhneNb: +123-123-321
+    MobNb: +123-123-321
+    FaxNb: +123-123-321
+    EmailAdr:

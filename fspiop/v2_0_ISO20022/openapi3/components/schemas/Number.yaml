@@ -1,0 +1,4 @@
+title: Number
+type: string
+pattern: ^[\d\-\.\,]{1,18}$
+example: 256

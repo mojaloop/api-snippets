@@ -1,0 +1,16 @@
+title: AddressType3Choice
+type: object
+description: |
+  Choice of formats for the type of address.
+properties:
+  Cd:
+    $ref: ./AddressType2Code.yaml
+  Prtry:
+    $ref: ./GenericIdentification30.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry
+example:
+  Cd: ADDR

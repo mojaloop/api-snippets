@@ -1,0 +1,17 @@
+title: CategoryPurpose1Choice
+description: >
+  Contains details about high level purpose of the mandate based on a set of
+  pre-defined categories.
+type: object
+properties:
+  Cd:
+    $ref: ./ExternalCategoryPurpose1Code.yaml
+  Prtry:
+    $ref: ./Max35Text.yaml
+oneOf:
+  - required:
+      - Cd
+  - required:
+      - Prtry
+example:
+  Cd: CASH

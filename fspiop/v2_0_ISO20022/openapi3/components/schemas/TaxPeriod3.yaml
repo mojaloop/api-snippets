@@ -1,0 +1,17 @@
+title: TaxPeriod3
+description: |
+  Period of time details related to the tax payment.
+type: object
+properties:
+  Yr:
+    $ref: ./ISOYear.yaml
+  Tp:
+    $ref: ./TaxRecordPeriod1Code.yaml
+  FrToDt:
+    $ref: ./DatePeriod2.yaml
+example:
+  Yr: 2020
+  Tp: MM01
+  FrToDt:
+    FrDt: '2020-01-01'
+    ToDt: '2020-01-31'

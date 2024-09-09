@@ -1,0 +1,24 @@
+title: BranchAndFinancialInstitutionIdentification8
+type: object
+description: >
+  Unique and unambiguous identification of a financial institution or a branch
+  of a financial institution.
+properties:
+  FinInstnId:
+    $ref: ./FinancialInstitutionIdentification23.yaml
+  BrnchId:
+    $ref: ./BranchData5.yaml
+required:
+  - FinInstnId
+example:
+  FinInstnId:
+    BICFI: BUKBGB22
+  BrnchId:
+    Id: 12345
+    Nm: Oxford Street Branch
+    PstlAdr:
+      Ctry: GB
+      AdrLine:
+        - 1 Oxford Street
+        - London
+        - UK

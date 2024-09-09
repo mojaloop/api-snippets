@@ -1,0 +1,12 @@
+description: |
+  AddressType2Code
+  Specifies the type of address.
+enum:
+  - ADDR
+  - PBOX
+  - HOME
+  - BIZZ
+  - MLTO
+  - DLVY
+type: string
+example: ADDR
