@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.6.0](https://github.com/mojaloop/api-snippets/compare/v17.5.1...v17.6.0) (2024-09-09)
+
+
+### Features
+
+* **csi-101:** add iso20022 flavour of api ([#174](https://github.com/mojaloop/api-snippets/issues/174)) ([11dfa6e](https://github.com/mojaloop/api-snippets/commit/11dfa6edf1ac29bf25e93c14a1eec324b6e3e8f3))
+
 ### [17.5.1](https://github.com/mojaloop/api-snippets/compare/v17.5.0...v17.5.1) (2024-06-03)
 
 
