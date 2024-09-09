@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
-  version: 2.0-ISO20022
-  title: Open API for FSP Interoperability (FSPIOP)
+  version: v2.0-iso20022-draft
+  title: Open API for FSP Interoperability (FSPIOP) - the ISO 20022 message version
   description: IN PROGRESS
   license:
     name: CC BY-ND 4.0
