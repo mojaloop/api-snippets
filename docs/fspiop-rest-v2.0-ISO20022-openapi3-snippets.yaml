@@ -1392,11 +1392,11 @@ components:
     ActiveCurrencyAndAmount_SimpleType:
       title: ActiveCurrencyAndAmount_SimpleType
       type: string
-      pattern: ^/^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$/g$
+      pattern: ^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$
     ActiveCurrencyCode:
       title: ActiveCurrencyCode
       type: string
-      pattern: ^ [A-Z]{3,3}$
+      pattern: ^[A-Z]{3,3}$
       description: >-
         A code allocated to a currency by a Maintenance Agency under an
         international identification scheme as described in the latest edition
@@ -1419,7 +1419,7 @@ components:
     ActiveOrHistoricCurrencyAndAmount_SimpleType:
       title: ActiveOrHistoricCurrencyAndAmount_SimpleType
       type: string
-      pattern: ^/^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$/g$
+      pattern: ^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$
     ActiveOrHistoricCurrencyCode:
       title: ActiveOrHistoricCurrencyCode
       type: string
@@ -1428,7 +1428,7 @@ components:
         international identification scheme, as described in the latest edition
         of the international standard ISO 4217 "Codes for the representation of
         currencies and funds".
-      pattern: ^ [A-Z]{3,3}$
+      pattern: ^[A-Z]{3,3}$
     AddressType2Code:
       description: |
         AddressType2Code
@@ -1468,7 +1468,7 @@ components:
 
         - "Banking - Banking telecommunication messages - Business identifier
         code (BIC)".
-      pattern: ^ [A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
+      pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
     BICFIDec2014Identifier:
       title: BICFIDec2014Identifier
       type: string
@@ -1481,13 +1481,13 @@ components:
 
         - "Banking - Banking telecommunication messages - Business identifier
         code (BIC)".
-      pattern: ^ [A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
+      pattern: ^[A-Z0-9]{4,4}[A-Z]{2,2}[A-Z0-9]{2,2}([A-Z0-9]{3,3}){0,1}$
     BaseOneRate:
       title: BaseOneRate
       type: string
       description: |
         Rate expressed as a decimal, for example, 0.7 is 7/10 and 70%.
-      pattern: ^/^(?=[\d\-\.\,]{1,11}$)([\d\-\,\.]{1,10})?$/g$
+      pattern: ^(?=[\d\-\.\,]{1,11}$)([\d\-\,\.]{1,10})?$
     BranchAndFinancialInstitutionIdentification6:
       title: BranchAndFinancialInstitutionIdentification6
       type: object
@@ -1761,7 +1761,7 @@ components:
     CountryCode:
       title: CountryCode
       type: string
-      pattern: ^ [A-Z]{2,2}$
+      pattern: ^[A-Z]{2,2}$
     CreditTransferTransaction67:
       title: CreditTransferTransaction67
       description: >
@@ -1944,13 +1944,13 @@ components:
       description: |
         Specifies a hexadecimal string with a length of 32 characters.
       type: string
-      pattern: ^ ([0-9A-F][0-9A-F]){32}$
+      pattern: ^([0-9A-F][0-9A-F]){32}$
     Exact4AlphaNumericText:
       title: Exact4AlphaNumericText
       description: |
         Specifies an alphanumeric string with a length of 4 characters.
       type: string
-      pattern: ^ [a-zA-Z0-9]{4}$
+      pattern: ^[a-zA-Z0-9]{4}$
     Execute_FIToFICustomerCreditTransferV13:
       title: Execute_FIToFICustomerCreditTransferV13
       type: object
@@ -2367,7 +2367,7 @@ components:
         International Bank Account Number (IBAN)" and replaced by the more
         recent edition of the standard.
       type: string
-      pattern: ^ [A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$
+      pattern: ^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$
     ISODate:
       title: ISODate
       description: >
@@ -2494,7 +2494,7 @@ components:
         ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
         ^([0-9A-Z]{18,18}[0-9]{2,2})$
       type: string
-      pattern: ^ [A-Z0-9]{18,18}[0-9]{2,2}$
+      pattern: ^[A-Z0-9]{18,18}[0-9]{2,2}$
     LocalInstrument2Choice:
       title: LocalInstrument2Choice
       type: object
@@ -2541,7 +2541,7 @@ components:
       description: |
         Specifies a numeric string with a maximum length of 15 digits.
       type: string
-      pattern: ^ [0-9]{1,15}$
+      pattern: ^[0-9]{1,15}$
     Max16Text:
       title: Max16Text
       description: |
@@ -2611,7 +2611,7 @@ components:
     Number:
       title: Number
       type: string
-      pattern: ^/^[\d\-\.\,]{1,18}$/g$
+      pattern: ^[\d\-\.\,]{1,18}$
     OrganisationIdentification29:
       title: OrganisationIdentification29
       description: |
@@ -2831,7 +2831,7 @@ components:
     PercentageRate:
       title: PercentageRate
       type: string
-      pattern: ^/^(?=[\d\-\.\,]{1,11}$)([\d\-\,\.]{1,10})?$/g$
+      pattern: ^(?=[\d\-\.\,]{1,11}$)([\d\-\,\.]{1,10})?$
     PersonIdentification13:
       title: PersonIdentification13
       description: |
@@ -2870,7 +2870,7 @@ components:
     PhoneNumber:
       title: PhoneNumber
       type: string
-      pattern: ^ \+[0-9]{1,3}-[0-9()+\-]{1,30}$
+      pattern: ^\+[0-9]{1,3}-[0-9()+\-]{1,30}$
     PostalAddress24:
       title: PostalAddress24
       type: object
@@ -3361,7 +3361,7 @@ components:
     UUIDv4Identifier:
       title: UUIDv4Identifier
       type: string
-      pattern: ^ [a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$
     VerificationReason1Choice:
       title: VerificationReason1Choice
       type: object
