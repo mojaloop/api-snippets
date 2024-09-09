@@ -13,3 +13,12 @@ properties:
     $ref: ./PostalAddress24.yaml
   Othr:
     $ref: ./GenericFinancialIdentification1.yaml
+example:
+  BICFI: BUKBGB22
+  Nm: Barclays Bank Plc
+  PstlAdr:
+    Ctry: GB
+    AdrLine:
+      - 1 Churchill Place
+      - London
+      - UK

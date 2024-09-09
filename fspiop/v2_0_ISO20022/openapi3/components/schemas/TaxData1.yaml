@@ -26,3 +26,32 @@ properties:
     $ref: ./Number.yaml
   Rcrd:
     $ref: ./TaxRecord3.yaml
+example:
+  Cdtr:
+    Titl: Mr
+    Nm: John Doe
+  Dbtr:
+    Titl: Mr
+    Nm: John Doe
+  UltmtDbtr:
+    Titl: Mr
+    Nm: John Doe
+  AdmstnZone: CH
+  RefNb: 12345
+  Mtd: A
+  TtlTaxblBaseAmt:
+    Ccy: CHF
+    Amt: 1000
+  TtlTaxAmt:
+    Ccy: CHF
+    Amt: 100
+  Dt: '2018-01-01'
+  SeqNb: 1
+  Rcrd:
+    Tp: T1
+    Ctry: CH
+    Cd: CHF
+    Amt:
+      Ccy: CHF
+      Amt: 1000
+    Inf: 12345

@@ -6,3 +6,4 @@ description: >
 maxLength: 4
 minLength: 1
 type: string
+example: 1234

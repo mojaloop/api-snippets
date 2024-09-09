@@ -7,3 +7,12 @@ properties:
     $ref: ./DateAndPlaceOfBirth1.yaml
   Othr:
     $ref: ./GenericPersonIdentification1.yaml
+example:
+  DtAndPlcOfBirth:
+    Dt: '2018-01-01'
+    CityOfBirth: City
+  Othr:
+    Id: 123
+    SchmeNm:
+      Cd: CUST
+      Prtry: 1

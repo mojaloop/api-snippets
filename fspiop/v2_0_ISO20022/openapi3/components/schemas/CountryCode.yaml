@@ -1,3 +1,4 @@
 title: CountryCode
 type: string
 pattern: ^[A-Z]{2,2}$
+example: US

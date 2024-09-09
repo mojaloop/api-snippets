@@ -12,3 +12,10 @@ oneOf:
       - OrgId
   - required:
       - PrvtId
+example:
+  OrgId:
+    AnyBIC: BIC
+  PrvtId:
+    DtAndPlcOfBirth:
+      Dt: '2018-01-01'
+      CityOfBirth: City

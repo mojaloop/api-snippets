@@ -9,3 +9,6 @@ properties:
     $ref: ./Max128Text.yaml
 required:
   - ChanlTp
+example:
+  ChanlTp: PHON
+  Id: 1234567890

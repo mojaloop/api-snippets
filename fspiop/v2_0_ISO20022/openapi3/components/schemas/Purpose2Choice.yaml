@@ -17,3 +17,5 @@ oneOf:
       - Cd
   - required:
       - Prtry
+example:
+  Cd: CH03

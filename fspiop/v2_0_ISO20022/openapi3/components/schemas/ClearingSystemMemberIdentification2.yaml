@@ -10,3 +10,7 @@ properties:
     $ref: ./Max35Text.yaml
 required:
   - MmbId
+example:
+  ClrSysId:
+    Cd: CHQB
+  MmbId: 123456789

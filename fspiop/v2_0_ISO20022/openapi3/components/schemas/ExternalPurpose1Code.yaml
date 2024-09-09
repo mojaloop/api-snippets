@@ -2,3 +2,4 @@ title: ExternalPurpose1Code
 type: string
 minLength: 1
 maxLength: 4
+example: 1234

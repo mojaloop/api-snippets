@@ -10,3 +10,7 @@ properties:
 required:
   - Id
   - Issr
+example:
+  Id: 1234
+  Issr: BIC
+  SchmeNm: BICFI

@@ -9,3 +9,27 @@ properties:
     $ref: ./SupplementaryData1.yaml
 required:
   - GrpHdr
+example:
+  GrpHdr:
+    MsgId: 12345
+    CreDtTm: '2020-01-01T00:00:00Z'
+    NbOfTxs: 1
+    SttlmInf:
+      SttlmMtd: INDA
+      SttlmDt: '2020-01-01'
+    InstgAgt:
+      FinInstnId:
+        BICFI: BICFI
+    InstdAgt:
+      FinInstnId:
+        BICFI: BICFI
+  TxInfAndSts:
+    OrgnlInstrId: 12345
+    OrgnlEndToEndId: 12345
+    TxSts: RJCT
+    StsRsnInf:
+      Rsn: RSN
+      AddtlInf: ADDITIONAL
+  SplmtryData:
+    PlcAndNm: PLACE
+    Envlp: ENVELOPE

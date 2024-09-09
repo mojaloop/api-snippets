@@ -10,3 +10,8 @@ properties:
     $ref: ./SupplementaryDataEnvelope1.yaml
 required:
   - Envlp
+example:
+  PlcAndNm: Additional information
+  Envlp:
+    Cd: CH03
+    Prtry: Additional information

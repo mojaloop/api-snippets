@@ -9,3 +9,32 @@ properties:
     $ref: ./PaymentTypeInformation28.yaml
 required:
   - SttlmMtd
+example:
+  SttlmMtd: INDA
+  PmtTpInf:
+    InstrPrty: NORM
+    SvcLvl:
+      Cd: SEPA
+    LclInstrm:
+      Cd: CH03
+    CtgyPurp:
+      Cd: SUPP
+    Cdtr:
+      Nm: Name
+      PstlAdr:
+        AdrTp: ADDR
+        AdrLine: Address
+        Ctry: CH
+      Id:
+        OrgId:
+          AnyBIC: BIC
+          Othr:
+            Id: 123
+            SchmeNm:
+              Cd: IBAN
+              Issr: BIC
+      CtryOfRes: CH
+      CtctDtls:
+        Nm: Name
+        PhneNb: 123
+        EmailAdr:

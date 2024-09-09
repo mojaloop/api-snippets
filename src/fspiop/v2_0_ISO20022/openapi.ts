@@ -514,6 +514,9 @@ export interface components {
          * AccountIdentification4Choice
          * @description Specifies the unique identification of an account as assigned by the account servicer.
          *
+         * @example {
+         *       "IBAN": "BE71096123456769"
+         *     }
          */
         AccountIdentification4Choice: {
             IBAN?: components["schemas"]["IBAN2007Identifier"];
@@ -523,6 +526,9 @@ export interface components {
          * AccountSchemeName1Choice
          * @description Sets of elements to identify a name of the identification scheme.
          *
+         * @example {
+         *       "Cd": 1111
+         *     }
          */
         AccountSchemeName1Choice: {
             Cd?: components["schemas"]["ExternalAccountIdentification1Code"];
@@ -532,39 +538,65 @@ export interface components {
          * ActiveCurrencyAndAmount
          * @description A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
          *
+         * @example {
+         *       "ActiveCurrencyAndAmount": 123.45,
+         *       "Ccy": "USD"
+         *     }
          */
         ActiveCurrencyAndAmount: {
             ActiveCurrencyAndAmount: components["schemas"]["ActiveCurrencyAndAmount_SimpleType"];
             Ccy: components["schemas"]["ActiveCurrencyCode"];
         };
-        /** ActiveCurrencyAndAmount_SimpleType */
+        /**
+         * ActiveCurrencyAndAmount_SimpleType
+         * @description NOTE: This regex doesn't seem correct given it's xsd definition.
+         *     <xs:simpleType name="ActiveCurrencyAndAmount_SimpleType">
+         *       <xs:restriction base="xs:decimal">
+         *         <xs:fractionDigits value="5"/>
+         *         <xs:totalDigits value="18"/>
+         *         <xs:minInclusive value="0"/>
+         *       </xs:restriction>
+         *     </xs:simpleType>
+         *
+         * @example 123.45
+         */
         ActiveCurrencyAndAmount_SimpleType: string;
         /**
          * ActiveCurrencyCode
          * @description A code allocated to a currency by a Maintenance Agency under an international identification scheme as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
+         * @example USD
          */
         ActiveCurrencyCode: string;
         /**
          * ActiveOrHistoricCurrencyAndAmount
          * @description A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217.
          *
+         * @example {
+         *       "ActiveOrHistoricCurrencyAndAmount": 123.45,
+         *       "Ccy": "USD"
+         *     }
          */
         ActiveOrHistoricCurrencyAndAmount: {
             ActiveOrHistoricCurrencyAndAmount: components["schemas"]["ActiveOrHistoricCurrencyAndAmount_SimpleType"];
             Ccy: components["schemas"]["ActiveOrHistoricCurrencyCode"];
         };
-        /** ActiveOrHistoricCurrencyAndAmount_SimpleType */
+        /**
+         * ActiveOrHistoricCurrencyAndAmount_SimpleType
+         * @example 123.45
+         */
         ActiveOrHistoricCurrencyAndAmount_SimpleType: string;
         /**
          * ActiveOrHistoricCurrencyCode
          * @description A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
          *
+         * @example USD
          */
         ActiveOrHistoricCurrencyCode: string;
         /**
          * @description AddressType2Code
          *     Specifies the type of address.
          *
+         * @example ADDR
          * @enum {string}
          */
         AddressType2Code: "ADDR" | "PBOX" | "HOME" | "BIZZ" | "MLTO" | "DLVY";
@@ -572,6 +604,9 @@ export interface components {
          * AddressType3Choice
          * @description Choice of formats for the type of address.
          *
+         * @example {
+         *       "Cd": "ADDR"
+         *     }
          */
         AddressType3Choice: {
             Cd?: components["schemas"]["AddressType2Code"];
@@ -584,6 +619,7 @@ export interface components {
          *     ISO 9362 Registration Authority, as described in ISO 9362: 2014
          *     - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
          *
+         * @example J5BMVH7D
          */
         AnyBICDec2014Identifier: string;
         /**
@@ -594,18 +630,41 @@ export interface components {
          *
          *     - "Banking - Banking telecommunication messages - Business identifier code (BIC)".
          *
+         * @example J5BMVH7D
          */
         BICFIDec2014Identifier: string;
         /**
          * BaseOneRate
          * @description Rate expressed as a decimal, for example, 0.7 is 7/10 and 70%.
          *
+         * @example 0.7
          */
         BaseOneRate: string;
         /**
          * BranchAndFinancialInstitutionIdentification6
          * @description Unique and unambiguous identification of a financial institution or a branch of a financial institution.
          *
+         * @example {
+         *       "FinInstnId": {
+         *         "BICFI": "J5BMVH7D"
+         *       },
+         *       "BrnchId": {
+         *         "Id": 123,
+         *         "Nm": "Name",
+         *         "PstlAdr": {
+         *           "AdrTp": "ADDR",
+         *           "Dept": "Department",
+         *           "SubDept": "Sub department",
+         *           "StrtNm": "Street name",
+         *           "BldgNb": "Building number",
+         *           "PstCd": "Post code",
+         *           "TwnNm": "Town name",
+         *           "CtrySubDvsn": "Country subdivision",
+         *           "Ctry": "Country",
+         *           "AdrLine": "Address line"
+         *         }
+         *       }
+         *     }
          */
         BranchAndFinancialInstitutionIdentification6: {
             FinInstnId: components["schemas"]["FinancialInstitutionIdentification18"];
@@ -615,6 +674,23 @@ export interface components {
          * BranchAndFinancialInstitutionIdentification8
          * @description Unique and unambiguous identification of a financial institution or a branch of a financial institution.
          *
+         * @example {
+         *       "FinInstnId": {
+         *         "BICFI": "BUKBGB22"
+         *       },
+         *       "BrnchId": {
+         *         "Id": 12345,
+         *         "Nm": "Oxford Street Branch",
+         *         "PstlAdr": {
+         *           "Ctry": "GB",
+         *           "AdrLine": [
+         *             "1 Oxford Street",
+         *             "London",
+         *             "UK"
+         *           ]
+         *         }
+         *       }
+         *     }
          */
         BranchAndFinancialInstitutionIdentification8: {
             FinInstnId: components["schemas"]["FinancialInstitutionIdentification23"];
@@ -624,6 +700,22 @@ export interface components {
          * BranchData3
          * @description Information that locates and identifies a specific branch of a financial institution.
          *
+         * @example {
+         *       "Id": 123,
+         *       "Nm": "Name",
+         *       "PstlAdr": {
+         *         "AdrTp": "ADDR",
+         *         "Dept": "Department",
+         *         "SubDept": "Sub department",
+         *         "StrtNm": "Street name",
+         *         "BldgNb": "Building number",
+         *         "PstCd": "Post code",
+         *         "TwnNm": "Town name",
+         *         "CtrySubDvsn": "Country subdivision",
+         *         "Ctry": "Country",
+         *         "AdrLine": "Address line"
+         *       }
+         *     }
          */
         BranchData3: {
             Id?: components["schemas"]["Max35Text"];
@@ -635,6 +727,18 @@ export interface components {
          * BranchData5
          * @description Information that locates and identifies a specific branch of a financial institution.
          *
+         * @example {
+         *       "Id": 123,
+         *       "Nm": "Oxford Street Branch",
+         *       "PstlAdr": {
+         *         "Ctry": "GB",
+         *         "AdrLine": [
+         *           "1 Oxford Street",
+         *           "London",
+         *           "UK"
+         *         ]
+         *       }
+         *     }
          */
         BranchData5: {
             Id?: components["schemas"]["Max35Text"];
@@ -646,6 +750,19 @@ export interface components {
          * CashAccount40
          * @description Provides the details to identify an account.
          *
+         * @example {
+         *       "Id": {
+         *         "IBAN": "BE71096123456769"
+         *       },
+         *       "Tp": {
+         *         "Cd": "CACC"
+         *       },
+         *       "Ccy": "EUR",
+         *       "Nm": "My account",
+         *       "Prxy": {
+         *         "Id": 12345
+         *       }
+         *     }
          */
         CashAccount40: {
             Id?: components["schemas"]["AccountIdentification4Choice"];
@@ -658,6 +775,9 @@ export interface components {
          * CashAccountType2Choice
          * @description Specifies the nature, or use of the account.
          *
+         * @example {
+         *       "Cd": "CACC"
+         *     }
          */
         CashAccountType2Choice: {
             Cd?: components["schemas"]["ExternalCashAccountType1Code"];
@@ -667,6 +787,9 @@ export interface components {
          * CategoryPurpose1Choice
          * @description Contains details about high level purpose of the mandate based on a set of pre-defined categories.
          *
+         * @example {
+         *       "Cd": "CASH"
+         *     }
          */
         CategoryPurpose1Choice: {
             Cd?: components["schemas"]["ExternalCategoryPurpose1Code"];
@@ -680,12 +803,16 @@ export interface components {
          *     SHAR Shared In a credit transfer context, means that transaction charges on the sender side are to be borne by the debtor, transaction charges on the receiver side are to be borne by the creditor. In a direct debit context, means that transaction charges on the sender side are to be borne by the creditor, transaction charges on the receiver
          *     SLEV FollowingServiceLevel Charges are to be applied following the rules agreed in the service level.
          *
+         * @example DEBT
          * @enum {string}
          */
         ChargeBearerType1Code: "DEBT" | "CRED" | "SHAR" | "SLEV";
         /**
          * ChargeType3Choice
          * @description ChargeType3Choice Specifies the type of charge.
+         * @example {
+         *       "Cd": "CASH"
+         *     }
          */
         ChargeType3Choice: {
             Cd?: components["schemas"]["ExternalChargeType1Code"];
@@ -695,6 +822,23 @@ export interface components {
          * Charges16
          * @description NOTE: Unsure on description.
          *
+         * @example {
+         *       "Amt": {
+         *         "ActiveOrHistoricCurrencyAndAmount": 123.45,
+         *         "Ccy": "USD"
+         *       },
+         *       "Agt": {
+         *         "BrnchId": {
+         *           "Id": "BRANCHID"
+         *         },
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       },
+         *       "Tp": {
+         *         "Cd": "SHAR"
+         *       }
+         *     }
          */
         Charges16: {
             Amt: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"];
@@ -709,6 +853,7 @@ export interface components {
          *     MPNS MassPaymentNetSystem Clearing channel is a mass payment  net settlement system.
          *     BOOK BookTransfer Payment through internal book transfer.
          *
+         * @example RTGS
          * @enum {string}
          */
         ClearingChannel2Code: "RTGS" | "RTNS" | "MPNS" | "BOOK";
@@ -716,6 +861,9 @@ export interface components {
          * ClearingSystemIdentification2Choice
          * @description Choice of a clearing system identifier.
          *
+         * @example {
+         *       "Cd": "CHQB"
+         *     }
          */
         ClearingSystemIdentification2Choice: {
             Cd?: components["schemas"]["ExternalClearingSystemIdentification1Code"];
@@ -725,6 +873,12 @@ export interface components {
          * ClearingSystemMemberIdentification2
          * @description Unique identification, as assigned by a clearing system, to unambiguously identify a member of the clearing system.
          *
+         * @example {
+         *       "ClrSysId": {
+         *         "Cd": "CHQB"
+         *       },
+         *       "MmbId": 123456789
+         *     }
          */
         ClearingSystemMemberIdentification2: {
             ClrSysId?: components["schemas"]["ClearingSystemIdentification2Choice"];
@@ -734,6 +888,15 @@ export interface components {
          * Contact13
          * @description Specifies the details of the contact person.
          *
+         * @example {
+         *       "NmPrfx": "Mr",
+         *       "Nm": "John Doe",
+         *       "PhneNb": "+123-123-321",
+         *       "MobNb": "+123-123-321",
+         *       "FaxNb": "+123-123-321",
+         *       "URLAdr": "http://www.example.com",
+         *       "EmailAdr": "example@example.com"
+         *     }
          */
         Contact13: {
             NmPrfx?: components["schemas"]["NamePrefix2Code"];
@@ -754,6 +917,14 @@ export interface components {
          * Contact4
          * @description Specifies the details of the contact person.
          *
+         * @example {
+         *       "NmPrfx": "Mr",
+         *       "Nm": "John Doe",
+         *       "PhneNb": "+123-123-321",
+         *       "MobNb": "+123-123-321",
+         *       "FaxNb": "+123-123-321",
+         *       "EmailAdr": "example@example.com"
+         *     }
          */
         Contact4: {
             NmPrfx?: components["schemas"]["NamePrefix2Code"];
@@ -769,12 +940,117 @@ export interface components {
             Othr?: components["schemas"]["OtherContact1"];
             PrefrdMtd?: components["schemas"]["PreferredContactMethod1Code"];
         };
-        /** CountryCode */
+        /**
+         * CountryCode
+         * @example US
+         */
         CountryCode: string;
         /**
          * CreditTransferTransaction67
          * @description Provides further details specific to the individual transaction(s) included in the message.
          *
+         * @example {
+         *       "PmtId": {
+         *         "InstrId": "INSTRID",
+         *         "EndToEndId": "ENDTOENDID"
+         *       },
+         *       "PmtTpInf": {
+         *         "LclInstrm": {
+         *           "Cd": "CHQB",
+         *           "Prtry": "PROPRIETARY"
+         *         },
+         *         "SeqTp": "SEQTP"
+         *       },
+         *       "IntrBkSttlmAmt": {
+         *         "ActiveCurrencyAndAmount": 123.45,
+         *         "Ccy": "USD"
+         *       },
+         *       "InstdAmt": {
+         *         "ActiveOrHistoricCurrencyAndAmount": 123.45,
+         *         "Ccy": "USD"
+         *       },
+         *       "XchgRate": 123.45,
+         *       "ChrgBr": "SHAR",
+         *       "ChrgsInf": {
+         *         "Amt": {
+         *           "ActiveOrHistoricCurrencyAndAmount": 123.45,
+         *           "Ccy": "USD"
+         *         },
+         *         "Agt": {
+         *           "BrnchId": {
+         *             "Id": "BRANCHID"
+         *           },
+         *           "FinInstnId": {
+         *             "BICFI": "BICFI"
+         *           }
+         *         },
+         *         "Tp": {
+         *           "Cd": "SHAR"
+         *         }
+         *       },
+         *       "Dbtr": {
+         *         "Nm": "NAME",
+         *         "PstlAdr": {
+         *           "AdrTp": "ADDR",
+         *           "BldgNb": "BLDGNB",
+         *           "Ctry": "CTRY",
+         *           "TwnNm": "TWNNM",
+         *           "PstCd": "PSTCD",
+         *           "StrtNm": "STRTNM"
+         *         }
+         *       },
+         *       "DbtrAcct": {
+         *         "Id": {
+         *           "IBAN": "IBAN"
+         *         }
+         *       },
+         *       "DbtrAgt": {
+         *         "BrnchId": {
+         *           "Id": "BRANCHID"
+         *         },
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       },
+         *       "CdtrAgt": {
+         *         "BrnchId": {
+         *           "Id": "BRANCHID"
+         *         },
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       },
+         *       "Cdtr": {
+         *         "Nm": "NAME",
+         *         "PstlAdr": {
+         *           "AdrTp": "ADDR",
+         *           "BldgNb": "BLDGNB",
+         *           "Ctry": "CTRY",
+         *           "TwnNm": "TWNNM",
+         *           "PstCd": "PSTCD",
+         *           "StrtNm": "STRTNM"
+         *         }
+         *       },
+         *       "CdtrAcct": {
+         *         "Id": {
+         *           "IBAN": "IBAN"
+         *         }
+         *       },
+         *       "InstrForCdtrAgt": {
+         *         "Cd": "CODE"
+         *       },
+         *       "InstrForNxtAgt": {
+         *         "Cd": "CODE"
+         *       },
+         *       "Purp": {
+         *         "Cd": "CASH"
+         *       },
+         *       "RgltryRptg": {
+         *         "Dbtr": true,
+         *         "Cdtr": true
+         *       },
+         *       "Tax": "Cdtr"
+         *     }
          */
         CreditTransferTransaction67: {
             PmtId: components["schemas"]["PaymentIdentification13"];
@@ -801,6 +1077,58 @@ export interface components {
          * CreditTransferTransaction68
          * @description Provides further details specific to the individual transaction(s) included in the message.
          *
+         * @example {
+         *       "PmtId": {
+         *         "InstrId": "INSTRID",
+         *         "EndToEndId": "ENDTOENDID"
+         *       },
+         *       "PmtTpInf": {
+         *         "LclInstrm": {
+         *           "Cd": "CHQB",
+         *           "Prtry": "PROPRIETARY"
+         *         }
+         *       },
+         *       "IntrBkSttlmAmt": {
+         *         "Amount": 123.45,
+         *         "Ccy": "EUR"
+         *       },
+         *       "Dbtr": {
+         *         "Nm": "Debtor Name"
+         *       },
+         *       "DbtrAcct": {
+         *         "Id": {
+         *           "IBAN": "IBAN"
+         *         }
+         *       },
+         *       "DbtrAgt": {
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       },
+         *       "CdtrAgt": {
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       },
+         *       "Cdtr": {
+         *         "Nm": "Creditor Name"
+         *       },
+         *       "CdtrAcct": {
+         *         "Id": {
+         *           "IBAN": "IBAN"
+         *         }
+         *       },
+         *       "InstrForCdtrAgt": {
+         *         "Cd": "INSTRUCTION"
+         *       },
+         *       "Purp": {
+         *         "Cd": "CHAR"
+         *       },
+         *       "VrfctnOfTerms": {
+         *         "Cntt": "CONTENT",
+         *         "CnttTp": "PROPRIETARY"
+         *       }
+         *     }
          */
         CreditTransferTransaction68: {
             PmtId: components["schemas"]["PaymentIdentification13"];
@@ -820,6 +1148,9 @@ export interface components {
          * CryptographicLockChoice
          * @description NOTE: Unsure on description.
          *
+         * @example {
+         *       "IlpV4PrepPacket": "1234567890ABCDEF"
+         *     }
          */
         CryptographicLockChoice: {
             IlpV4PrepPacket?: components["schemas"]["hexBinary"];
@@ -829,6 +1160,12 @@ export interface components {
          * DateAndPlaceOfBirth1
          * @description Details about date and place of birth of a person.
          *
+         * @example {
+         *       "BirthDt": "1970-01-01",
+         *       "PrvcOfBirth": "ON",
+         *       "CityOfBirth": "Ottawa",
+         *       "CtryOfBirth": "CA"
+         *     }
          */
         DateAndPlaceOfBirth1: {
             BirthDt: components["schemas"]["ISODate"];
@@ -840,6 +1177,10 @@ export interface components {
          * DatePeriod2
          * @description Range of time defined by a start date and an end date.
          *
+         * @example {
+         *       "FrDt": "2020-01-01",
+         *       "ToDt": "2020-12-31"
+         *     }
          */
         DatePeriod2: {
             FrDt: components["schemas"]["ISODate"];
@@ -877,15 +1218,101 @@ export interface components {
          * Exact32HexBinaryText
          * @description Specifies a hexadecimal string with a length of 32 characters.
          *
+         * @example 1234567890ABCDEF1234567890ABCDEF
          */
         Exact32HexBinaryText: string;
         /**
          * Exact4AlphaNumericText
          * @description Specifies an alphanumeric string with a length of 4 characters.
          *
+         * @example 1234
          */
         Exact4AlphaNumericText: string;
-        /** Execute_FIToFICustomerCreditTransferV13 */
+        /**
+         * Execute_FIToFICustomerCreditTransferV13
+         * @example {
+         *       "GrpHdr": {
+         *         "MsgId": 123456789,
+         *         "CreDtTm": "2020-01-01T00:00:00Z",
+         *         "NbOfTxs": 1,
+         *         "CtrlSum": 100,
+         *         "InitgPty": {
+         *           "Nm": "Initiating Party Name",
+         *           "Id": {
+         *             "OrgId": {
+         *               "Othr": [
+         *                 {
+         *                   "Id": 123456789,
+         *                   "SchmeNm": {
+         *                     "Cd": 91
+         *                   }
+         *                 }
+         *               ]
+         *             }
+         *           }
+         *         },
+         *         "FwdgAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BBBBBBBB"
+         *           }
+         *         }
+         *       },
+         *       "CdtTrfTxInf": {
+         *         "PmtId": {
+         *           "InstrId": 123456789,
+         *           "EndToEndId": 123456789
+         *         },
+         *         "PmtTpInf": {
+         *           "InstrPrty": "NORM",
+         *           "CtgyPurp": {
+         *             "Cd": "SUPP"
+         *           }
+         *         },
+         *         "InstrForCdtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "AAAAAAAA"
+         *           }
+         *         },
+         *         "CdtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "AAAAAAAA"
+         *           }
+         *         },
+         *         "Cdtr": {
+         *           "Nm": "Creditor Name",
+         *           "PstlAdr": {
+         *             "AdrLine": [
+         *               "Creditor Address Line 1",
+         *               "Creditor Address Line 2",
+         *               "Creditor Address Line 3",
+         *               "Creditor Address Line 4",
+         *               "Creditor Address Line 5"
+         *             ]
+         *           },
+         *           "Id": {
+         *             "OrgId": {
+         *               "Othr": [
+         *                 {
+         *                   "Id": 123456789,
+         *                   "SchmeNm": {
+         *                     "Cd": 91
+         *                   }
+         *                 }
+         *               ]
+         *             }
+         *           }
+         *         },
+         *         "CdtrAcct": {
+         *           "Id": {
+         *             "IBAN": "DE87123456781234567890"
+         *           }
+         *         },
+         *         "RmtInf": {
+         *           "Ustrd": "Remittance Information"
+         *         }
+         *       }
+         *     }
+         */
         Execute_FIToFICustomerCreditTransferV13: {
             GrpHdr: components["schemas"]["GroupHeader129"];
             CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"];
@@ -921,50 +1348,113 @@ export interface components {
          * ExternalAccountIdentification1Code
          * @description Specifies the external account identification scheme name code in the format of character string with a maximum length of 4 characters.
          *
+         * @example 1234
          */
         ExternalAccountIdentification1Code: string;
         /**
          * ExternalCashAccountType1Code
          * @description Specifies the nature, or use, of the cash account in the format of character string with a maximum length of 4 characters.
          *
+         * @example 1234
          */
         ExternalCashAccountType1Code: string;
-        /** @description Specifies the category purpose, as published in an external category purpose code list.
+        /**
+         * @description Specifies the category purpose, as published in an external category purpose code list.
          *     External code sets can be downloaded from www.iso20022.org.
-         *      */
+         *
+         * @example 1234
+         */
         ExternalCategoryPurpose1Code: string;
-        /** ExternalChargeType1Code */
+        /**
+         * ExternalChargeType1Code
+         * @example 1234
+         */
         ExternalChargeType1Code: string;
-        /** ExternalClearingSystemIdentification1Code */
+        /**
+         * ExternalClearingSystemIdentification1Code
+         * @example 12345
+         */
         ExternalClearingSystemIdentification1Code: string;
-        /** ExternalCreditorAgentInstruction1Code */
+        /**
+         * ExternalCreditorAgentInstruction1Code
+         * @example 1234
+         */
         ExternalCreditorAgentInstruction1Code: string;
-        /** ExternalFinancialInstitutionIdentification1Code */
+        /**
+         * ExternalFinancialInstitutionIdentification1Code
+         * @example 1234
+         */
         ExternalFinancialInstitutionIdentification1Code: string;
-        /** ExternalLocalInstrument1Code */
+        /**
+         * ExternalLocalInstrument1Code
+         * @example 12345
+         */
         ExternalLocalInstrument1Code: string;
-        /** ExternalOrganisationIdentification1Code */
+        /**
+         * ExternalOrganisationIdentification1Code
+         * @example 1234
+         */
         ExternalOrganisationIdentification1Code: string;
-        /** ExternalPaymentTransactionStatus1Code */
+        /**
+         * ExternalPaymentTransactionStatus1Code
+         * @example 1234
+         */
         ExternalPaymentTransactionStatus1Code: string;
-        /** ExternalPersonIdentification1Code */
+        /**
+         * ExternalPersonIdentification1Code
+         * @example 1234
+         */
         ExternalPersonIdentification1Code: string;
-        /** ExternalProxyAccountType1Code */
+        /**
+         * ExternalProxyAccountType1Code
+         * @example 1234
+         */
         ExternalProxyAccountType1Code: string;
-        /** ExternalPurpose1Code */
+        /**
+         * ExternalPurpose1Code
+         * @example 1234
+         */
         ExternalPurpose1Code: string;
-        /** ExternalServiceLevel1Code */
+        /**
+         * ExternalServiceLevel1Code
+         * @example 1234
+         */
         ExternalServiceLevel1Code: string;
-        /** ExternalStatusReason1Code */
+        /**
+         * ExternalStatusReason1Code
+         * @example 1234
+         */
         ExternalStatusReason1Code: string;
-        /** ExternalVerificationReason1Code */
+        /**
+         * ExternalVerificationReason1Code
+         * @example 1234
+         */
         ExternalVerificationReason1Code: string;
-        /** FinancialIdentificationSchemeName1Choice */
+        /**
+         * FinancialIdentificationSchemeName1Choice
+         * @example {
+         *       "Cd": "BIC"
+         *     }
+         */
         FinancialIdentificationSchemeName1Choice: {
             Cd?: components["schemas"]["ExternalFinancialInstitutionIdentification1Code"];
             Prtry?: components["schemas"]["Max35Text"];
         } & (unknown | unknown);
-        /** FinancialInstitutionIdentification18 */
+        /**
+         * FinancialInstitutionIdentification18
+         * @example {
+         *       "BICFI": "BUKBGB22",
+         *       "Nm": "Barclays Bank Plc",
+         *       "PstlAdr": {
+         *         "Ctry": "GB",
+         *         "AdrLine": [
+         *           "1 Churchill Place",
+         *           "London",
+         *           "UK"
+         *         ]
+         *       }
+         *     }
+         */
         FinancialInstitutionIdentification18: {
             BICFI?: components["schemas"]["BICFIDec2014Identifier"];
             ClrSysMmbId?: components["schemas"]["ClearingSystemMemberIdentification2"];
@@ -973,7 +1463,21 @@ export interface components {
             PstlAdr?: components["schemas"]["PostalAddress24"];
             Othr?: components["schemas"]["GenericFinancialIdentification1"];
         };
-        /** FinancialInstitutionIdentification23 */
+        /**
+         * FinancialInstitutionIdentification23
+         * @example {
+         *       "BICFI": "BUKBGB22",
+         *       "Nm": "Barclays Bank Plc",
+         *       "PstlAdr": {
+         *         "Ctry": "GB",
+         *         "AdrLine": [
+         *           "1 Churchill Place",
+         *           "London",
+         *           "UK"
+         *         ]
+         *       }
+         *     }
+         */
         FinancialInstitutionIdentification23: {
             BICFI?: components["schemas"]["BICFIDec2014Identifier"];
             ClrSysMmbId?: components["schemas"]["ClearingSystemMemberIdentification2"];
@@ -982,74 +1486,586 @@ export interface components {
             PstlAdr?: components["schemas"]["PostalAddress27"];
             Othr?: components["schemas"]["GenericFinancialIdentification1"];
         };
-        /** FxRequest_FICreditTransferProposal */
+        /**
+         * FxRequest_FICreditTransferProposal
+         * @example {
+         *       "GrpHdr": {
+         *         "MsgId": 123456789,
+         *         "CreDtTm": "2020-01-01T00:00:00Z",
+         *         "NbOfTxs": 1,
+         *         "CtrlSum": 100,
+         *         "InitgPty": {
+         *           "Nm": "Initiating Party Name",
+         *           "Id": {
+         *             "OrgId": {
+         *               "Othr": [
+         *                 {
+         *                   "Id": 123456789,
+         *                   "SchmeNm": {
+         *                     "Cd": "BIC"
+         *                   }
+         *                 }
+         *               ]
+         *             }
+         *           }
+         *         },
+         *         "FwdgAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BICFID0"
+         *           }
+         *         },
+         *         "Dbtr": {
+         *           "Nm": "Debtor Name",
+         *           "PstlAdr": {
+         *             "AdrLine": [
+         *               "Debtor Address Line 1",
+         *               "Debtor Address Line 2"
+         *             ]
+         *           },
+         *           "Id": {
+         *             "OrgId": {
+         *               "Othr": [
+         *                 {
+         *                   "Id": 123456789,
+         *                   "SchmeNm": {
+         *                     "Cd": "BIC"
+         *                   }
+         *                 }
+         *               ]
+         *             }
+         *           }
+         *         },
+         *         "DbtrAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           }
+         *         },
+         *         "DbtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BICFID0"
+         *           }
+         *         },
+         *         "Cdtr": {
+         *           "Nm": "Creditor Name",
+         *           "PstlAdr": {
+         *             "AdrLine": [
+         *               "Creditor Address Line 1",
+         *               "Creditor Address Line 2"
+         *             ]
+         *           },
+         *           "Id": {
+         *             "OrgId": {
+         *               "Othr": [
+         *                 {
+         *                   "Id": 123456789,
+         *                   "SchmeNm": {
+         *                     "Cd": "BIC"
+         *                   }
+         *                 }
+         *               ]
+         *             }
+         *           }
+         *         },
+         *         "CdtrAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           }
+         *         },
+         *         "CdtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BICFID0"
+         *           }
+         *         },
+         *         "CdtTrfTxInf": [
+         *           {
+         *             "PmtId": {
+         *               "InstrId": 123456789,
+         *               "EndToEndId": 123456789
+         *             },
+         *             "Amt": {
+         *               "InstdAmt": {
+         *                 "Ccy": "EUR",
+         *                 "Amt": 100
+         *               }
+         *             },
+         *             "CdtrAgt": {
+         *               "FinInstnId": {
+         *                 "BICFI": "BICFID0"
+         *               }
+         *             },
+         *             "Cdtr": {
+         *               "Nm": "Creditor Name",
+         *               "PstlAdr": {
+         *                 "AdrLine": [
+         *                   "Creditor Address Line 1",
+         *                   "Creditor Address Line 2"
+         *                 ]
+         *               },
+         *               "Id": {
+         *                 "OrgId": {
+         *                   "Othr": [
+         *                     {
+         *                       "Id": 123456789,
+         *                       "SchmeNm": {
+         *                         "Cd": "BIC"
+         *                       }
+         *                     }
+         *                   ]
+         *                 }
+         *               }
+         *             }
+         *           }
+         *         ]
+         *       }
+         *     }
+         */
         FxRequest_FICreditTransferProposal: {
             GrpHdr: components["schemas"]["GroupHeader113"];
         };
-        /** FxResponse_FICreditTransferConfirmation */
+        /**
+         * FxResponse_FICreditTransferConfirmation
+         * @example {
+         *       "GrpHdr": {
+         *         "MsgId": "20191122-123456",
+         *         "CreDtTm": "2019-11-22T12:34:56",
+         *         "NbOfTxs": 1,
+         *         "CtrlSum": 100,
+         *         "InitgPty": {
+         *           "Nm": "Initiating Party Name"
+         *         },
+         *         "MsgRcpt": {
+         *           "Nm": "Message Recipient Name"
+         *         }
+         *       },
+         *       "CdtTrfTxInf": {
+         *         "PmtId": {
+         *           "InstrId": "20191122-123456",
+         *           "EndToEndId": "20191122-123456"
+         *         },
+         *         "PmtTpInf": {
+         *           "InstrPrty": "NORM",
+         *           "CtgyPurp": "SUPP"
+         *         },
+         *         "IntrBkSttlmAmt": {
+         *           "Amt": 100,
+         *           "Ccy": "EUR"
+         *         },
+         *         "ChrgBr": "SLEV",
+         *         "Cdtr": {
+         *           "Nm": "Creditor Name"
+         *         },
+         *         "CdtrAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           },
+         *           "Tp": {
+         *             "Cd": "CACC"
+         *           },
+         *           "Ccy": "EUR",
+         *           "Nm": "My account"
+         *         },
+         *         "CdtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BNBABEBB"
+         *           }
+         *         },
+         *         "CdtrAgtAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           },
+         *           "Tp": {
+         *             "Cd": "CACC"
+         *           },
+         *           "Ccy": "EUR",
+         *           "Nm": "My account"
+         *         },
+         *         "Dbtr": {
+         *           "Nm": "Debtor Name"
+         *         },
+         *         "DbtrAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           },
+         *           "Tp": {
+         *             "Cd": "CACC"
+         *           },
+         *           "Ccy": "EUR",
+         *           "Nm": "My account"
+         *         },
+         *         "DbtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BNBABEBB"
+         *           }
+         *         },
+         *         "DbtrAgtAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           },
+         *           "Tp": {
+         *             "Cd": "CACC"
+         *           },
+         *           "Ccy": "EUR",
+         *           "Nm": "My account"
+         *         },
+         *         "RmtInf": {
+         *           "Ustrd": "Remittance Information"
+         *         },
+         *         "RgltryRptg": {
+         *           "Dbtr": {
+         *             "Nm": "Debtor Name"
+         *           },
+         *           "DbtrAcct": {
+         *             "Id": {
+         *               "IBAN": "BE71096123456769"
+         *             },
+         *             "Tp": {
+         *               "Cd": "CACC"
+         *             },
+         *             "Ccy": "EUR",
+         *             "Nm": "My account"
+         *           }
+         *         }
+         *       }
+         *     }
+         */
         FxResponse_FICreditTransferConfirmation: {
             GrpHdr: components["schemas"]["GroupHeader113"];
             CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"];
         };
-        /** Fxecute_FinancialInstitutionCreditTransferV12 */
+        /**
+         * Fxecute_FinancialInstitutionCreditTransferV12
+         * @example {
+         *       "GrpHdr": {
+         *         "MsgId": 20191113001,
+         *         "CreDtTm": "2019-11-13T10:00:00",
+         *         "NbOfTxs": 1,
+         *         "CtrlSum": 1000,
+         *         "InitgPty": {
+         *           "Nm": "Initiating Party Name",
+         *           "Id": {
+         *             "OrgId": {
+         *               "Othr": {
+         *                 "Id": 123456789,
+         *                 "SchmeNm": {
+         *                   "Cd": "BBA"
+         *                 }
+         *               }
+         *             }
+         *           }
+         *         },
+         *         "FwdgAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BBBBBBBB"
+         *           }
+         *         },
+         *         "DbtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "AAAAAAAA"
+         *           }
+         *         },
+         *         "CdtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "CCCCCCCC"
+         *           }
+         *         }
+         *       },
+         *       "CdtTrfTxInf": {
+         *         "PmtId": {
+         *           "InstrId": 20191113001,
+         *           "EndToEndId": 20191113001
+         *         },
+         *         "PmtTpInf": {
+         *           "InstrPrty": "NORM",
+         *           "CtgyPurp": {
+         *             "Cd": "SUPP"
+         *           }
+         *         },
+         *         "InstrForCdtrAgt": {
+         *           "Cd": "/ACC/123456789"
+         *         },
+         *         "IntrBkSttlmAmt": {
+         *           "Amt": 1000,
+         *           "Ccy": "EUR"
+         *         },
+         *         "ChrgBr": "SLEV",
+         *         "CdtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "CCCCCCCC"
+         *           }
+         *         },
+         *         "Cdtr": {
+         *           "Nm": "Creditor Name"
+         *         },
+         *         "CdtrAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           }
+         *         },
+         *         "RmtInf": {
+         *           "Ustrd": "Payment for invoice 12345"
+         *         }
+         *       }
+         *     }
+         */
         Fxecute_FinancialInstitutionCreditTransferV12: {
             GrpHdr: components["schemas"]["GroupHeader129"];
             CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"];
         };
-        /** GenericAccountIdentification1 */
+        /**
+         * GenericAccountIdentification1
+         * @example {
+         *       "Id": 123,
+         *       "SchmeNm": {
+         *         "Cd": "IBAN"
+         *       },
+         *       "Issr": "BIC"
+         *     }
+         */
         GenericAccountIdentification1: {
             Id: components["schemas"]["Max34Text"];
             SchmeNm?: components["schemas"]["AccountSchemeName1Choice"];
             Issr?: components["schemas"]["Max35Text"];
         };
-        /** GenericFinancialIdentification1 */
+        /**
+         * GenericFinancialIdentification1
+         * @example {
+         *       "Id": 123,
+         *       "SchmeNm": {
+         *         "Cd": "IBAN"
+         *       },
+         *       "Issr": "BIC"
+         *     }
+         */
         GenericFinancialIdentification1: {
             Id: components["schemas"]["Max35Text"];
             SchmeNm?: components["schemas"]["FinancialIdentificationSchemeName1Choice"];
             Issr?: components["schemas"]["Max35Text"];
         };
-        /** GenericIdentification3 */
+        /**
+         * GenericIdentification3
+         * @example {
+         *       "Id": 123,
+         *       "Issr": "BIC"
+         *     }
+         */
         GenericIdentification3: {
             Id: components["schemas"]["Max35Text"];
             Issr?: components["schemas"]["Max35Text"];
         };
-        /** GenericIdentification30 */
+        /**
+         * GenericIdentification30
+         * @example {
+         *       "Id": 1234,
+         *       "Issr": "BIC",
+         *       "SchmeNm": "BICFI"
+         *     }
+         */
         GenericIdentification30: {
             Id: components["schemas"]["Exact4AlphaNumericText"];
             Issr: components["schemas"]["Max35Text"];
             SchmeNm?: components["schemas"]["Max35Text"];
         };
-        /** GenericOrganisationIdentification1 */
+        /**
+         * GenericOrganisationIdentification1
+         * @example {
+         *       "Id": 123,
+         *       "SchmeNm": {
+         *         "Cd": "BIC"
+         *       },
+         *       "Issr": "BIC"
+         *     }
+         */
         GenericOrganisationIdentification1: {
             Id: components["schemas"]["Max35Text"];
             SchmeNm?: components["schemas"]["OrganisationIdentificationSchemeName1Choice"];
             Issr?: components["schemas"]["Max35Text"];
         };
-        /** GenericOrganisationIdentification3 */
+        /**
+         * GenericOrganisationIdentification3
+         * @example {
+         *       "Id": 123,
+         *       "SchmeNm": {
+         *         "Cd": "BIC"
+         *       },
+         *       "Issr": "BIC"
+         *     }
+         */
         GenericOrganisationIdentification3: {
             Id: components["schemas"]["Max256Text"];
             SchmeNm?: components["schemas"]["OrganisationIdentificationSchemeName1Choice"];
             Issr?: components["schemas"]["Max35Text"];
         };
-        /** GenericPersonIdentification1 */
+        /**
+         * GenericPersonIdentification1
+         * @example {
+         *       "Id": 123,
+         *       "SchmeNm": {
+         *         "Cd": "DRLC"
+         *       },
+         *       "Issr": "BIC"
+         *     }
+         */
         GenericPersonIdentification1: {
             Id: components["schemas"]["Max35Text"];
             SchmeNm?: components["schemas"]["PersonIdentificationSchemeName1Choice"];
             Issr?: components["schemas"]["Max35Text"];
         };
-        /** GenericPersonIdentification2 */
+        /**
+         * GenericPersonIdentification2
+         * @example {
+         *       "Id": 123,
+         *       "SchmeNm": {
+         *         "Cd": "DRLC"
+         *       },
+         *       "Issr": "BIC"
+         *     }
+         */
         GenericPersonIdentification2: {
             Id: components["schemas"]["Max256Text"];
             SchmeNm?: components["schemas"]["PersonIdentificationSchemeName1Choice"];
             Issr?: components["schemas"]["Max35Text"];
         };
-        /** GetPartiesError_IdentificationVerificationReportV03 */
+        /**
+         * GetPartiesError_IdentificationVerificationReportV03
+         * @example {
+         *       "Assgnmt": {
+         *         "Id": 123,
+         *         "CreDtTm": "2013-03-07T16:30:00",
+         *         "Assgnr": {
+         *           "Id": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "IBAN"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         },
+         *         "Assgne": {
+         *           "Id": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "IBAN"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         }
+         *       },
+         *       "Rpt": {
+         *         "Id": 123,
+         *         "CreDtTm": "2013-03-07T16:30:00",
+         *         "RptgPty": {
+         *           "Id": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "IBAN"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         },
+         *         "RptdPty": {
+         *           "Id": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "IBAN"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         },
+         *         "RptdDoc": {
+         *           "Nb": 123,
+         *           "RltdDt": "2013-03-07",
+         *           "RltdDtTp": {
+         *             "Cd": 123
+         *           }
+         *         },
+         *         "Rsn": {
+         *           "Cd": 123,
+         *           "Prtry": 123
+         *         }
+         *       },
+         *       "SplmtryData": {
+         *         "PlcAndNm": 123,
+         *         "Envlp": 123,
+         *         "RltdDt": "2013-03-07",
+         *         "RltdDtTp": {
+         *           "Cd": 123
+         *         }
+         *       }
+         *     }
+         */
         GetPartiesError_IdentificationVerificationReportV03: {
             Assgnmt: components["schemas"]["IdentificationAssignment3"];
             Rpt: components["schemas"]["VerificationReport4"];
             SplmtryData?: components["schemas"]["SupplementaryData1"];
         };
-        /** GetParties_IdentificationVerificationReportV03 */
+        /**
+         * GetParties_IdentificationVerificationReportV03
+         * @example {
+         *       "Assgnmt": {
+         *         "Id": 123,
+         *         "CreDtTm": "2013-03-07T16:30:00",
+         *         "Assgnr": {
+         *           "Id": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "IBAN"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         },
+         *         "Assgne": {
+         *           "Id": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "IBAN"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         }
+         *       },
+         *       "Rpt": {
+         *         "Id": 123,
+         *         "CreDtTm": "2013-03-07T16:30:00",
+         *         "RptgPty": {
+         *           "Id": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "IBAN"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         },
+         *         "RptdPty": {
+         *           "Id": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "IBAN"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         },
+         *         "RptdDoc": {
+         *           "Nb": 123,
+         *           "RltdDt": "2013-03-07",
+         *           "RltdDtTp": {
+         *             "Cd": 123
+         *           }
+         *         },
+         *         "Rsn": {
+         *           "Cd": 123,
+         *           "Prtry": 123
+         *         }
+         *       },
+         *       "SplmtryData": {
+         *         "PlcAndNm": 123,
+         *         "Envlp": 123,
+         *         "RltdDt": "2013-03-07",
+         *         "RltdDtTp": {
+         *           "Cd": 123
+         *         }
+         *       }
+         *     }
+         */
         GetParties_IdentificationVerificationReportV03: {
             Assgnmt: components["schemas"]["IdentificationAssignment3"];
             Rpt: components["schemas"]["VerificationReport4"];
@@ -1059,6 +2075,74 @@ export interface components {
          * GroupHeader113
          * @description Set of characteristics shared by all individual transactions included in the message.
          *
+         * @example {
+         *       "MsgId": 12345,
+         *       "CreDtTm": "2020-01-01T00:00:00Z",
+         *       "NbOfTxs": 1,
+         *       "TtlIntrBkSttlmAmt": {
+         *         "Ccy": "EUR",
+         *         "Value": 100
+         *       },
+         *       "SttlmInf": {
+         *         "SttlmMtd": "INDA",
+         *         "SttlmAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           },
+         *           "Ccy": "EUR"
+         *         },
+         *         "SttlmAcctOwnr": {
+         *           "Nm": "Name"
+         *         },
+         *         "SttlmAcctSvcr": {
+         *           "Nm": "Name"
+         *         },
+         *         "SttlmAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BIC"
+         *           }
+         *         }
+         *       },
+         *       "PmtTpInf": {
+         *         "InstrPrty": "NORM",
+         *         "CtgyPurp": "CASH"
+         *       },
+         *       "CdtTrfTxInf": {
+         *         "PmtId": {
+         *           "InstrId": 12345,
+         *           "EndToEndId": 12345
+         *         },
+         *         "Amt": {
+         *           "InstdAmt": {
+         *             "Ccy": "EUR",
+         *             "Value": 100
+         *           }
+         *         },
+         *         "Cdtr": {
+         *           "Nm": "Name"
+         *         },
+         *         "CdtrAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           },
+         *           "Ccy": "EUR"
+         *         },
+         *         "CdtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BIC"
+         *           }
+         *         },
+         *         "CdtrAgtAcct": {
+         *           "Id": {
+         *             "IBAN": "BE71096123456769"
+         *           },
+         *           "Ccy": "EUR"
+         *         },
+         *         "RmtInf": {
+         *           "Ustrd": "Test"
+         *         }
+         *       }
+         *     }
          */
         GroupHeader113: {
             MsgId: components["schemas"]["Max35Text"];
@@ -1073,6 +2157,30 @@ export interface components {
          * GroupHeader120
          * @description Set of characteristics shared by all individual transactions included in the message.
          *
+         * @example {
+         *       "MsgId": 12345,
+         *       "CreDtTm": "2020-01-01T00:00:00Z",
+         *       "TxInfAndSts": {
+         *         "StsId": 12345,
+         *         "OrgnlInstrId": 12345,
+         *         "OrgnlEndToEndId": 12345,
+         *         "OrgnlTxId": 12345,
+         *         "OrgnlUETR": "123e4567-e89b-12d3-a456-426614174000",
+         *         "TxSts": "RJCT",
+         *         "StsRsnInf": {
+         *           "Rsn": "RSN",
+         *           "AddtlInf": "ADDITIONAL"
+         *         },
+         *         "AccptncDtTm": "2020-01-01T00:00:00Z",
+         *         "AcctSvcrRef": "ACCTSVCRREF",
+         *         "ClrSysRef": "CLRSYSREF",
+         *         "ExctnConf": "1234567890ABCDEF",
+         *         "SplmtryData": {
+         *           "PlcAndNm": "PLACE",
+         *           "Envlp": "ENVELOPE"
+         *         }
+         *       }
+         *     }
          */
         GroupHeader120: {
             MsgId: components["schemas"]["Max35Text"];
@@ -1083,6 +2191,56 @@ export interface components {
          * GroupHeader129
          * @description Set of characteristics shared by all individual transactions included in the message.
          *
+         * @example {
+         *       "MsgId": 12345,
+         *       "CreDtTm": "2020-01-01T00:00:00Z",
+         *       "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
+         *       "NbOfTxs": 1,
+         *       "SttlmInf": {
+         *         "SttlmMtd": "INDA",
+         *         "SttlmAcct": {
+         *           "Id": {
+         *             "IBAN": 123
+         *           }
+         *         },
+         *         "SttlmAcctOwnr": {
+         *           "Nm": "John Doe"
+         *         },
+         *         "SttlmAcctSvcr": {
+         *           "BICFI": 123
+         *         }
+         *       },
+         *       "CdtTrfTxInf": {
+         *         "PmtId": {
+         *           "InstrId": 123,
+         *           "EndToEndId": 123
+         *         },
+         *         "PmtTpInf": {
+         *           "InstrPrty": "NORM"
+         *         },
+         *         "InstdAmt": {
+         *           "Amt": 123,
+         *           "Ccy": "EUR"
+         *         },
+         *         "ChrgBr": "SLEV",
+         *         "CdtrAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": 123
+         *           }
+         *         },
+         *         "Cdtr": {
+         *           "Nm": "John Doe"
+         *         },
+         *         "CdtrAcct": {
+         *           "Id": {
+         *             "IBAN": 123
+         *           }
+         *         },
+         *         "RmtInf": {
+         *           "Ustrd": "Test"
+         *         }
+         *       }
+         *     }
          */
         GroupHeader129: {
             MsgId: components["schemas"]["Max35Text"];
@@ -1097,6 +2255,7 @@ export interface components {
          * @description The International Bank Account Number is a code used internationally by financial institutions to uniquely identify the account of a customer at a financial institution as described in the 2007 edition of the ISO 13616 standard "Banking and related financial services -
          *     International Bank Account Number (IBAN)" and replaced by the more recent edition of the standard.
          *
+         * @example FR1420041010050500013M02606
          */
         IBAN2007Identifier: string;
         /**
@@ -1104,6 +2263,7 @@ export interface components {
          * Format: date
          * @description A particular point in the progression of time in a calendar year expressed in the YYYY-MM-DD format. This representation is defined in "XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004" which is aligned with ISO 8601.
          *
+         * @example 2013-03-07
          */
         ISODate: string;
         /**
@@ -1126,28 +2286,85 @@ export interface components {
          *     Decimal fractions of seconds may be included. In this case, the
          *     involved parties shall agree on the maximum number of digits that are allowed.
          *
+         * @example 2013-03-07T14:44:30.000Z
          */
         ISODateTime: string;
         /**
          * ISOYear
          * @description Year represented by YYYY (ISO 8601).
          *
+         * @example 2019
          */
         ISOYear: string;
-        /** IdentificationAssignment3 */
+        /**
+         * IdentificationAssignment3
+         * @example {
+         *       "MsgId": 123,
+         *       "CreDtTm": "2020-01-01T00:00:00Z",
+         *       "Assgnr": {
+         *         "OrgId": {
+         *           "Othr": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "BIC"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         }
+         *       },
+         *       "Assgne": {
+         *         "OrgId": {
+         *           "Othr": {
+         *             "Id": 123,
+         *             "SchmeNm": {
+         *               "Cd": "BIC"
+         *             },
+         *             "Issr": "BIC"
+         *           }
+         *         }
+         *       }
+         *     }
+         */
         IdentificationAssignment3: {
             MsgId: components["schemas"]["Max35Text"];
             CreDtTm: components["schemas"]["ISODateTime"];
             Assgnr: components["schemas"]["Party40Choice"];
             Assgne: components["schemas"]["Party40Choice"];
         };
-        /** IdentificationInformation4 */
+        /**
+         * IdentificationInformation4
+         * @example {
+         *       "Pty": {
+         *         "Id": {
+         *           "OrgId": {
+         *             "AnyBIC": {
+         *               "BICFI": "BICFI"
+         *             }
+         *           }
+         *         },
+         *         "CtryOfRes": "FI"
+         *       },
+         *       "Acct": {
+         *         "Id": {
+         *           "IBAN": "FI2112345600000785"
+         *         }
+         *       },
+         *       "Agt": {
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       }
+         *     }
+         */
         IdentificationInformation4: {
             Pty?: components["schemas"]["PartyIdentification135"];
             Acct?: components["schemas"]["CashAccount40"];
             Agt?: components["schemas"]["BranchAndFinancialInstitutionIdentification6"];
         };
-        /** IdentificationVerificationIndicator */
+        /**
+         * IdentificationVerificationIndicator
+         * @example true
+         */
         IdentificationVerificationIndicator: boolean;
         /**
          * Instruction4Code
@@ -1155,6 +2372,7 @@ export interface components {
          *     PHOA PhoneNextAgent Please advise/contact next agent by phone.
          *     TELA TelecomNextAgent Please advise/contact next agent by the most efficient means of telecommunication.
          *
+         * @example PHOA
          * @enum {string}
          */
         Instruction4Code: "PHOA" | "TELA";
@@ -1162,6 +2380,10 @@ export interface components {
          * InstructionForCreditorAgent3
          * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent.
          *
+         * @example {
+         *       "Cd": "PHOA",
+         *       "InstrInf": "Please advise/contact next agent by phone."
+         *     }
          */
         InstructionForCreditorAgent3: {
             Cd?: components["schemas"]["ExternalCreditorAgentInstruction1Code"];
@@ -1171,6 +2393,10 @@ export interface components {
          * InstructionForNextAgent1
          * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent.
          *
+         * @example {
+         *       "Cd": "PHOA",
+         *       "InstrInf": "Please advise/contact next agent by phone"
+         *     }
          */
         InstructionForNextAgent1: {
             Cd?: components["schemas"]["Instruction4Code"];
@@ -1180,9 +2406,15 @@ export interface components {
          * LEIIdentifier
          * @description Legal Entity Identifier is a code allocated to a party as described in ISO 17442 "Financial Services - Legal Entity Identifier (LEI)". ^([0-9A-Z]{18,18}[0-9]{2,2})$
          *
+         * @example 529900T8BM49AURSDO55
          */
         LEIIdentifier: string;
-        /** LocalInstrument2Choice */
+        /**
+         * LocalInstrument2Choice
+         * @example {
+         *       "Cd": "CH03"
+         *     }
+         */
         LocalInstrument2Choice: {
             Cd?: components["schemas"]["ExternalLocalInstrument1Code"];
             Prtry?: components["schemas"]["Max35Text"];
@@ -1191,92 +2423,120 @@ export interface components {
          * Max105Text
          * @description Specifies a character string with a maximum length of 105 characters.
          *
+         * @example 12345
          */
         Max105Text: string;
         /**
          * Max10Text
          * @description Specifies a character string with a maximum length of 10 characters.
          *
+         * @example 1234567890
          */
         Max10Text: string;
         /**
          * Max128Text
          * @description Specifies a character string with a maximum length of 128 characters.
          *
+         * @example 12345
          */
         Max128Text: string;
         /**
          * Max140Text
          * @description Specifies a character string with a maximum length of 140 characters.
          *
+         * @example 12345
          */
         Max140Text: string;
         /**
          * Max15NumericText
          * @description Specifies a numeric string with a maximum length of 15 digits.
          *
+         * @example 123456789012345
          */
         Max15NumericText: string;
         /**
          * Max16Text
          * @description Specifies a character string with a maximum length of 16 characters.
          *
+         * @example 1234567890123456
          */
         Max16Text: string;
         /**
          * Max2048Text
          * @description Specifies a character string with a maximum length of 2048 characters.
          *
+         * @example 2048
          */
         Max2048Text: string;
         /**
          * Max256Text
          * @description Specifies a character string with a maximum length of 256 characters.
          *
+         * @example 256
          */
         Max256Text: string;
         /**
          * Max34Text
          * @description Specifies a character string with a maximum length of 34 characters.
          *
+         * @example 1.2345678901234568e+33
          */
         Max34Text: string;
         /**
          * Max350Text
          * @description Specifies a character string with a maximum length of 350 characters.
          *
+         * @example 350
          */
         Max350Text: string;
         /**
          * Max35Text
          * @description Specifies a character string with a maximum length of 35 characters.
          *
+         * @example 1.234567890123457e+34
          */
         Max35Text: string;
         /**
          * Max4Text
          * @description Specifies a character string with a maximum length of 4 characters.
          *
+         * @example 1234
          */
         Max4Text: string;
         /**
          * Max70Text
          * @description Specifies a character string with a maximum length of 70 characters.
          *
+         * @example 1.2345678901234567e+99
          */
         Max70Text: string;
         /**
          * @description Specifies the terms used to formally address a person.
          *
+         * @example DOCT
          * @enum {string}
          */
         NamePrefix2Code: "DOCT" | "MADM" | "MISS" | "MIST" | "MIKS";
-        /** Number */
+        /**
+         * Number
+         * @example 256
+         */
         Number: string;
         /**
          * OrganisationIdentification29
          * @description Unique and unambiguous way to identify an organisation.
          *
+         * @example {
+         *       "AnyBIC": "BICFI",
+         *       "LEI": "529900T8BM49AURSDO55",
+         *       "Othr": {
+         *         "Id": 123,
+         *         "SchmeNm": {
+         *           "Cd": "BIC"
+         *         },
+         *         "Issr": "BIC"
+         *       }
+         *     }
          */
         OrganisationIdentification29: {
             AnyBIC?: components["schemas"]["AnyBICDec2014Identifier"];
@@ -1287,6 +2547,17 @@ export interface components {
          * OrganisationIdentification39
          * @description Unique and unambiguous way to identify an organisation.
          *
+         * @example {
+         *       "AnyBIC": "BICFI",
+         *       "LEI": "529900T8BM49AURSDO55",
+         *       "Othr": {
+         *         "Id": 123,
+         *         "SchmeNm": {
+         *           "Cd": "BIC"
+         *         },
+         *         "Issr": "BIC"
+         *       }
+         *     }
          */
         OrganisationIdentification39: {
             AnyBIC?: components["schemas"]["AnyBICDec2014Identifier"];
@@ -1297,6 +2568,9 @@ export interface components {
          * OrganisationIdentificationSchemeName1Choice
          * @description Choice of format for the organisation identification.
          *
+         * @example {
+         *       "Cd": "BIC"
+         *     }
          */
         OrganisationIdentificationSchemeName1Choice: {
             Cd?: components["schemas"]["ExternalOrganisationIdentification1Code"];
@@ -1306,12 +2580,52 @@ export interface components {
          * OtherContact1
          * @description Communication device number or electronic address used for communication.
          *
+         * @example {
+         *       "ChanlTp": "PHON",
+         *       "Id": 1234567890
+         *     }
          */
         OtherContact1: {
             ChanlTp: components["schemas"]["Max4Text"];
             Id?: components["schemas"]["Max128Text"];
         };
-        /** PacsError_FIToFIPaymentStatusReportV15 */
+        /**
+         * PacsError_FIToFIPaymentStatusReportV15
+         * @example {
+         *       "GrpHdr": {
+         *         "MsgId": 12345,
+         *         "CreDtTm": "2020-01-01T00:00:00Z",
+         *         "NbOfTxs": 1,
+         *         "SttlmInf": {
+         *           "SttlmMtd": "INDA",
+         *           "SttlmDt": "2020-01-01"
+         *         },
+         *         "InstgAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BICFI"
+         *           }
+         *         },
+         *         "InstdAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BICFI"
+         *           }
+         *         }
+         *       },
+         *       "TxInfAndSts": {
+         *         "OrgnlInstrId": 12345,
+         *         "OrgnlEndToEndId": 12345,
+         *         "TxSts": "RJCT",
+         *         "StsRsnInf": {
+         *           "Rsn": "RSN",
+         *           "AddtlInf": "ADDITIONAL"
+         *         }
+         *       },
+         *       "SplmtryData": {
+         *         "PlcAndNm": "PLACE",
+         *         "Envlp": "ENVELOPE"
+         *       }
+         *     }
+         */
         PacsError_FIToFIPaymentStatusReportV15: {
             GrpHdr: components["schemas"]["GroupHeader120"];
             TxInfAndSts?: components["schemas"]["PaymentTransaction163"];
@@ -1321,6 +2635,108 @@ export interface components {
          * PacsStatus_FIToFIPaymentStatusReportV15
          * @description Unsure on description.
          *
+         * @example {
+         *       "GrpHdr": {
+         *         "MsgId": 123,
+         *         "CreDtTm": "2020-01-01T00:00:00Z",
+         *         "NbOfTxs": 1,
+         *         "SttlmInf": {
+         *           "SttlmMtd": "INDA",
+         *           "SttlmDt": "2020-01-01",
+         *           "SttlmTmIndctn": "RTGS",
+         *           "SttlmTmReq": "2020-01-01T00:00:00Z",
+         *           "SttlmAcct": {
+         *             "Id": {
+         *               "Othr": {
+         *                 "Id": 123,
+         *                 "SchmeNm": {
+         *                   "Cd": "IBAN"
+         *                 },
+         *                 "Issr": "BIC"
+         *               }
+         *             }
+         *           },
+         *           "ClrSys": {
+         *             "Prtry": 123
+         *           },
+         *           "InstgAgt": {
+         *             "FinInstnId": {
+         *               "BICFI": 123
+         *             }
+         *           },
+         *           "InstdAgt": {
+         *             "FinInstnId": {
+         *               "BICFI": 123
+         *             }
+         *           }
+         *         },
+         *         "InstgAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": 123
+         *           }
+         *         },
+         *         "InstdAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": 123
+         *           }
+         *         },
+         *         "IntrBkSttlmAmt": {
+         *           "Amt": 123,
+         *           "Ccy": "EUR"
+         *         },
+         *         "IntrBkSttlmDt": "2020-01-01",
+         *         "TxSts": "ACCP",
+         *         "StsRsnInf": {
+         *           "Orgtr": {
+         *             "Id": {
+         *               "Othr": {
+         *                 "Id": 123,
+         *                 "SchmeNm": {
+         *                   "Cd": "IBAN"
+         *                 },
+         *                 "Issr": "BIC"
+         *               }
+         *             }
+         *           },
+         *           "Rsn": {
+         *             "Cd": 123,
+         *             "Prtry": 123
+         *           }
+         *         },
+         *         "TxInfAndSts": {
+         *           "OrgnlInstrId": 123,
+         *           "OrgnlEndToEndId": 123,
+         *           "TxSts": "ACCP",
+         *           "StsRsnInf": {
+         *             "Orgtr": {
+         *               "Id": {
+         *                 "Othr": {
+         *                   "Id": 123,
+         *                   "SchmeNm": {
+         *                     "Cd": "IBAN"
+         *                   },
+         *                   "Issr": "BIC"
+         *                 }
+         *               }
+         *             },
+         *             "Rsn": {
+         *               "Cd": 123,
+         *               "Prtry": 123
+         *             }
+         *           },
+         *           "ChrgsInf": {
+         *             "Amt": 123,
+         *             "Ccy": "EUR"
+         *           },
+         *           "IntrBkSttlmAmt": {
+         *             "Amt": 123,
+         *             "Ccy": "EUR"
+         *           },
+         *           "IntrBkSttlmDt": "2020-01-01",
+         *           "SttlmTmIndctn": "RTGS"
+         *         }
+         *       }
+         *     }
          */
         PacsStatus_FIToFIPaymentStatusReportV15: {
             GrpHdr: components["schemas"]["GroupHeader120"];
@@ -1329,6 +2745,17 @@ export interface components {
          * Party38Choice
          * @description Nature or use of the account.
          *
+         * @example {
+         *       "OrgId": {
+         *         "AnyBIC": "BIC"
+         *       },
+         *       "PrvtId": {
+         *         "DtAndPlcOfBirth": {
+         *           "Dt": "2018-01-01",
+         *           "CityOfBirth": "City"
+         *         }
+         *       }
+         *     }
          */
         Party38Choice: {
             OrgId?: components["schemas"]["OrganisationIdentification29"];
@@ -1338,6 +2765,40 @@ export interface components {
          * Party40Choice
          * @description Nature or use of the account.
          *
+         * @example {
+         *       "Pty": {
+         *         "Nm": "Name",
+         *         "PstlAdr": {
+         *           "Ctry": "US",
+         *           "AdrLine": [
+         *             "Line1",
+         *             "Line2"
+         *           ]
+         *         },
+         *         "Id": {
+         *           "OrgId": {
+         *             "AnyBIC": "BIC"
+         *           }
+         *         }
+         *       },
+         *       "Agt": {
+         *         "FinInstnId": {
+         *           "BICFI": "BUKBGB22"
+         *         },
+         *         "BrnchId": {
+         *           "Id": 12345,
+         *           "Nm": "Oxford Street Branch",
+         *           "PstlAdr": {
+         *             "Ctry": "GB",
+         *             "AdrLine": [
+         *               "1 Oxford Street",
+         *               "London",
+         *               "UK"
+         *             ]
+         *           }
+         *         }
+         *       }
+         *     }
          */
         Party40Choice: {
             Pty?: components["schemas"]["PartyIdentification135"];
@@ -1347,6 +2808,17 @@ export interface components {
          * Party52Choice
          * @description Nature or use of the account.
          *
+         * @example {
+         *       "OrgId": {
+         *         "AnyBIC": "BIC"
+         *       },
+         *       "PrvtId": {
+         *         "DtAndPlcOfBirth": {
+         *           "Dt": "2018-01-01",
+         *           "CityOfBirth": "City"
+         *         }
+         *       }
+         *     }
          */
         Party52Choice: {
             OrgId?: components["schemas"]["OrganisationIdentification39"];
@@ -1356,6 +2828,31 @@ export interface components {
          * PartyIdentification135
          * @description Specifies the identification of a person or an organisation.
          *
+         * @example {
+         *       "Nm": "John Doe",
+         *       "PstlAdr": {
+         *         "Ctry": "BE",
+         *         "AdrLine": [
+         *           "Rue du Marché 45",
+         *           "Brussels",
+         *           "BE"
+         *         ]
+         *       },
+         *       "Id": {
+         *         "OrgId": {
+         *           "AnyBIC": "CCCCUS33"
+         *         }
+         *       },
+         *       "CtryOfRes": "BE",
+         *       "CtctDtls": {
+         *         "NmPrfx": "Mr",
+         *         "Nm": "John Doe",
+         *         "PhneNb": "+123-123-321",
+         *         "MobNb": "+123-123-321",
+         *         "FaxNb": "+123-123-321",
+         *         "EmailAdr": null
+         *       }
+         *     }
          */
         PartyIdentification135: {
             Nm?: components["schemas"]["Max140Text"];
@@ -1368,6 +2865,40 @@ export interface components {
          * PartyIdentification272
          * @description Specifies the identification of a person or an organisation.
          *
+         * @example {
+         *       "Nm": "John Doe",
+         *       "PstlAdr": {
+         *         "AdrTp": "ADDR",
+         *         "Dept": "Dept",
+         *         "SubDept": "SubDept",
+         *         "StrtNm": "StrtNm",
+         *         "BldgNb": "BldgNb",
+         *         "PstCd": "PstCd",
+         *         "TwnNm": "TwnNm",
+         *         "CtrySubDvsn": "CtrySubDvsn",
+         *         "Ctry": "Ctry"
+         *       },
+         *       "Id": {
+         *         "OrgId": {
+         *           "AnyBIC": "BIC"
+         *         },
+         *         "PrvtId": {
+         *           "DtAndPlcOfBirth": {
+         *             "Dt": "2018-01-01",
+         *             "CityOfBirth": "City"
+         *           }
+         *         }
+         *       },
+         *       "CtryOfRes": "BE",
+         *       "CtctDtls": {
+         *         "NmPrfx": "Mr",
+         *         "Nm": "John Doe",
+         *         "PhneNb": "+123-123-321",
+         *         "MobNb": "+123-123-321",
+         *         "FaxNb": "+123-123-321",
+         *         "EmailAdr": null
+         *       }
+         *     }
          */
         PartyIdentification272: {
             Nm?: components["schemas"]["Max140Text"];
@@ -1380,6 +2911,13 @@ export interface components {
          * PaymentIdentification13
          * @description Provides further means of referencing a payment transaction.
          *
+         * @example {
+         *       "InstrId": "INSTRUCTIONID",
+         *       "EndToEndId": "ENDTOENDID",
+         *       "TxId": "TRANSACTIONID",
+         *       "UETR": "123e4567-e89b-12d3-a456-426614174000",
+         *       "ClrSysRef": "CLRSYSREF"
+         *     }
          */
         PaymentIdentification13: {
             InstrId?: components["schemas"]["Max35Text"];
@@ -1392,6 +2930,26 @@ export interface components {
          * PaymentTransaction163
          * @description Provides further details on the original transactions, to which the status report message refers.
          *
+         * @example {
+         *       "StsId": 12345,
+         *       "OrgnlInstrId": 12345,
+         *       "OrgnlEndToEndId": 12345,
+         *       "OrgnlTxId": 12345,
+         *       "OrgnlUETR": "123e4567-e89b-12d3-a456-426614174000",
+         *       "TxSts": "RJCT",
+         *       "StsRsnInf": {
+         *         "Rsn": "RSN",
+         *         "AddtlInf": "ADDITIONAL"
+         *       },
+         *       "AccptncDtTm": "2020-01-01T00:00:00Z",
+         *       "AcctSvcrRef": "ACCTSVCRREF",
+         *       "ClrSysRef": "CLRSYSREF",
+         *       "ExctnConf": "1234567890ABCDEF",
+         *       "SplmtryData": {
+         *         "PlcAndNm": "PLACE",
+         *         "Envlp": "ENVELOPE"
+         *       }
+         *     }
          */
         PaymentTransaction163: {
             StsId?: components["schemas"]["Max35Text"];
@@ -1411,6 +2969,19 @@ export interface components {
          * PaymentTypeInformation28
          * @description Provides further details of the type of payment.
          *
+         * @example {
+         *       "InstrPrty": "NORM",
+         *       "ClrChanl": "RTGS",
+         *       "SvcLvl": {
+         *         "Cd": "SEPA"
+         *       },
+         *       "LclInstrm": {
+         *         "Cd": "CORE"
+         *       },
+         *       "CtgyPurp": {
+         *         "Cd": "CASH"
+         *       }
+         *     }
          */
         PaymentTypeInformation28: {
             InstrPrty?: components["schemas"]["Priority2Code"];
@@ -1419,12 +2990,28 @@ export interface components {
             LclInstrm?: components["schemas"]["LocalInstrument2Choice"];
             CtgyPurp?: components["schemas"]["CategoryPurpose1Choice"];
         };
-        /** PercentageRate */
+        /**
+         * PercentageRate
+         * @example 1234
+         */
         PercentageRate: string;
         /**
          * PersonIdentification13
          * @description Unique and unambiguous way to identify a person.
          *
+         * @example {
+         *       "DtAndPlcOfBirth": {
+         *         "Dt": "2018-01-01",
+         *         "CityOfBirth": "City"
+         *       },
+         *       "Othr": {
+         *         "Id": 123,
+         *         "SchmeNm": {
+         *           "Cd": "CUST",
+         *           "Prtry": 1
+         *         }
+         *       }
+         *     }
          */
         PersonIdentification13: {
             DtAndPlcOfBirth?: components["schemas"]["DateAndPlaceOfBirth1"];
@@ -1434,6 +3021,19 @@ export interface components {
          * PersonIdentification18
          * @description Unique and unambiguous way to identify a person.
          *
+         * @example {
+         *       "DtAndPlcOfBirth": {
+         *         "Dt": "2018-01-01",
+         *         "CityOfBirth": "City"
+         *       },
+         *       "Othr": {
+         *         "Id": 123,
+         *         "SchmeNm": {
+         *           "Cd": "CUST",
+         *           "Prtry": 1
+         *         }
+         *       }
+         *     }
          */
         PersonIdentification18: {
             DtAndPlcOfBirth?: components["schemas"]["DateAndPlaceOfBirth1"];
@@ -1443,17 +3043,42 @@ export interface components {
          * PersonIdentificationSchemeName1Choice
          * @description Sets of elements to identify a name of the identification scheme.
          *
+         * @example {
+         *       "Cd": "CCPT"
+         *     }
          */
         PersonIdentificationSchemeName1Choice: {
             Cd?: components["schemas"]["ExternalPersonIdentification1Code"];
             Prtry?: components["schemas"]["Max35Text"];
         } & (unknown | unknown);
-        /** PhoneNumber */
+        /**
+         * PhoneNumber
+         * @description Double check this regex.
+         *
+         */
         PhoneNumber: string;
         /**
          * PostalAddress24
          * @description Information that locates and identifies a specific address, as defined by postal services.
          *
+         * @example {
+         *       "AdrTp": "ADDR",
+         *       "Dept": "Dept",
+         *       "SubDept": "SubDept",
+         *       "StrtNm": "StrtNm",
+         *       "BldgNb": "BldgNb",
+         *       "BldgNm": "BldgNm",
+         *       "Flr": "Flr",
+         *       "PstBx": "PstBx",
+         *       "Room": "Room",
+         *       "PstCd": "PstCd",
+         *       "TwnNm": "TwnNm",
+         *       "TwnLctnNm": "TwnLctnNm",
+         *       "DstrctNm": "DstrctNm",
+         *       "CtrySubDvsn": "CtrySubDvsn",
+         *       "Ctry": "Ctry",
+         *       "AdrLine": "AdrLine"
+         *     }
          */
         PostalAddress24: {
             AdrTp?: components["schemas"]["AddressType3Choice"];
@@ -1477,6 +3102,26 @@ export interface components {
          * PostalAddress27
          * @description Information that locates and identifies a specific address, as defined by postal services.
          *
+         * @example {
+         *       "AdrTp": "ADDR",
+         *       "CareOf": "CareOf",
+         *       "Dept": "Dept",
+         *       "SubDept": "SubDept",
+         *       "StrtNm": "StrtNm",
+         *       "BldgNb": "BldgNb",
+         *       "BldgNm": "BldgNm",
+         *       "Flr": "Flr",
+         *       "UnitNb": "UnitNb",
+         *       "PstBx": "PstBx",
+         *       "Room": "Room",
+         *       "PstCd": "PstCd",
+         *       "TwnNm": "TwnNm",
+         *       "TwnLctnNm": "TwnLctnNm",
+         *       "DstrctNm": "DstrctNm",
+         *       "CtrySubDvsn": "CtrySubDvsn",
+         *       "Ctry": "Ctry",
+         *       "AdrLine": "AdrLine"
+         *     }
          */
         PostalAddress27: {
             AdrTp?: components["schemas"]["AddressType3Choice"];
@@ -1502,6 +3147,7 @@ export interface components {
          * PreferredContactMethod1Code
          * @description Preferred method used to reach the individual contact within an organisation.
          *
+         * @example CELL
          * @enum {string}
          */
         PreferredContactMethod1Code: "LETT" | "MAIL" | "PHON" | "FAXX" | "CELL";
@@ -1509,6 +3155,7 @@ export interface components {
          * PreferredContactMethod2Code
          * @description Preferred method used to reach the individual contact within an organisation.
          *
+         * @example MAIL
          * @enum {string}
          */
         PreferredContactMethod2Code: "LETT" | "MAIL" | "PHON" | "FAXX" | "CELL";
@@ -1516,6 +3163,7 @@ export interface components {
          * Priority2Code
          * @description Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.
          *
+         * @example HIGH
          * @enum {string}
          */
         Priority2Code: "HIGH" | "NORM";
@@ -1523,6 +3171,12 @@ export interface components {
          * ProxyAccountIdentification1
          * @description Information related to a proxy identification of the account.
          *
+         * @example {
+         *       "Tp": {
+         *         "Cd": "IBAN"
+         *       },
+         *       "Id": 123
+         *     }
          */
         ProxyAccountIdentification1: {
             Tp?: components["schemas"]["ProxyAccountType1Choice"];
@@ -1532,6 +3186,9 @@ export interface components {
          * ProxyAccountType1Choice
          * @description NOTE: Unsure on description.
          *
+         * @example {
+         *       "Cd": "CH03"
+         *     }
          */
         ProxyAccountType1Choice: {
             Cd?: components["schemas"]["ExternalProxyAccountType1Code"];
@@ -1542,6 +3199,9 @@ export interface components {
          * @description Specifies the underlying reason for the payment transaction.
          *     Usage: Purpose is used by the end-customers, that is initiating party, (ultimate) debtor, (ultimate) creditor to provide information concerning the nature of the payment. Purpose is a content element, which is not used for processing by any of the agents involved in the payment chain.
          *
+         * @example {
+         *       "Cd": "CH03"
+         *     }
          */
         Purpose2Choice: {
             Cd?: components["schemas"]["ExternalPurpose1Code"];
@@ -1551,6 +3211,10 @@ export interface components {
          * RegulatoryAuthority2
          * @description Information about an entity requiring the regulatory reporting information.
          *
+         * @example {
+         *       "Nm": "Swiss National Bank",
+         *       "Ctry": "CH"
+         *     }
          */
         RegulatoryAuthority2: {
             Nm?: components["schemas"]["Max140Text"];
@@ -1560,6 +3224,17 @@ export interface components {
          * RegulatoryReporting3
          * @description Information needed due to regulatory and/or statutory requirements.
          *
+         * @example {
+         *       "DbtCdtRptgInd": "CRED",
+         *       "Authrty": {
+         *         "Nm": "Swiss National Bank",
+         *         "Ctry": "CH"
+         *       },
+         *       "Dtls": {
+         *         "Cd": "A1",
+         *         "Inf": "Mandatory regulatory information"
+         *       }
+         *     }
          */
         RegulatoryReporting3: {
             DbtCdtRptgInd?: components["schemas"]["RegulatoryReportingType1Code"];
@@ -1570,6 +3245,7 @@ export interface components {
          * RegulatoryReportingType1Code
          * @description Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.
          *
+         * @example BOTH
          * @enum {string}
          */
         RegulatoryReportingType1Code: "CRED" | "DEBT" | "BOTH";
@@ -1577,6 +3253,9 @@ export interface components {
          * ServiceLevel8Choice
          * @description Details about a service level.
          *
+         * @example {
+         *       "Cd": "SEPA"
+         *     }
          */
         ServiceLevel8Choice: {
             Cd?: components["schemas"]["ExternalServiceLevel1Code"];
@@ -1586,6 +3265,47 @@ export interface components {
          * SettlementInstruction15
          * @description NOTE: Unsure on description.
          *
+         * @example {
+         *       "SttlmMtd": "INDA",
+         *       "PmtTpInf": {
+         *         "InstrPrty": "NORM",
+         *         "SvcLvl": {
+         *           "Cd": "SEPA"
+         *         },
+         *         "LclInstrm": {
+         *           "Cd": "CH03"
+         *         },
+         *         "CtgyPurp": {
+         *           "Cd": "SUPP"
+         *         },
+         *         "Cdtr": {
+         *           "Nm": "Name",
+         *           "PstlAdr": {
+         *             "AdrTp": "ADDR",
+         *             "AdrLine": "Address",
+         *             "Ctry": "CH"
+         *           },
+         *           "Id": {
+         *             "OrgId": {
+         *               "AnyBIC": "BIC",
+         *               "Othr": {
+         *                 "Id": 123,
+         *                 "SchmeNm": {
+         *                   "Cd": "IBAN",
+         *                   "Issr": "BIC"
+         *                 }
+         *               }
+         *             }
+         *           },
+         *           "CtryOfRes": "CH",
+         *           "CtctDtls": {
+         *             "Nm": "Name",
+         *             "PhneNb": 123,
+         *             "EmailAdr": null
+         *           }
+         *         }
+         *       }
+         *     }
          */
         SettlementInstruction15: {
             SttlmMtd: components["schemas"]["SettlementMethod1Code"];
@@ -1595,6 +3315,7 @@ export interface components {
          * SettlementMethod1Code
          * @description Specifies the method used to settle the credit transfer instruction.
          *
+         * @example CLRG
          * @enum {string}
          */
         SettlementMethod1Code: "INDA" | "INGA" | "COVE" | "CLRG";
@@ -1602,6 +3323,9 @@ export interface components {
          * StatusReason6Choice
          * @description Unsure on description.
          *
+         * @example {
+         *       "Cd": "AGNT"
+         *     }
          */
         StatusReason6Choice: {
             Cd?: components["schemas"]["ExternalStatusReason1Code"];
@@ -1611,6 +3335,26 @@ export interface components {
          * StatusReasonInformation14
          * @description Unsure on description.
          *
+         * @example {
+         *       "Orgtr": {
+         *         "Nm": "Name",
+         *         "PstlAdr": {
+         *           "AdrTp": "ADDR",
+         *           "Dept": "Department",
+         *           "SubDept": "SubDepartment",
+         *           "StrtNm": "StreetName",
+         *           "BldgNb": "BuildingNumber",
+         *           "PstCd": "PostCode",
+         *           "TwnNm": "TownName",
+         *           "CtrySubDvsn": "CountrySubDivision",
+         *           "Ctry": "Country"
+         *         }
+         *       },
+         *       "Rsn": {
+         *         "Cd": "AGNT"
+         *       },
+         *       "AddtlInf": "AdditionalInformation"
+         *     }
          */
         StatusReasonInformation14: {
             Orgtr?: components["schemas"]["PartyIdentification272"];
@@ -1621,6 +3365,17 @@ export interface components {
          * StructuredRegulatoryReporting3
          * @description Unsure on description.
          *
+         * @example {
+         *       "Tp": "T1",
+         *       "Dt": "2018-01-01",
+         *       "Ctry": "CH",
+         *       "Cd": "CHF",
+         *       "Amt": {
+         *         "Ccy": "CHF",
+         *         "Amt": 1000
+         *       },
+         *       "Inf": 12345
+         *     }
          */
         StructuredRegulatoryReporting3: {
             Tp?: components["schemas"]["Max35Text"];
@@ -1634,6 +3389,13 @@ export interface components {
          * SupplementaryData1
          * @description Additional information that can not be captured in the structured fields and/or any other specific block.
          *
+         * @example {
+         *       "PlcAndNm": "Additional information",
+         *       "Envlp": {
+         *         "Cd": "CH03",
+         *         "Prtry": "Additional information"
+         *       }
+         *     }
          */
         SupplementaryData1: {
             PlcAndNm?: components["schemas"]["Max350Text"];
@@ -1649,6 +3411,27 @@ export interface components {
          * TaxAmount3
          * @description Information on the amount of the tax record.
          *
+         * @example {
+         *       "Rate": 0,
+         *       "TaxblBaseAmt": {
+         *         "Ccy": "EUR",
+         *         "Amt": 0
+         *       },
+         *       "TtlAmt": {
+         *         "Ccy": "EUR",
+         *         "Amt": 0
+         *       },
+         *       "Dtls": {
+         *         "Tp": "T1",
+         *         "Ctry": "CH",
+         *         "Cd": "CHF",
+         *         "Amt": {
+         *           "Ccy": "CHF",
+         *           "Amt": 1000
+         *         },
+         *         "Inf": 12345
+         *       }
+         *     }
          */
         TaxAmount3: {
             Rate?: components["schemas"]["PercentageRate"];
@@ -1660,6 +3443,10 @@ export interface components {
          * TaxAuthorisation1
          * @description Details of an authorised tax paying party.
          *
+         * @example {
+         *       "Titl": "Mr",
+         *       "Nm": "John Doe"
+         *     }
          */
         TaxAuthorisation1: {
             Titl?: components["schemas"]["Max35Text"];
@@ -1669,6 +3456,43 @@ export interface components {
          * TaxData1
          * @description Details about tax paid, or to be paid, to the government in accordance with the law, including pre-defined parameters such as thresholds and type of account.
          *
+         * @example {
+         *       "Cdtr": {
+         *         "Titl": "Mr",
+         *         "Nm": "John Doe"
+         *       },
+         *       "Dbtr": {
+         *         "Titl": "Mr",
+         *         "Nm": "John Doe"
+         *       },
+         *       "UltmtDbtr": {
+         *         "Titl": "Mr",
+         *         "Nm": "John Doe"
+         *       },
+         *       "AdmstnZone": "CH",
+         *       "RefNb": 12345,
+         *       "Mtd": "A",
+         *       "TtlTaxblBaseAmt": {
+         *         "Ccy": "CHF",
+         *         "Amt": 1000
+         *       },
+         *       "TtlTaxAmt": {
+         *         "Ccy": "CHF",
+         *         "Amt": 100
+         *       },
+         *       "Dt": "2018-01-01",
+         *       "SeqNb": 1,
+         *       "Rcrd": {
+         *         "Tp": "T1",
+         *         "Ctry": "CH",
+         *         "Cd": "CHF",
+         *         "Amt": {
+         *           "Ccy": "CHF",
+         *           "Amt": 1000
+         *         },
+         *         "Inf": 12345
+         *       }
+         *     }
          */
         TaxData1: {
             Cdtr?: components["schemas"]["TaxParty1"];
@@ -1687,6 +3511,11 @@ export interface components {
          * TaxParty1
          * @description Details about the entity involved in the tax paid or to be paid.
          *
+         * @example {
+         *       "TaxId": 123456789,
+         *       "RegnId": 123456789,
+         *       "TaxTp": "VAT"
+         *     }
          */
         TaxParty1: {
             TaxId?: components["schemas"]["Max35Text"];
@@ -1697,6 +3526,15 @@ export interface components {
          * TaxParty2
          * @description Details about the entity involved in the tax paid or to be paid.
          *
+         * @example {
+         *       "TaxId": 123456789,
+         *       "RegnId": 123456789,
+         *       "TaxTp": "VAT",
+         *       "Authstn": {
+         *         "Titl": "Mr",
+         *         "Nm": "John Doe"
+         *       }
+         *     }
          */
         TaxParty2: {
             TaxId?: components["schemas"]["Max35Text"];
@@ -1708,6 +3546,14 @@ export interface components {
          * TaxPeriod3
          * @description Period of time details related to the tax payment.
          *
+         * @example {
+         *       "Yr": 2020,
+         *       "Tp": "MM01",
+         *       "FrToDt": {
+         *         "FrDt": "2020-01-01",
+         *         "ToDt": "2020-01-31"
+         *       }
+         *     }
          */
         TaxPeriod3: {
             Yr?: components["schemas"]["ISOYear"];
@@ -1718,6 +3564,24 @@ export interface components {
          * TaxRecord3
          * @description Set of elements used to define the tax record.
          *
+         * @example {
+         *       "Tp": "VAT",
+         *       "Ctgy": "A",
+         *       "CtgyDtls": "Standard",
+         *       "DbtrSts": "Resident",
+         *       "CertId": 123456789,
+         *       "FrmsCd": 123456789,
+         *       "Prd": {
+         *         "FrstDay": "2019-01-01",
+         *         "LastDay": "2019-12-31"
+         *       },
+         *       "TaxAmt": {
+         *         "Rate": 0.2,
+         *         "TaxblBaseAmt": 1000,
+         *         "TtlAmt": 200
+         *       },
+         *       "AddtlInf": "VAT applicable"
+         *     }
          */
         TaxRecord3: {
             Tp?: components["schemas"]["Max35Text"];
@@ -1734,6 +3598,20 @@ export interface components {
          * TaxRecordDetails3
          * @description Details on the tax period and amount
          *
+         * @example {
+         *       "Prd": {
+         *         "Yr": 2020,
+         *         "Tp": "MM01",
+         *         "FrToDt": {
+         *           "FrDt": "2020-01-01",
+         *           "ToDt": "2020-01-31"
+         *         }
+         *       },
+         *       "Amt": {
+         *         "Amt": 100,
+         *         "Ccy": "EUR"
+         *       }
+         *     }
          */
         TaxRecordDetails3: {
             Prd?: components["schemas"]["TaxPeriod3"];
@@ -1762,26 +3640,118 @@ export interface components {
          *     HLF1 FirstHalf Tax is related to the first half of the period.
          *     HLF2 SecondHalf Tax is related to the second half of the period.
          *
+         * @example HLF1
          * @enum {string}
          */
         TaxRecordPeriod1Code: "MM01" | "MM02" | "MM03" | "MM04" | "MM05" | "MM06" | "MM07" | "MM08" | "MM09" | "MM10" | "MM11" | "MM12" | "QTR1" | "QTR2" | "QTR3" | "QTR4" | "HLF1" | "HLF2";
-        /** TermsRequest_FIToFICustomerCreditProposal */
+        /**
+         * TermsRequest_FIToFICustomerCreditProposal
+         * @example {
+         *       "GrpHdr": {
+         *         "MsgId": 123456789,
+         *         "CreDtTm": "2020-01-01T00:00:00Z",
+         *         "NbOfTxs": 1,
+         *         "CtrlSum": 100,
+         *         "InitgPty": {
+         *           "Nm": "Initiating Party Name",
+         *           "Id": {
+         *             "OrgId": {
+         *               "Othr": [
+         *                 {
+         *                   "Id": 123456789,
+         *                   "SchmeNm": {
+         *                     "Cd": "BBA",
+         *                     "Prtry": "Party Identification Scheme Name"
+         *                   }
+         *                 }
+         *               ]
+         *             }
+         *           }
+         *         },
+         *         "FwdgAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BBBBBBBB"
+         *           }
+         *         }
+         *       }
+         *     }
+         */
         TermsRequest_FIToFICustomerCreditProposal: {
             GrpHdr: components["schemas"]["GroupHeader129"];
         };
-        /** TermsResponse_FIToFICustomerCreditConfirmation */
+        /**
+         * TermsResponse_FIToFICustomerCreditConfirmation
+         * @example {
+         *       "GrpHdr": {
+         *         "MsgId": 123456789,
+         *         "CreDtTm": "2020-01-01T00:00:00Z",
+         *         "NbOfTxs": 1,
+         *         "CtrlSum": 100,
+         *         "InitgPty": {
+         *           "Nm": "Initiating Party Name",
+         *           "Id": {
+         *             "OrgId": {
+         *               "Othr": [
+         *                 {
+         *                   "Id": 123456789,
+         *                   "SchmeNm": {
+         *                     "Cd": "BBA",
+         *                     "Prtry": "Party Identification Scheme Name"
+         *                   }
+         *                 }
+         *               ]
+         *             }
+         *           }
+         *         },
+         *         "FwdgAgt": {
+         *           "FinInstnId": {
+         *             "BICFI": "BBBBBBBB"
+         *           }
+         *         }
+         *       }
+         *     }
+         */
         TermsResponse_FIToFICustomerCreditConfirmation: {
             GrpHdr: components["schemas"]["GroupHeader129"];
             CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"];
         };
-        /** UUIDv4Identifier */
+        /**
+         * UUIDv4Identifier
+         * @example 8f3a3b2d-3b0a-4b3f-8e4e-1b2f3f4c5d6e
+         */
         UUIDv4Identifier: string;
-        /** VerificationReason1Choice */
+        /**
+         * VerificationReason1Choice
+         * @example {
+         *       "Cd": "AGNT"
+         *     }
+         */
         VerificationReason1Choice: {
             Cd?: components["schemas"]["ExternalVerificationReason1Code"];
             Prtry?: components["schemas"]["Max35Text"];
         } & (unknown | unknown);
-        /** VerificationReport4 */
+        /**
+         * VerificationReport4
+         * @example {
+         *       "OrgnlId": 123456789,
+         *       "Vrfctn": true,
+         *       "Rsn": {
+         *         "Cd": "AGNT"
+         *       },
+         *       "OrgnlPtyAndAcctId": {
+         *         "Id": 123456789,
+         *         "SchmeNm": {
+         *           "Cd": "CCPT"
+         *         }
+         *       },
+         *       "UpdtdPtyAndAcctId": {
+         *         "Id": 123456789,
+         *         "SchmeNm": {
+         *           "Cd": "CCPT"
+         *         }
+         *       }
+         *     }
+         */
         VerificationReport4: {
             OrgnlId: components["schemas"]["Max35Text"];
             Vrfctn: components["schemas"]["IdentificationVerificationIndicator"];
@@ -1789,7 +3759,10 @@ export interface components {
             OrgnlPtyAndAcctId?: components["schemas"]["IdentificationInformation4"];
             UpdtdPtyAndAcctId?: components["schemas"]["IdentificationInformation4"];
         };
-        /** hexBinary */
+        /**
+         * hexBinary
+         * @example 4660
+         */
         hexBinary: string;
     };
     responses: {

@@ -13,3 +13,30 @@ properties:
     $ref: ./CountryCode.yaml
   CtctDtls:
     $ref: ./Contact13.yaml
+example:
+  Nm: John Doe
+  PstlAdr:
+    AdrTp: ADDR
+    Dept: Dept
+    SubDept: SubDept
+    StrtNm: StrtNm
+    BldgNb: BldgNb
+    PstCd: PstCd
+    TwnNm: TwnNm
+    CtrySubDvsn: CtrySubDvsn
+    Ctry: Ctry
+  Id:
+    OrgId:
+      AnyBIC: BIC
+    PrvtId:
+      DtAndPlcOfBirth:
+        Dt: '2018-01-01'
+        CityOfBirth: City
+  CtryOfRes: BE
+  CtctDtls:
+    NmPrfx: Mr
+    Nm: John Doe
+    PhneNb: +123-123-321
+    MobNb: +123-123-321
+    FaxNb: +123-123-321
+    EmailAdr:

@@ -3,3 +3,4 @@ description: |
   Specifies a hexadecimal string with a length of 32 characters.
 type: string
 pattern: ^([0-9A-F][0-9A-F]){32}$
+example: 1234567890ABCDEF1234567890ABCDEF

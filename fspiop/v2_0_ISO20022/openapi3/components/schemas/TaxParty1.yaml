@@ -9,3 +9,7 @@ properties:
     $ref: ./Max35Text.yaml
   TaxTp:
     $ref: ./Max35Text.yaml
+example:
+  TaxId: 123456789
+  RegnId: 123456789
+  TaxTp: VAT

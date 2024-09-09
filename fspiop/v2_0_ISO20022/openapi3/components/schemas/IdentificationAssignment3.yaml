@@ -14,3 +14,20 @@ required:
   - CreDtTm
   - Assgnr
   - Assgne
+example:
+  MsgId: 123
+  CreDtTm: '2020-01-01T00:00:00Z'
+  Assgnr:
+    OrgId:
+      Othr:
+        Id: 123
+        SchmeNm:
+          Cd: BIC
+        Issr: BIC
+  Assgne:
+    OrgId:
+      Othr:
+        Id: 123
+        SchmeNm:
+          Cd: BIC
+        Issr: BIC

@@ -12,3 +12,5 @@ oneOf:
       - IlpV4PrepPacket
   - required:
       - Sh256Sgntr
+example:
+  IlpV4PrepPacket: 1234567890ABCDEF

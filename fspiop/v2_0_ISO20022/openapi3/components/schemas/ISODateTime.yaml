@@ -18,3 +18,4 @@ description: |
   involved parties shall agree on the maximum number of digits that are allowed.
 type: string
 format: datetime
+example: '2013-03-07T14:44:30.000Z'

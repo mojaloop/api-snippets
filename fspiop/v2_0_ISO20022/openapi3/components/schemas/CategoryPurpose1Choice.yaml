@@ -13,3 +13,5 @@ oneOf:
       - Cd
   - required:
       - Prtry
+example:
+  Cd: CASH

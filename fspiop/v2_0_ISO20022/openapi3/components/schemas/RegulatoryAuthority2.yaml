@@ -7,3 +7,6 @@ properties:
     $ref: ./Max140Text.yaml
   Ctry:
     $ref: ./CountryCode.yaml
+example:
+  Nm: Swiss National Bank
+  Ctry: CH

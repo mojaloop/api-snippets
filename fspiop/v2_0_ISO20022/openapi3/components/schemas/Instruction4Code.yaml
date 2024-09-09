@@ -11,3 +11,4 @@ type: string
 enum:
   - PHOA
   - TELA
+example: PHOA

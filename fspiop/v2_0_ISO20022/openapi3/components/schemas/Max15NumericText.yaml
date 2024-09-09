@@ -3,3 +3,4 @@ description: |
   Specifies a numeric string with a maximum length of 15 digits.
 type: string
 pattern: ^[0-9]{1,15}$
+example: 123456789012345

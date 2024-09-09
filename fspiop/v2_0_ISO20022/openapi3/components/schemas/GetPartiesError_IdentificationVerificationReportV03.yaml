@@ -10,3 +10,48 @@ properties:
 required:
   - Assgnmt
   - Rpt
+example:
+  Assgnmt:
+    Id: 123
+    CreDtTm: '2013-03-07T16:30:00'
+    Assgnr:
+      Id:
+        Id: 123
+        SchmeNm:
+          Cd: IBAN
+        Issr: BIC
+    Assgne:
+      Id:
+        Id: 123
+        SchmeNm:
+          Cd: IBAN
+        Issr: BIC
+  Rpt:
+    Id: 123
+    CreDtTm: '2013-03-07T16:30:00'
+    RptgPty:
+      Id:
+        Id: 123
+        SchmeNm:
+          Cd: IBAN
+        Issr: BIC
+    RptdPty:
+      Id:
+        Id: 123
+        SchmeNm:
+          Cd: IBAN
+        Issr: BIC
+    RptdDoc:
+      Nb: 123
+      RltdDt: '2013-03-07'
+      RltdDtTp:
+        Cd: 123
+    Rsn:
+      Cd: 123
+      Prtry: 123
+  SplmtryData:
+    PlcAndNm: 123
+    Envlp: 123
+    RltdDt: '2013-03-07'
+    RltdDtTp:
+      Cd: 123

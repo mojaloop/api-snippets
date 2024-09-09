@@ -10,3 +10,20 @@ properties:
     $ref: ./BranchData3.yaml
 required:
   - FinInstnId
+example:
+  FinInstnId:
+    BICFI: J5BMVH7D
+  BrnchId:
+    Id: 123
+    Nm: Name
+    PstlAdr:
+      AdrTp: ADDR
+      Dept: Department
+      SubDept: Sub department
+      StrtNm: Street name
+      BldgNb: Building number
+      PstCd: Post code
+      TwnNm: Town name
+      CtrySubDvsn: Country subdivision
+      Ctry: Country
+      AdrLine: Address line

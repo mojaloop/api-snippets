@@ -12,3 +12,14 @@ properties:
 required:
   - Amt
   - Agt
+example:
+  Amt:
+    ActiveOrHistoricCurrencyAndAmount: 123.45
+    Ccy: USD
+  Agt:
+    BrnchId:
+      Id: BRANCHID
+    FinInstnId:
+      BICFI: BICFI
+  Tp:
+    Cd: SHAR

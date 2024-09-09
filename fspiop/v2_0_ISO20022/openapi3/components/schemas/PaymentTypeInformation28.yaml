@@ -13,3 +13,12 @@ properties:
     $ref: ./LocalInstrument2Choice.yaml
   CtgyPurp:
     $ref: ./CategoryPurpose1Choice.yaml
+example:
+  InstrPrty: NORM
+  ClrChanl: RTGS
+  SvcLvl:
+    Cd: SEPA
+  LclInstrm:
+    Cd: CORE
+  CtgyPurp:
+    Cd: CASH

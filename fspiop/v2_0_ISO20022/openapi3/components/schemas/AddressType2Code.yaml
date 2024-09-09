@@ -9,3 +9,4 @@ enum:
   - MLTO
   - DLVY
 type: string
+example: ADDR

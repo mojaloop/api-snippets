@@ -12,3 +12,17 @@ properties:
     $ref: ./Max140Text.yaml
   PstlAdr:
     $ref: ./PostalAddress24.yaml
+example:
+  Id: 123
+  Nm: Name
+  PstlAdr:
+    AdrTp: ADDR
+    Dept: Department
+    SubDept: Sub department
+    StrtNm: Street name
+    BldgNb: Building number
+    PstCd: Post code
+    TwnNm: Town name
+    CtrySubDvsn: Country subdivision
+    Ctry: Country
+    AdrLine: Address line

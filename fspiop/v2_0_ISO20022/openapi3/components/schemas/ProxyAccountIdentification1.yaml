@@ -9,3 +9,7 @@ properties:
     $ref: ./Max2048Text.yaml
 required:
   - Id
+example:
+  Tp:
+    Cd: IBAN
+  Id: 123

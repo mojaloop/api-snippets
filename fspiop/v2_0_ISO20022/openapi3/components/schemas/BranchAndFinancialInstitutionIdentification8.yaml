@@ -10,3 +10,15 @@ properties:
     $ref: ./BranchData5.yaml
 required:
   - FinInstnId
+example:
+  FinInstnId:
+    BICFI: BUKBGB22
+  BrnchId:
+    Id: 12345
+    Nm: Oxford Street Branch
+    PstlAdr:
+      Ctry: GB
+      AdrLine:
+        - 1 Oxford Street
+        - London
+        - UK

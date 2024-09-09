@@ -15,3 +15,8 @@ required:
   - BirthDt
   - CityOfBirth
   - CtryOfBirth
+example:
+  BirthDt: 1970-01-01
+  PrvcOfBirth: ON
+  CityOfBirth: Ottawa
+  CtryOfBirth: CA

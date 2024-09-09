@@ -7,3 +7,6 @@ properties:
     $ref: ./Max35Text.yaml
   Nm:
     $ref: ./Max140Text.yaml
+example:
+  Titl: Mr
+  Nm: John Doe

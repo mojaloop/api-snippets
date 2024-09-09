@@ -50,3 +50,76 @@ required:
   - DbtrAgt
   - CdtrAgt
   - Cdtr
+example:
+  PmtId:
+    InstrId: INSTRID
+    EndToEndId: ENDTOENDID
+  PmtTpInf:
+    LclInstrm:
+      Cd: CHQB
+      Prtry: PROPRIETARY
+    SeqTp: SEQTP
+  IntrBkSttlmAmt:
+    ActiveCurrencyAndAmount: 123.45
+    Ccy: USD
+  InstdAmt:
+    ActiveOrHistoricCurrencyAndAmount: 123.45
+    Ccy: USD
+  XchgRate: 123.45
+  ChrgBr: SHAR
+  ChrgsInf:
+    Amt:
+      ActiveOrHistoricCurrencyAndAmount: 123.45
+      Ccy: USD
+    Agt:
+      BrnchId:
+        Id: BRANCHID
+      FinInstnId:
+        BICFI: BICFI
+    Tp:
+      Cd: SHAR
+  Dbtr:
+    Nm: NAME
+    PstlAdr:
+      AdrTp: ADDR
+      BldgNb: BLDGNB
+      Ctry: CTRY
+      TwnNm: TWNNM
+      PstCd: PSTCD
+      StrtNm: STRTNM
+  DbtrAcct:
+    Id:
+      IBAN: IBAN
+  DbtrAgt:
+    BrnchId:
+      Id: BRANCHID
+    FinInstnId:
+      BICFI: BICFI
+  CdtrAgt:
+    BrnchId:
+      Id: BRANCHID
+    FinInstnId:
+      BICFI: BICFI
+  Cdtr:
+    Nm: NAME
+    PstlAdr:
+      AdrTp: ADDR
+      BldgNb: BLDGNB
+      Ctry: CTRY
+      TwnNm: TWNNM
+      PstCd: PSTCD
+      StrtNm: STRTNM
+  CdtrAcct:
+    Id:
+      IBAN: IBAN
+  InstrForCdtrAgt:
+    Cd: CODE
+  InstrForNxtAgt:
+    Cd: CODE
+  Purp:
+    Cd: CASH
+  RgltryRptg:
+    Dbtr: TRUE
+    Cdtr: TRUE
+  Tax:
+    Cdtr

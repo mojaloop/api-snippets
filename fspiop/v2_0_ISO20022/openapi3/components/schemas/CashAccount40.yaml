@@ -13,3 +13,12 @@ properties:
     $ref: ./Max70Text.yaml
   Prxy:
     $ref: ./ProxyAccountIdentification1.yaml
+example:
+  Id:
+    IBAN: BE71096123456769
+  Tp:
+    Cd: CACC
+  Ccy: EUR
+  Nm: My account
+  Prxy:
+    Id: 12345

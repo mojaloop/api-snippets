@@ -22,3 +22,37 @@ required:
   - NbOfTxs
   - SttlmInf
   - CdtTrfTxInf
+example:
+  MsgId: 12345
+  CreDtTm: '2020-01-01T00:00:00Z'
+  PmtInstrXpryDtTm: '2020-01-01T00:00:00Z'
+  NbOfTxs: 1
+  SttlmInf:
+    SttlmMtd: INDA
+    SttlmAcct:
+      Id:
+        IBAN: 123
+    SttlmAcctOwnr:
+      Nm: John Doe
+    SttlmAcctSvcr:
+      BICFI: 123
+  CdtTrfTxInf:
+    PmtId:
+      InstrId: 123
+      EndToEndId: 123
+    PmtTpInf:
+      InstrPrty: NORM
+    InstdAmt:
+      Amt: 123
+      Ccy: EUR
+    ChrgBr: SLEV
+    CdtrAgt:
+      FinInstnId:
+        BICFI: 123
+    Cdtr:
+      Nm: John Doe
+    CdtrAcct:
+      Id:
+        IBAN: 123
+    RmtInf:
+      Ustrd: Test

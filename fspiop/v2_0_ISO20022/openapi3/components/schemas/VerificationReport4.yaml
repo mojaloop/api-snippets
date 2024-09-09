@@ -14,3 +14,16 @@ properties:
 required:
   - OrgnlId
   - Vrfctn
+example:
+  OrgnlId: 123456789
+  Vrfctn: true
+  Rsn:
+    Cd: AGNT
+  OrgnlPtyAndAcctId:
+    Id: 123456789
+    SchmeNm:
+      Cd: CCPT
+  UpdtdPtyAndAcctId:
+    Id: 123456789
+    SchmeNm:
+      Cd: CCPT

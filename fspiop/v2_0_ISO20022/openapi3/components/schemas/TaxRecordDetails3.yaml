@@ -9,3 +9,13 @@ properties:
     $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
 required:
   - Amt
+example:
+  Prd:
+    Yr: 2020
+    Tp: MM01
+    FrToDt:
+      FrDt: '2020-01-01'
+      ToDt: '2020-01-31'
+  Amt:
+    Amt: 100.00
+    Ccy: EUR

@@ -8,3 +8,50 @@ properties:
 required:
   - GrpHdr
   - CdtTrfTxInf
+example:
+  GrpHdr:
+    MsgId: 20191113001
+    CreDtTm: 2019-11-13T10:00:00
+    NbOfTxs: 1
+    CtrlSum: 1000
+    InitgPty:
+      Nm: Initiating Party Name
+      Id:
+        OrgId:
+          Othr:
+            Id: 123456789
+            SchmeNm:
+              Cd: BBA
+    FwdgAgt:
+      FinInstnId:
+        BICFI: BBBBBBBB
+    DbtrAgt:
+      FinInstnId:
+        BICFI: AAAAAAAA
+    CdtrAgt:
+      FinInstnId:
+        BICFI: CCCCCCCC
+  CdtTrfTxInf:
+    PmtId:
+      InstrId: 20191113001
+      EndToEndId: 20191113001
+    PmtTpInf:
+      InstrPrty: NORM
+      CtgyPurp:
+        Cd: SUPP
+    InstrForCdtrAgt:
+      Cd: /ACC/123456789
+    IntrBkSttlmAmt:
+      Amt: 1000
+      Ccy: EUR
+    ChrgBr: SLEV
+    CdtrAgt:
+      FinInstnId:
+        BICFI: CCCCCCCC
+    Cdtr:
+      Nm: Creditor Name
+    CdtrAcct:
+      Id:
+        IBAN: BE71096123456769
+    RmtInf:
+      Ustrd: Payment for invoice 12345

@@ -7,3 +7,4 @@ enum:
   - MIST
   - MIKS
 type: string
+example: DOCT

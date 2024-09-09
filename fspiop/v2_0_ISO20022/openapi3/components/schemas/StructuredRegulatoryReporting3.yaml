@@ -15,3 +15,12 @@ properties:
     $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
   Inf:
     $ref: ./Max35Text.yaml
+example:
+  Tp: T1
+  Dt: '2018-01-01'
+  Ctry: CH
+  Cd: CHF
+  Amt:
+    Ccy: CHF
+    Amt: 1000
+  Inf: 12345

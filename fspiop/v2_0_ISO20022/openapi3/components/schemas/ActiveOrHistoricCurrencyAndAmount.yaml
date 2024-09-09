@@ -11,3 +11,6 @@ properties:
 required:
   - ActiveOrHistoricCurrencyAndAmount
   - Ccy
+example:
+  ActiveOrHistoricCurrencyAndAmount: 123.45
+  Ccy: USD

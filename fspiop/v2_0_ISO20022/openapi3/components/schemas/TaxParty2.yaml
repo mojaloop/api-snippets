@@ -11,3 +11,10 @@ properties:
     $ref: ./Max35Text.yaml
   Authstn:
     $ref: ./TaxAuthorisation1.yaml
+example:
+  TaxId: 123456789
+  RegnId: 123456789
+  TaxTp: VAT
+  Authstn:
+    Titl: Mr
+    Nm: John Doe

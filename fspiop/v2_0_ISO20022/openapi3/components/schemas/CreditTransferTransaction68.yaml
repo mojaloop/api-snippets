@@ -33,3 +33,37 @@ required:
   - IntrBkSttlmAmt
   - Dbtr
   - Cdtr
+example:
+  PmtId:
+    InstrId: INSTRID
+    EndToEndId: ENDTOENDID
+  PmtTpInf:
+    LclInstrm:
+      Cd: CHQB
+      Prtry: PROPRIETARY
+  IntrBkSttlmAmt:
+    Amount: 123.45
+    Ccy: EUR
+  Dbtr:
+    Nm: Debtor Name
+  DbtrAcct:
+    Id:
+      IBAN: IBAN
+  DbtrAgt:
+    FinInstnId:
+      BICFI: BICFI
+  CdtrAgt:
+    FinInstnId:
+      BICFI: BICFI
+  Cdtr:
+    Nm: Creditor Name
+  CdtrAcct:
+    Id:
+      IBAN: IBAN
+  InstrForCdtrAgt:
+    Cd: INSTRUCTION
+  Purp:
+    Cd: CHAR
+  VrfctnOfTerms:
+    Cntt: CONTENT
+    CnttTp: PROPRIETARY

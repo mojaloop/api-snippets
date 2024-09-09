@@ -10,3 +10,6 @@ properties:
 required:
   - FrDt
   - ToDt
+example:
+  FrDt: 2020-01-01
+  ToDt: 2020-12-31

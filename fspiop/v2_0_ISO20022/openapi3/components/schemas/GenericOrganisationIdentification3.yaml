@@ -9,3 +9,8 @@ properties:
     $ref: ./Max35Text.yaml
 required:
   - Id
+example:
+  Id: 123
+  SchmeNm:
+    Cd: BIC
+  Issr: BIC

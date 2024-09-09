@@ -7,3 +7,4 @@ enum:
   - CRED
   - DEBT
   - BOTH
+example: BOTH

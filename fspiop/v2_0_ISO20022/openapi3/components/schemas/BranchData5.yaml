@@ -12,3 +12,12 @@ properties:
     $ref: ./Max140Text.yaml
   PstlAdr:
     $ref: ./PostalAddress27.yaml
+example:
+  Id: 123
+  Nm: Oxford Street Branch
+  PstlAdr:
+    Ctry: GB
+    AdrLine:
+      - 1 Oxford Street
+      - London
+      - UK

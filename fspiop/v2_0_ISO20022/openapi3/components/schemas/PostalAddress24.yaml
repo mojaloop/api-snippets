@@ -36,3 +36,20 @@ properties:
     $ref: ./CountryCode.yaml
   AdrLine:
     $ref: ./Max70Text.yaml
+example:
+  AdrTp: ADDR
+  Dept: Dept
+  SubDept: SubDept
+  StrtNm: StrtNm
+  BldgNb: BldgNb
+  BldgNm: BldgNm
+  Flr: Flr
+  PstBx: PstBx
+  Room: Room
+  PstCd: PstCd
+  TwnNm: TwnNm
+  TwnLctnNm: TwnLctnNm
+  DstrctNm: DstrctNm
+  CtrySubDvsn: CtrySubDvsn
+  Ctry: Ctry
+  AdrLine: AdrLine

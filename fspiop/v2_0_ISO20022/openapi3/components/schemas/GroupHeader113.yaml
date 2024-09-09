@@ -24,3 +24,49 @@ required:
   - NbOfTxs
   - SttlmInf
   - CdtTrfTxInf
+example:
+  MsgId: 12345
+  CreDtTm: '2020-01-01T00:00:00Z'
+  NbOfTxs: 1
+  TtlIntrBkSttlmAmt:
+    Ccy: EUR
+    Value: 100.0
+  SttlmInf:
+    SttlmMtd: INDA
+    SttlmAcct:
+      Id:
+        IBAN: BE71096123456769
+      Ccy: EUR
+    SttlmAcctOwnr:
+      Nm: Name
+    SttlmAcctSvcr:
+      Nm: Name
+    SttlmAgt:
+      FinInstnId:
+        BICFI: BIC
+  PmtTpInf:
+    InstrPrty: NORM
+    CtgyPurp: CASH
+  CdtTrfTxInf:
+    PmtId:
+      InstrId: 12345
+      EndToEndId: 12345
+    Amt:
+      InstdAmt:
+        Ccy: EUR
+        Value: 100.0
+    Cdtr:
+      Nm: Name
+    CdtrAcct:
+      Id:
+        IBAN: BE71096123456769
+      Ccy: EUR
+    CdtrAgt:
+      FinInstnId:
+        BICFI: BIC
+    CdtrAgtAcct:
+      Id:
+        IBAN: BE71096123456769
+      Ccy: EUR
+    RmtInf:
+      Ustrd: Test

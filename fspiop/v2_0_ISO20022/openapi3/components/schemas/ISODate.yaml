@@ -6,3 +6,4 @@ description: >
   W3C Recommendation 28 October 2004" which is aligned with ISO 8601.
 type: string
 format: date
+example: '2013-03-07'

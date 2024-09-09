@@ -21,3 +21,18 @@ properties:
     $ref: ./TaxAmount3.yaml
   AddtlInf:
     $ref: ./Max140Text.yaml
+example:
+  Tp: VAT
+  Ctgy: A
+  CtgyDtls: Standard
+  DbtrSts: Resident
+  CertId: 123456789
+  FrmsCd: 123456789
+  Prd:
+    FrstDay: '2019-01-01'
+    LastDay: '2019-12-31'
+  TaxAmt:
+    Rate: 0.2
+    TaxblBaseAmt: 1000
+    TtlAmt: 200
+  AddtlInf: VAT applicable

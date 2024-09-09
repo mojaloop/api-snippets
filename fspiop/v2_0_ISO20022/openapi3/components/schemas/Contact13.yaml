@@ -29,3 +29,11 @@ properties:
     $ref: ./OtherContact1.yaml
   PrefrdMtd:
     $ref: ./PreferredContactMethod2Code.yaml
+example:
+  NmPrfx: Mr
+  Nm: John Doe
+  PhneNb: +123-123-321
+  MobNb: +123-123-321
+  FaxNb: +123-123-321
+  URLAdr: http://www.example.com
+  EmailAdr: example@example.com

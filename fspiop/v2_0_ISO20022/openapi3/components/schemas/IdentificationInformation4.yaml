@@ -7,3 +7,16 @@ properties:
     $ref: ./CashAccount40.yaml
   Agt:
     $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
+example:
+  Pty:
+    Id:
+      OrgId:
+        AnyBIC:
+          BICFI: BICFI
+    CtryOfRes: FI
+  Acct:
+    Id:
+      IBAN: FI2112345600000785
+  Agt:
+    FinInstnId:
+      BICFI: BICFI

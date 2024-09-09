@@ -4,3 +4,4 @@ description: |
 type: string
 minLength: 1
 maxLength: 2048
+example: 2048

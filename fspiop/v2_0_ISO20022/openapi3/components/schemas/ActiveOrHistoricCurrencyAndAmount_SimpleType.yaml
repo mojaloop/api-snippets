@@ -1,3 +1,4 @@
 title: ActiveOrHistoricCurrencyAndAmount_SimpleType
 type: string
 pattern: ^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$
+example: 123.45

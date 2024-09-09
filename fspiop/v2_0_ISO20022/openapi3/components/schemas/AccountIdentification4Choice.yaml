@@ -13,3 +13,5 @@ oneOf:
       - IBAN
   - required:
       - Othr
+example:
+  IBAN: BE71096123456769

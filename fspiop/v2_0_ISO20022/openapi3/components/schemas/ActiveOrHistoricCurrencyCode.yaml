@@ -5,3 +5,4 @@ description: >
   identification scheme, as described in the latest edition of the international standard ISO
   4217 "Codes for the representation of currencies and funds".
 pattern: ^[A-Z]{3,3}$
+example: USD
