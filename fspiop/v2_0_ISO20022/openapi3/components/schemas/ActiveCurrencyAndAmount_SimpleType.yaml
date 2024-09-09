@@ -1,3 +1,3 @@
 title: ActiveCurrencyAndAmount_SimpleType
 type: string
-pattern: ^/^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$/g$
+pattern: ^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$

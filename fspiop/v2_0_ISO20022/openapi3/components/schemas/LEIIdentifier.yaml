@@ -4,4 +4,4 @@ description: >
   ISO 17442 "Financial Services - Legal Entity Identifier (LEI)".
   ^([0-9A-Z]{18,18}[0-9]{2,2})$
 type: string
-pattern: ^ [A-Z0-9]{18,18}[0-9]{2,2}$
+pattern: ^[A-Z0-9]{18,18}[0-9]{2,2}$

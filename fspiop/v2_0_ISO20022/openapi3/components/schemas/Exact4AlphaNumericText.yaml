@@ -2,4 +2,4 @@ title: Exact4AlphaNumericText
 description: |
   Specifies an alphanumeric string with a length of 4 characters.
 type: string
-pattern: ^ [a-zA-Z0-9]{4}$
+pattern: ^[a-zA-Z0-9]{4}$
