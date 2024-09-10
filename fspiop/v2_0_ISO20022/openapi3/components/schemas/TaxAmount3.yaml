@@ -4,13 +4,33 @@ description: |
 type: object
 properties:
   Rate:
+    description: |
+      Rate
+
+      Rate used to calculate the tax.
     $ref: ./PercentageRate.yaml
   TaxblBaseAmt:
+    description: |
+      TaxableBaseAmount
+
+      Amount of money on which the tax is based.
     $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
   TtlAmt:
+    description: |
+      TotalAmount
+
+      Total amount that is the result of the calculation of the tax for the record.
     $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
   Dtls:
-    $ref: ./TaxRecordDetails3.yaml
+    description: |
+      Details
+
+      Set of elements used to provide details on the tax period and amount.
+    anyOf:
+      - $ref: ./TaxRecordDetails3.yaml
+      - items:
+          $ref: ./TaxRecordDetails3.yaml
+        type: array
 example:
   Rate: 0.0
   TaxblBaseAmt:

@@ -1,5 +1,8 @@
 title: SupplementaryDataEnvelope1
-description: |
-  Unsure on description.
+description: >
+  SupplementaryDataEnvelope1
+
+  Technical component that contains the validated supplementary data information.
+  This technical envelope allows to segregate the supplementary data information from any other information.
 type: object
 

@@ -4,12 +4,28 @@ description: |
 type: object
 properties:
   BirthDt:
+    description: >
+      BirthDate
+
+      Date on which a person is born.
     $ref: ./ISODate.yaml
   PrvcOfBirth:
+    description: >
+      ProvinceOfBirth
+
+      Province where a person was born.
     $ref: ./Max35Text.yaml
   CityOfBirth:
+    description: >
+      CityOfBirth
+
+      City where a person was born.
     $ref: ./Max35Text.yaml
   CtryOfBirth:
+    description: >
+      CountryOfBirth
+
+      Country where a person was born.
     $ref: ./CountryCode.yaml
 required:
   - BirthDt

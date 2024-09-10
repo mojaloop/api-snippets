@@ -1,20 +1,50 @@
 title: StructuredRegulatoryReporting3
 description: |
-  Unsure on description.
+  StructuredRegulatoryReporting3
+
+  Information needed due to regulatory and statutory requirements.
 type: object
 properties:
   Tp:
+    description: |
+      Type
+
+      Specifies the type of the information supplied in the regulatory reporting details.
     $ref: ./Max35Text.yaml
   Dt:
+    description: |
+      Date
+
+      Date related to the specified type of regulatory reporting details.
     $ref: ./ISODate.yaml
   Ctry:
+    description: |
+      Country
+
+      Country related to the specified type of regulatory reporting details.
     $ref: ./CountryCode.yaml
   Cd:
+    description: >
+      Code
+
+      Specifies the nature, purpose, and reason for the transaction to be reported
+      for regulatory and statutory requirements in a coded form.
     $ref: ./Max10Text.yaml
   Amt:
+    description: |
+      Amount
+
+      Amount of money to be reported for regulatory and statutory requirements.
     $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
   Inf:
-    $ref: ./Max35Text.yaml
+    description: |
+      Information
+      Additional details that cater for specific domestic regulatory requirements.
+    anyOf:
+      - $ref: ./Max35Text.yaml
+      - items:
+          $ref: ./Max35Text.yaml
+        type: array
 example:
   Tp: T1
   Dt: '2018-01-01'

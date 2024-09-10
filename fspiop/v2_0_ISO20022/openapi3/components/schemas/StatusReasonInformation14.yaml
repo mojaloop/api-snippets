@@ -4,10 +4,22 @@ description: |
 type: object
 properties:
   Orgtr:
+    description:
+      Originator
+
+      Party that issues the status.
     $ref: ./PartyIdentification272.yaml
   Rsn:
+    description:
+      Reason
+
+      Specifies the reason for the status report.
     $ref: ./StatusReason6Choice.yaml
   AddtlInf:
+    description:
+      AdditionalInformation
+
+      Additional information about the status report.
     $ref: ./Max105Text.yaml
 example:
   Orgtr:

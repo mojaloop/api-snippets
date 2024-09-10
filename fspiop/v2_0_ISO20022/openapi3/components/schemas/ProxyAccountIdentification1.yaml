@@ -4,8 +4,16 @@ description: |
 type: object
 properties:
   Tp:
+    description: |
+      Type
+
+      Type of the proxy identification.
     $ref: ./ProxyAccountType1Choice.yaml
   Id:
+    description: |
+      Identification
+
+      Identification used to indicate the account identification under another specified name.
     $ref: ./Max2048Text.yaml
 required:
   - Id

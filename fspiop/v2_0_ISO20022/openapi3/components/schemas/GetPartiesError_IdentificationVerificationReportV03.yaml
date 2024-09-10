@@ -2,10 +2,23 @@ title: GetPartiesError_IdentificationVerificationReportV03
 type: object
 properties:
   Assgnmt:
+    description: >
+      Assignment
+
+      Information related to the identification assignment.
     $ref: ./IdentificationAssignment3.yaml
   Rpt:
+    description: >
+      Report
+
+      Information concerning the verification of the identification data for which verification was
+      requested.
     $ref: ./VerificationReport4.yaml
   SplmtryData:
+    description: >
+      SupplementaryData
+
+      Additional information that cannot be captured in the structured elements and/or any other specific block.
     $ref: ./SupplementaryData1.yaml
 required:
   - Assgnmt

@@ -2,56 +2,76 @@ title: GetParties_IdentificationVerificationReportV03
 type: object
 properties:
   Assgnmt:
+    description: >
+      Assignment
+
+      Identifies the identification assignment.
     $ref: ./IdentificationAssignment3.yaml
   Rpt:
+    description: >
+      Report
+
+      Information concerning the verification of the identification data for which verification was
+      requested.
     $ref: ./VerificationReport4.yaml
   SplmtryData:
+    description: >
+      SupplementaryData
+
+      Additional information that cannot be captured in the structured elements and/or any other specific block.
     $ref: ./SupplementaryData1.yaml
 required:
   - Assgnmt
   - Rpt
 example:
   Assgnmt:
-    Id: 123
-    CreDtTm: '2013-03-07T16:30:00'
+    MsgId: 123
+    CreDtTm: '2020-01-01T00:00:00Z'
     Assgnr:
-      Id:
-        Id: 123
-        SchmeNm:
-          Cd: IBAN
-        Issr: BIC
+      OrgId:
+        Othr:
+          Id: 123
+          SchmeNm:
+            Cd: BIC
+          Issr: BIC
     Assgne:
-      Id:
-        Id: 123
-        SchmeNm:
-          Cd: IBAN
-        Issr: BIC
+      OrgId:
+        Othr:
+          Id: DFSPID
   Rpt:
-    Id: 123
-    CreDtTm: '2013-03-07T16:30:00'
-    RptgPty:
-      Id:
-        Id: 123
-        SchmeNm:
-          Cd: IBAN
-        Issr: BIC
-    RptdPty:
-      Id:
-        Id: 123
-        SchmeNm:
-          Cd: IBAN
-        Issr: BIC
-    RptdDoc:
-      Nb: 123
-      RltdDt: '2013-03-07'
-      RltdDtTp:
-        Cd: 123
-    Rsn:
-      Cd: 123
-      Prtry: 123
-  SplmtryData:
-    PlcAndNm: 123
-    Envlp: 123
-    RltdDt: '2013-03-07'
-    RltdDtTp:
-      Cd: 123
+    OrgnlId: 12345678
+    Vrfctn: true
+    UpdtdPtyAndAcctId:
+      Pty:
+        Nm: John Doe
+        PstlAdr:
+          AdrTp: ADDR
+          Dept: Dept
+          SubDept: SubDept
+          StrtNm: StrtNm
+          BldgNb: BldgNb
+          BldgNm: BldgNm
+          Flr: Flr
+          PstBx: PstBx
+          Room: Room
+          PstCd: PstCd
+          TwnNm: TwnNm
+          TwnLctnNm: TwnLctnNm
+          DstrctNm: DstrctNm
+          CtrySubDvsn: CtrySubDvsn
+          Ctry: Ctry
+          AdrLine: AdrLine
+        Id:
+          OrgId:
+            Othr:
+              Id: 18761231234
+            SchmeNm:
+              Prtry: MSISDN
+        CtryOfRes: BE
+        CtctDtls:
+          NmPrfx: Mr
+          Nm: John Doe
+          PhneNb: +123-123-321
+          MobNb: +123-123-321
+          FaxNb: +123-123-321
+          EmailAdr: example@example.com

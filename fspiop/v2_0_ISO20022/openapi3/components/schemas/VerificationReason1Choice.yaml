@@ -2,8 +2,17 @@ title: VerificationReason1Choice
 type: object
 properties:
   Cd:
+    description: >
+      Code
+
+      Reason why the verified identification information is incorrect, as published in an external
+      reason code list.
     $ref: ./ExternalVerificationReason1Code.yaml
   Prtry:
+    description: >
+      Proprietary
+
+      Reason why the verified identification information is incorrect, in a free text form.
     $ref: ./Max35Text.yaml
 oneOf:
   - required:

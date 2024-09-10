@@ -2,10 +2,22 @@ title: GenericIdentification30
 type: object
 properties:
   Id:
+    description: >
+      Identification
+
+      Proprietary information, often a code, issued by the data source scheme issuer
     $ref: ./Exact4AlphaNumericText.yaml
   Issr:
+    description: >
+      Issuer
+
+      Entity that assigns the identification.
     $ref: ./Max35Text.yaml
   SchmeNm:
+    description: >
+      SchemeName
+
+      Short textual description of the scheme.
     $ref: ./Max35Text.yaml
 required:
   - Id

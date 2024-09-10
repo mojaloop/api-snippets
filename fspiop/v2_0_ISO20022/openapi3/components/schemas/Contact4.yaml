@@ -4,28 +4,76 @@ description: |
 type: object
 properties:
   NmPrfx:
+    description: >
+      NamePrefix
+
+      Name prefix to be used before the name of the person.
     $ref: ./NamePrefix2Code.yaml
   Nm:
+    description: >
+      Name
+
+      Name by which a party is known and which is usually used to identify that party.
     $ref: ./Max140Text.yaml
   PhneNb:
+    description: >
+      PhoneNumber
+
+      Collection of information that identifies a phone number, as defined by telecom services.
     $ref: ./PhoneNumber.yaml
   MobNb:
+    description: >
+      MobilePhoneNumber
+
+      Collection of information that identifies a mobile phone number, as defined by telecom services.
     $ref: ./PhoneNumber.yaml
   FaxNb:
+    description: >
+      FaxNumber
+
+      Collection of information that identifies a fax number, as defined by telecom services.
     $ref: ./PhoneNumber.yaml
   EmailAdr:
+    description: >
+      EmailAddress
+
+      Address for electronic mail (e-mail).
     $ref: ./Max2048Text.yaml
   EmailPurp:
+    description: >
+      EmailPurpose
+
+      Purpose for which an email address may be used.
     $ref: ./Max35Text.yaml
   JobTitl:
+    description: >
+      JobTitle
+
+      Title of the function.
     $ref: ./Max35Text.yaml
   Rspnsblty:
+    description: >
+      Responsibility
+
+      Role of a person in an organisation.
     $ref: ./Max35Text.yaml
   Dept:
+    description: >
+      Department
+
+      Identification of a division of a large organisation or building.
     $ref: ./Max70Text.yaml
   Othr:
+    description: >
+      Other
+
+      : Contact details in another form.
     $ref: ./OtherContact1.yaml
   PrefrdMtd:
+    description: >
+      PreferredMethod
+
+      Preferred method used to reach the contact.
     $ref: ./PreferredContactMethod1Code.yaml
 example:
   NmPrfx: Mr

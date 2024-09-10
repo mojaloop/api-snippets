@@ -1,11 +1,18 @@
 title: SettlementInstruction15
 description: |
-  NOTE: Unsure on description.
+  Specifies the details on how the settlement of the original transaction(s) between the
+  instructing agent and the instructed agent was completed.
 type: object
 properties:
   SttlmMtd:
+    description: >
+      SettlementMethod
+
+      Method used to settle the (batch of) payment instructions.
     $ref: ./SettlementMethod1Code.yaml
   PmtTpInf:
+    description: |
+      PaymentTypeInformation
     $ref: ./PaymentTypeInformation28.yaml
 required:
   - SttlmMtd

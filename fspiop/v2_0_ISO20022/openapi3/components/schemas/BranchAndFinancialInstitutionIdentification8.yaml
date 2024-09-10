@@ -5,20 +5,34 @@ description: >
   of a financial institution.
 properties:
   FinInstnId:
+    description: >
+      FinancialInstitutionIdentification
+
+      Unique and unambiguous identification of a financial institution or a branch of a financial
+      institution.
     $ref: ./FinancialInstitutionIdentification23.yaml
   BrnchId:
+    description: >
+      BranchIdentification
+
+       Identifies a specific branch of a financial institution.
     $ref: ./BranchData5.yaml
 required:
   - FinInstnId
 example:
   FinInstnId:
-    BICFI: BUKBGB22
+    BICFI: J5BMVH7D
   BrnchId:
-    Id: 12345
-    Nm: Oxford Street Branch
+    Id: 123
+    Nm: Name
     PstlAdr:
-      Ctry: GB
-      AdrLine:
-        - 1 Oxford Street
-        - London
-        - UK
+      AdrTp: ADDR
+      Dept: Department
+      SubDept: Sub department
+      StrtNm: Street name
+      BldgNb: Building number
+      PstCd: Post code
+      TwnNm: Town name
+      CtrySubDvsn: Country subdivision
+      Ctry: Country
+      AdrLine: Address line

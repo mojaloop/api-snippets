@@ -2,8 +2,17 @@ title: GenericIdentification3
 type: object
 properties:
   Id:
+    description: >
+      Identification
+
+      Name or number assigned by an entity to enable recognition of that entity, for example,
+      account identifier.
     $ref: ./Max35Text.yaml
   Issr:
+    description: >
+      Issuer
+
+      Entity that assigns the identification.
     $ref: ./Max35Text.yaml
 required:
   - Id

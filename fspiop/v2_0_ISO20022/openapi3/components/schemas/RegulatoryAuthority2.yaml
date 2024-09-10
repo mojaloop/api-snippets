@@ -4,8 +4,16 @@ description: |
 type: object
 properties:
   Nm:
+    description: |
+      Name
+
+      Name of the entity requiring the regulatory reporting information.
     $ref: ./Max140Text.yaml
   Ctry:
+    description: |
+      Country
+
+      Country of the entity that requires the regulatory reporting information.
     $ref: ./CountryCode.yaml
 example:
   Nm: Swiss National Bank

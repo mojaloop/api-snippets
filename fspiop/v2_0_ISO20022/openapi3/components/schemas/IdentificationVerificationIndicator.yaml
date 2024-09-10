@@ -1,3 +1,8 @@
 title: IdentificationVerificationIndicator
 type: boolean
 example: true
+description: |
+  Definition: Identifies whether the party and/or account information received is correct.
+
+  • Meaning When True: Indicates that the identification information received is correct.
+  • Meaning When False: Indicates that the identification information received is incorrect

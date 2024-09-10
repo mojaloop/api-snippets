@@ -4,8 +4,16 @@ description: |
 type: object
 properties:
   Prd:
+    description: |
+      Period
+
+      Set of elements used to provide details on the period of time related to the tax payment.
     $ref: ./TaxPeriod3.yaml
   Amt:
+    description: |
+      Amount
+
+      Underlying tax amount related to the specified period.
     $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
 required:
   - Amt

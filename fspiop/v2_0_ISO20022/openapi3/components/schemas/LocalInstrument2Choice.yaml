@@ -2,8 +2,16 @@ title: LocalInstrument2Choice
 type: object
 properties:
   Cd:
+    description: >
+      Code
+
+      Specifies the local instrument, as published in an external local instrument code list.
     $ref: ./ExternalLocalInstrument1Code.yaml
   Prtry:
+    description: >
+      Proprietary
+
+      Specifies the local instrument, as a proprietary code
     $ref: ./Max35Text.yaml
 oneOf:
   - required:

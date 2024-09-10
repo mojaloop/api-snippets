@@ -7,6 +7,10 @@ properties:
   ActiveCurrencyAndAmount:
     $ref: ./ActiveCurrencyAndAmount_SimpleType.yaml
   Ccy:
+    description: >
+      Currency
+
+      Identification of the currency in which the account is held.
     $ref: ./ActiveCurrencyCode.yaml
 required:
   - ActiveCurrencyAndAmount

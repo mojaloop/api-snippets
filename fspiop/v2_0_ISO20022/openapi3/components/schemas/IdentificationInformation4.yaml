@@ -2,10 +2,22 @@ title: IdentificationInformation4
 type: object
 properties:
   Pty:
+    description: >
+      Party
+
+      Account owner that owes an amount of money or to whom an amount of money is due.
     $ref: ./PartyIdentification135.yaml
   Acct:
+    description: >
+      Account
+
+      Unambiguous identification of the account of a party.
     $ref: ./CashAccount40.yaml
   Agt:
+    description: >
+      Agent
+
+      Financial institution servicing an account for a party.
     $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
 example:
   Pty:

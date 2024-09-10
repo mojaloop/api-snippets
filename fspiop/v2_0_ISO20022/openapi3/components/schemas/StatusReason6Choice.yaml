@@ -4,8 +4,16 @@ description: |
 type: object
 properties:
   Cd:
+    description: >
+      Code
+
+      Reason for the status, as published in an external reason code list.
     $ref: ./ExternalStatusReason1Code.yaml
   Prtry:
+    description: >
+      Proprietary
+
+      Reason for the status, in a proprietary form.
     $ref: ./Max35Text.yaml
 oneOf:
   - required:

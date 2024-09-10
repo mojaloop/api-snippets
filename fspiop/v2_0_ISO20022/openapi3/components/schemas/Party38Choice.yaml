@@ -4,8 +4,16 @@ description: |
 type: object
 properties:
   OrgId:
+    description: >
+      Organisation
+
+      Unique and unambiguous way to identify an organisation.
     $ref: ./OrganisationIdentification29.yaml
   PrvtId:
+    description: >
+      PrivateIdentification
+
+      Unique and unambiguous identification of a person, for example a passport.
     $ref: ./PersonIdentification13.yaml
 oneOf:
   - required:

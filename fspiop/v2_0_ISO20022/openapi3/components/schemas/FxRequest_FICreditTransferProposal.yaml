@@ -2,6 +2,10 @@ title: FxRequest_FICreditTransferProposal
 type: object
 properties:
   GrpHdr:
+    description: >
+      GroupHeader
+
+      Set of characteristics shared by all individual transactions included in the message.
     $ref: ./GroupHeader113.yaml
 required:
   - GrpHdr

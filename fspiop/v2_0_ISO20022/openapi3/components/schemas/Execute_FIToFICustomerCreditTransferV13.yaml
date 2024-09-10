@@ -2,60 +2,68 @@ title: Execute_FIToFICustomerCreditTransferV13
 type: object
 properties:
   GrpHdr:
+    description: >
+      GroupHeader.
     $ref: ./GroupHeader129.yaml
   CdtTrfTxInf:
+    description: >
+      CreditTransferTransactionInformation.
     $ref: ./CreditTransferTransaction67.yaml
 required:
   - GrpHdr
   - CdtTrfTxInf
 example:
   GrpHdr:
-    MsgId: 123456789
-    CreDtTm: 2020-01-01T00:00:00Z
+    MsgId: 12345
+    CreDtTm: '2020-01-01T00:00:00Z'
+    PmtInstrXpryDtTm: '2020-01-01T00:00:00Z'
     NbOfTxs: 1
-    CtrlSum: 100.00
-    InitgPty:
-      Nm: Initiating Party Name
-      Id:
-        OrgId:
-          Othr:
-            - Id: 123456789
-              SchmeNm:
-                Cd: 91
-    FwdgAgt:
-      FinInstnId:
-        BICFI: BBBBBBBB
+    SttlmInf:
+      SttlmMtd: INDA
+      SttlmAcct:
+        Id:
+          IBAN: 123
+      SttlmAcctOwnr:
+        Nm: John Doe
+      SttlmAcctSvcr:
+        BICFI: 123
+    CdtTrfTxInf:
+      PmtId:
+        InstrId: 123
+        EndToEndId: 123
+      PmtTpInf:
+        InstrPrty: NORM
+      InstdAmt:
+        Amt: 123
+        Ccy: EUR
+      ChrgBr: SLEV
+      CdtrAgt:
+        FinInstnId:
+          BICFI: 123
+      Cdtr:
+        Nm: John Doe
+      CdtrAcct:
+        Id:
+          IBAN: 123
+      RmtInf:
+        Ustrd: Test
   CdtTrfTxInf:
     PmtId:
-      InstrId: 123456789
-      EndToEndId: 123456789
+      InstrId: 123
+      EndToEndId: 123
     PmtTpInf:
       InstrPrty: NORM
-      CtgyPurp:
-        Cd: SUPP
-    InstrForCdtrAgt:
-      FinInstnId:
-        BICFI: AAAAAAAA
+    InstdAmt:
+      Amt: 123
+      Ccy: EUR
+    ChrgBr: SLEV
     CdtrAgt:
       FinInstnId:
-        BICFI: AAAAAAAA
+        BICFI: 123
     Cdtr:
-      Nm: Creditor Name
-      PstlAdr:
-        AdrLine:
-          - Creditor Address Line 1
-          - Creditor Address Line 2
-          - Creditor Address Line 3
-          - Creditor Address Line 4
-          - Creditor Address Line 5
-      Id:
-        OrgId:
-          Othr:
-            - Id: 123456789
-              SchmeNm:
-                Cd: 91
+      Nm: John Doe
     CdtrAcct:
       Id:
-        IBAN: DE87123456781234567890
+        IBAN: 123
     RmtInf:
-      Ustrd: Remittance Information
+      Ustrd: Test

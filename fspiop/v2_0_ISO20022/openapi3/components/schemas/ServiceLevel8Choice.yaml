@@ -4,8 +4,17 @@ description: |
 type: object
 properties:
   Cd:
+    description: >
+      Code
+
+      Specifies a pre-agreed service or level of service between the parties,
+      as published in an external service level code list.
     $ref: ./ExternalServiceLevel1Code.yaml
   Prtry:
+    description: >
+      Proprietary
+
+      Specifies a pre-agreed service or level of service between the parties, as a proprietary code.
     $ref: ./Max35Text.yaml
 oneOf:
   - required:

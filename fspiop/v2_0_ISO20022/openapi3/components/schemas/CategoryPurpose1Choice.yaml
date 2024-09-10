@@ -5,8 +5,16 @@ description: >
 type: object
 properties:
   Cd:
+    description: >
+      Code
+
+      Category purpose, as published in an external category purpose code list.
     $ref: ./ExternalCategoryPurpose1Code.yaml
   Prtry:
+    description: >
+      Proprietary
+
+      Category purpose, in a proprietary form.
     $ref: ./Max35Text.yaml
 oneOf:
   - required:

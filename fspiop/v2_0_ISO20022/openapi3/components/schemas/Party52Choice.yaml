@@ -1,11 +1,19 @@
 title: Party52Choice
 description: |
-  Nature or use of the account.
+  NOTE: Unsure on the description.
 type: object
 properties:
   OrgId:
+    description: >
+      Organisation
+
+      Unique and unambiguous way to identify an organisation.
     $ref: ./OrganisationIdentification39.yaml
   PrvtId:
+    description: >
+      Person
+
+      Unique and unambiguous identification of a person, for example a passport
     $ref: ./PersonIdentification18.yaml
 oneOf:
   - required:

@@ -2,8 +2,16 @@ title: Fxecute_FinancialInstitutionCreditTransferV12
 type: object
 properties:
   GrpHdr:
+    description: >
+      GroupHeader.
+
+      Set of characteristics shared by all individual transactions included in the message.
     $ref: ./GroupHeader129.yaml
   CdtTrfTxInf:
+    description: >
+      CreditTransferTransactionInformation.
+
+      Set of elements providing information specific to the individual credit transfer(s).
     $ref: ./CreditTransferTransaction68.yaml
 required:
   - GrpHdr
@@ -11,7 +19,7 @@ required:
 example:
   GrpHdr:
     MsgId: 20191113001
-    CreDtTm: 2019-11-13T10:00:00
+    CreDtTm: '2019-11-13T10:00:00'
     NbOfTxs: 1
     CtrlSum: 1000
     InitgPty:
