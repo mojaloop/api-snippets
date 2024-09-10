@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: Mojaloop Third Party API (DFSP)
+  title: Mojaloop Third Party Admin API for DFSPs
   version: '2.0'
   description: >
     A Mojaloop API for DFSPs supporting Third Party functions.
@@ -39,18 +39,6 @@ paths:
     $ref: 'paths/tppConsents_ID.yaml'
   /tppConsents/{ID}/error:
     $ref: 'paths/tppConsents_ID_error.yaml'
-  /tppTransactionRequests:
-    $ref: paths/tppTransactionRequests.yaml
-  /tppTransactionRequests/{ID}:
-    $ref: paths/tppTransactionRequests_ID.yaml
-  /tppTransactionRequests/{ID}/error:
-    $ref: paths/tppTransactionRequests_ID_error.yaml
-  /tppTransfers:
-    $ref: 'paths/tppTransfers.yaml'
-  /tppTransfers/{ID}:
-    $ref: 'paths/tppTransfers_ID.yaml'
-  /tppTransfers/{ID}/error:
-    $ref: 'paths/tppTransfers_ID_error.yaml'
   /tppVerifications:
     $ref: 'paths/tppVerifications.yaml'
   /tppVerifications/{ID}:
