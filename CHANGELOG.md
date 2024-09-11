@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.6.1](https://github.com/mojaloop/api-snippets/compare/v17.6.0...v17.6.1) (2024-09-11)
+
+
+### Maintenance
+
+* update descriptions ([#175](https://github.com/mojaloop/api-snippets/issues/175)) ([6d1edc9](https://github.com/mojaloop/api-snippets/commit/6d1edc9acfc8af3fb690f1e278c89eb361d9b646))
+
 ## [17.6.0](https://github.com/mojaloop/api-snippets/compare/v17.5.1...v17.6.0) (2024-09-09)
 
 
