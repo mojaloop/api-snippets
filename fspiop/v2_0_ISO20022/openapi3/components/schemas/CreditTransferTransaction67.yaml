@@ -47,7 +47,7 @@ properties:
     description: >
       ChargesInformation
 
-       Provides information on the charges to be paid by the charge bearer(s) related to the
+      Provides information on the charges to be paid by the charge bearer(s) related to the
       payment transaction
     $ref: ./Charges16.yaml
   Dbtr:

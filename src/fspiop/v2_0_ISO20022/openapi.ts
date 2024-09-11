@@ -801,7 +801,7 @@ export interface components {
          *     }
          */
         BranchData5: {
-            /** @description identification
+            /** @description Identification
              *     Unique and unambiguous identification of a branch of a financial institution.
              *      */
             Id?: components["schemas"]["Max35Text"];
@@ -1290,9 +1290,7 @@ export interface components {
              *      */
             ChrgBr: components["schemas"]["ChargeBearerType1Code"];
             /** @description ChargesInformation
-             *
-             *      Provides information on the charges to be paid by the charge bearer(s) related to the
-             *     payment transaction
+             *     Provides information on the charges to be paid by the charge bearer(s) related to the payment transaction
              *      */
             ChrgsInf?: components["schemas"]["Charges16"];
             /** @description Debtor
@@ -1894,132 +1892,113 @@ export interface components {
          * FxRequest_FICreditTransferProposal
          * @example {
          *       "GrpHdr": {
-         *         "MsgId": 123456789,
+         *         "MsgId": 12345,
          *         "CreDtTm": "2020-01-01T00:00:00Z",
          *         "NbOfTxs": 1,
-         *         "CtrlSum": 100,
-         *         "InitgPty": {
-         *           "Nm": "Initiating Party Name",
-         *           "Id": {
-         *             "OrgId": {
-         *               "Othr": [
-         *                 {
-         *                   "Id": 123456789,
-         *                   "SchmeNm": {
-         *                     "Cd": "BIC"
-         *                   }
-         *                 }
-         *               ]
-         *             }
-         *           }
+         *         "TtlIntrBkSttlmAmt": {
+         *           "Ccy": "EUR",
+         *           "Value": 100
          *         },
-         *         "FwdgAgt": {
-         *           "FinInstnId": {
-         *             "BICFI": "BICFID0"
-         *           }
-         *         },
-         *         "Dbtr": {
-         *           "Nm": "Debtor Name",
-         *           "PstlAdr": {
-         *             "AdrLine": [
-         *               "Debtor Address Line 1",
-         *               "Debtor Address Line 2"
-         *             ]
-         *           },
-         *           "Id": {
-         *             "OrgId": {
-         *               "Othr": [
-         *                 {
-         *                   "Id": 123456789,
-         *                   "SchmeNm": {
-         *                     "Cd": "BIC"
-         *                   }
-         *                 }
-         *               ]
-         *             }
-         *           }
-         *         },
-         *         "DbtrAcct": {
-         *           "Id": {
-         *             "IBAN": "BE71096123456769"
-         *           }
-         *         },
-         *         "DbtrAgt": {
-         *           "FinInstnId": {
-         *             "BICFI": "BICFID0"
-         *           }
-         *         },
-         *         "Cdtr": {
-         *           "Nm": "Creditor Name",
-         *           "PstlAdr": {
-         *             "AdrLine": [
-         *               "Creditor Address Line 1",
-         *               "Creditor Address Line 2"
-         *             ]
-         *           },
-         *           "Id": {
-         *             "OrgId": {
-         *               "Othr": [
-         *                 {
-         *                   "Id": 123456789,
-         *                   "SchmeNm": {
-         *                     "Cd": "BIC"
-         *                   }
-         *                 }
-         *               ]
-         *             }
-         *           }
-         *         },
-         *         "CdtrAcct": {
-         *           "Id": {
-         *             "IBAN": "BE71096123456769"
-         *           }
-         *         },
-         *         "CdtrAgt": {
-         *           "FinInstnId": {
-         *             "BICFI": "BICFID0"
-         *           }
-         *         },
-         *         "CdtTrfTxInf": [
-         *           {
-         *             "PmtId": {
-         *               "InstrId": 123456789,
-         *               "EndToEndId": 123456789
+         *         "SttlmInf": {
+         *           "SttlmMtd": "INDA",
+         *           "SttlmAcct": {
+         *             "Id": {
+         *               "IBAN": "BE71096123456769"
          *             },
-         *             "Amt": {
-         *               "InstdAmt": {
-         *                 "Ccy": "EUR",
-         *                 "Amt": 100
-         *               }
+         *             "Ccy": "EUR"
+         *           },
+         *           "SttlmAcctOwnr": {
+         *             "Nm": "Name"
+         *           },
+         *           "SttlmAcctSvcr": {
+         *             "Nm": "Name"
+         *           },
+         *           "SttlmAgt": {
+         *             "FinInstnId": {
+         *               "BICFI": "BIC"
+         *             }
+         *           }
+         *         },
+         *         "PmtTpInf": {
+         *           "InstrPrty": "NORM",
+         *           "CtgyPurp": "CASH"
+         *         },
+         *         "CdtTrfTxInf": {
+         *           "PmtId": {
+         *             "InstrId": 12345,
+         *             "EndToEndId": 12345
+         *           },
+         *           "Amt": {
+         *             "InstdAmt": {
+         *               "Ccy": "EUR",
+         *               "Value": 100
+         *             }
+         *           },
+         *           "Cdtr": {
+         *             "Nm": "Name"
+         *           },
+         *           "CdtrAcct": {
+         *             "Id": {
+         *               "IBAN": "BE71096123456769"
          *             },
-         *             "CdtrAgt": {
+         *             "Ccy": "EUR"
+         *           },
+         *           "CdtrAgt": {
+         *             "FinInstnId": {
+         *               "BICFI": "BIC"
+         *             }
+         *           },
+         *           "Dbtr": {
+         *             "Nm": "Name"
+         *           },
+         *           "DbtrAcct": {
+         *             "Id": {
+         *               "IBAN": "BE71096123456769"
+         *             },
+         *             "Ccy": "EUR"
+         *           },
+         *           "DbtrAgt": {
+         *             "FinInstnId": {
+         *               "BICFI": "BIC"
+         *             }
+         *           },
+         *           "IntrBkSttlmAmt": {
+         *             "Ccy": "EUR",
+         *             "Value": 100
+         *           },
+         *           "PmtTpInf": {
+         *             "InstrPrty": "NORM",
+         *             "ClrChanl": "RTGS",
+         *             "SvcLvl": {
+         *               "Cd": "SEPA"
+         *             },
+         *             "LclInstrm": {
+         *               "Cd": "CORE"
+         *             },
+         *             "CtgyPurp": {
+         *               "Cd": "CASH"
+         *             }
+         *           },
+         *           "RgltryRptg": {
+         *             "Dbtr": {
+         *               "Nm": "Name"
+         *             },
+         *             "DbtrAcct": {
+         *               "Id": {
+         *                 "IBAN": "BE71096123456769"
+         *               },
+         *               "Ccy": "EUR"
+         *             },
+         *             "DbtrAgt": {
          *               "FinInstnId": {
-         *                 "BICFI": "BICFID0"
+         *                 "BICFI": "BIC"
          *               }
          *             },
          *             "Cdtr": {
-         *               "Nm": "Creditor Name",
-         *               "PstlAdr": {
-         *                 "AdrLine": [
-         *                   "Creditor Address Line 1",
-         *                   "Creditor Address Line 2"
-         *                 ]
-         *               },
-         *               "Id": {
-         *                 "OrgId": {
-         *                   "Othr": [
-         *                     {
-         *                       "Id": 123456789,
-         *                       "SchmeNm": {
-         *                         "Cd": "BIC"
-         *                       }
-         *                     }
-         *                   ]
-         *                 }
-         *               }
+         *               "Nm": "Name"
          *             }
          *           }
-         *         ]
+         *         }
          *       }
          *     }
          */
@@ -2693,8 +2672,19 @@ export interface components {
          *     }
          */
         GroupHeader120: {
+            /** @description MessageIdentification
+             *     Definition: Point to point reference, as assigned by the instructing party, and sent to the next party in the chain to unambiguously identify the message.
+             *     Usage: The instructing party has to make sure that MessageIdentification is unique per instructed party for a pre-agreed period.
+             *      */
             MsgId: components["schemas"]["Max35Text"];
+            /** @description CreationDateTime
+             *     Date and time at which the message was created.
+             *      */
             CreDtTm: components["schemas"]["ISODateTime"];
+            /** @description TransactionInformationAndStatus
+             *     Definition: Agent that instructs the next party in the chain to carry out the (set of) instruction(s).
+             *     Usage: The instructing agent is the party sending the status message and not the party that sent the original instruction that is being reported on.
+             *      */
             TxInfAndSts?: components["schemas"]["PaymentTransaction163"];
         };
         /**
@@ -3218,103 +3208,27 @@ export interface components {
          *
          * @example {
          *       "GrpHdr": {
-         *         "MsgId": 123,
+         *         "MsgId": 12345,
          *         "CreDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
-         *         "SttlmInf": {
-         *           "SttlmMtd": "INDA",
-         *           "SttlmDt": "2020-01-01",
-         *           "SttlmTmIndctn": "RTGS",
-         *           "SttlmTmReq": "2020-01-01T00:00:00Z",
-         *           "SttlmAcct": {
-         *             "Id": {
-         *               "Othr": {
-         *                 "Id": 123,
-         *                 "SchmeNm": {
-         *                   "Cd": "IBAN"
-         *                 },
-         *                 "Issr": "BIC"
-         *               }
-         *             }
-         *           },
-         *           "ClrSys": {
-         *             "Prtry": 123
-         *           },
-         *           "InstgAgt": {
-         *             "FinInstnId": {
-         *               "BICFI": 123
-         *             }
-         *           },
-         *           "InstdAgt": {
-         *             "FinInstnId": {
-         *               "BICFI": 123
-         *             }
-         *           }
-         *         },
-         *         "InstgAgt": {
-         *           "FinInstnId": {
-         *             "BICFI": 123
-         *           }
-         *         },
-         *         "InstdAgt": {
-         *           "FinInstnId": {
-         *             "BICFI": 123
-         *           }
-         *         },
-         *         "IntrBkSttlmAmt": {
-         *           "Amt": 123,
-         *           "Ccy": "EUR"
-         *         },
-         *         "IntrBkSttlmDt": "2020-01-01",
-         *         "TxSts": "ACCP",
-         *         "StsRsnInf": {
-         *           "Orgtr": {
-         *             "Id": {
-         *               "Othr": {
-         *                 "Id": 123,
-         *                 "SchmeNm": {
-         *                   "Cd": "IBAN"
-         *                 },
-         *                 "Issr": "BIC"
-         *               }
-         *             }
-         *           },
-         *           "Rsn": {
-         *             "Cd": 123,
-         *             "Prtry": 123
-         *           }
-         *         },
          *         "TxInfAndSts": {
-         *           "OrgnlInstrId": 123,
-         *           "OrgnlEndToEndId": 123,
-         *           "TxSts": "ACCP",
+         *           "StsId": 12345,
+         *           "OrgnlInstrId": 12345,
+         *           "OrgnlEndToEndId": 12345,
+         *           "OrgnlTxId": 12345,
+         *           "OrgnlUETR": "123e4567-e89b-12d3-a456-426614174000",
+         *           "TxSts": "RJCT",
          *           "StsRsnInf": {
-         *             "Orgtr": {
-         *               "Id": {
-         *                 "Othr": {
-         *                   "Id": 123,
-         *                   "SchmeNm": {
-         *                     "Cd": "IBAN"
-         *                   },
-         *                   "Issr": "BIC"
-         *                 }
-         *               }
-         *             },
-         *             "Rsn": {
-         *               "Cd": 123,
-         *               "Prtry": 123
-         *             }
+         *             "Rsn": "RSN",
+         *             "AddtlInf": "ADDITIONAL"
          *           },
-         *           "ChrgsInf": {
-         *             "Amt": 123,
-         *             "Ccy": "EUR"
-         *           },
-         *           "IntrBkSttlmAmt": {
-         *             "Amt": 123,
-         *             "Ccy": "EUR"
-         *           },
-         *           "IntrBkSttlmDt": "2020-01-01",
-         *           "SttlmTmIndctn": "RTGS"
+         *           "AccptncDtTm": "2020-01-01T00:00:00Z",
+         *           "AcctSvcrRef": "ACCTSVCRREF",
+         *           "ClrSysRef": "CLRSYSREF",
+         *           "ExctnConf": "1234567890ABCDEF",
+         *           "SplmtryData": {
+         *             "PlcAndNm": "PLACE",
+         *             "Envlp": "ENVELOPE"
+         *           }
          *         }
          *       }
          *     }
@@ -3469,19 +3383,23 @@ export interface components {
          *     }
          */
         PartyIdentification135: {
-            /** @description Name by which a party is known and which is usually used to identify that party.
+            /** @description Name
+             *     Name by which a party is known and which is usually used to identify that party.
              *      */
             Nm?: components["schemas"]["Max140Text"];
-            /** @description Information that locates and identifies a specific address, as defined by postal services.
+            /** @description PostalAddress
+             *     Information that locates and identifies a specific address, as defined by postal services.
              *      */
             PstlAdr?: components["schemas"]["PostalAddress24"];
-            /** @description Unique and unambiguous way to identify an organisation.
+            /** @description Identification
+             *     Unique and unambiguous way to identify an organisation.
              *      */
             Id?: components["schemas"]["Party38Choice"];
-            /** @description Country in which a person resides (the place of a person's home). In the case of a company, it is the country from which the affairs of that company are directed.
+            /** @description CountryOfResidence Country in which a person resides (the place of a person's home). In the case of a company, it is the country from which the affairs of that company are directed.
              *      */
             CtryOfRes?: components["schemas"]["CountryCode"];
-            /** @description Set of elements used to indicate how to contact the party.
+            /** @description ContactDetails
+             *     Set of elements used to indicate how to contact the party.
              *      */
             CtctDtls?: components["schemas"]["Contact4"];
         };
@@ -3648,7 +3566,7 @@ export interface components {
              *      */
             InstrPrty?: components["schemas"]["Priority2Code"];
             /** @description ClearingChannel
-             *     SSpecifies the clearing channel to be used to process the payment instruction.
+             *     Specifies the clearing channel to be used to process the payment instruction.
              *      */
             ClrChanl?: components["schemas"]["ClearingChannel2Code"];
             /** @description ServiceLevel

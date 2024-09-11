@@ -14,7 +14,7 @@ properties:
     description: >
       ClearingChannel
 
-      SSpecifies the clearing channel to be used to process the payment instruction.
+      Specifies the clearing channel to be used to process the payment instruction.
     $ref: ./ClearingChannel2Code.yaml
   SvcLvl:
     description: >

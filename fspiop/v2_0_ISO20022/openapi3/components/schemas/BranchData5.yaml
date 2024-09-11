@@ -6,7 +6,7 @@ type: object
 properties:
   Id:
     description: >
-      identification
+      Identification
 
       Unique and unambiguous identification of a branch of a financial institution.
     $ref: ./Max35Text.yaml
