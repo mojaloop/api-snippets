@@ -9,8 +9,16 @@ description: >
 type: object
 properties:
   Cd:
+    description: |
+      Code
+
+      Underlying reason for the payment transaction, as published in an external purpose code list.
     $ref: ./ExternalPurpose1Code.yaml
   Prtry:
+    description: |
+      Proprietary
+
+      Purpose, in a proprietary form.
     $ref: ./Max35Text.yaml
 oneOf:
   - required:

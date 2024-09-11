@@ -4,8 +4,16 @@ description: |
 type: object
 properties:
   Cd:
+    description: >
+      Code
+
+      Account type, in a coded form.
     $ref: ./ExternalCashAccountType1Code.yaml
   Prtry:
+    description: >
+      Proprietary
+
+      Nature or use of the account in a proprietary form.
     $ref: ./Max35Text.yaml
 oneOf:
   - required:

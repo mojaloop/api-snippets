@@ -1,10 +1,21 @@
 title: ChargeType3Choice
-description: ChargeType3Choice Specifies the type of charge.
+description: >
+  ChargeType3Choice
+
+  Specifies the type of charge.
 type: object
 properties:
   Cd:
+    description: >
+      Code
+
+      Charge type, in a coded form.
     $ref: ./ExternalChargeType1Code.yaml
   Prtry:
+    description: >
+      Proprietary
+
+      Type of charge in a proprietary form, as defined by the issuer.
     $ref: ./GenericIdentification3.yaml
 oneOf:
   - required:

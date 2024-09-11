@@ -2,10 +2,22 @@ title: GenericPersonIdentification1
 type: object
 properties:
   Id:
+    description: >
+      Identification
+
+      Unique and unambiguous identification of a person.
     $ref: ./Max35Text.yaml
   SchmeNm:
+    description: >
+      SchemeName
+
+      Name of the identification scheme.
     $ref: ./PersonIdentificationSchemeName1Choice.yaml
   Issr:
+    description: >
+      Issuer
+
+      Entity that assigns the identification.
     $ref: ./Max35Text.yaml
 required:
   - Id

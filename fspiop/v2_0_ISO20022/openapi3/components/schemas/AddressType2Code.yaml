@@ -1,5 +1,6 @@
 description: |
   AddressType2Code
+
   Specifies the type of address.
 enum:
   - ADDR

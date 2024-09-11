@@ -1,11 +1,19 @@
 title: Party40Choice
 description: |
-  Nature or use of the account.
+   Identification of a person, an organisation or a financial institution.
 type: object
 properties:
   Pty:
+    description: >
+      Party
+
+      Identification of a person or an organisation.
     $ref: ./PartyIdentification135.yaml
   Agt:
+    description: >
+      Agent
+
+      Identification of a financial institution.
     $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
 oneOf:
   - required:

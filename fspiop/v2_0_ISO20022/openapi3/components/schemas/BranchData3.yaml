@@ -5,12 +5,28 @@ description: >
   institution.
 properties:
   Id:
+    description: >
+      Identification
+
+      Unique and unambiguous identification of a branch of a financial institution.
     $ref: ./Max35Text.yaml
   LEI:
+    description: >
+      Legal Entity Identifier
+
+      Legal entity identification for the branch of the financial institution.
     $ref: ./LEIIdentifier.yaml
   Nm:
+    description: >
+      Name
+
+      Name by which an agent is known and which is usually used to identify that agent.
     $ref: ./Max140Text.yaml
   PstlAdr:
+    description: >
+      Postal Address
+
+      Information that locates and identifies a specific address, as defined by postal services.
     $ref: ./PostalAddress24.yaml
 example:
   Id: 123

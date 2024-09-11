@@ -4,8 +4,17 @@ description: |
 type: object
 properties:
   Cd:
+    description: >
+      Code
+
+      Identification of a member of a clearing system
     $ref: ./ExternalClearingSystemIdentification1Code.yaml
   Prtry:
+    description: >
+      Proprietary
+
+      Identification code for a clearing system, that has not yet been identified in the list of clearing
+      systems.
     $ref: ./Max35Text.yaml
 oneOf:
   - required:

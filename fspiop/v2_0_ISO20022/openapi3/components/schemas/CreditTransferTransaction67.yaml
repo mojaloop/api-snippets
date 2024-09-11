@@ -5,40 +5,118 @@ description: >
 type: object
 properties:
   PmtId:
+    description: >
+      PaymentIdentification
+
+      Set of elements used to reference a payment instruction.
     $ref: ./PaymentIdentification13.yaml
   PmtTpInf:
+    description: >
+      PaymentTypeInformation
+
+       Set of elements used to further specify the type of transaction.
     $ref: ./PaymentTypeInformation28.yaml
   IntrBkSttlmAmt:
+    description: >
+      InterbankSettlementAmount
+
+      Amount of money moved between the instructing agent and the instructed agent.
     $ref: ./ActiveCurrencyAndAmount.yaml
   InstdAmt:
+    description: >
+      InstructedAmount
+
+      Amount of money to be moved between the debtor and creditor,
+      before deduction of charges, expressed in the currency as ordered by the initiating party.
     $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
   XchgRate:
+    description: >
+      ExchangeRate
+
+      Factor used to convert an amount from one currency into another. This reflects the price at
+      which one currency was bought with another currency.
     $ref: ./BaseOneRate.yaml
   ChrgBr:
+    description: >
+      ChargeBearer
+
+      Specifies which party/parties will bear the charges associated with the processing of the
+      payment transaction.
     $ref: ./ChargeBearerType1Code.yaml
   ChrgsInf:
+    description: >
+      ChargesInformation
+
+      Provides information on the charges to be paid by the charge bearer(s) related to the
+      payment transaction
     $ref: ./Charges16.yaml
   Dbtr:
+    description: >
+      Debtor
+
+      Party that owes an amount of money to the (ultimate) creditor.
     $ref: ./PartyIdentification272.yaml
   DbtrAcct:
+    description: >
+      DebtorAccount
+
+      Unambiguous identification of the account of the debtor to which a debit entry will be made
+      as a result of the transaction.
     $ref: ./CashAccount40.yaml
   DbtrAgt:
+    description: >
+      DebtorAgent
+
+      Financial institution servicing an account for the debtor.
     $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
   CdtrAgt:
+    description: >
+      CreditorAgent
+
+      Financial institution servicing an account for the creditor.
     $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
   Cdtr:
+    description: >
+      Creditor
+
+      Party to which an amount of money is due.
     $ref: ./PartyIdentification272.yaml
   CdtrAcct:
+    description: >
+      CreditorAccount
+
+      Unambiguous identification of the account of the creditor to which a credit entry will be
+      posted as a result of the payment transaction.
     $ref: ./CashAccount40.yaml
   InstrForCdtrAgt:
+    description: >
+      InstructionForCreditorAgent
+
+      Set of elements used to provide information on the remittance advice.
     $ref: ./InstructionForCreditorAgent3.yaml
   InstrForNxtAgt:
+    description: >
+      InstructionForNextAgent
+
+      Set of elements used to provide information on the remittance advice.
     $ref: ./InstructionForNextAgent1.yaml
   Purp:
+    description: >
+      Purpose
+
+      Underlying reason for the payment transaction.
     $ref: ./Purpose2Choice.yaml
   RgltryRptg:
+    description: >
+      RegulatoryReporting
+
+      Information needed due to regulatory and statutory requirements.
     $ref: ./RegulatoryReporting3.yaml
   Tax:
+    description: >
+      Tax
+
+      Provides details on the tax.
     $ref: ./TaxData1.yaml
   VrfctnOfTerms:
     $ref: ./CryptographicLockChoice.yaml

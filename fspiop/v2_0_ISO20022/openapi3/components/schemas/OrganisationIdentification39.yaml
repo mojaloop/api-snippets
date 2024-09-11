@@ -4,10 +4,22 @@ description: |
 type: object
 properties:
   AnyBIC:
+    description: >
+      AnyBIC
+
+      Business identification code of the organisation.
     $ref: ./AnyBICDec2014Identifier.yaml
   LEI:
+    description: >
+      LEI
+
+      Legal entity identification as an alternate identification for a party.
     $ref: ./LEIIdentifier.yaml
   Othr:
+    description: >
+      Other
+
+      Unique identification of an organisation, as assigned by an institution, using an identification scheme.
     $ref: ./GenericOrganisationIdentification3.yaml
 example:
   AnyBIC: BICFI

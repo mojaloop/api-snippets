@@ -4,10 +4,24 @@ properties:
   MsgId:
     $ref: ./Max35Text.yaml
   CreDtTm:
+    description: >
+      CreationDateTime
+
+      Date and time at which the identification assignment was created.
     $ref: ./ISODateTime.yaml
   Assgnr:
+    description: >
+      Assignor
+
+      Party that assigns the identification assignment to another party. This is also the sender of
+      the message.
     $ref: ./Party40Choice.yaml
   Assgne:
+    description: >
+      Assignee
+
+      Party that the identification assignment is assigned to. This is also the receiver of the
+      message.
     $ref: ./Party40Choice.yaml
 required:
   - MsgId

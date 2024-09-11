@@ -2,10 +2,22 @@ title: GenericOrganisationIdentification3
 type: object
 properties:
   Id:
+    description: >
+      Identification
+
+      Identification assigned by an institution.
     $ref: ./Max256Text.yaml
   SchmeNm:
+    description:
+      SchemeName
+
+      Name of the identification scheme.
     $ref: ./OrganisationIdentificationSchemeName1Choice.yaml
   Issr:
+    description: >
+      Issuer
+
+      Entity that assigns the identification.
     $ref: ./Max35Text.yaml
 required:
   - Id

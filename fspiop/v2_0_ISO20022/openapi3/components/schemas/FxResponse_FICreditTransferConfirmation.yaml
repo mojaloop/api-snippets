@@ -2,8 +2,16 @@ title: FxResponse_FICreditTransferConfirmation
 type: object
 properties:
   GrpHdr:
+    description: >
+      GroupHeader
+
+      Set of characteristics shared by all individual transactions included in the message.
     $ref: ./GroupHeader113.yaml
   CdtTrfTxInf:
+    description: >
+      CreditTransferTransactionInformation
+
+      Set of elements providing information specific to the individual credit transfer(s).
     $ref: ./CreditTransferTransaction68.yaml
 required:
   - GrpHdr

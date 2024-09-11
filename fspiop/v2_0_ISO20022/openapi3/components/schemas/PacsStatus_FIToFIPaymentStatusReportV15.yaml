@@ -9,71 +9,22 @@ required:
   - GrpHdr
 example:
   GrpHdr:
-    MsgId: 123
+    MsgId: 12345
     CreDtTm: '2020-01-01T00:00:00Z'
-    NbOfTxs: 1
-    SttlmInf:
-      SttlmMtd: INDA
-      SttlmDt: '2020-01-01'
-      SttlmTmIndctn: RTGS
-      SttlmTmReq: '2020-01-01T00:00:00Z'
-      SttlmAcct:
-        Id:
-          Othr:
-            Id: 123
-            SchmeNm:
-              Cd: IBAN
-            Issr: BIC
-      ClrSys:
-        Prtry: 123
-      InstgAgt:
-        FinInstnId:
-          BICFI: 123
-      InstdAgt:
-        FinInstnId:
-          BICFI: 123
-    InstgAgt:
-      FinInstnId:
-        BICFI: 123
-    InstdAgt:
-      FinInstnId:
-        BICFI: 123
-    IntrBkSttlmAmt:
-      Amt: 123
-      Ccy: EUR
-    IntrBkSttlmDt: '2020-01-01'
-    TxSts: ACCP
-    StsRsnInf:
-      Orgtr:
-        Id:
-          Othr:
-            Id: 123
-            SchmeNm:
-              Cd: IBAN
-            Issr: BIC
-      Rsn:
-        Cd: 123
-        Prtry: 123
     TxInfAndSts:
-      OrgnlInstrId: 123
-      OrgnlEndToEndId: 123
-      TxSts: ACCP
+      StsId: 12345
+      OrgnlInstrId: 12345
+      OrgnlEndToEndId: 12345
+      OrgnlTxId: 12345
+      OrgnlUETR: 123e4567-e89b-12d3-a456-426614174000
+      TxSts: RJCT
       StsRsnInf:
-        Orgtr:
-          Id:
-            Othr:
-              Id: 123
-              SchmeNm:
-                Cd: IBAN
-              Issr: BIC
-        Rsn:
-          Cd: 123
-          Prtry: 123
-      ChrgsInf:
-        Amt: 123
-        Ccy: EUR
-      IntrBkSttlmAmt:
-        Amt: 123
-        Ccy: EUR
-      IntrBkSttlmDt: '2020-01-01'
-      SttlmTmIndctn: RTGS
+        Rsn: RSN
+        AddtlInf: ADDITIONAL
+      AccptncDtTm: '2020-01-01T00:00:00Z'
+      AcctSvcrRef: ACCTSVCRREF
+      ClrSysRef: CLRSYSREF
+      ExctnConf: 1234567890ABCDEF
+      SplmtryData:
+        PlcAndNm: PLACE
+        Envlp: ENVELOPE

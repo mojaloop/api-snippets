@@ -4,8 +4,16 @@ description: |
 type: object
 properties:
   Titl:
+    description: |
+      Title
+
+      Title or position of debtor or the debtor's authorised representative.
     $ref: ./Max35Text.yaml
   Nm:
+    description: |
+      Name
+
+      Name of the debtor or the debtor's authorised representative.
     $ref: ./Max140Text.yaml
 example:
   Titl: Mr

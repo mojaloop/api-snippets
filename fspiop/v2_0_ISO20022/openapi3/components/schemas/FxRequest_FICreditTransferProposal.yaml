@@ -2,82 +2,84 @@ title: FxRequest_FICreditTransferProposal
 type: object
 properties:
   GrpHdr:
+    description: >
+      GroupHeader
+
+      Set of characteristics shared by all individual transactions included in the message.
     $ref: ./GroupHeader113.yaml
 required:
   - GrpHdr
 example:
   GrpHdr:
-    MsgId: 123456789
+    MsgId: 12345
     CreDtTm: '2020-01-01T00:00:00Z'
     NbOfTxs: 1
-    CtrlSum: 100.00
-    InitgPty:
-      Nm: Initiating Party Name
-      Id:
-        OrgId:
-          Othr:
-            - Id: 123456789
-              SchmeNm:
-                Cd: BIC
-    FwdgAgt:
-      FinInstnId:
-        BICFI: BICFID0
-    Dbtr:
-      Nm: Debtor Name
-      PstlAdr:
-        AdrLine:
-          - Debtor Address Line 1
-          - Debtor Address Line 2
-      Id:
-        OrgId:
-          Othr:
-            - Id: 123456789
-              SchmeNm:
-                Cd: BIC
-    DbtrAcct:
-      Id:
-        IBAN: BE71096123456769
-    DbtrAgt:
-      FinInstnId:
-        BICFI: BICFID0
-    Cdtr:
-      Nm: Creditor Name
-      PstlAdr:
-        AdrLine:
-          - Creditor Address Line 1
-          - Creditor Address Line 2
-      Id:
-        OrgId:
-          Othr:
-            - Id: 123456789
-              SchmeNm:
-                Cd: BIC
-    CdtrAcct:
-      Id:
-        IBAN: BE71096123456769
-    CdtrAgt:
-      FinInstnId:
-        BICFI: BICFID0
+    TtlIntrBkSttlmAmt:
+      Ccy: EUR
+      Value: 100.0
+    SttlmInf:
+      SttlmMtd: INDA
+      SttlmAcct:
+        Id:
+          IBAN: BE71096123456769
+        Ccy: EUR
+      SttlmAcctOwnr:
+        Nm: Name
+      SttlmAcctSvcr:
+        Nm: Name
+      SttlmAgt:
+        FinInstnId:
+          BICFI: BIC
+    PmtTpInf:
+      InstrPrty: NORM
+      CtgyPurp: CASH
     CdtTrfTxInf:
-      - PmtId:
-          InstrId: 123456789
-          EndToEndId: 123456789
-        Amt:
-          InstdAmt:
-            Ccy: EUR
-            Amt: 100.00
-        CdtrAgt:
-          FinInstnId:
-            BICFI: BICFID0
-        Cdtr:
-          Nm: Creditor Name
-          PstlAdr:
-            AdrLine:
-              - Creditor Address Line 1
-              - Creditor Address Line 2
+      PmtId:
+        InstrId: 12345
+        EndToEndId: 12345
+      Amt:
+        InstdAmt:
+          Ccy: EUR
+          Value: 100.0
+      Cdtr:
+        Nm: Name
+      CdtrAcct:
+        Id:
+          IBAN: BE71096123456769
+        Ccy: EUR
+      CdtrAgt:
+        FinInstnId:
+          BICFI: BIC
+      Dbtr:
+        Nm: Name
+      DbtrAcct:
+        Id:
+          IBAN: BE71096123456769
+        Ccy: EUR
+      DbtrAgt:
+        FinInstnId:
+          BICFI: BIC
+      IntrBkSttlmAmt:
+        Ccy: EUR
+        Value: 100.0
+      PmtTpInf:
+        InstrPrty: NORM
+        ClrChanl: RTGS
+        SvcLvl:
+          Cd: SEPA
+        LclInstrm:
+          Cd: CORE
+        CtgyPurp:
+          Cd: CASH
+      RgltryRptg:
+        Dbtr:
+          Nm: Name
+        DbtrAcct:
           Id:
-            OrgId:
-              Othr:
-                - Id: 123456789
-                  SchmeNm:
-                    Cd: BIC
+            IBAN: BE71096123456769
+          Ccy: EUR
+        DbtrAgt:
+          FinInstnId:
+            BICFI: BIC
+        Cdtr:
+          Nm: Name

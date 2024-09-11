@@ -5,27 +5,75 @@ description: >
 type: object
 properties:
   Cdtr:
+    description: |
+      Creditor
+
+      Party on the credit side of the transaction to which the tax applies.
     $ref: ./TaxParty1.yaml
   Dbtr:
+    description: |
+      Debtor
+
+      Party on the debit side of the transaction to which the tax applies.
     $ref: ./TaxParty2.yaml
   UltmtDbtr:
+    description: |
+      UltimateDebtor
+
+      Ultimate party that owes an amount of money to the (ultimate) creditor, in this case, to the taxing authority.
     $ref: ./TaxParty2.yaml
   AdmstnZone:
+    description: |
+      AdministrationZone
+
+      Territorial part of a country to which the tax payment is related.
     $ref: ./Max35Text.yaml
   RefNb:
+    description: |
+      ReferenceNumber
+
+      Tax reference information that is specific to a taxing agency.
     $ref: ./Max140Text.yaml
   Mtd:
+    description: |
+      Method
+
+      Method used to indicate the underlying business or how the tax is paid.
     $ref: ./Max35Text.yaml
   TtlTaxblBaseAmt:
+    description: |
+      TotalTaxableBaseAmount
+
+      Total amount of money on which the tax is based.
     $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
   TtlTaxAmt:
+    description: |
+      TotalTaxAmount
+
+      Total amount of money as result of the calculation of the tax.
     $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
   Dt:
+    description: |
+      Date
+
+      Date by which tax is due.
     $ref: ./ISODate.yaml
   SeqNb:
+    description: |
+      SequenceNumber
+
+      Sequential number of the tax report
     $ref: ./Number.yaml
   Rcrd:
-    $ref: ./TaxRecord3.yaml
+    description: |
+      Record
+
+      Details of the tax record.
+    anyOf:
+      - $ref: ./TaxRecord3.yaml
+      - items:
+          $ref: ./TaxRecord3.yaml
+        type: array
 example:
   Cdtr:
     Titl: Mr

@@ -4,14 +4,35 @@ description: |
 type: object
 properties:
   Nm:
+    description: >
+      Name
+
+      Name by which a party is known and which is usually used to identify that party.
     $ref: ./Max140Text.yaml
   PstlAdr:
+    description: >
+      Postal Address
+
+      Information that locates and identifies a specific address, as defined by postal services.
     $ref: ./PostalAddress27.yaml
   Id:
+    description: >
+      Identification
+
+      Unique and unambiguous identification of a party.
     $ref: ./Party52Choice.yaml
   CtryOfRes:
+    description: >
+      Country of Residence
+
+      Country in which a person resides (the place of a person's home).
+      In the case of a company, it is the country from which the affairs of that company are directed.
     $ref: ./CountryCode.yaml
   CtctDtls:
+    description: >
+      Contact Details
+
+      Set of elements used to indicate how to contact the party.
     $ref: ./Contact13.yaml
 example:
   Nm: John Doe

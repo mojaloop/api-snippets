@@ -4,26 +4,61 @@ description: |
 type: object
 properties:
   Nm:
+    description: >
+      Name
+
+      Name by which a party is known and which is usually used to identify that party.
     $ref: ./Max140Text.yaml
   PstlAdr:
+    description: >
+      PostalAddress
+
+      Information that locates and identifies a specific address, as defined by postal services.
     $ref: ./PostalAddress24.yaml
   Id:
+    description: >
+      Identification
+
+      Unique and unambiguous way to identify an organisation.
     $ref: ./Party38Choice.yaml
   CtryOfRes:
+    description: >
+      CountryOfResidence
+      Country in which a person resides (the place of a person's home). In the case of a company,
+      it is the country from which the affairs of that company are directed.
     $ref: ./CountryCode.yaml
   CtctDtls:
+    description: >
+      ContactDetails
+
+      Set of elements used to indicate how to contact the party.
     $ref: ./Contact4.yaml
 example:
   Nm: John Doe
   PstlAdr:
-    Ctry: BE
-    AdrLine:
-      - Rue du Marché 45
-      - Brussels
-      - BE
+    AdrTp: ADDR
+    Dept: Dept
+    SubDept: SubDept
+    StrtNm: StrtNm
+    BldgNb: BldgNb
+    BldgNm: BldgNm
+    Flr: Flr
+    PstBx: PstBx
+    Room: Room
+    PstCd: PstCd
+    TwnNm: TwnNm
+    TwnLctnNm: TwnLctnNm
+    DstrctNm: DstrctNm
+    CtrySubDvsn: CtrySubDvsn
+    Ctry: Ctry
+    AdrLine: AdrLine
   Id:
     OrgId:
-      AnyBIC: CCCCUS33
+      Othr:
+        Id: 123
+        SchmeNm:
+          Prtry: DfspId
+
   CtryOfRes: BE
   CtctDtls:
     NmPrfx: Mr
@@ -31,4 +66,5 @@ example:
     PhneNb: +123-123-321
     MobNb: +123-123-321
     FaxNb: +123-123-321
-    EmailAdr:
+    EmailAdr: example@example.com
+

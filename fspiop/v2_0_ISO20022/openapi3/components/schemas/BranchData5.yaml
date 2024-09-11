@@ -5,19 +5,41 @@ description: >
 type: object
 properties:
   Id:
+    description: >
+      Identification
+
+      Unique and unambiguous identification of a branch of a financial institution.
     $ref: ./Max35Text.yaml
   LEI:
+    description: >
+      LEI
+
+      Legal entity identification for the branch of the financial institution.
     $ref: ./LEIIdentifier.yaml
   Nm:
+    description: >
+      Name
+
+      Name by which an agent is known and which is usually used to identify that agent.
     $ref: ./Max140Text.yaml
   PstlAdr:
+    description: >
+      PostalAddress
+
+      Information that locates and identifies a specific address, as defined by postal services.
     $ref: ./PostalAddress27.yaml
 example:
   Id: 123
-  Nm: Oxford Street Branch
+  LEI: 123
+  Nm: Name
   PstlAdr:
-    Ctry: GB
-    AdrLine:
-      - 1 Oxford Street
-      - London
-      - UK
+    AdrTp: ADDR
+    Dept: Department
+    SubDept: Sub department
+    StrtNm: Street name
+    BldgNb: Building number
+    PstCd: Post code
+    TwnNm: Town name
+    CtrySubDvsn: Country subdivision
+    Ctry: Country
+    AdrLine: Address line

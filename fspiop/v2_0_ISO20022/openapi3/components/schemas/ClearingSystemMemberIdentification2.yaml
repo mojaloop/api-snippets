@@ -5,8 +5,17 @@ description: >
 type: object
 properties:
   ClrSysId:
+    description: >
+      ClearingSystemIdentification.
+
+      Specification of a pre-agreed offering between clearing agents or the channel through which
+      the payment instruction is processed.
     $ref: ./ClearingSystemIdentification2Choice.yaml
   MmbId:
+    description: >
+      MemberIdentification.
+
+      Identification of a member of a clearing system.
     $ref: ./Max35Text.yaml
 required:
   - MmbId

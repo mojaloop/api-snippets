@@ -4,10 +4,22 @@ description: |
 type: object
 properties:
   TaxId:
+    description: |
+      TaxIdentification
+
+      Tax identification number of the creditor.
     $ref: ./Max35Text.yaml
   RegnId:
+    description: |
+      RegistrationIdentification
+
+      Unique identification, as assigned by an organisation, to unambiguously identify a party.
     $ref: ./Max35Text.yaml
   TaxTp:
+    description: |
+      TaxType
+
+      Type of tax payer.
     $ref: ./Max35Text.yaml
 example:
   TaxId: 123456789

@@ -5,10 +5,29 @@ description: >
 type: object
 properties:
   MsgId:
+    description: >
+      MessageIdentification
+
+      Definition: Point to point reference, as assigned by the instructing party, and sent to the next party in the
+      chain to unambiguously identify the message.
+
+      Usage: The instructing party has to make sure that MessageIdentification is unique per instructed party
+      for a pre-agreed period.
     $ref: ./Max35Text.yaml
   CreDtTm:
+    description: >
+      CreationDateTime
+
+      Date and time at which the message was created.
     $ref: ./ISODateTime.yaml
   TxInfAndSts:
+    description: >
+      TransactionInformationAndStatus
+
+      Definition: Agent that instructs the next party in the chain to carry out the (set of) instruction(s).
+
+      Usage: The instructing agent is the party sending the status message and not the party that sent the
+      original instruction that is being reported on.
     $ref: ./PaymentTransaction163.yaml
 required:
   - MsgId

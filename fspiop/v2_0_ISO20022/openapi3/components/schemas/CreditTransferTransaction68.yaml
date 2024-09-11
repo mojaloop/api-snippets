@@ -5,28 +5,76 @@ description: >
 type: object
 properties:
   PmtId:
+    description: >
+      PaymentIdentification
+
+      Set of elements used to reference a payment instruction.
     $ref: ./PaymentIdentification13.yaml
   PmtTpInf:
+    description: >
+      PaymentTypeInformation
+
+       Set of elements used to further specify the type of transaction.
     $ref: ./PaymentTypeInformation28.yaml
   IntrBkSttlmAmt:
+    description: >
+      InterbankSettlementAmount
+
+      Amount of money moved between the instructing agent and the instructed agent.
     $ref: ./ActiveCurrencyAndAmount.yaml
   Dbtr:
+    description: >
+      Debtor
+
+      Party that owes an amount of money to the (ultimate) creditor.
     $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
   DbtrAcct:
+    description: >
+      DebtorAccount
+
+      Account used to process a payment.
     $ref: ./CashAccount40.yaml
   DbtrAgt:
+    description: >
+      DebtorAgent
+
+      Financial institution servicing an account for the debtor.
     $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
   CdtrAgt:
+    description: >
+      CreditorAgent
+
+      Financial institution servicing an account for the creditor.
     $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
   Cdtr:
+    description: >
+      Creditor
+
+      Party to which an amount of money is due.
     $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
   CdtrAcct:
+    description: >
+      CreditorAccount
+
+      Account to which a credit entry is made.
     $ref: ./CashAccount40.yaml
   InstrForCdtrAgt:
+    description: >
+      InstructionForCreditorAgent
+
+      Set of elements used to provide information on the remittance advice.
     $ref: ./InstructionForCreditorAgent3.yaml
   Purp:
+    description: >
+      Purpose
+
+      Underlying reason for the payment transaction.
     $ref: ./Purpose2Choice.yaml
   VrfctnOfTerms:
+    description: >
+      VerificationOfTerms
+
+      Set of elements used to provide information on the underlying terms of the transaction.
     $ref: ./CryptographicLockChoice.yaml
 required:
   - PmtId

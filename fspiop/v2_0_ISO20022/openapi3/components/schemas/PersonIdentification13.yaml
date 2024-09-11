@@ -4,8 +4,16 @@ description: |
 type: object
 properties:
   DtAndPlcOfBirth:
+    description: >
+      DateAndPlaceOfBirth
+
+      Date and place of birth of a person.
     $ref: ./DateAndPlaceOfBirth1.yaml
   Othr:
+    description: >
+      Other
+
+      Unique identification of a person, as assigned by an institution, using an identification scheme.
     $ref: ./GenericPersonIdentification1.yaml
 example:
   DtAndPlcOfBirth:

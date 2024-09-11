@@ -2,28 +2,76 @@ title: VerificationReport4
 type: object
 properties:
   OrgnlId:
+    description: >
+      OriginalIdentification
+
+      Unique identification, as assigned by a sending party, to unambiguously identify the party
+      and account identification information group within the original message.
     $ref: ./Max35Text.yaml
   Vrfctn:
+    description: >
+      Verification
+
+      Identifies whether the party and/or account information received is correct.
+      Boolean value.
     $ref: ./IdentificationVerificationIndicator.yaml
   Rsn:
+    description: >
+      Reason.
+
+      Specifies the reason why the verified identification information is incorrect.
     $ref: ./VerificationReason1Choice.yaml
   OrgnlPtyAndAcctId:
+    description: >
+      OriginalPartyAndAccountIdentification
+
+      Provides party and/or account identification information as given in the original message.
     $ref: ./IdentificationInformation4.yaml
   UpdtdPtyAndAcctId:
+    description: >
+      UpdatedPartyAndAccountIdentification
+
+      Provides party and/or account identification information.
     $ref: ./IdentificationInformation4.yaml
 required:
   - OrgnlId
   - Vrfctn
 example:
-  OrgnlId: 123456789
+  OrgnlId: 1234567890123456789012345678901234
   Vrfctn: true
-  Rsn:
-    Cd: AGNT
   OrgnlPtyAndAcctId:
-    Id: 123456789
-    SchmeNm:
-      Cd: CCPT
+    Nm: John Doe
+    PstlAdr:
+      AdrTp: ADDR
+      Dept: Dept
+      SubDept: SubDept
+      StrtNm: 1234 Elm St
+      BldgNb: 1234
+      PstCd: 12345
+      TwnNm: Anytown
+      CtrySubDvsn: CA
+      Ctry: US
+    Id:
+      OrgId:
+        AnyBIC: ABCDUS33
+        Othr:
+          Id: 123456789
+          Issr: ABA
   UpdtdPtyAndAcctId:
-    Id: 123456789
-    SchmeNm:
-      Cd: CCPT
+    Nm: John Doe
+    PstlAdr:
+      AdrTp: ADDR
+      Dept: Dept
+      SubDept: SubDept
+      StrtNm: 1234 Elm St
+      BldgNb: 1234
+      PstCd: 12345
+      TwnNm: Anytown
+      CtrySubDvsn: CA
+      Ctry: US
+    Id:
+      OrgId:
+        AnyBIC: ABCDUS33
+        Othr:
+          Id: 123456789
+          Issr: ABA
