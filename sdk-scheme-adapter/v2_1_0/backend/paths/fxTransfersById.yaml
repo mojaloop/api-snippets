@@ -21,7 +21,7 @@ put:
       $ref: ../../components/responses/500.yaml
 patch:
   description: >-
-    The HTTP request `PATCH /fxTransfers/{commitRequestId}` is used to update the state of currency conversion.
+    The HTTP request `PATCH /fxTransfers/{commitRequestId}` is used to  notify an FXP backend about the status of currency conversion.
   summary: FX Update Conversion State Notification
   tags:
     - Fx
@@ -32,7 +32,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../../components/schemas/FxTransfersPutBackendRequest.yaml
+          $ref: ../../components/schemas/FxTransfersPatchBackendRequest.yaml
   responses:
     '200':
       $ref: ../../components/responses/200.yaml
