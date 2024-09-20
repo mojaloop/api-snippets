@@ -42,13 +42,7 @@ properties:
           Factor used to convert an amount from one currency into another. This reflects the price at
           which one currency was bought with another currency.
   ChrgBr:
-    allOf:
-      - $ref: ./ChargeBearerType1Code.yaml
-      - description: >
-          ChargeBearer
-
-          Specifies which party/parties will bear the charges associated with the processing of the
-          payment transaction.
+    $ref: ./ChargeBearerType1Code.yaml
   ChrgsInf:
     allOf:
       - $ref: ./Charges16.yaml

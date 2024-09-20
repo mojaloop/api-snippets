@@ -1833,20 +1833,22 @@ components:
       oneOf:
         - properties:
             Cd:
-              description: >
-                Code
+              allOf:
+                - $ref: '#/components/schemas/ExternalPersonIdentification1Code'
+                - description: >
+                    Code
 
-                Name of the identification scheme, in a coded form as published
-                in an external list.
-              $ref: '#/components/schemas/ExternalPersonIdentification1Code'
+                    Name of the identification scheme, in a coded form as
+                    published in an external list.
           required:
             - Cd
         - properties:
             Prtry:
-              description: |
-                Proprietary
-                Name of the identification scheme, in a free text form.
-              $ref: '#/components/schemas/Max35Text'
+              allOf:
+                - $ref: '#/components/schemas/Max35Text'
+                - description: |
+                    Proprietary
+                    Name of the identification scheme, in a free text form.
           required:
             - Prtry
       example:
@@ -2676,28 +2678,30 @@ components:
     VerificationReason1Choice:
       title: VerificationReason1Choice
       type: object
-      description: >
-        Choice of format for the verification reason. Only one, between the
-        coded and the proprietary, can be chosen.
+      description: |
+        Choice of format for the verification reason.
+        Only one, between the coded and the proprietary, can be chosen.
       oneOf:
         - properties:
             Cd:
-              description: >
-                Code
+              allOf:
+                - $ref: '#/components/schemas/ExternalVerificationReason1Code'
+                - description: >
+                    Code
 
-                Reason why the verified identification information is incorrect,
-                as published in an external reason code list.
-              $ref: '#/components/schemas/ExternalVerificationReason1Code'
+                    Reason why the verified identification information is
+                    incorrect, as published in an external reason code list.
           required:
             - Cd
         - properties:
             Prtry:
-              description: >
-                Proprietary
+              allOf:
+                - $ref: '#/components/schemas/Max35Text'
+                - description: >
+                    Proprietary
 
-                Reason why the verified identification information is incorrect,
-                in a free text form.
-              $ref: '#/components/schemas/Max35Text'
+                    Reason why the verified identification information is
+                    incorrect, in a free text form.
           required:
             - Prtry
       example:
@@ -2795,6 +2799,8 @@ components:
           Cd: IBAN
         Issr: BIC
     AccountIdentification4Choice:
+      title: AccountIdentification4Choice
+      type: object
       description: >
         Specifies the unique identification of an account as assigned by the
         account servicer.
@@ -2888,20 +2894,22 @@ components:
       oneOf:
         - properties:
             Cd:
-              description: >
-                Code
+              allOf:
+                - $ref: '#/components/schemas/ExternalProxyAccountType1Code'
+                - description: >
+                    Code
 
-                Proxy account type, in a coded form as published in an external
-                list.
-              $ref: '#/components/schemas/ExternalProxyAccountType1Code'
+                    Proxy account type, in a coded form as published in an
+                    external list.
           required:
             - Cd
         - properties:
             Prtry:
-              description: |
-                Proprietary
-                Proxy account type, in a proprietary form.
-              $ref: '#/components/schemas/Max35Text'
+              allOf:
+                - $ref: '#/components/schemas/Max35Text'
+                - description: |
+                    Proprietary
+                    Proxy account type, in a proprietary form.
           required:
             - Prtry
       example:
@@ -3415,22 +3423,25 @@ components:
       oneOf:
         - properties:
             Cd:
-              description: >
-                Code
+              allOf:
+                - $ref: '#/components/schemas/ExternalServiceLevel1Code'
+                - description: >
+                    Code
 
-                Specifies a pre-agreed service or level of service between the
-                parties, as published in an external service level code list.
-              $ref: '#/components/schemas/ExternalServiceLevel1Code'
+                    Specifies a pre-agreed service or level of service between
+                    the parties, as published in an external service level code
+                    list.
           required:
             - Cd
         - properties:
             Prtry:
-              description: >
-                Proprietary
+              allOf:
+                - $ref: '#/components/schemas/Max35Text'
+                - description: >
+                    Proprietary
 
-                Specifies a pre-agreed service or level of service between the
-                parties, as a proprietary code.
-              $ref: '#/components/schemas/Max35Text'
+                    Specifies a pre-agreed service or level of service between
+                    the parties, as a proprietary code.
           required:
             - Prtry
       example:
@@ -4488,6 +4499,8 @@ components:
             - description: |
                 Contact Details
                 Set of elements used to indicate how to contact the party.
+      required:
+        - Id
       example:
         Nm: John Doe
         PstlAdr:
@@ -4624,22 +4637,24 @@ components:
       oneOf:
         - properties:
             Cd:
-              description: >
-                Code
+              allOf:
+                - $ref: '#/components/schemas/ExternalPurpose1Code'
+                - description: >
+                    Code
 
 
-                Underlying reason for the payment transaction, as published in
-                an external purpose code list.
-              $ref: '#/components/schemas/ExternalPurpose1Code'
+                    Underlying reason for the payment transaction, as published
+                    in an external purpose code list.
           required:
             - Cd
         - properties:
             Prtry:
-              description: |
-                Proprietary
+              allOf:
+                - $ref: '#/components/schemas/Max35Text'
+                - description: |
+                    Proprietary
 
-                Purpose, in a proprietary form.
-              $ref: '#/components/schemas/Max35Text'
+                    Purpose, in a proprietary form.
           required:
             - Prtry
       example:
@@ -5384,7 +5399,6 @@ components:
                 - description: >
                     Interledger Protocol packet (ILPv4) containing
                     Cryptographically signed terms
-              $ref: '#/components/schemas/hexBinary'
           required:
             - IlpV4PrepPacket
         - properties:
@@ -5443,13 +5457,7 @@ components:
                 This reflects the price at which one currency was bought with
                 another currency.
         ChrgBr:
-          allOf:
-            - $ref: '#/components/schemas/ChargeBearerType1Code'
-            - description: >
-                ChargeBearer
-
-                Specifies which party/parties will bear the charges associated
-                with the processing of the payment transaction.
+          $ref: '#/components/schemas/ChargeBearerType1Code'
         ChrgsInf:
           allOf:
             - $ref: '#/components/schemas/Charges16'
@@ -5791,25 +5799,27 @@ components:
     StatusReason6Choice:
       title: StatusReason6Choice
       description: |
-        Unsure on description.
+        Specifies the reason for the status.
       type: object
       oneOf:
         - properties:
             Cd:
-              $ref: '#/components/schemas/ExternalStatusReason1Code'
-              description: >
-                Code
+              allOf:
+                - $ref: '#/components/schemas/ExternalStatusReason1Code'
+                - description: >
+                    Code
 
-                Reason for the status, as published in an external reason code
-                list.
+                    Reason for the status, as published in an external reason
+                    code list.
           required:
             - Cd
         - properties:
             Prtry:
-              $ref: '#/components/schemas/Max35Text'
-              description: |
-                Proprietary
-                Reason for the status, in a proprietary form.
+              allOf:
+                - $ref: '#/components/schemas/Max35Text'
+                - description: |
+                    Proprietary
+                    Reason for the status, in a proprietary form.
           required:
             - Prtry
       example:

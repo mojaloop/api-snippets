@@ -5,20 +5,22 @@ type: object
 oneOf:
   - properties:
       Cd:
-        description: >
-          Code
+        allOf:
+          - $ref: ./ExternalProxyAccountType1Code.yaml
+          - description: >
+              Code
 
-          Proxy account type, in a coded form as published in an external list.
-        $ref: ./ExternalProxyAccountType1Code.yaml
+              Proxy account type, in a coded form as published in an external list.
     required:
       - Cd
   - properties:
       Prtry:
-        description: >
-          Proprietary
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
 
-          Proxy account type, in a proprietary form.
-        $ref: ./Max35Text.yaml
+              Proxy account type, in a proprietary form.
     required:
       - Prtry
 example:

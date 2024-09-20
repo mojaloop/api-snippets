@@ -10,20 +10,22 @@ type: object
 oneOf:
   - properties:
       Cd:
-        description: |
-          Code
+        allOf:
+          - $ref: ./ExternalPurpose1Code.yaml
+          - description: |
+              Code
 
-          Underlying reason for the payment transaction, as published in an external purpose code list.
-        $ref: ./ExternalPurpose1Code.yaml
+              Underlying reason for the payment transaction, as published in an external purpose code list.
     required:
       - Cd
   - properties:
       Prtry:
-        description: |
-          Proprietary
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: |
+              Proprietary
 
-          Purpose, in a proprietary form.
-        $ref: ./Max35Text.yaml
+              Purpose, in a proprietary form.
     required:
       - Prtry
 example:

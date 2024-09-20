@@ -39,6 +39,8 @@ properties:
           Contact Details
 
           Set of elements used to indicate how to contact the party.
+required:
+  - Id
 example:
   Nm: John Doe
   PstlAdr:

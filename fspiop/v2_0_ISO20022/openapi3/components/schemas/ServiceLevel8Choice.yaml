@@ -5,21 +5,23 @@ type: object
 oneOf:
   - properties:
       Cd:
-        description: >
-          Code
+        allOf:
+          - $ref: ./ExternalServiceLevel1Code.yaml
+          - description: >
+              Code
 
-          Specifies a pre-agreed service or level of service between the parties,
-          as published in an external service level code list.
-        $ref: ./ExternalServiceLevel1Code.yaml
+              Specifies a pre-agreed service or level of service between the parties,
+              as published in an external service level code list.
     required:
       - Cd
   - properties:
       Prtry:
-        description: >
-          Proprietary
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
 
-          Specifies a pre-agreed service or level of service between the parties, as a proprietary code.
-        $ref: ./Max35Text.yaml
+              Specifies a pre-agreed service or level of service between the parties, as a proprietary code.
     required:
       - Prtry
 example:

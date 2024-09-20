@@ -9,7 +9,6 @@ oneOf:
           - $ref: ./hexBinary.yaml
           - description: >
               Interledger Protocol packet (ILPv4) containing Cryptographically signed terms
-        $ref: ./hexBinary.yaml
     required:
       - IlpV4PrepPacket
   - properties:
