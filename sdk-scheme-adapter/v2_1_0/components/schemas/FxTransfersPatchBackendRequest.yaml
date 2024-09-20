@@ -27,7 +27,7 @@ properties:
   fxQuoteResponse:
     properties:
       body:
-        type: object
+        type: string
       headers:
         type: object
     type: object
