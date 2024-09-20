@@ -2,23 +2,26 @@ title: Party52Choice
 description: |
   NOTE: Unsure on the description.
 type: object
-properties:
-  OrgId:
-    description: >
-      Organisation
-
-      Unique and unambiguous way to identify an organisation.
-    $ref: ./OrganisationIdentification39.yaml
-  PrvtId:
-    description: >
-      Person
-
-      Unique and unambiguous identification of a person, for example a passport
-    $ref: ./PersonIdentification18.yaml
 oneOf:
-  - required:
+  - properties:
+      OrgId:
+        allOf:
+          - $ref: ./OrganisationIdentification39.yaml
+          - description: >
+              Organisation
+
+              Unique and unambiguous way to identify an organisation.
+    required:
       - OrgId
-  - required:
+  - properties:
+      PrvtId:
+        allOf:
+          - $ref: ./PersonIdentification18.yaml
+          - description: >
+              Person
+
+              Unique and unambiguous identification of a person, for example a passport.
+    required:
       - PrvtId
 example:
   OrgId:

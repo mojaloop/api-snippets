@@ -1,4 +1,5 @@
 title: ExternalCreditorAgentInstruction1Code
+description: Specifies the instruction given by the creditor to the creditor agent.
 type: string
 minLength: 1
 maxLength: 4

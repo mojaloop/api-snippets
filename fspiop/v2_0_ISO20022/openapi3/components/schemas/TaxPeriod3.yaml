@@ -4,23 +4,26 @@ description: |
 type: object
 properties:
   FrToDt:
-    $ref: ./DatePeriod2.yaml
-    description: |
-      FromToDate
+    allOf:
+      - $ref: ./DatePeriod2.yaml
+      - description: |
+          FromToDate
 
-      Range of time between a start date and an end date for which the tax report is provided.
+          Range of time between a start date and an end date for which the tax report is provided.
   Tp:
-    $ref: ./TaxRecordPeriod1Code.yaml
-    description: |
-      Type
+    allOf:
+      - $ref: ./TaxRecordPeriod1Code.yaml
+      - description: |
+          Type
 
-      Identification of the period related to the tax payment.
+          Identification of the period related to the tax payment.
   Yr:
-    $ref: ./ISOYear.yaml
-    description: |
-      Year
+    allOf:
+      - $ref: ./ISOYear.yaml
+      - description: |
+          Year
 
-      Year related to the tax payment.
+          Year related to the tax payment.
 example:
   Yr: 2020
   Tp: MM01

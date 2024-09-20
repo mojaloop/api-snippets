@@ -1,7 +1,11 @@
 title: RegulatoryReportingType1Code
-description: >
+description: |
   Identifies whether the regulatory reporting information applies to the debit
   side, to the credit side or to both debit and credit sides of the transaction.
+  
+  CRED: Regulatory reporting applies to the credit side of the transaction.
+  DEBT: Regulatory reporting applies to the debit side of the transaction.
+  BOTH: Regulatory reporting applies to both debit and credit sides of the transaction.
 type: string
 enum:
   - CRED

@@ -5,29 +5,80 @@ description: >
 type: object
 properties:
   StsId:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Unique identification, as assigned by the original sending party, to
+          unambiguously identify the status report.
   OrgnlInstrId:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          Unique identification, as assigned by the original sending party, to
+          unambiguously identify the original instruction.
+
+          (FSPIOP equivalent: transactionRequestId)
   OrgnlEndToEndId:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          Unique identification, as assigned by the original sending party, to
+          unambiguously identify the original end-to-end transaction.
+
+          (FSPIOP equivalent: transactionId)
   OrgnlTxId:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          Unique identification, as assigned by the original sending party, to
+          unambiguously identify the original transaction.
+
+          (FSPIOP equivalent: quoteId)
   OrgnlUETR:
-    $ref: ./UUIDv4Identifier.yaml
+    allOf:
+      - $ref: ./UUIDv4Identifier.yaml
+      - description: >
+          Unique end-to-end transaction reference, as assigned by the original
+          sending party, to unambiguously identify the original transaction.
   TxSts:
-    $ref: ./ExternalPaymentTransactionStatus1Code.yaml
+    allOf:
+      - $ref: ./ExternalPaymentTransactionStatus1Code.yaml
+      - description: >
+          Specifies the status of the transaction.
   StsRsnInf:
-    $ref: ./StatusReasonInformation14.yaml
+    allOf:
+      - $ref: ./StatusReasonInformation14.yaml
+      - description: >
+          Information concerning the reason for the status.
   AccptncDtTm:
-    $ref: ./ISODateTime.yaml
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Date and time at which the status was accepted.
   AcctSvcrRef:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Unique reference, as assigned by the account servicing institution, to
+          unambiguously identify the status report.
   ClrSysRef:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Reference that is assigned by the account servicing institution and
+          sent to the account owner to unambiguously identify the transaction.
   ExctnConf:
-    $ref: ./Exact32HexBinaryText.yaml
+    allOf:
+      - $ref: ./Exact32HexBinaryText.yaml
+      - description: >
+          Unique reference, as assigned by the account servicing institution, to
+          unambiguously identify the confirmation.
   SplmtryData:
-    $ref: ./SupplementaryData1.yaml
+    allOf:
+      - $ref: ./SupplementaryData1.yaml
+      - description: >
+          Additional information that cannot be captured in the structured
+          elements and/or any other specific block.
 example:
   StsId: 12345
   OrgnlInstrId: 12345

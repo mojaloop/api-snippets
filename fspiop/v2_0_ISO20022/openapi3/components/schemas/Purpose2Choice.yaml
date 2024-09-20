@@ -1,5 +1,5 @@
 title: Purpose2Choice
-description: >
+description: |
   Specifies the underlying reason for the payment transaction.
 
   Usage: Purpose is used by the end-customers, that is initiating party,
@@ -7,23 +7,24 @@ description: >
   is a content element, which is not used for processing by any of the agents involved in the payment
   chain.
 type: object
-properties:
-  Cd:
-    description: |
-      Code
-
-      Underlying reason for the payment transaction, as published in an external purpose code list.
-    $ref: ./ExternalPurpose1Code.yaml
-  Prtry:
-    description: |
-      Proprietary
-
-      Purpose, in a proprietary form.
-    $ref: ./Max35Text.yaml
 oneOf:
-  - required:
+  - properties:
+      Cd:
+        description: |
+          Code
+
+          Underlying reason for the payment transaction, as published in an external purpose code list.
+        $ref: ./ExternalPurpose1Code.yaml
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        description: |
+          Proprietary
+
+          Purpose, in a proprietary form.
+        $ref: ./Max35Text.yaml
+    required:
       - Prtry
 example:
   Cd: CH03

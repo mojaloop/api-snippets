@@ -4,23 +4,26 @@ description: >
 
   Specifies the type of charge.
 type: object
-properties:
-  Cd:
-    description: >
-      Code
-
-      Charge type, in a coded form.
-    $ref: ./ExternalChargeType1Code.yaml
-  Prtry:
-    description: >
-      Proprietary
-
-      Type of charge in a proprietary form, as defined by the issuer.
-    $ref: ./GenericIdentification3.yaml
 oneOf:
-  - required:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalChargeType1Code.yaml
+          - description: >
+              Code
+
+              Charge type, in a coded form.
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./GenericIdentification3.yaml
+          - description: >
+              Proprietary
+
+              Type of charge in a proprietary form, as defined by the issuer.
+    required:
       - Prtry
 example:
   Cd: CASH

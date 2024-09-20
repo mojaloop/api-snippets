@@ -6,39 +6,45 @@ description: |
 type: object
 properties:
   Tp:
-    description: |
-      Type
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          Type
 
-      Specifies the type of the information supplied in the regulatory reporting details.
-    $ref: ./Max35Text.yaml
+          Specifies the type of the information supplied in the regulatory reporting details.
   Dt:
-    description: |
-      Date
+    allOf:
+      - $ref: ./ISODate.yaml
+      - description: |
+          Date
 
-      Date related to the specified type of regulatory reporting details.
-    $ref: ./ISODate.yaml
+          Date related to the specified type of regulatory reporting details.
   Ctry:
-    description: |
-      Country
+    allOf:
+      - $ref: ./CountryCode.yaml
+      - description: |
+          Country
 
-      Country related to the specified type of regulatory reporting details.
-    $ref: ./CountryCode.yaml
+          Country related to the specified type of regulatory reporting details.
   Cd:
-    description: >
-      Code
+    allOf:
+      - $ref: ./Max10Text.yaml
+      - description: >
+          Code
 
-      Specifies the nature, purpose, and reason for the transaction to be reported
-      for regulatory and statutory requirements in a coded form.
-    $ref: ./Max10Text.yaml
+          Specifies the nature, purpose, and reason for the transaction to be reported
+          for regulatory and statutory requirements in a coded form.
   Amt:
-    description: |
-      Amount
+    allOf:
+      - $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+      - description: |
+          Amount
 
-      Amount of money to be reported for regulatory and statutory requirements.
-    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+          Amount of money to be reported for regulatory and statutory requirements.
   Inf:
     description: |
       Information
+
       Additional details that cater for specific domestic regulatory requirements.
     anyOf:
       - $ref: ./Max35Text.yaml

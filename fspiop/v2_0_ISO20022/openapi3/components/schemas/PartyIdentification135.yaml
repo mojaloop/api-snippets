@@ -4,35 +4,43 @@ description: |
 type: object
 properties:
   Nm:
-    description: >
-      Name
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: >
+          Name
 
-      Name by which a party is known and which is usually used to identify that party.
-    $ref: ./Max140Text.yaml
+          Name by which a party is known and which is usually used to identify that party.
   PstlAdr:
-    description: >
-      PostalAddress
+    allOf:
+      - $ref: ./PostalAddress24.yaml
+      - description: >
+          PostalAddress
 
-      Information that locates and identifies a specific address, as defined by postal services.
-    $ref: ./PostalAddress24.yaml
+          Information that locates and identifies a specific address, as defined by postal services.
   Id:
-    description: >
-      Identification
+    allOf:
+      - $ref: ./Party38Choice.yaml
+      - description: >
+          Identification
 
-      Unique and unambiguous way to identify an organisation.
-    $ref: ./Party38Choice.yaml
+          Unique and unambiguous way to identify an organisation.
   CtryOfRes:
-    description: >
-      CountryOfResidence
-      Country in which a person resides (the place of a person's home). In the case of a company,
-      it is the country from which the affairs of that company are directed.
-    $ref: ./CountryCode.yaml
-  CtctDtls:
-    description: >
-      ContactDetails
+    allOf:
+      - $ref: ./CountryCode.yaml
+      - description: >
+          CountryOfResidence
 
-      Set of elements used to indicate how to contact the party.
-    $ref: ./Contact4.yaml
+          Country in which a person resides (the place of a person's home). In the case of a company,
+          it is the country from which the affairs of that company are directed.
+  CtctDtls:
+    allOf:
+      - $ref: ./Contact4.yaml
+      - description: >
+          ContactDetails
+
+          Set of elements used to indicate how to contact the party.
+required:
+  - Id
 example:
   Nm: John Doe
   PstlAdr:
@@ -58,7 +66,6 @@ example:
         Id: 123
         SchmeNm:
           Prtry: DfspId
-
   CtryOfRes: BE
   CtctDtls:
     NmPrfx: Mr
@@ -67,4 +74,3 @@ example:
     MobNb: +123-123-321
     FaxNb: +123-123-321
     EmailAdr: example@example.com
-

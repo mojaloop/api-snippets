@@ -5,21 +5,23 @@ description: >
   of a financial institution.
 properties:
   FinInstnId:
-    description: >
-      FinancialInstitutionIdentification
+    allOf:
+      - $ref: ./FinancialInstitutionIdentification18.yaml
+      - description: >
+          FinancialInstitutionIdentification
 
-      Unique and unambiguous identification of a financial institution, as assigned under an
-      internationally recognised or proprietary identification scheme.
-    $ref: ./FinancialInstitutionIdentification18.yaml
+          Unique and unambiguous identification of a financial institution, as assigned under an
+          internationally recognised or proprietary identification scheme.
   BrnchId:
-    description: >
-      BranchIdentification
+    allOf:
+      - $ref: ./BranchData3.yaml
+      - description: >
+          BranchIdentification
 
-      Definition: Identifies a specific branch of a financial institution.
+          Definition: Identifies a specific branch of a financial institution.
 
-      Usage: This component should be used in case the identification information in the financial institution
-      component does not provide identification up to branch level.
-    $ref: ./BranchData3.yaml
+          Usage: This component should be used in case the identification information in the financial institution
+          component does not provide identification up to branch level.
 required:
   - FinInstnId
 example:

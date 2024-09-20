@@ -5,77 +5,89 @@ description: >
 type: object
 properties:
   PmtId:
-    description: >
-      PaymentIdentification
+    allOf:
+      - $ref: ./PaymentIdentification13.yaml
+      - description: >
+          PaymentIdentification
 
-      Set of elements used to reference a payment instruction.
-    $ref: ./PaymentIdentification13.yaml
+          Set of elements used to reference a payment instruction.
   PmtTpInf:
-    description: >
-      PaymentTypeInformation
-
-       Set of elements used to further specify the type of transaction.
-    $ref: ./PaymentTypeInformation28.yaml
+    allOf:
+      - $ref: ./PaymentTypeInformation28.yaml
+      - description: >
+          PaymentTypeInformation
+ 
+          Set of elements used to further specify the type of transaction.
   IntrBkSttlmAmt:
-    description: >
-      InterbankSettlementAmount
+    allOf:
+      - $ref: ./ActiveCurrencyAndAmount.yaml
+      - description: >
+          InterbankSettlementAmount
 
-      Amount of money moved between the instructing agent and the instructed agent.
-    $ref: ./ActiveCurrencyAndAmount.yaml
+          Amount of money moved between the instructing agent and the instructed agent.
   Dbtr:
-    description: >
-      Debtor
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          Debtor
 
-      Party that owes an amount of money to the (ultimate) creditor.
-    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+          Party that owes an amount of money to the (ultimate) creditor.
   DbtrAcct:
-    description: >
-      DebtorAccount
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          DebtorAccount
 
-      Account used to process a payment.
-    $ref: ./CashAccount40.yaml
+          Account used to process a payment.
   DbtrAgt:
-    description: >
-      DebtorAgent
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          DebtorAgent
 
-      Financial institution servicing an account for the debtor.
-    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+          Financial institution servicing an account for the debtor.
   CdtrAgt:
-    description: >
-      CreditorAgent
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          CreditorAgent
 
-      Financial institution servicing an account for the creditor.
-    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+          Financial institution servicing an account for the creditor.
   Cdtr:
-    description: >
-      Creditor
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          Creditor
 
-      Party to which an amount of money is due.
-    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+          Party to which an amount of money is due.
   CdtrAcct:
-    description: >
-      CreditorAccount
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          CreditorAccount
 
-      Account to which a credit entry is made.
-    $ref: ./CashAccount40.yaml
+          Account to which a credit entry is made.
   InstrForCdtrAgt:
-    description: >
-      InstructionForCreditorAgent
+    allOf:
+      - $ref: ./InstructionForCreditorAgent3.yaml
+      - description: >
+          InstructionForCreditorAgent
 
-      Set of elements used to provide information on the remittance advice.
-    $ref: ./InstructionForCreditorAgent3.yaml
+          Set of elements used to provide information on the remittance advice.
   Purp:
-    description: >
-      Purpose
+    allOf:
+      - $ref: ./Purpose2Choice.yaml
+      - description: >
+          Purpose
 
-      Underlying reason for the payment transaction.
-    $ref: ./Purpose2Choice.yaml
+          Underlying reason for the payment transaction.
   VrfctnOfTerms:
-    description: >
-      VerificationOfTerms
+    allOf:
+      - $ref: ./CryptographicLockChoice.yaml
+      - description: >
+          VerificationOfTerms
 
-      Set of elements used to provide information on the underlying terms of the transaction.
-    $ref: ./CryptographicLockChoice.yaml
+          Set of elements used to provide information on the underlying terms of the transaction.
 required:
   - PmtId
   - IntrBkSttlmAmt

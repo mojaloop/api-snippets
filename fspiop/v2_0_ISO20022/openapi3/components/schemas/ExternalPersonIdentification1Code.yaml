@@ -1,4 +1,5 @@
 title: ExternalPersonIdentification1Code
+description: Specifies the external person identification code.
 type: string
 minLength: 1
 maxLength: 4

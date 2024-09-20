@@ -1,4 +1,6 @@
 title: ExternalChargeType1Code
+description: >
+  Specifies the type of charge applied to the transaction.
 type: string
 minLength: 1
 maxLength: 4

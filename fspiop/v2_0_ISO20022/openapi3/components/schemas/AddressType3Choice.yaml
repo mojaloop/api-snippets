@@ -2,23 +2,26 @@ title: AddressType3Choice
 type: object
 description: |
   Choice of formats for the type of address.
-properties:
-  Cd:
-    description: >
-      Code
-
-      Type of address expressed as a code.
-    $ref: ./AddressType2Code.yaml
-  Prtry:
-    description: >
-      Proprietary
-
-      Type of address expressed as a proprietary code.
-    $ref: ./GenericIdentification30.yaml
 oneOf:
-  - required:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./AddressType2Code.yaml
+          - description: >
+              Code
+
+              Type of address expressed as a code.
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./GenericIdentification30.yaml
+          - description: >
+              Proprietary
+
+              Type of address expressed as a proprietary code.
+    required:
       - Prtry
 example:
   Cd: ADDR

@@ -1,6 +1,12 @@
 title: SettlementMethod1Code
 description: |
   Specifies the method used to settle the credit transfer instruction.
+  
+  INDA: Indirect Account
+  INGA: Indirect Agent
+  COVE: Cover
+  CLRG: Clearing
+
 type: string
 enum:
   - INDA

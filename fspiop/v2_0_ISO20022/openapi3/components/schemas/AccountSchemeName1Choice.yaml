@@ -2,23 +2,26 @@ title: AccountSchemeName1Choice
 type: object
 description: |
   Sets of elements to identify a name of the identification scheme.
-properties:
-  Cd:
-    description: >
-      Code
-
-      Name of the identification scheme, in a coded form as published in an external list.
-    $ref: ./ExternalAccountIdentification1Code.yaml
-  Prtry:
-    description: >
-      Proprietary
-
-      Name of the identification scheme, in a free text form.
-    $ref: ./Max35Text.yaml
 oneOf:
-  - required:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalAccountIdentification1Code.yaml
+          - description: >
+              Code
+
+              Name of the identification scheme, in a coded form as published in an external list.
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Name of the identification scheme, in a free text form.
+    required:
       - Prtry
 example:
   Cd: 1111

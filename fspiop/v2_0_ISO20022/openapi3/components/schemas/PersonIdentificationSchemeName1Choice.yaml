@@ -2,23 +2,24 @@ title: PersonIdentificationSchemeName1Choice
 description: |
   Sets of elements to identify a name of the identification scheme.
 type: object
-properties:
-  Cd:
-    description: >
-      Code
-
-      Name of the identification scheme, in a coded form as published in an external list
-    $ref: ./ExternalPersonIdentification1Code.yaml
-  Prtry:
-    description: >
-      Proprietary
-
-      Name of the identification scheme, in a free text form
-    $ref: ./Max35Text.yaml
 oneOf:
-  - required:
+  - properties:
+      Cd:
+        description: >
+          Code
+
+          Name of the identification scheme, in a coded form as published in an external list.
+        $ref: ./ExternalPersonIdentification1Code.yaml
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        description: >
+          Proprietary
+
+          Name of the identification scheme, in a free text form.
+        $ref: ./Max35Text.yaml
+    required:
       - Prtry
 example:
   Cd: CCPT

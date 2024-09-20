@@ -5,19 +5,40 @@ description: >
 type: object
 properties:
   MsgId:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Message Identification
   CreDtTm:
-    $ref: ./ISODateTime.yaml
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Creation Date and Time
   NbOfTxs:
-    $ref: ./Max15NumericText.yaml
+    allOf:
+      - $ref: ./Max15NumericText.yaml
+      - description: >
+          Number of Transactions
   TtlIntrBkSttlmAmt:
-    $ref: ./ActiveCurrencyAndAmount.yaml
+    allOf:
+      - $ref: ./ActiveCurrencyAndAmount.yaml
+      - description: >
+          Total Interbank Settlement Amount
   SttlmInf:
-    $ref: ./SettlementInstruction15.yaml
+    allOf:
+      - $ref: ./SettlementInstruction15.yaml
+      - description: >
+          Settlement Information
   PmtTpInf:
-    $ref: ./PaymentTypeInformation28.yaml
+    allOf:
+      - $ref: ./PaymentTypeInformation28.yaml
+      - description: >
+          Payment Type Information
   CdtTrfTxInf:
-    $ref: ./CreditTransferTransaction68.yaml
+    allOf:
+      - $ref: ./CreditTransferTransaction68.yaml
+      - description: >
+          Credit Transfer Transaction Information
 required:
   - MsgId
   - CreDtTm

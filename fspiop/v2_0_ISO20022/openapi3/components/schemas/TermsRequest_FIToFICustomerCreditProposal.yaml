@@ -1,8 +1,16 @@
 title: TermsRequest_FIToFICustomerCreditProposal
 type: object
+description: >
+  This message is sent by a financial institution to a financial institution
+  to propose the terms of a credit to a customer.
 properties:
   GrpHdr:
-    $ref: ./GroupHeader129.yaml
+    allOf:
+      - $ref: ./GroupHeader129.yaml
+      - description: >
+          Group Header
+          
+          Set of characteristics shared by all individual transactions included in the message.
 required:
   - GrpHdr
 example:
