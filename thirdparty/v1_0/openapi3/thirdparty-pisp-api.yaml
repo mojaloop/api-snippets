@@ -254,8 +254,11 @@ paths:
                 consentRequestId:
                   title: CorrelationId
                   type: string
-                  pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
-                  description: 'Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).'
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$
+                  description: Identifier that correlates all messages of the same sequence.
+                    The supported identifiers formats are for
+                    lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and
+                    uppercase [ULID](https://github.com/ulid/spec)
                   example: b51ec534-ee48-4575-b6a9-ead2955b8069
                 userId:
                   type: string
@@ -976,7 +979,7 @@ paths:
                           title: FIDOPublicKeyCredentialAttestation
                           type: object
                           description: |
-                            A data model representing a FIDO Attestation result. Derived from 
+                            A data model representing a FIDO Attestation result. Derived from
                             [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
 
                             The `PublicKeyCredential` interface represents the below fields with
@@ -1732,7 +1735,7 @@ paths:
                             [RFC 3696](https://tools.ietf.org/html/rfc3696).
                             - PERSONAL_ID - A personal identifier is used as reference to a participant.
                             Examples of personal identification are passport number, birth certificate
-                            number, and national registration number. The identifier number is added in 
+                            number, and national registration number. The identifier number is added in
                             the PartyIdentifier element. The personal identifier type is added in the
                             PartySubIdOrType element.
                             - BUSINESS - A specific Business (for example, an organization or a company)
@@ -1756,12 +1759,12 @@ paths:
                             PartySubIdOrType element for identifying an account under an Alias defined
                             by the PartyIdentifier.
                             - CONSENT - A Consent represents an agreement between a PISP, a Customer and
-                            a DFSP which allows the PISP permission to perform actions on behalf of the 
-                            customer. A Consent has an authoritative source: either the DFSP who issued 
+                            a DFSP which allows the PISP permission to perform actions on behalf of the
+                            customer. A Consent has an authoritative source: either the DFSP who issued
                             the Consent, or an Auth Service which administers the Consent.
                             - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
-                            a DFSP, and a specific Customer's account at the DFSP. The content of the link 
-                            is created by the DFSP at the time when it gives permission to the PISP for 
+                            a DFSP, and a specific Customer's account at the DFSP. The content of the link
+                            is created by the DFSP at the time when it gives permission to the PISP for
                             specific access to a given account.
                           example: PERSONAL_ID
                         partyIdentifier:
