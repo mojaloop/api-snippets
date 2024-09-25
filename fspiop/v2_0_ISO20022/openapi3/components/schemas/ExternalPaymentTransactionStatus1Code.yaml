@@ -1,4 +1,5 @@
 title: ExternalPaymentTransactionStatus1Code
+description: Specifies the external payment transaction status code.
 type: string
 minLength: 1
 maxLength: 4

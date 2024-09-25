@@ -1,16 +1,23 @@
 title: CryptographicLockChoice
 description: |
-  NOTE: Unsure on description.
+  Cryptographically signed terms
 type: object
-properties:
-  IlpV4PrepPacket:
-    $ref: ./hexBinary.yaml
-  Sh256Sgntr:
-    $ref: ./Exact32HexBinaryText.yaml
 oneOf:
-  - required:
+  - properties:
+      IlpV4PrepPacket:
+        allOf:
+          - $ref: ./hexBinary.yaml
+          - description: >
+              Interledger Protocol packet (ILPv4) containing Cryptographically signed terms
+    required:
       - IlpV4PrepPacket
-  - required:
+  - properties:
+      Sh256Sgntr:
+        allOf:
+          - $ref: ./Exact32HexBinaryText.yaml
+          - description: >
+              SHA-256 signature of the terms
+    required:
       - Sh256Sgntr
 example:
   IlpV4PrepPacket: 1234567890ABCDEF

@@ -1,4 +1,6 @@
 title: ExternalClearingSystemIdentification1Code
+description: >
+  Specifies the external clearing system identification code.
 type: string
 minLength: 1
 maxLength: 5

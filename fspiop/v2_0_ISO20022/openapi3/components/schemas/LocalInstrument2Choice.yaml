@@ -1,22 +1,27 @@
 title: LocalInstrument2Choice
 type: object
-properties:
-  Cd:
-    description: >
-      Code
-
-      Specifies the local instrument, as published in an external local instrument code list.
-    $ref: ./ExternalLocalInstrument1Code.yaml
-  Prtry:
-    description: >
-      Proprietary
-
-      Specifies the local instrument, as a proprietary code
-    $ref: ./Max35Text.yaml
+description: >
+  Specifies the local instrument, as published in an external local instrument code list or as a proprietary code.
 oneOf:
-  - required:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalLocalInstrument1Code.yaml
+          - description: >
+              Code
+
+              Specifies the local instrument, as published in an external local instrument code list.
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Specifies the local instrument, as a proprietary code.
+    required:
       - Prtry
 example:
-  Cd: CH03
+  Cd: CH03  

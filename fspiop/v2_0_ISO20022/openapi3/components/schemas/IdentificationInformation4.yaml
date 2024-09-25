@@ -1,24 +1,31 @@
 title: IdentificationInformation4
 type: object
+description: >
+  Information that locates and identifies a specific party or account.
 properties:
   Pty:
-    description: >
-      Party
+    allOf:
+      - $ref: ./PartyIdentification135.yaml
+      - description: >
+          Party
 
-      Account owner that owes an amount of money or to whom an amount of money is due.
-    $ref: ./PartyIdentification135.yaml
+          Account owner that owes an amount of money or to whom an amount of money is due.
   Acct:
-    description: >
-      Account
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          Account
 
-      Unambiguous identification of the account of a party.
-    $ref: ./CashAccount40.yaml
+          Unambiguous identification of the account of a party.
   Agt:
-    description: >
-      Agent
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
+      - description: >
+          Agent
 
-      Financial institution servicing an account for a party.
-    $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
+          Financial institution servicing an account for a party.
+required:
+  - Pty
 example:
   Pty:
     Id:

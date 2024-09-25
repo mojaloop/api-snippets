@@ -4,20 +4,22 @@ description: |
 type: object
 properties:
   FrDt:
-    description: >
-      FromDate
+    allOf:
+      - $ref: ./ISODate.yaml
+      - description: >
+          FromDate
 
-      Start date of the range.
-    $ref: ./ISODate.yaml
+          Start date of the range.
   ToDt:
-    description: >
-      ToDate
+    allOf:
+      - $ref: ./ISODate.yaml
+      - description: >
+          ToDate
 
-      End date of the range.
-    $ref: ./ISODate.yaml
+          End date of the range.
 required:
   - FrDt
   - ToDt
 example:
-  FrDt: '2022-01-01T00:00:00.000Z'
-  ToDt: '2022-12-31T23:59:59.999Z'
+  FrDt: '2022-01-01'
+  ToDt: '2022-12-31'

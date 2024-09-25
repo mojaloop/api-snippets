@@ -1,21 +1,39 @@
 title: GroupHeader129
 description: >
-  Set of characteristics shared by all individual transactions included in the
+  Group Header Set of characteristics shared by all individual transactions included in the
   message.
 type: object
 properties:
   MsgId:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Message Identification
   CreDtTm:
-    $ref: ./ISODateTime.yaml
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Creation Date and Time
   PmtInstrXpryDtTm:
-    $ref: ./ISODateTime.yaml
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Payment Instruction Expiry Date and Time
   NbOfTxs:
-    $ref: ./Max15NumericText.yaml
+    allOf:
+      - $ref: ./Max15NumericText.yaml
+      - description: >
+          Number of Transactions
   SttlmInf:
-    $ref: ./SettlementInstruction15.yaml
+    allOf:
+      - $ref: ./SettlementInstruction15.yaml
+      - description: >
+          Settlement Information
   CdtTrfTxInf:
-    $ref: ./CreditTransferTransaction67.yaml
+    allOf:
+      - $ref: ./CreditTransferTransaction67.yaml
+      - description: >
+          Credit Transfer Transaction Information
 required:
   - MsgId
   - CreDtTm

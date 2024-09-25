@@ -2,23 +2,26 @@ title: CashAccountType2Choice
 description: |
   Specifies the nature, or use of the account.
 type: object
-properties:
-  Cd:
-    description: >
-      Code
-
-      Account type, in a coded form.
-    $ref: ./ExternalCashAccountType1Code.yaml
-  Prtry:
-    description: >
-      Proprietary
-
-      Nature or use of the account in a proprietary form.
-    $ref: ./Max35Text.yaml
 oneOf:
-  - required:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalCashAccountType1Code.yaml
+          - description: >
+              Code
+
+              Account type, in a coded form.
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Nature or use of the account in a proprietary form.
+    required:
       - Prtry
 example:
   Cd: CACC

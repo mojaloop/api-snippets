@@ -2,23 +2,26 @@ title: Party38Choice
 description: |
   Nature or use of the account.
 type: object
-properties:
-  OrgId:
-    description: >
-      Organisation
-
-      Unique and unambiguous way to identify an organisation.
-    $ref: ./OrganisationIdentification29.yaml
-  PrvtId:
-    description: >
-      PrivateIdentification
-
-      Unique and unambiguous identification of a person, for example a passport.
-    $ref: ./PersonIdentification13.yaml
 oneOf:
-  - required:
+  - properties:
+      OrgId:
+        allOf:
+          - $ref: ./OrganisationIdentification29.yaml
+          - description: >
+              Organisation
+
+              Unique and unambiguous way to identify an organisation.
+    required:
       - OrgId
-  - required:
+  - properties:
+      PrvtId:
+        allOf:
+          - $ref: ./PersonIdentification13.yaml
+          - description: >
+              PrivateIdentification
+
+              Unique and unambiguous identification of a person, for example a passport.
+    required:
       - PrvtId
 example:
   OrgId:

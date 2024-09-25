@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.2
 info:
   version: v2.0-iso20022-draft
   title: Open API for FSP Interoperability (FSPIOP) - the ISO 20022 message version
@@ -1350,29 +1350,33 @@ components:
       description: >
         Specifies the unique identification of an account as assigned by the
         account servicer.
-      properties:
-        IBAN:
-          description: >
-            IBAN
-
-            International Bank Account Number (IBAN) - identifier used
-            internationally by financial institutions to uniquely identify the
-            account of a customer. Further specifications of the format and
-            content of the IBAN can be found in the standard ISO 13616 "Banking
-            and related financial services - International Bank Account Number
-            (IBAN)" version 1997-10-01, or later revisions.
-          $ref: "#/components/schemas/IBAN2007Identifier"
-        Othr:
-          description: >
-            Other
-
-            Unique identification of an account, as assigned by the account
-            servicer, using an identification scheme.
-          $ref: "#/components/schemas/GenericAccountIdentification1"
       oneOf:
-        - required:
+        - properties:
+            IBAN:
+              allOf:
+                - $ref: "#/components/schemas/IBAN2007Identifier"
+                - description: >
+                    IBAN
+
+                    International Bank Account Number (IBAN) - identifier used
+                    internationally by financial institutions to uniquely
+                    identify the account of a customer. Further specifications
+                    of the format and content of the IBAN can be found in the
+                    standard ISO 13616 "Banking and related financial services -
+                    International Bank Account Number (IBAN)" version
+                    1997-10-01, or later revisions.
+          required:
             - IBAN
-        - required:
+        - properties:
+            Othr:
+              allOf:
+                - $ref: "#/components/schemas/GenericAccountIdentification1"
+                - description: >
+                    Other
+
+                    Unique identification of an account, as assigned by the
+                    account servicer, using an identification scheme.
+          required:
             - Othr
       example:
         IBAN: BE71096123456769
@@ -1381,23 +1385,26 @@ components:
       type: object
       description: |
         Sets of elements to identify a name of the identification scheme.
-      properties:
-        Cd:
-          description: >
-            Code
-
-            Name of the identification scheme, in a coded form as published in
-            an external list.
-          $ref: "#/components/schemas/ExternalAccountIdentification1Code"
-        Prtry:
-          description: |
-            Proprietary
-            Name of the identification scheme, in a free text form.
-          $ref: "#/components/schemas/Max35Text"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalAccountIdentification1Code"
+                - description: >
+                    Code
+
+                    Name of the identification scheme, in a coded form as
+                    published in an external list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+                    Name of the identification scheme, in a free text form.
+          required:
             - Prtry
       example:
         Cd: 1111
@@ -1409,12 +1416,14 @@ components:
         unit of currency is explicit and compliant with ISO 4217.
       properties:
         ActiveCurrencyAndAmount:
-          $ref: "#/components/schemas/ActiveCurrencyAndAmount_SimpleType"
+          allOf:
+            - $ref: "#/components/schemas/ActiveCurrencyAndAmount_SimpleType"
         Ccy:
-          description: |
-            Currency
-            Identification of the currency in which the account is held.
-          $ref: "#/components/schemas/ActiveCurrencyCode"
+          allOf:
+            - $ref: "#/components/schemas/ActiveCurrencyCode"
+            - description: |
+                Currency
+                Identification of the currency in which the account is held.
       required:
         - ActiveCurrencyAndAmount
         - Ccy
@@ -1453,12 +1462,19 @@ components:
         where the unit of currency is explicit and compliant with ISO 4217.
       properties:
         ActiveOrHistoricCurrencyAndAmount:
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount_SimpleType"
+          allOf:
+            - $ref: >-
+                #/components/schemas/ActiveOrHistoricCurrencyAndAmount_SimpleType
+            - description: >
+                Amount of money to be moved between the debtor and creditor,
+                before deduction of charges, expressed in the currency as
+                ordered by the initiating party.
         Ccy:
-          description: |
-            Currency
-            Identification of the currency in which the account is held.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyCode"
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyCode"
+            - description: |
+                Currency
+                Identification of the currency in which the account is held.
       required:
         - ActiveOrHistoricCurrencyAndAmount
         - Ccy
@@ -1483,8 +1499,13 @@ components:
     AddressType2Code:
       description: |
         AddressType2Code
-
         Specifies the type of address.
+        ADDR Address
+        PBOX PostBox
+        HOME Home
+        BIZZ Business
+        MLTO MailingTo
+        DLVY Delivery
       enum:
         - ADDR
         - PBOX
@@ -1499,21 +1520,24 @@ components:
       type: object
       description: |
         Choice of formats for the type of address.
-      properties:
-        Cd:
-          description: |
-            Code
-            Type of address expressed as a code.
-          $ref: "#/components/schemas/AddressType2Code"
-        Prtry:
-          description: |
-            Proprietary
-            Type of address expressed as a proprietary code.
-          $ref: "#/components/schemas/GenericIdentification30"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/AddressType2Code"
+                - description: |
+                    Code
+                    Type of address expressed as a code.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/GenericIdentification30"
+                - description: |
+                    Proprietary
+                    Type of address expressed as a proprietary code.
+          required:
             - Prtry
       example:
         Cd: ADDR
@@ -1560,23 +1584,26 @@ components:
         branch of a financial institution.
       properties:
         FinInstnId:
-          description: >
-            FinancialInstitutionIdentification
+          allOf:
+            - $ref: "#/components/schemas/FinancialInstitutionIdentification18"
+            - description: >
+                FinancialInstitutionIdentification
 
-            Unique and unambiguous identification of a financial institution, as
-            assigned under an internationally recognised or proprietary
-            identification scheme.
-          $ref: "#/components/schemas/FinancialInstitutionIdentification18"
+                Unique and unambiguous identification of a financial
+                institution, as assigned under an internationally recognised or
+                proprietary identification scheme.
         BrnchId:
-          description: >
-            BranchIdentification
+          allOf:
+            - $ref: "#/components/schemas/BranchData3"
+            - description: >
+                BranchIdentification
 
-            Definition: Identifies a specific branch of a financial institution.
+                Definition: Identifies a specific branch of a financial
+                institution.
 
-            Usage: This component should be used in case the identification
-            information in the financial institution component does not provide
-            identification up to branch level.
-          $ref: "#/components/schemas/BranchData3"
+                Usage: This component should be used in case the identification
+                information in the financial institution component does not
+                provide identification up to branch level.
       required:
         - FinInstnId
       example:
@@ -1604,18 +1631,19 @@ components:
         branch of a financial institution.
       properties:
         FinInstnId:
-          description: >
-            FinancialInstitutionIdentification
+          allOf:
+            - $ref: "#/components/schemas/FinancialInstitutionIdentification23"
+            - description: >
+                FinancialInstitutionIdentification
 
-            Unique and unambiguous identification of a financial institution or
-            a branch of a financial institution.
-          $ref: "#/components/schemas/FinancialInstitutionIdentification23"
+                Unique and unambiguous identification of a financial institution
+                or a branch of a financial institution.
         BrnchId:
-          description: |
-            BranchIdentification
-
-             Identifies a specific branch of a financial institution.
-          $ref: "#/components/schemas/BranchData5"
+          allOf:
+            - $ref: "#/components/schemas/BranchData5"
+            - description: |
+                BranchIdentification
+                Identifies a specific branch of a financial institution.
       required:
         - FinInstnId
       example:
@@ -1643,33 +1671,37 @@ components:
         institution.
       properties:
         Id:
-          description: >
-            Identification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Identification
 
-            Unique and unambiguous identification of a branch of a financial
-            institution.
-          $ref: "#/components/schemas/Max35Text"
+                Unique and unambiguous identification of a branch of a financial
+                institution.
         LEI:
-          description: >
-            Legal Entity Identifier
+          allOf:
+            - $ref: "#/components/schemas/LEIIdentifier"
+            - description: >
+                Legal Entity Identifier
 
-            Legal entity identification for the branch of the financial
-            institution.
-          $ref: "#/components/schemas/LEIIdentifier"
+                Legal entity identification for the branch of the financial
+                institution.
         Nm:
-          description: >
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                Name
 
-            Name by which an agent is known and which is usually used to
-            identify that agent.
-          $ref: "#/components/schemas/Max140Text"
+                Name by which an agent is known and which is usually used to
+                identify that agent.
         PstlAdr:
-          description: >
-            Postal Address
+          allOf:
+            - $ref: "#/components/schemas/PostalAddress24"
+            - description: >
+                Postal Address
 
-            Information that locates and identifies a specific address, as
-            defined by postal services.
-          $ref: "#/components/schemas/PostalAddress24"
+                Information that locates and identifies a specific address, as
+                defined by postal services.
       example:
         Id: 123
         Nm: Name
@@ -1692,33 +1724,37 @@ components:
       type: object
       properties:
         Id:
-          description: >
-            Identification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Identification
 
-            Unique and unambiguous identification of a branch of a financial
-            institution.
-          $ref: "#/components/schemas/Max35Text"
+                Unique and unambiguous identification of a branch of a financial
+                institution.
         LEI:
-          description: >
-            LEI
+          allOf:
+            - $ref: "#/components/schemas/LEIIdentifier"
+            - description: >
+                LEI
 
-            Legal entity identification for the branch of the financial
-            institution.
-          $ref: "#/components/schemas/LEIIdentifier"
+                Legal entity identification for the branch of the financial
+                institution.
         Nm:
-          description: >
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                Name
 
-            Name by which an agent is known and which is usually used to
-            identify that agent.
-          $ref: "#/components/schemas/Max140Text"
+                Name by which an agent is known and which is usually used to
+                identify that agent.
         PstlAdr:
-          description: >
-            PostalAddress
+          allOf:
+            - $ref: "#/components/schemas/PostalAddress27"
+            - description: >
+                PostalAddress
 
-            Information that locates and identifies a specific address, as
-            defined by postal services.
-          $ref: "#/components/schemas/PostalAddress27"
+                Information that locates and identifies a specific address, as
+                defined by postal services.
       example:
         Id: 123
         LEI: 123
@@ -1729,11 +1765,6 @@ components:
           SubDept: Sub department
           StrtNm: Street name
           BldgNb: Building number
-          PstCd: Post code
-          TwnNm: Town name
-          CtrySubDvsn: Country subdivision
-          Ctry: Country
-          AdrLine: Address line
     CashAccount40:
       title: CashAccount40
       type: object
@@ -1741,49 +1772,53 @@ components:
         Provides the details to identify an account.
       properties:
         Id:
-          description: >
-            Identification
+          allOf:
+            - $ref: "#/components/schemas/AccountIdentification4Choice"
+            - description: >
+                Identification
 
-            Unique and unambiguous identification for the account between the
-            account owner and the account servicer.
-          $ref: "#/components/schemas/AccountIdentification4Choice"
+                Unique and unambiguous identification for the account between
+                the account owner and the account servicer.
         Tp:
-          description: |
-            Type
-            Specifies the nature, or use of the account.
-          $ref: "#/components/schemas/CashAccountType2Choice"
+          allOf:
+            - $ref: "#/components/schemas/CashAccountType2Choice"
+            - description: |
+                Type
+                Specifies the nature, or use of the account.
         Ccy:
-          description: >
-            Currency
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyCode"
+            - description: >
+                Currency
 
-            Definition: Identification of the currency in which the account is
-            held.
+                Identification of the currency in which the account is held.
 
-            Usage: Currency should only be used in case one and the same account
-            number covers several currencies and the initiating party needs to
-            identify which currency needs to be used for settlement on the
-            account.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyCode"
+                Usage: Currency should only be used in case one and the same
+                account number covers several currencies and the initiating
+                party needs to identify which currency needs to be used for
+                settlement on the account.
         Nm:
-          description: >
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max70Text"
+            - description: >
+                Name
 
-            Definition: Name of the account, as assigned by the account
-            servicing institution, in agreement with the account owner in order
-            to provide an additional means of identification of the account.
+                Name of the account, as assigned by the account servicing
+                institution, in agreement with the account owner in order to
+                provide an additional means of identification of the account.
 
-            Usage: The account name is different from the account owner name.
-            The account name is used in certain user communities to provide a
-            means of identifying the account, in addition to the account owner's
-            identity and the account number.
-          $ref: "#/components/schemas/Max70Text"
+                Usage: The account name is different from the account owner
+                name. The account name is used in certain user communities to
+                provide a means of identifying the account, in addition to the
+                account owner's identity and the account number.
         Prxy:
-          description: >
-            Proxy
+          allOf:
+            - $ref: "#/components/schemas/ProxyAccountIdentification1"
+            - description: >
+                Proxy
 
-            Specifies an alternate assumed name for the identification of the
-            account.
-          $ref: "#/components/schemas/ProxyAccountIdentification1"
+                Specifies an alternate assumed name for the identification of
+                the account.
       example:
         Id:
           IBAN: BE71096123456769
@@ -1798,21 +1833,24 @@ components:
       description: |
         Specifies the nature, or use of the account.
       type: object
-      properties:
-        Cd:
-          description: |
-            Code
-            Account type, in a coded form.
-          $ref: "#/components/schemas/ExternalCashAccountType1Code"
-        Prtry:
-          description: |
-            Proprietary
-            Nature or use of the account in a proprietary form.
-          $ref: "#/components/schemas/Max35Text"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalCashAccountType1Code"
+                - description: |
+                    Code
+                    Account type, in a coded form.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+                    Nature or use of the account in a proprietary form.
+          required:
             - Prtry
       example:
         Cd: CACC
@@ -1822,23 +1860,26 @@ components:
         Contains details about high level purpose of the mandate based on a set
         of pre-defined categories.
       type: object
-      properties:
-        Cd:
-          description: >
-            Code
-
-            Category purpose, as published in an external category purpose code
-            list.
-          $ref: "#/components/schemas/ExternalCategoryPurpose1Code"
-        Prtry:
-          description: |
-            Proprietary
-            Category purpose, in a proprietary form.
-          $ref: "#/components/schemas/Max35Text"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalCategoryPurpose1Code"
+                - description: >
+                    Code
+
+                    Category purpose, as published in an external category
+                    purpose code list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+                    Category purpose, in a proprietary form.
+          required:
             - Prtry
       example:
         Cd: CASH
@@ -1846,22 +1887,24 @@ components:
       title: ChargeBearerType1Code
       description: >
         Specifies which party(ies) will pay charges due for processing of the
+
         instruction.
 
-        DEBT BorneByDebtor All transaction charges are to be borne by the
+
+        DEBT: BorneByDebtor All transaction charges are to be borne by the
         debtor.
 
-        CRED BorneByCreditor All transaction charges are to be borne by the
+        CRED: BorneByCreditor All transaction charges are to be borne by the
         creditor.
 
-        SHAR Shared In a credit transfer context, means that transaction charges
-        on the sender side are to be borne by the debtor, transaction charges on
-        the receiver side are to be borne by the creditor. In a direct debit
-        context, means that transaction charges on the sender side are to be
-        borne by the creditor, transaction charges on the receiver
-
-        SLEV FollowingServiceLevel Charges are to be applied following the rules
-        agreed in the service level.
+        SHAR: Shared In a credit transfer context, means that transaction
+        charges on
+              the sender side are to be borne by the debtor, transaction charges on the receiver side are to
+              be borne by the creditor. In a direct debit context, means that transaction charges on the sender side
+              are to be borne by the creditor, transaction charges on the receiver
+        SLEV : FollowingServiceLevel Charges are to be applied following the
+        rules
+               agreed in the service level.
       type: string
       enum:
         - DEBT
@@ -1875,21 +1918,26 @@ components:
         ChargeType3Choice
         Specifies the type of charge.
       type: object
-      properties:
-        Cd:
-          description: |
-            Code
-            Charge type, in a coded form.
-          $ref: "#/components/schemas/ExternalChargeType1Code"
-        Prtry:
-          description: |
-            Proprietary
-            Type of charge in a proprietary form, as defined by the issuer.
-          $ref: "#/components/schemas/GenericIdentification3"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalChargeType1Code"
+                - description: |
+                    Code
+                    Charge type, in a coded form.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/GenericIdentification3"
+                - description: >
+                    Proprietary
+
+                    Type of charge in a proprietary form, as defined by the
+                    issuer.
+          required:
             - Prtry
       example:
         Cd: CASH
@@ -1902,24 +1950,26 @@ components:
       type: object
       properties:
         Amt:
-          description: |
-            Amount
-
-             Transaction charges to be paid by the charge bearer.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - description: |
+                Amount
+                Transaction charges to be paid by the charge bearer.
         Agt:
-          description: >
-            Agent
+          allOf:
+            - $ref: >-
+                #/components/schemas/BranchAndFinancialInstitutionIdentification8
+            - description: >
+                Agent
 
-            Agent that takes the transaction charges or to which the transaction
-            charges are due.
-          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+                Agent that takes the transaction charges or to which the
+                transaction charges are due.
         Tp:
-          description: |
-            Type
-
-             Defines the type of charges.
-          $ref: "#/components/schemas/ChargeType3Choice"
+          allOf:
+            - $ref: "#/components/schemas/ChargeType3Choice"
+            - description: |
+                Type
+                Defines the type of charges.
       required:
         - Amt
         - Agt
@@ -1938,18 +1988,21 @@ components:
       title: ClearingChannel2Code
       description: >
         Specifies the clearing channel for the routing of the transaction, as
-        part of the payment type identification.
+        part of
 
-        RTGS RealTimeGrossSettlementSystem Clearing channel is a real-time gross
+        the payment type identification.
+
+
+        RTGS: RealTimeGrossSettlementSystem Clearing channel is a real-time
+        gross settlement system.
+
+        RTNS: RealTimeNetSettlementSystem Clearing channel is a real-time net
         settlement system.
 
-        RTNS RealTimeNetSettlementSystem Clearing channel is a real-time net
+        MPNS: MassPaymentNetSystem Clearing channel is a mass payment  net
         settlement system.
 
-        MPNS MassPaymentNetSystem Clearing channel is a mass payment  net
-        settlement system.
-
-        BOOK BookTransfer Payment through internal book transfer.
+        BOOK: BookTransfer Payment through internal book transfer.
       type: string
       enum:
         - RTGS
@@ -1960,28 +2013,32 @@ components:
     ClearingSystemIdentification2Choice:
       title: ClearingSystemIdentification2Choice
       description: |
-        Choice of a clearing system identifier.
+        Specifies the clearing system identification.
       type: object
-      properties:
-        Cd:
-          description: |
-            Code
-            Identification of a member of a clearing system
-          $ref: "#/components/schemas/ExternalClearingSystemIdentification1Code"
-        Prtry:
-          description: >
-            Proprietary
-
-            Identification code for a clearing system, that has not yet been
-            identified in the list of clearing systems.
-          $ref: "#/components/schemas/Max35Text"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: >-
+                    #/components/schemas/ExternalClearingSystemIdentification1Code
+                - description: >
+                    Code
+
+                    Clearing system identification code, as published in an
+                    external list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+                    Proprietary identification of the clearing system.
+          required:
             - Prtry
       example:
-        Cd: CHQB
+        Cd: CHIPS
     ClearingSystemMemberIdentification2:
       title: ClearingSystemMemberIdentification2
       description: >
@@ -1990,17 +2047,20 @@ components:
       type: object
       properties:
         ClrSysId:
-          description: >
-            ClearingSystemIdentification.
+          allOf:
+            - $ref: "#/components/schemas/ClearingSystemIdentification2Choice"
+            - description: >
+                ClearingSystemIdentification
 
-            Specification of a pre-agreed offering between clearing agents or
-            the channel through which the payment instruction is processed.
-          $ref: "#/components/schemas/ClearingSystemIdentification2Choice"
+                Specification of a pre-agreed offering between clearing agents
+                or the channel through which the payment instruction is
+                processed.
         MmbId:
-          description: |
-            MemberIdentification.
-            Identification of a member of a clearing system.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                MemberIdentification
+                Identification of a member of a clearing system.
       required:
         - MmbId
       example:
@@ -2014,80 +2074,95 @@ components:
       type: object
       properties:
         NmPrfx:
-          description: |
-            NamePrefix
-            Specifies the terms used to formally address a person.
-          $ref: "#/components/schemas/NamePrefix2Code"
+          allOf:
+            - $ref: "#/components/schemas/NamePrefix2Code"
+            - description: |
+                NamePrefix
+                Specifies the terms used to formally address a person.
         Nm:
-          description: >
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                Name
 
-            Name by which a party is known and which is usually used to identify
-            that party.
-          $ref: "#/components/schemas/Max140Text"
+                Name by which a party is known and which is usually used to
+                identify that party.
         PhneNb:
-          description: >
-            PhoneNumber
+          allOf:
+            - $ref: "#/components/schemas/PhoneNumber"
+            - description: >
+                PhoneNumber
 
-            Collection of information that identifies a phone number, as defined
-            by telecom services.
-          $ref: "#/components/schemas/PhoneNumber"
+                Collection of information that identifies a phone number, as
+                defined by telecom services.
         MobNb:
-          description: >
-            MobilePhoneNumber
+          allOf:
+            - $ref: "#/components/schemas/PhoneNumber"
+            - description: >
+                MobilePhoneNumber
 
-            Collection of information that identifies a mobile phone number, as
-            defined by telecom services.
-          $ref: "#/components/schemas/PhoneNumber"
+                Collection of information that identifies a mobile phone number,
+                as defined by telecom services.
         FaxNb:
-          description: >
-            FaxNumber
+          allOf:
+            - $ref: "#/components/schemas/PhoneNumber"
+            - description: >
+                FaxNumber
 
-            Collection of information that identifies a fax number, as defined
-            by telecom services.
-          $ref: "#/components/schemas/PhoneNumber"
+                Collection of information that identifies a fax number, as
+                defined by telecom services.
         URLAdr:
-          description: >
-            URLAddress
+          allOf:
+            - $ref: "#/components/schemas/Max2048Text"
+            - description: >
+                URLAddress
 
-            Address for the Universal Resource Locator (URL), for example an
-            address used over the www (HTTP) service.
-          $ref: "#/components/schemas/Max2048Text"
+                Address for the Universal Resource Locator (URL), for example an
+                address used over the www (HTTP) service.
         EmailAdr:
-          description: |
-            EmailAddress
-            Address for electronic mail (e-mail).
-          $ref: "#/components/schemas/Max256Text"
+          allOf:
+            - $ref: "#/components/schemas/Max256Text"
+            - description: |
+                EmailAddress
+                Address for electronic mail (e-mail).
         EmailPurp:
-          description: |
-            EmailPurpose
-            Purpose for which an email address may be used.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                EmailPurpose
+                Purpose for which an email address may be used.
         JobTitl:
-          description: |
-            JobTitle
-            Title of the function.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                JobTitle
+                Title of the function.
         Rspnsblty:
-          description: |
-            Responsibility
-            Role of a person in an organisation.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Responsibility
+                Role of a person in an organisation.
         Dept:
-          description: |
-            Department
-            Identification of a division of a large organisation or building.
-          $ref: "#/components/schemas/Max70Text"
+          allOf:
+            - $ref: "#/components/schemas/Max70Text"
+            - description: >
+                Department
+
+                Identification of a division of a large organisation or
+                building.
         Othr:
-          description: |
-            OtherContact
-            Contact details in another form.
-          $ref: "#/components/schemas/OtherContact1"
+          allOf:
+            - $ref: "#/components/schemas/OtherContact1"
+            - description: |
+                OtherContact
+                Contact details in another form.
         PrefrdMtd:
-          description: |
-            PreferredContactMethod
-            Preferred method used to reach the contact.
-          $ref: "#/components/schemas/PreferredContactMethod2Code"
+          allOf:
+            - $ref: "#/components/schemas/PreferredContactMethod2Code"
+            - description: |
+                PreferredContactMethod
+                Preferred method used to reach the contact.
       example:
         NmPrfx: Mr
         Nm: John Doe
@@ -2103,73 +2178,87 @@ components:
       type: object
       properties:
         NmPrfx:
-          description: |
-            NamePrefix
-            Name prefix to be used before the name of the person.
-          $ref: "#/components/schemas/NamePrefix2Code"
+          allOf:
+            - $ref: "#/components/schemas/NamePrefix2Code"
+            - description: |
+                NamePrefix
+                Name prefix to be used before the name of the person.
         Nm:
-          description: >
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                Name
 
-            Name by which a party is known and which is usually used to identify
-            that party.
-          $ref: "#/components/schemas/Max140Text"
+                Name by which a party is known and which is usually used to
+                identify that party.
         PhneNb:
-          description: >
-            PhoneNumber
+          allOf:
+            - $ref: "#/components/schemas/PhoneNumber"
+            - description: >
+                PhoneNumber
 
-            Collection of information that identifies a phone number, as defined
-            by telecom services.
-          $ref: "#/components/schemas/PhoneNumber"
+                Collection of information that identifies a phone number, as
+                defined by telecom services.
         MobNb:
-          description: >
-            MobilePhoneNumber
+          allOf:
+            - $ref: "#/components/schemas/PhoneNumber"
+            - description: >
+                MobilePhoneNumber
 
-            Collection of information that identifies a mobile phone number, as
-            defined by telecom services.
-          $ref: "#/components/schemas/PhoneNumber"
+                Collection of information that identifies a mobile phone number,
+                as defined by telecom services.
         FaxNb:
-          description: >
-            FaxNumber
+          allOf:
+            - $ref: "#/components/schemas/PhoneNumber"
+            - description: >
+                FaxNumber
 
-            Collection of information that identifies a fax number, as defined
-            by telecom services.
-          $ref: "#/components/schemas/PhoneNumber"
+                Collection of information that identifies a fax number, as
+                defined by telecom services.
         EmailAdr:
-          description: |
-            EmailAddress
-            Address for electronic mail (e-mail).
-          $ref: "#/components/schemas/Max2048Text"
+          allOf:
+            - $ref: "#/components/schemas/Max2048Text"
+            - description: |
+                EmailAddress
+                Address for electronic mail (e-mail).
         EmailPurp:
-          description: |
-            EmailPurpose
-            Purpose for which an email address may be used.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                EmailPurpose
+                Purpose for which an email address may be used.
         JobTitl:
-          description: |
-            JobTitle
-            Title of the function.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                JobTitle
+                Title of the function.
         Rspnsblty:
-          description: |
-            Responsibility
-            Role of a person in an organisation.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Responsibility
+                Role of a person in an organisation.
         Dept:
-          description: |
-            Department
-            Identification of a division of a large organisation or building.
-          $ref: "#/components/schemas/Max70Text"
+          allOf:
+            - $ref: "#/components/schemas/Max70Text"
+            - description: >
+                Department
+
+                Identification of a division of a large organisation or
+                building.
         Othr:
-          description: |
-            Other
-            : Contact details in another form.
-          $ref: "#/components/schemas/OtherContact1"
+          allOf:
+            - $ref: "#/components/schemas/OtherContact1"
+            - description: |
+                Other
+                Contact details in another form.
         PrefrdMtd:
-          description: |
-            PreferredMethod
-            Preferred method used to reach the contact.
-          $ref: "#/components/schemas/PreferredContactMethod1Code"
+          allOf:
+            - $ref: "#/components/schemas/PreferredContactMethod1Code"
+            - description: |
+                PreferredMethod
+                Preferred method used to reach the contact.
       example:
         NmPrfx: Mr
         Nm: John Doe
@@ -2194,116 +2283,130 @@ components:
       type: object
       properties:
         PmtId:
-          description: |
-            PaymentIdentification
-            Set of elements used to reference a payment instruction.
-          $ref: "#/components/schemas/PaymentIdentification13"
+          allOf:
+            - $ref: "#/components/schemas/PaymentIdentification13"
+            - description: |
+                PaymentIdentification
+                Set of elements used to reference a payment instruction.
         PmtTpInf:
-          description: |
-            PaymentTypeInformation
-
-             Set of elements used to further specify the type of transaction.
-          $ref: "#/components/schemas/PaymentTypeInformation28"
+          allOf:
+            - $ref: "#/components/schemas/PaymentTypeInformation28"
+            - description: |
+                PaymentTypeInformation
+                Set of elements used to further specify the type of transaction.
         IntrBkSttlmAmt:
-          description: >
-            InterbankSettlementAmount
+          allOf:
+            - $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+            - description: >
+                InterbankSettlementAmount
 
-            Amount of money moved between the instructing agent and the
-            instructed agent.
-          $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+                Amount of money moved between the instructing agent and the
+                instructed agent.
         InstdAmt:
-          description: >
-            InstructedAmount
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - description: >
+                InstructedAmount
 
-            Amount of money to be moved between the debtor and creditor, before
-            deduction of charges, expressed in the currency as ordered by the
-            initiating party.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+                Amount of money to be moved between the debtor and creditor,
+                before deduction of charges, expressed in the currency as
+                ordered by the initiating party.
         XchgRate:
-          description: >
-            ExchangeRate
+          allOf:
+            - $ref: "#/components/schemas/BaseOneRate"
+            - description: >
+                ExchangeRate
 
-            Factor used to convert an amount from one currency into another.
-            This reflects the price at which one currency was bought with
-            another currency.
-          $ref: "#/components/schemas/BaseOneRate"
+                Factor used to convert an amount from one currency into another.
+                This reflects the price at which one currency was bought with
+                another currency.
         ChrgBr:
-          description: >
-            ChargeBearer
-
-            Specifies which party/parties will bear the charges associated with
-            the processing of the payment transaction.
           $ref: "#/components/schemas/ChargeBearerType1Code"
         ChrgsInf:
-          description: >
-            ChargesInformation
+          allOf:
+            - $ref: "#/components/schemas/Charges16"
+            - description: >
+                ChargesInformation
 
-            Provides information on the charges to be paid by the charge
-            bearer(s) related to the payment transaction
-          $ref: "#/components/schemas/Charges16"
+                Provides information on the charges to be paid by the charge
+                bearer(s) related to the payment transaction.
         Dbtr:
-          description: |
-            Debtor
-            Party that owes an amount of money to the (ultimate) creditor.
-          $ref: "#/components/schemas/PartyIdentification272"
+          allOf:
+            - $ref: "#/components/schemas/PartyIdentification272"
+            - description: |
+                Debtor
+                Party that owes an amount of money to the (ultimate) creditor.
         DbtrAcct:
-          description: >
-            DebtorAccount
+          allOf:
+            - $ref: "#/components/schemas/CashAccount40"
+            - description: >
+                DebtorAccount
 
-            Unambiguous identification of the account of the debtor to which a
-            debit entry will be made as a result of the transaction.
-          $ref: "#/components/schemas/CashAccount40"
+                Unambiguous identification of the account of the debtor to which
+                a debit entry will be made as a result of the transaction.
         DbtrAgt:
-          description: |
-            DebtorAgent
-            Financial institution servicing an account for the debtor.
-          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+          allOf:
+            - $ref: >-
+                #/components/schemas/BranchAndFinancialInstitutionIdentification8
+            - description: |
+                DebtorAgent
+                Financial institution servicing an account for the debtor.
         CdtrAgt:
-          description: |
-            CreditorAgent
-            Financial institution servicing an account for the creditor.
-          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+          allOf:
+            - $ref: >-
+                #/components/schemas/BranchAndFinancialInstitutionIdentification8
+            - description: |
+                CreditorAgent
+                Financial institution servicing an account for the creditor.
         Cdtr:
-          description: |
-            Creditor
-            Party to which an amount of money is due.
-          $ref: "#/components/schemas/PartyIdentification272"
+          allOf:
+            - $ref: "#/components/schemas/PartyIdentification272"
+            - description: |
+                Creditor
+                Party to which an amount of money is due.
         CdtrAcct:
-          description: >
-            CreditorAccount
+          allOf:
+            - $ref: "#/components/schemas/CashAccount40"
+            - description: >
+                CreditorAccount
 
-            Unambiguous identification of the account of the creditor to which a
-            credit entry will be posted as a result of the payment transaction.
-          $ref: "#/components/schemas/CashAccount40"
+                Unambiguous identification of the account of the creditor to
+                which a credit entry will be posted as a result of the payment
+                transaction.
         InstrForCdtrAgt:
-          description: >
-            InstructionForCreditorAgent
+          allOf:
+            - $ref: "#/components/schemas/InstructionForCreditorAgent3"
+            - description: >
+                InstructionForCreditorAgent
 
-            Set of elements used to provide information on the remittance
-            advice.
-          $ref: "#/components/schemas/InstructionForCreditorAgent3"
+                Set of elements used to provide information on the remittance
+                advice.
         InstrForNxtAgt:
-          description: >
-            InstructionForNextAgent
+          allOf:
+            - $ref: "#/components/schemas/InstructionForNextAgent1"
+            - description: >
+                InstructionForNextAgent
 
-            Set of elements used to provide information on the remittance
-            advice.
-          $ref: "#/components/schemas/InstructionForNextAgent1"
+                Set of elements used to provide information on the remittance
+                advice.
         Purp:
-          description: |
-            Purpose
-            Underlying reason for the payment transaction.
-          $ref: "#/components/schemas/Purpose2Choice"
+          allOf:
+            - $ref: "#/components/schemas/Purpose2Choice"
+            - description: |
+                Purpose
+                Underlying reason for the payment transaction.
         RgltryRptg:
-          description: |
-            RegulatoryReporting
-            Information needed due to regulatory and statutory requirements.
-          $ref: "#/components/schemas/RegulatoryReporting3"
+          allOf:
+            - $ref: "#/components/schemas/RegulatoryReporting3"
+            - description: |
+                RegulatoryReporting
+                Information needed due to regulatory and statutory requirements.
         Tax:
-          description: |
-            Tax
-            Provides details on the tax.
-          $ref: "#/components/schemas/TaxData1"
+          allOf:
+            - $ref: "#/components/schemas/TaxData1"
+            - description: |
+                Tax
+                Provides details on the tax.
         VrfctnOfTerms:
           $ref: "#/components/schemas/CryptographicLockChoice"
       required:
@@ -2394,72 +2497,87 @@ components:
       type: object
       properties:
         PmtId:
-          description: |
-            PaymentIdentification
-            Set of elements used to reference a payment instruction.
-          $ref: "#/components/schemas/PaymentIdentification13"
+          allOf:
+            - $ref: "#/components/schemas/PaymentIdentification13"
+            - description: |
+                PaymentIdentification
+                Set of elements used to reference a payment instruction.
         PmtTpInf:
-          description: |
-            PaymentTypeInformation
-
-             Set of elements used to further specify the type of transaction.
-          $ref: "#/components/schemas/PaymentTypeInformation28"
+          allOf:
+            - $ref: "#/components/schemas/PaymentTypeInformation28"
+            - description: |
+                PaymentTypeInformation
+                Set of elements used to further specify the type of transaction.
         IntrBkSttlmAmt:
-          description: >
-            InterbankSettlementAmount
+          allOf:
+            - $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+            - description: >
+                InterbankSettlementAmount
 
-            Amount of money moved between the instructing agent and the
-            instructed agent.
-          $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+                Amount of money moved between the instructing agent and the
+                instructed agent.
         Dbtr:
-          description: |
-            Debtor
-            Party that owes an amount of money to the (ultimate) creditor.
-          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+          allOf:
+            - $ref: >-
+                #/components/schemas/BranchAndFinancialInstitutionIdentification8
+            - description: |
+                Debtor
+                Party that owes an amount of money to the (ultimate) creditor.
         DbtrAcct:
-          description: |
-            DebtorAccount
-            Account used to process a payment.
-          $ref: "#/components/schemas/CashAccount40"
+          allOf:
+            - $ref: "#/components/schemas/CashAccount40"
+            - description: |
+                DebtorAccount
+                Account used to process a payment.
         DbtrAgt:
-          description: |
-            DebtorAgent
-            Financial institution servicing an account for the debtor.
-          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+          allOf:
+            - $ref: >-
+                #/components/schemas/BranchAndFinancialInstitutionIdentification8
+            - description: |
+                DebtorAgent
+                Financial institution servicing an account for the debtor.
         CdtrAgt:
-          description: |
-            CreditorAgent
-            Financial institution servicing an account for the creditor.
-          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+          allOf:
+            - $ref: >-
+                #/components/schemas/BranchAndFinancialInstitutionIdentification8
+            - description: |
+                CreditorAgent
+                Financial institution servicing an account for the creditor.
         Cdtr:
-          description: |
-            Creditor
-            Party to which an amount of money is due.
-          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification8"
+          allOf:
+            - $ref: >-
+                #/components/schemas/BranchAndFinancialInstitutionIdentification8
+            - description: |
+                Creditor
+                Party to which an amount of money is due.
         CdtrAcct:
-          description: |
-            CreditorAccount
-            Account to which a credit entry is made.
-          $ref: "#/components/schemas/CashAccount40"
+          allOf:
+            - $ref: "#/components/schemas/CashAccount40"
+            - description: |
+                CreditorAccount
+                Account to which a credit entry is made.
         InstrForCdtrAgt:
-          description: >
-            InstructionForCreditorAgent
+          allOf:
+            - $ref: "#/components/schemas/InstructionForCreditorAgent3"
+            - description: >
+                InstructionForCreditorAgent
 
-            Set of elements used to provide information on the remittance
-            advice.
-          $ref: "#/components/schemas/InstructionForCreditorAgent3"
+                Set of elements used to provide information on the remittance
+                advice.
         Purp:
-          description: |
-            Purpose
-            Underlying reason for the payment transaction.
-          $ref: "#/components/schemas/Purpose2Choice"
+          allOf:
+            - $ref: "#/components/schemas/Purpose2Choice"
+            - description: |
+                Purpose
+                Underlying reason for the payment transaction.
         VrfctnOfTerms:
-          description: >
-            VerificationOfTerms
+          allOf:
+            - $ref: "#/components/schemas/CryptographicLockChoice"
+            - description: >
+                VerificationOfTerms
 
-            Set of elements used to provide information on the underlying terms
-            of the transaction.
-          $ref: "#/components/schemas/CryptographicLockChoice"
+                Set of elements used to provide information on the underlying
+                terms of the transaction.
       required:
         - PmtId
         - IntrBkSttlmAmt
@@ -2502,17 +2620,25 @@ components:
     CryptographicLockChoice:
       title: CryptographicLockChoice
       description: |
-        NOTE: Unsure on description.
+        Cryptographically signed terms
       type: object
-      properties:
-        IlpV4PrepPacket:
-          $ref: "#/components/schemas/hexBinary"
-        Sh256Sgntr:
-          $ref: "#/components/schemas/Exact32HexBinaryText"
       oneOf:
-        - required:
+        - properties:
+            IlpV4PrepPacket:
+              allOf:
+                - $ref: "#/components/schemas/hexBinary"
+                - description: >
+                    Interledger Protocol packet (ILPv4) containing
+                    Cryptographically signed terms
+          required:
             - IlpV4PrepPacket
-        - required:
+        - properties:
+            Sh256Sgntr:
+              allOf:
+                - $ref: "#/components/schemas/Exact32HexBinaryText"
+                - description: |
+                    SHA-256 signature of the terms
+          required:
             - Sh256Sgntr
       example:
         IlpV4PrepPacket: 1234567890ABCDEF
@@ -2523,25 +2649,29 @@ components:
       type: object
       properties:
         BirthDt:
-          description: |
-            BirthDate
-            Date on which a person is born.
-          $ref: "#/components/schemas/ISODate"
+          allOf:
+            - $ref: "#/components/schemas/ISODate"
+            - description: |
+                BirthDate
+                Date on which a person was born.
         PrvcOfBirth:
-          description: |
-            ProvinceOfBirth
-            Province where a person was born.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                ProvinceOfBirth
+                Province where a person was born.
         CityOfBirth:
-          description: |
-            CityOfBirth
-            City where a person was born.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                CityOfBirth
+                City where a person was born.
         CtryOfBirth:
-          description: |
-            CountryOfBirth
-            Country where a person was born.
-          $ref: "#/components/schemas/CountryCode"
+          allOf:
+            - $ref: "#/components/schemas/CountryCode"
+            - description: |
+                CountryOfBirth
+                Country where a person was born.
       required:
         - BirthDt
         - CityOfBirth
@@ -2558,21 +2688,23 @@ components:
       type: object
       properties:
         FrDt:
-          description: |
-            FromDate
-            Start date of the range.
-          $ref: "#/components/schemas/ISODate"
+          allOf:
+            - $ref: "#/components/schemas/ISODate"
+            - description: |
+                FromDate
+                Start date of the range.
         ToDt:
-          description: |
-            ToDate
-            End date of the range.
-          $ref: "#/components/schemas/ISODate"
+          allOf:
+            - $ref: "#/components/schemas/ISODate"
+            - description: |
+                ToDate
+                End date of the range.
       required:
         - FrDt
         - ToDt
       example:
-        FrDt: "2022-01-01T00:00:00.000Z"
-        ToDt: "2022-12-31T23:59:59.999Z"
+        FrDt: "2022-01-01"
+        ToDt: "2022-12-31"
     ErrorCode:
       title: ErrorCode
       type: string
@@ -2634,13 +2766,21 @@ components:
       type: object
       properties:
         GrpHdr:
-          description: |
-            GroupHeader.
-          $ref: "#/components/schemas/GroupHeader129"
+          allOf:
+            - $ref: "#/components/schemas/GroupHeader129"
+            - description: >
+                Group Header
+
+                Set of characteristics shared by all individual transactions
+                included in the message.
         CdtTrfTxInf:
-          description: |
-            CreditTransferTransactionInformation.
-          $ref: "#/components/schemas/CreditTransferTransaction67"
+          allOf:
+            - $ref: "#/components/schemas/CreditTransferTransaction67"
+            - description: >
+                Credit Transfer Transaction Information
+
+                Set of elements providing information specific to the individual
+                credit transfer(s).
       required:
         - GrpHdr
         - CdtTrfTxInf
@@ -2659,26 +2799,6 @@ components:
               Nm: John Doe
             SttlmAcctSvcr:
               BICFI: 123
-          CdtTrfTxInf:
-            PmtId:
-              InstrId: 123
-              EndToEndId: 123
-            PmtTpInf:
-              InstrPrty: NORM
-            InstdAmt:
-              Amt: 123
-              Ccy: EUR
-            ChrgBr: SLEV
-            CdtrAgt:
-              FinInstnId:
-                BICFI: 123
-            Cdtr:
-              Nm: John Doe
-            CdtrAcct:
-              Id:
-                IBAN: 123
-            RmtInf:
-              Ustrd: Test
         CdtTrfTxInf:
           PmtId:
             InstrId: 123
@@ -2769,78 +2889,93 @@ components:
       example: 1234
     ExternalChargeType1Code:
       title: ExternalChargeType1Code
+      description: |
+        Specifies the type of charge applied to the transaction.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalClearingSystemIdentification1Code:
       title: ExternalClearingSystemIdentification1Code
+      description: |
+        Specifies the external clearing system identification code.
       type: string
       minLength: 1
       maxLength: 5
       example: 12345
     ExternalCreditorAgentInstruction1Code:
       title: ExternalCreditorAgentInstruction1Code
+      description: Specifies the instruction given by the creditor to the creditor agent.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalFinancialInstitutionIdentification1Code:
       title: ExternalFinancialInstitutionIdentification1Code
+      description: Specifies the external financial institution identification code.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalLocalInstrument1Code:
       title: ExternalLocalInstrument1Code
+      description: Specifies the external local instrument identification code.
       type: string
       minLength: 1
       maxLength: 35
       example: 12345
     ExternalOrganisationIdentification1Code:
       title: ExternalOrganisationIdentification1Code
+      description: Specifies the external organisation identification code.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalPaymentTransactionStatus1Code:
       title: ExternalPaymentTransactionStatus1Code
+      description: Specifies the external payment transaction status code.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalPersonIdentification1Code:
       title: ExternalPersonIdentification1Code
+      description: Specifies the external person identification code.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalProxyAccountType1Code:
       title: ExternalProxyAccountType1Code
+      description: Specifies the external proxy account type code.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalPurpose1Code:
       title: ExternalPurpose1Code
+      description: Specifies the external purpose code.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalServiceLevel1Code:
       title: ExternalServiceLevel1Code
+      description: Specifies the external service level code.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalStatusReason1Code:
       title: ExternalStatusReason1Code
+      description: Specifies the external status reason code.
       type: string
       minLength: 1
       maxLength: 4
       example: 1234
     ExternalVerificationReason1Code:
       title: ExternalVerificationReason1Code
+      description: Specifies the external verification reason code.
       type: string
       minLength: 1
       maxLength: 4
@@ -2848,69 +2983,85 @@ components:
     FinancialIdentificationSchemeName1Choice:
       title: FinancialIdentificationSchemeName1Choice
       type: object
-      properties:
-        Cd:
-          description: >
-            Code
-
-            Name of the identification scheme, in a coded form as published in
-            an external list.
-          $ref: "#/components/schemas/ExternalFinancialInstitutionIdentification1Code"
-        Prtry:
-          description: |
-            Proprietary
-            Name of the identification scheme, in a free text form.
-          $ref: "#/components/schemas/Max35Text"
+      description: |
+        Specifies the name of the identification scheme.
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: >-
+                    #/components/schemas/ExternalFinancialInstitutionIdentification1Code
+                - description: >
+                    Code
+
+                    Name of the identification scheme, in a coded form as
+                    published in an external list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+                    Name of the identification scheme, in a free text form.
+          required:
             - Prtry
       example:
         Cd: BIC
     FinancialInstitutionIdentification18:
       title: FinancialInstitutionIdentification18
       type: object
+      description: |
+        Information used to identify a financial institution.
       properties:
         BICFI:
-          description: >
-            BICFI
+          allOf:
+            - $ref: "#/components/schemas/BICFIDec2014Identifier"
+            - description: >
+                BICFI  
 
-            Code allocated to a financial institution by the ISO 9362
-            Registration Authority as described in ISO 9362 "Banking - Banking
-            telecommunication messages - Business identifier code (BIC)"
-          $ref: "#/components/schemas/BICFIDec2014Identifier"
+                Code allocated to a financial institution by the ISO 9362
+                Registration Authority as described in ISO 9362 "Banking -
+                Banking telecommunication messages - Business identifier code
+                (BIC)"
         ClrSysMmbId:
-          description: |
-            ClearingSystemMemberIdentification
-            Information used to identify a member within a clearing system
-          $ref: "#/components/schemas/ClearingSystemMemberIdentification2"
+          allOf:
+            - $ref: "#/components/schemas/ClearingSystemMemberIdentification2"
+            - description: |
+                ClearingSystemMemberIdentification
+                Information used to identify a member within a clearing system
         LEI:
-          description: |
-            LEI
-            Legal entity identifier of the financial institution.
-          $ref: "#/components/schemas/LEIIdentifier"
+          allOf:
+            - $ref: "#/components/schemas/LEIIdentifier"
+            - description: |
+                LEI
+                Legal entity identifier of the financial institution.
         Nm:
-          description: >
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                Name
 
-            Name by which an agent is known and which is usually used to
-            identify that agent
-          $ref: "#/components/schemas/Max140Text"
+                Name by which an agent is known and which is usually used to
+                identify that agent
         PstlAdr:
-          description: >
-            PostalAddress
+          allOf:
+            - $ref: "#/components/schemas/PostalAddress24"
+            - description: >
+                PostalAddress
 
-            Information that locates and identifies a specific address, as
-            defined by postal services.
-          $ref: "#/components/schemas/PostalAddress24"
+                Information that locates and identifies a specific address, as
+                defined by postal services.
         Othr:
-          description: >
-            Other
+          allOf:
+            - $ref: "#/components/schemas/GenericFinancialIdentification1"
+            - description: >
+                Other
 
-            Unique identification of an agent, as assigned by an institution,
-            using an identification scheme.
-          $ref: "#/components/schemas/GenericFinancialIdentification1"
+                Unique identification of an agent, as assigned by an
+                institution, using an identification scheme.
+      required: []
       example:
         BICFI: J5BMVH7D
         ClrSysMmbId:
@@ -2938,52 +3089,61 @@ components:
     FinancialInstitutionIdentification23:
       title: FinancialInstitutionIdentification23
       type: object
+      description: |
+        Information used to identify a financial institution.
       properties:
         BICFI:
-          description: >
-            BICFI
+          allOf:
+            - $ref: "#/components/schemas/BICFIDec2014Identifier"
+            - description: >
+                BICFI
 
-            Code allocated to a financial institution by the ISO 9362
-            Registration Authority as described in ISO 9362 "Banking - Banking
-            telecommunication messages - Business identifier code (BIC)"
-          $ref: "#/components/schemas/BICFIDec2014Identifier"
+                Code allocated to a financial institution by the ISO 9362
+                Registration Authority as described in ISO 9362 "Banking -
+                Banking telecommunication messages - Business identifier code
+                (BIC)"
         ClrSysMmbId:
-          description: |
-            ClearingSystemMemberIdentification
-            Information used to identify a member within a clearing system
-          $ref: "#/components/schemas/ClearingSystemMemberIdentification2"
+          allOf:
+            - $ref: "#/components/schemas/ClearingSystemMemberIdentification2"
+            - description: |
+                ClearingSystemMemberIdentification
+                Information used to identify a member within a clearing system
         LEI:
-          description: |
-            LEI
-            Legal entity identifier of the financial institution.
-          $ref: "#/components/schemas/LEIIdentifier"
+          allOf:
+            - $ref: "#/components/schemas/LEIIdentifier"
+            - description: |
+                LEI
+                Legal entity identifier of the financial institution.
         Nm:
-          description: >
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                Name
 
-            Name by which an agent is known and which is usually used to
-            identify that agent
-          $ref: "#/components/schemas/Max140Text"
+                Name by which an agent is known and which is usually used to
+                identify that agent
         PstlAdr:
-          description: >
-            PostalAddress
+          allOf:
+            - $ref: "#/components/schemas/PostalAddress24"
+            - description: >
+                PostalAddress
 
-            Information that locates and identifies a specific address, as
-            defined by postal services.
-          $ref: "#/components/schemas/PostalAddress27"
+                Information that locates and identifies a specific address, as
+                defined by postal services.
         Othr:
-          description: >
-            Other
+          allOf:
+            - $ref: "#/components/schemas/GenericFinancialIdentification1"
+            - description: >
+                Other
 
-            Unique identification of an agent, as assigned by an institution,
-            using an identification scheme.
-          $ref: "#/components/schemas/GenericFinancialIdentification1"
+                Unique identification of an agent, as assigned by an
+                institution, using an identification scheme.
+      required: []
       example:
         BICFI: J5BMVH7D
         ClrSysMmbId:
-          ClrSysId:
-            Cd: CHQB
-          MmbId: 123456789
+          ClrSysId: 1234
+          MmbId: 123
         LEI: 123
         Nm: Name
         PstlAdr:
@@ -3000,19 +3160,26 @@ components:
         Othr:
           Id: 123
           SchmeNm:
-            Cd: CHQB
+            Cd: 123
+            Prtry: 123
           Issr: 123
     FxRequest_FICreditTransferProposal:
       title: FxRequest_FICreditTransferProposal
       type: object
+      description: >
+        FxRequest_FICreditTransferProposal
+
+        A group of elements providing information specific to the individual
+        credit transfer(s) included in the message.
       properties:
         GrpHdr:
-          description: >
-            GroupHeader
+          allOf:
+            - $ref: "#/components/schemas/GroupHeader113"
+            - description: >
+                GroupHeader
 
-            Set of characteristics shared by all individual transactions
-            included in the message.
-          $ref: "#/components/schemas/GroupHeader113"
+                Set of characteristics shared by all individual transactions
+                included in the message.
       required:
         - GrpHdr
       example:
@@ -3092,21 +3259,29 @@ components:
     FxResponse_FICreditTransferConfirmation:
       title: FxResponse_FICreditTransferConfirmation
       type: object
+      description: >
+        FxResponse_FICreditTransferConfirmation
+
+        The FxResponse_FICreditTransferConfirmation message is sent by the FSP
+        to the Payer FSP to confirm the successful processing of the credit
+        transfer.
       properties:
         GrpHdr:
-          description: >
-            GroupHeader
+          allOf:
+            - $ref: "#/components/schemas/GroupHeader113"
+            - description: >
+                GroupHeader
 
-            Set of characteristics shared by all individual transactions
-            included in the message.
-          $ref: "#/components/schemas/GroupHeader113"
+                Set of characteristics shared by all individual transactions
+                included in the message.
         CdtTrfTxInf:
-          description: >
-            CreditTransferTransactionInformation
+          allOf:
+            - $ref: "#/components/schemas/CreditTransferTransaction68"
+            - description: >
+                CreditTransferTransactionInformation
 
-            Set of elements providing information specific to the individual
-            credit transfer(s).
-          $ref: "#/components/schemas/CreditTransferTransaction68"
+                Set of elements providing information specific to the individual
+                credit transfer(s).
       required:
         - GrpHdr
         - CdtTrfTxInf
@@ -3184,21 +3359,29 @@ components:
     Fxecute_FinancialInstitutionCreditTransferV12:
       title: Fxecute_FinancialInstitutionCreditTransferV12
       type: object
+      description: >
+        The Fxecute FinancialInstitutionCreditTransfer message is sent by the
+        initiating party to the executing party to request the execution of a
+        payment. It is used to request movement of funds from the debtor account
+        to the creditor account. The message can carry multiple credit transfer
+        instructions. 
       properties:
         GrpHdr:
-          description: >
-            GroupHeader.
+          allOf:
+            - $ref: "#/components/schemas/GroupHeader129"
+            - description: >
+                GroupHeader.
 
-            Set of characteristics shared by all individual transactions
-            included in the message.
-          $ref: "#/components/schemas/GroupHeader129"
+                Set of characteristics shared by all individual transactions
+                included in the message.
         CdtTrfTxInf:
-          description: >
-            CreditTransferTransactionInformation.
+          allOf:
+            - $ref: "#/components/schemas/CreditTransferTransaction68"
+            - description: >
+                CreditTransferTransactionInformation.
 
-            Set of elements providing information specific to the individual
-            credit transfer(s).
-          $ref: "#/components/schemas/CreditTransferTransaction68"
+                Set of elements providing information specific to the individual
+                credit transfer(s).
       required:
         - GrpHdr
         - CdtTrfTxInf
@@ -3252,22 +3435,30 @@ components:
     GenericAccountIdentification1:
       title: GenericAccountIdentification1
       type: object
+      description: >
+        GenericAccountIdentification
+
+        Unique and unambiguous identification of an account, as assigned by the
+        account servicer.
       properties:
         Id:
-          description: |
-            Identification
-            Identification assigned by an institution.
-          $ref: "#/components/schemas/Max34Text"
+          allOf:
+            - $ref: "#/components/schemas/Max34Text"
+            - description: |
+                Identification
+                Identification assigned by an institution.
         SchmeNm:
-          description: |
-            SchemeName
-            Name of the identification scheme.
-          $ref: "#/components/schemas/AccountSchemeName1Choice"
+          allOf:
+            - $ref: "#/components/schemas/AccountSchemeName1Choice"
+            - description: |
+                SchemeName
+                Name of the identification scheme.
         Issr:
-          description: |
-            Issuer
-            Entity that assigns the identification.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Issuer
+                Entity that assigns the identification.
       required:
         - Id
       example:
@@ -3278,22 +3469,30 @@ components:
     GenericFinancialIdentification1:
       title: GenericFinancialIdentification1
       type: object
+      description: >
+        GenericFinancialIdentification
+
+        Unique and unambiguous identification of a person, which is used to
+        refer to a person in a financial context.
       properties:
         Id:
-          description: |
-            Identification
-            Unique and unambiguous identification of a person.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Identification
+                Unique and unambiguous identification of a person.
         SchmeNm:
-          description: |
-            SchemeName
-            Name of the identification scheme.
-          $ref: "#/components/schemas/FinancialIdentificationSchemeName1Choice"
+          allOf:
+            - $ref: "#/components/schemas/FinancialIdentificationSchemeName1Choice"
+            - description: |
+                SchemeName
+                Name of the identification scheme.
         Issr:
-          description: |
-            Issuer
-            Entity that assigns the identification.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Issuer
+                Entity that assigns the identification.
       required:
         - Id
       example:
@@ -3304,19 +3503,23 @@ components:
     GenericIdentification3:
       title: GenericIdentification3
       type: object
+      description: |
+        Generic scheme identification for a party.
       properties:
         Id:
-          description: >
-            Identification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Identification
 
-            Name or number assigned by an entity to enable recognition of that
-            entity, for example, account identifier.
-          $ref: "#/components/schemas/Max35Text"
+                Name or number assigned by an entity to enable recognition of
+                that entity, for example, account identifier.
         Issr:
-          description: |
-            Issuer
-            Entity that assigns the identification.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Issuer
+                Entity that assigns the identification.
       required:
         - Id
       example:
@@ -3325,24 +3528,29 @@ components:
     GenericIdentification30:
       title: GenericIdentification30
       type: object
+      description: |
+        Generic scheme identification for a party.
       properties:
         Id:
-          description: >
-            Identification
+          allOf:
+            - $ref: "#/components/schemas/Exact4AlphaNumericText"
+            - description: >
+                Identification
 
-            Proprietary information, often a code, issued by the data source
-            scheme issuer
-          $ref: "#/components/schemas/Exact4AlphaNumericText"
+                Proprietary information, often a code, issued by the data source
+                scheme issuer.
         Issr:
-          description: |
-            Issuer
-            Entity that assigns the identification.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Issuer
+                Entity that assigns the identification.
         SchmeNm:
-          description: |
-            SchemeName
-            Short textual description of the scheme.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                SchemeName
+                Short textual description of the scheme.
       required:
         - Id
         - Issr
@@ -3353,22 +3561,28 @@ components:
     GenericOrganisationIdentification1:
       title: GenericOrganisationIdentification1
       type: object
+      description: |
+        Information that locates and identifies an organisation.
       properties:
         Id:
-          description: |
-            Identification
-            Identification assigned by an institution.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Identification for an organisation. FSPIOP equivalent to Party
+                Identifier for an organisation in ISO 20022. Identification
+                assigned by an institution.
         SchmeNm:
-          description: |
-            SchemeName
-            Name of the identification scheme.
-          $ref: "#/components/schemas/OrganisationIdentificationSchemeName1Choice"
+          allOf:
+            - $ref: "#/components/schemas/OrganisationIdentificationSchemeName1Choice"
+            - description: |
+                SchemeName
+                Name of the identification scheme.
         Issr:
-          description: |
-            Issuer
-            Entity that assigns the identification.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Issuer
+                Entity that assigns the identification.
       required:
         - Id
       example:
@@ -3379,22 +3593,27 @@ components:
     GenericOrganisationIdentification3:
       title: GenericOrganisationIdentification3
       type: object
+      description: |
+        Information related to an identification of an organisation.
       properties:
         Id:
-          description: |
-            Identification
-            Identification assigned by an institution.
-          $ref: "#/components/schemas/Max256Text"
+          allOf:
+            - $ref: "#/components/schemas/Max256Text"
+            - description: |
+                Identification
+                Identification assigned by an institution.
         SchmeNm:
-          description: |-
-            SchemeName
-            Name of the identification scheme.
-          $ref: "#/components/schemas/OrganisationIdentificationSchemeName1Choice"
+          allOf:
+            - $ref: "#/components/schemas/OrganisationIdentificationSchemeName1Choice"
+            - description: |
+                SchemeName
+                Name of the identification scheme.
         Issr:
-          description: |
-            Issuer
-            Entity that assigns the identification.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Issuer
+                Entity that assigns the identification.
       required:
         - Id
       example:
@@ -3405,22 +3624,28 @@ components:
     GenericPersonIdentification1:
       title: GenericPersonIdentification1
       type: object
+      description: |
+        GenericPersonIdentification1
+        Information that locates and identifies a specific person.
       properties:
         Id:
-          description: |
-            Identification
-            Unique and unambiguous identification of a person.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Identification
+                Unique and unambiguous identification of a person.
         SchmeNm:
-          description: |
-            SchemeName
-            Name of the identification scheme.
-          $ref: "#/components/schemas/PersonIdentificationSchemeName1Choice"
+          allOf:
+            - $ref: "#/components/schemas/PersonIdentificationSchemeName1Choice"
+            - description: |
+                SchemeName
+                Name of the identification scheme.
         Issr:
-          description: |
-            Issuer
-            Entity that assigns the identification.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Issuer
+                Entity that assigns the identification.
       required:
         - Id
       example:
@@ -3431,22 +3656,26 @@ components:
     GenericPersonIdentification2:
       title: GenericPersonIdentification2
       type: object
+      description: Identification of a person.
       properties:
         Id:
-          description: |
-            Identification
-            Unique and unambiguous identification of a person.
-          $ref: "#/components/schemas/Max256Text"
+          allOf:
+            - $ref: "#/components/schemas/Max256Text"
+            - description: |
+                Identification
+                Unique and unambiguous identification of a person.
         SchmeNm:
-          description: |
-            SchemeName
-            Name of the identification scheme.
-          $ref: "#/components/schemas/PersonIdentificationSchemeName1Choice"
+          allOf:
+            - $ref: "#/components/schemas/PersonIdentificationSchemeName1Choice"
+            - description: |
+                SchemeName
+                Name of the identification scheme.
         Issr:
-          description: |
-            Issuer
-            Entity that assigns the identification.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Issuer
+                Entity that assigns the identification.
       required:
         - Id
       example:
@@ -3459,24 +3688,27 @@ components:
       type: object
       properties:
         Assgnmt:
-          description: |
-            Assignment
-            Information related to the identification assignment.
-          $ref: "#/components/schemas/IdentificationAssignment3"
+          allOf:
+            - $ref: "#/components/schemas/IdentificationAssignment3"
+            - description: |
+                Assignment
+                Information related to the identification assignment.
         Rpt:
-          description: >
-            Report
+          allOf:
+            - $ref: "#/components/schemas/VerificationReport4"
+            - description: >
+                Report
 
-            Information concerning the verification of the identification data
-            for which verification was requested.
-          $ref: "#/components/schemas/VerificationReport4"
+                Information concerning the verification of the identification
+                data for which verification was requested.
         SplmtryData:
-          description: >
-            SupplementaryData
+          allOf:
+            - $ref: "#/components/schemas/SupplementaryData1"
+            - description: >
+                SupplementaryData
 
-            Additional information that cannot be captured in the structured
-            elements and/or any other specific block.
-          $ref: "#/components/schemas/SupplementaryData1"
+                Additional information that cannot be captured in the structured
+                elements and/or any other specific block.
       required:
         - Assgnmt
         - Rpt
@@ -3530,24 +3762,27 @@ components:
       type: object
       properties:
         Assgnmt:
-          description: |
-            Assignment
-            Identifies the identification assignment.
-          $ref: "#/components/schemas/IdentificationAssignment3"
+          allOf:
+            - $ref: "#/components/schemas/IdentificationAssignment3"
+            - description: |
+                Assignment
+                Identifies the identification assignment.
         Rpt:
-          description: >
-            Report
+          allOf:
+            - $ref: "#/components/schemas/VerificationReport4"
+            - description: >
+                Report
 
-            Information concerning the verification of the identification data
-            for which verification was requested.
-          $ref: "#/components/schemas/VerificationReport4"
+                Information concerning the verification of the identification
+                data for which verification was requested.
         SplmtryData:
-          description: >
-            SupplementaryData
+          allOf:
+            - $ref: "#/components/schemas/SupplementaryData1"
+            - description: >
+                SupplementaryData
 
-            Additional information that cannot be captured in the structured
-            elements and/or any other specific block.
-          $ref: "#/components/schemas/SupplementaryData1"
+                Additional information that cannot be captured in the structured
+                elements and/or any other specific block.
       required:
         - Assgnmt
         - Rpt
@@ -3611,19 +3846,40 @@ components:
       type: object
       properties:
         MsgId:
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Message Identification
         CreDtTm:
-          $ref: "#/components/schemas/ISODateTime"
+          allOf:
+            - $ref: "#/components/schemas/ISODateTime"
+            - description: |
+                Creation Date and Time
         NbOfTxs:
-          $ref: "#/components/schemas/Max15NumericText"
+          allOf:
+            - $ref: "#/components/schemas/Max15NumericText"
+            - description: |
+                Number of Transactions
         TtlIntrBkSttlmAmt:
-          $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+          allOf:
+            - $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+            - description: |
+                Total Interbank Settlement Amount
         SttlmInf:
-          $ref: "#/components/schemas/SettlementInstruction15"
+          allOf:
+            - $ref: "#/components/schemas/SettlementInstruction15"
+            - description: |
+                Settlement Information
         PmtTpInf:
-          $ref: "#/components/schemas/PaymentTypeInformation28"
+          allOf:
+            - $ref: "#/components/schemas/PaymentTypeInformation28"
+            - description: |
+                Payment Type Information
         CdtTrfTxInf:
-          $ref: "#/components/schemas/CreditTransferTransaction68"
+          allOf:
+            - $ref: "#/components/schemas/CreditTransferTransaction68"
+            - description: |
+                Credit Transfer Transaction Information
       required:
         - MsgId
         - CreDtTm
@@ -3684,33 +3940,36 @@ components:
       type: object
       properties:
         MsgId:
-          description: >
-            MessageIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                MessageIdentification
 
-            Definition: Point to point reference, as assigned by the instructing
-            party, and sent to the next party in the chain to unambiguously
-            identify the message.
+                Definition: Point to point reference, as assigned by the
+                instructing party, and sent to the next party in the chain to
+                unambiguously identify the message.
 
-            Usage: The instructing party has to make sure that
-            MessageIdentification is unique per instructed party for a
-            pre-agreed period.
-          $ref: "#/components/schemas/Max35Text"
+                Usage: The instructing party has to make sure that
+                MessageIdentification is unique per instructed party for a
+                pre-agreed period.
         CreDtTm:
-          description: |
-            CreationDateTime
-            Date and time at which the message was created.
-          $ref: "#/components/schemas/ISODateTime"
+          allOf:
+            - $ref: "#/components/schemas/ISODateTime"
+            - description: |
+                CreationDateTime
+                Date and time at which the message was created.
         TxInfAndSts:
-          description: >
-            TransactionInformationAndStatus
+          allOf:
+            - $ref: "#/components/schemas/PaymentTransaction163"
+            - description: >
+                TransactionInformationAndStatus
 
-            Definition: Agent that instructs the next party in the chain to
-            carry out the (set of) instruction(s).
+                Definition: Agent that instructs the next party in the chain to
+                carry out the (set of) instruction(s).
 
-            Usage: The instructing agent is the party sending the status message
-            and not the party that sent the original instruction that is being
-            reported on.
-          $ref: "#/components/schemas/PaymentTransaction163"
+                Usage: The instructing agent is the party sending the status
+                message and not the party that sent the original instruction
+                that is being reported on.
       required:
         - MsgId
         - CreDtTm
@@ -3737,22 +3996,40 @@ components:
     GroupHeader129:
       title: GroupHeader129
       description: >
-        Set of characteristics shared by all individual transactions included in
-        the message.
+        Group Header Set of characteristics shared by all individual
+        transactions included in the message.
       type: object
       properties:
         MsgId:
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Message Identification
         CreDtTm:
-          $ref: "#/components/schemas/ISODateTime"
+          allOf:
+            - $ref: "#/components/schemas/ISODateTime"
+            - description: |
+                Creation Date and Time
         PmtInstrXpryDtTm:
-          $ref: "#/components/schemas/ISODateTime"
+          allOf:
+            - $ref: "#/components/schemas/ISODateTime"
+            - description: |
+                Payment Instruction Expiry Date and Time
         NbOfTxs:
-          $ref: "#/components/schemas/Max15NumericText"
+          allOf:
+            - $ref: "#/components/schemas/Max15NumericText"
+            - description: |
+                Number of Transactions
         SttlmInf:
-          $ref: "#/components/schemas/SettlementInstruction15"
+          allOf:
+            - $ref: "#/components/schemas/SettlementInstruction15"
+            - description: |
+                Settlement Information
         CdtTrfTxInf:
-          $ref: "#/components/schemas/CreditTransferTransaction67"
+          allOf:
+            - $ref: "#/components/schemas/CreditTransferTransaction67"
+            - description: |
+                Credit Transfer Transaction Information
       required:
         - MsgId
         - CreDtTm
@@ -3862,28 +4139,44 @@ components:
     IdentificationAssignment3:
       title: IdentificationAssignment3
       type: object
+      description: >
+        IdentificationAssignment
+
+        Information that unambiguously identifies a message, as assigned by the
+        assignor to the assignee.
       properties:
         MsgId:
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                MessageIdentification
+
+                Unique identification, as assigned by the assigner, to
+                unambiguously identify the message.
         CreDtTm:
-          description: |
-            CreationDateTime
-            Date and time at which the identification assignment was created.
-          $ref: "#/components/schemas/ISODateTime"
+          allOf:
+            - $ref: "#/components/schemas/ISODateTime"
+            - description: >
+                CreationDateTime
+
+                Date and time at which the identification assignment was
+                created.
         Assgnr:
-          description: >
-            Assignor
+          allOf:
+            - $ref: "#/components/schemas/Party40Choice"
+            - description: >
+                Assignor
 
-            Party that assigns the identification assignment to another party.
-            This is also the sender of the message.
-          $ref: "#/components/schemas/Party40Choice"
+                Party that assigns the identification assignment to another
+                party. This is also the sender of the message.
         Assgne:
-          description: >
-            Assignee
+          allOf:
+            - $ref: "#/components/schemas/Party40Choice"
+            - description: >
+                Assignee
 
-            Party that the identification assignment is assigned to. This is
-            also the receiver of the message.
-          $ref: "#/components/schemas/Party40Choice"
+                Party that the identification assignment is assigned to. This is
+                also the receiver of the message.
       required:
         - MsgId
         - CreDtTm
@@ -3909,24 +4202,32 @@ components:
     IdentificationInformation4:
       title: IdentificationInformation4
       type: object
+      description: |
+        Information that locates and identifies a specific party or account.
       properties:
         Pty:
-          description: >
-            Party
+          allOf:
+            - $ref: "#/components/schemas/PartyIdentification135"
+            - description: >
+                Party
 
-            Account owner that owes an amount of money or to whom an amount of
-            money is due.
-          $ref: "#/components/schemas/PartyIdentification135"
+                Account owner that owes an amount of money or to whom an amount
+                of money is due.
         Acct:
-          description: |
-            Account
-            Unambiguous identification of the account of a party.
-          $ref: "#/components/schemas/CashAccount40"
+          allOf:
+            - $ref: "#/components/schemas/CashAccount40"
+            - description: |
+                Account
+                Unambiguous identification of the account of a party.
         Agt:
-          description: |
-            Agent
-            Financial institution servicing an account for a party.
-          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
+          allOf:
+            - $ref: >-
+                #/components/schemas/BranchAndFinancialInstitutionIdentification6
+            - description: |
+                Agent
+                Financial institution servicing an account for a party.
+      required:
+        - Pty
       example:
         Pty:
           Id:
@@ -3958,12 +4259,14 @@ components:
       title: Instruction4Code
       description: >
         Specifies further instructions concerning the processing of a payment
+
         instruction, provided by the sending clearing agent to the next
         agent(s).
 
-        PHOA PhoneNextAgent Please advise/contact next agent by phone.
 
-        TELA TelecomNextAgent Please advise/contact next agent by the most
+        PHOA: PhoneNextAgent Please advise/contact next agent by phone.
+
+        TELA: TelecomNextAgent Please advise/contact next agent by the most
         efficient means of telecommunication.
       type: string
       enum:
@@ -3979,21 +4282,23 @@ components:
       type: object
       properties:
         Cd:
-          description: >
-            Code
+          allOf:
+            - $ref: "#/components/schemas/ExternalCreditorAgentInstruction1Code"
+            - description: >
+                Code
 
-            Coded information related to the processing of the payment
-            instruction, provided by the initiating party, and intended for the
-            creditor's agent.
-          $ref: "#/components/schemas/ExternalCreditorAgentInstruction1Code"
+                Coded information related to the processing of the payment
+                instruction, provided by the initiating party, and intended for
+                the creditor's agent.
         InstrInf:
-          description: >
-            InstructionInformation
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                InstructionInformation
 
-            Further information complementing the coded instruction or
-            instruction to the creditor's agent that is bilaterally agreed or
-            specific to a user community.
-          $ref: "#/components/schemas/Max140Text"
+                Further information complementing the coded instruction or
+                instruction to the creditor's agent that is bilaterally agreed
+                or specific to a user community.
       example:
         Cd: PHOA
         InstrInf: Please advise/contact next agent by phone.
@@ -4001,29 +4306,31 @@ components:
       title: InstructionForNextAgent1
       description: >
         Further information related to the processing of the payment
-        instruction, provided by the initiating party, and intended for the
-        creditor agent.
+        instruction, provided by the initiating party, and intended for the next
+        agent in the payment chain.
       type: object
       properties:
         Cd:
-          description: >
-            Code
+          allOf:
+            - $ref: "#/components/schemas/Instruction4Code"
+            - description: >
+                Code
 
-            Coded information related to the processing of the payment
-            instruction, provided by the initiating party, and intended for the
-            next agent in the payment chain.
-          $ref: "#/components/schemas/Instruction4Code"
+                Coded information related to the processing of the payment
+                instruction, provided by the initiating party, and intended for
+                the next agent in the payment chain.
         InstrInf:
-          description: >
-            InstructionInformation
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                InstructionInformation
 
-            Further information complementing the coded instruction or
-            instruction to the next agent that is bilaterally agreed or specific
-            to a user community.
-          $ref: "#/components/schemas/Max140Text"
+                Further information complementing the coded instruction or
+                instruction to the next agent that is bilaterally agreed or
+                specific to a user community.
       example:
         Cd: PHOA
-        InstrInf: Please advise/contact next agent by phone
+        InstrInf: Please advise/contact next agent by phone.
     LEIIdentifier:
       title: LEIIdentifier
       description: >
@@ -4036,23 +4343,29 @@ components:
     LocalInstrument2Choice:
       title: LocalInstrument2Choice
       type: object
-      properties:
-        Cd:
-          description: >
-            Code
-
-            Specifies the local instrument, as published in an external local
-            instrument code list.
-          $ref: "#/components/schemas/ExternalLocalInstrument1Code"
-        Prtry:
-          description: |
-            Proprietary
-            Specifies the local instrument, as a proprietary code
-          $ref: "#/components/schemas/Max35Text"
+      description: >
+        Specifies the local instrument, as published in an external local
+        instrument code list or as a proprietary code.
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalLocalInstrument1Code"
+                - description: >
+                    Code
+
+                    Specifies the local instrument, as published in an external
+                    local instrument code list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+                    Specifies the local instrument, as a proprietary code.
+          required:
             - Prtry
       example:
         Cd: CH03
@@ -4162,6 +4475,12 @@ components:
     NamePrefix2Code:
       description: |
         Specifies the terms used to formally address a person.
+
+        DOCT: Doctor or Dr
+        MADM: Madam
+        MISS: Miss
+        MIST: Mistress
+        MIKS: Mx
       enum:
         - DOCT
         - MADM
@@ -4182,24 +4501,27 @@ components:
       type: object
       properties:
         AnyBIC:
-          description: |
-            AnyBIC
-            Business identification code of the organisation.
-          $ref: "#/components/schemas/AnyBICDec2014Identifier"
+          allOf:
+            - $ref: "#/components/schemas/AnyBICDec2014Identifier"
+            - description: |
+                AnyBIC
+                Business identification code of the organisation.
         LEI:
-          description: >
-            LEI
+          allOf:
+            - $ref: "#/components/schemas/LEIIdentifier"
+            - description: >
+                LEI
 
-            Legal entity identification as an alternate identification for a
-            party.
-          $ref: "#/components/schemas/LEIIdentifier"
+                Legal entity identification as an alternate identification for a
+                party.
         Othr:
-          description: >
-            Other
+          allOf:
+            - $ref: "#/components/schemas/GenericOrganisationIdentification1"
+            - description: >
+                Other
 
-            Unique identification of an organisation, as assigned by an
-            institution, using an identification scheme.
-          $ref: "#/components/schemas/GenericOrganisationIdentification1"
+                Unique identification of an organisation, as assigned by an
+                institution, using an identification scheme.
       example:
         AnyBIC: BICFI
         LEI: 529900T8BM49AURSDO55
@@ -4215,24 +4537,27 @@ components:
       type: object
       properties:
         AnyBIC:
-          description: |
-            AnyBIC
-            Business identification code of the organisation.
-          $ref: "#/components/schemas/AnyBICDec2014Identifier"
+          allOf:
+            - $ref: "#/components/schemas/AnyBICDec2014Identifier"
+            - description: |
+                AnyBIC
+                Business identification code of the organisation.
         LEI:
-          description: >
-            LEI
+          allOf:
+            - $ref: "#/components/schemas/LEIIdentifier"
+            - description: >
+                LEI
 
-            Legal entity identification as an alternate identification for a
-            party.
-          $ref: "#/components/schemas/LEIIdentifier"
+                Legal entity identification as an alternate identification for a
+                party.
         Othr:
-          description: >
-            Other
+          allOf:
+            - $ref: "#/components/schemas/GenericOrganisationIdentification3"
+            - description: >
+                Other
 
-            Unique identification of an organisation, as assigned by an
-            institution, using an identification scheme.
-          $ref: "#/components/schemas/GenericOrganisationIdentification3"
+                Unique identification of an organisation, as assigned by an
+                institution, using an identification scheme.
       example:
         AnyBIC: BICFI
         LEI: 529900T8BM49AURSDO55
@@ -4248,22 +4573,24 @@ components:
       type: object
       properties:
         Cd:
-          description: >
-            Code
+          allOf:
+            - $ref: "#/components/schemas/ExternalOrganisationIdentification1Code"
+            - description: >
+                Code
 
-            Name of the identification scheme, in a coded form as published in
-            an external list.
-          $ref: "#/components/schemas/ExternalOrganisationIdentification1Code"
+                Name of the identification scheme, in a coded form as published
+                in an external list.
         Prtry:
-          description: |
-            Proprietary
-            Name of the identification scheme, in a free text form.
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Proprietary
+                Name of the identification scheme, in a free text form.
       oneOf:
-        - required:
-            - Cd
-        - required:
-            - Prtry
+        - properties:
+            Cd: {}
+        - properties:
+            Prtry: {}
       example:
         Cd: BIC
     OtherContact1:
@@ -4274,17 +4601,19 @@ components:
       type: object
       properties:
         ChanlTp:
-          description: >
-            ChannelType
+          allOf:
+            - $ref: "#/components/schemas/Max4Text"
+            - description: >
+                ChannelType
 
-            Method used to contact the financial institution's contact for the
-            specific tax region.
-          $ref: "#/components/schemas/Max4Text"
+                Method used to contact the financial institution's contact for
+                the specific tax region.
         Id:
-          description: |
-            Identifier
-            Communication value such as phone number or email address.
-          $ref: "#/components/schemas/Max128Text"
+          allOf:
+            - $ref: "#/components/schemas/Max128Text"
+            - description: |
+                Identifier
+                Communication value such as phone number or email address.
       required:
         - ChanlTp
       example:
@@ -4293,13 +4622,29 @@ components:
     PacsError_FIToFIPaymentStatusReportV15:
       title: PacsError_FIToFIPaymentStatusReportV15
       type: object
+      description: >
+        This message is sent by an account servicing institution to an account
+        owner. It is used to inform the account owner about the status of a
+        payment initiation.
       properties:
         GrpHdr:
-          $ref: "#/components/schemas/GroupHeader120"
+          allOf:
+            - $ref: "#/components/schemas/GroupHeader120"
+            - description: >
+                Set of characteristics shared by all individual transactions
+                included in the message.
         TxInfAndSts:
-          $ref: "#/components/schemas/PaymentTransaction163"
+          allOf:
+            - $ref: "#/components/schemas/PaymentTransaction163"
+            - description: >
+                Information concerning the original transactions, to which the
+                status report message refers.
         SplmtryData:
-          $ref: "#/components/schemas/SupplementaryData1"
+          allOf:
+            - $ref: "#/components/schemas/SupplementaryData1"
+            - description: >
+                Additional information that cannot be captured in the structured
+                elements and/or any other specific block.
       required:
         - GrpHdr
       example:
@@ -4328,12 +4673,19 @@ components:
           Envlp: ENVELOPE
     PacsStatus_FIToFIPaymentStatusReportV15:
       title: PacsStatus_FIToFIPaymentStatusReportV15
-      description: |
-        Unsure on description.
+      description: >-
+        The PacsStatus message is sent by a financial institution to another
+        financial institution as a response to the FIToFIPaymentStatusReport
+        message. The message provides information on the status of a payment
+        instruction and its underlying individual transactions.
       type: object
       properties:
         GrpHdr:
-          $ref: "#/components/schemas/GroupHeader120"
+          allOf:
+            - $ref: "#/components/schemas/GroupHeader120"
+            - description: >
+                Set of characteristics shared by all individual transactions
+                included in the message.
       required:
         - GrpHdr
       example:
@@ -4362,23 +4714,26 @@ components:
       description: |
         Nature or use of the account.
       type: object
-      properties:
-        OrgId:
-          description: |
-            Organisation
-            Unique and unambiguous way to identify an organisation.
-          $ref: "#/components/schemas/OrganisationIdentification29"
-        PrvtId:
-          description: >
-            PrivateIdentification
-
-            Unique and unambiguous identification of a person, for example a
-            passport.
-          $ref: "#/components/schemas/PersonIdentification13"
       oneOf:
-        - required:
+        - properties:
+            OrgId:
+              allOf:
+                - $ref: "#/components/schemas/OrganisationIdentification29"
+                - description: |
+                    Organisation
+                    Unique and unambiguous way to identify an organisation.
+          required:
             - OrgId
-        - required:
+        - properties:
+            PrvtId:
+              allOf:
+                - $ref: "#/components/schemas/PersonIdentification13"
+                - description: >
+                    PrivateIdentification
+
+                    Unique and unambiguous identification of a person, for
+                    example a passport.
+          required:
             - PrvtId
       example:
         OrgId:
@@ -4392,21 +4747,25 @@ components:
       description: |
         Identification of a person, an organisation or a financial institution.
       type: object
-      properties:
-        Pty:
-          description: |
-            Party
-            Identification of a person or an organisation.
-          $ref: "#/components/schemas/PartyIdentification135"
-        Agt:
-          description: |
-            Agent
-            Identification of a financial institution.
-          $ref: "#/components/schemas/BranchAndFinancialInstitutionIdentification6"
       oneOf:
-        - required:
+        - properties:
+            Pty:
+              allOf:
+                - $ref: "#/components/schemas/PartyIdentification135"
+                - description: |
+                    Party
+                    Identification of a person or an organisation.
+          required:
             - Pty
-        - required:
+        - properties:
+            Agt:
+              allOf:
+                - $ref: >-
+                    #/components/schemas/BranchAndFinancialInstitutionIdentification6
+                - description: |
+                    Agent
+                    Identification of a financial institution.
+          required:
             - Agt
       example:
         Pty:
@@ -4436,23 +4795,26 @@ components:
       description: |
         NOTE: Unsure on the description.
       type: object
-      properties:
-        OrgId:
-          description: |
-            Organisation
-            Unique and unambiguous way to identify an organisation.
-          $ref: "#/components/schemas/OrganisationIdentification39"
-        PrvtId:
-          description: >
-            Person
-
-            Unique and unambiguous identification of a person, for example a
-            passport
-          $ref: "#/components/schemas/PersonIdentification18"
       oneOf:
-        - required:
+        - properties:
+            OrgId:
+              allOf:
+                - $ref: "#/components/schemas/OrganisationIdentification39"
+                - description: |
+                    Organisation
+                    Unique and unambiguous way to identify an organisation.
+          required:
             - OrgId
-        - required:
+        - properties:
+            PrvtId:
+              allOf:
+                - $ref: "#/components/schemas/PersonIdentification18"
+                - description: >
+                    Person
+
+                    Unique and unambiguous identification of a person, for
+                    example a passport.
+          required:
             - PrvtId
       example:
         OrgId:
@@ -4468,35 +4830,44 @@ components:
       type: object
       properties:
         Nm:
-          description: >
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                Name
 
-            Name by which a party is known and which is usually used to identify
-            that party.
-          $ref: "#/components/schemas/Max140Text"
+                Name by which a party is known and which is usually used to
+                identify that party.
         PstlAdr:
-          description: >
-            PostalAddress
+          allOf:
+            - $ref: "#/components/schemas/PostalAddress24"
+            - description: >
+                PostalAddress
 
-            Information that locates and identifies a specific address, as
-            defined by postal services.
-          $ref: "#/components/schemas/PostalAddress24"
+                Information that locates and identifies a specific address, as
+                defined by postal services.
         Id:
-          description: |
-            Identification
-            Unique and unambiguous way to identify an organisation.
-          $ref: "#/components/schemas/Party38Choice"
+          allOf:
+            - $ref: "#/components/schemas/Party38Choice"
+            - description: |
+                Identification
+                Unique and unambiguous way to identify an organisation.
         CtryOfRes:
-          description: >
-            CountryOfResidence Country in which a person resides (the place of a
-            person's home). In the case of a company, it is the country from
-            which the affairs of that company are directed.
-          $ref: "#/components/schemas/CountryCode"
+          allOf:
+            - $ref: "#/components/schemas/CountryCode"
+            - description: >
+                CountryOfResidence
+
+                Country in which a person resides (the place of a person's
+                home). In the case of a company, it is the country from which
+                the affairs of that company are directed.
         CtctDtls:
-          description: |
-            ContactDetails
-            Set of elements used to indicate how to contact the party.
-          $ref: "#/components/schemas/Contact4"
+          allOf:
+            - $ref: "#/components/schemas/Contact4"
+            - description: |
+                ContactDetails
+                Set of elements used to indicate how to contact the party.
+      required:
+        - Id
       example:
         Nm: John Doe
         PstlAdr:
@@ -4537,37 +4908,44 @@ components:
       type: object
       properties:
         Nm:
-          description: >
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                Name
 
-            Name by which a party is known and which is usually used to identify
-            that party.
-          $ref: "#/components/schemas/Max140Text"
+                Name by which a party is known and which is usually used to
+                identify that party.
         PstlAdr:
-          description: >
-            Postal Address
+          allOf:
+            - $ref: "#/components/schemas/PostalAddress27"
+            - description: >
+                Postal Address
 
-            Information that locates and identifies a specific address, as
-            defined by postal services.
-          $ref: "#/components/schemas/PostalAddress27"
+                Information that locates and identifies a specific address, as
+                defined by postal services.
         Id:
-          description: |
-            Identification
-            Unique and unambiguous identification of a party.
-          $ref: "#/components/schemas/Party52Choice"
+          allOf:
+            - $ref: "#/components/schemas/Party52Choice"
+            - description: |
+                Identification
+                Unique and unambiguous identification of a party.
         CtryOfRes:
-          description: >
-            Country of Residence
+          allOf:
+            - $ref: "#/components/schemas/CountryCode"
+            - description: >
+                Country of Residence
 
-            Country in which a person resides (the place of a person's home). In
-            the case of a company, it is the country from which the affairs of
-            that company are directed.
-          $ref: "#/components/schemas/CountryCode"
+                Country in which a person resides (the place of a person's
+                home). In the case of a company, it is the country from which
+                the affairs of that company are directed.
         CtctDtls:
-          description: |
-            Contact Details
-            Set of elements used to indicate how to contact the party.
-          $ref: "#/components/schemas/Contact13"
+          allOf:
+            - $ref: "#/components/schemas/Contact13"
+            - description: |
+                Contact Details
+                Set of elements used to indicate how to contact the party.
+      required:
+        - Id
       example:
         Nm: John Doe
         PstlAdr:
@@ -4594,7 +4972,7 @@ components:
           PhneNb: +123-123-321
           MobNb: +123-123-321
           FaxNb: +123-123-321
-          EmailAdr: null
+          EmailAdr: example@example.com
     PaymentIdentification13:
       title: PaymentIdentification13
       description: |
@@ -4602,66 +4980,92 @@ components:
       type: object
       properties:
         InstrId:
-          description: >
-            InstructionIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                InstructionIdentification (FSPIOP equivalent:
+                transactionRequestId)
 
-            Definition: Unique identification, as assigned by an instructing
-            party for an instructed party, to unambiguously identify the
-            instruction.
 
-            Usage: The instruction identification is a point to point reference
-            that can be used between the instructing party and the instructed
-            party to refer to the individual instruction. It can be included in
-            several messages related to the instruction.
-          $ref: "#/components/schemas/Max35Text"
+                Definition: Unique identification, as assigned by an instructing
+                party for an instructed party, to
+
+                unambiguously identify the instruction.
+
+
+                Usage: The instruction identification is a point to point
+                reference that can be used between the
+
+                instructing party and the instructed party to refer to the
+                individual instruction. It can be included in
+
+                several messages related to the instruction.
         EndToEndId:
-          description: >
-            EndToEndIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                EndToEndIdentification (FSPIOP equivalent: transactionId)
 
-            Definition: Unique identification, as assigned by the initiating
-            party, to unambiguously identify the transaction. This
-            identification is passed on, unchanged, throughout the entire
-            end-to-end chain.
 
-            Usage: The end-to-end identification can be used for reconciliation
-            or to link tasks relating to the transaction. It can be included in
-            several messages related to the transaction.
+                Definition: Unique identification, as assigned by the initiating
+                party, to unambiguously identify the
 
-            Usage: In case there are technical limitations to pass on multiple
-            references, the end-to-end identification must be passed on
-            throughout the entire end-to-end chain.
-          $ref: "#/components/schemas/Max35Text"
+                transaction. This identification is passed on, unchanged,
+                throughout the entire end-to-end chain.
+
+
+                Usage: The end-to-end identification can be used for
+                reconciliation or to link tasks relating to the
+
+                transaction. It can be included in several messages related to
+                the transaction.
+
+
+                Usage: In case there are technical limitations to pass on
+                multiple references, the end-to-end
+
+                identification must be passed on throughout the entire
+                end-to-end chain.
         TxId:
-          description: >
-            TransactionIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                TransactionIdentification (FSPIOP equivalent: quoteId)
 
-            Definition: Unique identification, as assigned by the first
-            instructing agent, to unambiguously identify the transaction that is
-            passed on, unchanged, throughout the entire interbank chain.
 
-            Usage: The transaction identification can be used for
-            reconciliation, tracking or to link tasks relating to the
-            transaction on the interbank level.
+                Definition: Unique identification, as assigned by the first
+                instructing agent, to unambiguously identify the
 
-            Usage: The instructing agent has to make sure that the transaction
-            identification is unique for a preagreed period.
-          $ref: "#/components/schemas/Max35Text"
+                transaction that is passed on, unchanged, throughout the entire
+                interbank chain.
+
+
+                Usage: The transaction identification can be used for
+                reconciliation, tracking or to link tasks relating to
+
+                the transaction on the interbank level.
+
+
+                Usage: The instructing agent has to make sure that the
+                transaction identification is unique for a preagreed period.
         UETR:
-          description: >
-            UETR
+          allOf:
+            - $ref: "#/components/schemas/UUIDv4Identifier"
+            - description: >
+                UETR
 
-            Universally unique identifier to provide an end-to-end reference of
-            a payment transaction.
-          $ref: "#/components/schemas/UUIDv4Identifier"
+                Universally unique identifier to provide an end-to-end reference
+                of a payment transaction.
         ClrSysRef:
-          description: >
-            ClearingSystemReference
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                ClearingSystemReference
 
-            Unique reference, as assigned by a clearing system, to unambiguously
-            identify the instruction.
-          $ref: "#/components/schemas/Max35Text"
+                Unique reference, as assigned by a clearing system, to
+                unambiguously identify the instruction.
       required:
-        - EndToEndId
+        - TxId
       example:
         InstrId: INSTRUCTIONID
         EndToEndId: ENDTOENDID
@@ -4676,29 +5080,91 @@ components:
       type: object
       properties:
         StsId:
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Unique identification, as assigned by the original sending
+                party, to unambiguously identify the status report.
         OrgnlInstrId:
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Unique identification, as assigned by the original sending
+                party, to
+
+                unambiguously identify the original instruction.
+
+
+                (FSPIOP equivalent: transactionRequestId)
         OrgnlEndToEndId:
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Unique identification, as assigned by the original sending
+                party, to
+
+                unambiguously identify the original end-to-end transaction.
+
+
+                (FSPIOP equivalent: transactionId)
         OrgnlTxId:
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Unique identification, as assigned by the original sending
+                party, to
+
+                unambiguously identify the original transaction.
+
+
+                (FSPIOP equivalent: quoteId)
         OrgnlUETR:
-          $ref: "#/components/schemas/UUIDv4Identifier"
+          allOf:
+            - $ref: "#/components/schemas/UUIDv4Identifier"
+            - description: >
+                Unique end-to-end transaction reference, as assigned by the
+                original sending party, to unambiguously identify the original
+                transaction.
         TxSts:
-          $ref: "#/components/schemas/ExternalPaymentTransactionStatus1Code"
+          allOf:
+            - $ref: "#/components/schemas/ExternalPaymentTransactionStatus1Code"
+            - description: |
+                Specifies the status of the transaction.
         StsRsnInf:
-          $ref: "#/components/schemas/StatusReasonInformation14"
+          allOf:
+            - $ref: "#/components/schemas/StatusReasonInformation14"
+            - description: |
+                Information concerning the reason for the status.
         AccptncDtTm:
-          $ref: "#/components/schemas/ISODateTime"
+          allOf:
+            - $ref: "#/components/schemas/ISODateTime"
+            - description: |
+                Date and time at which the status was accepted.
         AcctSvcrRef:
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Unique reference, as assigned by the account servicing
+                institution, to unambiguously identify the status report.
         ClrSysRef:
-          $ref: "#/components/schemas/Max35Text"
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Reference that is assigned by the account servicing institution
+                and sent to the account owner to unambiguously identify the
+                transaction.
         ExctnConf:
-          $ref: "#/components/schemas/Exact32HexBinaryText"
+          allOf:
+            - $ref: "#/components/schemas/Exact32HexBinaryText"
+            - description: >
+                Unique reference, as assigned by the account servicing
+                institution, to unambiguously identify the confirmation.
         SplmtryData:
-          $ref: "#/components/schemas/SupplementaryData1"
+          allOf:
+            - $ref: "#/components/schemas/SupplementaryData1"
+            - description: >
+                Additional information that cannot be captured in the structured
+                elements and/or any other specific block.
       example:
         StsId: 12345
         OrgnlInstrId: 12345
@@ -4723,43 +5189,36 @@ components:
       type: object
       properties:
         InstrPrty:
-          description: >
-            InstructionPriority
-
-            Indicator of the urgency or order of importance that the instructing
-            party would like the instructed party to apply to the processing of
-            the instruction.
           $ref: "#/components/schemas/Priority2Code"
         ClrChanl:
-          description: >
-            ClearingChannel
-
-            Specifies the clearing channel to be used to process the payment
-            instruction.
           $ref: "#/components/schemas/ClearingChannel2Code"
         SvcLvl:
-          description: >
-            ServiceLevel
+          allOf:
+            - $ref: "#/components/schemas/ServiceLevel8Choice"
+            - description: >
+                ServiceLevel
 
-            Agreement under which or rules under which the transaction should be
-            processed.
-          $ref: "#/components/schemas/ServiceLevel8Choice"
+                Agreement under which or rules under which the transaction
+                should be processed.
         LclInstrm:
-          description: >
-            LocalInstrument
+          allOf:
+            - $ref: "#/components/schemas/LocalInstrument2Choice"
+            - description: >
+                LocalInstrument
 
-            Definition: User community specific instrument.
+                Definition: User community specific instrument.
 
-            Usage: This element is used to specify a local instrument, local
-            clearing option and/or further qualify the service or service level.
-          $ref: "#/components/schemas/LocalInstrument2Choice"
+                Usage: This element is used to specify a local instrument, local
+                clearing option and/or further qualify the service or service
+                level.
         CtgyPurp:
-          description: >
-            CategoryPurpose
+          allOf:
+            - $ref: "#/components/schemas/CategoryPurpose1Choice"
+            - description: >
+                CategoryPurpose
 
-            Specifies the high level purpose of the instruction based on a set
-            of pre-defined categories.
-          $ref: "#/components/schemas/CategoryPurpose1Choice"
+                Specifies the high level purpose of the instruction based on a
+                set of pre-defined categories.
       example:
         InstrPrty: NORM
         ClrChanl: RTGS
@@ -4781,17 +5240,19 @@ components:
       type: object
       properties:
         DtAndPlcOfBirth:
-          description: |
-            DateAndPlaceOfBirth
-            Date and place of birth of a person.
-          $ref: "#/components/schemas/DateAndPlaceOfBirth1"
+          allOf:
+            - $ref: "#/components/schemas/DateAndPlaceOfBirth1"
+            - description: |
+                DateAndPlaceOfBirth
+                Date and place of birth of a person.
         Othr:
-          description: >
-            Other
+          allOf:
+            - $ref: "#/components/schemas/GenericPersonIdentification1"
+            - description: >
+                Other
 
-            Unique identification of a person, as assigned by an institution,
-            using an identification scheme.
-          $ref: "#/components/schemas/GenericPersonIdentification1"
+                Unique identification of a person, as assigned by an
+                institution, using an identification scheme.
       example:
         DtAndPlcOfBirth:
           Dt: "2018-01-01"
@@ -4808,17 +5269,19 @@ components:
       type: object
       properties:
         DtAndPlcOfBirth:
-          description: |
-            DateAndPlaceOfBirth
-            Date and place of birth of a person.
-          $ref: "#/components/schemas/DateAndPlaceOfBirth1"
+          allOf:
+            - $ref: "#/components/schemas/DateAndPlaceOfBirth1"
+            - description: |
+                DateAndPlaceOfBirth
+                Date and place of birth of a person.
         Othr:
-          description: >
-            Other
+          allOf:
+            - $ref: "#/components/schemas/GenericPersonIdentification2"
+            - description: >
+                Other
 
-            Unique identification of a person, as assigned by an institution,
-            using an identification scheme.
-          $ref: "#/components/schemas/GenericPersonIdentification2"
+                Unique identification of a person, as assigned by an
+                institution, using an identification scheme.
       example:
         DtAndPlcOfBirth:
           Dt: "2018-01-01"
@@ -4833,23 +5296,26 @@ components:
       description: |
         Sets of elements to identify a name of the identification scheme.
       type: object
-      properties:
-        Cd:
-          description: >
-            Code
-
-            Name of the identification scheme, in a coded form as published in
-            an external list
-          $ref: "#/components/schemas/ExternalPersonIdentification1Code"
-        Prtry:
-          description: |
-            Proprietary
-            Name of the identification scheme, in a free text form
-          $ref: "#/components/schemas/Max35Text"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalPersonIdentification1Code"
+                - description: >
+                    Code
+
+                    Name of the identification scheme, in a coded form as
+                    published in an external list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+                    Name of the identification scheme, in a free text form.
+          required:
             - Prtry
       example:
         Cd: CCPT
@@ -4982,6 +5448,17 @@ components:
       description: >
         Preferred method used to reach the individual contact within an
         organisation.
+
+
+        LETT: Letter
+
+        MAIL: Email
+
+        PHON: Phone
+
+        FAXX: Fax
+
+        CELL: Mobile phone
       type: string
       enum:
         - LETT
@@ -4995,6 +5472,16 @@ components:
       description: >
         Preferred method used to reach the individual contact within an
         organisation.
+
+        LETT: Letter
+
+        MAIL: Email
+
+        PHON: Phone
+
+        FAXX: Fax
+
+        CELL: Mobile phone
       type: string
       enum:
         - LETT
@@ -5007,8 +5494,15 @@ components:
       title: Priority2Code
       description: >
         Indicator of the urgency or order of importance that the instructing
-        party would like the instructed party to apply to the processing of the
+        party
+
+        would like the instructed party to apply to the processing of the
         instruction.
+
+
+        HIGH:  High priority
+
+        NORM:  Normal priority
       type: string
       enum:
         - HIGH
@@ -5021,19 +5515,19 @@ components:
       type: object
       properties:
         Tp:
-          description: |
-            Type
-
-            Type of the proxy identification.
-          $ref: "#/components/schemas/ProxyAccountType1Choice"
+          allOf:
+            - $ref: "#/components/schemas/ProxyAccountType1Choice"
+            - description: |
+                Type
+                Type of the proxy identification.
         Id:
-          description: >
-            Identification
+          allOf:
+            - $ref: "#/components/schemas/Max2048Text"
+            - description: >
+                Identification
 
-
-            Identification used to indicate the account identification under
-            another specified name.
-          $ref: "#/components/schemas/Max2048Text"
+                Identification used to indicate the account identification under
+                another specified name.
       required:
         - Id
       example:
@@ -5042,62 +5536,70 @@ components:
         Id: 123
     ProxyAccountType1Choice:
       title: ProxyAccountType1Choice
-      type: object
       description: |
-        ProxyAccountType1Choice
-
-        Specifies the scheme used for the identification of an account alias.
-      properties:
-        Cd:
-          description: >
-            Code
-
-
-            Name of the identification scheme, in a coded form as published in
-            an external list.
-          $ref: "#/components/schemas/ExternalProxyAccountType1Code"
-        Prtry:
-          description: |
-            Proprietary
-
-            Name of the identification scheme, in a free text form.
-          $ref: "#/components/schemas/Max35Text"
+        Specifies the type of the proxy account.
+      type: object
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalProxyAccountType1Code"
+                - description: >
+                    Code
+
+                    Proxy account type, in a coded form as published in an
+                    external list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+                    Proxy account type, in a proprietary form.
+          required:
             - Prtry
       example:
-        Cd: CH03
+        Cd: EMAIL
     Purpose2Choice:
       title: Purpose2Choice
       description: >
         Specifies the underlying reason for the payment transaction.
 
+
         Usage: Purpose is used by the end-customers, that is initiating party,
+
         (ultimate) debtor, (ultimate) creditor to provide information concerning
-        the nature of the payment. Purpose is a content element, which is not
-        used for processing by any of the agents involved in the payment chain.
+        the nature of the payment. Purpose
+
+        is a content element, which is not used for processing by any of the
+        agents involved in the payment
+
+        chain.
       type: object
-      properties:
-        Cd:
-          description: >
-            Code
-
-
-            Underlying reason for the payment transaction, as published in an
-            external purpose code list.
-          $ref: "#/components/schemas/ExternalPurpose1Code"
-        Prtry:
-          description: |
-            Proprietary
-
-            Purpose, in a proprietary form.
-          $ref: "#/components/schemas/Max35Text"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalPurpose1Code"
+                - description: >
+                    Code
+
+
+                    Underlying reason for the payment transaction, as published
+                    in an external purpose code list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+
+                    Purpose, in a proprietary form.
+          required:
             - Prtry
       example:
         Cd: CH03
@@ -5109,19 +5611,23 @@ components:
       type: object
       properties:
         Nm:
-          description: |
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: >
+                Name
 
-            Name of the entity requiring the regulatory reporting information.
-          $ref: "#/components/schemas/Max140Text"
+
+                Name of the entity requiring the regulatory reporting
+                information.
         Ctry:
-          description: >
-            Country
+          allOf:
+            - $ref: "#/components/schemas/CountryCode"
+            - description: >
+                Country
 
 
-            Country of the entity that requires the regulatory reporting
-            information.
-          $ref: "#/components/schemas/CountryCode"
+                Country of the entity that requires the regulatory reporting
+                information.
       example:
         Nm: Swiss National Bank
         Ctry: CH
@@ -5132,19 +5638,21 @@ components:
       type: object
       properties:
         DbtCdtRptgInd:
-          description: >
-            DebitCreditReportingIndicator
+          allOf:
+            - $ref: "#/components/schemas/RegulatoryReportingType1Code"
+            - description: >
+                DebitCreditReportingIndicator
 
-            Identifies whether the regulatory reporting information applies to
-            the debit side, to the credit side or to both debit and credit sides
-            of the transaction.
-          $ref: "#/components/schemas/RegulatoryReportingType1Code"
+                Identifies whether the regulatory reporting information applies
+                to the debit side, to the credit side or to both debit and
+                credit sides of the transaction.
         Authrty:
-          description: |
-            Authority
+          allOf:
+            - $ref: "#/components/schemas/RegulatoryAuthority2"
+            - description: |
+                Authority
 
-            Entity requiring the regulatory reporting information.
-          $ref: "#/components/schemas/RegulatoryAuthority2"
+                Entity requiring the regulatory reporting information.
         Dtls:
           description: >
             Details
@@ -5169,7 +5677,18 @@ components:
       title: RegulatoryReportingType1Code
       description: >
         Identifies whether the regulatory reporting information applies to the
-        debit side, to the credit side or to both debit and credit sides of the
+        debit
+
+        side, to the credit side or to both debit and credit sides of the
+        transaction.
+
+
+        CRED: Regulatory reporting applies to the credit side of the
+        transaction.
+
+        DEBT: Regulatory reporting applies to the debit side of the transaction.
+
+        BOTH: Regulatory reporting applies to both debit and credit sides of the
         transaction.
       type: string
       enum:
@@ -5182,25 +5701,29 @@ components:
       description: |
         Details about a service level.
       type: object
-      properties:
-        Cd:
-          description: >
-            Code
-
-            Specifies a pre-agreed service or level of service between the
-            parties, as published in an external service level code list.
-          $ref: "#/components/schemas/ExternalServiceLevel1Code"
-        Prtry:
-          description: >
-            Proprietary
-
-            Specifies a pre-agreed service or level of service between the
-            parties, as a proprietary code.
-          $ref: "#/components/schemas/Max35Text"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalServiceLevel1Code"
+                - description: >
+                    Code
+
+                    Specifies a pre-agreed service or level of service between
+                    the parties, as published in an external service level code
+                    list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: >
+                    Proprietary
+
+                    Specifies a pre-agreed service or level of service between
+                    the parties, as a proprietary code.
+          required:
             - Prtry
       example:
         Cd: SEPA
@@ -5214,13 +5737,8 @@ components:
       type: object
       properties:
         SttlmMtd:
-          description: |
-            SettlementMethod
-            Method used to settle the (batch of) payment instructions.
           $ref: "#/components/schemas/SettlementMethod1Code"
         PmtTpInf:
-          description: |
-            PaymentTypeInformation
           $ref: "#/components/schemas/PaymentTypeInformation28"
       required:
         - SttlmMtd
@@ -5257,6 +5775,11 @@ components:
       title: SettlementMethod1Code
       description: |
         Specifies the method used to settle the credit transfer instruction.
+
+        INDA: Indirect Account
+        INGA: Indirect Agent
+        COVE: Cover
+        CLRG: Clearing
       type: string
       enum:
         - INDA
@@ -5267,23 +5790,28 @@ components:
     StatusReason6Choice:
       title: StatusReason6Choice
       description: |
-        Unsure on description.
+        Specifies the reason for the status.
       type: object
-      properties:
-        Cd:
-          description: |
-            Code
-            Reason for the status, as published in an external reason code list.
-          $ref: "#/components/schemas/ExternalStatusReason1Code"
-        Prtry:
-          description: |
-            Proprietary
-            Reason for the status, in a proprietary form.
-          $ref: "#/components/schemas/Max35Text"
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalStatusReason1Code"
+                - description: >
+                    Code
+
+                    Reason for the status, as published in an external reason
+                    code list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: |
+                    Proprietary
+                    Reason for the status, in a proprietary form.
+          required:
             - Prtry
       example:
         Cd: AGNT
@@ -5294,20 +5822,23 @@ components:
       type: object
       properties:
         Orgtr:
-          description: |-
-            Originator
-            Party that issues the status.
-          $ref: "#/components/schemas/PartyIdentification272"
+          allOf:
+            - $ref: "#/components/schemas/PartyIdentification272"
+            - description: |
+                Originator
+                Party that issues the status.
         Rsn:
-          description: |-
-            Reason
-            Specifies the reason for the status report.
-          $ref: "#/components/schemas/StatusReason6Choice"
+          allOf:
+            - $ref: "#/components/schemas/StatusReason6Choice"
+            - description: |
+                Reason
+                Specifies the reason for the status report.
         AddtlInf:
-          description: |-
-            AdditionalInformation
-            Additional information about the status report.
-          $ref: "#/components/schemas/Max105Text"
+          allOf:
+            - $ref: "#/components/schemas/Max105Text"
+            - description: |
+                AdditionalInformation
+                Additional information about the status report.
       example:
         Orgtr:
           Nm: Name
@@ -5333,45 +5864,54 @@ components:
       type: object
       properties:
         Tp:
-          description: >
-            Type
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Type
 
 
-            Specifies the type of the information supplied in the regulatory
-            reporting details.
-          $ref: "#/components/schemas/Max35Text"
+                Specifies the type of the information supplied in the regulatory
+                reporting details.
         Dt:
-          description: |
-            Date
+          allOf:
+            - $ref: "#/components/schemas/ISODate"
+            - description: >
+                Date
 
-            Date related to the specified type of regulatory reporting details.
-          $ref: "#/components/schemas/ISODate"
+
+                Date related to the specified type of regulatory reporting
+                details.
         Ctry:
-          description: >
-            Country
+          allOf:
+            - $ref: "#/components/schemas/CountryCode"
+            - description: >
+                Country
 
 
-            Country related to the specified type of regulatory reporting
-            details.
-          $ref: "#/components/schemas/CountryCode"
+                Country related to the specified type of regulatory reporting
+                details.
         Cd:
-          description: >
-            Code
+          allOf:
+            - $ref: "#/components/schemas/Max10Text"
+            - description: >
+                Code
 
-            Specifies the nature, purpose, and reason for the transaction to be
-            reported for regulatory and statutory requirements in a coded form.
-          $ref: "#/components/schemas/Max10Text"
+                Specifies the nature, purpose, and reason for the transaction to
+                be reported for regulatory and statutory requirements in a coded
+                form.
         Amt:
-          description: >
-            Amount
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - description: >
+                Amount
 
 
-            Amount of money to be reported for regulatory and statutory
-            requirements.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+                Amount of money to be reported for regulatory and statutory
+                requirements.
         Inf:
           description: >
             Information
+
 
             Additional details that cater for specific domestic regulatory
             requirements.
@@ -5392,27 +5932,29 @@ components:
     SupplementaryData1:
       title: SupplementaryData1
       description: >
-        Additional information that can not be captured in the structured fields
+        Additional information that cannot be captured in the structured fields
         and/or any other specific block.
       type: object
       properties:
         PlcAndNm:
-          description: >
-            PlaceAndName
+          allOf:
+            - $ref: "#/components/schemas/Max350Text"
+            - description: >
+                PlaceAndName
 
-            Unambiguous reference to the location where the supplementary data
-            must be inserted in the message instance.
-          $ref: "#/components/schemas/Max350Text"
+                Unambiguous reference to the location where the supplementary
+                data must be inserted in the message instance.
         Envlp:
-          description: >
-            Envelope
+          allOf:
+            - $ref: "#/components/schemas/SupplementaryDataEnvelope1"
+            - description: >
+                Envelope
 
-            Technical element wrapping the supplementary data.
+                Technical element wrapping the supplementary data.
 
-            Technical component that contains the validated supplementary data
-            information. This technical envelope allows to segregate the
-            supplementary data information from any other information.
-          $ref: "#/components/schemas/SupplementaryDataEnvelope1"
+                Technical component that contains the validated supplementary
+                data information. This technical envelope allows to segregate
+                the supplementary data information from any other information.
       required:
         - Envlp
       example:
@@ -5436,25 +5978,28 @@ components:
       type: object
       properties:
         Rate:
-          description: |
-            Rate
+          allOf:
+            - $ref: "#/components/schemas/PercentageRate"
+            - description: |
+                Rate
 
-            Rate used to calculate the tax.
-          $ref: "#/components/schemas/PercentageRate"
+                Rate used to calculate the tax.
         TaxblBaseAmt:
-          description: |
-            TaxableBaseAmount
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - description: |
+                TaxableBaseAmount
 
-            Amount of money on which the tax is based.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+                Amount of money on which the tax is based.
         TtlAmt:
-          description: >
-            TotalAmount
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - description: >
+                TotalAmount
 
 
-            Total amount that is the result of the calculation of the tax for
-            the record.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+                Total amount that is the result of the calculation of the tax
+                for the record.
         Dtls:
           description: >
             Details
@@ -5490,19 +6035,21 @@ components:
       type: object
       properties:
         Titl:
-          description: >
-            Title
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Title
 
 
-            Title or position of debtor or the debtor's authorised
-            representative.
-          $ref: "#/components/schemas/Max35Text"
+                Title or position of debtor or the debtor's authorised
+                representative.
         Nm:
-          description: |
-            Name
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: |
+                Name
 
-            Name of the debtor or the debtor's authorised representative.
-          $ref: "#/components/schemas/Max140Text"
+                Name of the debtor or the debtor's authorised representative.
       example:
         Titl: Mr
         Nm: John Doe
@@ -5515,71 +6062,85 @@ components:
       type: object
       properties:
         Cdtr:
-          description: >
-            Creditor
+          allOf:
+            - $ref: "#/components/schemas/TaxParty1"
+            - description: >
+                Creditor
 
 
-            Party on the credit side of the transaction to which the tax
-            applies.
-          $ref: "#/components/schemas/TaxParty1"
+                Party on the credit side of the transaction to which the tax
+                applies.
         Dbtr:
-          description: |
-            Debtor
+          allOf:
+            - $ref: "#/components/schemas/TaxParty2"
+            - description: >
+                Debtor
 
-            Party on the debit side of the transaction to which the tax applies.
-          $ref: "#/components/schemas/TaxParty2"
+
+                Party on the debit side of the transaction to which the tax
+                applies.
         UltmtDbtr:
-          description: >
-            UltimateDebtor
+          allOf:
+            - $ref: "#/components/schemas/TaxParty2"
+            - description: >
+                UltimateDebtor
 
 
-            Ultimate party that owes an amount of money to the (ultimate)
-            creditor, in this case, to the taxing authority.
-          $ref: "#/components/schemas/TaxParty2"
+                Ultimate party that owes an amount of money to the (ultimate)
+                creditor, in this case, to the taxing authority.
         AdmstnZone:
-          description: |
-            AdministrationZone
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                AdministrationZone
 
-            Territorial part of a country to which the tax payment is related.
-          $ref: "#/components/schemas/Max35Text"
+
+                Territorial part of a country to which the tax payment is
+                related.
         RefNb:
-          description: |
-            ReferenceNumber
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: |
+                ReferenceNumber
 
-            Tax reference information that is specific to a taxing agency.
-          $ref: "#/components/schemas/Max140Text"
+                Tax reference information that is specific to a taxing agency.
         Mtd:
-          description: >
-            Method
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                Method
 
 
-            Method used to indicate the underlying business or how the tax is
-            paid.
-          $ref: "#/components/schemas/Max35Text"
+                Method used to indicate the underlying business or how the tax
+                is paid.
         TtlTaxblBaseAmt:
-          description: |
-            TotalTaxableBaseAmount
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - description: |
+                TotalTaxableBaseAmount
 
-            Total amount of money on which the tax is based.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+                Total amount of money on which the tax is based.
         TtlTaxAmt:
-          description: |
-            TotalTaxAmount
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - description: |
+                TotalTaxAmount
 
-            Total amount of money as result of the calculation of the tax.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+                Total amount of money as result of the calculation of the tax.
         Dt:
-          description: |
-            Date
+          allOf:
+            - $ref: "#/components/schemas/ISODate"
+            - description: |
+                Date
 
-            Date by which tax is due.
-          $ref: "#/components/schemas/ISODate"
+                Date by which tax is due.
         SeqNb:
-          description: |
-            SequenceNumber
+          allOf:
+            - $ref: "#/components/schemas/Number"
+            - description: |
+                SequenceNumber
 
-            Sequential number of the tax report
-          $ref: "#/components/schemas/Number"
+                Sequential number of the tax report.
         Rcrd:
           description: |
             Record
@@ -5626,25 +6187,28 @@ components:
       type: object
       properties:
         TaxId:
-          description: |
-            TaxIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                TaxIdentification
 
-            Tax identification number of the creditor.
-          $ref: "#/components/schemas/Max35Text"
+                Tax identification number of the creditor.
         RegnId:
-          description: >
-            RegistrationIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                RegistrationIdentification
 
 
-            Unique identification, as assigned by an organisation, to
-            unambiguously identify a party.
-          $ref: "#/components/schemas/Max35Text"
+                Unique identification, as assigned by an organisation, to
+                unambiguously identify a party.
         TaxTp:
-          description: |
-            TaxType
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                TaxType
 
-            Type of tax payer.
-          $ref: "#/components/schemas/Max35Text"
+                Type of tax payer.
       example:
         TaxId: 123456789
         RegnId: 123456789
@@ -5656,31 +6220,35 @@ components:
       type: object
       properties:
         TaxId:
-          description: |
-            TaxIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                TaxIdentification
 
-            Tax identification number of the debtor.
-          $ref: "#/components/schemas/Max35Text"
+                Tax identification number of the debtor.
         RegnId:
-          description: >
-            RegistrationIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                RegistrationIdentification
 
 
-            Unique identification, as assigned by an organisation, to
-            unambiguously identify a party.
-          $ref: "#/components/schemas/Max35Text"
+                Unique identification, as assigned by an organisation, to
+                unambiguously identify a party.
         TaxTp:
-          description: |
-            TaxType
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                TaxType
 
-            Type of tax payer.
-          $ref: "#/components/schemas/Max35Text"
+                Type of tax payer.
         Authstn:
-          description: |
-            Authorisation
+          allOf:
+            - $ref: "#/components/schemas/TaxAuthorisation1"
+            - description: |
+                Authorisation
 
-            Details of the authorised tax paying party.
-          $ref: "#/components/schemas/TaxAuthorisation1"
+                Details of the authorised tax paying party.
       example:
         TaxId: 123456789
         RegnId: 123456789
@@ -5695,25 +6263,28 @@ components:
       type: object
       properties:
         FrToDt:
-          $ref: "#/components/schemas/DatePeriod2"
-          description: >
-            FromToDate
+          allOf:
+            - $ref: "#/components/schemas/DatePeriod2"
+            - description: >
+                FromToDate
 
 
-            Range of time between a start date and an end date for which the tax
-            report is provided.
+                Range of time between a start date and an end date for which the
+                tax report is provided.
         Tp:
-          $ref: "#/components/schemas/TaxRecordPeriod1Code"
-          description: |
-            Type
+          allOf:
+            - $ref: "#/components/schemas/TaxRecordPeriod1Code"
+            - description: |
+                Type
 
-            Identification of the period related to the tax payment.
+                Identification of the period related to the tax payment.
         Yr:
-          $ref: "#/components/schemas/ISOYear"
-          description: |
-            Year
+          allOf:
+            - $ref: "#/components/schemas/ISOYear"
+            - description: |
+                Year
 
-            Year related to the tax payment.
+                Year related to the tax payment.
       example:
         Yr: 2020
         Tp: MM01
@@ -5727,69 +6298,78 @@ components:
       type: object
       properties:
         AddtlInf:
-          $ref: "#/components/schemas/Max140Text"
-          description: |
-            AdditionalInformation
+          allOf:
+            - $ref: "#/components/schemas/Max140Text"
+            - description: |
+                AdditionalInformation
 
-            Further details of the tax record.
+                Further details of the tax record.
         CertId:
-          $ref: "#/components/schemas/Max35Text"
-          description: >
-            CertificateIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                CertificateIdentification
 
 
-            Identification number of the tax report as assigned by the taxing
-            authority.
+                Identification number of the tax report as assigned by the
+                taxing authority.
         Ctgy:
-          $ref: "#/components/schemas/Max35Text"
-          description: |
-            Category
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Category
 
-            Specifies the tax code as published by the tax authority.
+                Specifies the tax code as published by the tax authority.
         CtgyDtls:
-          $ref: "#/components/schemas/Max35Text"
-          description: |
-            CategoryDetails
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                CategoryDetails
 
-            Provides further details of the category tax code.
+                Provides further details of the category tax code.
         DbtrSts:
-          $ref: "#/components/schemas/Max35Text"
-          description: >
-            DebtorStatus
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                DebtorStatus
 
 
-            Code provided by local authority to identify the status of the party
-            that has drawn up the settlement document.
+                Code provided by local authority to identify the status of the
+                party that has drawn up the settlement document.
         FrmsCd:
-          $ref: "#/components/schemas/Max35Text"
-          description: >
-            FormsCode
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                FormsCode
 
 
-            Identifies, in a coded form, on which template the tax report is to
-            be provided.
+                Identifies, in a coded form, on which template the tax report is
+                to be provided.
         Prd:
-          $ref: "#/components/schemas/TaxPeriod3"
-          description: >
-            Period
+          allOf:
+            - $ref: "#/components/schemas/TaxPeriod3"
+            - description: >
+                Period
 
 
-            Set of elements used to provide details on the period of time
-            related to the tax payment.
+                Set of elements used to provide details on the period of time
+                related to the tax payment.
         TaxAmt:
-          $ref: "#/components/schemas/TaxAmount3"
-          description: >
-            TaxAmount
+          allOf:
+            - $ref: "#/components/schemas/TaxAmount3"
+            - description: >
+                TaxAmount
 
 
-            Set of elements used to provide information on the amount of the tax
-            record.
+                Set of elements used to provide information on the amount of the
+                tax record.
         Tp:
-          $ref: "#/components/schemas/Max35Text"
-          description: |
-            Type
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: |
+                Type
 
-            High level code to identify the type of tax details.
+                High level code to identify the type of tax details.
       example:
         Tp: VAT
         Ctgy: A
@@ -5798,33 +6378,42 @@ components:
         CertId: 123456789
         FrmsCd: 123456789
         Prd:
-          FrstDay: "2019-01-01"
-          LastDay: "2019-12-31"
+          Yr: 2019
+          Tp: MM01
+          FrToDt:
+            FrDt: "2019-01-01"
+            ToDt: "2019-12-31"
         TaxAmt:
           Rate: 0.2
-          TaxblBaseAmt: 1000
-          TtlAmt: 200
+          TaxblBaseAmt:
+            Ccy: EUR
+            Amt: 1000
+          TtlAmt:
+            Ccy: EUR
+            Amt: 200
         AddtlInf: VAT applicable
     TaxRecordDetails3:
       title: TaxRecordDetails3
       description: |
-        Details on the tax period and amount
+        Details on the tax period and amount.
       type: object
       properties:
         Prd:
-          description: >
-            Period
+          allOf:
+            - $ref: "#/components/schemas/TaxPeriod3"
+            - description: >
+                Period
 
 
-            Set of elements used to provide details on the period of time
-            related to the tax payment.
-          $ref: "#/components/schemas/TaxPeriod3"
+                Set of elements used to provide details on the period of time
+                related to the tax payment.
         Amt:
-          description: |
-            Amount
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - description: |
+                Amount
 
-            Underlying tax amount related to the specified period.
-          $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+                Underlying tax amount related to the specified period.
       required:
         - Amt
       example:
@@ -5884,9 +6473,18 @@ components:
     TermsRequest_FIToFICustomerCreditProposal:
       title: TermsRequest_FIToFICustomerCreditProposal
       type: object
+      description: >
+        This message is sent by a financial institution to a financial
+        institution to propose the terms of a credit to a customer.
       properties:
         GrpHdr:
-          $ref: "#/components/schemas/GroupHeader129"
+          allOf:
+            - $ref: "#/components/schemas/GroupHeader129"
+            - description: >
+                Group Header
+
+                Set of characteristics shared by all individual transactions
+                included in the message.
       required:
         - GrpHdr
       example:
@@ -5910,11 +6508,27 @@ components:
     TermsResponse_FIToFICustomerCreditConfirmation:
       title: TermsResponse_FIToFICustomerCreditConfirmation
       type: object
+      description: >
+        This message is sent by the initiating party to the executing party,
+        directly or through one or more intermediaries, to confirm the credit
+        transfer transaction.
       properties:
         GrpHdr:
-          $ref: "#/components/schemas/GroupHeader129"
+          allOf:
+            - $ref: "#/components/schemas/GroupHeader129"
+            - description: >
+                Group Header
+
+                Set of characteristics shared by all individual transactions
+                included in the message.
         CdtTrfTxInf:
-          $ref: "#/components/schemas/CreditTransferTransaction67"
+          allOf:
+            - $ref: "#/components/schemas/CreditTransferTransaction67"
+            - description: >
+                Credit Transfer Transaction Information
+
+                Set of elements providing information specific to the individual
+                credit transfer(s).
       required:
         - GrpHdr
         - CdtTrfTxInf
@@ -5944,69 +6558,86 @@ components:
     VerificationReason1Choice:
       title: VerificationReason1Choice
       type: object
-      properties:
-        Cd:
-          description: >
-            Code
-
-            Reason why the verified identification information is incorrect, as
-            published in an external reason code list.
-          $ref: "#/components/schemas/ExternalVerificationReason1Code"
-        Prtry:
-          description: >
-            Proprietary
-
-            Reason why the verified identification information is incorrect, in
-            a free text form.
-          $ref: "#/components/schemas/Max35Text"
+      description: |
+        Choice of format for the verification reason.
+        Only one, between the coded and the proprietary, can be chosen.
       oneOf:
-        - required:
+        - properties:
+            Cd:
+              allOf:
+                - $ref: "#/components/schemas/ExternalVerificationReason1Code"
+                - description: >
+                    Code
+
+                    Reason why the verified identification information is
+                    incorrect, as published in an external reason code list.
+          required:
             - Cd
-        - required:
+        - properties:
+            Prtry:
+              allOf:
+                - $ref: "#/components/schemas/Max35Text"
+                - description: >
+                    Proprietary
+
+                    Reason why the verified identification information is
+                    incorrect, in a free text form.
+          required:
             - Prtry
       example:
         Cd: AGNT
     VerificationReport4:
       title: VerificationReport4
       type: object
+      description: >-
+        VerificationReport
+
+        Provides information about the verification of party and/or account
+        identification information.
       properties:
         OrgnlId:
-          description: >
-            OriginalIdentification
+          allOf:
+            - $ref: "#/components/schemas/Max35Text"
+            - description: >
+                OriginalIdentification
 
-            Unique identification, as assigned by a sending party, to
-            unambiguously identify the party and account identification
-            information group within the original message.
-          $ref: "#/components/schemas/Max35Text"
+                Unique identification, as assigned by a sending party, to
+                unambiguously identify the party and account identification
+                information group within the original message.
         Vrfctn:
-          description: >
-            Verification
+          allOf:
+            - $ref: "#/components/schemas/IdentificationVerificationIndicator"
+            - description: >
+                Verification
 
-            Identifies whether the party and/or account information received is
-            correct. Boolean value.
-          $ref: "#/components/schemas/IdentificationVerificationIndicator"
+                Identifies whether the party and/or account information received
+                is correct. Boolean value.
         Rsn:
-          description: >
-            Reason.
+          allOf:
+            - $ref: "#/components/schemas/VerificationReason1Choice"
+            - description: >
+                Reason
 
-            Specifies the reason why the verified identification information is
-            incorrect.
-          $ref: "#/components/schemas/VerificationReason1Choice"
+                Specifies the reason why the verified identification information
+                is incorrect.
         OrgnlPtyAndAcctId:
-          description: >
-            OriginalPartyAndAccountIdentification
+          allOf:
+            - $ref: "#/components/schemas/IdentificationInformation4"
+            - description: >
+                OriginalPartyAndAccountIdentification
 
-            Provides party and/or account identification information as given in
-            the original message.
-          $ref: "#/components/schemas/IdentificationInformation4"
+                Provides party and/or account identification information as
+                given in the original message.
         UpdtdPtyAndAcctId:
-          description: |
-            UpdatedPartyAndAccountIdentification
-            Provides party and/or account identification information.
-          $ref: "#/components/schemas/IdentificationInformation4"
+          allOf:
+            - $ref: "#/components/schemas/IdentificationInformation4"
+            - description: |
+                UpdatedPartyAndAccountIdentification
+                Provides party and/or account identification information.
       required:
         - OrgnlId
         - Vrfctn
+        - UpdtdPtyAndAcctId
       example:
         OrgnlId: 1.2345678901234568e+33
         Vrfctn: true

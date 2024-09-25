@@ -5,13 +5,15 @@ description: >
   unit of currency is explicit and compliant with ISO 4217.
 properties:
   ActiveCurrencyAndAmount:
-    $ref: ./ActiveCurrencyAndAmount_SimpleType.yaml
+    allOf:
+      - $ref: ./ActiveCurrencyAndAmount_SimpleType.yaml
   Ccy:
-    description: >
-      Currency
+    allOf:
+      - $ref: ./ActiveCurrencyCode.yaml
+      - description: >
+          Currency
 
-      Identification of the currency in which the account is held.
-    $ref: ./ActiveCurrencyCode.yaml
+          Identification of the currency in which the account is held.
 required:
   - ActiveCurrencyAndAmount
   - Ccy

@@ -4,39 +4,33 @@ description: |
 type: object
 properties:
   InstrPrty:
-    description: >
-      InstructionPriority
-
-      Indicator of the urgency or order of importance that the instructing party would like the
-      instructed party to apply to the processing of the instruction.
     $ref: ./Priority2Code.yaml
   ClrChanl:
-    description: >
-      ClearingChannel
-
-      Specifies the clearing channel to be used to process the payment instruction.
     $ref: ./ClearingChannel2Code.yaml
   SvcLvl:
-    description: >
-      ServiceLevel
+    allOf:
+      - $ref: ./ServiceLevel8Choice.yaml
+      - description: >
+          ServiceLevel
 
-      Agreement under which or rules under which the transaction should be processed.
-    $ref: ./ServiceLevel8Choice.yaml
+          Agreement under which or rules under which the transaction should be processed.
   LclInstrm:
-    description: >
-      LocalInstrument
+    allOf:
+      - $ref: ./LocalInstrument2Choice.yaml
+      - description: >
+          LocalInstrument
 
-      Definition: User community specific instrument.
+          Definition: User community specific instrument.
 
-      Usage: This element is used to specify a local instrument, local clearing option and/or further qualify the
-      service or service level.
-    $ref: ./LocalInstrument2Choice.yaml
+          Usage: This element is used to specify a local instrument, local clearing option and/or further qualify the
+          service or service level.
   CtgyPurp:
-    description: >
-      CategoryPurpose
+    allOf:
+      - $ref: ./CategoryPurpose1Choice.yaml
+      - description: >
+          CategoryPurpose
 
-      Specifies the high level purpose of the instruction based on a set of pre-defined categories.
-    $ref: ./CategoryPurpose1Choice.yaml
+          Specifies the high level purpose of the instruction based on a set of pre-defined categories.
 example:
   InstrPrty: NORM
   ClrChanl: RTGS

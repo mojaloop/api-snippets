@@ -1,18 +1,22 @@
 title: Fxecute_FinancialInstitutionCreditTransferV12
 type: object
+description:  >
+  The Fxecute FinancialInstitutionCreditTransfer message is sent by the initiating party to the executing party to request the execution of a payment. It is used to request movement of funds from the debtor account to the creditor account. The message can carry multiple credit transfer instructions. 
 properties:
   GrpHdr:
-    description: >
-      GroupHeader.
+    allOf:
+      - $ref: ./GroupHeader129.yaml
+      - description: >
+          GroupHeader.
 
-      Set of characteristics shared by all individual transactions included in the message.
-    $ref: ./GroupHeader129.yaml
+          Set of characteristics shared by all individual transactions included in the message.
   CdtTrfTxInf:
-    description: >
-      CreditTransferTransactionInformation.
+    allOf:
+      - $ref: ./CreditTransferTransaction68.yaml
+      - description: >
+          CreditTransferTransactionInformation.
 
-      Set of elements providing information specific to the individual credit transfer(s).
-    $ref: ./CreditTransferTransaction68.yaml
+          Set of elements providing information specific to the individual credit transfer(s).
 required:
   - GrpHdr
   - CdtTrfTxInf

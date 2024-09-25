@@ -1,10 +1,13 @@
 title: PacsStatus_FIToFIPaymentStatusReportV15
-description: |
-  Unsure on description.
+description:    
+  The PacsStatus message is sent by a financial institution to another financial institution as a response to the FIToFIPaymentStatusReport message. The message provides information on the status of a payment instruction and its underlying individual transactions.
 type: object
 properties:
   GrpHdr:
-    $ref: ./GroupHeader120.yaml
+    allOf:
+      - $ref: ./GroupHeader120.yaml
+      - description: >
+          Set of characteristics shared by all individual transactions included in the message.
 required:
   - GrpHdr
 example:

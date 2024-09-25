@@ -1,24 +1,31 @@
 title: GenericPersonIdentification1
 type: object
+description: >
+  GenericPersonIdentification1
+
+  Information that locates and identifies a specific person.
 properties:
   Id:
-    description: >
-      Identification
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Identification
 
-      Unique and unambiguous identification of a person.
-    $ref: ./Max35Text.yaml
+          Unique and unambiguous identification of a person.
   SchmeNm:
-    description: >
-      SchemeName
+    allOf:
+      - $ref: ./PersonIdentificationSchemeName1Choice.yaml
+      - description: >
+          SchemeName
 
-      Name of the identification scheme.
-    $ref: ./PersonIdentificationSchemeName1Choice.yaml
+          Name of the identification scheme.
   Issr:
-    description: >
-      Issuer
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Issuer
 
-      Entity that assigns the identification.
-    $ref: ./Max35Text.yaml
+          Entity that assigns the identification.
 required:
   - Id
 example:

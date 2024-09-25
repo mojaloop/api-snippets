@@ -2,13 +2,19 @@ title: Execute_FIToFICustomerCreditTransferV13
 type: object
 properties:
   GrpHdr:
-    description: >
-      GroupHeader.
-    $ref: ./GroupHeader129.yaml
+    allOf:
+      - $ref: ./GroupHeader129.yaml
+      - description: >
+          Group Header
+
+          Set of characteristics shared by all individual transactions included in the message.
   CdtTrfTxInf:
-    description: >
-      CreditTransferTransactionInformation.
-    $ref: ./CreditTransferTransaction67.yaml
+    allOf:
+      - $ref: ./CreditTransferTransaction67.yaml
+      - description: >
+          Credit Transfer Transaction Information
+
+          Set of elements providing information specific to the individual credit transfer(s).
 required:
   - GrpHdr
   - CdtTrfTxInf
@@ -27,26 +33,6 @@ example:
         Nm: John Doe
       SttlmAcctSvcr:
         BICFI: 123
-    CdtTrfTxInf:
-      PmtId:
-        InstrId: 123
-        EndToEndId: 123
-      PmtTpInf:
-        InstrPrty: NORM
-      InstdAmt:
-        Amt: 123
-        Ccy: EUR
-      ChrgBr: SLEV
-      CdtrAgt:
-        FinInstnId:
-          BICFI: 123
-      Cdtr:
-        Nm: John Doe
-      CdtrAcct:
-        Id:
-          IBAN: 123
-      RmtInf:
-        Ustrd: Test
   CdtTrfTxInf:
     PmtId:
       InstrId: 123

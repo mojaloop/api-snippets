@@ -4,21 +4,23 @@ description: |
 type: object
 properties:
   Cd:
-    description: >
-      Code
+    allOf:
+      - $ref: ./ExternalOrganisationIdentification1Code.yaml
+      - description: >
+          Code
 
-      Name of the identification scheme, in a coded form as published in an external list.
-    $ref: ./ExternalOrganisationIdentification1Code.yaml
+          Name of the identification scheme, in a coded form as published in an external list.
   Prtry:
-    description: >
-      Proprietary
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Proprietary
 
-      Name of the identification scheme, in a free text form.
-    $ref: ./Max35Text.yaml
+          Name of the identification scheme, in a free text form.
 oneOf:
-  - required:
-      - Cd
-  - required:
-      - Prtry
+  - properties:
+      Cd: {}
+  - properties:
+      Prtry: {}
 example:
   Cd: BIC

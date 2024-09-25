@@ -4,36 +4,43 @@ description: |
 type: object
 properties:
   Nm:
-    description: >
-      Name
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: >
+          Name
 
-      Name by which a party is known and which is usually used to identify that party.
-    $ref: ./Max140Text.yaml
+          Name by which a party is known and which is usually used to identify that party.
   PstlAdr:
-    description: >
-      Postal Address
+    allOf:
+      - $ref: ./PostalAddress27.yaml
+      - description: >
+          Postal Address
 
-      Information that locates and identifies a specific address, as defined by postal services.
-    $ref: ./PostalAddress27.yaml
+          Information that locates and identifies a specific address, as defined by postal services.
   Id:
-    description: >
-      Identification
+    allOf:
+      - $ref: ./Party52Choice.yaml
+      - description: >
+          Identification
 
-      Unique and unambiguous identification of a party.
-    $ref: ./Party52Choice.yaml
+          Unique and unambiguous identification of a party.
   CtryOfRes:
-    description: >
-      Country of Residence
+    allOf:
+      - $ref: ./CountryCode.yaml
+      - description: >
+          Country of Residence
 
-      Country in which a person resides (the place of a person's home).
-      In the case of a company, it is the country from which the affairs of that company are directed.
-    $ref: ./CountryCode.yaml
+          Country in which a person resides (the place of a person's home).
+          In the case of a company, it is the country from which the affairs of that company are directed.
   CtctDtls:
-    description: >
-      Contact Details
+    allOf:
+      - $ref: ./Contact13.yaml
+      - description: >
+          Contact Details
 
-      Set of elements used to indicate how to contact the party.
-    $ref: ./Contact13.yaml
+          Set of elements used to indicate how to contact the party.
+required:
+  - Id
 example:
   Nm: John Doe
   PstlAdr:
@@ -60,4 +67,5 @@ example:
     PhneNb: +123-123-321
     MobNb: +123-123-321
     FaxNb: +123-123-321
-    EmailAdr:
+    EmailAdr: example@example.com
+    
