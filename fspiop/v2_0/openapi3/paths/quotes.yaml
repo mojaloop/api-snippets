@@ -22,9 +22,12 @@ post:
     description: Details of the quote to be created.
     required: true
     content:
-      application/json:
+      application/vnd.interoperability.quotes+json;version=2.0:
         schema:
           $ref: ../components/schemas/QuotesPostRequest.yaml
+      application/vnd.interoperability.ISOquotes+json;version=2.0:
+        schema:
+          $ref: ../components/schemas/QuotesPostRequestISO.yaml
   responses:
     '202':
       $ref: ../components/responses/202.yaml

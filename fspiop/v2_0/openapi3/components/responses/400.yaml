@@ -3,6 +3,12 @@ content:
   application/json:
     schema:
       $ref: ../schemas/ErrorInformationResponse.yaml
+  application/vnd.interoperability.transfers+json;version=2.0:
+    schema:
+      $ref: ../schemas/ErrorInformationResponse.yaml
+  application/vnd.interoperability.isoTransfers+json;version=2.0:
+    schema:
+      $ref: ../schemas/ErrorInformationResponseISO.yaml
 headers:
   Content-Length:
     $ref: ../headers/Content-Length.yaml
