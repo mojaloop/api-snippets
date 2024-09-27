@@ -1,3 +1,4 @@
 title: Number
 type: string
 example: 256
+pattern: ^(?!0\d)\d{1,18}$

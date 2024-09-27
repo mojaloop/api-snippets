@@ -551,15 +551,6 @@ export interface components {
         };
         /**
          * ActiveCurrencyAndAmount_SimpleType
-         * @description NOTE: This regex doesn't seem correct given it's xsd definition.
-         *     <xs:simpleType name="ActiveCurrencyAndAmount_SimpleType">
-         *       <xs:restriction base="xs:decimal">
-         *         <xs:fractionDigits value="5"/>
-         *         <xs:totalDigits value="18"/>
-         *         <xs:minInclusive value="0"/>
-         *       </xs:restriction>
-         *     </xs:simpleType>
-         *
          * @example 123.45
          */
         ActiveCurrencyAndAmount_SimpleType: string;
@@ -1663,6 +1654,7 @@ export interface components {
          */
         FxRequest_FICreditTransferProposal: {
             GrpHdr: components["schemas"]["GroupHeader113"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"] & unknown;
         };
         /**
          * FxResponse_FICreditTransferConfirmation
@@ -2176,41 +2168,6 @@ export interface components {
          *       "PmtTpInf": {
          *         "InstrPrty": "NORM",
          *         "CtgyPurp": "CASH"
-         *       },
-         *       "CdtTrfTxInf": {
-         *         "PmtId": {
-         *           "InstrId": 12345,
-         *           "EndToEndId": 12345
-         *         },
-         *         "Amt": {
-         *           "InstdAmt": {
-         *             "Ccy": "EUR",
-         *             "Value": 100
-         *           }
-         *         },
-         *         "Cdtr": {
-         *           "Nm": "Name"
-         *         },
-         *         "CdtrAcct": {
-         *           "Id": {
-         *             "IBAN": "BE71096123456769"
-         *           },
-         *           "Ccy": "EUR"
-         *         },
-         *         "CdtrAgt": {
-         *           "FinInstnId": {
-         *             "BICFI": "BIC"
-         *           }
-         *         },
-         *         "CdtrAgtAcct": {
-         *           "Id": {
-         *             "IBAN": "BE71096123456769"
-         *           },
-         *           "Ccy": "EUR"
-         *         },
-         *         "RmtInf": {
-         *           "Ustrd": "Test"
-         *         }
          *       }
          *     }
          */
@@ -2221,7 +2178,6 @@ export interface components {
             TtlIntrBkSttlmAmt?: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
             SttlmInf: components["schemas"]["SettlementInstruction15"] & unknown;
             PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"] & unknown;
         };
         /**
          * GroupHeader120
@@ -2279,36 +2235,6 @@ export interface components {
          *         "SttlmAcctSvcr": {
          *           "BICFI": 123
          *         }
-         *       },
-         *       "CdtTrfTxInf": {
-         *         "PmtId": {
-         *           "InstrId": 123,
-         *           "EndToEndId": 123
-         *         },
-         *         "PmtTpInf": {
-         *           "InstrPrty": "NORM"
-         *         },
-         *         "InstdAmt": {
-         *           "Amt": 123,
-         *           "Ccy": "EUR"
-         *         },
-         *         "ChrgBr": "SLEV",
-         *         "CdtrAgt": {
-         *           "FinInstnId": {
-         *             "BICFI": 123
-         *           }
-         *         },
-         *         "Cdtr": {
-         *           "Nm": "John Doe"
-         *         },
-         *         "CdtrAcct": {
-         *           "Id": {
-         *             "IBAN": 123
-         *           }
-         *         },
-         *         "RmtInf": {
-         *           "Ustrd": "Test"
-         *         }
          *       }
          *     }
          */
@@ -2318,7 +2244,6 @@ export interface components {
             PmtInstrXpryDtTm?: components["schemas"]["ISODateTime"] & unknown;
             NbOfTxs: components["schemas"]["Max15NumericText"] & unknown;
             SttlmInf: components["schemas"]["SettlementInstruction15"] & unknown;
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"] & unknown;
         };
         /**
          * IBAN2007Identifier
@@ -3781,6 +3706,7 @@ export interface components {
          */
         TermsRequest_FIToFICustomerCreditProposal: {
             GrpHdr: components["schemas"]["GroupHeader129"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"] & unknown;
         };
         /**
          * TermsResponse_FIToFICustomerCreditConfirmation

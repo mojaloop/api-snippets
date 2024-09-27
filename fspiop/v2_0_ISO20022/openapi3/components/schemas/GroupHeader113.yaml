@@ -34,17 +34,11 @@ properties:
       - $ref: ./PaymentTypeInformation28.yaml
       - description: >
           Payment Type Information
-  CdtTrfTxInf:
-    allOf:
-      - $ref: ./CreditTransferTransaction68.yaml
-      - description: >
-          Credit Transfer Transaction Information
 required:
   - MsgId
   - CreDtTm
   - NbOfTxs
   - SttlmInf
-  - CdtTrfTxInf
 example:
   MsgId: 12345
   CreDtTm: '2020-01-01T00:00:00Z'
@@ -68,26 +62,3 @@ example:
   PmtTpInf:
     InstrPrty: NORM
     CtgyPurp: CASH
-  CdtTrfTxInf:
-    PmtId:
-      InstrId: 12345
-      EndToEndId: 12345
-    Amt:
-      InstdAmt:
-        Ccy: EUR
-        Value: 100.0
-    Cdtr:
-      Nm: Name
-    CdtrAcct:
-      Id:
-        IBAN: BE71096123456769
-      Ccy: EUR
-    CdtrAgt:
-      FinInstnId:
-        BICFI: BIC
-    CdtrAgtAcct:
-      Id:
-        IBAN: BE71096123456769
-      Ccy: EUR
-    RmtInf:
-      Ustrd: Test
