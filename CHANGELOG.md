@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.6.3](https://github.com/mojaloop/api-snippets/compare/v17.6.2...v17.6.3) (2024-09-27)
+
+
+### Maintenance
+
+* fix regex on components and oneOf replace ([#179](https://github.com/mojaloop/api-snippets/issues/179)) ([798253c](https://github.com/mojaloop/api-snippets/commit/798253c3616d082692c0ca221201b4c75ac6b1b3))
+
 ### [17.6.2](https://github.com/mojaloop/api-snippets/compare/v17.6.1...v17.6.2) (2024-09-25)
 
 
