@@ -1,4 +1,4 @@
 title: Number
 type: string
-pattern: ^[\d\-\.\,]{1,18}$
 example: 256
+pattern: ^(?!0\d)\d{1,18}$

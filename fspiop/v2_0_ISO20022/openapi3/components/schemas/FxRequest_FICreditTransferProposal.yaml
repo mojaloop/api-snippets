@@ -12,8 +12,14 @@ properties:
           GroupHeader
 
           Set of characteristics shared by all individual transactions included in the message.
+  CdtTrfTxInf:
+    allOf:
+      - $ref: ./CreditTransferTransaction68.yaml
+      - description: >
+          Credit Transfer Transaction Information
 required:
   - GrpHdr
+  - CdtTrfTxInf
 example:
   GrpHdr:
     MsgId: 12345

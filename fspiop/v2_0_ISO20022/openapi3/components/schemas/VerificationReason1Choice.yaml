@@ -3,7 +3,7 @@ type: object
 description: |
   Choice of format for the verification reason.
   Only one, between the coded and the proprietary, can be chosen.
-oneOf:
+anyOf:
   - properties:
       Cd:
         allOf:

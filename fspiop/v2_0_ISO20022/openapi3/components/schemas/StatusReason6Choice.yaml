@@ -2,7 +2,7 @@ title: StatusReason6Choice
 description: |
   Specifies the reason for the status.
 type: object
-oneOf:
+anyOf:
   - properties:
       Cd:
         allOf:
