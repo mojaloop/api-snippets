@@ -2,7 +2,7 @@ title: FinancialIdentificationSchemeName1Choice
 type: object
 description: >
   Specifies the name of the identification scheme.
-oneOf:
+anyOf:
   - properties:
       Cd:
         allOf:

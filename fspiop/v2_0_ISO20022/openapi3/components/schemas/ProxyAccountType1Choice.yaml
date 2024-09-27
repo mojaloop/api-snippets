@@ -2,7 +2,7 @@ title: ProxyAccountType1Choice
 description: |
   Specifies the type of the proxy account.
 type: object
-oneOf:
+anyOf:
   - properties:
       Cd:
         allOf:

@@ -2,7 +2,7 @@ title: AddressType3Choice
 type: object
 description: |
   Choice of formats for the type of address.
-oneOf:
+anyOf:
   - properties:
       Cd:
         allOf:

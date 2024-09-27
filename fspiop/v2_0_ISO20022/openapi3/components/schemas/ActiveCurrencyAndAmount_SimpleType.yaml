@@ -9,5 +9,4 @@ description: |
       <xs:minInclusive value="0"/>
     </xs:restriction>
   </xs:simpleType>
-pattern: ^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$
 example: 123.45

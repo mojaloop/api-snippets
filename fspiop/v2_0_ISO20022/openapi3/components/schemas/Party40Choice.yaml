@@ -2,7 +2,7 @@ title: Party40Choice
 description: |
    Identification of a person, an organisation or a financial institution.
 type: object
-oneOf:
+anyOf:
   - properties:
       Pty:
         allOf:

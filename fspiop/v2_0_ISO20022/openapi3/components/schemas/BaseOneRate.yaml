@@ -2,5 +2,4 @@ title: BaseOneRate
 type: string
 description: |
   Rate expressed as a decimal, for example, 0.7 is 7/10 and 70%.
-pattern: ^(?=[\d\-\.\,]{1,11}$)([\d\-\,\.]{1,10})?$
 example: 0.7

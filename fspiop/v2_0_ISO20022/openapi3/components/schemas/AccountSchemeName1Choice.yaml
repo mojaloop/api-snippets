@@ -2,7 +2,7 @@ title: AccountSchemeName1Choice
 type: object
 description: |
   Sets of elements to identify a name of the identification scheme.
-oneOf:
+anyOf:
   - properties:
       Cd:
         allOf:

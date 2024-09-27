@@ -17,7 +17,7 @@ properties:
           Proprietary
 
           Name of the identification scheme, in a free text form.
-oneOf:
+anyOf:
   - properties:
       Cd: {}
   - properties:

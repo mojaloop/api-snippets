@@ -2,7 +2,7 @@ title: Party38Choice
 description: |
   Nature or use of the account.
 type: object
-oneOf:
+anyOf:
   - properties:
       OrgId:
         allOf:

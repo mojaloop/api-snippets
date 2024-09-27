@@ -2,7 +2,7 @@ title: LocalInstrument2Choice
 type: object
 description: >
   Specifies the local instrument, as published in an external local instrument code list or as a proprietary code.
-oneOf:
+anyOf:
   - properties:
       Cd:
         allOf:
@@ -24,4 +24,4 @@ oneOf:
     required:
       - Prtry
 example:
-  Cd: CH03  
+  Cd: CH03

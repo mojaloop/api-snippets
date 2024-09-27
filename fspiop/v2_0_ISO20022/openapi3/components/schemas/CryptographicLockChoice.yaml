@@ -2,7 +2,7 @@ title: CryptographicLockChoice
 description: |
   Cryptographically signed terms
 type: object
-oneOf:
+anyOf:
   - properties:
       IlpV4PrepPacket:
         allOf:

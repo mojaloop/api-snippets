@@ -2666,11 +2666,11 @@ export interface components {
         OrganisationIdentificationSchemeName1Choice: {
             Cd?: components["schemas"]["ExternalOrganisationIdentification1Code"] & unknown;
             Prtry?: components["schemas"]["Max35Text"] & unknown;
-        } & ({
+        } | {
             Cd?: unknown;
         } | {
             Prtry?: unknown;
-        });
+        };
         /**
          * OtherContact1
          * @description Communication device number or electronic address used for communication.

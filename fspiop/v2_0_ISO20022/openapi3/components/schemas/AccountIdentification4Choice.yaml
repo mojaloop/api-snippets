@@ -3,7 +3,7 @@ type: object
 description: >
   Specifies the unique identification of an account as assigned by the account
   servicer.
-oneOf:
+anyOf:
   - properties:
       IBAN:
         allOf:
