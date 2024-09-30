@@ -1,24 +1,29 @@
 title: GenericIdentification30
 type: object
+description: >
+  Generic scheme identification for a party.
 properties:
   Id:
-    description: >
-      Identification
+    allOf:
+      - $ref: ./Exact4AlphaNumericText.yaml
+      - description: >
+          Identification
 
-      Proprietary information, often a code, issued by the data source scheme issuer
-    $ref: ./Exact4AlphaNumericText.yaml
+          Proprietary information, often a code, issued by the data source scheme issuer.
   Issr:
-    description: >
-      Issuer
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Issuer
 
-      Entity that assigns the identification.
-    $ref: ./Max35Text.yaml
+          Entity that assigns the identification.
   SchmeNm:
-    description: >
-      SchemeName
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          SchemeName
 
-      Short textual description of the scheme.
-    $ref: ./Max35Text.yaml
+          Short textual description of the scheme.
 required:
   - Id
   - Issr

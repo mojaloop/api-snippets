@@ -4,23 +4,26 @@ description: |
 type: object
 properties:
   Orgtr:
-    description:
-      Originator
+    allOf:
+      - $ref: ./PartyIdentification272.yaml
+      - description: >
+          Originator
 
-      Party that issues the status.
-    $ref: ./PartyIdentification272.yaml
+          Party that issues the status.
   Rsn:
-    description:
-      Reason
+    allOf:
+      - $ref: ./StatusReason6Choice.yaml
+      - description: >
+          Reason
 
-      Specifies the reason for the status report.
-    $ref: ./StatusReason6Choice.yaml
+          Specifies the reason for the status report.
   AddtlInf:
-    description:
-      AdditionalInformation
+    allOf:
+      - $ref: ./Max105Text.yaml
+      - description: >
+          AdditionalInformation
 
-      Additional information about the status report.
-    $ref: ./Max105Text.yaml
+          Additional information about the status report.
 example:
   Orgtr:
     Nm: Name

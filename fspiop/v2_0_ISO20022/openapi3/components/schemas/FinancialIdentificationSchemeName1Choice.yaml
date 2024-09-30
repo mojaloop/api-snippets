@@ -1,22 +1,27 @@
 title: FinancialIdentificationSchemeName1Choice
 type: object
-properties:
-  Cd:
-    description: >
-      Code
+description: >
+  Specifies the name of the identification scheme.
+anyOf:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalFinancialInstitutionIdentification1Code.yaml
+          - description: >
+              Code
 
-      Name of the identification scheme, in a coded form as published in an external list.
-    $ref: ./ExternalFinancialInstitutionIdentification1Code.yaml
-  Prtry:
-    description: >
-      Proprietary
-
-      Name of the identification scheme, in a free text form.
-    $ref: ./Max35Text.yaml
-oneOf:
-  - required:
+              Name of the identification scheme, in a coded form as published in an external list.
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Name of the identification scheme, in a free text form.
+    required:
       - Prtry
 example:
   Cd: BIC

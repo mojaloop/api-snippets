@@ -6,23 +6,26 @@ description: |
 type: object
 properties:
   Amt:
-    description: >
-      Amount
+    allOf:
+      - $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+      - description: >
+          Amount
 
-       Transaction charges to be paid by the charge bearer.
-    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+          Transaction charges to be paid by the charge bearer.
   Agt:
-    description: >
-      Agent
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          Agent
 
-      Agent that takes the transaction charges or to which the transaction charges are due.
-    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+          Agent that takes the transaction charges or to which the transaction charges are due.
   Tp:
-    description: >
-      Type
+    allOf:
+      - $ref: ./ChargeType3Choice.yaml
+      - description: >
+          Type
 
-       Defines the type of charges.
-    $ref: ./ChargeType3Choice.yaml
+          Defines the type of charges.
 required:
   - Amt
   - Agt

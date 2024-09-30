@@ -1,26 +1,27 @@
 title: ProxyAccountType1Choice
-type: object
 description: |
-  ProxyAccountType1Choice
+  Specifies the type of the proxy account.
+type: object
+anyOf:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalProxyAccountType1Code.yaml
+          - description: >
+              Code
 
-  Specifies the scheme used for the identification of an account alias.
-properties:
-  Cd:
-    description: |
-      Code
-
-      Name of the identification scheme, in a coded form as published in an external list.
-    $ref: ./ExternalProxyAccountType1Code.yaml
-  Prtry:
-    description: |
-      Proprietary
-
-      Name of the identification scheme, in a free text form.
-    $ref: ./Max35Text.yaml
-oneOf:
-  - required:
+              Proxy account type, in a coded form as published in an external list.
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Proxy account type, in a proprietary form.
+    required:
       - Prtry
 example:
-  Cd: CH03
+  Cd: EMAIL

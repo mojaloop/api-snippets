@@ -4,77 +4,89 @@ description: |
 type: object
 properties:
   NmPrfx:
-    description: >
-      NamePrefix
+    allOf:
+      - $ref: ./NamePrefix2Code.yaml
+      - description: >
+          NamePrefix
 
-      Name prefix to be used before the name of the person.
-    $ref: ./NamePrefix2Code.yaml
+          Name prefix to be used before the name of the person.
   Nm:
-    description: >
-      Name
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: >
+          Name
 
-      Name by which a party is known and which is usually used to identify that party.
-    $ref: ./Max140Text.yaml
+          Name by which a party is known and which is usually used to identify that party.
   PhneNb:
-    description: >
-      PhoneNumber
+    allOf:
+      - $ref: ./PhoneNumber.yaml
+      - description: >
+          PhoneNumber
 
-      Collection of information that identifies a phone number, as defined by telecom services.
-    $ref: ./PhoneNumber.yaml
+          Collection of information that identifies a phone number, as defined by telecom services.
   MobNb:
-    description: >
-      MobilePhoneNumber
+    allOf:
+      - $ref: ./PhoneNumber.yaml
+      - description: >
+          MobilePhoneNumber
 
-      Collection of information that identifies a mobile phone number, as defined by telecom services.
-    $ref: ./PhoneNumber.yaml
+          Collection of information that identifies a mobile phone number, as defined by telecom services.
   FaxNb:
-    description: >
-      FaxNumber
+    allOf:
+      - $ref: ./PhoneNumber.yaml
+      - description: >
+          FaxNumber
 
-      Collection of information that identifies a fax number, as defined by telecom services.
-    $ref: ./PhoneNumber.yaml
+          Collection of information that identifies a fax number, as defined by telecom services.
   EmailAdr:
-    description: >
-      EmailAddress
+    allOf:
+      - $ref: ./Max2048Text.yaml
+      - description: >
+          EmailAddress
 
-      Address for electronic mail (e-mail).
-    $ref: ./Max2048Text.yaml
+          Address for electronic mail (e-mail).
   EmailPurp:
-    description: >
-      EmailPurpose
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          EmailPurpose
 
-      Purpose for which an email address may be used.
-    $ref: ./Max35Text.yaml
+          Purpose for which an email address may be used.
   JobTitl:
-    description: >
-      JobTitle
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          JobTitle
 
-      Title of the function.
-    $ref: ./Max35Text.yaml
+          Title of the function.
   Rspnsblty:
-    description: >
-      Responsibility
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Responsibility
 
-      Role of a person in an organisation.
-    $ref: ./Max35Text.yaml
+          Role of a person in an organisation.
   Dept:
-    description: >
-      Department
+    allOf:
+      - $ref: ./Max70Text.yaml
+      - description: >
+          Department
 
-      Identification of a division of a large organisation or building.
-    $ref: ./Max70Text.yaml
+          Identification of a division of a large organisation or building.
   Othr:
-    description: >
-      Other
+    allOf:
+      - $ref: ./OtherContact1.yaml
+      - description: >
+          Other
 
-      : Contact details in another form.
-    $ref: ./OtherContact1.yaml
+          Contact details in another form.
   PrefrdMtd:
-    description: >
-      PreferredMethod
+    allOf:
+      - $ref: ./PreferredContactMethod1Code.yaml
+      - description: >
+          PreferredMethod
 
-      Preferred method used to reach the contact.
-    $ref: ./PreferredContactMethod1Code.yaml
+          Preferred method used to reach the contact.
 example:
   NmPrfx: Mr
   Nm: John Doe

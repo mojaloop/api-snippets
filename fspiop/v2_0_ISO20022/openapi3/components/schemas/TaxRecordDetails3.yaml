@@ -1,20 +1,22 @@
 title: TaxRecordDetails3
 description: |
-  Details on the tax period and amount
+  Details on the tax period and amount.
 type: object
 properties:
   Prd:
-    description: |
-      Period
+    allOf:
+      - $ref: ./TaxPeriod3.yaml
+      - description: |
+          Period
 
-      Set of elements used to provide details on the period of time related to the tax payment.
-    $ref: ./TaxPeriod3.yaml
+          Set of elements used to provide details on the period of time related to the tax payment.
   Amt:
-    description: |
-      Amount
+    allOf:
+      - $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+      - description: |
+          Amount
 
-      Underlying tax amount related to the specified period.
-    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+          Underlying tax amount related to the specified period.
 required:
   - Amt
 example:

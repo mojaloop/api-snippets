@@ -1,4 +1,5 @@
 title: ExternalProxyAccountType1Code
+description: Specifies the external proxy account type code.
 type: string
 minLength: 1
 maxLength: 4

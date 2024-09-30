@@ -1,25 +1,27 @@
 title: SupplementaryData1
 description: >
-  Additional information that can not be captured in the structured fields
+  Additional information that cannot be captured in the structured fields
   and/or any other specific block.
 type: object
 properties:
   PlcAndNm:
-    description: >
-      PlaceAndName
+    allOf:
+      - $ref: ./Max350Text.yaml
+      - description: >
+          PlaceAndName
 
-      Unambiguous reference to the location where the supplementary data must be inserted in
-      the message instance.
-    $ref: ./Max350Text.yaml
+          Unambiguous reference to the location where the supplementary data must be inserted in
+          the message instance.
   Envlp:
-    description: >
-      Envelope
+    allOf:
+      - $ref: ./SupplementaryDataEnvelope1.yaml
+      - description: >
+          Envelope
 
-      Technical element wrapping the supplementary data.
+          Technical element wrapping the supplementary data.
 
-      Technical component that contains the validated supplementary data information. This technical
-      envelope allows to segregate the supplementary data information from any other information.
-    $ref: ./SupplementaryDataEnvelope1.yaml
+          Technical component that contains the validated supplementary data information. This technical
+          envelope allows to segregate the supplementary data information from any other information.
 required:
   - Envlp
 example:

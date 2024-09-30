@@ -2,23 +2,26 @@ title: Party40Choice
 description: |
    Identification of a person, an organisation or a financial institution.
 type: object
-properties:
-  Pty:
-    description: >
-      Party
+anyOf:
+  - properties:
+      Pty:
+        allOf:
+          - $ref: ./PartyIdentification135.yaml
+          - description: >
+              Party
 
-      Identification of a person or an organisation.
-    $ref: ./PartyIdentification135.yaml
-  Agt:
-    description: >
-      Agent
-
-      Identification of a financial institution.
-    $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
-oneOf:
-  - required:
+              Identification of a person or an organisation.
+    required:
       - Pty
-  - required:
+  - properties:
+      Agt:
+        allOf:
+          - $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
+          - description: >
+              Agent
+
+              Identification of a financial institution.
+    required:
       - Agt
 example:
   Pty:

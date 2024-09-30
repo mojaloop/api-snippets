@@ -1,25 +1,27 @@
 title: ClearingSystemIdentification2Choice
 description: |
-  Choice of a clearing system identifier.
+  Specifies the clearing system identification.
 type: object
-properties:
-  Cd:
-    description: >
-      Code
+anyOf:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalClearingSystemIdentification1Code.yaml
+          - description: >
+              Code
 
-      Identification of a member of a clearing system
-    $ref: ./ExternalClearingSystemIdentification1Code.yaml
-  Prtry:
-    description: >
-      Proprietary
-
-      Identification code for a clearing system, that has not yet been identified in the list of clearing
-      systems.
-    $ref: ./Max35Text.yaml
-oneOf:
-  - required:
+              Clearing system identification code, as published in an external list.
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Proprietary identification of the clearing system.
+    required:
       - Prtry
 example:
-  Cd: CHQB
+  Cd: CHIPS

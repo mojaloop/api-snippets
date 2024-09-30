@@ -4,59 +4,68 @@ description: |
 type: object
 properties:
   AddtlInf:
-    $ref: ./Max140Text.yaml
-    description: |
-      AdditionalInformation
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: |
+          AdditionalInformation
 
-      Further details of the tax record.
+          Further details of the tax record.
   CertId:
-    $ref: ./Max35Text.yaml
-    description: |
-      CertificateIdentification
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          CertificateIdentification
 
-      Identification number of the tax report as assigned by the taxing authority.
+          Identification number of the tax report as assigned by the taxing authority.
   Ctgy:
-    $ref: ./Max35Text.yaml
-    description: |
-      Category
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          Category
 
-      Specifies the tax code as published by the tax authority.
+          Specifies the tax code as published by the tax authority.
   CtgyDtls:
-    $ref: ./Max35Text.yaml
-    description: |
-      CategoryDetails
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          CategoryDetails
 
-      Provides further details of the category tax code.
+          Provides further details of the category tax code.
   DbtrSts:
-    $ref: ./Max35Text.yaml
-    description: |
-      DebtorStatus
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          DebtorStatus
 
-      Code provided by local authority to identify the status of the party that has drawn up the settlement document.
+          Code provided by local authority to identify the status of the party that has drawn up the settlement document.
   FrmsCd:
-    $ref: ./Max35Text.yaml
-    description: |
-      FormsCode
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          FormsCode
 
-      Identifies, in a coded form, on which template the tax report is to be provided.
+          Identifies, in a coded form, on which template the tax report is to be provided.
   Prd:
-    $ref: ./TaxPeriod3.yaml
-    description: |
-      Period
+    allOf:
+      - $ref: ./TaxPeriod3.yaml
+      - description: |
+          Period
 
-      Set of elements used to provide details on the period of time related to the tax payment.
+          Set of elements used to provide details on the period of time related to the tax payment.
   TaxAmt:
-    $ref: ./TaxAmount3.yaml
-    description: |
-      TaxAmount
+    allOf:
+      - $ref: ./TaxAmount3.yaml
+      - description: |
+          TaxAmount
 
-      Set of elements used to provide information on the amount of the tax record.
+          Set of elements used to provide information on the amount of the tax record.
   Tp:
-    $ref: ./Max35Text.yaml
-    description: |
-      Type
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          Type
 
-      High level code to identify the type of tax details.
+          High level code to identify the type of tax details.
 example:
   Tp: VAT
   Ctgy: A
@@ -65,10 +74,17 @@ example:
   CertId: 123456789
   FrmsCd: 123456789
   Prd:
-    FrstDay: '2019-01-01'
-    LastDay: '2019-12-31'
+    Yr: 2019
+    Tp: MM01
+    FrToDt:
+      FrDt: '2019-01-01'
+      ToDt: '2019-12-31'
   TaxAmt:
     Rate: 0.2
-    TaxblBaseAmt: 1000
-    TtlAmt: 200
+    TaxblBaseAmt:
+      Ccy: EUR
+      Amt: 1000
+    TtlAmt:
+      Ccy: EUR
+      Amt: 200
   AddtlInf: VAT applicable

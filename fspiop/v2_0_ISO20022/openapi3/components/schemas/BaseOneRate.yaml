@@ -2,5 +2,5 @@ title: BaseOneRate
 type: string
 description: |
   Rate expressed as a decimal, for example, 0.7 is 7/10 and 70%.
-pattern: ^(?=[\d\-\.\,]{1,11}$)([\d\-\,\.]{1,10})?$
 example: 0.7
+pattern: ^(?!0\d)(\d{1,11}|\d{1,10}.\d{1}|\d{1,9}.\d{1,2}|\d{1,8}.\d{1,3}|\d{1,7}.\d{1,4}|\d{1,6}.\d{1,5}|\d{1,5}.\d{1,6}|\d{1,4}.\d{1,7}|\d{1,3}.\d{1,8}|\d{1,2}.\d{1,9}|\d{1}.\d{1,10})$

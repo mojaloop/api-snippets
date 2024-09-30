@@ -519,15 +519,10 @@ export interface components {
          *     }
          */
         AccountIdentification4Choice: {
-            /** @description IBAN
-             *     International Bank Account Number (IBAN) - identifier used internationally by financial institutions to uniquely identify the account of a customer. Further specifications of the format and content of the IBAN can be found in the standard ISO 13616 "Banking and related financial services - International Bank Account Number (IBAN)" version 1997-10-01, or later revisions.
-             *      */
-            IBAN?: components["schemas"]["IBAN2007Identifier"];
-            /** @description Other
-             *     Unique identification of an account, as assigned by the account servicer, using an identification scheme.
-             *      */
-            Othr?: components["schemas"]["GenericAccountIdentification1"];
-        } & (unknown | unknown);
+            IBAN: components["schemas"]["IBAN2007Identifier"] & unknown;
+        } | {
+            Othr: components["schemas"]["GenericAccountIdentification1"] & unknown;
+        };
         /**
          * AccountSchemeName1Choice
          * @description Sets of elements to identify a name of the identification scheme.
@@ -537,15 +532,10 @@ export interface components {
          *     }
          */
         AccountSchemeName1Choice: {
-            /** @description Code
-             *     Name of the identification scheme, in a coded form as published in an external list.
-             *      */
-            Cd?: components["schemas"]["ExternalAccountIdentification1Code"];
-            /** @description Proprietary
-             *     Name of the identification scheme, in a free text form.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalAccountIdentification1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * ActiveCurrencyAndAmount
          * @description A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
@@ -557,22 +547,10 @@ export interface components {
          */
         ActiveCurrencyAndAmount: {
             ActiveCurrencyAndAmount: components["schemas"]["ActiveCurrencyAndAmount_SimpleType"];
-            /** @description Currency
-             *     Identification of the currency in which the account is held.
-             *      */
-            Ccy: components["schemas"]["ActiveCurrencyCode"];
+            Ccy: components["schemas"]["ActiveCurrencyCode"] & unknown;
         };
         /**
          * ActiveCurrencyAndAmount_SimpleType
-         * @description NOTE: This regex doesn't seem correct given it's xsd definition.
-         *     <xs:simpleType name="ActiveCurrencyAndAmount_SimpleType">
-         *       <xs:restriction base="xs:decimal">
-         *         <xs:fractionDigits value="5"/>
-         *         <xs:totalDigits value="18"/>
-         *         <xs:minInclusive value="0"/>
-         *       </xs:restriction>
-         *     </xs:simpleType>
-         *
          * @example 123.45
          */
         ActiveCurrencyAndAmount_SimpleType: string;
@@ -592,11 +570,8 @@ export interface components {
          *     }
          */
         ActiveOrHistoricCurrencyAndAmount: {
-            ActiveOrHistoricCurrencyAndAmount: components["schemas"]["ActiveOrHistoricCurrencyAndAmount_SimpleType"];
-            /** @description Currency
-             *     Identification of the currency in which the account is held.
-             *      */
-            Ccy: components["schemas"]["ActiveOrHistoricCurrencyCode"];
+            ActiveOrHistoricCurrencyAndAmount: components["schemas"]["ActiveOrHistoricCurrencyAndAmount_SimpleType"] & unknown;
+            Ccy: components["schemas"]["ActiveOrHistoricCurrencyCode"] & unknown;
         };
         /**
          * ActiveOrHistoricCurrencyAndAmount_SimpleType
@@ -612,8 +587,13 @@ export interface components {
         ActiveOrHistoricCurrencyCode: string;
         /**
          * @description AddressType2Code
-         *
          *     Specifies the type of address.
+         *     ADDR Address
+         *     PBOX PostBox
+         *     HOME Home
+         *     BIZZ Business
+         *     MLTO MailingTo
+         *     DLVY Delivery
          *
          * @example ADDR
          * @enum {string}
@@ -628,15 +608,10 @@ export interface components {
          *     }
          */
         AddressType3Choice: {
-            /** @description Code
-             *     Type of address expressed as a code.
-             *      */
-            Cd?: components["schemas"]["AddressType2Code"];
-            /** @description Proprietary
-             *     Type of address expressed as a proprietary code.
-             *      */
-            Prtry?: components["schemas"]["GenericIdentification30"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["AddressType2Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["GenericIdentification30"] & unknown;
+        };
         /**
          * AnyBICDec2014Identifier
          * @description AnyBICDec2014Identifier
@@ -692,15 +667,8 @@ export interface components {
          *     }
          */
         BranchAndFinancialInstitutionIdentification6: {
-            /** @description FinancialInstitutionIdentification
-             *     Unique and unambiguous identification of a financial institution, as assigned under an internationally recognised or proprietary identification scheme.
-             *      */
-            FinInstnId: components["schemas"]["FinancialInstitutionIdentification18"];
-            /** @description BranchIdentification
-             *     Definition: Identifies a specific branch of a financial institution.
-             *     Usage: This component should be used in case the identification information in the financial institution component does not provide identification up to branch level.
-             *      */
-            BrnchId?: components["schemas"]["BranchData3"];
+            FinInstnId: components["schemas"]["FinancialInstitutionIdentification18"] & unknown;
+            BrnchId?: components["schemas"]["BranchData3"] & unknown;
         };
         /**
          * BranchAndFinancialInstitutionIdentification8
@@ -729,15 +697,8 @@ export interface components {
          *     }
          */
         BranchAndFinancialInstitutionIdentification8: {
-            /** @description FinancialInstitutionIdentification
-             *     Unique and unambiguous identification of a financial institution or a branch of a financial institution.
-             *      */
-            FinInstnId: components["schemas"]["FinancialInstitutionIdentification23"];
-            /** @description BranchIdentification
-             *
-             *      Identifies a specific branch of a financial institution.
-             *      */
-            BrnchId?: components["schemas"]["BranchData5"];
+            FinInstnId: components["schemas"]["FinancialInstitutionIdentification23"] & unknown;
+            BrnchId?: components["schemas"]["BranchData5"] & unknown;
         };
         /**
          * BranchData3
@@ -761,22 +722,10 @@ export interface components {
          *     }
          */
         BranchData3: {
-            /** @description Identification
-             *     Unique and unambiguous identification of a branch of a financial institution.
-             *      */
-            Id?: components["schemas"]["Max35Text"];
-            /** @description Legal Entity Identifier
-             *     Legal entity identification for the branch of the financial institution.
-             *      */
-            LEI?: components["schemas"]["LEIIdentifier"];
-            /** @description Name
-             *     Name by which an agent is known and which is usually used to identify that agent.
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
-            /** @description Postal Address
-             *     Information that locates and identifies a specific address, as defined by postal services.
-             *      */
-            PstlAdr?: components["schemas"]["PostalAddress24"];
+            Id?: components["schemas"]["Max35Text"] & unknown;
+            LEI?: components["schemas"]["LEIIdentifier"] & unknown;
+            Nm?: components["schemas"]["Max140Text"] & unknown;
+            PstlAdr?: components["schemas"]["PostalAddress24"] & unknown;
         };
         /**
          * BranchData5
@@ -791,32 +740,15 @@ export interface components {
          *         "Dept": "Department",
          *         "SubDept": "Sub department",
          *         "StrtNm": "Street name",
-         *         "BldgNb": "Building number",
-         *         "PstCd": "Post code",
-         *         "TwnNm": "Town name",
-         *         "CtrySubDvsn": "Country subdivision",
-         *         "Ctry": "Country",
-         *         "AdrLine": "Address line"
+         *         "BldgNb": "Building number"
          *       }
          *     }
          */
         BranchData5: {
-            /** @description Identification
-             *     Unique and unambiguous identification of a branch of a financial institution.
-             *      */
-            Id?: components["schemas"]["Max35Text"];
-            /** @description LEI
-             *     Legal entity identification for the branch of the financial institution.
-             *      */
-            LEI?: components["schemas"]["LEIIdentifier"];
-            /** @description Name
-             *     Name by which an agent is known and which is usually used to identify that agent.
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
-            /** @description PostalAddress
-             *     Information that locates and identifies a specific address, as defined by postal services.
-             *      */
-            PstlAdr?: components["schemas"]["PostalAddress27"];
+            Id?: components["schemas"]["Max35Text"] & unknown;
+            LEI?: components["schemas"]["LEIIdentifier"] & unknown;
+            Nm?: components["schemas"]["Max140Text"] & unknown;
+            PstlAdr?: components["schemas"]["PostalAddress27"] & unknown;
         };
         /**
          * CashAccount40
@@ -837,28 +769,11 @@ export interface components {
          *     }
          */
         CashAccount40: {
-            /** @description Identification
-             *     Unique and unambiguous identification for the account between the account owner and the account servicer.
-             *      */
-            Id?: components["schemas"]["AccountIdentification4Choice"];
-            /** @description Type
-             *     Specifies the nature, or use of the account.
-             *      */
-            Tp?: components["schemas"]["CashAccountType2Choice"];
-            /** @description Currency
-             *     Definition: Identification of the currency in which the account is held.
-             *     Usage: Currency should only be used in case one and the same account number covers several currencies and the initiating party needs to identify which currency needs to be used for settlement on the account.
-             *      */
-            Ccy?: components["schemas"]["ActiveOrHistoricCurrencyCode"];
-            /** @description Name
-             *     Definition: Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account.
-             *     Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.
-             *      */
-            Nm?: components["schemas"]["Max70Text"];
-            /** @description Proxy
-             *     Specifies an alternate assumed name for the identification of the account.
-             *      */
-            Prxy?: components["schemas"]["ProxyAccountIdentification1"];
+            Id?: components["schemas"]["AccountIdentification4Choice"] & unknown;
+            Tp?: components["schemas"]["CashAccountType2Choice"] & unknown;
+            Ccy?: components["schemas"]["ActiveOrHistoricCurrencyCode"] & unknown;
+            Nm?: components["schemas"]["Max70Text"] & unknown;
+            Prxy?: components["schemas"]["ProxyAccountIdentification1"] & unknown;
         };
         /**
          * CashAccountType2Choice
@@ -869,15 +784,10 @@ export interface components {
          *     }
          */
         CashAccountType2Choice: {
-            /** @description Code
-             *     Account type, in a coded form.
-             *      */
-            Cd?: components["schemas"]["ExternalCashAccountType1Code"];
-            /** @description Proprietary
-             *     Nature or use of the account in a proprietary form.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalCashAccountType1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * CategoryPurpose1Choice
          * @description Contains details about high level purpose of the mandate based on a set of pre-defined categories.
@@ -887,22 +797,23 @@ export interface components {
          *     }
          */
         CategoryPurpose1Choice: {
-            /** @description Code
-             *     Category purpose, as published in an external category purpose code list.
-             *      */
-            Cd?: components["schemas"]["ExternalCategoryPurpose1Code"];
-            /** @description Proprietary
-             *     Category purpose, in a proprietary form.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalCategoryPurpose1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * ChargeBearerType1Code
-         * @description Specifies which party(ies) will pay charges due for processing of the instruction.
-         *     DEBT BorneByDebtor All transaction charges are to be borne by the debtor.
-         *     CRED BorneByCreditor All transaction charges are to be borne by the creditor.
-         *     SHAR Shared In a credit transfer context, means that transaction charges on the sender side are to be borne by the debtor, transaction charges on the receiver side are to be borne by the creditor. In a direct debit context, means that transaction charges on the sender side are to be borne by the creditor, transaction charges on the receiver
-         *     SLEV FollowingServiceLevel Charges are to be applied following the rules agreed in the service level.
+         * @description Specifies which party(ies) will pay charges due for processing of the
+         *     instruction.
+         *
+         *     DEBT: BorneByDebtor All transaction charges are to be borne by the debtor.
+         *     CRED: BorneByCreditor All transaction charges are to be borne by the creditor.
+         *     SHAR: Shared In a credit transfer context, means that transaction charges on
+         *           the sender side are to be borne by the debtor, transaction charges on the receiver side are to
+         *           be borne by the creditor. In a direct debit context, means that transaction charges on the sender side
+         *           are to be borne by the creditor, transaction charges on the receiver
+         *     SLEV : FollowingServiceLevel Charges are to be applied following the rules
+         *            agreed in the service level.
          *
          * @example DEBT
          * @enum {string}
@@ -918,15 +829,10 @@ export interface components {
          *     }
          */
         ChargeType3Choice: {
-            /** @description Code
-             *     Charge type, in a coded form.
-             *      */
-            Cd?: components["schemas"]["ExternalChargeType1Code"];
-            /** @description Proprietary
-             *     Type of charge in a proprietary form, as defined by the issuer.
-             *      */
-            Prtry?: components["schemas"]["GenericIdentification3"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalChargeType1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["GenericIdentification3"] & unknown;
+        };
         /**
          * Charges16
          * @description NOTE: Unsure on description.
@@ -952,28 +858,19 @@ export interface components {
          *     }
          */
         Charges16: {
-            /** @description Amount
-             *
-             *      Transaction charges to be paid by the charge bearer.
-             *      */
-            Amt: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"];
-            /** @description Agent
-             *     Agent that takes the transaction charges or to which the transaction charges are due.
-             *      */
-            Agt: components["schemas"]["BranchAndFinancialInstitutionIdentification8"];
-            /** @description Type
-             *
-             *      Defines the type of charges.
-             *      */
-            Tp?: components["schemas"]["ChargeType3Choice"];
+            Amt: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
+            Agt: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            Tp?: components["schemas"]["ChargeType3Choice"] & unknown;
         };
         /**
          * ClearingChannel2Code
-         * @description Specifies the clearing channel for the routing of the transaction, as part of the payment type identification.
-         *     RTGS RealTimeGrossSettlementSystem Clearing channel is a real-time gross settlement system.
-         *     RTNS RealTimeNetSettlementSystem Clearing channel is a real-time net settlement system.
-         *     MPNS MassPaymentNetSystem Clearing channel is a mass payment  net settlement system.
-         *     BOOK BookTransfer Payment through internal book transfer.
+         * @description Specifies the clearing channel for the routing of the transaction, as part of
+         *     the payment type identification.
+         *
+         *     RTGS: RealTimeGrossSettlementSystem Clearing channel is a real-time gross settlement system.
+         *     RTNS: RealTimeNetSettlementSystem Clearing channel is a real-time net settlement system.
+         *     MPNS: MassPaymentNetSystem Clearing channel is a mass payment  net settlement system.
+         *     BOOK: BookTransfer Payment through internal book transfer.
          *
          * @example RTGS
          * @enum {string}
@@ -981,22 +878,17 @@ export interface components {
         ClearingChannel2Code: "RTGS" | "RTNS" | "MPNS" | "BOOK";
         /**
          * ClearingSystemIdentification2Choice
-         * @description Choice of a clearing system identifier.
+         * @description Specifies the clearing system identification.
          *
          * @example {
-         *       "Cd": "CHQB"
+         *       "Cd": "CHIPS"
          *     }
          */
         ClearingSystemIdentification2Choice: {
-            /** @description Code
-             *     Identification of a member of a clearing system
-             *      */
-            Cd?: components["schemas"]["ExternalClearingSystemIdentification1Code"];
-            /** @description Proprietary
-             *     Identification code for a clearing system, that has not yet been identified in the list of clearing systems.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalClearingSystemIdentification1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * ClearingSystemMemberIdentification2
          * @description Unique identification, as assigned by a clearing system, to unambiguously identify a member of the clearing system.
@@ -1009,14 +901,8 @@ export interface components {
          *     }
          */
         ClearingSystemMemberIdentification2: {
-            /** @description ClearingSystemIdentification.
-             *     Specification of a pre-agreed offering between clearing agents or the channel through which the payment instruction is processed.
-             *      */
-            ClrSysId?: components["schemas"]["ClearingSystemIdentification2Choice"];
-            /** @description MemberIdentification.
-             *     Identification of a member of a clearing system.
-             *      */
-            MmbId: components["schemas"]["Max35Text"];
+            ClrSysId?: components["schemas"]["ClearingSystemIdentification2Choice"] & unknown;
+            MmbId: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * Contact13
@@ -1033,58 +919,19 @@ export interface components {
          *     }
          */
         Contact13: {
-            /** @description NamePrefix
-             *     Specifies the terms used to formally address a person.
-             *      */
-            NmPrfx?: components["schemas"]["NamePrefix2Code"];
-            /** @description Name
-             *     Name by which a party is known and which is usually used to identify that party.
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
-            /** @description PhoneNumber
-             *     Collection of information that identifies a phone number, as defined by telecom services.
-             *      */
-            PhneNb?: components["schemas"]["PhoneNumber"];
-            /** @description MobilePhoneNumber
-             *     Collection of information that identifies a mobile phone number, as defined by telecom services.
-             *      */
-            MobNb?: components["schemas"]["PhoneNumber"];
-            /** @description FaxNumber
-             *     Collection of information that identifies a fax number, as defined by telecom services.
-             *      */
-            FaxNb?: components["schemas"]["PhoneNumber"];
-            /** @description URLAddress
-             *     Address for the Universal Resource Locator (URL), for example an address used over the www (HTTP) service.
-             *      */
-            URLAdr?: components["schemas"]["Max2048Text"];
-            /** @description EmailAddress
-             *     Address for electronic mail (e-mail).
-             *      */
-            EmailAdr?: components["schemas"]["Max256Text"];
-            /** @description EmailPurpose
-             *     Purpose for which an email address may be used.
-             *      */
-            EmailPurp?: components["schemas"]["Max35Text"];
-            /** @description JobTitle
-             *     Title of the function.
-             *      */
-            JobTitl?: components["schemas"]["Max35Text"];
-            /** @description Responsibility
-             *     Role of a person in an organisation.
-             *      */
-            Rspnsblty?: components["schemas"]["Max35Text"];
-            /** @description Department
-             *     Identification of a division of a large organisation or building.
-             *      */
-            Dept?: components["schemas"]["Max70Text"];
-            /** @description OtherContact
-             *     Contact details in another form.
-             *      */
-            Othr?: components["schemas"]["OtherContact1"];
-            /** @description PreferredContactMethod
-             *     Preferred method used to reach the contact.
-             *      */
-            PrefrdMtd?: components["schemas"]["PreferredContactMethod2Code"];
+            NmPrfx?: components["schemas"]["NamePrefix2Code"] & unknown;
+            Nm?: components["schemas"]["Max140Text"] & unknown;
+            PhneNb?: components["schemas"]["PhoneNumber"] & unknown;
+            MobNb?: components["schemas"]["PhoneNumber"] & unknown;
+            FaxNb?: components["schemas"]["PhoneNumber"] & unknown;
+            URLAdr?: components["schemas"]["Max2048Text"] & unknown;
+            EmailAdr?: components["schemas"]["Max256Text"] & unknown;
+            EmailPurp?: components["schemas"]["Max35Text"] & unknown;
+            JobTitl?: components["schemas"]["Max35Text"] & unknown;
+            Rspnsblty?: components["schemas"]["Max35Text"] & unknown;
+            Dept?: components["schemas"]["Max70Text"] & unknown;
+            Othr?: components["schemas"]["OtherContact1"] & unknown;
+            PrefrdMtd?: components["schemas"]["PreferredContactMethod2Code"] & unknown;
         };
         /**
          * Contact4
@@ -1100,54 +947,18 @@ export interface components {
          *     }
          */
         Contact4: {
-            /** @description NamePrefix
-             *     Name prefix to be used before the name of the person.
-             *      */
-            NmPrfx?: components["schemas"]["NamePrefix2Code"];
-            /** @description Name
-             *     Name by which a party is known and which is usually used to identify that party.
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
-            /** @description PhoneNumber
-             *     Collection of information that identifies a phone number, as defined by telecom services.
-             *      */
-            PhneNb?: components["schemas"]["PhoneNumber"];
-            /** @description MobilePhoneNumber
-             *     Collection of information that identifies a mobile phone number, as defined by telecom services.
-             *      */
-            MobNb?: components["schemas"]["PhoneNumber"];
-            /** @description FaxNumber
-             *     Collection of information that identifies a fax number, as defined by telecom services.
-             *      */
-            FaxNb?: components["schemas"]["PhoneNumber"];
-            /** @description EmailAddress
-             *     Address for electronic mail (e-mail).
-             *      */
-            EmailAdr?: components["schemas"]["Max2048Text"];
-            /** @description EmailPurpose
-             *     Purpose for which an email address may be used.
-             *      */
-            EmailPurp?: components["schemas"]["Max35Text"];
-            /** @description JobTitle
-             *     Title of the function.
-             *      */
-            JobTitl?: components["schemas"]["Max35Text"];
-            /** @description Responsibility
-             *     Role of a person in an organisation.
-             *      */
-            Rspnsblty?: components["schemas"]["Max35Text"];
-            /** @description Department
-             *     Identification of a division of a large organisation or building.
-             *      */
-            Dept?: components["schemas"]["Max70Text"];
-            /** @description Other
-             *     : Contact details in another form.
-             *      */
-            Othr?: components["schemas"]["OtherContact1"];
-            /** @description PreferredMethod
-             *     Preferred method used to reach the contact.
-             *      */
-            PrefrdMtd?: components["schemas"]["PreferredContactMethod1Code"];
+            NmPrfx?: components["schemas"]["NamePrefix2Code"] & unknown;
+            Nm?: components["schemas"]["Max140Text"] & unknown;
+            PhneNb?: components["schemas"]["PhoneNumber"] & unknown;
+            MobNb?: components["schemas"]["PhoneNumber"] & unknown;
+            FaxNb?: components["schemas"]["PhoneNumber"] & unknown;
+            EmailAdr?: components["schemas"]["Max2048Text"] & unknown;
+            EmailPurp?: components["schemas"]["Max35Text"] & unknown;
+            JobTitl?: components["schemas"]["Max35Text"] & unknown;
+            Rspnsblty?: components["schemas"]["Max35Text"] & unknown;
+            Dept?: components["schemas"]["Max70Text"] & unknown;
+            Othr?: components["schemas"]["OtherContact1"] & unknown;
+            PrefrdMtd?: components["schemas"]["PreferredContactMethod1Code"] & unknown;
         };
         /**
          * CountryCode
@@ -1264,79 +1075,24 @@ export interface components {
          *     }
          */
         CreditTransferTransaction67: {
-            /** @description PaymentIdentification
-             *     Set of elements used to reference a payment instruction.
-             *      */
-            PmtId: components["schemas"]["PaymentIdentification13"];
-            /** @description PaymentTypeInformation
-             *
-             *      Set of elements used to further specify the type of transaction.
-             *      */
-            PmtTpInf?: components["schemas"]["PaymentTypeInformation28"];
-            /** @description InterbankSettlementAmount
-             *     Amount of money moved between the instructing agent and the instructed agent.
-             *      */
-            IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"];
-            /** @description InstructedAmount
-             *     Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.
-             *      */
-            InstdAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"];
-            /** @description ExchangeRate
-             *     Factor used to convert an amount from one currency into another. This reflects the price at which one currency was bought with another currency.
-             *      */
-            XchgRate?: components["schemas"]["BaseOneRate"];
-            /** @description ChargeBearer
-             *     Specifies which party/parties will bear the charges associated with the processing of the payment transaction.
-             *      */
+            PmtId: components["schemas"]["PaymentIdentification13"] & unknown;
+            PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
+            IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
+            InstdAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
+            XchgRate?: components["schemas"]["BaseOneRate"] & unknown;
             ChrgBr: components["schemas"]["ChargeBearerType1Code"];
-            /** @description ChargesInformation
-             *     Provides information on the charges to be paid by the charge bearer(s) related to the payment transaction
-             *      */
-            ChrgsInf?: components["schemas"]["Charges16"];
-            /** @description Debtor
-             *     Party that owes an amount of money to the (ultimate) creditor.
-             *      */
-            Dbtr: components["schemas"]["PartyIdentification272"];
-            /** @description DebtorAccount
-             *     Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
-             *      */
-            DbtrAcct?: components["schemas"]["CashAccount40"];
-            /** @description DebtorAgent
-             *     Financial institution servicing an account for the debtor.
-             *      */
-            DbtrAgt: components["schemas"]["BranchAndFinancialInstitutionIdentification8"];
-            /** @description CreditorAgent
-             *     Financial institution servicing an account for the creditor.
-             *      */
-            CdtrAgt: components["schemas"]["BranchAndFinancialInstitutionIdentification8"];
-            /** @description Creditor
-             *     Party to which an amount of money is due.
-             *      */
-            Cdtr: components["schemas"]["PartyIdentification272"];
-            /** @description CreditorAccount
-             *     Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-             *      */
-            CdtrAcct?: components["schemas"]["CashAccount40"];
-            /** @description InstructionForCreditorAgent
-             *     Set of elements used to provide information on the remittance advice.
-             *      */
-            InstrForCdtrAgt?: components["schemas"]["InstructionForCreditorAgent3"];
-            /** @description InstructionForNextAgent
-             *     Set of elements used to provide information on the remittance advice.
-             *      */
-            InstrForNxtAgt?: components["schemas"]["InstructionForNextAgent1"];
-            /** @description Purpose
-             *     Underlying reason for the payment transaction.
-             *      */
-            Purp?: components["schemas"]["Purpose2Choice"];
-            /** @description RegulatoryReporting
-             *     Information needed due to regulatory and statutory requirements.
-             *      */
-            RgltryRptg?: components["schemas"]["RegulatoryReporting3"];
-            /** @description Tax
-             *     Provides details on the tax.
-             *      */
-            Tax?: components["schemas"]["TaxData1"];
+            ChrgsInf?: components["schemas"]["Charges16"] & unknown;
+            Dbtr: components["schemas"]["PartyIdentification272"] & unknown;
+            DbtrAcct?: components["schemas"]["CashAccount40"] & unknown;
+            DbtrAgt: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            CdtrAgt: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            Cdtr: components["schemas"]["PartyIdentification272"] & unknown;
+            CdtrAcct?: components["schemas"]["CashAccount40"] & unknown;
+            InstrForCdtrAgt?: components["schemas"]["InstructionForCreditorAgent3"] & unknown;
+            InstrForNxtAgt?: components["schemas"]["InstructionForNextAgent1"] & unknown;
+            Purp?: components["schemas"]["Purpose2Choice"] & unknown;
+            RgltryRptg?: components["schemas"]["RegulatoryReporting3"] & unknown;
+            Tax?: components["schemas"]["TaxData1"] & unknown;
             VrfctnOfTerms?: components["schemas"]["CryptographicLockChoice"];
         };
         /**
@@ -1397,68 +1153,32 @@ export interface components {
          *     }
          */
         CreditTransferTransaction68: {
-            /** @description PaymentIdentification
-             *     Set of elements used to reference a payment instruction.
-             *      */
-            PmtId: components["schemas"]["PaymentIdentification13"];
-            /** @description PaymentTypeInformation
-             *
-             *      Set of elements used to further specify the type of transaction.
-             *      */
-            PmtTpInf?: components["schemas"]["PaymentTypeInformation28"];
-            /** @description InterbankSettlementAmount
-             *     Amount of money moved between the instructing agent and the instructed agent.
-             *      */
-            IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"];
-            /** @description Debtor
-             *     Party that owes an amount of money to the (ultimate) creditor.
-             *      */
-            Dbtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"];
-            /** @description DebtorAccount
-             *     Account used to process a payment.
-             *      */
-            DbtrAcct?: components["schemas"]["CashAccount40"];
-            /** @description DebtorAgent
-             *     Financial institution servicing an account for the debtor.
-             *      */
-            DbtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"];
-            /** @description CreditorAgent
-             *     Financial institution servicing an account for the creditor.
-             *      */
-            CdtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"];
-            /** @description Creditor
-             *     Party to which an amount of money is due.
-             *      */
-            Cdtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"];
-            /** @description CreditorAccount
-             *     Account to which a credit entry is made.
-             *      */
-            CdtrAcct?: components["schemas"]["CashAccount40"];
-            /** @description InstructionForCreditorAgent
-             *     Set of elements used to provide information on the remittance advice.
-             *      */
-            InstrForCdtrAgt?: components["schemas"]["InstructionForCreditorAgent3"];
-            /** @description Purpose
-             *     Underlying reason for the payment transaction.
-             *      */
-            Purp?: components["schemas"]["Purpose2Choice"];
-            /** @description VerificationOfTerms
-             *     Set of elements used to provide information on the underlying terms of the transaction.
-             *      */
-            VrfctnOfTerms?: components["schemas"]["CryptographicLockChoice"];
+            PmtId: components["schemas"]["PaymentIdentification13"] & unknown;
+            PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
+            IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
+            Dbtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            DbtrAcct?: components["schemas"]["CashAccount40"] & unknown;
+            DbtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            CdtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            Cdtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            CdtrAcct?: components["schemas"]["CashAccount40"] & unknown;
+            InstrForCdtrAgt?: components["schemas"]["InstructionForCreditorAgent3"] & unknown;
+            Purp?: components["schemas"]["Purpose2Choice"] & unknown;
+            VrfctnOfTerms?: components["schemas"]["CryptographicLockChoice"] & unknown;
         };
         /**
          * CryptographicLockChoice
-         * @description NOTE: Unsure on description.
+         * @description Cryptographically signed terms
          *
          * @example {
          *       "IlpV4PrepPacket": "1234567890ABCDEF"
          *     }
          */
         CryptographicLockChoice: {
-            IlpV4PrepPacket?: components["schemas"]["hexBinary"];
-            Sh256Sgntr?: components["schemas"]["Exact32HexBinaryText"];
-        } & (unknown | unknown);
+            IlpV4PrepPacket: components["schemas"]["hexBinary"] & unknown;
+        } | {
+            Sh256Sgntr: components["schemas"]["Exact32HexBinaryText"] & unknown;
+        };
         /**
          * DateAndPlaceOfBirth1
          * @description Details about date and place of birth of a person.
@@ -1471,41 +1191,23 @@ export interface components {
          *     }
          */
         DateAndPlaceOfBirth1: {
-            /** @description BirthDate
-             *     Date on which a person is born.
-             *      */
-            BirthDt: components["schemas"]["ISODate"];
-            /** @description ProvinceOfBirth
-             *     Province where a person was born.
-             *      */
-            PrvcOfBirth?: components["schemas"]["Max35Text"];
-            /** @description CityOfBirth
-             *     City where a person was born.
-             *      */
-            CityOfBirth: components["schemas"]["Max35Text"];
-            /** @description CountryOfBirth
-             *     Country where a person was born.
-             *      */
-            CtryOfBirth: components["schemas"]["CountryCode"];
+            BirthDt: components["schemas"]["ISODate"] & unknown;
+            PrvcOfBirth?: components["schemas"]["Max35Text"] & unknown;
+            CityOfBirth: components["schemas"]["Max35Text"] & unknown;
+            CtryOfBirth: components["schemas"]["CountryCode"] & unknown;
         };
         /**
          * DatePeriod2
          * @description Range of time defined by a start date and an end date.
          *
          * @example {
-         *       "FrDt": "2022-01-01T00:00:00.000Z",
-         *       "ToDt": "2022-12-31T23:59:59.999Z"
+         *       "FrDt": "2022-01-01",
+         *       "ToDt": "2022-12-31"
          *     }
          */
         DatePeriod2: {
-            /** @description FromDate
-             *     Start date of the range.
-             *      */
-            FrDt: components["schemas"]["ISODate"];
-            /** @description ToDate
-             *     End date of the range.
-             *      */
-            ToDt: components["schemas"]["ISODate"];
+            FrDt: components["schemas"]["ISODate"] & unknown;
+            ToDt: components["schemas"]["ISODate"] & unknown;
         };
         /**
          * ErrorCode
@@ -1570,36 +1272,6 @@ export interface components {
          *           "SttlmAcctSvcr": {
          *             "BICFI": 123
          *           }
-         *         },
-         *         "CdtTrfTxInf": {
-         *           "PmtId": {
-         *             "InstrId": 123,
-         *             "EndToEndId": 123
-         *           },
-         *           "PmtTpInf": {
-         *             "InstrPrty": "NORM"
-         *           },
-         *           "InstdAmt": {
-         *             "Amt": 123,
-         *             "Ccy": "EUR"
-         *           },
-         *           "ChrgBr": "SLEV",
-         *           "CdtrAgt": {
-         *             "FinInstnId": {
-         *               "BICFI": 123
-         *             }
-         *           },
-         *           "Cdtr": {
-         *             "Nm": "John Doe"
-         *           },
-         *           "CdtrAcct": {
-         *             "Id": {
-         *               "IBAN": 123
-         *             }
-         *           },
-         *           "RmtInf": {
-         *             "Ustrd": "Test"
-         *           }
          *         }
          *       },
          *       "CdtTrfTxInf": {
@@ -1635,12 +1307,8 @@ export interface components {
          *     }
          */
         Execute_FIToFICustomerCreditTransferV13: {
-            /** @description GroupHeader.
-             *      */
-            GrpHdr: components["schemas"]["GroupHeader129"];
-            /** @description CreditTransferTransactionInformation.
-             *      */
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"];
+            GrpHdr: components["schemas"]["GroupHeader129"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"] & unknown;
         };
         /**
          * Extension
@@ -1692,87 +1360,101 @@ export interface components {
         ExternalCategoryPurpose1Code: string;
         /**
          * ExternalChargeType1Code
+         * @description Specifies the type of charge applied to the transaction.
+         *
          * @example 1234
          */
         ExternalChargeType1Code: string;
         /**
          * ExternalClearingSystemIdentification1Code
+         * @description Specifies the external clearing system identification code.
+         *
          * @example 12345
          */
         ExternalClearingSystemIdentification1Code: string;
         /**
          * ExternalCreditorAgentInstruction1Code
+         * @description Specifies the instruction given by the creditor to the creditor agent.
          * @example 1234
          */
         ExternalCreditorAgentInstruction1Code: string;
         /**
          * ExternalFinancialInstitutionIdentification1Code
+         * @description Specifies the external financial institution identification code.
          * @example 1234
          */
         ExternalFinancialInstitutionIdentification1Code: string;
         /**
          * ExternalLocalInstrument1Code
+         * @description Specifies the external local instrument identification code.
          * @example 12345
          */
         ExternalLocalInstrument1Code: string;
         /**
          * ExternalOrganisationIdentification1Code
+         * @description Specifies the external organisation identification code.
          * @example 1234
          */
         ExternalOrganisationIdentification1Code: string;
         /**
          * ExternalPaymentTransactionStatus1Code
+         * @description Specifies the external payment transaction status code.
          * @example 1234
          */
         ExternalPaymentTransactionStatus1Code: string;
         /**
          * ExternalPersonIdentification1Code
+         * @description Specifies the external person identification code.
          * @example 1234
          */
         ExternalPersonIdentification1Code: string;
         /**
          * ExternalProxyAccountType1Code
+         * @description Specifies the external proxy account type code.
          * @example 1234
          */
         ExternalProxyAccountType1Code: string;
         /**
          * ExternalPurpose1Code
+         * @description Specifies the external purpose code.
          * @example 1234
          */
         ExternalPurpose1Code: string;
         /**
          * ExternalServiceLevel1Code
+         * @description Specifies the external service level code.
          * @example 1234
          */
         ExternalServiceLevel1Code: string;
         /**
          * ExternalStatusReason1Code
+         * @description Specifies the external status reason code.
          * @example 1234
          */
         ExternalStatusReason1Code: string;
         /**
          * ExternalVerificationReason1Code
+         * @description Specifies the external verification reason code.
          * @example 1234
          */
         ExternalVerificationReason1Code: string;
         /**
          * FinancialIdentificationSchemeName1Choice
+         * @description Specifies the name of the identification scheme.
+         *
          * @example {
          *       "Cd": "BIC"
          *     }
          */
         FinancialIdentificationSchemeName1Choice: {
-            /** @description Code
-             *     Name of the identification scheme, in a coded form as published in an external list.
-             *      */
-            Cd?: components["schemas"]["ExternalFinancialInstitutionIdentification1Code"];
-            /** @description Proprietary
-             *     Name of the identification scheme, in a free text form.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalFinancialInstitutionIdentification1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * FinancialInstitutionIdentification18
+         * @description Information used to identify a financial institution.
+         *
          * @example {
          *       "BICFI": "J5BMVH7D",
          *       "ClrSysMmbId": {
@@ -1804,40 +1486,22 @@ export interface components {
          *     }
          */
         FinancialInstitutionIdentification18: {
-            /** @description BICFI
-             *     Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 "Banking - Banking telecommunication messages - Business identifier code (BIC)"
-             *      */
-            BICFI?: components["schemas"]["BICFIDec2014Identifier"];
-            /** @description ClearingSystemMemberIdentification
-             *     Information used to identify a member within a clearing system
-             *      */
-            ClrSysMmbId?: components["schemas"]["ClearingSystemMemberIdentification2"];
-            /** @description LEI
-             *     Legal entity identifier of the financial institution.
-             *      */
-            LEI?: components["schemas"]["LEIIdentifier"];
-            /** @description Name
-             *     Name by which an agent is known and which is usually used to identify that agent
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
-            /** @description PostalAddress
-             *     Information that locates and identifies a specific address, as defined by postal services.
-             *      */
-            PstlAdr?: components["schemas"]["PostalAddress24"];
-            /** @description Other
-             *     Unique identification of an agent, as assigned by an institution, using an identification scheme.
-             *      */
-            Othr?: components["schemas"]["GenericFinancialIdentification1"];
+            BICFI?: components["schemas"]["BICFIDec2014Identifier"] & unknown;
+            ClrSysMmbId?: components["schemas"]["ClearingSystemMemberIdentification2"] & unknown;
+            LEI?: components["schemas"]["LEIIdentifier"] & unknown;
+            Nm?: components["schemas"]["Max140Text"] & unknown;
+            PstlAdr?: components["schemas"]["PostalAddress24"] & unknown;
+            Othr?: components["schemas"]["GenericFinancialIdentification1"] & unknown;
         };
         /**
          * FinancialInstitutionIdentification23
+         * @description Information used to identify a financial institution.
+         *
          * @example {
          *       "BICFI": "J5BMVH7D",
          *       "ClrSysMmbId": {
-         *         "ClrSysId": {
-         *           "Cd": "CHQB"
-         *         },
-         *         "MmbId": 123456789
+         *         "ClrSysId": 1234,
+         *         "MmbId": 123
          *       },
          *       "LEI": 123,
          *       "Nm": "Name",
@@ -1856,40 +1520,26 @@ export interface components {
          *       "Othr": {
          *         "Id": 123,
          *         "SchmeNm": {
-         *           "Cd": "CHQB"
+         *           "Cd": 123,
+         *           "Prtry": 123
          *         },
          *         "Issr": 123
          *       }
          *     }
          */
         FinancialInstitutionIdentification23: {
-            /** @description BICFI
-             *     Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 "Banking - Banking telecommunication messages - Business identifier code (BIC)"
-             *      */
-            BICFI?: components["schemas"]["BICFIDec2014Identifier"];
-            /** @description ClearingSystemMemberIdentification
-             *     Information used to identify a member within a clearing system
-             *      */
-            ClrSysMmbId?: components["schemas"]["ClearingSystemMemberIdentification2"];
-            /** @description LEI
-             *     Legal entity identifier of the financial institution.
-             *      */
-            LEI?: components["schemas"]["LEIIdentifier"];
-            /** @description Name
-             *     Name by which an agent is known and which is usually used to identify that agent
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
-            /** @description PostalAddress
-             *     Information that locates and identifies a specific address, as defined by postal services.
-             *      */
-            PstlAdr?: components["schemas"]["PostalAddress27"];
-            /** @description Other
-             *     Unique identification of an agent, as assigned by an institution, using an identification scheme.
-             *      */
-            Othr?: components["schemas"]["GenericFinancialIdentification1"];
+            BICFI?: components["schemas"]["BICFIDec2014Identifier"] & unknown;
+            ClrSysMmbId?: components["schemas"]["ClearingSystemMemberIdentification2"] & unknown;
+            LEI?: components["schemas"]["LEIIdentifier"] & unknown;
+            Nm?: components["schemas"]["Max140Text"] & unknown;
+            PstlAdr?: components["schemas"]["PostalAddress24"] & unknown;
+            Othr?: components["schemas"]["GenericFinancialIdentification1"] & unknown;
         };
         /**
          * FxRequest_FICreditTransferProposal
+         * @description FxRequest_FICreditTransferProposal
+         *     A group of elements providing information specific to the individual credit transfer(s) included in the message.
+         *
          * @example {
          *       "GrpHdr": {
          *         "MsgId": 12345,
@@ -2003,13 +1653,14 @@ export interface components {
          *     }
          */
         FxRequest_FICreditTransferProposal: {
-            /** @description GroupHeader
-             *     Set of characteristics shared by all individual transactions included in the message.
-             *      */
-            GrpHdr: components["schemas"]["GroupHeader113"];
+            GrpHdr: components["schemas"]["GroupHeader113"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"] & unknown;
         };
         /**
          * FxResponse_FICreditTransferConfirmation
+         * @description FxResponse_FICreditTransferConfirmation
+         *     The FxResponse_FICreditTransferConfirmation message is sent by the FSP to the Payer FSP to confirm the successful processing of the credit transfer.
+         *
          * @example {
          *       "GrpHdr": {
          *         "MsgId": "20191122-123456",
@@ -2115,17 +1766,13 @@ export interface components {
          *     }
          */
         FxResponse_FICreditTransferConfirmation: {
-            /** @description GroupHeader
-             *     Set of characteristics shared by all individual transactions included in the message.
-             *      */
-            GrpHdr: components["schemas"]["GroupHeader113"];
-            /** @description CreditTransferTransactionInformation
-             *     Set of elements providing information specific to the individual credit transfer(s).
-             *      */
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"];
+            GrpHdr: components["schemas"]["GroupHeader113"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"] & unknown;
         };
         /**
          * Fxecute_FinancialInstitutionCreditTransferV12
+         * @description The Fxecute FinancialInstitutionCreditTransfer message is sent by the initiating party to the executing party to request the execution of a payment. It is used to request movement of funds from the debtor account to the creditor account. The message can carry multiple credit transfer instructions.
+         *
          * @example {
          *       "GrpHdr": {
          *         "MsgId": 20191113001,
@@ -2200,17 +1847,14 @@ export interface components {
          *     }
          */
         Fxecute_FinancialInstitutionCreditTransferV12: {
-            /** @description GroupHeader.
-             *     Set of characteristics shared by all individual transactions included in the message.
-             *      */
-            GrpHdr: components["schemas"]["GroupHeader129"];
-            /** @description CreditTransferTransactionInformation.
-             *     Set of elements providing information specific to the individual credit transfer(s).
-             *      */
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"];
+            GrpHdr: components["schemas"]["GroupHeader129"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"] & unknown;
         };
         /**
          * GenericAccountIdentification1
+         * @description GenericAccountIdentification
+         *     Unique and unambiguous identification of an account, as assigned by the account servicer.
+         *
          * @example {
          *       "Id": 123,
          *       "SchmeNm": {
@@ -2220,21 +1864,15 @@ export interface components {
          *     }
          */
         GenericAccountIdentification1: {
-            /** @description Identification
-             *     Identification assigned by an institution.
-             *      */
-            Id: components["schemas"]["Max34Text"];
-            /** @description SchemeName
-             *     Name of the identification scheme.
-             *      */
-            SchmeNm?: components["schemas"]["AccountSchemeName1Choice"];
-            /** @description Issuer
-             *     Entity that assigns the identification.
-             *      */
-            Issr?: components["schemas"]["Max35Text"];
+            Id: components["schemas"]["Max34Text"] & unknown;
+            SchmeNm?: components["schemas"]["AccountSchemeName1Choice"] & unknown;
+            Issr?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * GenericFinancialIdentification1
+         * @description GenericFinancialIdentification
+         *     Unique and unambiguous identification of a person, which is used to refer to a person in a financial context.
+         *
          * @example {
          *       "Id": 123,
          *       "SchmeNm": {
@@ -2244,38 +1882,27 @@ export interface components {
          *     }
          */
         GenericFinancialIdentification1: {
-            /** @description Identification
-             *     Unique and unambiguous identification of a person.
-             *      */
-            Id: components["schemas"]["Max35Text"];
-            /** @description SchemeName
-             *     Name of the identification scheme.
-             *      */
-            SchmeNm?: components["schemas"]["FinancialIdentificationSchemeName1Choice"];
-            /** @description Issuer
-             *     Entity that assigns the identification.
-             *      */
-            Issr?: components["schemas"]["Max35Text"];
+            Id: components["schemas"]["Max35Text"] & unknown;
+            SchmeNm?: components["schemas"]["FinancialIdentificationSchemeName1Choice"] & unknown;
+            Issr?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * GenericIdentification3
+         * @description Generic scheme identification for a party.
+         *
          * @example {
          *       "Id": 123,
          *       "Issr": "BIC"
          *     }
          */
         GenericIdentification3: {
-            /** @description Identification
-             *     Name or number assigned by an entity to enable recognition of that entity, for example, account identifier.
-             *      */
-            Id: components["schemas"]["Max35Text"];
-            /** @description Issuer
-             *     Entity that assigns the identification.
-             *      */
-            Issr?: components["schemas"]["Max35Text"];
+            Id: components["schemas"]["Max35Text"] & unknown;
+            Issr?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * GenericIdentification30
+         * @description Generic scheme identification for a party.
+         *
          * @example {
          *       "Id": 1234,
          *       "Issr": "BIC",
@@ -2283,21 +1910,14 @@ export interface components {
          *     }
          */
         GenericIdentification30: {
-            /** @description Identification
-             *     Proprietary information, often a code, issued by the data source scheme issuer
-             *      */
-            Id: components["schemas"]["Exact4AlphaNumericText"];
-            /** @description Issuer
-             *     Entity that assigns the identification.
-             *      */
-            Issr: components["schemas"]["Max35Text"];
-            /** @description SchemeName
-             *     Short textual description of the scheme.
-             *      */
-            SchmeNm?: components["schemas"]["Max35Text"];
+            Id: components["schemas"]["Exact4AlphaNumericText"] & unknown;
+            Issr: components["schemas"]["Max35Text"] & unknown;
+            SchmeNm?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * GenericOrganisationIdentification1
+         * @description Information that locates and identifies an organisation.
+         *
          * @example {
          *       "Id": 123,
          *       "SchmeNm": {
@@ -2307,21 +1927,14 @@ export interface components {
          *     }
          */
         GenericOrganisationIdentification1: {
-            /** @description Identification
-             *     Identification assigned by an institution.
-             *      */
-            Id: components["schemas"]["Max35Text"];
-            /** @description SchemeName
-             *     Name of the identification scheme.
-             *      */
-            SchmeNm?: components["schemas"]["OrganisationIdentificationSchemeName1Choice"];
-            /** @description Issuer
-             *     Entity that assigns the identification.
-             *      */
-            Issr?: components["schemas"]["Max35Text"];
+            Id: components["schemas"]["Max35Text"] & unknown;
+            SchmeNm?: components["schemas"]["OrganisationIdentificationSchemeName1Choice"] & unknown;
+            Issr?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * GenericOrganisationIdentification3
+         * @description Information related to an identification of an organisation.
+         *
          * @example {
          *       "Id": 123,
          *       "SchmeNm": {
@@ -2331,20 +1944,15 @@ export interface components {
          *     }
          */
         GenericOrganisationIdentification3: {
-            /** @description Identification
-             *     Identification assigned by an institution.
-             *      */
-            Id: components["schemas"]["Max256Text"];
-            /** @description SchemeName
-             *     Name of the identification scheme. */
-            SchmeNm?: components["schemas"]["OrganisationIdentificationSchemeName1Choice"];
-            /** @description Issuer
-             *     Entity that assigns the identification.
-             *      */
-            Issr?: components["schemas"]["Max35Text"];
+            Id: components["schemas"]["Max256Text"] & unknown;
+            SchmeNm?: components["schemas"]["OrganisationIdentificationSchemeName1Choice"] & unknown;
+            Issr?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * GenericPersonIdentification1
+         * @description GenericPersonIdentification1
+         *     Information that locates and identifies a specific person.
+         *
          * @example {
          *       "Id": 123,
          *       "SchmeNm": {
@@ -2354,21 +1962,13 @@ export interface components {
          *     }
          */
         GenericPersonIdentification1: {
-            /** @description Identification
-             *     Unique and unambiguous identification of a person.
-             *      */
-            Id: components["schemas"]["Max35Text"];
-            /** @description SchemeName
-             *     Name of the identification scheme.
-             *      */
-            SchmeNm?: components["schemas"]["PersonIdentificationSchemeName1Choice"];
-            /** @description Issuer
-             *     Entity that assigns the identification.
-             *      */
-            Issr?: components["schemas"]["Max35Text"];
+            Id: components["schemas"]["Max35Text"] & unknown;
+            SchmeNm?: components["schemas"]["PersonIdentificationSchemeName1Choice"] & unknown;
+            Issr?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * GenericPersonIdentification2
+         * @description Identification of a person.
          * @example {
          *       "Id": 123,
          *       "SchmeNm": {
@@ -2378,18 +1978,9 @@ export interface components {
          *     }
          */
         GenericPersonIdentification2: {
-            /** @description Identification
-             *     Unique and unambiguous identification of a person.
-             *      */
-            Id: components["schemas"]["Max256Text"];
-            /** @description SchemeName
-             *     Name of the identification scheme.
-             *      */
-            SchmeNm?: components["schemas"]["PersonIdentificationSchemeName1Choice"];
-            /** @description Issuer
-             *     Entity that assigns the identification.
-             *      */
-            Issr?: components["schemas"]["Max35Text"];
+            Id: components["schemas"]["Max256Text"] & unknown;
+            SchmeNm?: components["schemas"]["PersonIdentificationSchemeName1Choice"] & unknown;
+            Issr?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * GetPartiesError_IdentificationVerificationReportV03
@@ -2460,18 +2051,9 @@ export interface components {
          *     }
          */
         GetPartiesError_IdentificationVerificationReportV03: {
-            /** @description Assignment
-             *     Information related to the identification assignment.
-             *      */
-            Assgnmt: components["schemas"]["IdentificationAssignment3"];
-            /** @description Report
-             *     Information concerning the verification of the identification data for which verification was requested.
-             *      */
-            Rpt: components["schemas"]["VerificationReport4"];
-            /** @description SupplementaryData
-             *     Additional information that cannot be captured in the structured elements and/or any other specific block.
-             *      */
-            SplmtryData?: components["schemas"]["SupplementaryData1"];
+            Assgnmt: components["schemas"]["IdentificationAssignment3"] & unknown;
+            Rpt: components["schemas"]["VerificationReport4"] & unknown;
+            SplmtryData?: components["schemas"]["SupplementaryData1"] & unknown;
         };
         /**
          * GetParties_IdentificationVerificationReportV03
@@ -2547,18 +2129,9 @@ export interface components {
          *     }
          */
         GetParties_IdentificationVerificationReportV03: {
-            /** @description Assignment
-             *     Identifies the identification assignment.
-             *      */
-            Assgnmt: components["schemas"]["IdentificationAssignment3"];
-            /** @description Report
-             *     Information concerning the verification of the identification data for which verification was requested.
-             *      */
-            Rpt: components["schemas"]["VerificationReport4"];
-            /** @description SupplementaryData
-             *     Additional information that cannot be captured in the structured elements and/or any other specific block.
-             *      */
-            SplmtryData?: components["schemas"]["SupplementaryData1"];
+            Assgnmt: components["schemas"]["IdentificationAssignment3"] & unknown;
+            Rpt: components["schemas"]["VerificationReport4"] & unknown;
+            SplmtryData?: components["schemas"]["SupplementaryData1"] & unknown;
         };
         /**
          * GroupHeader113
@@ -2595,52 +2168,16 @@ export interface components {
          *       "PmtTpInf": {
          *         "InstrPrty": "NORM",
          *         "CtgyPurp": "CASH"
-         *       },
-         *       "CdtTrfTxInf": {
-         *         "PmtId": {
-         *           "InstrId": 12345,
-         *           "EndToEndId": 12345
-         *         },
-         *         "Amt": {
-         *           "InstdAmt": {
-         *             "Ccy": "EUR",
-         *             "Value": 100
-         *           }
-         *         },
-         *         "Cdtr": {
-         *           "Nm": "Name"
-         *         },
-         *         "CdtrAcct": {
-         *           "Id": {
-         *             "IBAN": "BE71096123456769"
-         *           },
-         *           "Ccy": "EUR"
-         *         },
-         *         "CdtrAgt": {
-         *           "FinInstnId": {
-         *             "BICFI": "BIC"
-         *           }
-         *         },
-         *         "CdtrAgtAcct": {
-         *           "Id": {
-         *             "IBAN": "BE71096123456769"
-         *           },
-         *           "Ccy": "EUR"
-         *         },
-         *         "RmtInf": {
-         *           "Ustrd": "Test"
-         *         }
          *       }
          *     }
          */
         GroupHeader113: {
-            MsgId: components["schemas"]["Max35Text"];
-            CreDtTm: components["schemas"]["ISODateTime"];
-            NbOfTxs: components["schemas"]["Max15NumericText"];
-            TtlIntrBkSttlmAmt?: components["schemas"]["ActiveCurrencyAndAmount"];
-            SttlmInf: components["schemas"]["SettlementInstruction15"];
-            PmtTpInf?: components["schemas"]["PaymentTypeInformation28"];
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"];
+            MsgId: components["schemas"]["Max35Text"] & unknown;
+            CreDtTm: components["schemas"]["ISODateTime"] & unknown;
+            NbOfTxs: components["schemas"]["Max15NumericText"] & unknown;
+            TtlIntrBkSttlmAmt?: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
+            SttlmInf: components["schemas"]["SettlementInstruction15"] & unknown;
+            PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
         };
         /**
          * GroupHeader120
@@ -2672,24 +2209,13 @@ export interface components {
          *     }
          */
         GroupHeader120: {
-            /** @description MessageIdentification
-             *     Definition: Point to point reference, as assigned by the instructing party, and sent to the next party in the chain to unambiguously identify the message.
-             *     Usage: The instructing party has to make sure that MessageIdentification is unique per instructed party for a pre-agreed period.
-             *      */
-            MsgId: components["schemas"]["Max35Text"];
-            /** @description CreationDateTime
-             *     Date and time at which the message was created.
-             *      */
-            CreDtTm: components["schemas"]["ISODateTime"];
-            /** @description TransactionInformationAndStatus
-             *     Definition: Agent that instructs the next party in the chain to carry out the (set of) instruction(s).
-             *     Usage: The instructing agent is the party sending the status message and not the party that sent the original instruction that is being reported on.
-             *      */
-            TxInfAndSts?: components["schemas"]["PaymentTransaction163"];
+            MsgId: components["schemas"]["Max35Text"] & unknown;
+            CreDtTm: components["schemas"]["ISODateTime"] & unknown;
+            TxInfAndSts?: components["schemas"]["PaymentTransaction163"] & unknown;
         };
         /**
          * GroupHeader129
-         * @description Set of characteristics shared by all individual transactions included in the message.
+         * @description Group Header Set of characteristics shared by all individual transactions included in the message.
          *
          * @example {
          *       "MsgId": 12345,
@@ -2709,46 +2235,15 @@ export interface components {
          *         "SttlmAcctSvcr": {
          *           "BICFI": 123
          *         }
-         *       },
-         *       "CdtTrfTxInf": {
-         *         "PmtId": {
-         *           "InstrId": 123,
-         *           "EndToEndId": 123
-         *         },
-         *         "PmtTpInf": {
-         *           "InstrPrty": "NORM"
-         *         },
-         *         "InstdAmt": {
-         *           "Amt": 123,
-         *           "Ccy": "EUR"
-         *         },
-         *         "ChrgBr": "SLEV",
-         *         "CdtrAgt": {
-         *           "FinInstnId": {
-         *             "BICFI": 123
-         *           }
-         *         },
-         *         "Cdtr": {
-         *           "Nm": "John Doe"
-         *         },
-         *         "CdtrAcct": {
-         *           "Id": {
-         *             "IBAN": 123
-         *           }
-         *         },
-         *         "RmtInf": {
-         *           "Ustrd": "Test"
-         *         }
          *       }
          *     }
          */
         GroupHeader129: {
-            MsgId: components["schemas"]["Max35Text"];
-            CreDtTm: components["schemas"]["ISODateTime"];
-            PmtInstrXpryDtTm?: components["schemas"]["ISODateTime"];
-            NbOfTxs: components["schemas"]["Max15NumericText"];
-            SttlmInf: components["schemas"]["SettlementInstruction15"];
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"];
+            MsgId: components["schemas"]["Max35Text"] & unknown;
+            CreDtTm: components["schemas"]["ISODateTime"] & unknown;
+            PmtInstrXpryDtTm?: components["schemas"]["ISODateTime"] & unknown;
+            NbOfTxs: components["schemas"]["Max15NumericText"] & unknown;
+            SttlmInf: components["schemas"]["SettlementInstruction15"] & unknown;
         };
         /**
          * IBAN2007Identifier
@@ -2798,6 +2293,9 @@ export interface components {
         ISOYear: string;
         /**
          * IdentificationAssignment3
+         * @description IdentificationAssignment
+         *     Information that unambiguously identifies a message, as assigned by the assignor to the assignee.
+         *
          * @example {
          *       "MsgId": 123,
          *       "CreDtTm": "2020-01-01T00:00:00Z",
@@ -2826,22 +2324,15 @@ export interface components {
          *     }
          */
         IdentificationAssignment3: {
-            MsgId: components["schemas"]["Max35Text"];
-            /** @description CreationDateTime
-             *     Date and time at which the identification assignment was created.
-             *      */
-            CreDtTm: components["schemas"]["ISODateTime"];
-            /** @description Assignor
-             *     Party that assigns the identification assignment to another party. This is also the sender of the message.
-             *      */
-            Assgnr: components["schemas"]["Party40Choice"];
-            /** @description Assignee
-             *     Party that the identification assignment is assigned to. This is also the receiver of the message.
-             *      */
-            Assgne: components["schemas"]["Party40Choice"];
+            MsgId: components["schemas"]["Max35Text"] & unknown;
+            CreDtTm: components["schemas"]["ISODateTime"] & unknown;
+            Assgnr: components["schemas"]["Party40Choice"] & unknown;
+            Assgne: components["schemas"]["Party40Choice"] & unknown;
         };
         /**
          * IdentificationInformation4
+         * @description Information that locates and identifies a specific party or account.
+         *
          * @example {
          *       "Pty": {
          *         "Id": {
@@ -2866,18 +2357,9 @@ export interface components {
          *     }
          */
         IdentificationInformation4: {
-            /** @description Party
-             *     Account owner that owes an amount of money or to whom an amount of money is due.
-             *      */
-            Pty?: components["schemas"]["PartyIdentification135"];
-            /** @description Account
-             *     Unambiguous identification of the account of a party.
-             *      */
-            Acct?: components["schemas"]["CashAccount40"];
-            /** @description Agent
-             *     Financial institution servicing an account for a party.
-             *      */
-            Agt?: components["schemas"]["BranchAndFinancialInstitutionIdentification6"];
+            Pty: components["schemas"]["PartyIdentification135"] & unknown;
+            Acct?: components["schemas"]["CashAccount40"] & unknown;
+            Agt?: components["schemas"]["BranchAndFinancialInstitutionIdentification6"] & unknown;
         };
         /**
          * IdentificationVerificationIndicator
@@ -2891,9 +2373,11 @@ export interface components {
         IdentificationVerificationIndicator: boolean;
         /**
          * Instruction4Code
-         * @description Specifies further instructions concerning the processing of a payment instruction, provided by the sending clearing agent to the next agent(s).
-         *     PHOA PhoneNextAgent Please advise/contact next agent by phone.
-         *     TELA TelecomNextAgent Please advise/contact next agent by the most efficient means of telecommunication.
+         * @description Specifies further instructions concerning the processing of a payment
+         *     instruction, provided by the sending clearing agent to the next agent(s).
+         *
+         *     PHOA: PhoneNextAgent Please advise/contact next agent by phone.
+         *     TELA: TelecomNextAgent Please advise/contact next agent by the most efficient means of telecommunication.
          *
          * @example PHOA
          * @enum {string}
@@ -2909,33 +2393,21 @@ export interface components {
          *     }
          */
         InstructionForCreditorAgent3: {
-            /** @description Code
-             *     Coded information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor's agent.
-             *      */
-            Cd?: components["schemas"]["ExternalCreditorAgentInstruction1Code"];
-            /** @description InstructionInformation
-             *     Further information complementing the coded instruction or instruction to the creditor's agent that is bilaterally agreed or specific to a user community.
-             *      */
-            InstrInf?: components["schemas"]["Max140Text"];
+            Cd?: components["schemas"]["ExternalCreditorAgentInstruction1Code"] & unknown;
+            InstrInf?: components["schemas"]["Max140Text"] & unknown;
         };
         /**
          * InstructionForNextAgent1
-         * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent.
+         * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the next agent in the payment chain.
          *
          * @example {
          *       "Cd": "PHOA",
-         *       "InstrInf": "Please advise/contact next agent by phone"
+         *       "InstrInf": "Please advise/contact next agent by phone."
          *     }
          */
         InstructionForNextAgent1: {
-            /** @description Code
-             *     Coded information related to the processing of the payment instruction, provided by the initiating party, and intended for the next agent in the payment chain.
-             *      */
-            Cd?: components["schemas"]["Instruction4Code"];
-            /** @description InstructionInformation
-             *     Further information complementing the coded instruction or instruction to the next agent that is bilaterally agreed or specific to a user community.
-             *      */
-            InstrInf?: components["schemas"]["Max140Text"];
+            Cd?: components["schemas"]["Instruction4Code"] & unknown;
+            InstrInf?: components["schemas"]["Max140Text"] & unknown;
         };
         /**
          * LEIIdentifier
@@ -2946,20 +2418,17 @@ export interface components {
         LEIIdentifier: string;
         /**
          * LocalInstrument2Choice
+         * @description Specifies the local instrument, as published in an external local instrument code list or as a proprietary code.
+         *
          * @example {
          *       "Cd": "CH03"
          *     }
          */
         LocalInstrument2Choice: {
-            /** @description Code
-             *     Specifies the local instrument, as published in an external local instrument code list.
-             *      */
-            Cd?: components["schemas"]["ExternalLocalInstrument1Code"];
-            /** @description Proprietary
-             *     Specifies the local instrument, as a proprietary code
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalLocalInstrument1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * Max105Text
          * @description Specifies a character string with a maximum length of 105 characters.
@@ -3054,6 +2523,12 @@ export interface components {
         /**
          * @description Specifies the terms used to formally address a person.
          *
+         *     DOCT: Doctor or Dr
+         *     MADM: Madam
+         *     MISS: Miss
+         *     MIST: Mistress
+         *     MIKS: Mx
+         *
          * @example DOCT
          * @enum {string}
          */
@@ -3080,18 +2555,9 @@ export interface components {
          *     }
          */
         OrganisationIdentification29: {
-            /** @description AnyBIC
-             *     Business identification code of the organisation.
-             *      */
-            AnyBIC?: components["schemas"]["AnyBICDec2014Identifier"];
-            /** @description LEI
-             *     Legal entity identification as an alternate identification for a party.
-             *      */
-            LEI?: components["schemas"]["LEIIdentifier"];
-            /** @description Other
-             *     Unique identification of an organisation, as assigned by an institution, using an identification scheme.
-             *      */
-            Othr?: components["schemas"]["GenericOrganisationIdentification1"];
+            AnyBIC?: components["schemas"]["AnyBICDec2014Identifier"] & unknown;
+            LEI?: components["schemas"]["LEIIdentifier"] & unknown;
+            Othr?: components["schemas"]["GenericOrganisationIdentification1"] & unknown;
         };
         /**
          * OrganisationIdentification39
@@ -3110,18 +2576,9 @@ export interface components {
          *     }
          */
         OrganisationIdentification39: {
-            /** @description AnyBIC
-             *     Business identification code of the organisation.
-             *      */
-            AnyBIC?: components["schemas"]["AnyBICDec2014Identifier"];
-            /** @description LEI
-             *     Legal entity identification as an alternate identification for a party.
-             *      */
-            LEI?: components["schemas"]["LEIIdentifier"];
-            /** @description Other
-             *     Unique identification of an organisation, as assigned by an institution, using an identification scheme.
-             *      */
-            Othr?: components["schemas"]["GenericOrganisationIdentification3"];
+            AnyBIC?: components["schemas"]["AnyBICDec2014Identifier"] & unknown;
+            LEI?: components["schemas"]["LEIIdentifier"] & unknown;
+            Othr?: components["schemas"]["GenericOrganisationIdentification3"] & unknown;
         };
         /**
          * OrganisationIdentificationSchemeName1Choice
@@ -3132,15 +2589,13 @@ export interface components {
          *     }
          */
         OrganisationIdentificationSchemeName1Choice: {
-            /** @description Code
-             *     Name of the identification scheme, in a coded form as published in an external list.
-             *      */
-            Cd?: components["schemas"]["ExternalOrganisationIdentification1Code"];
-            /** @description Proprietary
-             *     Name of the identification scheme, in a free text form.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd?: components["schemas"]["ExternalOrganisationIdentification1Code"] & unknown;
+            Prtry?: components["schemas"]["Max35Text"] & unknown;
+        } | {
+            Cd?: unknown;
+        } | {
+            Prtry?: unknown;
+        };
         /**
          * OtherContact1
          * @description Communication device number or electronic address used for communication.
@@ -3151,17 +2606,13 @@ export interface components {
          *     }
          */
         OtherContact1: {
-            /** @description ChannelType
-             *     Method used to contact the financial institution's contact for the specific tax region.
-             *      */
-            ChanlTp: components["schemas"]["Max4Text"];
-            /** @description Identifier
-             *     Communication value such as phone number or email address.
-             *      */
-            Id?: components["schemas"]["Max128Text"];
+            ChanlTp: components["schemas"]["Max4Text"] & unknown;
+            Id?: components["schemas"]["Max128Text"] & unknown;
         };
         /**
          * PacsError_FIToFIPaymentStatusReportV15
+         * @description This message is sent by an account servicing institution to an account owner. It is used to inform the account owner about the status of a payment initiation.
+         *
          * @example {
          *       "GrpHdr": {
          *         "MsgId": 12345,
@@ -3198,14 +2649,13 @@ export interface components {
          *     }
          */
         PacsError_FIToFIPaymentStatusReportV15: {
-            GrpHdr: components["schemas"]["GroupHeader120"];
-            TxInfAndSts?: components["schemas"]["PaymentTransaction163"];
-            SplmtryData?: components["schemas"]["SupplementaryData1"];
+            GrpHdr: components["schemas"]["GroupHeader120"] & unknown;
+            TxInfAndSts?: components["schemas"]["PaymentTransaction163"] & unknown;
+            SplmtryData?: components["schemas"]["SupplementaryData1"] & unknown;
         };
         /**
          * PacsStatus_FIToFIPaymentStatusReportV15
-         * @description Unsure on description.
-         *
+         * @description The PacsStatus message is sent by a financial institution to another financial institution as a response to the FIToFIPaymentStatusReport message. The message provides information on the status of a payment instruction and its underlying individual transactions.
          * @example {
          *       "GrpHdr": {
          *         "MsgId": 12345,
@@ -3234,7 +2684,7 @@ export interface components {
          *     }
          */
         PacsStatus_FIToFIPaymentStatusReportV15: {
-            GrpHdr: components["schemas"]["GroupHeader120"];
+            GrpHdr: components["schemas"]["GroupHeader120"] & unknown;
         };
         /**
          * Party38Choice
@@ -3253,15 +2703,10 @@ export interface components {
          *     }
          */
         Party38Choice: {
-            /** @description Organisation
-             *     Unique and unambiguous way to identify an organisation.
-             *      */
-            OrgId?: components["schemas"]["OrganisationIdentification29"];
-            /** @description PrivateIdentification
-             *     Unique and unambiguous identification of a person, for example a passport.
-             *      */
-            PrvtId?: components["schemas"]["PersonIdentification13"];
-        } & (unknown | unknown);
+            OrgId: components["schemas"]["OrganisationIdentification29"] & unknown;
+        } | {
+            PrvtId: components["schemas"]["PersonIdentification13"] & unknown;
+        };
         /**
          * Party40Choice
          * @description Identification of a person, an organisation or a financial institution.
@@ -3302,15 +2747,10 @@ export interface components {
          *     }
          */
         Party40Choice: {
-            /** @description Party
-             *     Identification of a person or an organisation.
-             *      */
-            Pty?: components["schemas"]["PartyIdentification135"];
-            /** @description Agent
-             *     Identification of a financial institution.
-             *      */
-            Agt?: components["schemas"]["BranchAndFinancialInstitutionIdentification6"];
-        } & (unknown | unknown);
+            Pty: components["schemas"]["PartyIdentification135"] & unknown;
+        } | {
+            Agt: components["schemas"]["BranchAndFinancialInstitutionIdentification6"] & unknown;
+        };
         /**
          * Party52Choice
          * @description NOTE: Unsure on the description.
@@ -3328,15 +2768,10 @@ export interface components {
          *     }
          */
         Party52Choice: {
-            /** @description Organisation
-             *     Unique and unambiguous way to identify an organisation.
-             *      */
-            OrgId?: components["schemas"]["OrganisationIdentification39"];
-            /** @description Person
-             *     Unique and unambiguous identification of a person, for example a passport
-             *      */
-            PrvtId?: components["schemas"]["PersonIdentification18"];
-        } & (unknown | unknown);
+            OrgId: components["schemas"]["OrganisationIdentification39"] & unknown;
+        } | {
+            PrvtId: components["schemas"]["PersonIdentification18"] & unknown;
+        };
         /**
          * PartyIdentification135
          * @description Specifies the identification of a person or an organisation.
@@ -3383,25 +2818,11 @@ export interface components {
          *     }
          */
         PartyIdentification135: {
-            /** @description Name
-             *     Name by which a party is known and which is usually used to identify that party.
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
-            /** @description PostalAddress
-             *     Information that locates and identifies a specific address, as defined by postal services.
-             *      */
-            PstlAdr?: components["schemas"]["PostalAddress24"];
-            /** @description Identification
-             *     Unique and unambiguous way to identify an organisation.
-             *      */
-            Id?: components["schemas"]["Party38Choice"];
-            /** @description CountryOfResidence Country in which a person resides (the place of a person's home). In the case of a company, it is the country from which the affairs of that company are directed.
-             *      */
-            CtryOfRes?: components["schemas"]["CountryCode"];
-            /** @description ContactDetails
-             *     Set of elements used to indicate how to contact the party.
-             *      */
-            CtctDtls?: components["schemas"]["Contact4"];
+            Nm?: components["schemas"]["Max140Text"] & unknown;
+            PstlAdr?: components["schemas"]["PostalAddress24"] & unknown;
+            Id: components["schemas"]["Party38Choice"] & unknown;
+            CtryOfRes?: components["schemas"]["CountryCode"] & unknown;
+            CtctDtls?: components["schemas"]["Contact4"] & unknown;
         };
         /**
          * PartyIdentification272
@@ -3438,31 +2859,16 @@ export interface components {
          *         "PhneNb": "+123-123-321",
          *         "MobNb": "+123-123-321",
          *         "FaxNb": "+123-123-321",
-         *         "EmailAdr": null
+         *         "EmailAdr": "example@example.com"
          *       }
          *     }
          */
         PartyIdentification272: {
-            /** @description Name
-             *     Name by which a party is known and which is usually used to identify that party.
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
-            /** @description Postal Address
-             *     Information that locates and identifies a specific address, as defined by postal services.
-             *      */
-            PstlAdr?: components["schemas"]["PostalAddress27"];
-            /** @description Identification
-             *     Unique and unambiguous identification of a party.
-             *      */
-            Id?: components["schemas"]["Party52Choice"];
-            /** @description Country of Residence
-             *     Country in which a person resides (the place of a person's home). In the case of a company, it is the country from which the affairs of that company are directed.
-             *      */
-            CtryOfRes?: components["schemas"]["CountryCode"];
-            /** @description Contact Details
-             *     Set of elements used to indicate how to contact the party.
-             *      */
-            CtctDtls?: components["schemas"]["Contact13"];
+            Nm?: components["schemas"]["Max140Text"] & unknown;
+            PstlAdr?: components["schemas"]["PostalAddress27"] & unknown;
+            Id: components["schemas"]["Party52Choice"] & unknown;
+            CtryOfRes?: components["schemas"]["CountryCode"] & unknown;
+            CtctDtls?: components["schemas"]["Contact13"] & unknown;
         };
         /**
          * PaymentIdentification13
@@ -3477,31 +2883,11 @@ export interface components {
          *     }
          */
         PaymentIdentification13: {
-            /** @description InstructionIdentification
-             *     Definition: Unique identification, as assigned by an instructing party for an instructed party, to unambiguously identify the instruction.
-             *     Usage: The instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.
-             *      */
-            InstrId?: components["schemas"]["Max35Text"];
-            /** @description EndToEndIdentification
-             *     Definition: Unique identification, as assigned by the initiating party, to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
-             *     Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.
-             *     Usage: In case there are technical limitations to pass on multiple references, the end-to-end identification must be passed on throughout the entire end-to-end chain.
-             *      */
-            EndToEndId: components["schemas"]["Max35Text"];
-            /** @description TransactionIdentification
-             *     Definition: Unique identification, as assigned by the first instructing agent, to unambiguously identify the transaction that is passed on, unchanged, throughout the entire interbank chain.
-             *     Usage: The transaction identification can be used for reconciliation, tracking or to link tasks relating to the transaction on the interbank level.
-             *     Usage: The instructing agent has to make sure that the transaction identification is unique for a preagreed period.
-             *      */
-            TxId?: components["schemas"]["Max35Text"];
-            /** @description UETR
-             *     Universally unique identifier to provide an end-to-end reference of a payment transaction.
-             *      */
-            UETR?: components["schemas"]["UUIDv4Identifier"];
-            /** @description ClearingSystemReference
-             *     Unique reference, as assigned by a clearing system, to unambiguously identify the instruction.
-             *      */
-            ClrSysRef?: components["schemas"]["Max35Text"];
+            InstrId?: components["schemas"]["Max35Text"] & unknown;
+            EndToEndId?: components["schemas"]["Max35Text"] & unknown;
+            TxId: components["schemas"]["Max35Text"] & unknown;
+            UETR?: components["schemas"]["UUIDv4Identifier"] & unknown;
+            ClrSysRef?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * PaymentTransaction163
@@ -3529,18 +2915,18 @@ export interface components {
          *     }
          */
         PaymentTransaction163: {
-            StsId?: components["schemas"]["Max35Text"];
-            OrgnlInstrId?: components["schemas"]["Max35Text"];
-            OrgnlEndToEndId?: components["schemas"]["Max35Text"];
-            OrgnlTxId?: components["schemas"]["Max35Text"];
-            OrgnlUETR?: components["schemas"]["UUIDv4Identifier"];
-            TxSts?: components["schemas"]["ExternalPaymentTransactionStatus1Code"];
-            StsRsnInf?: components["schemas"]["StatusReasonInformation14"];
-            AccptncDtTm?: components["schemas"]["ISODateTime"];
-            AcctSvcrRef?: components["schemas"]["Max35Text"];
-            ClrSysRef?: components["schemas"]["Max35Text"];
-            ExctnConf?: components["schemas"]["Exact32HexBinaryText"];
-            SplmtryData?: components["schemas"]["SupplementaryData1"];
+            StsId?: components["schemas"]["Max35Text"] & unknown;
+            OrgnlInstrId?: components["schemas"]["Max35Text"] & unknown;
+            OrgnlEndToEndId?: components["schemas"]["Max35Text"] & unknown;
+            OrgnlTxId?: components["schemas"]["Max35Text"] & unknown;
+            OrgnlUETR?: components["schemas"]["UUIDv4Identifier"] & unknown;
+            TxSts?: components["schemas"]["ExternalPaymentTransactionStatus1Code"] & unknown;
+            StsRsnInf?: components["schemas"]["StatusReasonInformation14"] & unknown;
+            AccptncDtTm?: components["schemas"]["ISODateTime"] & unknown;
+            AcctSvcrRef?: components["schemas"]["Max35Text"] & unknown;
+            ClrSysRef?: components["schemas"]["Max35Text"] & unknown;
+            ExctnConf?: components["schemas"]["Exact32HexBinaryText"] & unknown;
+            SplmtryData?: components["schemas"]["SupplementaryData1"] & unknown;
         };
         /**
          * PaymentTypeInformation28
@@ -3561,27 +2947,11 @@ export interface components {
          *     }
          */
         PaymentTypeInformation28: {
-            /** @description InstructionPriority
-             *     Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.
-             *      */
             InstrPrty?: components["schemas"]["Priority2Code"];
-            /** @description ClearingChannel
-             *     Specifies the clearing channel to be used to process the payment instruction.
-             *      */
             ClrChanl?: components["schemas"]["ClearingChannel2Code"];
-            /** @description ServiceLevel
-             *     Agreement under which or rules under which the transaction should be processed.
-             *      */
-            SvcLvl?: components["schemas"]["ServiceLevel8Choice"];
-            /** @description LocalInstrument
-             *     Definition: User community specific instrument.
-             *     Usage: This element is used to specify a local instrument, local clearing option and/or further qualify the service or service level.
-             *      */
-            LclInstrm?: components["schemas"]["LocalInstrument2Choice"];
-            /** @description CategoryPurpose
-             *     Specifies the high level purpose of the instruction based on a set of pre-defined categories.
-             *      */
-            CtgyPurp?: components["schemas"]["CategoryPurpose1Choice"];
+            SvcLvl?: components["schemas"]["ServiceLevel8Choice"] & unknown;
+            LclInstrm?: components["schemas"]["LocalInstrument2Choice"] & unknown;
+            CtgyPurp?: components["schemas"]["CategoryPurpose1Choice"] & unknown;
         };
         /**
          * PercentageRate
@@ -3607,14 +2977,8 @@ export interface components {
          *     }
          */
         PersonIdentification13: {
-            /** @description DateAndPlaceOfBirth
-             *     Date and place of birth of a person.
-             *      */
-            DtAndPlcOfBirth?: components["schemas"]["DateAndPlaceOfBirth1"];
-            /** @description Other
-             *     Unique identification of a person, as assigned by an institution, using an identification scheme.
-             *      */
-            Othr?: components["schemas"]["GenericPersonIdentification1"];
+            DtAndPlcOfBirth?: components["schemas"]["DateAndPlaceOfBirth1"] & unknown;
+            Othr?: components["schemas"]["GenericPersonIdentification1"] & unknown;
         };
         /**
          * PersonIdentification18
@@ -3635,14 +2999,8 @@ export interface components {
          *     }
          */
         PersonIdentification18: {
-            /** @description DateAndPlaceOfBirth
-             *     Date and place of birth of a person.
-             *      */
-            DtAndPlcOfBirth?: components["schemas"]["DateAndPlaceOfBirth1"];
-            /** @description Other
-             *     Unique identification of a person, as assigned by an institution, using an identification scheme.
-             *      */
-            Othr?: components["schemas"]["GenericPersonIdentification2"];
+            DtAndPlcOfBirth?: components["schemas"]["DateAndPlaceOfBirth1"] & unknown;
+            Othr?: components["schemas"]["GenericPersonIdentification2"] & unknown;
         };
         /**
          * PersonIdentificationSchemeName1Choice
@@ -3653,15 +3011,10 @@ export interface components {
          *     }
          */
         PersonIdentificationSchemeName1Choice: {
-            /** @description Code
-             *     Name of the identification scheme, in a coded form as published in an external list
-             *      */
-            Cd?: components["schemas"]["ExternalPersonIdentification1Code"];
-            /** @description Proprietary
-             *     Name of the identification scheme, in a free text form
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalPersonIdentification1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * PhoneNumber
          * @description Double check this regex.
@@ -3758,6 +3111,12 @@ export interface components {
          * PreferredContactMethod1Code
          * @description Preferred method used to reach the individual contact within an organisation.
          *
+         *     LETT: Letter
+         *     MAIL: Email
+         *     PHON: Phone
+         *     FAXX: Fax
+         *     CELL: Mobile phone
+         *
          * @example CELL
          * @enum {string}
          */
@@ -3765,6 +3124,11 @@ export interface components {
         /**
          * PreferredContactMethod2Code
          * @description Preferred method used to reach the individual contact within an organisation.
+         *     LETT: Letter
+         *     MAIL: Email
+         *     PHON: Phone
+         *     FAXX: Fax
+         *     CELL: Mobile phone
          *
          * @example MAIL
          * @enum {string}
@@ -3772,7 +3136,11 @@ export interface components {
         PreferredContactMethod2Code: "LETT" | "MAIL" | "PHON" | "FAXX" | "CELL";
         /**
          * Priority2Code
-         * @description Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.
+         * @description Indicator of the urgency or order of importance that the instructing party
+         *     would like the instructed party to apply to the processing of the instruction.
+         *
+         *     HIGH:  High priority
+         *     NORM:  Normal priority
          *
          * @example HIGH
          * @enum {string}
@@ -3790,60 +3158,40 @@ export interface components {
          *     }
          */
         ProxyAccountIdentification1: {
-            /** @description Type
-             *
-             *     Type of the proxy identification.
-             *      */
-            Tp?: components["schemas"]["ProxyAccountType1Choice"];
-            /** @description Identification
-             *
-             *     Identification used to indicate the account identification under another specified name.
-             *      */
-            Id: components["schemas"]["Max2048Text"];
+            Tp?: components["schemas"]["ProxyAccountType1Choice"] & unknown;
+            Id: components["schemas"]["Max2048Text"] & unknown;
         };
         /**
          * ProxyAccountType1Choice
-         * @description ProxyAccountType1Choice
-         *
-         *     Specifies the scheme used for the identification of an account alias.
+         * @description Specifies the type of the proxy account.
          *
          * @example {
-         *       "Cd": "CH03"
+         *       "Cd": "EMAIL"
          *     }
          */
         ProxyAccountType1Choice: {
-            /** @description Code
-             *
-             *     Name of the identification scheme, in a coded form as published in an external list.
-             *      */
-            Cd?: components["schemas"]["ExternalProxyAccountType1Code"];
-            /** @description Proprietary
-             *
-             *     Name of the identification scheme, in a free text form.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalProxyAccountType1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * Purpose2Choice
          * @description Specifies the underlying reason for the payment transaction.
-         *     Usage: Purpose is used by the end-customers, that is initiating party, (ultimate) debtor, (ultimate) creditor to provide information concerning the nature of the payment. Purpose is a content element, which is not used for processing by any of the agents involved in the payment chain.
+         *
+         *     Usage: Purpose is used by the end-customers, that is initiating party,
+         *     (ultimate) debtor, (ultimate) creditor to provide information concerning the nature of the payment. Purpose
+         *     is a content element, which is not used for processing by any of the agents involved in the payment
+         *     chain.
          *
          * @example {
          *       "Cd": "CH03"
          *     }
          */
         Purpose2Choice: {
-            /** @description Code
-             *
-             *     Underlying reason for the payment transaction, as published in an external purpose code list.
-             *      */
-            Cd?: components["schemas"]["ExternalPurpose1Code"];
-            /** @description Proprietary
-             *
-             *     Purpose, in a proprietary form.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalPurpose1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * RegulatoryAuthority2
          * @description Information about an entity requiring the regulatory reporting information.
@@ -3854,16 +3202,8 @@ export interface components {
          *     }
          */
         RegulatoryAuthority2: {
-            /** @description Name
-             *
-             *     Name of the entity requiring the regulatory reporting information.
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
-            /** @description Country
-             *
-             *     Country of the entity that requires the regulatory reporting information.
-             *      */
-            Ctry?: components["schemas"]["CountryCode"];
+            Nm?: components["schemas"]["Max140Text"] & unknown;
+            Ctry?: components["schemas"]["CountryCode"] & unknown;
         };
         /**
          * RegulatoryReporting3
@@ -3882,15 +3222,8 @@ export interface components {
          *     }
          */
         RegulatoryReporting3: {
-            /** @description DebitCreditReportingIndicator
-             *     Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.
-             *      */
-            DbtCdtRptgInd?: components["schemas"]["RegulatoryReportingType1Code"];
-            /** @description Authority
-             *
-             *     Entity requiring the regulatory reporting information.
-             *      */
-            Authrty?: components["schemas"]["RegulatoryAuthority2"];
+            DbtCdtRptgInd?: components["schemas"]["RegulatoryReportingType1Code"] & unknown;
+            Authrty?: components["schemas"]["RegulatoryAuthority2"] & unknown;
             /** @description Details
              *     Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.
              *      */
@@ -3898,7 +3231,12 @@ export interface components {
         };
         /**
          * RegulatoryReportingType1Code
-         * @description Identifies whether the regulatory reporting information applies to the debit side, to the credit side or to both debit and credit sides of the transaction.
+         * @description Identifies whether the regulatory reporting information applies to the debit
+         *     side, to the credit side or to both debit and credit sides of the transaction.
+         *
+         *     CRED: Regulatory reporting applies to the credit side of the transaction.
+         *     DEBT: Regulatory reporting applies to the debit side of the transaction.
+         *     BOTH: Regulatory reporting applies to both debit and credit sides of the transaction.
          *
          * @example BOTH
          * @enum {string}
@@ -3913,15 +3251,10 @@ export interface components {
          *     }
          */
         ServiceLevel8Choice: {
-            /** @description Code
-             *     Specifies a pre-agreed service or level of service between the parties, as published in an external service level code list.
-             *      */
-            Cd?: components["schemas"]["ExternalServiceLevel1Code"];
-            /** @description Proprietary
-             *     Specifies a pre-agreed service or level of service between the parties, as a proprietary code.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalServiceLevel1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * SettlementInstruction15
          * @description Specifies the details on how the settlement of the original transaction(s) between the
@@ -3970,17 +3303,17 @@ export interface components {
          *     }
          */
         SettlementInstruction15: {
-            /** @description SettlementMethod
-             *     Method used to settle the (batch of) payment instructions.
-             *      */
             SttlmMtd: components["schemas"]["SettlementMethod1Code"];
-            /** @description PaymentTypeInformation
-             *      */
             PmtTpInf?: components["schemas"]["PaymentTypeInformation28"];
         };
         /**
          * SettlementMethod1Code
          * @description Specifies the method used to settle the credit transfer instruction.
+         *
+         *     INDA: Indirect Account
+         *     INGA: Indirect Agent
+         *     COVE: Cover
+         *     CLRG: Clearing
          *
          * @example CLRG
          * @enum {string}
@@ -3988,22 +3321,17 @@ export interface components {
         SettlementMethod1Code: "INDA" | "INGA" | "COVE" | "CLRG";
         /**
          * StatusReason6Choice
-         * @description Unsure on description.
+         * @description Specifies the reason for the status.
          *
          * @example {
          *       "Cd": "AGNT"
          *     }
          */
         StatusReason6Choice: {
-            /** @description Code
-             *     Reason for the status, as published in an external reason code list.
-             *      */
-            Cd?: components["schemas"]["ExternalStatusReason1Code"];
-            /** @description Proprietary
-             *     Reason for the status, in a proprietary form.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalStatusReason1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * StatusReasonInformation14
          * @description Unsure on description.
@@ -4030,15 +3358,9 @@ export interface components {
          *     }
          */
         StatusReasonInformation14: {
-            /** @description Originator
-             *     Party that issues the status. */
-            Orgtr?: components["schemas"]["PartyIdentification272"];
-            /** @description Reason
-             *     Specifies the reason for the status report. */
-            Rsn?: components["schemas"]["StatusReason6Choice"];
-            /** @description AdditionalInformation
-             *     Additional information about the status report. */
-            AddtlInf?: components["schemas"]["Max105Text"];
+            Orgtr?: components["schemas"]["PartyIdentification272"] & unknown;
+            Rsn?: components["schemas"]["StatusReason6Choice"] & unknown;
+            AddtlInf?: components["schemas"]["Max105Text"] & unknown;
         };
         /**
          * StructuredRegulatoryReporting3
@@ -4059,38 +3381,20 @@ export interface components {
          *     }
          */
         StructuredRegulatoryReporting3: {
-            /** @description Type
-             *
-             *     Specifies the type of the information supplied in the regulatory reporting details.
-             *      */
-            Tp?: components["schemas"]["Max35Text"];
-            /** @description Date
-             *
-             *     Date related to the specified type of regulatory reporting details.
-             *      */
-            Dt?: components["schemas"]["ISODate"];
-            /** @description Country
-             *
-             *     Country related to the specified type of regulatory reporting details.
-             *      */
-            Ctry?: components["schemas"]["CountryCode"];
-            /** @description Code
-             *     Specifies the nature, purpose, and reason for the transaction to be reported for regulatory and statutory requirements in a coded form.
-             *      */
-            Cd?: components["schemas"]["Max10Text"];
-            /** @description Amount
-             *
-             *     Amount of money to be reported for regulatory and statutory requirements.
-             *      */
-            Amt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"];
+            Tp?: components["schemas"]["Max35Text"] & unknown;
+            Dt?: components["schemas"]["ISODate"] & unknown;
+            Ctry?: components["schemas"]["CountryCode"] & unknown;
+            Cd?: components["schemas"]["Max10Text"] & unknown;
+            Amt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
             /** @description Information
+             *
              *     Additional details that cater for specific domestic regulatory requirements.
              *      */
             Inf?: components["schemas"]["Max35Text"] | components["schemas"]["Max35Text"][];
         };
         /**
          * SupplementaryData1
-         * @description Additional information that can not be captured in the structured fields and/or any other specific block.
+         * @description Additional information that cannot be captured in the structured fields and/or any other specific block.
          *
          * @example {
          *       "PlcAndNm": "Additional information",
@@ -4101,15 +3405,8 @@ export interface components {
          *     }
          */
         SupplementaryData1: {
-            /** @description PlaceAndName
-             *     Unambiguous reference to the location where the supplementary data must be inserted in the message instance.
-             *      */
-            PlcAndNm?: components["schemas"]["Max350Text"];
-            /** @description Envelope
-             *     Technical element wrapping the supplementary data.
-             *     Technical component that contains the validated supplementary data information. This technical envelope allows to segregate the supplementary data information from any other information.
-             *      */
-            Envlp: components["schemas"]["SupplementaryDataEnvelope1"];
+            PlcAndNm?: components["schemas"]["Max350Text"] & unknown;
+            Envlp: components["schemas"]["SupplementaryDataEnvelope1"] & unknown;
         };
         /**
          * SupplementaryDataEnvelope1
@@ -4145,21 +3442,9 @@ export interface components {
          *     }
          */
         TaxAmount3: {
-            /** @description Rate
-             *
-             *     Rate used to calculate the tax.
-             *      */
-            Rate?: components["schemas"]["PercentageRate"];
-            /** @description TaxableBaseAmount
-             *
-             *     Amount of money on which the tax is based.
-             *      */
-            TaxblBaseAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"];
-            /** @description TotalAmount
-             *
-             *     Total amount that is the result of the calculation of the tax for the record.
-             *      */
-            TtlAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"];
+            Rate?: components["schemas"]["PercentageRate"] & unknown;
+            TaxblBaseAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
+            TtlAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
             /** @description Details
              *
              *     Set of elements used to provide details on the tax period and amount.
@@ -4176,16 +3461,8 @@ export interface components {
          *     }
          */
         TaxAuthorisation1: {
-            /** @description Title
-             *
-             *     Title or position of debtor or the debtor's authorised representative.
-             *      */
-            Titl?: components["schemas"]["Max35Text"];
-            /** @description Name
-             *
-             *     Name of the debtor or the debtor's authorised representative.
-             *      */
-            Nm?: components["schemas"]["Max140Text"];
+            Titl?: components["schemas"]["Max35Text"] & unknown;
+            Nm?: components["schemas"]["Max140Text"] & unknown;
         };
         /**
          * TaxData1
@@ -4230,56 +3507,16 @@ export interface components {
          *     }
          */
         TaxData1: {
-            /** @description Creditor
-             *
-             *     Party on the credit side of the transaction to which the tax applies.
-             *      */
-            Cdtr?: components["schemas"]["TaxParty1"];
-            /** @description Debtor
-             *
-             *     Party on the debit side of the transaction to which the tax applies.
-             *      */
-            Dbtr?: components["schemas"]["TaxParty2"];
-            /** @description UltimateDebtor
-             *
-             *     Ultimate party that owes an amount of money to the (ultimate) creditor, in this case, to the taxing authority.
-             *      */
-            UltmtDbtr?: components["schemas"]["TaxParty2"];
-            /** @description AdministrationZone
-             *
-             *     Territorial part of a country to which the tax payment is related.
-             *      */
-            AdmstnZone?: components["schemas"]["Max35Text"];
-            /** @description ReferenceNumber
-             *
-             *     Tax reference information that is specific to a taxing agency.
-             *      */
-            RefNb?: components["schemas"]["Max140Text"];
-            /** @description Method
-             *
-             *     Method used to indicate the underlying business or how the tax is paid.
-             *      */
-            Mtd?: components["schemas"]["Max35Text"];
-            /** @description TotalTaxableBaseAmount
-             *
-             *     Total amount of money on which the tax is based.
-             *      */
-            TtlTaxblBaseAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"];
-            /** @description TotalTaxAmount
-             *
-             *     Total amount of money as result of the calculation of the tax.
-             *      */
-            TtlTaxAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"];
-            /** @description Date
-             *
-             *     Date by which tax is due.
-             *      */
-            Dt?: components["schemas"]["ISODate"];
-            /** @description SequenceNumber
-             *
-             *     Sequential number of the tax report
-             *      */
-            SeqNb?: components["schemas"]["Number"];
+            Cdtr?: components["schemas"]["TaxParty1"] & unknown;
+            Dbtr?: components["schemas"]["TaxParty2"] & unknown;
+            UltmtDbtr?: components["schemas"]["TaxParty2"] & unknown;
+            AdmstnZone?: components["schemas"]["Max35Text"] & unknown;
+            RefNb?: components["schemas"]["Max140Text"] & unknown;
+            Mtd?: components["schemas"]["Max35Text"] & unknown;
+            TtlTaxblBaseAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
+            TtlTaxAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
+            Dt?: components["schemas"]["ISODate"] & unknown;
+            SeqNb?: components["schemas"]["Number"] & unknown;
             /** @description Record
              *
              *     Details of the tax record.
@@ -4297,21 +3534,9 @@ export interface components {
          *     }
          */
         TaxParty1: {
-            /** @description TaxIdentification
-             *
-             *     Tax identification number of the creditor.
-             *      */
-            TaxId?: components["schemas"]["Max35Text"];
-            /** @description RegistrationIdentification
-             *
-             *     Unique identification, as assigned by an organisation, to unambiguously identify a party.
-             *      */
-            RegnId?: components["schemas"]["Max35Text"];
-            /** @description TaxType
-             *
-             *     Type of tax payer.
-             *      */
-            TaxTp?: components["schemas"]["Max35Text"];
+            TaxId?: components["schemas"]["Max35Text"] & unknown;
+            RegnId?: components["schemas"]["Max35Text"] & unknown;
+            TaxTp?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * TaxParty2
@@ -4328,26 +3553,10 @@ export interface components {
          *     }
          */
         TaxParty2: {
-            /** @description TaxIdentification
-             *
-             *     Tax identification number of the debtor.
-             *      */
-            TaxId?: components["schemas"]["Max35Text"];
-            /** @description RegistrationIdentification
-             *
-             *     Unique identification, as assigned by an organisation, to unambiguously identify a party.
-             *      */
-            RegnId?: components["schemas"]["Max35Text"];
-            /** @description TaxType
-             *
-             *     Type of tax payer.
-             *      */
-            TaxTp?: components["schemas"]["Max35Text"];
-            /** @description Authorisation
-             *
-             *     Details of the authorised tax paying party.
-             *      */
-            Authstn?: components["schemas"]["TaxAuthorisation1"];
+            TaxId?: components["schemas"]["Max35Text"] & unknown;
+            RegnId?: components["schemas"]["Max35Text"] & unknown;
+            TaxTp?: components["schemas"]["Max35Text"] & unknown;
+            Authstn?: components["schemas"]["TaxAuthorisation1"] & unknown;
         };
         /**
          * TaxPeriod3
@@ -4363,21 +3572,9 @@ export interface components {
          *     }
          */
         TaxPeriod3: {
-            /** @description FromToDate
-             *
-             *     Range of time between a start date and an end date for which the tax report is provided.
-             *      */
-            FrToDt?: components["schemas"]["DatePeriod2"];
-            /** @description Type
-             *
-             *     Identification of the period related to the tax payment.
-             *      */
-            Tp?: components["schemas"]["TaxRecordPeriod1Code"];
-            /** @description Year
-             *
-             *     Year related to the tax payment.
-             *      */
-            Yr?: components["schemas"]["ISOYear"];
+            FrToDt?: components["schemas"]["DatePeriod2"] & unknown;
+            Tp?: components["schemas"]["TaxRecordPeriod1Code"] & unknown;
+            Yr?: components["schemas"]["ISOYear"] & unknown;
         };
         /**
          * TaxRecord3
@@ -4391,67 +3588,41 @@ export interface components {
          *       "CertId": 123456789,
          *       "FrmsCd": 123456789,
          *       "Prd": {
-         *         "FrstDay": "2019-01-01",
-         *         "LastDay": "2019-12-31"
+         *         "Yr": 2019,
+         *         "Tp": "MM01",
+         *         "FrToDt": {
+         *           "FrDt": "2019-01-01",
+         *           "ToDt": "2019-12-31"
+         *         }
          *       },
          *       "TaxAmt": {
          *         "Rate": 0.2,
-         *         "TaxblBaseAmt": 1000,
-         *         "TtlAmt": 200
+         *         "TaxblBaseAmt": {
+         *           "Ccy": "EUR",
+         *           "Amt": 1000
+         *         },
+         *         "TtlAmt": {
+         *           "Ccy": "EUR",
+         *           "Amt": 200
+         *         }
          *       },
          *       "AddtlInf": "VAT applicable"
          *     }
          */
         TaxRecord3: {
-            /** @description AdditionalInformation
-             *
-             *     Further details of the tax record.
-             *      */
-            AddtlInf?: components["schemas"]["Max140Text"];
-            /** @description CertificateIdentification
-             *
-             *     Identification number of the tax report as assigned by the taxing authority.
-             *      */
-            CertId?: components["schemas"]["Max35Text"];
-            /** @description Category
-             *
-             *     Specifies the tax code as published by the tax authority.
-             *      */
-            Ctgy?: components["schemas"]["Max35Text"];
-            /** @description CategoryDetails
-             *
-             *     Provides further details of the category tax code.
-             *      */
-            CtgyDtls?: components["schemas"]["Max35Text"];
-            /** @description DebtorStatus
-             *
-             *     Code provided by local authority to identify the status of the party that has drawn up the settlement document.
-             *      */
-            DbtrSts?: components["schemas"]["Max35Text"];
-            /** @description FormsCode
-             *
-             *     Identifies, in a coded form, on which template the tax report is to be provided.
-             *      */
-            FrmsCd?: components["schemas"]["Max35Text"];
-            /** @description Period
-             *
-             *     Set of elements used to provide details on the period of time related to the tax payment.
-             *      */
-            Prd?: components["schemas"]["TaxPeriod3"];
-            /** @description TaxAmount
-             *
-             *     Set of elements used to provide information on the amount of the tax record.
-             *      */
-            TaxAmt?: components["schemas"]["TaxAmount3"];
-            /** @description Type
-             *
-             *     High level code to identify the type of tax details.
-             *      */
-            Tp?: components["schemas"]["Max35Text"];
+            AddtlInf?: components["schemas"]["Max140Text"] & unknown;
+            CertId?: components["schemas"]["Max35Text"] & unknown;
+            Ctgy?: components["schemas"]["Max35Text"] & unknown;
+            CtgyDtls?: components["schemas"]["Max35Text"] & unknown;
+            DbtrSts?: components["schemas"]["Max35Text"] & unknown;
+            FrmsCd?: components["schemas"]["Max35Text"] & unknown;
+            Prd?: components["schemas"]["TaxPeriod3"] & unknown;
+            TaxAmt?: components["schemas"]["TaxAmount3"] & unknown;
+            Tp?: components["schemas"]["Max35Text"] & unknown;
         };
         /**
          * TaxRecordDetails3
-         * @description Details on the tax period and amount
+         * @description Details on the tax period and amount.
          *
          * @example {
          *       "Prd": {
@@ -4469,16 +3640,8 @@ export interface components {
          *     }
          */
         TaxRecordDetails3: {
-            /** @description Period
-             *
-             *     Set of elements used to provide details on the period of time related to the tax payment.
-             *      */
-            Prd?: components["schemas"]["TaxPeriod3"];
-            /** @description Amount
-             *
-             *     Underlying tax amount related to the specified period.
-             *      */
-            Amt: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"];
+            Prd?: components["schemas"]["TaxPeriod3"] & unknown;
+            Amt: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
         };
         /**
          * TaxRecordPeriod1Code
@@ -4509,6 +3672,8 @@ export interface components {
         TaxRecordPeriod1Code: "MM01" | "MM02" | "MM03" | "MM04" | "MM05" | "MM06" | "MM07" | "MM08" | "MM09" | "MM10" | "MM11" | "MM12" | "QTR1" | "QTR2" | "QTR3" | "QTR4" | "HLF1" | "HLF2";
         /**
          * TermsRequest_FIToFICustomerCreditProposal
+         * @description This message is sent by a financial institution to a financial institution to propose the terms of a credit to a customer.
+         *
          * @example {
          *       "GrpHdr": {
          *         "MsgId": 123456789,
@@ -4540,10 +3705,13 @@ export interface components {
          *     }
          */
         TermsRequest_FIToFICustomerCreditProposal: {
-            GrpHdr: components["schemas"]["GroupHeader129"];
+            GrpHdr: components["schemas"]["GroupHeader129"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"] & unknown;
         };
         /**
          * TermsResponse_FIToFICustomerCreditConfirmation
+         * @description This message is sent by the initiating party to the executing party, directly or through one or more intermediaries, to confirm the credit transfer transaction.
+         *
          * @example {
          *       "GrpHdr": {
          *         "MsgId": 123456789,
@@ -4575,8 +3743,8 @@ export interface components {
          *     }
          */
         TermsResponse_FIToFICustomerCreditConfirmation: {
-            GrpHdr: components["schemas"]["GroupHeader129"];
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"];
+            GrpHdr: components["schemas"]["GroupHeader129"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"] & unknown;
         };
         /**
          * UUIDv4Identifier
@@ -4585,22 +3753,22 @@ export interface components {
         UUIDv4Identifier: string;
         /**
          * VerificationReason1Choice
+         * @description Choice of format for the verification reason.
+         *     Only one, between the coded and the proprietary, can be chosen.
+         *
          * @example {
          *       "Cd": "AGNT"
          *     }
          */
         VerificationReason1Choice: {
-            /** @description Code
-             *     Reason why the verified identification information is incorrect, as published in an external reason code list.
-             *      */
-            Cd?: components["schemas"]["ExternalVerificationReason1Code"];
-            /** @description Proprietary
-             *     Reason why the verified identification information is incorrect, in a free text form.
-             *      */
-            Prtry?: components["schemas"]["Max35Text"];
-        } & (unknown | unknown);
+            Cd: components["schemas"]["ExternalVerificationReason1Code"] & unknown;
+        } | {
+            Prtry: components["schemas"]["Max35Text"] & unknown;
+        };
         /**
          * VerificationReport4
+         * @description VerificationReport
+         *     Provides information about the verification of party and/or account identification information.
          * @example {
          *       "OrgnlId": 1.2345678901234568e+33,
          *       "Vrfctn": true,
@@ -4653,26 +3821,11 @@ export interface components {
          *     }
          */
         VerificationReport4: {
-            /** @description OriginalIdentification
-             *     Unique identification, as assigned by a sending party, to unambiguously identify the party and account identification information group within the original message.
-             *      */
-            OrgnlId: components["schemas"]["Max35Text"];
-            /** @description Verification
-             *     Identifies whether the party and/or account information received is correct. Boolean value.
-             *      */
-            Vrfctn: components["schemas"]["IdentificationVerificationIndicator"];
-            /** @description Reason.
-             *     Specifies the reason why the verified identification information is incorrect.
-             *      */
-            Rsn?: components["schemas"]["VerificationReason1Choice"];
-            /** @description OriginalPartyAndAccountIdentification
-             *     Provides party and/or account identification information as given in the original message.
-             *      */
-            OrgnlPtyAndAcctId?: components["schemas"]["IdentificationInformation4"];
-            /** @description UpdatedPartyAndAccountIdentification
-             *     Provides party and/or account identification information.
-             *      */
-            UpdtdPtyAndAcctId?: components["schemas"]["IdentificationInformation4"];
+            OrgnlId: components["schemas"]["Max35Text"] & unknown;
+            Vrfctn: components["schemas"]["IdentificationVerificationIndicator"] & unknown;
+            Rsn?: components["schemas"]["VerificationReason1Choice"] & unknown;
+            OrgnlPtyAndAcctId?: components["schemas"]["IdentificationInformation4"] & unknown;
+            UpdtdPtyAndAcctId: components["schemas"]["IdentificationInformation4"] & unknown;
         };
         /**
          * hexBinary

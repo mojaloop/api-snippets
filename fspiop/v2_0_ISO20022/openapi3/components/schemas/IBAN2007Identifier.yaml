@@ -8,5 +8,5 @@ description: >
   International Bank Account Number (IBAN)" and replaced by the more recent
   edition of the standard.
 type: string
-pattern: ^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$
 example: FR1420041010050500013M02606
+pattern: ^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$

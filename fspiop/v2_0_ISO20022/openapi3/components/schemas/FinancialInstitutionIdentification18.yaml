@@ -1,44 +1,53 @@
 title: FinancialInstitutionIdentification18
 type: object
+description: >
+  Information used to identify a financial institution.
 properties:
   BICFI:
-    description: >
-      BICFI
+    allOf:
+      - $ref: ./BICFIDec2014Identifier.yaml
+      - description: >
+          BICFI  
 
-      Code allocated to a financial institution by the ISO 9362 Registration Authority as described
-      in ISO 9362 "Banking - Banking telecommunication messages - Business identifier code (BIC)"
-    $ref: ./BICFIDec2014Identifier.yaml
-  ClrSysMmbId:
-    description: >
-      ClearingSystemMemberIdentification
+          Code allocated to a financial institution by the ISO 9362 Registration Authority as described
+          in ISO 9362 "Banking - Banking telecommunication messages - Business identifier code (BIC)"
+  ClrSysMmbId: 
+    allOf:
+      - $ref: ./ClearingSystemMemberIdentification2.yaml
+      - description: >
+          ClearingSystemMemberIdentification
 
-      Information used to identify a member within a clearing system
-    $ref: ./ClearingSystemMemberIdentification2.yaml
+          Information used to identify a member within a clearing system
   LEI:
-    description: >
-      LEI
+    allOf:
+      - $ref: ./LEIIdentifier.yaml
+      - description: >
+          LEI
 
-      Legal entity identifier of the financial institution.
-    $ref: ./LEIIdentifier.yaml
+          Legal entity identifier of the financial institution.
   Nm:
-    description: >
-      Name
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: >
+          Name
 
-      Name by which an agent is known and which is usually used to identify that agent
-    $ref: ./Max140Text.yaml
+          Name by which an agent is known and which is usually used to identify that agent
   PstlAdr:
-    description: >
-      PostalAddress
+    allOf:
+      - $ref: ./PostalAddress24.yaml
+      - description: >
+          PostalAddress
 
-      Information that locates and identifies a specific address, as defined by postal services.
-    $ref: ./PostalAddress24.yaml
+          Information that locates and identifies a specific address, as defined by postal services.
   Othr:
-    description: >
-      Other
+    allOf:
+      - $ref: ./GenericFinancialIdentification1.yaml
+      - description: >
+          Other
 
-      Unique identification of an agent, as assigned by an institution, using an identification
-      scheme.
-    $ref: ./GenericFinancialIdentification1.yaml
+          Unique identification of an agent, as assigned by an institution, using an identification
+          scheme.
+required: []
 example:
   BICFI: J5BMVH7D
   ClrSysMmbId:

@@ -1,4 +1,5 @@
 title: ExternalLocalInstrument1Code
+description: Specifies the external local instrument identification code.
 type: string
 minLength: 1
 maxLength: 35

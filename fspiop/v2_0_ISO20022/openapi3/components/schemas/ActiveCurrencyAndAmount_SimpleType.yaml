@@ -1,13 +1,4 @@
 title: ActiveCurrencyAndAmount_SimpleType
 type: string
-description: |
-  NOTE: This regex doesn't seem correct given it's xsd definition.
-  <xs:simpleType name="ActiveCurrencyAndAmount_SimpleType">
-    <xs:restriction base="xs:decimal">
-      <xs:fractionDigits value="5"/>
-      <xs:totalDigits value="18"/>
-      <xs:minInclusive value="0"/>
-    </xs:restriction>
-  </xs:simpleType>
-pattern: ^(?=[\d\-\.\,]{1,18}$)([\d\-\,\.]{1,5})?$
+pattern: ^(?!0\d)(\d{1,18}|\d{1,17}.\d{1}|\d{1,16}.\d{1,2}|\d{1,15}.\d{1,3}|\d{1,14}.\d{1,4}|\d{1,13}.\d{1,5})$
 example: 123.45
