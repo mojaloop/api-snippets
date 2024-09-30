@@ -3825,7 +3825,7 @@ export interface components {
             Vrfctn: components["schemas"]["IdentificationVerificationIndicator"] & unknown;
             Rsn?: components["schemas"]["VerificationReason1Choice"] & unknown;
             OrgnlPtyAndAcctId?: components["schemas"]["IdentificationInformation4"] & unknown;
-            UpdtdPtyAndAcctId: components["schemas"]["IdentificationInformation4"] & unknown;
+            UpdtdPtyAndAcctId?: components["schemas"]["IdentificationInformation4"] & unknown;
         };
         /**
          * hexBinary

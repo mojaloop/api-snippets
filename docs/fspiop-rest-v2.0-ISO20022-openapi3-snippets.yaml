@@ -6589,7 +6589,6 @@ components:
       required:
         - OrgnlId
         - Vrfctn
-        - UpdtdPtyAndAcctId
       example:
         OrgnlId: 1.2345678901234568e+33
         Vrfctn: true
