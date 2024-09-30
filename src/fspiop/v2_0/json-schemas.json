@@ -301,7 +301,7 @@
             "quoteId": {
               "title": "CorrelationId",
               "type": "string",
-              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
               "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
               "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
             },
@@ -1607,7 +1607,7 @@
       "bulkQuoteId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -2002,14 +2002,14 @@
             "quoteId": {
               "title": "CorrelationId",
               "type": "string",
-              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
               "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
               "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
             },
             "transactionId": {
               "title": "CorrelationId",
               "type": "string",
-              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
               "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
               "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
             },
@@ -2807,7 +2807,7 @@
                     "originalTransactionId": {
                       "title": "CorrelationId",
                       "type": "string",
-                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
                       "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
                       "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
                     },
@@ -2984,7 +2984,7 @@
             "transferId": {
               "title": "CorrelationId",
               "type": "string",
-              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
               "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
               "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
             },
@@ -3178,14 +3178,14 @@
       "bulkTransferId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
       "bulkQuoteId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -3215,7 +3215,7 @@
             "transferId": {
               "title": "CorrelationId",
               "type": "string",
-              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
               "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
               "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
             },
@@ -3545,7 +3545,7 @@
   "CorrelationId": {
     "title": "CorrelationId",
     "type": "string",
-    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
     "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
     "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
   },
@@ -4498,7 +4498,7 @@
           {
             "title": "CorrelationId",
             "type": "string",
-            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
             "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
             "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
           },
@@ -4512,7 +4512,7 @@
           {
             "title": "CorrelationId",
             "type": "string",
-            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
             "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
             "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
           },
@@ -5672,7 +5672,7 @@
                   {
                     "title": "CorrelationId",
                     "type": "string",
-                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
                     "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
                     "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
                   },
@@ -5686,7 +5686,7 @@
                   {
                     "title": "CorrelationId",
                     "type": "string",
-                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
                     "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
                     "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
                   },
@@ -6645,7 +6645,7 @@
           {
             "title": "CorrelationId",
             "type": "string",
-            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
             "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
             "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
           },
@@ -6666,7 +6666,7 @@
                   {
                     "title": "CorrelationId",
                     "type": "string",
-                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
                     "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
                     "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
                   },
@@ -6680,7 +6680,7 @@
                   {
                     "title": "CorrelationId",
                     "type": "string",
-                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
                     "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
                     "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
                   },
@@ -8230,7 +8230,7 @@
           {
             "title": "CorrelationId",
             "type": "string",
-            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
             "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
             "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
           },
@@ -8244,7 +8244,7 @@
           {
             "title": "CorrelationId",
             "type": "string",
-            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
             "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
             "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
           },
@@ -8765,14 +8765,14 @@
       "quoteId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
       "transactionId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -9570,7 +9570,7 @@
               "originalTransactionId": {
                 "title": "CorrelationId",
                 "type": "string",
-                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
                 "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
                 "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
               },
@@ -9668,7 +9668,7 @@
       "quoteId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -10919,7 +10919,7 @@
       "transferId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -11187,7 +11187,7 @@
       "transferId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -11936,7 +11936,7 @@
       "requestId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -14445,21 +14445,21 @@
       "quoteId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
       "transactionId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
       "transactionRequestId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -15604,7 +15604,7 @@
               "originalTransactionId": {
                 "title": "CorrelationId",
                 "type": "string",
-                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
                 "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
                 "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
               },
@@ -16165,7 +16165,7 @@
       "originalTransactionId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -16250,14 +16250,14 @@
       "transactionId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
       "quoteId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -17829,7 +17829,7 @@
               "originalTransactionId": {
                 "title": "CorrelationId",
                 "type": "string",
-                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
                 "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
                 "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
               },
@@ -17961,7 +17961,7 @@
       "transactionId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -18031,7 +18031,7 @@
       "transactionRequestId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
@@ -18717,7 +18717,7 @@
               "originalTransactionId": {
                 "title": "CorrelationId",
                 "type": "string",
-                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
                 "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
                 "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
               },
@@ -18936,7 +18936,7 @@
           "originalTransactionId": {
             "title": "CorrelationId",
             "type": "string",
-            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
             "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
             "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
           },
@@ -19213,7 +19213,7 @@
       "transferId": {
         "title": "CorrelationId",
         "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
         "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
         "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },

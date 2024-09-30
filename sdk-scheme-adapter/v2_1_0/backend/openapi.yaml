@@ -604,7 +604,7 @@ components:
       type: string
     bulkQuoteId:
       description: A Mojaloop API bulk quote identifier (UUID/ULID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     bulkQuoteRequest:
       description: A request for a bulk quote.
@@ -650,7 +650,7 @@ components:
       type: object
     bulkTransferId:
       description: A Mojaloop API transfer identifier (UUID/ULID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     bulkTransferRequest:
       properties:
@@ -1093,7 +1093,7 @@ components:
       type: string
     quoteId:
       description: A Mojaloop API quote identifier (UUID/ULID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     quoteRequest:
       description: A request for a quote for transfer from the DFSP backend.
@@ -1213,7 +1213,7 @@ components:
       type: string
     transactionId:
       description: ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote.
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     transactionRequest:
       description: A request for a pull based transfer.
@@ -1259,7 +1259,7 @@ components:
       type: object
     transactionRequestId:
       description: A Mojaloop API transaction request identifier (UUID/ULID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     transactionRequestResponse:
       description: A response to a request for a quote.
@@ -1353,7 +1353,7 @@ components:
       type: object
     transferId:
       description: A Mojaloop API transfer identifier (UUID/ULID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|[0-9A-HJKMNP-TV-Z]{26}$
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     transferParty:
       properties:
