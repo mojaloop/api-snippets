@@ -1180,6 +1180,19 @@ export interface components {
             Sh256Sgntr: components["schemas"]["Exact32HexBinaryText"] & unknown;
         };
         /**
+         * StatusReason6Choice
+         * @description Specifies the reason for the status.
+         *
+         * @example {
+         *       "DtTm": "2020-01-01T00:00:00Z"
+         *     }
+         */
+        DateAndDateTime2Choice: {
+            Dt: components["schemas"]["ISODate"] & unknown;
+        } | {
+            DtTm: components["schemas"]["ISODateTime"] & unknown;
+        };
+        /**
          * DateAndPlaceOfBirth1
          * @description Details about date and place of birth of a person.
          *
@@ -2185,33 +2198,12 @@ export interface components {
          *
          * @example {
          *       "MsgId": 12345,
-         *       "CreDtTm": "2020-01-01T00:00:00Z",
-         *       "TxInfAndSts": {
-         *         "StsId": 12345,
-         *         "OrgnlInstrId": 12345,
-         *         "OrgnlEndToEndId": 12345,
-         *         "OrgnlTxId": 12345,
-         *         "OrgnlUETR": "123e4567-e89b-12d3-a456-426614174000",
-         *         "TxSts": "RJCT",
-         *         "StsRsnInf": {
-         *           "Rsn": "RSN",
-         *           "AddtlInf": "ADDITIONAL"
-         *         },
-         *         "AccptncDtTm": "2020-01-01T00:00:00Z",
-         *         "AcctSvcrRef": "ACCTSVCRREF",
-         *         "ClrSysRef": "CLRSYSREF",
-         *         "ExctnConf": "1234567890ABCDEF",
-         *         "SplmtryData": {
-         *           "PlcAndNm": "PLACE",
-         *           "Envlp": "ENVELOPE"
-         *         }
-         *       }
+         *       "CreDtTm": "2020-01-01T00:00:00Z"
          *     }
          */
         GroupHeader120: {
             MsgId: components["schemas"]["Max35Text"] & unknown;
             CreDtTm: components["schemas"]["ISODateTime"] & unknown;
-            TxInfAndSts?: components["schemas"]["PaymentTransaction163"] & unknown;
         };
         /**
          * GroupHeader129
@@ -2927,6 +2919,7 @@ export interface components {
             ClrSysRef?: components["schemas"]["Max35Text"] & unknown;
             ExctnConf?: components["schemas"]["Exact32HexBinaryText"] & unknown;
             SplmtryData?: components["schemas"]["SupplementaryData1"] & unknown;
+            PrcgDt?: components["schemas"]["DateAndDateTime2Choice"] & unknown;
         };
         /**
          * PaymentTypeInformation28

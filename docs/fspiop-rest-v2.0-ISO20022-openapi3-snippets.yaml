@@ -2636,6 +2636,32 @@ components:
             - Sh256Sgntr
       example:
         IlpV4PrepPacket: 1234567890ABCDEF
+    DateAndDateTime2Choice:
+      title: StatusReason6Choice
+      description: |
+        Specifies the reason for the status.
+      type: object
+      anyOf:
+        - properties:
+            Dt:
+              allOf:
+                - $ref: "#/components/schemas/ISODate"
+                - description: |
+                    Date
+                    Specified date.
+          required:
+            - Dt
+        - properties:
+            DtTm:
+              allOf:
+                - $ref: "#/components/schemas/ISODateTime"
+                - description: |
+                    DateTime
+                    Specified date and time.
+          required:
+            - DtTm
+      example:
+        DtTm: "2020-01-01T00:00:00Z"
     DateAndPlaceOfBirth1:
       title: DateAndPlaceOfBirth1
       description: |
@@ -3928,41 +3954,12 @@ components:
             - description: |
                 CreationDateTime
                 Date and time at which the message was created.
-        TxInfAndSts:
-          allOf:
-            - $ref: "#/components/schemas/PaymentTransaction163"
-            - description: >
-                TransactionInformationAndStatus
-
-                Definition: Agent that instructs the next party in the chain to
-                carry out the (set of) instruction(s).
-
-                Usage: The instructing agent is the party sending the status
-                message and not the party that sent the original instruction
-                that is being reported on.
       required:
         - MsgId
         - CreDtTm
       example:
         MsgId: 12345
         CreDtTm: "2020-01-01T00:00:00Z"
-        TxInfAndSts:
-          StsId: 12345
-          OrgnlInstrId: 12345
-          OrgnlEndToEndId: 12345
-          OrgnlTxId: 12345
-          OrgnlUETR: 123e4567-e89b-12d3-a456-426614174000
-          TxSts: RJCT
-          StsRsnInf:
-            Rsn: RSN
-            AddtlInf: ADDITIONAL
-          AccptncDtTm: "2020-01-01T00:00:00Z"
-          AcctSvcrRef: ACCTSVCRREF
-          ClrSysRef: CLRSYSREF
-          ExctnConf: 1234567890ABCDEF
-          SplmtryData:
-            PlcAndNm: PLACE
-            Envlp: ENVELOPE
     GroupHeader129:
       title: GroupHeader129
       description: >
@@ -4630,6 +4627,18 @@ components:
             - description: >
                 Set of characteristics shared by all individual transactions
                 included in the message.
+          TxInfAndSts:
+            allOf:
+              - $ref: ./PaymentTransaction163.yaml
+              - description: >
+                  Information concerning the original transactions, to which the
+                  status report message refers.
+          SplmtryData:
+            allOf:
+              - $ref: ./SupplementaryData1.yaml
+              - description: >
+                  Additional information that cannot be captured in the
+                  structured elements and/or any other specific block.
       required:
         - GrpHdr
       example:
@@ -5109,6 +5118,12 @@ components:
             - description: >
                 Additional information that cannot be captured in the structured
                 elements and/or any other specific block.
+        PrcgDt:
+          allOf:
+            - $ref: "#/components/schemas/DateAndDateTime2Choice"
+            - description: >
+                Date/time at which the instruction was processed by the
+                specified party.
       example:
         StsId: 12345
         OrgnlInstrId: 12345
