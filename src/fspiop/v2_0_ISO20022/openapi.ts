@@ -1077,6 +1077,7 @@ export interface components {
         CreditTransferTransaction67: {
             PmtId: components["schemas"]["PaymentIdentification13"] & unknown;
             PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
+            UndrlygCstmrCdtTrf?: components["schemas"]["UnderlyingCustomerCreditTransfer"] & unknown;
             IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
             InstdAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
             XchgRate?: components["schemas"]["BaseOneRate"] & unknown;
@@ -1155,6 +1156,7 @@ export interface components {
         CreditTransferTransaction68: {
             PmtId: components["schemas"]["PaymentIdentification13"] & unknown;
             PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
+            UndrlygCstmrCdtTrf?: components["schemas"]["UnderlyingCustomerCreditTransfer"] & unknown;
             IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
             Dbtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
             DbtrAcct?: components["schemas"]["CashAccount40"] & unknown;
@@ -1412,7 +1414,17 @@ export interface components {
         /**
          * ExternalPaymentTransactionStatus1Code
          * @description Specifies the external payment transaction status code.
-         * @example 1234
+         *
+         *     For FSPIOP transfer state enumeration mappings:
+         *     {
+         *       "COMM": "COMMITED",
+         *       "RESV": "RESERVED",
+         *       "RECV": "RECEIVED",
+         *       "ABOR": "ABORTED",
+         *       "SETT": "SETTLED"
+         *     }
+         *
+         * @example SETT
          */
         ExternalPaymentTransactionStatus1Code: string;
         /**
@@ -3746,6 +3758,10 @@ export interface components {
          * @example 8f3a3b2d-3b0a-4b3f-8e4e-1b2f3f4c5d6e
          */
         UUIDv4Identifier: string;
+        /** UnderlyingCustomerCreditTransfer */
+        UnderlyingCustomerCreditTransfer: {
+            InstdAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
+        };
         /**
          * VerificationReason1Choice
          * @description Choice of format for the verification reason.

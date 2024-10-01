@@ -2288,6 +2288,12 @@ components:
             - description: |
                 PaymentTypeInformation
                 Set of elements used to further specify the type of transaction.
+        UndrlygCstmrCdtTrf:
+          allOf:
+            - $ref: "#/components/schemas/UnderlyingCustomerCreditTransfer"
+            - description: |
+                Underlying Customer Credit Transfer
+                TBD
         IntrBkSttlmAmt:
           allOf:
             - $ref: "#/components/schemas/ActiveCurrencyAndAmount"
@@ -2502,6 +2508,12 @@ components:
             - description: |
                 PaymentTypeInformation
                 Set of elements used to further specify the type of transaction.
+        UndrlygCstmrCdtTrf:
+          allOf:
+            - $ref: "#/components/schemas/UnderlyingCustomerCreditTransfer"
+            - description: |
+                Underlying Customer Credit Transfer
+                TBD
         IntrBkSttlmAmt:
           allOf:
             - $ref: "#/components/schemas/ActiveCurrencyAndAmount"
@@ -2952,11 +2964,21 @@ components:
       example: 1234
     ExternalPaymentTransactionStatus1Code:
       title: ExternalPaymentTransactionStatus1Code
-      description: Specifies the external payment transaction status code.
+      description: |
+        Specifies the external payment transaction status code.
+
+        For FSPIOP transfer state enumeration mappings:
+        {
+          "COMM": "COMMITED",
+          "RESV": "RESERVED",
+          "RECV": "RECEIVED",
+          "ABOR": "ABORTED",
+          "SETT": "SETTLED"
+        }
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: SETT
     ExternalPersonIdentification1Code:
       title: ExternalPersonIdentification1Code
       description: Specifies the external person identification code.
@@ -4983,7 +5005,8 @@ components:
           allOf:
             - $ref: "#/components/schemas/Max35Text"
             - description: >
-                TransactionIdentification (FSPIOP equivalent: quoteId)
+                TransactionIdentification (FSPIOP equivalent: quoteId in quote
+                request, transferId in transfer request)
 
 
                 Definition: Unique identification, as assigned by the first
@@ -6522,6 +6545,19 @@ components:
       example: 8f3a3b2d-3b0a-4b3f-8e4e-1b2f3f4c5d6e
       pattern: >-
         ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+    UnderlyingCustomerCreditTransfer:
+      title: UnderlyingCustomerCreditTransfer
+      type: object
+      properties:
+        InstdAmt:
+          allOf:
+            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - description: >
+                InstructedAmount
+
+                Amount of money to be moved between the debtor and creditor,
+                before deduction of charges, expressed in the currency as
+                ordered by the initiating party.
     VerificationReason1Choice:
       title: VerificationReason1Choice
       type: object

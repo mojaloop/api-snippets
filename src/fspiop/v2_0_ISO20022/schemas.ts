@@ -163,6 +163,7 @@ export namespace Schemas {
   export const TermsRequest_FIToFICustomerCreditProposal = JsonSchemas.TermsRequest_FIToFICustomerCreditProposal
   export const TermsResponse_FIToFICustomerCreditConfirmation = JsonSchemas.TermsResponse_FIToFICustomerCreditConfirmation
   export const UUIDv4Identifier = JsonSchemas.UUIDv4Identifier
+  export const UnderlyingCustomerCreditTransfer = JsonSchemas.UnderlyingCustomerCreditTransfer
   export const VerificationReason1Choice = JsonSchemas.VerificationReason1Choice
   export const VerificationReport4 = JsonSchemas.VerificationReport4
   export const hexBinary = JsonSchemas.hexBinary

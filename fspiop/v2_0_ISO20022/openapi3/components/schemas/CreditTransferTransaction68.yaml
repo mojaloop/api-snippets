@@ -16,8 +16,15 @@ properties:
       - $ref: ./PaymentTypeInformation28.yaml
       - description: >
           PaymentTypeInformation
- 
+
           Set of elements used to further specify the type of transaction.
+  UndrlygCstmrCdtTrf:
+    allOf:
+      - $ref: ./UnderlyingCustomerCreditTransfer.yaml
+      - description: >
+          Underlying Customer Credit Transfer
+
+          TBD
   IntrBkSttlmAmt:
     allOf:
       - $ref: ./ActiveCurrencyAndAmount.yaml

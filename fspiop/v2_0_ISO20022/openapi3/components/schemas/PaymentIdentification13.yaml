@@ -33,7 +33,7 @@ properties:
     allOf:
       - $ref: ./Max35Text.yaml
       - description: |
-          TransactionIdentification (FSPIOP equivalent: quoteId)
+          TransactionIdentification (FSPIOP equivalent: quoteId in quote request, transferId in transfer request)
 
           Definition: Unique identification, as assigned by the first instructing agent, to unambiguously identify the
           transaction that is passed on, unchanged, throughout the entire interbank chain.
@@ -65,4 +65,3 @@ example:
   TxId: TRANSACTIONID
   UETR: 123e4567-e89b-12d3-a456-426614174000
   ClrSysRef: CLRSYSREF
-  
