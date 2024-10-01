@@ -37,6 +37,7 @@ export namespace Types {
   export type CreditTransferTransaction67 = components['schemas']['CreditTransferTransaction67']
   export type CreditTransferTransaction68 = components['schemas']['CreditTransferTransaction68']
   export type CryptographicLockChoice = components['schemas']['CryptographicLockChoice']
+  export type DateAndDateTime2Choice = components['schemas']['DateAndDateTime2Choice']
   export type DateAndPlaceOfBirth1 = components['schemas']['DateAndPlaceOfBirth1']
   export type DatePeriod2 = components['schemas']['DatePeriod2']
   export type ErrorCode = components['schemas']['ErrorCode']

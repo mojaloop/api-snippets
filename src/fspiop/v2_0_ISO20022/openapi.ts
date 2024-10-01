@@ -2677,6 +2677,8 @@ export interface components {
          */
         PacsStatus_FIToFIPaymentStatusReportV15: {
             GrpHdr: components["schemas"]["GroupHeader120"] & unknown;
+            TxInfAndSts?: components["schemas"]["PaymentTransaction163"] & unknown;
+            SplmtryData?: components["schemas"]["SupplementaryData1"] & unknown;
         };
         /**
          * Party38Choice

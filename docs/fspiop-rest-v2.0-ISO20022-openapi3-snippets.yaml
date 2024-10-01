@@ -4627,18 +4627,18 @@ components:
             - description: >
                 Set of characteristics shared by all individual transactions
                 included in the message.
-          TxInfAndSts:
-            allOf:
-              - $ref: ./PaymentTransaction163.yaml
-              - description: >
-                  Information concerning the original transactions, to which the
-                  status report message refers.
-          SplmtryData:
-            allOf:
-              - $ref: ./SupplementaryData1.yaml
-              - description: >
-                  Additional information that cannot be captured in the
-                  structured elements and/or any other specific block.
+        TxInfAndSts:
+          allOf:
+            - $ref: "#/components/schemas/PaymentTransaction163"
+            - description: >
+                Information concerning the original transactions, to which the
+                status report message refers.
+        SplmtryData:
+          allOf:
+            - $ref: "#/components/schemas/SupplementaryData1"
+            - description: >
+                Additional information that cannot be captured in the structured
+                elements and/or any other specific block.
       required:
         - GrpHdr
       example:
