@@ -2267,7 +2267,6 @@ export interface components {
         ISODate: string;
         /**
          * ISODateTime
-         * Format: datetime
          * @description A particular point in the progression of time defined by a mandatory
          *     date and a mandatory time component, expressed in either UTC time
          *     format (YYYY-MM-DDThh:mm:ss.sssZ), local time with UTC offset format
