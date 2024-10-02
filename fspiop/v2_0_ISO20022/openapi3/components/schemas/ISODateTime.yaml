@@ -17,5 +17,5 @@ description: |
   Decimal fractions of seconds may be included. In this case, the
   involved parties shall agree on the maximum number of digits that are allowed.
 type: string
-format: datetime
+format: date-time
 example: '2013-03-07T14:44:30.000Z'
