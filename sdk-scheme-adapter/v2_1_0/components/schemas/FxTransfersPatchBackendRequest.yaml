@@ -1,0 +1,71 @@
+title: fxTransfersPatchBackendRequest
+description: PATCH /fxTransfers/{commitRequestId} object.
+type: object
+properties:
+  conversionId:
+    type: string
+  fxQuote:
+    properties:
+      fulfilment:
+        type: string
+      internalRequest:
+        type: object
+      mojaloopResponse:
+        type: object
+      request:
+        type: object
+      response:
+        type: object
+    type: object
+  fxQuoteRequest:
+    properties:
+      body:
+        type: object
+      headers:
+        type: object
+    type: object
+  fxQuoteResponse:
+    properties:
+      body:
+        type: string
+      headers:
+        type: object
+    type: object
+  direction:
+    enum:
+      - INBOUND
+    type: string
+  currentState:
+    type: string
+    enum:
+      - COMPLETED
+      - ABORTED
+      - ERROR_OCCURRED
+  initiatedTimestamp:
+    type: string
+  lastError:
+    type: string
+  fxPrepare:
+    properties:
+      body:
+        type: object
+      headers:
+        type: object
+    type: object
+  fulfil:
+    properties:
+      body:
+        type: object
+      headers:
+        type: object
+    type: object
+  finalNotification:
+    properties:
+      completedTimestamp:
+        type: string
+      conversionState:
+        type: string
+    required:
+      - completedTimestamp
+      - conversionState
+    type: object

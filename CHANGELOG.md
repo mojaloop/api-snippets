@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.7.0](https://github.com/mojaloop/api-snippets/compare/v17.6.3...v17.7.0) (2024-10-01)
+
+
+### Features
+
+* add ULID support ([#177](https://github.com/mojaloop/api-snippets/issues/177)) ([e5c71e6](https://github.com/mojaloop/api-snippets/commit/e5c71e618f9a7be393a3c392dc2b1ddbdf6e6561))
+
 ### [17.6.3](https://github.com/mojaloop/api-snippets/compare/v17.6.2...v17.6.3) (2024-09-27)
 
 
