@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.7.1](https://github.com/mojaloop/api-snippets/compare/v17.7.0...v17.7.1) (2024-10-10)
+
+
+### Maintenance
+
+* add some fixes and updates to iso20022 api ([#180](https://github.com/mojaloop/api-snippets/issues/180)) ([6871713](https://github.com/mojaloop/api-snippets/commit/6871713254a5eae40954f8b1adb779c341e1604a))
+
 ## [17.7.0](https://github.com/mojaloop/api-snippets/compare/v17.6.3...v17.7.0) (2024-10-01)
 
 
