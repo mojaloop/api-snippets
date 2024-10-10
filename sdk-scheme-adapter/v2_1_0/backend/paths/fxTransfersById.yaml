@@ -25,7 +25,7 @@ patch:
   summary: FX Update Conversion State Notification
   tags:
     - Fx
-  operationId: FxTransfersById
+  operationId: FxTransfersPatchById
   requestBody:
     description: Update and notify status of the FX transfer.
     required: true

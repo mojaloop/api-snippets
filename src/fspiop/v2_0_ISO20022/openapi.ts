@@ -812,13 +812,11 @@ export interface components {
          *           the sender side are to be borne by the debtor, transaction charges on the receiver side are to
          *           be borne by the creditor. In a direct debit context, means that transaction charges on the sender side
          *           are to be borne by the creditor, transaction charges on the receiver
-         *     SLEV : FollowingServiceLevel Charges are to be applied following the rules
-         *            agreed in the service level.
          *
          * @example DEBT
          * @enum {string}
          */
-        ChargeBearerType1Code: "DEBT" | "CRED" | "SHAR" | "SLEV";
+        ChargeBearerType1Code: "DEBT" | "CRED" | "SHAR";
         /**
          * ChargeType3Choice
          * @description ChargeType3Choice
@@ -1077,6 +1075,7 @@ export interface components {
         CreditTransferTransaction67: {
             PmtId: components["schemas"]["PaymentIdentification13"] & unknown;
             PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
+            UndrlygCstmrCdtTrf?: components["schemas"]["UnderlyingCustomerCreditTransfer"] & unknown;
             IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
             InstdAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
             XchgRate?: components["schemas"]["BaseOneRate"] & unknown;
@@ -1155,6 +1154,7 @@ export interface components {
         CreditTransferTransaction68: {
             PmtId: components["schemas"]["PaymentIdentification13"] & unknown;
             PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
+            UndrlygCstmrCdtTrf?: components["schemas"]["UnderlyingCustomerCreditTransfer"] & unknown;
             IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
             Dbtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
             DbtrAcct?: components["schemas"]["CashAccount40"] & unknown;
@@ -1178,6 +1178,19 @@ export interface components {
             IlpV4PrepPacket: components["schemas"]["hexBinary"] & unknown;
         } | {
             Sh256Sgntr: components["schemas"]["Exact32HexBinaryText"] & unknown;
+        };
+        /**
+         * StatusReason6Choice
+         * @description Specifies the reason for the status.
+         *
+         * @example {
+         *       "DtTm": "2020-01-01T00:00:00Z"
+         *     }
+         */
+        DateAndDateTime2Choice: {
+            Dt: components["schemas"]["ISODate"] & unknown;
+        } | {
+            DtTm: components["schemas"]["ISODateTime"] & unknown;
         };
         /**
          * DateAndPlaceOfBirth1
@@ -1286,7 +1299,7 @@ export interface components {
          *           "Amt": 123,
          *           "Ccy": "EUR"
          *         },
-         *         "ChrgBr": "SLEV",
+         *         "ChrgBr": "SHAR",
          *         "CdtrAgt": {
          *           "FinInstnId": {
          *             "BICFI": 123
@@ -1399,7 +1412,17 @@ export interface components {
         /**
          * ExternalPaymentTransactionStatus1Code
          * @description Specifies the external payment transaction status code.
-         * @example 1234
+         *
+         *     For FSPIOP transfer state enumeration mappings:
+         *     {
+         *       "COMM": "COMMITED",
+         *       "RESV": "RESERVED",
+         *       "RECV": "RECEIVED",
+         *       "ABOR": "ABORTED",
+         *       "SETT": "SETTLED"
+         *     }
+         *
+         * @example SETT
          */
         ExternalPaymentTransactionStatus1Code: string;
         /**
@@ -1687,7 +1710,7 @@ export interface components {
          *           "Amt": 100,
          *           "Ccy": "EUR"
          *         },
-         *         "ChrgBr": "SLEV",
+         *         "ChrgBr": "SHAR",
          *         "Cdtr": {
          *           "Nm": "Creditor Name"
          *         },
@@ -1826,7 +1849,7 @@ export interface components {
          *           "Amt": 1000,
          *           "Ccy": "EUR"
          *         },
-         *         "ChrgBr": "SLEV",
+         *         "ChrgBr": "SHAR",
          *         "CdtrAgt": {
          *           "FinInstnId": {
          *             "BICFI": "CCCCCCCC"
@@ -2185,33 +2208,12 @@ export interface components {
          *
          * @example {
          *       "MsgId": 12345,
-         *       "CreDtTm": "2020-01-01T00:00:00Z",
-         *       "TxInfAndSts": {
-         *         "StsId": 12345,
-         *         "OrgnlInstrId": 12345,
-         *         "OrgnlEndToEndId": 12345,
-         *         "OrgnlTxId": 12345,
-         *         "OrgnlUETR": "123e4567-e89b-12d3-a456-426614174000",
-         *         "TxSts": "RJCT",
-         *         "StsRsnInf": {
-         *           "Rsn": "RSN",
-         *           "AddtlInf": "ADDITIONAL"
-         *         },
-         *         "AccptncDtTm": "2020-01-01T00:00:00Z",
-         *         "AcctSvcrRef": "ACCTSVCRREF",
-         *         "ClrSysRef": "CLRSYSREF",
-         *         "ExctnConf": "1234567890ABCDEF",
-         *         "SplmtryData": {
-         *           "PlcAndNm": "PLACE",
-         *           "Envlp": "ENVELOPE"
-         *         }
-         *       }
+         *       "CreDtTm": "2020-01-01T00:00:00Z"
          *     }
          */
         GroupHeader120: {
             MsgId: components["schemas"]["Max35Text"] & unknown;
             CreDtTm: components["schemas"]["ISODateTime"] & unknown;
-            TxInfAndSts?: components["schemas"]["PaymentTransaction163"] & unknown;
         };
         /**
          * GroupHeader129
@@ -2263,7 +2265,6 @@ export interface components {
         ISODate: string;
         /**
          * ISODateTime
-         * Format: datetime
          * @description A particular point in the progression of time defined by a mandatory
          *     date and a mandatory time component, expressed in either UTC time
          *     format (YYYY-MM-DDThh:mm:ss.sssZ), local time with UTC offset format
@@ -2685,6 +2686,8 @@ export interface components {
          */
         PacsStatus_FIToFIPaymentStatusReportV15: {
             GrpHdr: components["schemas"]["GroupHeader120"] & unknown;
+            TxInfAndSts?: components["schemas"]["PaymentTransaction163"] & unknown;
+            SplmtryData?: components["schemas"]["SupplementaryData1"] & unknown;
         };
         /**
          * Party38Choice
@@ -2927,6 +2930,7 @@ export interface components {
             ClrSysRef?: components["schemas"]["Max35Text"] & unknown;
             ExctnConf?: components["schemas"]["Exact32HexBinaryText"] & unknown;
             SplmtryData?: components["schemas"]["SupplementaryData1"] & unknown;
+            PrcgDt?: components["schemas"]["DateAndDateTime2Choice"] & unknown;
         };
         /**
          * PaymentTypeInformation28
@@ -3751,6 +3755,14 @@ export interface components {
          * @example 8f3a3b2d-3b0a-4b3f-8e4e-1b2f3f4c5d6e
          */
         UUIDv4Identifier: string;
+        /** UnderlyingCustomerCreditTransfer */
+        UnderlyingCustomerCreditTransfer: {
+            InstdAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
+            Dbtr?: components["schemas"]["PartyIdentification272"] & unknown;
+            Cdtr?: components["schemas"]["PartyIdentification272"] & unknown;
+            DbtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            CdtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+        };
         /**
          * VerificationReason1Choice
          * @description Choice of format for the verification reason.
@@ -3825,7 +3837,7 @@ export interface components {
             Vrfctn: components["schemas"]["IdentificationVerificationIndicator"] & unknown;
             Rsn?: components["schemas"]["VerificationReason1Choice"] & unknown;
             OrgnlPtyAndAcctId?: components["schemas"]["IdentificationInformation4"] & unknown;
-            UpdtdPtyAndAcctId: components["schemas"]["IdentificationInformation4"] & unknown;
+            UpdtdPtyAndAcctId?: components["schemas"]["IdentificationInformation4"] & unknown;
         };
         /**
          * hexBinary

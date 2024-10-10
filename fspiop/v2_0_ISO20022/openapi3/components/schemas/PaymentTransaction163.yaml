@@ -79,6 +79,11 @@ properties:
       - description: >
           Additional information that cannot be captured in the structured
           elements and/or any other specific block.
+  PrcgDt:
+    allOf:
+      - $ref: ./DateAndDateTime2Choice.yaml
+      - description: >
+          Date/time at which the instruction was processed by the specified party.
 example:
   StsId: 12345
   OrgnlInstrId: 12345

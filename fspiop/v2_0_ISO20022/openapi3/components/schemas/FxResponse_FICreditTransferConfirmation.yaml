@@ -42,7 +42,7 @@ example:
     IntrBkSttlmAmt:
       Amt: 100.00
       Ccy: EUR
-    ChrgBr: SLEV
+    ChrgBr: SHAR
     Cdtr:
       Nm: Creditor Name
     CdtrAcct:

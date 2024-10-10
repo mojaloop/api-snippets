@@ -1,6 +1,16 @@
 title: ExternalPaymentTransactionStatus1Code
-description: Specifies the external payment transaction status code.
+description: |
+  Specifies the external payment transaction status code.
+
+  For FSPIOP transfer state enumeration mappings:
+  {
+    "COMM": "COMMITED",
+    "RESV": "RESERVED",
+    "RECV": "RECEIVED",
+    "ABOR": "ABORTED",
+    "SETT": "SETTLED"
+  }
 type: string
 minLength: 1
 maxLength: 4
-example: 1234
+example: SETT

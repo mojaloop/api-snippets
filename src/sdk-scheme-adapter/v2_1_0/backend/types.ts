@@ -134,4 +134,5 @@ export namespace Types {
   export type conversionState = components['schemas']['conversionState']
   export type FxTransfersPostBackendResponse = components['schemas']['FxTransfersPostBackendResponse']
   export type FxTransfersPutBackendRequest = components['schemas']['FxTransfersPutBackendRequest']
+  export type FxTransfersPatchBackendRequest = components['schemas']['FxTransfersPatchBackendRequest']
 }

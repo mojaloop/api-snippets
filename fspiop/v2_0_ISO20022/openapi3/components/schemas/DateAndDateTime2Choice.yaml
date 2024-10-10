@@ -1,0 +1,27 @@
+title: StatusReason6Choice
+description: |
+  Specifies the reason for the status.
+type: object
+anyOf:
+  - properties:
+      Dt:
+        allOf:
+          - $ref: ./ISODate.yaml
+          - description: >
+              Date
+
+              Specified date.
+    required:
+      - Dt
+  - properties:
+      DtTm:
+        allOf:
+          - $ref: ./ISODateTime.yaml
+          - description: >
+              DateTime
+
+              Specified date and time.
+    required:
+      - DtTm
+example:
+  DtTm: '2020-01-01T00:00:00Z'

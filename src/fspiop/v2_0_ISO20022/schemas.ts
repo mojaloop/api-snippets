@@ -37,6 +37,7 @@ export namespace Schemas {
   export const CreditTransferTransaction67 = JsonSchemas.CreditTransferTransaction67
   export const CreditTransferTransaction68 = JsonSchemas.CreditTransferTransaction68
   export const CryptographicLockChoice = JsonSchemas.CryptographicLockChoice
+  export const DateAndDateTime2Choice = JsonSchemas.DateAndDateTime2Choice
   export const DateAndPlaceOfBirth1 = JsonSchemas.DateAndPlaceOfBirth1
   export const DatePeriod2 = JsonSchemas.DatePeriod2
   export const ErrorCode = JsonSchemas.ErrorCode
@@ -162,6 +163,7 @@ export namespace Schemas {
   export const TermsRequest_FIToFICustomerCreditProposal = JsonSchemas.TermsRequest_FIToFICustomerCreditProposal
   export const TermsResponse_FIToFICustomerCreditConfirmation = JsonSchemas.TermsResponse_FIToFICustomerCreditConfirmation
   export const UUIDv4Identifier = JsonSchemas.UUIDv4Identifier
+  export const UnderlyingCustomerCreditTransfer = JsonSchemas.UnderlyingCustomerCreditTransfer
   export const VerificationReason1Choice = JsonSchemas.VerificationReason1Choice
   export const VerificationReport4 = JsonSchemas.VerificationReport4
   export const hexBinary = JsonSchemas.hexBinary

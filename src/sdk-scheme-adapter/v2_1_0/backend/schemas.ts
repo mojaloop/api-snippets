@@ -134,4 +134,5 @@ export namespace Schemas {
   export const conversionState = JsonSchemas.conversionState
   export const FxTransfersPostBackendResponse = JsonSchemas.FxTransfersPostBackendResponse
   export const FxTransfersPutBackendRequest = JsonSchemas.FxTransfersPutBackendRequest
+  export const FxTransfersPatchBackendRequest = JsonSchemas.FxTransfersPatchBackendRequest
 }
