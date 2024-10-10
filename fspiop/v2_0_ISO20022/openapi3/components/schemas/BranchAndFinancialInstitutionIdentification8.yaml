@@ -5,18 +5,20 @@ description: >
   of a financial institution.
 properties:
   FinInstnId:
-    description: >
-      FinancialInstitutionIdentification
+    allOf:
+      - $ref: ./FinancialInstitutionIdentification23.yaml
+      - description: >
+          FinancialInstitutionIdentification
 
-      Unique and unambiguous identification of a financial institution or a branch of a financial
-      institution.
-    $ref: ./FinancialInstitutionIdentification23.yaml
+          Unique and unambiguous identification of a financial institution or a branch of a financial
+          institution.
   BrnchId:
-    description: >
-      BranchIdentification
+    allOf:
+      - $ref: ./BranchData5.yaml
+      - description: >
+          BranchIdentification
 
-       Identifies a specific branch of a financial institution.
-    $ref: ./BranchData5.yaml
+          Identifies a specific branch of a financial institution.
 required:
   - FinInstnId
 example:

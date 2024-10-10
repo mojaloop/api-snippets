@@ -1,4 +1,4 @@
 title: hexBinary
 type: string
-pattern: ^(0x|0X)?[a-fA-F0-9]+$
 example: 0x1234
+pattern: ^[A-Za-z0-9-_]+[=]{0,2}$

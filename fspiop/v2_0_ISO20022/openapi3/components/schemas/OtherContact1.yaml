@@ -4,17 +4,19 @@ description: |
 type: object
 properties:
   ChanlTp:
-    description: >
-      ChannelType
+    allOf:
+      - $ref: ./Max4Text.yaml
+      - description: >
+          ChannelType
 
-      Method used to contact the financial institution's contact for the specific tax region.
-    $ref: ./Max4Text.yaml
+          Method used to contact the financial institution's contact for the specific tax region.
   Id:
-    description: >
-      Identifier
+    allOf:
+      - $ref: ./Max128Text.yaml
+      - description: >
+          Identifier
 
-      Communication value such as phone number or email address.
-    $ref: ./Max128Text.yaml
+          Communication value such as phone number or email address.
 required:
   - ChanlTp
 example:

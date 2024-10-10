@@ -4,17 +4,19 @@ description: |
 type: object
 properties:
   Titl:
-    description: |
-      Title
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          Title
 
-      Title or position of debtor or the debtor's authorised representative.
-    $ref: ./Max35Text.yaml
+          Title or position of debtor or the debtor's authorised representative.
   Nm:
-    description: |
-      Name
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: |
+          Name
 
-      Name of the debtor or the debtor's authorised representative.
-    $ref: ./Max140Text.yaml
+          Name of the debtor or the debtor's authorised representative.
 example:
   Titl: Mr
   Nm: John Doe

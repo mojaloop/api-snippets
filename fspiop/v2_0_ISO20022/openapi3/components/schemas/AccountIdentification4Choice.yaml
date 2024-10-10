@@ -3,27 +3,30 @@ type: object
 description: >
   Specifies the unique identification of an account as assigned by the account
   servicer.
-properties:
-  IBAN:
-    description: >
-      IBAN
+anyOf:
+  - properties:
+      IBAN:
+        allOf:
+          - $ref: ./IBAN2007Identifier.yaml
+          - description: >
+              IBAN
 
-      International Bank Account Number (IBAN) - identifier used internationally by financial
-      institutions to uniquely identify the account of a customer. Further specifications of the format and
-      content of the IBAN can be found in the standard ISO 13616 "Banking and related financial services -
-      International Bank Account Number (IBAN)" version 1997-10-01, or later revisions.
-    $ref: ./IBAN2007Identifier.yaml
-  Othr:
-    description: >
-      Other
-
-      Unique identification of an account, as assigned by the account servicer, using an
-      identification scheme.
-    $ref: ./GenericAccountIdentification1.yaml
-oneOf:
-  - required:
+              International Bank Account Number (IBAN) - identifier used internationally by financial
+              institutions to uniquely identify the account of a customer. Further specifications of the format and
+              content of the IBAN can be found in the standard ISO 13616 "Banking and related financial services -
+              International Bank Account Number (IBAN)" version 1997-10-01, or later revisions.
+    required:
       - IBAN
-  - required:
+  - properties:
+      Othr:
+        allOf:
+          - $ref: ./GenericAccountIdentification1.yaml
+          - description: >
+              Other
+
+              Unique identification of an account, as assigned by the account servicer, using an
+              identification scheme.
+    required:
       - Othr
 example:
   IBAN: BE71096123456769

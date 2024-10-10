@@ -4,29 +4,33 @@ description: |
 type: object
 properties:
   TaxId:
-    description: |
-      TaxIdentification
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          TaxIdentification
 
-      Tax identification number of the debtor.
-    $ref: ./Max35Text.yaml
+          Tax identification number of the debtor.
   RegnId:
-    description: |
-      RegistrationIdentification
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          RegistrationIdentification
 
-      Unique identification, as assigned by an organisation, to unambiguously identify a party.
-    $ref: ./Max35Text.yaml
+          Unique identification, as assigned by an organisation, to unambiguously identify a party.
   TaxTp:
-    description: |
-      TaxType
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          TaxType
 
-      Type of tax payer.
-    $ref: ./Max35Text.yaml
+          Type of tax payer.
   Authstn:
-    description: |
-      Authorisation
+    allOf:
+      - $ref: ./TaxAuthorisation1.yaml
+      - description: |
+          Authorisation
 
-      Details of the authorised tax paying party.
-    $ref: ./TaxAuthorisation1.yaml
+          Details of the authorised tax paying party.
 example:
   TaxId: 123456789
   RegnId: 123456789

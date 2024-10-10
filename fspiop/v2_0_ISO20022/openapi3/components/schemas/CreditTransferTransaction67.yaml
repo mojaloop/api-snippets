@@ -5,119 +5,131 @@ description: >
 type: object
 properties:
   PmtId:
-    description: >
-      PaymentIdentification
+    allOf:
+      - $ref: ./PaymentIdentification13.yaml
+      - description: >
+          PaymentIdentification
 
-      Set of elements used to reference a payment instruction.
-    $ref: ./PaymentIdentification13.yaml
+          Set of elements used to reference a payment instruction.
   PmtTpInf:
-    description: >
-      PaymentTypeInformation
+    allOf:
+      - $ref: ./PaymentTypeInformation28.yaml
+      - description: >
+          PaymentTypeInformation
 
-       Set of elements used to further specify the type of transaction.
-    $ref: ./PaymentTypeInformation28.yaml
+          Set of elements used to further specify the type of transaction.
   IntrBkSttlmAmt:
-    description: >
-      InterbankSettlementAmount
+    allOf:
+      - $ref: ./ActiveCurrencyAndAmount.yaml
+      - description: >
+          InterbankSettlementAmount
 
-      Amount of money moved between the instructing agent and the instructed agent.
-    $ref: ./ActiveCurrencyAndAmount.yaml
+          Amount of money moved between the instructing agent and the instructed agent.
   InstdAmt:
-    description: >
-      InstructedAmount
+    allOf:
+      - $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+      - description: >
+          InstructedAmount
 
-      Amount of money to be moved between the debtor and creditor,
-      before deduction of charges, expressed in the currency as ordered by the initiating party.
-    $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+          Amount of money to be moved between the debtor and creditor,
+          before deduction of charges, expressed in the currency as ordered by the initiating party.
   XchgRate:
-    description: >
-      ExchangeRate
+    allOf:
+      - $ref: ./BaseOneRate.yaml
+      - description: >
+          ExchangeRate
 
-      Factor used to convert an amount from one currency into another. This reflects the price at
-      which one currency was bought with another currency.
-    $ref: ./BaseOneRate.yaml
+          Factor used to convert an amount from one currency into another. This reflects the price at
+          which one currency was bought with another currency.
   ChrgBr:
-    description: >
-      ChargeBearer
-
-      Specifies which party/parties will bear the charges associated with the processing of the
-      payment transaction.
     $ref: ./ChargeBearerType1Code.yaml
   ChrgsInf:
-    description: >
-      ChargesInformation
+    allOf:
+      - $ref: ./Charges16.yaml
+      - description: >
+          ChargesInformation
 
-      Provides information on the charges to be paid by the charge bearer(s) related to the
-      payment transaction
-    $ref: ./Charges16.yaml
+          Provides information on the charges to be paid by the charge bearer(s) related to the
+          payment transaction.
   Dbtr:
-    description: >
-      Debtor
+    allOf:
+      - $ref: ./PartyIdentification272.yaml
+      - description: >
+          Debtor
 
-      Party that owes an amount of money to the (ultimate) creditor.
-    $ref: ./PartyIdentification272.yaml
+          Party that owes an amount of money to the (ultimate) creditor.
   DbtrAcct:
-    description: >
-      DebtorAccount
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          DebtorAccount
 
-      Unambiguous identification of the account of the debtor to which a debit entry will be made
-      as a result of the transaction.
-    $ref: ./CashAccount40.yaml
+          Unambiguous identification of the account of the debtor to which a debit entry will be made
+          as a result of the transaction.
   DbtrAgt:
-    description: >
-      DebtorAgent
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          DebtorAgent
 
-      Financial institution servicing an account for the debtor.
-    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+          Financial institution servicing an account for the debtor.
   CdtrAgt:
-    description: >
-      CreditorAgent
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          CreditorAgent
 
-      Financial institution servicing an account for the creditor.
-    $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+          Financial institution servicing an account for the creditor.
   Cdtr:
-    description: >
-      Creditor
+    allOf:
+      - $ref: ./PartyIdentification272.yaml
+      - description: >
+          Creditor
 
-      Party to which an amount of money is due.
-    $ref: ./PartyIdentification272.yaml
+          Party to which an amount of money is due.
   CdtrAcct:
-    description: >
-      CreditorAccount
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          CreditorAccount
 
-      Unambiguous identification of the account of the creditor to which a credit entry will be
-      posted as a result of the payment transaction.
-    $ref: ./CashAccount40.yaml
+          Unambiguous identification of the account of the creditor to which a credit entry will be
+          posted as a result of the payment transaction.
   InstrForCdtrAgt:
-    description: >
-      InstructionForCreditorAgent
+    allOf:
+      - $ref: ./InstructionForCreditorAgent3.yaml
+      - description: >
+          InstructionForCreditorAgent
 
-      Set of elements used to provide information on the remittance advice.
-    $ref: ./InstructionForCreditorAgent3.yaml
+          Set of elements used to provide information on the remittance advice.
   InstrForNxtAgt:
-    description: >
-      InstructionForNextAgent
+    allOf:
+      - $ref: ./InstructionForNextAgent1.yaml
+      - description: >
+          InstructionForNextAgent
 
-      Set of elements used to provide information on the remittance advice.
-    $ref: ./InstructionForNextAgent1.yaml
+          Set of elements used to provide information on the remittance advice.
   Purp:
-    description: >
-      Purpose
+    allOf:
+      - $ref: ./Purpose2Choice.yaml
+      - description: >
+          Purpose
 
-      Underlying reason for the payment transaction.
-    $ref: ./Purpose2Choice.yaml
+          Underlying reason for the payment transaction.
   RgltryRptg:
-    description: >
-      RegulatoryReporting
+    allOf:
+      - $ref: ./RegulatoryReporting3.yaml
+      - description: >
+          RegulatoryReporting
 
-      Information needed due to regulatory and statutory requirements.
-    $ref: ./RegulatoryReporting3.yaml
+          Information needed due to regulatory and statutory requirements.
   Tax:
-    description: >
-      Tax
+    allOf:
+      - $ref: ./TaxData1.yaml
+      - description: >
+          Tax
 
-      Provides details on the tax.
-    $ref: ./TaxData1.yaml
+          Provides details on the tax.
   VrfctnOfTerms:
     $ref: ./CryptographicLockChoice.yaml
 required:

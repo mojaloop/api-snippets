@@ -1,12 +1,10 @@
 title: Instruction4Code
-description: >
+description: |
   Specifies further instructions concerning the processing of a payment
   instruction, provided by the sending clearing agent to the next agent(s).
 
-  PHOA PhoneNextAgent Please advise/contact next agent by phone.
-
-  TELA TelecomNextAgent Please advise/contact next agent by the most efficient
-  means of telecommunication.
+  PHOA: PhoneNextAgent Please advise/contact next agent by phone.
+  TELA: TelecomNextAgent Please advise/contact next agent by the most efficient means of telecommunication.
 type: string
 enum:
   - PHOA

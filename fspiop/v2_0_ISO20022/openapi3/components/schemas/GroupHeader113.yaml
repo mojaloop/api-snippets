@@ -5,25 +5,40 @@ description: >
 type: object
 properties:
   MsgId:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Message Identification
   CreDtTm:
-    $ref: ./ISODateTime.yaml
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Creation Date and Time
   NbOfTxs:
-    $ref: ./Max15NumericText.yaml
+    allOf:
+      - $ref: ./Max15NumericText.yaml
+      - description: >
+          Number of Transactions
   TtlIntrBkSttlmAmt:
-    $ref: ./ActiveCurrencyAndAmount.yaml
+    allOf:
+      - $ref: ./ActiveCurrencyAndAmount.yaml
+      - description: >
+          Total Interbank Settlement Amount
   SttlmInf:
-    $ref: ./SettlementInstruction15.yaml
+    allOf:
+      - $ref: ./SettlementInstruction15.yaml
+      - description: >
+          Settlement Information
   PmtTpInf:
-    $ref: ./PaymentTypeInformation28.yaml
-  CdtTrfTxInf:
-    $ref: ./CreditTransferTransaction68.yaml
+    allOf:
+      - $ref: ./PaymentTypeInformation28.yaml
+      - description: >
+          Payment Type Information
 required:
   - MsgId
   - CreDtTm
   - NbOfTxs
   - SttlmInf
-  - CdtTrfTxInf
 example:
   MsgId: 12345
   CreDtTm: '2020-01-01T00:00:00Z'
@@ -47,26 +62,3 @@ example:
   PmtTpInf:
     InstrPrty: NORM
     CtgyPurp: CASH
-  CdtTrfTxInf:
-    PmtId:
-      InstrId: 12345
-      EndToEndId: 12345
-    Amt:
-      InstdAmt:
-        Ccy: EUR
-        Value: 100.0
-    Cdtr:
-      Nm: Name
-    CdtrAcct:
-      Id:
-        IBAN: BE71096123456769
-      Ccy: EUR
-    CdtrAgt:
-      FinInstnId:
-        BICFI: BIC
-    CdtrAgtAcct:
-      Id:
-        IBAN: BE71096123456769
-      Ccy: EUR
-    RmtInf:
-      Ustrd: Test

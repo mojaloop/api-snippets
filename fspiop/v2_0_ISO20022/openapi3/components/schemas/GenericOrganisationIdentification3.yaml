@@ -1,24 +1,29 @@
 title: GenericOrganisationIdentification3
 type: object
+description: >
+  Information related to an identification of an organisation.
 properties:
   Id:
-    description: >
-      Identification
+    allOf:
+      - $ref: ./Max256Text.yaml
+      - description: >
+          Identification
 
-      Identification assigned by an institution.
-    $ref: ./Max256Text.yaml
+          Identification assigned by an institution.
   SchmeNm:
-    description:
-      SchemeName
+    allOf:
+      - $ref: ./OrganisationIdentificationSchemeName1Choice.yaml
+      - description: >
+          SchemeName
 
-      Name of the identification scheme.
-    $ref: ./OrganisationIdentificationSchemeName1Choice.yaml
+          Name of the identification scheme.
   Issr:
-    description: >
-      Issuer
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Issuer
 
-      Entity that assigns the identification.
-    $ref: ./Max35Text.yaml
+          Entity that assigns the identification.
 required:
   - Id
 example:

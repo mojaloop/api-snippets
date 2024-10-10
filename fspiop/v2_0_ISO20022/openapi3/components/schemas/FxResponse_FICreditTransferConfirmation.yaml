@@ -1,18 +1,24 @@
 title: FxResponse_FICreditTransferConfirmation
 type: object
+description: >
+  FxResponse_FICreditTransferConfirmation
+
+  The FxResponse_FICreditTransferConfirmation message is sent by the FSP to the Payer FSP to confirm the successful processing of the credit transfer.
 properties:
   GrpHdr:
-    description: >
-      GroupHeader
+    allOf:
+      - $ref: ./GroupHeader113.yaml
+      - description: >
+          GroupHeader
 
-      Set of characteristics shared by all individual transactions included in the message.
-    $ref: ./GroupHeader113.yaml
+          Set of characteristics shared by all individual transactions included in the message.
   CdtTrfTxInf:
-    description: >
-      CreditTransferTransactionInformation
+    allOf:
+      - $ref: ./CreditTransferTransaction68.yaml
+      - description: >
+          CreditTransferTransactionInformation
 
-      Set of elements providing information specific to the individual credit transfer(s).
-    $ref: ./CreditTransferTransaction68.yaml
+          Set of elements providing information specific to the individual credit transfer(s).
 required:
   - GrpHdr
   - CdtTrfTxInf

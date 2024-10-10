@@ -1,5 +1,11 @@
 description: |
   Specifies the terms used to formally address a person.
+  
+  DOCT: Doctor or Dr
+  MADM: Madam
+  MISS: Miss
+  MIST: Mistress
+  MIKS: Mx
 enum:
   - DOCT
   - MADM

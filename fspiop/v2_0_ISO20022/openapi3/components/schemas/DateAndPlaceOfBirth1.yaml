@@ -4,29 +4,33 @@ description: |
 type: object
 properties:
   BirthDt:
-    description: >
-      BirthDate
+    allOf:
+      - $ref: ./ISODate.yaml
+      - description: >
+          BirthDate
 
-      Date on which a person is born.
-    $ref: ./ISODate.yaml
+          Date on which a person was born.
   PrvcOfBirth:
-    description: >
-      ProvinceOfBirth
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          ProvinceOfBirth
 
-      Province where a person was born.
-    $ref: ./Max35Text.yaml
+          Province where a person was born.
   CityOfBirth:
-    description: >
-      CityOfBirth
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          CityOfBirth
 
-      City where a person was born.
-    $ref: ./Max35Text.yaml
+          City where a person was born.
   CtryOfBirth:
-    description: >
-      CountryOfBirth
+    allOf:
+      - $ref: ./CountryCode.yaml
+      - description: >
+          CountryOfBirth
 
-      Country where a person was born.
-    $ref: ./CountryCode.yaml
+          Country where a person was born.
 required:
   - BirthDt
   - CityOfBirth

@@ -1,24 +1,31 @@
 title: GenericFinancialIdentification1
 type: object
+description: >
+  GenericFinancialIdentification
+
+  Unique and unambiguous identification of a person, which is used to refer to a person in a financial context.
 properties:
   Id:
-    description: >
-      Identification
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Identification
 
-      Unique and unambiguous identification of a person.
-    $ref: ./Max35Text.yaml
+          Unique and unambiguous identification of a person.
   SchmeNm:
-    description: >
-      SchemeName
+    allOf:
+      - $ref: ./FinancialIdentificationSchemeName1Choice.yaml
+      - description: >
+          SchemeName
 
-      Name of the identification scheme.
-    $ref: ./FinancialIdentificationSchemeName1Choice.yaml
+          Name of the identification scheme.
   Issr:
-    description: >
-      Issuer
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Issuer
 
-      Entity that assigns the identification.
-    $ref: ./Max35Text.yaml
+          Entity that assigns the identification.
 required:
   - Id
 example:

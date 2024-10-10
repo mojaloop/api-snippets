@@ -1,27 +1,39 @@
 title: GroupHeader129
 description: >
-  Set of characteristics shared by all individual transactions included in the
+  Group Header Set of characteristics shared by all individual transactions included in the
   message.
 type: object
 properties:
   MsgId:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Message Identification
   CreDtTm:
-    $ref: ./ISODateTime.yaml
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Creation Date and Time
   PmtInstrXpryDtTm:
-    $ref: ./ISODateTime.yaml
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Payment Instruction Expiry Date and Time
   NbOfTxs:
-    $ref: ./Max15NumericText.yaml
+    allOf:
+      - $ref: ./Max15NumericText.yaml
+      - description: >
+          Number of Transactions
   SttlmInf:
-    $ref: ./SettlementInstruction15.yaml
-  CdtTrfTxInf:
-    $ref: ./CreditTransferTransaction67.yaml
+    allOf:
+      - $ref: ./SettlementInstruction15.yaml
+      - description: >
+          Settlement Information
 required:
   - MsgId
   - CreDtTm
   - NbOfTxs
   - SttlmInf
-  - CdtTrfTxInf
 example:
   MsgId: 12345
   CreDtTm: '2020-01-01T00:00:00Z'
@@ -36,23 +48,3 @@ example:
       Nm: John Doe
     SttlmAcctSvcr:
       BICFI: 123
-  CdtTrfTxInf:
-    PmtId:
-      InstrId: 123
-      EndToEndId: 123
-    PmtTpInf:
-      InstrPrty: NORM
-    InstdAmt:
-      Amt: 123
-      Ccy: EUR
-    ChrgBr: SLEV
-    CdtrAgt:
-      FinInstnId:
-        BICFI: 123
-    Cdtr:
-      Nm: John Doe
-    CdtrAcct:
-      Id:
-        IBAN: 123
-    RmtInf:
-      Ustrd: Test

@@ -468,7 +468,7 @@ export interface components {
         };
         /** @enum {string} */
         amountType: "SEND" | "RECEIVE";
-        /** @description A Mojaloop API bulk quote identifier (UUID). */
+        /** @description A Mojaloop API bulk quote identifier (UUID/ULID). */
         bulkQuoteId: string;
         /** @description A request for a bulk quote. */
         bulkQuoteRequest: {
@@ -485,7 +485,7 @@ export interface components {
             /** @description Fees for each individual transaction, if any of them are charged per transaction. */
             individualQuoteResults: (components["schemas"]["IndividualQuoteResultSuccess"] | components["schemas"]["IndividualQuoteResultFailed"])[];
         };
-        /** @description A Mojaloop API transfer identifier (UUID). */
+        /** @description A Mojaloop API transfer identifier (UUID/ULID). */
         bulkTransferId: string;
         bulkTransferRequest: {
             bulkQuote?: components["schemas"]["bulkQuoteResponse"];
@@ -614,7 +614,7 @@ export interface components {
         };
         /** @enum {string} */
         payerType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /** @description A Mojaloop API quote identifier (UUID). */
+        /** @description A Mojaloop API quote identifier (UUID/ULID). */
         quoteId: string;
         /** @description A request for a quote for transfer from the DFSP backend. */
         quoteRequest: {
@@ -681,7 +681,7 @@ export interface components {
             subScenario?: components["schemas"]["TransactionSubScenario"];
             authenticationType?: components["schemas"]["AuthenticationType"];
         };
-        /** @description A Mojaloop API transaction request identifier (UUID). */
+        /** @description A Mojaloop API transaction request identifier (UUID/ULID). */
         transactionRequestId: string;
         /** @description A response to a request for a quote. */
         transactionRequestResponse: {
@@ -722,7 +722,7 @@ export interface components {
             transactionType: components["schemas"]["transactionType"];
             transferState: components["schemas"]["transferState"];
         };
-        /** @description A Mojaloop API transfer identifier (UUID). */
+        /** @description A Mojaloop API transfer identifier (UUID/ULID). */
         transferId: string;
         transferParty: {
             dateOfBirth?: components["schemas"]["dateOfBirth"];
@@ -836,7 +836,7 @@ export interface components {
         };
         /**
          * CorrelationId
-         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+         * @description Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)
          * @example b51ec534-ee48-4575-b6a9-ead2955b8069
          */
         CorrelationId: string;

@@ -4,18 +4,20 @@ description: |
 type: object
 properties:
   DbtCdtRptgInd:
-    description: >
-      DebitCreditReportingIndicator
+    allOf:
+      - $ref: ./RegulatoryReportingType1Code.yaml
+      - description: >
+          DebitCreditReportingIndicator
 
-      Identifies whether the regulatory reporting information applies to the debit side,
-      to the credit side or to both debit and credit sides of the transaction.
-    $ref: ./RegulatoryReportingType1Code.yaml
+          Identifies whether the regulatory reporting information applies to the debit side,
+          to the credit side or to both debit and credit sides of the transaction.
   Authrty:
-    description: |
-      Authority
+    allOf:
+      - $ref: ./RegulatoryAuthority2.yaml
+      - description: |
+          Authority
 
-      Entity requiring the regulatory reporting information.
-    $ref: ./RegulatoryAuthority2.yaml
+          Entity requiring the regulatory reporting information.
   Dtls:
     description: >
       Details

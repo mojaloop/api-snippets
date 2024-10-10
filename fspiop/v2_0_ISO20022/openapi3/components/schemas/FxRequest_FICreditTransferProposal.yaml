@@ -1,14 +1,25 @@
 title: FxRequest_FICreditTransferProposal
 type: object
+description: >
+  FxRequest_FICreditTransferProposal
+
+  A group of elements providing information specific to the individual credit transfer(s) included in the message.
 properties:
   GrpHdr:
-    description: >
-      GroupHeader
+    allOf:
+      - $ref: ./GroupHeader113.yaml
+      - description: >
+          GroupHeader
 
-      Set of characteristics shared by all individual transactions included in the message.
-    $ref: ./GroupHeader113.yaml
+          Set of characteristics shared by all individual transactions included in the message.
+  CdtTrfTxInf:
+    allOf:
+      - $ref: ./CreditTransferTransaction68.yaml
+      - description: >
+          Credit Transfer Transaction Information
 required:
   - GrpHdr
+  - CdtTrfTxInf
 example:
   GrpHdr:
     MsgId: 12345

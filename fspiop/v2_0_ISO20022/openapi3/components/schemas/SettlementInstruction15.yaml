@@ -5,14 +5,8 @@ description: |
 type: object
 properties:
   SttlmMtd:
-    description: >
-      SettlementMethod
-
-      Method used to settle the (batch of) payment instructions.
     $ref: ./SettlementMethod1Code.yaml
   PmtTpInf:
-    description: |
-      PaymentTypeInformation
     $ref: ./PaymentTypeInformation28.yaml
 required:
   - SttlmMtd

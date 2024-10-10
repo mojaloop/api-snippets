@@ -2,24 +2,27 @@ title: ServiceLevel8Choice
 description: |
   Details about a service level.
 type: object
-properties:
-  Cd:
-    description: >
-      Code
+anyOf:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalServiceLevel1Code.yaml
+          - description: >
+              Code
 
-      Specifies a pre-agreed service or level of service between the parties,
-      as published in an external service level code list.
-    $ref: ./ExternalServiceLevel1Code.yaml
-  Prtry:
-    description: >
-      Proprietary
-
-      Specifies a pre-agreed service or level of service between the parties, as a proprietary code.
-    $ref: ./Max35Text.yaml
-oneOf:
-  - required:
+              Specifies a pre-agreed service or level of service between the parties,
+              as published in an external service level code list.
+    required:
       - Cd
-  - required:
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Specifies a pre-agreed service or level of service between the parties, as a proprietary code.
+    required:
       - Prtry
 example:
   Cd: SEPA

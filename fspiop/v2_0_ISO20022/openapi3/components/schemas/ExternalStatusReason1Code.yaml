@@ -1,4 +1,6 @@
 title: ExternalStatusReason1Code
+description: Specifies the external status reason code.
+  
 type: string
 minLength: 1
 maxLength: 4
