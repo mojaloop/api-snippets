@@ -1,7 +1,7 @@
 title: Fxecute_FinancialInstitutionCreditTransferV12
 type: object
 description:  >
-  The Fxecute FinancialInstitutionCreditTransfer message is sent by the initiating party to the executing party to request the execution of a payment. It is used to request movement of funds from the debtor account to the creditor account. The message can carry multiple credit transfer instructions. 
+  The Fxecute FinancialInstitutionCreditTransfer message is sent by the initiating party to the executing party to request the execution of a payment. It is used to request movement of funds from the debtor account to the creditor account. The message can carry multiple credit transfer instructions.
 properties:
   GrpHdr:
     allOf:
@@ -56,7 +56,7 @@ example:
     IntrBkSttlmAmt:
       Amt: 1000
       Ccy: EUR
-    ChrgBr: SLEV
+    ChrgBr: SHAR
     CdtrAgt:
       FinInstnId:
         BICFI: CCCCCCCC

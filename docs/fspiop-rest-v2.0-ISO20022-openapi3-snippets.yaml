@@ -1896,15 +1896,11 @@ components:
               the sender side are to be borne by the debtor, transaction charges on the receiver side are to
               be borne by the creditor. In a direct debit context, means that transaction charges on the sender side
               are to be borne by the creditor, transaction charges on the receiver
-        SLEV : FollowingServiceLevel Charges are to be applied following the
-        rules
-               agreed in the service level.
       type: string
       enum:
         - DEBT
         - CRED
         - SHAR
-        - SLEV
       example: DEBT
     ChargeType3Choice:
       title: ChargeType3Choice
@@ -2839,7 +2835,7 @@ components:
           InstdAmt:
             Amt: 123
             Ccy: EUR
-          ChrgBr: SLEV
+          ChrgBr: SHAR
           CdtrAgt:
             FinInstnId:
               BICFI: 123
@@ -3352,7 +3348,7 @@ components:
           IntrBkSttlmAmt:
             Amt: 100
             Ccy: EUR
-          ChrgBr: SLEV
+          ChrgBr: SHAR
           Cdtr:
             Nm: Creditor Name
           CdtrAcct:
@@ -3411,7 +3407,7 @@ components:
         initiating party to the executing party to request the execution of a
         payment. It is used to request movement of funds from the debtor account
         to the creditor account. The message can carry multiple credit transfer
-        instructions. 
+        instructions.
       properties:
         GrpHdr:
           allOf:
@@ -3468,7 +3464,7 @@ components:
           IntrBkSttlmAmt:
             Amt: 1000
             Ccy: EUR
-          ChrgBr: SLEV
+          ChrgBr: SHAR
           CdtrAgt:
             FinInstnId:
               BICFI: CCCCCCCC

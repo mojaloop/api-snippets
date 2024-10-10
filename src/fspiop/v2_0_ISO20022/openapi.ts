@@ -812,13 +812,11 @@ export interface components {
          *           the sender side are to be borne by the debtor, transaction charges on the receiver side are to
          *           be borne by the creditor. In a direct debit context, means that transaction charges on the sender side
          *           are to be borne by the creditor, transaction charges on the receiver
-         *     SLEV : FollowingServiceLevel Charges are to be applied following the rules
-         *            agreed in the service level.
          *
          * @example DEBT
          * @enum {string}
          */
-        ChargeBearerType1Code: "DEBT" | "CRED" | "SHAR" | "SLEV";
+        ChargeBearerType1Code: "DEBT" | "CRED" | "SHAR";
         /**
          * ChargeType3Choice
          * @description ChargeType3Choice
@@ -1301,7 +1299,7 @@ export interface components {
          *           "Amt": 123,
          *           "Ccy": "EUR"
          *         },
-         *         "ChrgBr": "SLEV",
+         *         "ChrgBr": "SHAR",
          *         "CdtrAgt": {
          *           "FinInstnId": {
          *             "BICFI": 123
@@ -1712,7 +1710,7 @@ export interface components {
          *           "Amt": 100,
          *           "Ccy": "EUR"
          *         },
-         *         "ChrgBr": "SLEV",
+         *         "ChrgBr": "SHAR",
          *         "Cdtr": {
          *           "Nm": "Creditor Name"
          *         },
@@ -1851,7 +1849,7 @@ export interface components {
          *           "Amt": 1000,
          *           "Ccy": "EUR"
          *         },
-         *         "ChrgBr": "SLEV",
+         *         "ChrgBr": "SHAR",
          *         "CdtrAgt": {
          *           "FinInstnId": {
          *             "BICFI": "CCCCCCCC"

@@ -42,7 +42,7 @@ example:
     InstdAmt:
       Amt: 123
       Ccy: EUR
-    ChrgBr: SLEV
+    ChrgBr: SHAR
     CdtrAgt:
       FinInstnId:
         BICFI: 123
