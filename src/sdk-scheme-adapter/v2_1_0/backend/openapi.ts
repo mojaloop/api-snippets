@@ -364,7 +364,11 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        /**
+         * FX Update Conversion State Notification
+         * @description The HTTP request `PATCH /fxTransfers/{commitRequestId}` is used to  notify an FXP backend about the status of currency conversion.
+         */
+        patch: operations["FxTransfersPatchById"];
         trace?: never;
     };
 }
@@ -1262,6 +1266,46 @@ export interface components {
             conversionState: components["schemas"]["conversionState"];
             extensionList?: components["schemas"]["ExtensionList"];
         };
+        /**
+         * fxTransfersPatchBackendRequest
+         * @description PATCH /fxTransfers/{commitRequestId} object.
+         */
+        FxTransfersPatchBackendRequest: {
+            conversionId?: string;
+            fxQuote?: {
+                fulfilment?: string;
+                internalRequest?: Record<string, never>;
+                mojaloopResponse?: Record<string, never>;
+                request?: Record<string, never>;
+                response?: Record<string, never>;
+            };
+            fxQuoteRequest?: {
+                body?: Record<string, never>;
+                headers?: Record<string, never>;
+            };
+            fxQuoteResponse?: {
+                body?: string;
+                headers?: Record<string, never>;
+            };
+            /** @enum {string} */
+            direction?: "INBOUND";
+            /** @enum {string} */
+            currentState?: "COMPLETED" | "ABORTED" | "ERROR_OCCURRED";
+            initiatedTimestamp?: string;
+            lastError?: string;
+            fxPrepare?: {
+                body?: Record<string, never>;
+                headers?: Record<string, never>;
+            };
+            fulfil?: {
+                body?: Record<string, never>;
+                headers?: Record<string, never>;
+            };
+            finalNotification?: {
+                completedTimestamp: string;
+                conversionState: string;
+            };
+        };
     };
     responses: {
         /** @description OK */
@@ -1830,6 +1874,25 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": components["schemas"]["FxTransfersPutBackendRequest"];
+            };
+        };
+        responses: {
+            200: components["responses"]["200"];
+            400: components["responses"]["400"];
+            500: components["responses"]["500"];
+        };
+    };
+    FxTransfersPatchById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Update and notify status of the FX transfer. */
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FxTransfersPatchBackendRequest"];
             };
         };
         responses: {
