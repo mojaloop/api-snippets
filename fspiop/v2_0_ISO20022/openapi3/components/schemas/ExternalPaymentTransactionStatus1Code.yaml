@@ -7,10 +7,9 @@ description: |
     "COMM": "COMMITED",
     "RESV": "RESERVED",
     "RECV": "RECEIVED",
-    "ABOR": "ABORTED",
-    "SETT": "SETTLED"
+    "ABOR": "ABORTED"
   }
 type: string
 minLength: 1
 maxLength: 4
-example: SETT
+example: COMM
