@@ -1418,11 +1418,10 @@ export interface components {
          *       "COMM": "COMMITED",
          *       "RESV": "RESERVED",
          *       "RECV": "RECEIVED",
-         *       "ABOR": "ABORTED",
-         *       "SETT": "SETTLED"
+         *       "ABOR": "ABORTED"
          *     }
          *
-         * @example SETT
+         * @example COMM
          */
         ExternalPaymentTransactionStatus1Code: string;
         /**
@@ -3758,10 +3757,10 @@ export interface components {
         /** UnderlyingCustomerCreditTransfer */
         UnderlyingCustomerCreditTransfer: {
             InstdAmt?: components["schemas"]["ActiveOrHistoricCurrencyAndAmount"] & unknown;
-            Dbtr?: components["schemas"]["PartyIdentification272"] & unknown;
-            Cdtr?: components["schemas"]["PartyIdentification272"] & unknown;
-            DbtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
-            CdtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            Dbtr: components["schemas"]["PartyIdentification272"] & unknown;
+            Cdtr: components["schemas"]["PartyIdentification272"] & unknown;
+            DbtrAgt: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            CdtrAgt: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
         };
         /**
          * VerificationReason1Choice

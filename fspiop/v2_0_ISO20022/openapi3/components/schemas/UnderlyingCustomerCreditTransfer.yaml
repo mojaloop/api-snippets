@@ -29,4 +29,8 @@ properties:
       -  $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
       - description: >
           Financial institution servicing an account for the creditor.
-
+required:
+  - Dbtr
+  - Cdtr
+  - DbtrAgt
+  - CdtrAgt

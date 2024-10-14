@@ -2968,13 +2968,12 @@ components:
           "COMM": "COMMITED",
           "RESV": "RESERVED",
           "RECV": "RECEIVED",
-          "ABOR": "ABORTED",
-          "SETT": "SETTLED"
+          "ABOR": "ABORTED"
         }
       type: string
       minLength: 1
       maxLength: 4
-      example: SETT
+      example: COMM
     ExternalPersonIdentification1Code:
       title: ExternalPersonIdentification1Code
       description: Specifies the external person identification code.
@@ -6577,6 +6576,11 @@ components:
                 #/components/schemas/BranchAndFinancialInstitutionIdentification8
             - description: |
                 Financial institution servicing an account for the creditor.
+      required:
+        - Dbtr
+        - Cdtr
+        - DbtrAgt
+        - CdtrAgt
     VerificationReason1Choice:
       title: VerificationReason1Choice
       type: object
