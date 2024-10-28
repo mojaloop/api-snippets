@@ -557,9 +557,11 @@ export interface components {
         /**
          * ActiveCurrencyCode
          * @description A code allocated to a currency by a Maintenance Agency under an international identification scheme as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
+         *     NOTE: This has been modified away from the original ISO20022 pattern to enums.
          * @example USD
+         * @enum {string}
          */
-        ActiveCurrencyCode: string;
+        ActiveCurrencyCode: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
         /**
          * ActiveOrHistoricCurrencyAndAmount
          * @description A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217.
@@ -581,10 +583,12 @@ export interface components {
         /**
          * ActiveOrHistoricCurrencyCode
          * @description A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
+         *     NOTE: This has been modified away from the original ISO20022 pattern to enums.
          *
          * @example USD
+         * @enum {string}
          */
-        ActiveOrHistoricCurrencyCode: string;
+        ActiveOrHistoricCurrencyCode: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
         /**
          * @description AddressType2Code
          *     Specifies the type of address.
@@ -1252,7 +1256,7 @@ export interface components {
         };
         /**
          * Exact32HexBinaryText
-         * @description Specifies a hexadecimal string with a length of 32 characters.
+         * @description Specifies a hexadecimal string.
          *
          * @example 1234567890ABCDEF1234567890ABCDEF
          */
@@ -1421,9 +1425,12 @@ export interface components {
          *       "ABOR": "ABORTED"
          *     }
          *
+         *     NOTE: enum enforcement is not apart of the ISO20022 specification, but is added here for FSPIOP mappings.
+         *
          * @example COMM
+         * @enum {string}
          */
-        ExternalPaymentTransactionStatus1Code: string;
+        ExternalPaymentTransactionStatus1Code: "COMM" | "RESV" | "RECV" | "ABOR";
         /**
          * ExternalPersonIdentification1Code
          * @description Specifies the external person identification code.
@@ -2885,9 +2892,9 @@ export interface components {
          *     }
          */
         PaymentIdentification13: {
-            InstrId?: components["schemas"]["Max35Text"] & unknown;
-            EndToEndId?: components["schemas"]["Max35Text"] & unknown;
-            TxId: components["schemas"]["Max35Text"] & unknown;
+            InstrId?: components["schemas"]["ULIDIdentifier"] & unknown;
+            EndToEndId?: components["schemas"]["ULIDIdentifier"] & unknown;
+            TxId: components["schemas"]["ULIDIdentifier"] & unknown;
             UETR?: components["schemas"]["UUIDv4Identifier"] & unknown;
             ClrSysRef?: components["schemas"]["Max35Text"] & unknown;
         };
@@ -3749,6 +3756,11 @@ export interface components {
             GrpHdr: components["schemas"]["GroupHeader129"] & unknown;
             CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"] & unknown;
         };
+        /**
+         * ULIDIdentifier
+         * @example 01AN4Z07BY79KA1307SR9X4MV3
+         */
+        ULIDIdentifier: string;
         /**
          * UUIDv4Identifier
          * @example 8f3a3b2d-3b0a-4b3f-8e4e-1b2f3f4c5d6e

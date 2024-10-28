@@ -162,6 +162,7 @@ export namespace Schemas {
   export const TaxRecordPeriod1Code = JsonSchemas.TaxRecordPeriod1Code
   export const TermsRequest_FIToFICustomerCreditProposal = JsonSchemas.TermsRequest_FIToFICustomerCreditProposal
   export const TermsResponse_FIToFICustomerCreditConfirmation = JsonSchemas.TermsResponse_FIToFICustomerCreditConfirmation
+  export const ULIDIdentifier = JsonSchemas.ULIDIdentifier
   export const UUIDv4Identifier = JsonSchemas.UUIDv4Identifier
   export const UnderlyingCustomerCreditTransfer = JsonSchemas.UnderlyingCustomerCreditTransfer
   export const VerificationReason1Choice = JsonSchemas.VerificationReason1Choice

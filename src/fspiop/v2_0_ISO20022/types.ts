@@ -162,6 +162,7 @@ export namespace Types {
   export type TaxRecordPeriod1Code = components['schemas']['TaxRecordPeriod1Code']
   export type TermsRequest_FIToFICustomerCreditProposal = components['schemas']['TermsRequest_FIToFICustomerCreditProposal']
   export type TermsResponse_FIToFICustomerCreditConfirmation = components['schemas']['TermsResponse_FIToFICustomerCreditConfirmation']
+  export type ULIDIdentifier = components['schemas']['ULIDIdentifier']
   export type UUIDv4Identifier = components['schemas']['UUIDv4Identifier']
   export type UnderlyingCustomerCreditTransfer = components['schemas']['UnderlyingCustomerCreditTransfer']
   export type VerificationReason1Choice = components['schemas']['VerificationReason1Choice']
