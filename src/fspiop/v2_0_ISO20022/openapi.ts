@@ -2486,7 +2486,7 @@ export interface components {
             InstrInf?: components["schemas"]["Max140Text"] & unknown;
         };
         /**
-         * InstructionForCreditorAgent3
+         * InstructionForCreditorAgent3_Put_FX_Quotes_ID
          * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent.
          *
          * @example {
