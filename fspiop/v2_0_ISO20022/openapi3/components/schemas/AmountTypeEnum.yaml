@@ -1,0 +1,9 @@
+title: AmountTypeEnum
+description: |
+  NOTE: This pattern is not the original ISO20022 specification.
+        This represents the enum values when mapping to and from FSPIOP specification.
+type: string
+enum:
+  - SEND
+  - RECEIVE
+example: SEND

@@ -617,6 +617,15 @@ export interface components {
             Prtry: components["schemas"]["GenericIdentification30"] & unknown;
         };
         /**
+         * AmountTypeEnum
+         * @description NOTE: This pattern is not the original ISO20022 specification.
+         *           This represents the enum values when mapping to and from FSPIOP specification.
+         *
+         * @example SEND
+         * @enum {string}
+         */
+        AmountTypeEnum: "SEND" | "RECEIVE";
+        /**
          * AnyBICDec2014Identifier
          * @description AnyBICDec2014Identifier
          *     Code allocated to a financial or non-financial institution by the
@@ -1171,6 +1180,78 @@ export interface components {
             VrfctnOfTerms?: components["schemas"]["CryptographicLockChoice"] & unknown;
         };
         /**
+         * CreditTransferTransaction68_Put_FX_Quotes_ID
+         * @description Provides further details specific to the individual transaction(s) included in the message.
+         *
+         * @example {
+         *       "PmtId": {
+         *         "InstrId": "INSTRID",
+         *         "EndToEndId": "ENDTOENDID"
+         *       },
+         *       "PmtTpInf": {
+         *         "LclInstrm": {
+         *           "Cd": "CHQB",
+         *           "Prtry": "PROPRIETARY"
+         *         }
+         *       },
+         *       "IntrBkSttlmAmt": {
+         *         "Amount": 123.45,
+         *         "Ccy": "EUR"
+         *       },
+         *       "Dbtr": {
+         *         "Nm": "Debtor Name"
+         *       },
+         *       "DbtrAcct": {
+         *         "Id": {
+         *           "IBAN": "IBAN"
+         *         }
+         *       },
+         *       "DbtrAgt": {
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       },
+         *       "CdtrAgt": {
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       },
+         *       "Cdtr": {
+         *         "Nm": "Creditor Name"
+         *       },
+         *       "CdtrAcct": {
+         *         "Id": {
+         *           "IBAN": "IBAN"
+         *         }
+         *       },
+         *       "InstrForCdtrAgt": {
+         *         "Cd": "INSTRUCTION"
+         *       },
+         *       "Purp": {
+         *         "Cd": "CHAR"
+         *       },
+         *       "VrfctnOfTerms": {
+         *         "Cntt": "CONTENT",
+         *         "CnttTp": "PROPRIETARY"
+         *       }
+         *     }
+         */
+        CreditTransferTransaction68_Put_FX_Quotes_ID: {
+            PmtId: components["schemas"]["PaymentIdentification13"] & unknown;
+            PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
+            UndrlygCstmrCdtTrf?: components["schemas"]["UnderlyingCustomerCreditTransfer"] & unknown;
+            IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
+            Dbtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            DbtrAcct?: components["schemas"]["CashAccount40"] & unknown;
+            DbtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            CdtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            Cdtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            CdtrAcct?: components["schemas"]["CashAccount40"] & unknown;
+            InstrForCdtrAgt?: components["schemas"]["InstructionForCreditorAgent3_Put_FX_Quotes_ID"] & unknown;
+            Purp?: components["schemas"]["Purpose2Choice"] & unknown;
+            VrfctnOfTerms?: components["schemas"]["CryptographicLockChoice"] & unknown;
+        };
+        /**
          * CryptographicLockChoice
          * @description Cryptographically signed terms
          *
@@ -1258,7 +1339,8 @@ export interface components {
          * Exact32HexBinaryText
          * @description Specifies a hexadecimal string.
          *
-         * @example 1234567890ABCDEF1234567890ABCDEF
+         *     NOTE: This pattern is not the original ISO20022 specification.
+         *
          */
         Exact32HexBinaryText: string;
         /**
@@ -1796,7 +1878,7 @@ export interface components {
          */
         FxResponse_FICreditTransferConfirmation: {
             GrpHdr: components["schemas"]["GroupHeader113"] & unknown;
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68_Put_FX_Quotes_ID"] & unknown;
         };
         /**
          * Fxecute_FinancialInstitutionCreditTransferV12
@@ -2402,6 +2484,19 @@ export interface components {
         InstructionForCreditorAgent3: {
             Cd?: components["schemas"]["ExternalCreditorAgentInstruction1Code"] & unknown;
             InstrInf?: components["schemas"]["Max140Text"] & unknown;
+        };
+        /**
+         * InstructionForCreditorAgent3
+         * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent.
+         *
+         * @example {
+         *       "Cd": "PHOA",
+         *       "InstrInf": "Please advise/contact next agent by phone."
+         *     }
+         */
+        InstructionForCreditorAgent3_Put_FX_Quotes_ID: {
+            Cd?: components["schemas"]["ExternalCreditorAgentInstruction1Code"] & unknown;
+            InstrInf?: components["schemas"]["AmountTypeEnum"] & unknown;
         };
         /**
          * InstructionForNextAgent1

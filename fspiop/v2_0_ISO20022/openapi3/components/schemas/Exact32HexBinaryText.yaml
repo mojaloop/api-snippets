@@ -1,5 +1,8 @@
 title: Exact32HexBinaryText
 description: |
   Specifies a hexadecimal string.
+
+  NOTE: This pattern is not the original ISO20022 specification.
 type: string
-example: 1234567890ABCDEF1234567890ABCDEF
+pattern: '^[A-Za-z0-9-_]{43}$'
+maxLength: 48
