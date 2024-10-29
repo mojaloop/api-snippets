@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.7.3](https://github.com/mojaloop/api-snippets/compare/v17.7.2...v17.7.3) (2024-10-29)
+
+
+### Maintenance
+
+* add stricter validation for GP testing ([#183](https://github.com/mojaloop/api-snippets/issues/183)) ([3ba043f](https://github.com/mojaloop/api-snippets/commit/3ba043f025302d1b0c40b0f3664bc5d11f66f56e))
+
 ### [17.7.2](https://github.com/mojaloop/api-snippets/compare/v17.7.1...v17.7.2) (2024-10-14)
 
 
