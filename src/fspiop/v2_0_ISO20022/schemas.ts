@@ -15,6 +15,7 @@ export namespace Schemas {
   export const ActiveOrHistoricCurrencyCode = JsonSchemas.ActiveOrHistoricCurrencyCode
   export const AddressType2Code = JsonSchemas.AddressType2Code
   export const AddressType3Choice = JsonSchemas.AddressType3Choice
+  export const AmountTypeEnum = JsonSchemas.AmountTypeEnum
   export const AnyBICDec2014Identifier = JsonSchemas.AnyBICDec2014Identifier
   export const BICFIDec2014Identifier = JsonSchemas.BICFIDec2014Identifier
   export const BaseOneRate = JsonSchemas.BaseOneRate
@@ -36,6 +37,7 @@ export namespace Schemas {
   export const CountryCode = JsonSchemas.CountryCode
   export const CreditTransferTransaction67 = JsonSchemas.CreditTransferTransaction67
   export const CreditTransferTransaction68 = JsonSchemas.CreditTransferTransaction68
+  export const CreditTransferTransaction68_Put_FX_Quotes_ID = JsonSchemas.CreditTransferTransaction68_Put_FX_Quotes_ID
   export const CryptographicLockChoice = JsonSchemas.CryptographicLockChoice
   export const DateAndDateTime2Choice = JsonSchemas.DateAndDateTime2Choice
   export const DateAndPlaceOfBirth1 = JsonSchemas.DateAndPlaceOfBirth1
@@ -95,6 +97,7 @@ export namespace Schemas {
   export const IdentificationVerificationIndicator = JsonSchemas.IdentificationVerificationIndicator
   export const Instruction4Code = JsonSchemas.Instruction4Code
   export const InstructionForCreditorAgent3 = JsonSchemas.InstructionForCreditorAgent3
+  export const InstructionForCreditorAgent3_Put_FX_Quotes_ID = JsonSchemas.InstructionForCreditorAgent3_Put_FX_Quotes_ID
   export const InstructionForNextAgent1 = JsonSchemas.InstructionForNextAgent1
   export const LEIIdentifier = JsonSchemas.LEIIdentifier
   export const LocalInstrument2Choice = JsonSchemas.LocalInstrument2Choice
@@ -162,6 +165,7 @@ export namespace Schemas {
   export const TaxRecordPeriod1Code = JsonSchemas.TaxRecordPeriod1Code
   export const TermsRequest_FIToFICustomerCreditProposal = JsonSchemas.TermsRequest_FIToFICustomerCreditProposal
   export const TermsResponse_FIToFICustomerCreditConfirmation = JsonSchemas.TermsResponse_FIToFICustomerCreditConfirmation
+  export const ULIDIdentifier = JsonSchemas.ULIDIdentifier
   export const UUIDv4Identifier = JsonSchemas.UUIDv4Identifier
   export const UnderlyingCustomerCreditTransfer = JsonSchemas.UnderlyingCustomerCreditTransfer
   export const VerificationReason1Choice = JsonSchemas.VerificationReason1Choice

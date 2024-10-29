@@ -5,7 +5,7 @@ type: object
 properties:
   InstrId:
     allOf:
-      - $ref: ./Max35Text.yaml
+      - $ref: ./ULIDIdentifier.yaml
       - description: |
           InstructionIdentification (FSPIOP equivalent: transactionRequestId)
 
@@ -15,9 +15,11 @@ properties:
           Usage: The instruction identification is a point to point reference that can be used between the
           instructing party and the instructed party to refer to the individual instruction. It can be included in
           several messages related to the instruction.
+
+          This field has been changed from the original ISO20022 `Max35Text`` schema to a ULIDIdentifier schema.
   EndToEndId:
     allOf:
-      - $ref: ./Max35Text.yaml
+      - $ref: ./ULIDIdentifier.yaml
       - description: |
           EndToEndIdentification (FSPIOP equivalent: transactionId)
 
@@ -29,9 +31,11 @@ properties:
 
           Usage: In case there are technical limitations to pass on multiple references, the end-to-end
           identification must be passed on throughout the entire end-to-end chain.
+
+          This field has been changed from the original ISO20022 `Max35Text`` schema to a ULIDIdentifier schema.
   TxId:
     allOf:
-      - $ref: ./Max35Text.yaml
+      - $ref: ./ULIDIdentifier.yaml
       - description: |
           TransactionIdentification (FSPIOP equivalent: quoteId in quote request, transferId in transfer request)
 
@@ -42,6 +46,8 @@ properties:
           the transaction on the interbank level.
 
           Usage: The instructing agent has to make sure that the transaction identification is unique for a preagreed period.
+
+          This field has been changed from the original ISO20022 `Max35Text`` schema to a ULIDIdentifier schema.
   UETR:
     allOf:
       - $ref: ./UUIDv4Identifier.yaml
