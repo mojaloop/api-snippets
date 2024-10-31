@@ -1180,7 +1180,7 @@ export interface components {
             VrfctnOfTerms?: components["schemas"]["CryptographicLockChoice"] & unknown;
         };
         /**
-         * CreditTransferTransaction68_Put_FX_Quotes_ID
+         * CreditTransferTransaction68_FX_Quotes
          * @description Provides further details specific to the individual transaction(s) included in the message.
          *
          * @example {
@@ -1236,7 +1236,7 @@ export interface components {
          *       }
          *     }
          */
-        CreditTransferTransaction68_Put_FX_Quotes_ID: {
+        CreditTransferTransaction68_FX_Quotes: {
             PmtId: components["schemas"]["PaymentIdentification13"] & unknown;
             PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
             UndrlygCstmrCdtTrf?: components["schemas"]["UnderlyingCustomerCreditTransfer"] & unknown;
@@ -1247,7 +1247,7 @@ export interface components {
             CdtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
             Cdtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
             CdtrAcct?: components["schemas"]["CashAccount40"] & unknown;
-            InstrForCdtrAgt?: components["schemas"]["InstructionForCreditorAgent3_Put_FX_Quotes_ID"] & unknown;
+            InstrForCdtrAgt?: components["schemas"]["InstructionForCreditorAgent3_FX_Quotes"] & unknown;
             Purp?: components["schemas"]["Purpose2Choice"] & unknown;
             VrfctnOfTerms?: components["schemas"]["CryptographicLockChoice"] & unknown;
         };
@@ -1765,7 +1765,7 @@ export interface components {
          */
         FxRequest_FICreditTransferProposal: {
             GrpHdr: components["schemas"]["GroupHeader113"] & unknown;
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68_FX_Quotes"] & unknown;
         };
         /**
          * FxResponse_FICreditTransferConfirmation
@@ -1878,7 +1878,7 @@ export interface components {
          */
         FxResponse_FICreditTransferConfirmation: {
             GrpHdr: components["schemas"]["GroupHeader113"] & unknown;
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68_Put_FX_Quotes_ID"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68_FX_Quotes"] & unknown;
         };
         /**
          * Fxecute_FinancialInstitutionCreditTransferV12
@@ -2494,7 +2494,7 @@ export interface components {
          *       "InstrInf": "Please advise/contact next agent by phone."
          *     }
          */
-        InstructionForCreditorAgent3_Put_FX_Quotes_ID: {
+        InstructionForCreditorAgent3_FX_Quotes: {
             Cd?: components["schemas"]["ExternalCreditorAgentInstruction1Code"] & unknown;
             InstrInf?: components["schemas"]["AmountTypeEnum"] & unknown;
         };

@@ -14,9 +14,9 @@ properties:
           Set of characteristics shared by all individual transactions included in the message.
   CdtTrfTxInf:
     allOf:
-      - $ref: ./CreditTransferTransaction68_Put_FX_Quotes_ID.yaml
+      - $ref: ./CreditTransferTransaction68_FX_Quotes.yaml
       - description: >
-          CreditTransferTransaction68_Put_FX_Quotes_ID
+          CreditTransferTransaction68_FX_Quotes
 
           Set of elements providing information specific to the individual credit transfer(s).
 required:
