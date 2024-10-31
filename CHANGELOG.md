@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.7.4](https://github.com/mojaloop/api-snippets/compare/v17.7.3...v17.7.4) (2024-10-31)
+
+
+### Maintenance
+
+* update post fxTransfers validation ([#184](https://github.com/mojaloop/api-snippets/issues/184)) ([b4b7bac](https://github.com/mojaloop/api-snippets/commit/b4b7bac6cc531fa85c743c30516362cb61a3b6f1))
+
 ### [17.7.3](https://github.com/mojaloop/api-snippets/compare/v17.7.2...v17.7.3) (2024-10-29)
 
 
