@@ -37,7 +37,7 @@ export namespace Schemas {
   export const CountryCode = JsonSchemas.CountryCode
   export const CreditTransferTransaction67 = JsonSchemas.CreditTransferTransaction67
   export const CreditTransferTransaction68 = JsonSchemas.CreditTransferTransaction68
-  export const CreditTransferTransaction68_Put_FX_Quotes_ID = JsonSchemas.CreditTransferTransaction68_Put_FX_Quotes_ID
+  export const CreditTransferTransaction68_FX_Quotes = JsonSchemas.CreditTransferTransaction68_FX_Quotes
   export const CryptographicLockChoice = JsonSchemas.CryptographicLockChoice
   export const DateAndDateTime2Choice = JsonSchemas.DateAndDateTime2Choice
   export const DateAndPlaceOfBirth1 = JsonSchemas.DateAndPlaceOfBirth1
@@ -97,7 +97,7 @@ export namespace Schemas {
   export const IdentificationVerificationIndicator = JsonSchemas.IdentificationVerificationIndicator
   export const Instruction4Code = JsonSchemas.Instruction4Code
   export const InstructionForCreditorAgent3 = JsonSchemas.InstructionForCreditorAgent3
-  export const InstructionForCreditorAgent3_Put_FX_Quotes_ID = JsonSchemas.InstructionForCreditorAgent3_Put_FX_Quotes_ID
+  export const InstructionForCreditorAgent3_FX_Quotes = JsonSchemas.InstructionForCreditorAgent3_FX_Quotes
   export const InstructionForNextAgent1 = JsonSchemas.InstructionForNextAgent1
   export const LEIIdentifier = JsonSchemas.LEIIdentifier
   export const LocalInstrument2Choice = JsonSchemas.LocalInstrument2Choice
