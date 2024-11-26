@@ -41,7 +41,7 @@ properties:
       - body
     properties:
       body:
-        type: object
+        $ref: ./Party.yaml
       headers:
         type: object
   quoteResponse:

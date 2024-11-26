@@ -2289,7 +2289,7 @@ components:
             - body
           properties:
             body:
-              type: object
+              $ref: '#/components/schemas/Party'
             headers:
               type: object
         quoteResponse:
