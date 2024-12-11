@@ -47,7 +47,7 @@ properties:
           Specifies the status of the transaction.
   StsRsnInf:
     allOf:
-      - $ref: ./StatusReasonInformation14.yaml
+      - $ref: ./StatusReasonInformation14b.yaml
       - description: >
           Information concerning the reason for the status.
   AccptncDtTm:
@@ -85,7 +85,6 @@ properties:
       - description: >
           Date/time at which the instruction was processed by the specified party.
 required:          
-  - ExctnConf
   - PrcgDt
   - TxSts
 example:

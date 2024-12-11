@@ -3,14 +3,14 @@ type: object
 properties:
   GrpHdr:
     allOf:
-      - $ref: ./GroupHeader129.yaml
+      - $ref: ./GroupHeader129b.yaml
       - description: >
           Group Header
 
           Set of characteristics shared by all individual transactions included in the message.
   CdtTrfTxInf:
     allOf:
-      - $ref: ./CreditTransferTransaction67.yaml
+      - $ref: ./CreditTransferTransaction67b.yaml
       - description: >
           Credit Transfer Transaction Information
 
