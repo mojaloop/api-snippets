@@ -34,3 +34,4 @@ required:
   - Cdtr
   - DbtrAgt
   - CdtrAgt
+  - InstdAmt
