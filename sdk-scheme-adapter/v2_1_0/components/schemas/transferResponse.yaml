@@ -41,7 +41,12 @@ properties:
       - body
     properties:
       body:
-        $ref: ./Party.yaml
+        type: object
+        properties:
+          party:
+            $ref: ./Party.yaml
+        required:
+          - party
       headers:
         type: object
   quoteResponse:
