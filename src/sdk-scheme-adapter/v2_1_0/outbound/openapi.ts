@@ -1732,6 +1732,8 @@ export interface components {
             getPartiesResponse?: {
                 body: {
                     party: components["schemas"]["Party"];
+                } | {
+                    errorInformation: components["schemas"]["ErrorInformation"];
                 };
                 headers?: Record<string, never>;
             };
