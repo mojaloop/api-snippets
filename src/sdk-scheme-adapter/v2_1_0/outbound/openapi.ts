@@ -1730,7 +1730,9 @@ export interface components {
             currentState?: components["schemas"]["transferStatus"];
             quoteId?: components["schemas"]["CorrelationId"];
             getPartiesResponse?: {
-                body: components["schemas"]["Party"];
+                body: {
+                    party: components["schemas"]["Party"];
+                };
                 headers?: Record<string, never>;
             };
             quoteResponse?: {
