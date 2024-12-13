@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.7.7](https://github.com/mojaloop/api-snippets/compare/v17.7.6...v17.7.7) (2024-12-13)
+
+
+### Bug Fixes
+
+* **csi-1023:** fixed outbound POST transferResponse - error getPartiesResponse ([#189](https://github.com/mojaloop/api-snippets/issues/189)) ([efd152c](https://github.com/mojaloop/api-snippets/commit/efd152c6afc981bdb589b12a68366a8563930cbd))
+
 ### [17.7.6](https://github.com/mojaloop/api-snippets/compare/v17.7.5...v17.7.6) (2024-12-12)
 
 
