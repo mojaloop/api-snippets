@@ -116,6 +116,17 @@ export namespace Schemas {
   export const CurrencyConverter = JsonSchemas.CurrencyConverter
   export const FxRate = JsonSchemas.FxRate
   export const AuthenticationType = JsonSchemas.AuthenticationType
+  export const TransfersIDPutResponse = JsonSchemas.TransfersIDPutResponse
+  export const TransfersPostRequest = JsonSchemas.TransfersPostRequest
+  export const QuotesIDPutResponse = JsonSchemas.QuotesIDPutResponse
+  export const TransactionScenario = JsonSchemas.TransactionScenario
+  export const TransactionInitiator = JsonSchemas.TransactionInitiator
+  export const TransactionInitiatorType = JsonSchemas.TransactionInitiatorType
+  export const RefundReason = JsonSchemas.RefundReason
+  export const Refund = JsonSchemas.Refund
+  export const BalanceOfPayments = JsonSchemas.BalanceOfPayments
+  export const TransactionType = JsonSchemas.TransactionType
+  export const QuotesPostRequest = JsonSchemas.QuotesPostRequest
   export const FxMoney = JsonSchemas.FxMoney
   export const FxCharge = JsonSchemas.FxCharge
   export const FxConversion = JsonSchemas.FxConversion

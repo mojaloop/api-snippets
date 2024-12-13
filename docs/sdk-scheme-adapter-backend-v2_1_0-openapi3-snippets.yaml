@@ -1034,7 +1034,7 @@ components:
         fulfil:
           properties:
             body:
-              type: object
+              $ref: '#/components/schemas/TransfersIDPutResponse'
             headers:
               type: object
           type: object
@@ -1045,34 +1045,34 @@ components:
         prepare:
           properties:
             body:
-              type: object
+              $ref: '#/components/schemas/TransfersPostRequest'
             headers:
               type: object
           type: object
         quote:
           properties:
             fulfilment:
-              type: string
+              $ref: '#/components/schemas/IlpFulfilment'
             internalRequest:
-              type: object
+              $ref: '#/components/schemas/quoteRequest'
             mojaloopResponse:
-              type: object
+              $ref: '#/components/schemas/QuotesIDPutResponse'
             request:
-              type: object
+              $ref: '#/components/schemas/QuotesPostRequest'
             response:
-              type: object
+              $ref: '#/components/schemas/quoteResponse'
           type: object
         quoteRequest:
           properties:
             body:
-              type: object
+              $ref: '#/components/schemas/QuotesPostRequest'
             headers:
               type: object
           type: object
         quoteResponse:
           properties:
             body:
-              type: object
+              $ref: '#/components/schemas/QuotesIDPutResponse'
             headers:
               type: object
           type: object
@@ -2295,6 +2295,213 @@ components:
         - QRCODE - QR code used as One Time Password.
         - U2F - U2F is a new addition isolated to Thirdparty stream.
       example: OTP
+    TransfersIDPutResponse:
+      title: TransfersIDPutResponse
+      type: object
+      description: The object sent in the PUT /transfers/{ID} callback.
+      properties:
+        fulfilment:
+          $ref: '#/components/schemas/IlpFulfilment'
+        completedTimestamp:
+          $ref: '#/components/schemas/DateTime'
+        transferState:
+          $ref: '#/components/schemas/TransferState'
+        extensionList:
+          $ref: '#/components/schemas/ExtensionList'
+      required:
+        - transferState
+    TransfersPostRequest:
+      title: TransfersPostRequest
+      type: object
+      description: The object sent in the POST /transfers request.
+      properties:
+        transferId:
+          $ref: '#/components/schemas/CorrelationId'
+        payeeFsp:
+          $ref: '#/components/schemas/FspId'
+        payerFsp:
+          $ref: '#/components/schemas/FspId'
+        amount:
+          $ref: '#/components/schemas/Money'
+        ilpPacket:
+          $ref: '#/components/schemas/IlpPacket'
+        condition:
+          $ref: '#/components/schemas/IlpCondition'
+        expiration:
+          $ref: '#/components/schemas/DateTime'
+        extensionList:
+          $ref: '#/components/schemas/ExtensionList'
+      required:
+        - transferId
+        - payeeFsp
+        - payerFsp
+        - amount
+        - ilpPacket
+        - condition
+        - expiration
+    QuotesIDPutResponse:
+      title: QuotesIDPutResponse
+      type: object
+      description: The object sent in the PUT /quotes/{ID} callback.
+      properties:
+        transferAmount:
+          $ref: '#/components/schemas/Money'
+        payeeReceiveAmount:
+          $ref: '#/components/schemas/Money'
+        payeeFspFee:
+          $ref: '#/components/schemas/Money'
+        payeeFspCommission:
+          $ref: '#/components/schemas/Money'
+        expiration:
+          $ref: '#/components/schemas/DateTime'
+        geoCode:
+          $ref: '#/components/schemas/GeoCode'
+        ilpPacket:
+          $ref: '#/components/schemas/IlpPacket'
+        condition:
+          $ref: '#/components/schemas/IlpCondition'
+        extensionList:
+          $ref: '#/components/schemas/ExtensionList'
+      required:
+        - transferAmount
+        - expiration
+        - ilpPacket
+        - condition
+    TransactionScenario:
+      title: TransactionScenario
+      type: string
+      enum:
+        - DEPOSIT
+        - WITHDRAWAL
+        - TRANSFER
+        - PAYMENT
+        - REFUND
+      description: |-
+        Below are the allowed values for the enumeration.
+        - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.
+        - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.
+        - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.
+        - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
+        - REFUND - Used for performing a refund of transaction.
+      example: DEPOSIT
+    TransactionInitiator:
+      title: TransactionInitiator
+      type: string
+      enum:
+        - PAYER
+        - PAYEE
+      description: |-
+        Below are the allowed values for the enumeration.
+        - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
+        - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
+      example: PAYEE
+    TransactionInitiatorType:
+      title: TransactionInitiatorType
+      type: string
+      enum:
+        - CONSUMER
+        - AGENT
+        - BUSINESS
+        - DEVICE
+      description: |-
+        Below are the allowed values for the enumeration.
+        - CONSUMER - Consumer is the initiator of the transaction.
+        - AGENT - Agent is the initiator of the transaction.
+        - BUSINESS - Business is the initiator of the transaction.
+        - DEVICE - Device is the initiator of the transaction.
+      example: CONSUMER
+    RefundReason:
+      title: RefundReason
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Reason for the refund.
+      example: Free text indicating reason for the refund.
+    Refund:
+      title: Refund
+      type: object
+      description: Data model for the complex type Refund.
+      properties:
+        originalTransactionId:
+          $ref: '#/components/schemas/CorrelationId'
+        refundReason:
+          $ref: '#/components/schemas/RefundReason'
+      required:
+        - originalTransactionId
+    BalanceOfPayments:
+      title: BalanceOfPayments
+      type: string
+      pattern: ^[1-9]\d{2}$
+      description: (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
+      example: '123'
+    TransactionType:
+      title: TransactionType
+      type: object
+      description: Data model for the complex type TransactionType.
+      properties:
+        scenario:
+          $ref: '#/components/schemas/TransactionScenario'
+        subScenario:
+          $ref: '#/components/schemas/TransactionSubScenario'
+        initiator:
+          $ref: '#/components/schemas/TransactionInitiator'
+        initiatorType:
+          $ref: '#/components/schemas/TransactionInitiatorType'
+        refundInfo:
+          $ref: '#/components/schemas/Refund'
+        balanceOfPayments:
+          $ref: '#/components/schemas/BalanceOfPayments'
+      required:
+        - scenario
+        - initiator
+        - initiatorType
+    QuotesPostRequest:
+      title: QuotesPostRequest
+      type: object
+      description: The object sent in the POST /quotes request.
+      properties:
+        quoteId:
+          $ref: '#/components/schemas/CorrelationId'
+        transactionId:
+          $ref: '#/components/schemas/CorrelationId'
+        transactionRequestId:
+          $ref: '#/components/schemas/CorrelationId'
+        payee:
+          $ref: '#/components/schemas/Party'
+        payer:
+          $ref: '#/components/schemas/Party'
+        amountType:
+          $ref: '#/components/schemas/AmountType'
+        amount:
+          $ref: '#/components/schemas/Money'
+        fees:
+          $ref: '#/components/schemas/Money'
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        converter:
+          allOf:
+            - $ref: '#/components/schemas/CurrencyConverter'
+            - description: An optional field which will allow the payer DFSP to specify which DFSP it wants to undertake currency conversion. This is useful incase of if the sender wants the recipient to receive a specified amount of the target currency, but the payer DFSP does not want to undertake the currency conversion. In this case, the amount of the transfer would be expressed in the target currency and the amountType would be set to RECEIVE.
+        currencyConversion:
+          allOf:
+            - $ref: '#/components/schemas/FxRate'
+            - description: Used by the debtor party if it wants to share information about the currency conversion it proposes to make; or if it is required by scheme rules to share this information. This object contains the amount of the transfer in the source and target currencies, but does not identify the FXP being used.
+        geoCode:
+          $ref: '#/components/schemas/GeoCode'
+        note:
+          $ref: '#/components/schemas/Note'
+        expiration:
+          $ref: '#/components/schemas/DateTime'
+        extensionList:
+          $ref: '#/components/schemas/ExtensionList'
+      required:
+        - quoteId
+        - transactionId
+        - payee
+        - payer
+        - amountType
+        - amount
+        - transactionType
     FxMoney:
       title: FxMoney
       type: object

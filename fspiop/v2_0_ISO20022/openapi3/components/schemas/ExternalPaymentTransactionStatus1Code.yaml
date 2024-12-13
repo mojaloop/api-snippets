@@ -9,7 +9,14 @@ description: |
     "RECV": "RECEIVED",
     "ABOR": "ABORTED"
   }
+
+  NOTE: enum enforcement is not apart of the ISO20022 specification, but is added here for FSPIOP mappings.
 type: string
 minLength: 1
 maxLength: 4
 example: COMM
+enum:
+  - COMM
+  - RESV
+  - RECV
+  - ABOR

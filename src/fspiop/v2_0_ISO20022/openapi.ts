@@ -557,9 +557,11 @@ export interface components {
         /**
          * ActiveCurrencyCode
          * @description A code allocated to a currency by a Maintenance Agency under an international identification scheme as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
+         *     NOTE: This has been modified away from the original ISO20022 pattern to enums.
          * @example USD
+         * @enum {string}
          */
-        ActiveCurrencyCode: string;
+        ActiveCurrencyCode: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
         /**
          * ActiveOrHistoricCurrencyAndAmount
          * @description A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217.
@@ -581,10 +583,12 @@ export interface components {
         /**
          * ActiveOrHistoricCurrencyCode
          * @description A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 "Codes for the representation of currencies and funds".
+         *     NOTE: This has been modified away from the original ISO20022 pattern to enums.
          *
          * @example USD
+         * @enum {string}
          */
-        ActiveOrHistoricCurrencyCode: string;
+        ActiveOrHistoricCurrencyCode: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
         /**
          * @description AddressType2Code
          *     Specifies the type of address.
@@ -612,6 +616,15 @@ export interface components {
         } | {
             Prtry: components["schemas"]["GenericIdentification30"] & unknown;
         };
+        /**
+         * AmountTypeEnum
+         * @description NOTE: This pattern is not the original ISO20022 specification.
+         *           This represents the enum values when mapping to and from FSPIOP specification.
+         *
+         * @example SEND
+         * @enum {string}
+         */
+        AmountTypeEnum: "SEND" | "RECEIVE";
         /**
          * AnyBICDec2014Identifier
          * @description AnyBICDec2014Identifier
@@ -1167,6 +1180,78 @@ export interface components {
             VrfctnOfTerms?: components["schemas"]["CryptographicLockChoice"] & unknown;
         };
         /**
+         * CreditTransferTransaction68_FX_Quotes
+         * @description Provides further details specific to the individual transaction(s) included in the message.
+         *
+         * @example {
+         *       "PmtId": {
+         *         "InstrId": "INSTRID",
+         *         "EndToEndId": "ENDTOENDID"
+         *       },
+         *       "PmtTpInf": {
+         *         "LclInstrm": {
+         *           "Cd": "CHQB",
+         *           "Prtry": "PROPRIETARY"
+         *         }
+         *       },
+         *       "IntrBkSttlmAmt": {
+         *         "Amount": 123.45,
+         *         "Ccy": "EUR"
+         *       },
+         *       "Dbtr": {
+         *         "Nm": "Debtor Name"
+         *       },
+         *       "DbtrAcct": {
+         *         "Id": {
+         *           "IBAN": "IBAN"
+         *         }
+         *       },
+         *       "DbtrAgt": {
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       },
+         *       "CdtrAgt": {
+         *         "FinInstnId": {
+         *           "BICFI": "BICFI"
+         *         }
+         *       },
+         *       "Cdtr": {
+         *         "Nm": "Creditor Name"
+         *       },
+         *       "CdtrAcct": {
+         *         "Id": {
+         *           "IBAN": "IBAN"
+         *         }
+         *       },
+         *       "InstrForCdtrAgt": {
+         *         "Cd": "INSTRUCTION"
+         *       },
+         *       "Purp": {
+         *         "Cd": "CHAR"
+         *       },
+         *       "VrfctnOfTerms": {
+         *         "Cntt": "CONTENT",
+         *         "CnttTp": "PROPRIETARY"
+         *       }
+         *     }
+         */
+        CreditTransferTransaction68_FX_Quotes: {
+            PmtId: components["schemas"]["PaymentIdentification13"] & unknown;
+            PmtTpInf?: components["schemas"]["PaymentTypeInformation28"] & unknown;
+            UndrlygCstmrCdtTrf?: components["schemas"]["UnderlyingCustomerCreditTransfer"] & unknown;
+            IntrBkSttlmAmt: components["schemas"]["ActiveCurrencyAndAmount"] & unknown;
+            Dbtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            DbtrAcct?: components["schemas"]["CashAccount40"] & unknown;
+            DbtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            CdtrAgt?: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            Cdtr: components["schemas"]["BranchAndFinancialInstitutionIdentification8"] & unknown;
+            CdtrAcct?: components["schemas"]["CashAccount40"] & unknown;
+            InstrForCdtrAgt?: components["schemas"]["InstructionForCreditorAgent3_FX_Quotes"] & unknown;
+            Purp?: components["schemas"]["Purpose2Choice"] & unknown;
+            VrfctnOfTerms?: components["schemas"]["CryptographicLockChoice"] & unknown;
+        };
+        /**
          * CryptographicLockChoice
          * @description Cryptographically signed terms
          *
@@ -1252,9 +1337,10 @@ export interface components {
         };
         /**
          * Exact32HexBinaryText
-         * @description Specifies a hexadecimal string with a length of 32 characters.
+         * @description Specifies a hexadecimal string.
          *
-         * @example 1234567890ABCDEF1234567890ABCDEF
+         *     NOTE: This pattern is not the original ISO20022 specification.
+         *
          */
         Exact32HexBinaryText: string;
         /**
@@ -1421,9 +1507,12 @@ export interface components {
          *       "ABOR": "ABORTED"
          *     }
          *
+         *     NOTE: enum enforcement is not apart of the ISO20022 specification, but is added here for FSPIOP mappings.
+         *
          * @example COMM
+         * @enum {string}
          */
-        ExternalPaymentTransactionStatus1Code: string;
+        ExternalPaymentTransactionStatus1Code: "COMM" | "RESV" | "RECV" | "ABOR";
         /**
          * ExternalPersonIdentification1Code
          * @description Specifies the external person identification code.
@@ -1676,7 +1765,7 @@ export interface components {
          */
         FxRequest_FICreditTransferProposal: {
             GrpHdr: components["schemas"]["GroupHeader113"] & unknown;
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68_FX_Quotes"] & unknown;
         };
         /**
          * FxResponse_FICreditTransferConfirmation
@@ -1789,7 +1878,7 @@ export interface components {
          */
         FxResponse_FICreditTransferConfirmation: {
             GrpHdr: components["schemas"]["GroupHeader113"] & unknown;
-            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68"] & unknown;
+            CdtTrfTxInf: components["schemas"]["CreditTransferTransaction68_FX_Quotes"] & unknown;
         };
         /**
          * Fxecute_FinancialInstitutionCreditTransferV12
@@ -2397,6 +2486,19 @@ export interface components {
             InstrInf?: components["schemas"]["Max140Text"] & unknown;
         };
         /**
+         * InstructionForCreditorAgent3_Put_FX_Quotes_ID
+         * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the creditor agent.
+         *
+         * @example {
+         *       "Cd": "PHOA",
+         *       "InstrInf": "Please advise/contact next agent by phone."
+         *     }
+         */
+        InstructionForCreditorAgent3_FX_Quotes: {
+            Cd?: components["schemas"]["ExternalCreditorAgentInstruction1Code"] & unknown;
+            InstrInf?: components["schemas"]["AmountTypeEnum"] & unknown;
+        };
+        /**
          * InstructionForNextAgent1
          * @description Further information related to the processing of the payment instruction, provided by the initiating party, and intended for the next agent in the payment chain.
          *
@@ -2885,9 +2987,9 @@ export interface components {
          *     }
          */
         PaymentIdentification13: {
-            InstrId?: components["schemas"]["Max35Text"] & unknown;
-            EndToEndId?: components["schemas"]["Max35Text"] & unknown;
-            TxId: components["schemas"]["Max35Text"] & unknown;
+            InstrId?: components["schemas"]["ULIDIdentifier"] & unknown;
+            EndToEndId?: components["schemas"]["ULIDIdentifier"] & unknown;
+            TxId: components["schemas"]["ULIDIdentifier"] & unknown;
             UETR?: components["schemas"]["UUIDv4Identifier"] & unknown;
             ClrSysRef?: components["schemas"]["Max35Text"] & unknown;
         };
@@ -3749,6 +3851,11 @@ export interface components {
             GrpHdr: components["schemas"]["GroupHeader129"] & unknown;
             CdtTrfTxInf: components["schemas"]["CreditTransferTransaction67"] & unknown;
         };
+        /**
+         * ULIDIdentifier
+         * @example 01AN4Z07BY79KA1307SR9X4MV3
+         */
+        ULIDIdentifier: string;
         /**
          * UUIDv4Identifier
          * @example 8f3a3b2d-3b0a-4b3f-8e4e-1b2f3f4c5d6e

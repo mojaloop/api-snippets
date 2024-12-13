@@ -944,7 +944,7 @@ components:
         fulfil:
           properties:
             body:
-              type: object
+              $ref: ../components/schemas/TransfersIDPutResponse.yaml
             headers:
               type: object
           type: object
@@ -955,34 +955,34 @@ components:
         prepare:
           properties:
             body:
-              type: object
+              $ref: '../components/schemas/TransfersPostRequest.yaml'
             headers:
               type: object
           type: object
         quote:
           properties:
             fulfilment:
-              type: string
+              $ref: '../components/schemas/IlpFulfilment.yaml'
             internalRequest:
-              type: object
+              $ref: '#/components/schemas/quoteRequest'
             mojaloopResponse:
-              type: object
+              $ref: '../components/schemas/QuotesIDPutResponse.yaml'
             request:
-              type: object
+              $ref: '../components/schemas/QuotesPostRequest.yaml'
             response:
-              type: object
+              $ref: '#/components/schemas/quoteResponse'
           type: object
         quoteRequest:
           properties:
             body:
-              type: object
+              $ref: '../components/schemas/QuotesPostRequest.yaml'
             headers:
               type: object
           type: object
         quoteResponse:
           properties:
             body:
-              type: object
+              $ref: '../components/schemas/QuotesIDPutResponse.yaml'
             headers:
               type: object
           type: object

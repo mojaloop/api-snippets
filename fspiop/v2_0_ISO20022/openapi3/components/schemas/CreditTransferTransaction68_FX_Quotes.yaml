@@ -1,0 +1,136 @@
+title: CreditTransferTransaction68_FX_Quotes
+description: >
+  Provides further details specific to the individual transaction(s) included in
+  the message.
+type: object
+properties:
+  PmtId:
+    allOf:
+      - $ref: ./PaymentIdentification13.yaml
+      - description: >
+          PaymentIdentification
+
+          Set of elements used to reference a payment instruction.
+  PmtTpInf:
+    allOf:
+      - $ref: ./PaymentTypeInformation28.yaml
+      - description: >
+          PaymentTypeInformation
+
+          Set of elements used to further specify the type of transaction.
+  UndrlygCstmrCdtTrf:
+    allOf:
+      - $ref: ./UnderlyingCustomerCreditTransfer.yaml
+      - description: >
+          Underlying Customer Credit Transfer
+
+          TBD
+  IntrBkSttlmAmt:
+    allOf:
+      - $ref: ./ActiveCurrencyAndAmount.yaml
+      - description: >
+          InterbankSettlementAmount
+
+          Amount of money moved between the instructing agent and the instructed agent.
+  Dbtr:
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          Debtor
+
+          Party that owes an amount of money to the (ultimate) creditor.
+  DbtrAcct:
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          DebtorAccount
+
+          Account used to process a payment.
+  DbtrAgt:
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          DebtorAgent
+
+          Financial institution servicing an account for the debtor.
+  CdtrAgt:
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          CreditorAgent
+
+          Financial institution servicing an account for the creditor.
+  Cdtr:
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          Creditor
+
+          Party to which an amount of money is due.
+  CdtrAcct:
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          CreditorAccount
+
+          Account to which a credit entry is made.
+  InstrForCdtrAgt:
+    allOf:
+      - $ref: ./InstructionForCreditorAgent3_FX_Quotes.yaml
+      - description: >
+          InstructionForCreditorAgent
+
+          Set of elements used to provide information on the remittance advice.
+  Purp:
+    allOf:
+      - $ref: ./Purpose2Choice.yaml
+      - description: >
+          Purpose
+
+          Underlying reason for the payment transaction.
+  VrfctnOfTerms:
+    allOf:
+      - $ref: ./CryptographicLockChoice.yaml
+      - description: >
+          VerificationOfTerms
+
+          Set of elements used to provide information on the underlying terms of the transaction.
+required:
+  - PmtId
+  - IntrBkSttlmAmt
+  - Dbtr
+  - Cdtr
+example:
+  PmtId:
+    InstrId: INSTRID
+    EndToEndId: ENDTOENDID
+  PmtTpInf:
+    LclInstrm:
+      Cd: CHQB
+      Prtry: PROPRIETARY
+  IntrBkSttlmAmt:
+    Amount: 123.45
+    Ccy: EUR
+  Dbtr:
+    Nm: Debtor Name
+  DbtrAcct:
+    Id:
+      IBAN: IBAN
+  DbtrAgt:
+    FinInstnId:
+      BICFI: BICFI
+  CdtrAgt:
+    FinInstnId:
+      BICFI: BICFI
+  Cdtr:
+    Nm: Creditor Name
+  CdtrAcct:
+    Id:
+      IBAN: IBAN
+  InstrForCdtrAgt:
+    Cd: INSTRUCTION
+  Purp:
+    Cd: CHAR
+  VrfctnOfTerms:
+    Cntt: CONTENT
+    CnttTp: PROPRIETARY

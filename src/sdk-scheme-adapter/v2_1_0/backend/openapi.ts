@@ -553,28 +553,28 @@ export interface components {
                 transferState: components["schemas"]["transferState"];
             };
             fulfil?: {
-                body?: Record<string, never>;
+                body?: components["schemas"]["TransfersIDPutResponse"];
                 headers?: Record<string, never>;
             };
             initiatedTimestamp?: components["schemas"]["timestamp"];
             lastError?: components["schemas"]["transferError"];
             prepare?: {
-                body?: Record<string, never>;
+                body?: components["schemas"]["TransfersPostRequest"];
                 headers?: Record<string, never>;
             };
             quote?: {
-                fulfilment?: string;
-                internalRequest?: Record<string, never>;
-                mojaloopResponse?: Record<string, never>;
-                request?: Record<string, never>;
-                response?: Record<string, never>;
+                fulfilment?: components["schemas"]["IlpFulfilment"];
+                internalRequest?: components["schemas"]["quoteRequest"];
+                mojaloopResponse?: components["schemas"]["QuotesIDPutResponse"];
+                request?: components["schemas"]["QuotesPostRequest"];
+                response?: components["schemas"]["quoteResponse"];
             };
             quoteRequest?: {
-                body?: Record<string, never>;
+                body?: components["schemas"]["QuotesPostRequest"];
                 headers?: Record<string, never>;
             };
             quoteResponse?: {
-                body?: Record<string, never>;
+                body?: components["schemas"]["QuotesIDPutResponse"];
                 headers?: Record<string, never>;
             };
             transferId?: components["schemas"]["transferId"];
@@ -1165,6 +1165,130 @@ export interface components {
          * @enum {string}
          */
         AuthenticationType: "OTP" | "QRCODE" | "U2F";
+        /**
+         * TransfersIDPutResponse
+         * @description The object sent in the PUT /transfers/{ID} callback.
+         */
+        TransfersIDPutResponse: {
+            fulfilment?: components["schemas"]["IlpFulfilment"];
+            completedTimestamp?: components["schemas"]["DateTime"];
+            transferState: components["schemas"]["TransferState"];
+            extensionList?: components["schemas"]["ExtensionList"];
+        };
+        /**
+         * TransfersPostRequest
+         * @description The object sent in the POST /transfers request.
+         */
+        TransfersPostRequest: {
+            transferId: components["schemas"]["CorrelationId"];
+            payeeFsp: components["schemas"]["FspId"];
+            payerFsp: components["schemas"]["FspId"];
+            amount: components["schemas"]["Money"];
+            ilpPacket: components["schemas"]["IlpPacket"];
+            condition: components["schemas"]["IlpCondition"];
+            expiration: components["schemas"]["DateTime"];
+            extensionList?: components["schemas"]["ExtensionList"];
+        };
+        /**
+         * QuotesIDPutResponse
+         * @description The object sent in the PUT /quotes/{ID} callback.
+         */
+        QuotesIDPutResponse: {
+            transferAmount: components["schemas"]["Money"];
+            payeeReceiveAmount?: components["schemas"]["Money"];
+            payeeFspFee?: components["schemas"]["Money"];
+            payeeFspCommission?: components["schemas"]["Money"];
+            expiration: components["schemas"]["DateTime"];
+            geoCode?: components["schemas"]["GeoCode"];
+            ilpPacket: components["schemas"]["IlpPacket"];
+            condition: components["schemas"]["IlpCondition"];
+            extensionList?: components["schemas"]["ExtensionList"];
+        };
+        /**
+         * TransactionScenario
+         * @description Below are the allowed values for the enumeration.
+         *     - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.
+         *     - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.
+         *     - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.
+         *     - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
+         *     - REFUND - Used for performing a refund of transaction.
+         * @example DEPOSIT
+         * @enum {string}
+         */
+        TransactionScenario: "DEPOSIT" | "WITHDRAWAL" | "TRANSFER" | "PAYMENT" | "REFUND";
+        /**
+         * TransactionInitiator
+         * @description Below are the allowed values for the enumeration.
+         *     - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
+         *     - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
+         * @example PAYEE
+         * @enum {string}
+         */
+        TransactionInitiator: "PAYER" | "PAYEE";
+        /**
+         * TransactionInitiatorType
+         * @description Below are the allowed values for the enumeration.
+         *     - CONSUMER - Consumer is the initiator of the transaction.
+         *     - AGENT - Agent is the initiator of the transaction.
+         *     - BUSINESS - Business is the initiator of the transaction.
+         *     - DEVICE - Device is the initiator of the transaction.
+         * @example CONSUMER
+         * @enum {string}
+         */
+        TransactionInitiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+        /**
+         * RefundReason
+         * @description Reason for the refund.
+         * @example Free text indicating reason for the refund.
+         */
+        RefundReason: string;
+        /**
+         * Refund
+         * @description Data model for the complex type Refund.
+         */
+        Refund: {
+            originalTransactionId: components["schemas"]["CorrelationId"];
+            refundReason?: components["schemas"]["RefundReason"];
+        };
+        /**
+         * BalanceOfPayments
+         * @description (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
+         * @example 123
+         */
+        BalanceOfPayments: string;
+        /**
+         * TransactionType
+         * @description Data model for the complex type TransactionType.
+         */
+        TransactionType: {
+            scenario: components["schemas"]["TransactionScenario"];
+            subScenario?: components["schemas"]["TransactionSubScenario"];
+            initiator: components["schemas"]["TransactionInitiator"];
+            initiatorType: components["schemas"]["TransactionInitiatorType"];
+            refundInfo?: components["schemas"]["Refund"];
+            balanceOfPayments?: components["schemas"]["BalanceOfPayments"];
+        };
+        /**
+         * QuotesPostRequest
+         * @description The object sent in the POST /quotes request.
+         */
+        QuotesPostRequest: {
+            quoteId: components["schemas"]["CorrelationId"];
+            transactionId: components["schemas"]["CorrelationId"];
+            transactionRequestId?: components["schemas"]["CorrelationId"];
+            payee: components["schemas"]["Party"];
+            payer: components["schemas"]["Party"];
+            amountType: components["schemas"]["AmountType"];
+            amount: components["schemas"]["Money"];
+            fees?: components["schemas"]["Money"];
+            transactionType: components["schemas"]["TransactionType"];
+            converter?: components["schemas"]["CurrencyConverter"] & unknown;
+            currencyConversion?: components["schemas"]["FxRate"] & unknown;
+            geoCode?: components["schemas"]["GeoCode"];
+            note?: components["schemas"]["Note"];
+            expiration?: components["schemas"]["DateTime"];
+            extensionList?: components["schemas"]["ExtensionList"];
+        };
         /**
          * FxMoney
          * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.

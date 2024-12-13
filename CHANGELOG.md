@@ -1,4 +1,39 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.7.7](https://github.com/mojaloop/api-snippets/compare/v17.7.6...v17.7.7) (2024-12-13)
+
+
+### Bug Fixes
+
+* **csi-1023:** fixed outbound POST transferResponse - error getPartiesResponse ([#189](https://github.com/mojaloop/api-snippets/issues/189)) ([efd152c](https://github.com/mojaloop/api-snippets/commit/efd152c6afc981bdb589b12a68366a8563930cbd))
+
+### [17.7.6](https://github.com/mojaloop/api-snippets/compare/v17.7.5...v17.7.6) (2024-12-12)
+
+
+### Bug Fixes
+
+* **csi-1023:** fixed outbound POST transferResponse - getPartiesResponse ([#188](https://github.com/mojaloop/api-snippets/issues/188)) ([1625504](https://github.com/mojaloop/api-snippets/commit/162550466866bae641d6588c07d8d8995b3c110a))
+
+### [17.7.5](https://github.com/mojaloop/api-snippets/compare/v17.7.4...v17.7.5) (2024-11-26)
+
+
+### Bug Fixes
+
+* sdk api schemas ([#186](https://github.com/mojaloop/api-snippets/issues/186)) ([75a29f6](https://github.com/mojaloop/api-snippets/commit/75a29f6649e7d7ed680093ad21c36467b0a133b7))
+
+### [17.7.4](https://github.com/mojaloop/api-snippets/compare/v17.7.3...v17.7.4) (2024-10-31)
+
+
+### Maintenance
+
+* update post fxTransfers validation ([#184](https://github.com/mojaloop/api-snippets/issues/184)) ([b4b7bac](https://github.com/mojaloop/api-snippets/commit/b4b7bac6cc531fa85c743c30516362cb61a3b6f1))
+
+### [17.7.3](https://github.com/mojaloop/api-snippets/compare/v17.7.2...v17.7.3) (2024-10-29)
+
+
+### Maintenance
+
+* add stricter validation for GP testing ([#183](https://github.com/mojaloop/api-snippets/issues/183)) ([3ba043f](https://github.com/mojaloop/api-snippets/commit/3ba043f025302d1b0c40b0f3664bc5d11f66f56e))
+
 ### [17.7.2](https://github.com/mojaloop/api-snippets/compare/v17.7.1...v17.7.2) (2024-10-14)
 
 
