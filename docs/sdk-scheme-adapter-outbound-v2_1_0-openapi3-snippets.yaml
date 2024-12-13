@@ -2285,18 +2285,25 @@ components:
           $ref: '#/components/schemas/CorrelationId'
         getPartiesResponse:
           type: object
-          required:
-            - body
           properties:
             body:
-              type: object
-              properties:
-                party:
-                  $ref: '#/components/schemas/Party'
-              required:
-                - party
+              oneOf:
+                - type: object
+                  properties:
+                    party:
+                      $ref: '#/components/schemas/Party'
+                  required:
+                    - party
+                - type: object
+                  properties:
+                    errorInformation:
+                      $ref: '#/components/schemas/ErrorInformation'
+                  required:
+                    - errorInformation
             headers:
               type: object
+          required:
+            - body
         quoteResponse:
           type: object
           required:
