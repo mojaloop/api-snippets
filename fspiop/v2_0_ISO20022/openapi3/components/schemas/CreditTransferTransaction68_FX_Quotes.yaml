@@ -98,8 +98,10 @@ properties:
 required:
   - PmtId
   - IntrBkSttlmAmt
+  - UndrlygCstmrCdtTrf
   - Dbtr
   - Cdtr
+  - InstrForCdtrAgt
 example:
   PmtId:
     InstrId: INSTRID

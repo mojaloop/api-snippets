@@ -1,0 +1,51 @@
+title: GroupHeader129
+description: >
+  Group Header Set of characteristics shared by all individual transactions included in the
+  message.
+type: object
+properties:
+  MsgId:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Message Identification
+  CreDtTm:
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Creation Date and Time
+  PmtInstrXpryDtTm:
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Payment Instruction Expiry Date and Time
+  NbOfTxs:
+    allOf:
+      - $ref: ./Max15NumericText.yaml
+      - description: >
+          Number of Transactions
+  SttlmInf:
+    allOf:
+      - $ref: ./SettlementInstruction15.yaml
+      - description: >
+          Settlement Information
+required:
+  - MsgId
+  - CreDtTm
+  - NbOfTxs
+  - SttlmInf
+  - PmtInstrXpryDtTm
+example:
+  MsgId: 12345
+  CreDtTm: '2020-01-01T00:00:00Z'
+  PmtInstrXpryDtTm: '2020-01-01T00:00:00Z'
+  NbOfTxs: 1
+  SttlmInf:
+    SttlmMtd: INDA
+    SttlmAcct:
+      Id:
+        IBAN: 123
+    SttlmAcctOwnr:
+      Nm: John Doe
+    SttlmAcctSvcr:
+      BICFI: 123

@@ -1,0 +1,44 @@
+title: StatusReasonInformation14
+description: |
+  Unsure on description.
+type: object
+properties:
+  Orgtr:
+    allOf:
+      - $ref: ./PartyIdentification272.yaml
+      - description: >
+          Originator
+
+          Party that issues the status.
+  Rsn:
+    allOf:
+      - $ref: ./StatusReason6Choice.yaml
+      - description: >
+          Reason
+
+          Specifies the reason for the status report.
+  AddtlInf:
+    allOf:
+      - $ref: ./Max105Text.yaml
+      - description: >
+          AdditionalInformation
+
+          Additional information about the status report.
+required:
+  - Rsn
+example:
+  Orgtr:
+    Nm: Name
+    PstlAdr:
+      AdrTp: ADDR
+      Dept: Department
+      SubDept: SubDepartment
+      StrtNm: StreetName
+      BldgNb: BuildingNumber
+      PstCd: PostCode
+      TwnNm: TownName
+      CtrySubDvsn: CountrySubDivision
+      Ctry: Country
+  Rsn:
+    Cd: AGNT
+  AddtlInf: AdditionalInformation
