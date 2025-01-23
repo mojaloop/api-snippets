@@ -1,4 +1,12 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.7.9](https://github.com/mojaloop/api-snippets/compare/v17.7.8...v17.7.9) (2025-01-23)
+
+
+### Maintenance
+
+* audit ([daa2960](https://github.com/mojaloop/api-snippets/commit/daa2960f1ee9f67d46e3f0e32ba9828ce7fd6f94))
+* reorder endpoints ([e0ea485](https://github.com/mojaloop/api-snippets/commit/e0ea485827ba9843f43f05f99b2ec421d9b822ed))
+
 ### [17.7.8](https://github.com/mojaloop/api-snippets/compare/v17.7.7...v17.7.8) (2024-12-16)
 
 ### [17.7.7](https://github.com/mojaloop/api-snippets/compare/v17.7.6...v17.7.7) (2024-12-13)
