@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.7.10](https://github.com/mojaloop/api-snippets/compare/v17.7.9...v17.7.10) (2025-01-31)
+
+
+### Bug Fixes
+
+* **csi-1156:** remove character length limit for ExtensionKey in sdk outbound spec ([#190](https://github.com/mojaloop/api-snippets/issues/190)) ([6c1dc95](https://github.com/mojaloop/api-snippets/commit/6c1dc95f860f62e8246c1d2280497c704669c81f))
+
 ### [17.7.9](https://github.com/mojaloop/api-snippets/compare/v17.7.8...v17.7.9) (2025-01-23)
 
 
