@@ -7,7 +7,7 @@ properties:
   fulfilment:
     $ref: ./IlpFulfilment.yaml
   extensionList:
-    $ref: ./ExtensionList.yaml
+    $ref: ExtensionList_v2_1_0.yaml
   transferState:
     $ref: ./TransferState.yaml
   lastError:

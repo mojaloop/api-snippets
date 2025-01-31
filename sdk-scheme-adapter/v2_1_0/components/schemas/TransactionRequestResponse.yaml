@@ -10,7 +10,7 @@ properties:
       transactionRequestState:
         $ref: ./TransactionRequestState.yaml
       extensionList:
-        $ref: ./ExtensionList.yaml
+        $ref: ExtensionList_v2_1_0.yaml
     required:
       - transactionRequestState
   headers:

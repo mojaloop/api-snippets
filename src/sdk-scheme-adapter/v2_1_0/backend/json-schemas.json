@@ -6445,15 +6445,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -6532,15 +6531,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -6825,15 +6823,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -9166,15 +9163,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -9288,15 +9284,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -9635,15 +9630,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -10883,15 +10877,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -11780,15 +11773,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -12127,15 +12119,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -13375,15 +13366,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -14252,15 +14242,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -14600,15 +14589,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -14947,15 +14935,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -20316,15 +20303,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -20663,15 +20649,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -23133,11 +23118,10 @@
     "maxLength": 128,
     "description": "Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType."
   },
-  "ExtensionKey": {
-    "title": "ExtensionKey",
+  "ExtensionKey_v2_1_0": {
+    "title": "ExtensionKey_v2_1_0",
     "type": "string",
     "minLength": 1,
-    "maxLength": 32,
     "description": "Extension key."
   },
   "ExtensionValue": {
@@ -23147,16 +23131,15 @@
     "maxLength": 128,
     "description": "Extension value."
   },
-  "Extension": {
-    "title": "Extension",
+  "Extension_v2_1_0": {
+    "title": "Extension_v2_1_0",
     "type": "object",
     "description": "Data model for the complex type Extension.",
     "properties": {
       "key": {
-        "title": "ExtensionKey",
+        "title": "ExtensionKey_v2_1_0",
         "type": "string",
         "minLength": 1,
-        "maxLength": 32,
         "description": "Extension key."
       },
       "value": {
@@ -23172,7 +23155,7 @@
       "value"
     ]
   },
-  "ExtensionList": {
+  "ExtensionList_v2_1_0": {
     "title": "ExtensionList",
     "type": "object",
     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
@@ -23180,15 +23163,14 @@
       "extension": {
         "type": "array",
         "items": {
-          "title": "Extension",
+          "title": "Extension_v2_1_0",
           "type": "object",
           "description": "Data model for the complex type Extension.",
           "properties": {
             "key": {
-              "title": "ExtensionKey",
+              "title": "ExtensionKey_v2_1_0",
               "type": "string",
               "minLength": 1,
-              "maxLength": 32,
               "description": "Extension key."
             },
             "value": {
@@ -23263,15 +23245,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -23454,15 +23435,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -24051,15 +24031,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -24120,15 +24099,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -24199,15 +24177,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -25065,15 +25042,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -25136,15 +25112,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -25242,15 +25217,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -25314,15 +25288,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -25397,15 +25370,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -25521,15 +25493,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -26845,15 +26816,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -26916,15 +26886,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -26993,15 +26962,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -27076,15 +27044,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -27129,15 +27096,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -27170,15 +27136,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -27241,15 +27206,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -27657,15 +27621,14 @@
                         "extension": {
                           "type": "array",
                           "items": {
-                            "title": "Extension",
+                            "title": "Extension_v2_1_0",
                             "type": "object",
                             "description": "Data model for the complex type Extension.",
                             "properties": {
                               "key": {
-                                "title": "ExtensionKey",
+                                "title": "ExtensionKey_v2_1_0",
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 32,
                                 "description": "Extension key."
                               },
                               "value": {
@@ -28981,15 +28944,14 @@
                     "extension": {
                       "type": "array",
                       "items": {
-                        "title": "Extension",
+                        "title": "Extension_v2_1_0",
                         "type": "object",
                         "description": "Data model for the complex type Extension.",
                         "properties": {
                           "key": {
-                            "title": "ExtensionKey",
+                            "title": "ExtensionKey_v2_1_0",
                             "type": "string",
                             "minLength": 1,
-                            "maxLength": 32,
                             "description": "Extension key."
                           },
                           "value": {
@@ -29052,15 +29014,14 @@
                                 "extension": {
                                   "type": "array",
                                   "items": {
-                                    "title": "Extension",
+                                    "title": "Extension_v2_1_0",
                                     "type": "object",
                                     "description": "Data model for the complex type Extension.",
                                     "properties": {
                                       "key": {
-                                        "title": "ExtensionKey",
+                                        "title": "ExtensionKey_v2_1_0",
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 32,
                                         "description": "Extension key."
                                       },
                                       "value": {
@@ -29129,15 +29090,14 @@
                     "extension": {
                       "type": "array",
                       "items": {
-                        "title": "Extension",
+                        "title": "Extension_v2_1_0",
                         "type": "object",
                         "description": "Data model for the complex type Extension.",
                         "properties": {
                           "key": {
-                            "title": "ExtensionKey",
+                            "title": "ExtensionKey_v2_1_0",
                             "type": "string",
                             "minLength": 1,
-                            "maxLength": 32,
                             "description": "Extension key."
                           },
                           "value": {
@@ -29212,15 +29172,14 @@
                                 "extension": {
                                   "type": "array",
                                   "items": {
-                                    "title": "Extension",
+                                    "title": "Extension_v2_1_0",
                                     "type": "object",
                                     "description": "Data model for the complex type Extension.",
                                     "properties": {
                                       "key": {
-                                        "title": "ExtensionKey",
+                                        "title": "ExtensionKey_v2_1_0",
                                         "type": "string",
                                         "minLength": 1,
-                                        "maxLength": 32,
                                         "description": "Extension key."
                                       },
                                       "value": {
@@ -29265,15 +29224,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -29306,15 +29264,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -29377,15 +29334,14 @@
                             "extension": {
                               "type": "array",
                               "items": {
-                                "title": "Extension",
+                                "title": "Extension_v2_1_0",
                                 "type": "object",
                                 "description": "Data model for the complex type Extension.",
                                 "properties": {
                                   "key": {
-                                    "title": "ExtensionKey",
+                                    "title": "ExtensionKey_v2_1_0",
                                     "type": "string",
                                     "minLength": 1,
-                                    "maxLength": 32,
                                     "description": "Extension key."
                                   },
                                   "value": {
@@ -29431,15 +29387,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -29933,15 +29888,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -30219,15 +30173,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -31088,15 +31041,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -31371,15 +31323,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -31718,15 +31669,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -32966,15 +32916,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -33610,6 +33559,79 @@
     },
     "required": [
       "chargeType"
+    ]
+  },
+  "ExtensionKey": {
+    "title": "ExtensionKey",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 32,
+    "description": "Extension key."
+  },
+  "Extension": {
+    "title": "Extension",
+    "type": "object",
+    "description": "Data model for the complex type Extension.",
+    "properties": {
+      "key": {
+        "title": "ExtensionKey",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32,
+        "description": "Extension key."
+      },
+      "value": {
+        "title": "ExtensionValue",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128,
+        "description": "Extension value."
+      }
+    },
+    "required": [
+      "key",
+      "value"
+    ]
+  },
+  "ExtensionList": {
+    "title": "ExtensionList",
+    "type": "object",
+    "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
+    "properties": {
+      "extension": {
+        "type": "array",
+        "items": {
+          "title": "Extension",
+          "type": "object",
+          "description": "Data model for the complex type Extension.",
+          "properties": {
+            "key": {
+              "title": "ExtensionKey",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "description": "Extension key."
+            },
+            "value": {
+              "title": "ExtensionValue",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "description": "Extension value."
+            }
+          },
+          "required": [
+            "key",
+            "value"
+          ]
+        },
+        "minItems": 1,
+        "maxItems": 16,
+        "description": "Number of Extension elements."
+      }
+    },
+    "required": [
+      "extension"
     ]
   },
   "FxConversion": {
