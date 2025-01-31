@@ -17,7 +17,7 @@ properties:
   condition:
     $ref: ./IlpCondition.yaml
   extensionList:
-    $ref: ./ExtensionList.yaml
+    $ref: ExtensionList_v2_1_0.yaml
   lastError:
     $ref: ./quoteError.yaml
 required:

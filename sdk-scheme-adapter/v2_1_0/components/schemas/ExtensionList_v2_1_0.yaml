@@ -7,7 +7,7 @@ properties:
   extension:
     type: array
     items:
-      $ref: ./Extension.yaml
+      $ref: ./Extension_v2_1_0.yaml
     minItems: 1
     maxItems: 16
     description: Number of Extension elements.

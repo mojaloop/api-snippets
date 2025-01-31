@@ -929,30 +929,30 @@ export interface components {
          */
         ErrorDescription: string;
         /**
-         * ExtensionKey
+         * ExtensionKey_v2_1_0
          * @description Extension key.
          */
-        ExtensionKey: string;
+        ExtensionKey_v2_1_0: string;
         /**
          * ExtensionValue
          * @description Extension value.
          */
         ExtensionValue: string;
         /**
-         * Extension
+         * Extension_v2_1_0
          * @description Data model for the complex type Extension.
          */
-        Extension: {
-            key: components["schemas"]["ExtensionKey"];
+        Extension_v2_1_0: {
+            key: components["schemas"]["ExtensionKey_v2_1_0"];
             value: components["schemas"]["ExtensionValue"];
         };
         /**
          * ExtensionList
          * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
          */
-        ExtensionList: {
+        ExtensionList_v2_1_0: {
             /** @description Number of Extension elements. */
-            extension: components["schemas"]["Extension"][];
+            extension: components["schemas"]["Extension_v2_1_0"][];
         };
         /**
          * ErrorInformation
@@ -961,7 +961,7 @@ export interface components {
         ErrorInformation: {
             errorCode: components["schemas"]["ErrorCode"];
             errorDescription: components["schemas"]["ErrorDescription"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         mojaloopError: {
             errorInformation?: components["schemas"]["ErrorInformation"];
@@ -1072,7 +1072,7 @@ export interface components {
          *     }
          */
         KYCInformation: string;
-        extensionListEmptiable: components["schemas"]["Extension"][];
+        extensionListEmptiable: components["schemas"]["Extension_v2_1_0"][];
         transferParty: {
             type?: components["schemas"]["TransactionInitiatorType"];
             idType: components["schemas"]["PartyIdType"];
@@ -1136,7 +1136,7 @@ export interface components {
             transactionType: components["schemas"]["transferTransactionType"];
             subScenario?: components["schemas"]["TransactionSubScenario"];
             note?: components["schemas"]["Note"];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         bulkQuoteRequest: {
             /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
@@ -1145,7 +1145,7 @@ export interface components {
             from: components["schemas"]["transferParty"];
             /** @description List of individual quotes in a bulk quote. */
             individualQuotes: components["schemas"]["individualQuote"][];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * DateTime
@@ -1209,7 +1209,7 @@ export interface components {
             geoCode?: components["schemas"]["GeoCode"];
             ilpPacket?: components["schemas"]["IlpPacket"];
             condition?: components["schemas"]["IlpCondition"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             lastError?: components["schemas"]["quoteError"];
         };
         bulkQuoteResponse: {
@@ -1217,7 +1217,7 @@ export interface components {
             /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
             homeTransactionId?: string;
             expiration: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             currentState: components["schemas"]["bulkTransferStatus"];
             /** @description List of individualQuoteResults in a bulk transfer response. */
             individualQuoteResults: components["schemas"]["individualQuoteResult"][];
@@ -1266,7 +1266,7 @@ export interface components {
             partyIdentifier: components["schemas"]["PartyIdentifier"];
             partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
             fspId?: components["schemas"]["FspId"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * PartyName
@@ -1317,8 +1317,8 @@ export interface components {
             currency: components["schemas"]["Currency"];
             amount: components["schemas"]["Amount"];
             note?: components["schemas"]["Note"];
-            quoteExtensions?: components["schemas"]["ExtensionList"];
-            transferExtensions?: components["schemas"]["ExtensionList"];
+            quoteExtensions?: components["schemas"]["ExtensionList_v2_1_0"];
+            transferExtensions?: components["schemas"]["ExtensionList_v2_1_0"];
             lastError?: components["schemas"]["transferError"];
         };
         bulkTransactionRequest: {
@@ -1329,7 +1329,7 @@ export interface components {
             from: components["schemas"]["Party"];
             /** @description List of individual transfers in a bulk transfer. */
             individualTransfers: components["schemas"]["bulkTransactionIndividualTransfer"][];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * TransferState
@@ -1351,7 +1351,7 @@ export interface components {
         individualTransferResult: {
             transferId: components["schemas"]["CorrelationId"];
             fulfilment?: components["schemas"]["IlpFulfilment"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             transferState?: components["schemas"]["TransferState"];
             lastError?: components["schemas"]["transferError"];
         };
@@ -1362,7 +1362,7 @@ export interface components {
             homeTransactionId?: string;
             bulkTransferState?: components["schemas"]["TransferState"];
             completedTimestamp?: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             currentState: components["schemas"]["bulkTransferStatus"];
             /** @description List of individual transfer result in a bulk transfer response. */
             individualTransferResults: components["schemas"]["individualTransferResult"][];
@@ -1419,7 +1419,7 @@ export interface components {
             ilpPacket: components["schemas"]["IlpPacket"];
             condition: components["schemas"]["IlpCondition"];
             note?: components["schemas"]["Note"];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         bulkTransferRequest: {
             /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
@@ -1429,12 +1429,12 @@ export interface components {
             from: components["schemas"]["transferParty"];
             /** @description List of individual transfers in a bulk transfer. */
             individualTransfers: components["schemas"]["individualTransfer"][];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /** @description A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer */
         individualTransferFulfilment: {
             fulfilment?: components["schemas"]["IlpFulfilment"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         bulkTransferStatusResponse: {
             bulkTransferId: components["schemas"]["CorrelationId"];
@@ -1540,7 +1540,7 @@ export interface components {
             geoCode?: components["schemas"]["GeoCode"];
             note?: components["schemas"]["Note"];
             expiration?: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /** simpleQuotesPostRequest */
         simpleQuotesPostRequest: {
@@ -1567,7 +1567,7 @@ export interface components {
                     geoCode?: components["schemas"]["GeoCode"];
                     ilpPacket: components["schemas"]["IlpPacket"];
                     condition: components["schemas"]["IlpCondition"];
-                    extensionList?: components["schemas"]["ExtensionList"];
+                    extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
                 };
                 headers: Record<string, never>;
             };
@@ -1625,7 +1625,7 @@ export interface components {
             body: {
                 transactionId?: components["schemas"]["CorrelationId"];
                 transactionRequestState: components["schemas"]["TransactionRequestState"];
-                extensionList?: components["schemas"]["ExtensionList"];
+                extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             };
             headers: Record<string, never>;
         };
@@ -1658,7 +1658,7 @@ export interface components {
             geoCode?: components["schemas"]["GeoCode"];
             ilpPacket: components["schemas"]["IlpPacket"];
             condition: components["schemas"]["IlpCondition"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * FxMoney
@@ -1677,6 +1677,27 @@ export interface components {
             chargeType: string;
             sourceAmount?: components["schemas"]["Money"] & unknown;
             targetAmount?: components["schemas"]["Money"] & unknown;
+        };
+        /**
+         * ExtensionKey
+         * @description Extension key.
+         */
+        ExtensionKey: string;
+        /**
+         * Extension
+         * @description Data model for the complex type Extension.
+         */
+        Extension: {
+            key: components["schemas"]["ExtensionKey"];
+            value: components["schemas"]["ExtensionValue"];
+        };
+        /**
+         * ExtensionList
+         * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        ExtensionList: {
+            /** @description Number of Extension elements. */
+            extension: components["schemas"]["Extension"][];
         };
         /**
          * FxConversion
@@ -1713,7 +1734,7 @@ export interface components {
             fulfilment?: components["schemas"]["IlpFulfilment"];
             completedTimestamp?: components["schemas"]["DateTime"];
             transferState: components["schemas"]["TransferState"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         transferResponse: {
             transferId?: components["schemas"]["CorrelationId"];
@@ -1866,7 +1887,7 @@ export interface components {
             ilpPacket: components["schemas"]["IlpPacket"];
             condition: components["schemas"]["IlpCondition"];
             expiration: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /** SimpleTransfersPostRequest */
         simpleTransfersPostRequest: {

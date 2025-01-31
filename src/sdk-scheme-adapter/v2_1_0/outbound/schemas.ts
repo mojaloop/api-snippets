@@ -16,10 +16,10 @@ export namespace Schemas {
   export const accountsCreationState = JsonSchemas.accountsCreationState
   export const ErrorCode = JsonSchemas.ErrorCode
   export const ErrorDescription = JsonSchemas.ErrorDescription
-  export const ExtensionKey = JsonSchemas.ExtensionKey
+  export const ExtensionKey_v2_1_0 = JsonSchemas.ExtensionKey_v2_1_0
   export const ExtensionValue = JsonSchemas.ExtensionValue
-  export const Extension = JsonSchemas.Extension
-  export const ExtensionList = JsonSchemas.ExtensionList
+  export const Extension_v2_1_0 = JsonSchemas.Extension_v2_1_0
+  export const ExtensionList_v2_1_0 = JsonSchemas.ExtensionList_v2_1_0
   export const ErrorInformation = JsonSchemas.ErrorInformation
   export const mojaloopError = JsonSchemas.mojaloopError
   export const transferError = JsonSchemas.transferError
@@ -110,6 +110,9 @@ export namespace Schemas {
   export const QuotesIDPutResponse = JsonSchemas.QuotesIDPutResponse
   export const FxMoney = JsonSchemas.FxMoney
   export const FxCharge = JsonSchemas.FxCharge
+  export const ExtensionKey = JsonSchemas.ExtensionKey
+  export const Extension = JsonSchemas.Extension
+  export const ExtensionList = JsonSchemas.ExtensionList
   export const FxConversion = JsonSchemas.FxConversion
   export const FxQuotesPostOutboundResponse = JsonSchemas.FxQuotesPostOutboundResponse
   export const TransfersIDPutResponse = JsonSchemas.TransfersIDPutResponse

@@ -1,5 +1,5 @@
 type: array
 items:
-  $ref: ./Extension.yaml
+  $ref: ./Extension_v2_1_0.yaml
 minItems: 0
 maxItems: 16

@@ -1911,11 +1911,10 @@ components:
       minLength: 1
       maxLength: 128
       description: Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
-    ExtensionKey:
-      title: ExtensionKey
+    ExtensionKey_v2_1_0:
+      title: ExtensionKey_v2_1_0
       type: string
       minLength: 1
-      maxLength: 32
       description: Extension key.
     ExtensionValue:
       title: ExtensionValue
@@ -1923,19 +1922,19 @@ components:
       minLength: 1
       maxLength: 128
       description: Extension value.
-    Extension:
-      title: Extension
+    Extension_v2_1_0:
+      title: Extension_v2_1_0
       type: object
       description: Data model for the complex type Extension.
       properties:
         key:
-          $ref: '#/components/schemas/ExtensionKey'
+          $ref: '#/components/schemas/ExtensionKey_v2_1_0'
         value:
           $ref: '#/components/schemas/ExtensionValue'
       required:
         - key
         - value
-    ExtensionList:
+    ExtensionList_v2_1_0:
       title: ExtensionList
       type: object
       description: Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
@@ -1943,7 +1942,7 @@ components:
         extension:
           type: array
           items:
-            $ref: '#/components/schemas/Extension'
+            $ref: '#/components/schemas/Extension_v2_1_0'
           minItems: 1
           maxItems: 16
           description: Number of Extension elements.
@@ -1963,7 +1962,7 @@ components:
         fspId:
           $ref: '#/components/schemas/FspId'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - partyIdType
         - partyIdentifier
@@ -2107,7 +2106,7 @@ components:
         errorDescription:
           $ref: '#/components/schemas/ErrorDescription'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - errorCode
         - errorDescription
@@ -2145,7 +2144,7 @@ components:
         condition:
           $ref: '#/components/schemas/IlpCondition'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         lastError:
           $ref: '#/components/schemas/quoteError'
       required:
@@ -2191,7 +2190,7 @@ components:
         fulfilment:
           $ref: '#/components/schemas/IlpFulfilment'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         transferState:
           $ref: '#/components/schemas/TransferState'
         lastError:
@@ -2228,9 +2227,9 @@ components:
         fulfil:
           $ref: '#/components/schemas/individualTransferResult'
         quoteExtensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         transferExtensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         lastError:
           $ref: '#/components/schemas/transferError'
     bulkTransactionResponse:
@@ -2258,7 +2257,7 @@ components:
           items:
             $ref: '#/components/schemas/bulkTransactionIndividualTransferResult'
         extensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
     CurrencyConverter:
       title: CurrencyConverter
       type: string
@@ -2307,7 +2306,7 @@ components:
         transferState:
           $ref: '#/components/schemas/TransferState'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - transferState
     TransfersPostRequest:
@@ -2330,7 +2329,7 @@ components:
         expiration:
           $ref: '#/components/schemas/DateTime'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - transferId
         - payeeFsp
@@ -2361,7 +2360,7 @@ components:
         condition:
           $ref: '#/components/schemas/IlpCondition'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - transferAmount
         - expiration
@@ -2493,7 +2492,7 @@ components:
         expiration:
           $ref: '#/components/schemas/DateTime'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - quoteId
         - transactionId
@@ -2533,6 +2532,38 @@ components:
             - description: The amount of the charge which is being levied, expressed in the target currency.
       required:
         - chargeType
+    ExtensionKey:
+      title: ExtensionKey
+      type: string
+      minLength: 1
+      maxLength: 32
+      description: Extension key.
+    Extension:
+      title: Extension
+      type: object
+      description: Data model for the complex type Extension.
+      properties:
+        key:
+          $ref: '#/components/schemas/ExtensionKey'
+        value:
+          $ref: '#/components/schemas/ExtensionValue'
+      required:
+        - key
+        - value
+    ExtensionList:
+      title: ExtensionList
+      type: object
+      description: Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+      properties:
+        extension:
+          type: array
+          items:
+            $ref: '#/components/schemas/Extension'
+          minItems: 1
+          maxItems: 16
+          description: Number of Extension elements.
+      required:
+        - extension
     FxConversion:
       title: FxConversion
       type: object

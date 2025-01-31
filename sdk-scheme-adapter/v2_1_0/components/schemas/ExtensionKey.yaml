@@ -1,5 +1,0 @@
-title: ExtensionKey
-type: string
-minLength: 1
-# maxLength: 32 # Disabled to accommodate ISO 20022 extensions. This should be checked in code in FSPIOP mode. 
-description: Extension key.

@@ -1,0 +1,4 @@
+title: ExtensionKey_v2_1_0
+type: string
+minLength: 1
+description: Extension key.

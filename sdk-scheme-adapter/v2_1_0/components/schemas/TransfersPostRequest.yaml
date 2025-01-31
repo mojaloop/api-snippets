@@ -17,7 +17,7 @@ properties:
   expiration:
     $ref: ./DateTime.yaml
   extensionList:
-    $ref: ./ExtensionList.yaml
+    $ref: ExtensionList_v2_1_0.yaml
 required:
   - transferId
   - payeeFsp

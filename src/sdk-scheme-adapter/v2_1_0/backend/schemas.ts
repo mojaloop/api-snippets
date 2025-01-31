@@ -84,10 +84,10 @@ export namespace Schemas {
   export const PartyIdType = JsonSchemas.PartyIdType
   export const PartyIdentifier = JsonSchemas.PartyIdentifier
   export const PartySubIdOrType = JsonSchemas.PartySubIdOrType
-  export const ExtensionKey = JsonSchemas.ExtensionKey
+  export const ExtensionKey_v2_1_0 = JsonSchemas.ExtensionKey_v2_1_0
   export const ExtensionValue = JsonSchemas.ExtensionValue
-  export const Extension = JsonSchemas.Extension
-  export const ExtensionList = JsonSchemas.ExtensionList
+  export const Extension_v2_1_0 = JsonSchemas.Extension_v2_1_0
+  export const ExtensionList_v2_1_0 = JsonSchemas.ExtensionList_v2_1_0
   export const PartyIdInfo = JsonSchemas.PartyIdInfo
   export const PartyName = JsonSchemas.PartyName
   export const PartyComplexName = JsonSchemas.PartyComplexName
@@ -129,6 +129,9 @@ export namespace Schemas {
   export const QuotesPostRequest = JsonSchemas.QuotesPostRequest
   export const FxMoney = JsonSchemas.FxMoney
   export const FxCharge = JsonSchemas.FxCharge
+  export const ExtensionKey = JsonSchemas.ExtensionKey
+  export const Extension = JsonSchemas.Extension
+  export const ExtensionList = JsonSchemas.ExtensionList
   export const FxConversion = JsonSchemas.FxConversion
   export const FxQuotesPostBackendRequest = JsonSchemas.FxQuotesPostBackendRequest
   export const FxQuotesPostBackendResponse = JsonSchemas.FxQuotesPostBackendResponse

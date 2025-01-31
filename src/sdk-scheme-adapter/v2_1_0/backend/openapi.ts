@@ -915,30 +915,30 @@ export interface components {
          */
         PartySubIdOrType: string;
         /**
-         * ExtensionKey
+         * ExtensionKey_v2_1_0
          * @description Extension key.
          */
-        ExtensionKey: string;
+        ExtensionKey_v2_1_0: string;
         /**
          * ExtensionValue
          * @description Extension value.
          */
         ExtensionValue: string;
         /**
-         * Extension
+         * Extension_v2_1_0
          * @description Data model for the complex type Extension.
          */
-        Extension: {
-            key: components["schemas"]["ExtensionKey"];
+        Extension_v2_1_0: {
+            key: components["schemas"]["ExtensionKey_v2_1_0"];
             value: components["schemas"]["ExtensionValue"];
         };
         /**
          * ExtensionList
          * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
          */
-        ExtensionList: {
+        ExtensionList_v2_1_0: {
             /** @description Number of Extension elements. */
-            extension: components["schemas"]["Extension"][];
+            extension: components["schemas"]["Extension_v2_1_0"][];
         };
         /**
          * PartyIdInfo
@@ -949,7 +949,7 @@ export interface components {
             partyIdentifier: components["schemas"]["PartyIdentifier"];
             partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
             fspId?: components["schemas"]["FspId"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * PartyName
@@ -1058,7 +1058,7 @@ export interface components {
         ErrorInformation: {
             errorCode: components["schemas"]["ErrorCode"];
             errorDescription: components["schemas"]["ErrorDescription"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         mojaloopError: {
             errorInformation?: components["schemas"]["ErrorInformation"];
@@ -1078,7 +1078,7 @@ export interface components {
             geoCode?: components["schemas"]["GeoCode"];
             ilpPacket?: components["schemas"]["IlpPacket"];
             condition?: components["schemas"]["IlpCondition"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             lastError?: components["schemas"]["quoteError"];
         };
         /**
@@ -1107,7 +1107,7 @@ export interface components {
         individualTransferResult: {
             transferId: components["schemas"]["CorrelationId"];
             fulfilment?: components["schemas"]["IlpFulfilment"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             transferState?: components["schemas"]["TransferState"];
             lastError?: components["schemas"]["transferError"];
         };
@@ -1126,8 +1126,8 @@ export interface components {
             quoteId?: components["schemas"]["CorrelationId"];
             quoteResponse?: components["schemas"]["individualQuoteResult"];
             fulfil?: components["schemas"]["individualTransferResult"];
-            quoteExtensions?: components["schemas"]["ExtensionList"];
-            transferExtensions?: components["schemas"]["ExtensionList"];
+            quoteExtensions?: components["schemas"]["ExtensionList_v2_1_0"];
+            transferExtensions?: components["schemas"]["ExtensionList_v2_1_0"];
             lastError?: components["schemas"]["transferError"];
         };
         /** BulkTransactionResponse */
@@ -1139,7 +1139,7 @@ export interface components {
             options?: components["schemas"]["bulkTransactionOptions"];
             /** @description List of individual transfer result in a bulk transfer response. */
             individualTransferResults: components["schemas"]["bulkTransactionIndividualTransferResult"][];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * CurrencyConverter
@@ -1173,7 +1173,7 @@ export interface components {
             fulfilment?: components["schemas"]["IlpFulfilment"];
             completedTimestamp?: components["schemas"]["DateTime"];
             transferState: components["schemas"]["TransferState"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * TransfersPostRequest
@@ -1187,7 +1187,7 @@ export interface components {
             ilpPacket: components["schemas"]["IlpPacket"];
             condition: components["schemas"]["IlpCondition"];
             expiration: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * QuotesIDPutResponse
@@ -1202,7 +1202,7 @@ export interface components {
             geoCode?: components["schemas"]["GeoCode"];
             ilpPacket: components["schemas"]["IlpPacket"];
             condition: components["schemas"]["IlpCondition"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * TransactionScenario
@@ -1287,7 +1287,7 @@ export interface components {
             geoCode?: components["schemas"]["GeoCode"];
             note?: components["schemas"]["Note"];
             expiration?: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * FxMoney
@@ -1306,6 +1306,27 @@ export interface components {
             chargeType: string;
             sourceAmount?: components["schemas"]["Money"] & unknown;
             targetAmount?: components["schemas"]["Money"] & unknown;
+        };
+        /**
+         * ExtensionKey
+         * @description Extension key.
+         */
+        ExtensionKey: string;
+        /**
+         * Extension
+         * @description Data model for the complex type Extension.
+         */
+        Extension: {
+            key: components["schemas"]["ExtensionKey"];
+            value: components["schemas"]["ExtensionValue"];
+        };
+        /**
+         * ExtensionList
+         * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        ExtensionList: {
+            /** @description Number of Extension elements. */
+            extension: components["schemas"]["Extension"][];
         };
         /**
          * FxConversion
