@@ -813,7 +813,7 @@ components:
       title: ExtensionKey
       type: string
       minLength: 1
-      # maxLength: 32 - Disabled here to accomodate ISO 20022 extension keys. This should be checked in code in FSPIOP mode.
+      maxLength: 32
       description: Extension key.
     ExtensionValue:
       title: ExtensionValue
