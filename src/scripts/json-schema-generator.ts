@@ -68,7 +68,9 @@ $RefParser.dereference(openApiFile, (err, openApiSpecObj) => {
     indexFileContent += '\n'
     indexFileContent += '\n' + 'export namespace Schemas {'
     Object.keys(openApiSpec?.components?.schemas).forEach((schemaName) => {
-      indexFileContent += '\n' + `  export const ${schemaName} = JsonSchemas.${schemaName}`
+      // Replace - with _
+      const newSchemaName = schemaName.replaceAll('-', '_')
+      indexFileContent += '\n' + `  export const ${newSchemaName} = JsonSchemas["${schemaName}"]`
     })
     indexFileContent += '\n' + '}'
     indexFileContent += '\n'
@@ -87,7 +89,9 @@ $RefParser.dereference(openApiFile, (err, openApiSpecObj) => {
     typesFileContent += '\n'
     typesFileContent += '\n' + 'export namespace Types {'
     Object.keys(openApiSpec?.components?.schemas).forEach((schemaName) => {
-      typesFileContent += '\n' + `  export type ${schemaName} = components['schemas']['${schemaName}']`
+      // Replace - with _
+      const newSchemaName = schemaName.replaceAll('-', '_')
+      typesFileContent += '\n' + `  export type ${newSchemaName} = components['schemas']['${schemaName}']`
     })
     typesFileContent += '\n' + '}'
     typesFileContent += '\n'

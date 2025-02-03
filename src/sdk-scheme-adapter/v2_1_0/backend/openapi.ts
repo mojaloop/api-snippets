@@ -1308,27 +1308,6 @@ export interface components {
             targetAmount?: components["schemas"]["Money"] & unknown;
         };
         /**
-         * ExtensionKey
-         * @description Extension key.
-         */
-        ExtensionKey: string;
-        /**
-         * Extension
-         * @description Data model for the complex type Extension.
-         */
-        Extension: {
-            key: components["schemas"]["ExtensionKey"];
-            value: components["schemas"]["ExtensionValue"];
-        };
-        /**
-         * ExtensionList
-         * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-         */
-        ExtensionList: {
-            /** @description Number of Extension elements. */
-            extension: components["schemas"]["Extension"][];
-        };
-        /**
          * FxConversion
          * @description A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
          */
@@ -1343,7 +1322,7 @@ export interface components {
             expiration: components["schemas"]["DateTime"] & unknown;
             /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
             charges?: components["schemas"]["FxCharge"][];
-            extensionList?: components["schemas"]["ExtensionList"] & unknown;
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"] & unknown;
         };
         /**
          * FxQuotesPostBackendRequest
@@ -1397,7 +1376,7 @@ export interface components {
             fulfilment?: components["schemas"]["fulfilment"];
             completedTimestamp?: components["schemas"]["completedTimestamp"];
             conversionState: components["schemas"]["conversionState"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * FxTransfersPutBackendRequest
@@ -1409,7 +1388,7 @@ export interface components {
             fulfilment?: components["schemas"]["fulfilment"];
             completedTimestamp?: components["schemas"]["completedTimestamp"];
             conversionState: components["schemas"]["conversionState"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * fxTransfersPatchBackendRequest

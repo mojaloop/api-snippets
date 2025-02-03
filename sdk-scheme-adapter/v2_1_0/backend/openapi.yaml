@@ -888,7 +888,6 @@ components:
     extensionItem:
       properties:
         key:
-          maxLength: 32
           minLength: 1
           type: string
         value:
