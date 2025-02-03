@@ -7,7 +7,7 @@ properties:
   errorDescription:
     $ref: ./ErrorDescription.yaml
   extensionList:
-    $ref: ExtensionList_v2_1_0.yaml
+    $ref: ./ExtensionList_v2_1_0.yaml
 required:
   - errorCode
   - errorDescription

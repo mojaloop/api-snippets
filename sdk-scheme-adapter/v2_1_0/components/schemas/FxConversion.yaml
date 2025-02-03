@@ -1,0 +1,34 @@
+title: FxConversion
+type: object
+description: A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
+properties:
+  conversionId:
+    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/conversionId"
+  determiningTransferId:
+      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/determiningTransferId"
+  initiatingFsp:
+      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/initiatingFsp"
+  counterPartyFsp:
+      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/counterPartyFsp"
+  amountType:
+      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/amountType"
+  sourceAmount:
+      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/sourceAmount"
+  targetAmount:
+      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/targetAmount"
+  expiration:
+      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/expiration"
+  charges:
+      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/charges"
+  extensionList:
+    allOf:
+      - $ref: ./ExtensionList_v2_1_0.yaml
+      - description: The extension list for the currency conversion request.
+required:
+  - conversionId
+  - initiatingFsp
+  - counterPartyFsp
+  - amountType
+  - sourceAmount
+  - targetAmount
+  - expiration

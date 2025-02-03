@@ -9,6 +9,6 @@ properties:
   transferState:
     $ref: ./TransferState.yaml
   extensionList:
-    $ref: ExtensionList_v2_1_0.yaml
+    $ref: ./ExtensionList_v2_1_0.yaml
 required:
   - transferState
