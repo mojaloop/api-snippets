@@ -10,7 +10,7 @@ properties:
           Set of characteristics shared by all individual transactions included in the message.
   TxInfAndSts:
     allOf:
-      - $ref: ./PaymentTransaction163.yaml
+      - $ref: ./PaymentTransaction163patch.yaml
       - description: >
           Information concerning the original transactions, to which the status report message refers.
   SplmtryData:

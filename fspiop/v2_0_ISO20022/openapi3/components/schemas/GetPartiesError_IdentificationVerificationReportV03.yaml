@@ -10,7 +10,7 @@ properties:
           Information related to the identification assignment.
   Rpt:
     allOf:
-      - $ref: ./VerificationReport4.yaml
+      - $ref: ./VerificationReport4b.yaml
       - description: >
           Report
 

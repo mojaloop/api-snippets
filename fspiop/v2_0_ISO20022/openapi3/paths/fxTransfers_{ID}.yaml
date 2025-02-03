@@ -59,7 +59,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/PacsStatus_FIToFIPaymentStatusReportV15.yaml
+          $ref: ../components/schemas/PacsStatus_FIToFIPaymentStatusReportV15patch.yaml
   responses:
     '200':
       $ref: ../components/responses/200.yaml
