@@ -1660,11 +1660,6 @@ export interface components {
             condition: components["schemas"]["IlpCondition"];
             extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
-        conversionId: components["schemas"]["CorrelationId"] & unknown;
-        determiningTransferId: components["schemas"]["CorrelationId"] & unknown;
-        initiatingFsp: components["schemas"]["FspId"] & unknown;
-        counterPartyFsp: components["schemas"]["FspId"] & unknown;
-        amountType: components["schemas"]["AmountType"] & unknown;
         /**
          * FxMoney
          * @description Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.
@@ -1673,9 +1668,6 @@ export interface components {
             currency: components["schemas"]["Currency"];
             amount?: components["schemas"]["Amount"];
         };
-        sourceAmount: components["schemas"]["FxMoney"] & unknown;
-        targetAmount: components["schemas"]["FxMoney"] & unknown;
-        expiration: components["schemas"]["DateTime"] & unknown;
         /**
          * FxCharge
          * @description An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FxCharge object.
@@ -1686,22 +1678,21 @@ export interface components {
             sourceAmount?: components["schemas"]["Money"] & unknown;
             targetAmount?: components["schemas"]["Money"] & unknown;
         };
-        /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
-        charges: components["schemas"]["FxCharge"][];
         /**
          * FxConversion
          * @description A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
          */
         FxConversion: {
-            conversionId: components["schemas"]["conversionId"];
-            determiningTransferId?: components["schemas"]["determiningTransferId"];
-            initiatingFsp: components["schemas"]["initiatingFsp"];
-            counterPartyFsp: components["schemas"]["counterPartyFsp"];
-            amountType: components["schemas"]["amountType"];
-            sourceAmount: components["schemas"]["sourceAmount"];
-            targetAmount: components["schemas"]["targetAmount"];
-            expiration: components["schemas"]["expiration"];
-            charges?: components["schemas"]["charges"];
+            conversionId: components["schemas"]["CorrelationId"] & unknown;
+            determiningTransferId?: components["schemas"]["CorrelationId"] & unknown;
+            initiatingFsp: components["schemas"]["FspId"] & unknown;
+            counterPartyFsp: components["schemas"]["FspId"] & unknown;
+            amountType: components["schemas"]["AmountType"] & unknown;
+            sourceAmount: components["schemas"]["FxMoney"] & unknown;
+            targetAmount: components["schemas"]["FxMoney"] & unknown;
+            expiration: components["schemas"]["DateTime"] & unknown;
+            /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
+            charges?: components["schemas"]["FxCharge"][];
             extensionList?: components["schemas"]["ExtensionList_v2_1_0"] & unknown;
         };
         /**
@@ -1938,11 +1929,11 @@ export interface components {
             conversionTerms: components["schemas"]["FxConversion"] & unknown;
         };
         commitRequestId: components["schemas"]["CorrelationId"] & unknown;
-        "properties-determiningTransferId": components["schemas"]["CorrelationId"] & unknown;
-        "properties-initiatingFsp": components["schemas"]["FspId"] & unknown;
-        "properties-counterPartyFsp": components["schemas"]["FspId"] & unknown;
-        "properties-sourceAmount": components["schemas"]["Money"] & unknown;
-        "properties-targetAmount": components["schemas"]["Money"] & unknown;
+        determiningTransferId: components["schemas"]["CorrelationId"] & unknown;
+        initiatingFsp: components["schemas"]["FspId"] & unknown;
+        counterPartyFsp: components["schemas"]["FspId"] & unknown;
+        sourceAmount: components["schemas"]["Money"] & unknown;
+        targetAmount: components["schemas"]["Money"] & unknown;
         condition: components["schemas"]["IlpCondition"] & unknown;
         /**
          * FxTransfersPostOutboundRequest
@@ -1952,11 +1943,11 @@ export interface components {
             /** @description Transaction ID for the backend, used to reconcile transactions between the Switch and backend systems. */
             homeTransactionId?: string;
             commitRequestId: components["schemas"]["commitRequestId"];
-            determiningTransferId?: components["schemas"]["properties-determiningTransferId"];
-            initiatingFsp: components["schemas"]["properties-initiatingFsp"];
-            counterPartyFsp: components["schemas"]["properties-counterPartyFsp"];
-            sourceAmount: components["schemas"]["properties-sourceAmount"];
-            targetAmount: components["schemas"]["properties-targetAmount"];
+            determiningTransferId?: components["schemas"]["determiningTransferId"];
+            initiatingFsp: components["schemas"]["initiatingFsp"];
+            counterPartyFsp: components["schemas"]["counterPartyFsp"];
+            sourceAmount: components["schemas"]["sourceAmount"];
+            targetAmount: components["schemas"]["targetAmount"];
             condition?: components["schemas"]["condition"];
         };
         fulfilment: components["schemas"]["IlpFulfilment"] & unknown;

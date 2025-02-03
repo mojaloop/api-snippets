@@ -2500,26 +2500,6 @@ components:
         - amountType
         - amount
         - transactionType
-    conversionId:
-      allOf:
-        - $ref: '#/components/schemas/CorrelationId'
-        - description: An end-to-end identifier for the conversion request.
-    determiningTransferId:
-      allOf:
-        - $ref: '#/components/schemas/CorrelationId'
-        - description: The transaction ID of the transfer on whose success this currency conversion depends.
-    initiatingFsp:
-      allOf:
-        - $ref: '#/components/schemas/FspId'
-        - description: The id of the participant who is requesting a currency conversion.
-    counterPartyFsp:
-      allOf:
-        - $ref: '#/components/schemas/FspId'
-        - description: The ID of the FXP performing the conversion.
-    properties-amountType:
-      allOf:
-        - $ref: '#/components/schemas/AmountType'
-        - description: This is the AmountType for the base transaction - If SEND - then any charges levied by the FXP as part of the transaction will be deducted by the FXP from the amount shown for the target party in the conversion. If RECEIVE - then any charges levied by the FXP as part of the transaction will be added by the FXP to the amount shown for the source party in the conversion.
     FxMoney:
       title: FxMoney
       type: object
@@ -2531,18 +2511,6 @@ components:
           $ref: '#/components/schemas/Amount'
       required:
         - currency
-    sourceAmount:
-      allOf:
-        - $ref: '#/components/schemas/FxMoney'
-        - description: The amount to be converted, expressed in the source currency.
-    targetAmount:
-      allOf:
-        - $ref: '#/components/schemas/FxMoney'
-        - description: The converted amount, expressed in the target currency.
-    expiration:
-      allOf:
-        - $ref: '#/components/schemas/DateTime'
-        - description: The end of the period for which the currency conversion is required to remain valid.
     FxCharge:
       title: FxCharge
       type: object
@@ -2563,36 +2531,50 @@ components:
             - description: The amount of the charge which is being levied, expressed in the target currency.
       required:
         - chargeType
-    charges:
-      type: array
-      description: One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred.
-      items:
-        $ref: '#/components/schemas/FxCharge'
-      minItems: 0
-      maxItems: 16
     FxConversion:
       title: FxConversion
       type: object
       description: A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
       properties:
         conversionId:
-          $ref: '#/components/schemas/conversionId'
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: An end-to-end identifier for the conversion request.
         determiningTransferId:
-          $ref: '#/components/schemas/determiningTransferId'
+          allOf:
+            - $ref: '#/components/schemas/CorrelationId'
+            - description: The transaction ID of the transfer on whose success this currency conversion depends.
         initiatingFsp:
-          $ref: '#/components/schemas/initiatingFsp'
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: The id of the participant who is requesting a currency conversion.
         counterPartyFsp:
-          $ref: '#/components/schemas/counterPartyFsp'
+          allOf:
+            - $ref: '#/components/schemas/FspId'
+            - description: The ID of the FXP performing the conversion.
         amountType:
-          $ref: '#/components/schemas/properties-amountType'
+          allOf:
+            - $ref: '#/components/schemas/AmountType'
+            - description: This is the AmountType for the base transaction - If SEND - then any charges levied by the FXP as part of the transaction will be deducted by the FXP from the amount shown for the target party in the conversion. If RECEIVE - then any charges levied by the FXP as part of the transaction will be added by the FXP to the amount shown for the source party in the conversion.
         sourceAmount:
-          $ref: '#/components/schemas/sourceAmount'
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: The amount to be converted, expressed in the source currency.
         targetAmount:
-          $ref: '#/components/schemas/targetAmount'
+          allOf:
+            - $ref: '#/components/schemas/FxMoney'
+            - description: The converted amount, expressed in the target currency.
         expiration:
-          $ref: '#/components/schemas/expiration'
+          allOf:
+            - $ref: '#/components/schemas/DateTime'
+            - description: The end of the period for which the currency conversion is required to remain valid.
         charges:
-          $ref: '#/components/schemas/charges'
+          type: array
+          description: One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred.
+          items:
+            $ref: '#/components/schemas/FxCharge'
+          minItems: 0
+          maxItems: 16
         extensionList:
           allOf:
             - $ref: '#/components/schemas/ExtensionList_v2_1_0'
@@ -2639,23 +2621,23 @@ components:
       allOf:
         - $ref: '#/components/schemas/CorrelationId'
         - description: An end-to-end identifier for the confirmation request.
-    properties-determiningTransferId:
+    determiningTransferId:
       allOf:
         - $ref: '#/components/schemas/CorrelationId'
         - description: The transaction ID of the transfer to which this currency conversion relates, if the conversion is part of a transfer. If the conversion is a bulk currency purchase, this field should be omitted.
-    properties-initiatingFsp:
+    initiatingFsp:
       allOf:
         - $ref: '#/components/schemas/FspId'
         - description: Identifier for the FSP who is requesting a currency conversion.
-    properties-counterPartyFsp:
+    counterPartyFsp:
       allOf:
         - $ref: '#/components/schemas/FspId'
         - description: Identifier for the FXP who is performing the currency conversion.
-    properties-sourceAmount:
+    sourceAmount:
       allOf:
         - $ref: '#/components/schemas/Money'
         - description: The amount being offered for conversion by the requesting FSP.
-    properties-targetAmount:
+    targetAmount:
       allOf:
         - $ref: '#/components/schemas/Money'
         - description: The amount which the FXP is to credit to the requesting FSP in the target currency.
@@ -2674,15 +2656,15 @@ components:
         commitRequestId:
           $ref: '#/components/schemas/commitRequestId'
         determiningTransferId:
-          $ref: '#/components/schemas/properties-determiningTransferId'
+          $ref: '#/components/schemas/determiningTransferId'
         initiatingFsp:
-          $ref: '#/components/schemas/properties-initiatingFsp'
+          $ref: '#/components/schemas/initiatingFsp'
         counterPartyFsp:
-          $ref: '#/components/schemas/properties-counterPartyFsp'
+          $ref: '#/components/schemas/counterPartyFsp'
         sourceAmount:
-          $ref: '#/components/schemas/properties-sourceAmount'
+          $ref: '#/components/schemas/sourceAmount'
         targetAmount:
-          $ref: '#/components/schemas/properties-targetAmount'
+          $ref: '#/components/schemas/targetAmount'
         condition:
           $ref: '#/components/schemas/condition'
       required:

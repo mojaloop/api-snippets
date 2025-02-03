@@ -3,23 +3,46 @@ type: object
 description: A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
 properties:
   conversionId:
-    $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/conversionId"
+    allOf:
+      - $ref: ./CorrelationId.yaml
+      - description: An end-to-end identifier for the conversion request.
   determiningTransferId:
-      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/determiningTransferId"
+    allOf:
+      - $ref: ./CorrelationId.yaml
+      - description: The transaction ID of the transfer on whose success this currency conversion depends.
   initiatingFsp:
-      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/initiatingFsp"
+    allOf:
+      - $ref: ./FspId.yaml
+      - description: The id of the participant who is requesting a currency conversion.
   counterPartyFsp:
-      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/counterPartyFsp"
+    allOf:
+      - $ref: ./FspId.yaml
+      - description: The ID of the FXP performing the conversion.
   amountType:
-      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/amountType"
+    allOf:
+      - $ref: ./AmountType.yaml
+      - description: This is the AmountType for the base transaction -
+          If SEND - then any charges levied by the FXP as part of the transaction will be deducted by the FXP from the amount shown for the target party in the conversion.
+          If RECEIVE - then any charges levied by the FXP as part of the transaction will be added by the FXP to the amount shown for the source party in the conversion.
   sourceAmount:
-      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/sourceAmount"
+    allOf:
+      - $ref: ./FxMoney.yaml
+      - description: The amount to be converted, expressed in the source currency.
   targetAmount:
-      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/targetAmount"
+    allOf:
+      - $ref: ./FxMoney.yaml
+      - description: The converted amount, expressed in the target currency.
   expiration:
-      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/expiration"
+    allOf:
+      - $ref: ./DateTime.yaml
+      - description: The end of the period for which the currency conversion is required to remain valid.
   charges:
-      $ref: "../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml#/properties/charges"
+    type: array
+    description: One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred.
+    items:
+      $ref: ./FxCharge.yaml
+    minItems: 0
+    maxItems: 16
   extensionList:
     allOf:
       - $ref: ./ExtensionList_v2_1_0.yaml
