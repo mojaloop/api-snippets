@@ -91,7 +91,8 @@
   },
   "overrides": {
     "@types/cacheable-request": "^6.0.2",
-    "@types/responselike": "^1.0.0"
+    "@types/responselike": "^1.0.0",
+    "dompurify": "3.2.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
@@ -100,15 +101,15 @@
     "@redocly/cli": "^1.5.0",
     "@types/jest": "^29.5.14",
     "@types/js-yaml": "^4.0.9",
-    "@typescript-eslint/eslint-plugin": "^8.22.0",
-    "@typescript-eslint/parser": "^8.22.0",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
     "audit-ci": "^7.1.0",
     "browser-sync": "^3.0.3",
     "diff": "^7.0.0",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-config-standard": "^17.1.0",
-    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-import-resolver-typescript": "^3.8.2",
     "eslint-plugin-cucumber": "^2.0.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-node": "^11.1.0",
@@ -120,7 +121,7 @@
     "jest-junit": "^16.0.0",
     "lint-staged": "^15.4.3",
     "npm-check-updates": "^17.1.14",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.1",
     "standard-version": "^9.5.0",
     "swagger-cli": "^4.0.4",
     "ts-jest": "^29.2.5",
