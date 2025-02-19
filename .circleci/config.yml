@@ -481,7 +481,7 @@ workflows:
       - grype/list-dir-vulns:
           path-to-scan: ./
       - trivy-orb/scan:
-          args: --no-progress --exit-code 1 filesystem
+          args: --no-progress --exit-code 1 filesystem ./
       - audit-licenses:
           context: org-global
           requires:
