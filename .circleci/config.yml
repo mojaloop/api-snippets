@@ -10,6 +10,8 @@ orbs:
   slack: circleci/slack@4.12.5 # Ref: https://github.com/mojaloop/ci-config/tree/master/slack-templates
   pr-tools: mojaloop/pr-tools@0.1.10 # Ref: https://github.com/mojaloop/ci-config/
   gh: circleci/github-cli@2.2.0
+  grype: anchore/grype@0.2.0
+  trivy-orb: fifteen5/trivy-orb@1.0.0
 
 ##
 # defaults
@@ -476,6 +478,10 @@ workflows:
               ignore:
                 - /feature*/
                 - /bugfix*/
+      - grype/list-dir-vulns:
+          path-to-scan: ./
+      - trivy-orb/scan:
+          args: --no-progress --exit-code 1 image busybox
       - audit-licenses:
           context: org-global
           requires:
