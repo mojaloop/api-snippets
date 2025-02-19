@@ -479,7 +479,7 @@ workflows:
                 - /feature*/
                 - /bugfix*/
       - grype/list-dir-vulns:
-          path-to-scan: ./
+          path-to-scan: ./src
       - trivy-orb/scan:
           args: --no-progress --exit-code 1 filesystem ./src
       - audit-licenses:
