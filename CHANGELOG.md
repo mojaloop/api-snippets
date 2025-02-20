@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.7.13](https://github.com/mojaloop/api-snippets/compare/v17.7.12...v17.7.13) (2025-02-20)
+
+
+### Maintenance
+
+* update license and add grype and trivy scan ([#193](https://github.com/mojaloop/api-snippets/issues/193)) ([67d0e80](https://github.com/mojaloop/api-snippets/commit/67d0e805fdc2b830b855a4cf74bb2faed61185fc))
+
 ### [17.7.12](https://github.com/mojaloop/api-snippets/compare/v17.7.11...v17.7.12) (2025-02-18)
 
 
