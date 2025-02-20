@@ -37342,6 +37342,21 @@
       }
     }
   },
+  "transferContinuationAcceptQuoteOrConversion": {
+    "type": "object",
+    "required": [
+      "acceptQuoteOrConversion"
+    ],
+    "properties": {
+      "acceptQuoteOrConversion": {
+        "type": "boolean",
+        "enum": [
+          true,
+          false
+        ]
+      }
+    }
+  },
   "ServicesFXPPutResponse": {
     "title": "ServicesFXPPutResponse",
     "type": "object",

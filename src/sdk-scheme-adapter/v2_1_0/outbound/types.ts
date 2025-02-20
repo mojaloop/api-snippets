@@ -129,6 +129,7 @@ export namespace Types {
   export type transferRequest = components['schemas']['transferRequest']
   export type transferStatusResponse = components['schemas']['transferStatusResponse']
   export type transferContinuationAcceptConversion = components['schemas']['transferContinuationAcceptConversion']
+  export type transferContinuationAcceptQuoteOrConversion = components['schemas']['transferContinuationAcceptQuoteOrConversion']
   export type ServicesFXPPutResponse = components['schemas']['ServicesFXPPutResponse']
   export type FxQuotesPostOutboundRequest = components['schemas']['FxQuotesPostOutboundRequest']
   export type commitRequestId = components['schemas']['commitRequestId']

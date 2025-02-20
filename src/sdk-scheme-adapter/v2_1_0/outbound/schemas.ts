@@ -129,6 +129,7 @@ export namespace Schemas {
   export const transferRequest = JsonSchemas["transferRequest"]
   export const transferStatusResponse = JsonSchemas["transferStatusResponse"]
   export const transferContinuationAcceptConversion = JsonSchemas["transferContinuationAcceptConversion"]
+  export const transferContinuationAcceptQuoteOrConversion = JsonSchemas["transferContinuationAcceptQuoteOrConversion"]
   export const ServicesFXPPutResponse = JsonSchemas["ServicesFXPPutResponse"]
   export const FxQuotesPostOutboundRequest = JsonSchemas["FxQuotesPostOutboundRequest"]
   export const commitRequestId = JsonSchemas["commitRequestId"]
