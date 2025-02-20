@@ -741,7 +741,7 @@ export interface paths {
          * Continues a transfer that has paused at the quote stage in order to accept or reject payee party and/or quote and/or conversion
          * @description The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage and/or currency conversion stage.
          *
-         *     The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" property set to `true` as required to continue the transfer.
+         *     The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" or "acceptQuoteOrConversion" property set to `true` as required to continue the transfer.
          *
          *     See the description of the `POST /transfers` HTTP method for more information on modes of transfer.
          *
@@ -758,7 +758,7 @@ export interface paths {
             };
             requestBody?: {
                 content: {
-                    "application/json": components["schemas"]["transferContinuationAcceptParty"] | components["schemas"]["transferContinuationAcceptQuote"] | components["schemas"]["transferContinuationAcceptConversion"];
+                    "application/json": components["schemas"]["transferContinuationAcceptParty"] | components["schemas"]["transferContinuationAcceptQuote"] | components["schemas"]["transferContinuationAcceptConversion"] | components["schemas"]["transferContinuationAcceptQuoteOrConversion"];
                 };
             };
             responses: {
@@ -1909,6 +1909,10 @@ export interface components {
         transferContinuationAcceptConversion: {
             /** @enum {boolean} */
             acceptConversion: true | false;
+        };
+        transferContinuationAcceptQuoteOrConversion: {
+            /** @enum {boolean} */
+            acceptQuoteOrConversion: true | false;
         };
         /**
          * ServicesFXPPutResponse

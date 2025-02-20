@@ -411,7 +411,7 @@ paths:
       description: |
         The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage and/or currency conversion stage.
 
-        The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" property set to `true` as required to continue the transfer.
+        The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" or "acceptQuoteOrConversion" property set to `true` as required to continue the transfer.
 
         See the description of the `POST /transfers` HTTP method for more information on modes of transfer.
       tags:
@@ -424,6 +424,7 @@ paths:
                 - $ref: '#/components/schemas/transferContinuationAcceptParty'
                 - $ref: '#/components/schemas/transferContinuationAcceptQuote'
                 - $ref: '#/components/schemas/transferContinuationAcceptConversion'
+                - $ref: '#/components/schemas/transferContinuationAcceptQuoteOrConversion'
       parameters:
         - $ref: '#/components/parameters/transferId'
       responses:
@@ -2669,6 +2670,16 @@ components:
         - acceptConversion
       properties:
         acceptConversion:
+          type: boolean
+          enum:
+            - true
+            - false
+    transferContinuationAcceptQuoteOrConversion:
+      type: object
+      required:
+        - acceptQuoteOrConversion
+      properties:
+        acceptQuoteOrConversion:
           type: boolean
           enum:
             - true
