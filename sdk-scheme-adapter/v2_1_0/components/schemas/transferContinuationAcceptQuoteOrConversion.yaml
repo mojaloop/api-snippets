@@ -1,0 +1,9 @@
+type: object
+required:
+  - acceptQuoteOrConversion
+properties:
+  acceptQuoteOrConversion:
+    type: boolean
+    enum:
+      - true
+      - false
