@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.8.0](https://github.com/mojaloop/api-snippets/compare/v17.7.13...v17.8.0) (2025-02-20)
+
+
+### Features
+
+* add new feild transfer confirmation ([#194](https://github.com/mojaloop/api-snippets/issues/194)) ([c9d7cab](https://github.com/mojaloop/api-snippets/commit/c9d7cab3ad0d35a6351a4406bbe5fb105895e8a5))
+
 ### [17.7.13](https://github.com/mojaloop/api-snippets/compare/v17.7.12...v17.7.13) (2025-02-20)
 
 
