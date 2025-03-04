@@ -1,0 +1,23 @@
+type: object
+required:
+  - accounts
+properties:
+  modelId:
+    $ref: ./CorrelationId.yaml
+  fspId:
+    $ref: ./FspId.yaml
+  response:
+    $ref: ./accountDeletionStatus.yaml
+  currentState:
+    $ref: ./accountDeletionState.yaml
+  lastError:
+    $ref: ./transferError.yaml
+  postAccountsResponse:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        type: object
+      headers:
+        type: object

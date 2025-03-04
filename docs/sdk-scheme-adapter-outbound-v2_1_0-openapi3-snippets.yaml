@@ -48,6 +48,43 @@ paths:
           $ref: '#/components/responses/accountsCreationError'
         '504':
           $ref: '#/components/responses/accountsCreationTimeout'
+  /accounts/{Type}/{ID}:
+    delete:
+      summary: Delete account on the Account Lookup Service
+      description: The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type and ID (and optionally SubId).
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/Type'
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          $ref: '#/components/responses/accountDeletionCompleted'
+        '400':
+          $ref: '#/components/responses/accountDeletionError'
+        '500':
+          $ref: '#/components/responses/accountDeletionError'
+        '504':
+          $ref: '#/components/responses/accountDeletionTimeout'
+  /accounts/{Type}/{ID}/{SubId}:
+    delete:
+      summary: Delete account on the Account Lookup Service
+      description: The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type and ID (and optionally SubId).
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/Type'
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/SubId'
+      responses:
+        '200':
+          $ref: '#/components/responses/accountDeletionCompleted'
+        '400':
+          $ref: '#/components/responses/accountDeletionError'
+        '500':
+          $ref: '#/components/responses/accountDeletionError'
+        '504':
+          $ref: '#/components/responses/accountDeletionTimeout'
   /bulkQuotes:
     post:
       summary: Request bulk quotes for the provided financial transactions
@@ -2834,6 +2871,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/errorAccountsResponse'
+    accountDeletionCompleted:
+      description: Account deletion completed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/accountsResponse'
+    accountDeletionError:
+      description: An error occurred while deleting an account
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorAccountsResponse'
+    accountDeletionTimeout:
+      description: Timeout occurred while deleting an account
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorAccountsResponse'
     bulkQuoteSuccess:
       description: Bulk quote completed successfully
       content:
@@ -2974,27 +3029,6 @@ components:
           schema:
             $ref: '#/components/schemas/ServicesFXPPutResponse'
   parameters:
-    bulkQuoteId:
-      name: bulkQuoteId
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/CorrelationId'
-      description: Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request.
-    bulkTransactionId:
-      name: bulkTransactionId
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/CorrelationId'
-      description: Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request.
-    bulkTransferId:
-      name: bulkTransferId
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/CorrelationId'
-      description: Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request.
     Type:
       name: Type
       in: path
@@ -3016,6 +3050,27 @@ components:
       schema:
         type: string
       description: A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`.
+    bulkQuoteId:
+      name: bulkQuoteId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/CorrelationId'
+      description: Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request.
+    bulkTransactionId:
+      name: bulkTransactionId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/CorrelationId'
+      description: Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request.
+    bulkTransferId:
+      name: bulkTransferId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/CorrelationId'
+      description: Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request.
     transactionRequestId:
       name: transactionRequestId
       in: path

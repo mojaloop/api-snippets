@@ -1,0 +1,5 @@
+description: Timeout occurred while deleting an account
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/errorAccountsResponse.yaml

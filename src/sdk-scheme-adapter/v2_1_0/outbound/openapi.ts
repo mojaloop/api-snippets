@@ -82,6 +82,86 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/accounts/{Type}/{ID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete account on the Account Lookup Service
+         * @description The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type and ID (and optionally SubId).
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+                    Type: components["parameters"]["Type"];
+                    /** @description The identifier value. */
+                    ID: components["parameters"]["ID"];
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                200: components["responses"]["accountDeletionCompleted"];
+                400: components["responses"]["accountDeletionError"];
+                500: components["responses"]["accountDeletionError"];
+                504: components["responses"]["accountDeletionTimeout"];
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/accounts/{Type}/{ID}/{SubId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete account on the Account Lookup Service
+         * @description The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type and ID (and optionally SubId).
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+                    Type: components["parameters"]["Type"];
+                    /** @description The identifier value. */
+                    ID: components["parameters"]["ID"];
+                    /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+                    SubId: components["parameters"]["SubId"];
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                200: components["responses"]["accountDeletionCompleted"];
+                400: components["responses"]["accountDeletionError"];
+                500: components["responses"]["accountDeletionError"];
+                504: components["responses"]["accountDeletionTimeout"];
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/bulkQuotes": {
         parameters: {
             query?: never;
@@ -2016,6 +2096,33 @@ export interface components {
                 "application/json": components["schemas"]["errorAccountsResponse"];
             };
         };
+        /** @description Account deletion completed */
+        accountDeletionCompleted: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["accountsResponse"];
+            };
+        };
+        /** @description An error occurred while deleting an account */
+        accountDeletionError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["errorAccountsResponse"];
+            };
+        };
+        /** @description Timeout occurred while deleting an account */
+        accountDeletionTimeout: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["errorAccountsResponse"];
+            };
+        };
         /** @description Bulk quote completed successfully */
         bulkQuoteSuccess: {
             headers: {
@@ -2225,18 +2332,18 @@ export interface components {
         };
     };
     parameters: {
-        /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
-        bulkQuoteId: components["schemas"]["CorrelationId"];
-        /** @description Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request. */
-        bulkTransactionId: components["schemas"]["CorrelationId"];
-        /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
-        bulkTransferId: components["schemas"]["CorrelationId"];
         /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
         Type: string;
         /** @description The identifier value. */
         ID: string;
         /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
         SubId: string;
+        /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
+        bulkQuoteId: components["schemas"]["CorrelationId"];
+        /** @description Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request. */
+        bulkTransactionId: components["schemas"]["CorrelationId"];
+        /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
+        bulkTransferId: components["schemas"]["CorrelationId"];
         /** @description Identifier of the merchant request to pay to continue as returned in the response to a `POST /requestToPay` request. */
         transactionRequestId: components["schemas"]["CorrelationId"];
         /** @description Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */
