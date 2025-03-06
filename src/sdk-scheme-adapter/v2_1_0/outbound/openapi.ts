@@ -1067,6 +1067,30 @@ export interface components {
             executionState: components["schemas"]["accountsResponse"];
         };
         /**
+         * FspId
+         * @description FSP identifier.
+         */
+        FspId: string;
+        accountDeletionStatus: {
+            fspId: components["schemas"]["FspId"];
+            error?: components["schemas"]["errorResponse"];
+        }[];
+        /** @enum {string} */
+        accountDeletionState: "ERROR_OCCURRED" | "COMPLETED";
+        accountDeletionResponse: {
+            accountIdType: components["schemas"]["PartyIdType"];
+            accountIdValue: components["schemas"]["PartyIdentifier"];
+            accountSubIdOrType?: components["schemas"]["PartySubIdOrType"];
+            modelId?: components["schemas"]["CorrelationId"];
+            response?: components["schemas"]["accountDeletionStatus"];
+            currentState?: components["schemas"]["accountDeletionState"];
+            lastError?: components["schemas"]["transferError"];
+            deleteAccountResponse?: {
+                body: Record<string, never>;
+                headers?: Record<string, never>;
+            };
+        };
+        /**
          * TransactionInitiatorType
          * @description Below are the allowed values for the enumeration.
          *     - CONSUMER - Consumer is the initiator of the transaction.
@@ -1115,11 +1139,6 @@ export interface components {
          * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
          */
         MerchantClassificationCode: string;
-        /**
-         * FspId
-         * @description FSP identifier.
-         */
-        FspId: string;
         /**
          * KYCInformation
          * @description KYC information for the party in a form mandated by an individual scheme.
@@ -2102,7 +2121,7 @@ export interface components {
                 [name: string]: unknown;
             };
             content: {
-                "application/json": components["schemas"]["accountsResponse"];
+                "application/json": components["schemas"]["accountDeletionResponse"];
             };
         };
         /** @description An error occurred while deleting an account */

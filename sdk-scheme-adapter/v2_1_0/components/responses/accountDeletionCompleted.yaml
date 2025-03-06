@@ -2,4 +2,4 @@ description: Account deletion completed
 content:
   application/json:
     schema:
-      $ref: ../schemas/accountsResponse.yaml
+      $ref: ../schemas/accountDeletionResponse.yaml

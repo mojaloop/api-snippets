@@ -1,18 +1,23 @@
 type: object
 required:
-  - accounts
+  - accountIdType
+  - accountIdValue
 properties:
+  accountIdType:
+    $ref: ./PartyIdType.yaml
+  accountIdValue:
+    $ref: ./PartyIdentifier.yaml
+  accountSubIdOrType:
+    $ref: ./PartySubIdOrType.yaml
   modelId:
     $ref: ./CorrelationId.yaml
-  fspId:
-    $ref: ./FspId.yaml
   response:
     $ref: ./accountDeletionStatus.yaml
   currentState:
     $ref: ./accountDeletionState.yaml
   lastError:
     $ref: ./transferError.yaml
-  postAccountsResponse:
+  deleteAccountResponse:
     type: object
     required:
       - body

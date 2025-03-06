@@ -945,6 +945,57 @@ components:
           properties:
             executionState:
               $ref: '#/components/schemas/accountsResponse'
+    FspId:
+      title: FspId
+      type: string
+      minLength: 1
+      maxLength: 32
+      description: FSP identifier.
+    accountDeletionStatus:
+      type: array
+      items:
+        type: object
+        required:
+          - fspId
+        properties:
+          fspId:
+            $ref: '#/components/schemas/FspId'
+          error:
+            $ref: '#/components/schemas/errorResponse'
+    accountDeletionState:
+      type: string
+      enum:
+        - ERROR_OCCURRED
+        - COMPLETED
+    accountDeletionResponse:
+      type: object
+      required:
+        - accountIdType
+        - accountIdValue
+      properties:
+        accountIdType:
+          $ref: '#/components/schemas/PartyIdType'
+        accountIdValue:
+          $ref: '#/components/schemas/PartyIdentifier'
+        accountSubIdOrType:
+          $ref: '#/components/schemas/PartySubIdOrType'
+        modelId:
+          $ref: '#/components/schemas/CorrelationId'
+        response:
+          $ref: '#/components/schemas/accountDeletionStatus'
+        currentState:
+          $ref: '#/components/schemas/accountDeletionState'
+        lastError:
+          $ref: '#/components/schemas/transferError'
+        deleteAccountResponse:
+          type: object
+          required:
+            - body
+          properties:
+            body:
+              type: object
+            headers:
+              type: object
     TransactionInitiatorType:
       title: TransactionInitiatorType
       type: string
@@ -1005,12 +1056,6 @@ components:
       type: string
       pattern: ^[\d]{1,4}$
       description: A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
-    FspId:
-      title: FspId
-      type: string
-      minLength: 1
-      maxLength: 32
-      description: FSP identifier.
     KYCInformation:
       title: KYCInformation
       type: string
@@ -2876,7 +2921,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/accountsResponse'
+            $ref: '#/components/schemas/accountDeletionResponse'
     accountDeletionError:
       description: An error occurred while deleting an account
       content:
