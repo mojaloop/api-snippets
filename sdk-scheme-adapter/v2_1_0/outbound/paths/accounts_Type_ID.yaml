@@ -1,8 +1,8 @@
 delete:
   summary: Delete account on the Account Lookup Service
   description: >-
-    The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on
-    the Account Lookup Service (ALS) by Type and ID (and optionally SubId).
+    The HTTP request `DELETE /accounts/{Type}/{ID}` is used to account account information on
+    the Account Lookup Service (ALS) by Type and ID.
   tags:
     - Accounts
   parameters:

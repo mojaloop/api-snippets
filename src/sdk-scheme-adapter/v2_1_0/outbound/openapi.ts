@@ -94,7 +94,7 @@ export interface paths {
         post?: never;
         /**
          * Delete account on the Account Lookup Service
-         * @description The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type and ID (and optionally SubId).
+         * @description The HTTP request `DELETE /accounts/{Type}/{ID}` is used to account account information on the Account Lookup Service (ALS) by Type and ID.
          */
         delete: {
             parameters: {
@@ -133,7 +133,7 @@ export interface paths {
         post?: never;
         /**
          * Delete account on the Account Lookup Service
-         * @description The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type and ID (and optionally SubId).
+         * @description The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type, ID, and SubId.
          */
         delete: {
             parameters: {
@@ -1078,10 +1078,9 @@ export interface components {
         /** @enum {string} */
         accountDeletionState: "ERROR_OCCURRED" | "COMPLETED";
         accountDeletionResponse: {
-            accountIdType: components["schemas"]["PartyIdType"];
-            accountIdValue: components["schemas"]["PartyIdentifier"];
-            accountSubIdOrType?: components["schemas"]["PartySubIdOrType"];
-            modelId?: components["schemas"]["CorrelationId"];
+            idType: components["schemas"]["PartyIdType"];
+            idValue: components["schemas"]["PartyIdentifier"];
+            subIdOrType?: components["schemas"]["PartySubIdOrType"];
             response?: components["schemas"]["accountDeletionStatus"];
             currentState?: components["schemas"]["accountDeletionState"];
             lastError?: components["schemas"]["transferError"];

@@ -51,7 +51,7 @@ paths:
   /accounts/{Type}/{ID}:
     delete:
       summary: Delete account on the Account Lookup Service
-      description: The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type and ID (and optionally SubId).
+      description: The HTTP request `DELETE /accounts/{Type}/{ID}` is used to account account information on the Account Lookup Service (ALS) by Type and ID.
       tags:
         - Accounts
       parameters:
@@ -69,7 +69,7 @@ paths:
   /accounts/{Type}/{ID}/{SubId}:
     delete:
       summary: Delete account on the Account Lookup Service
-      description: The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type and ID (and optionally SubId).
+      description: The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type, ID, and SubId.
       tags:
         - Accounts
       parameters:
@@ -970,17 +970,15 @@ components:
     accountDeletionResponse:
       type: object
       required:
-        - accountIdType
-        - accountIdValue
+        - idType
+        - idValue
       properties:
-        accountIdType:
+        idType:
           $ref: '#/components/schemas/PartyIdType'
-        accountIdValue:
+        idValue:
           $ref: '#/components/schemas/PartyIdentifier'
-        accountSubIdOrType:
+        subIdOrType:
           $ref: '#/components/schemas/PartySubIdOrType'
-        modelId:
-          $ref: '#/components/schemas/CorrelationId'
         response:
           $ref: '#/components/schemas/accountDeletionStatus'
         currentState:

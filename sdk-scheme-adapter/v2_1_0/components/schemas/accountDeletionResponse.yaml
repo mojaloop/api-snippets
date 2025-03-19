@@ -1,16 +1,14 @@
 type: object
 required:
-  - accountIdType
-  - accountIdValue
+  - idType
+  - idValue
 properties:
-  accountIdType:
+  idType:
     $ref: ./PartyIdType.yaml
-  accountIdValue:
+  idValue:
     $ref: ./PartyIdentifier.yaml
-  accountSubIdOrType:
+  subIdOrType:
     $ref: ./PartySubIdOrType.yaml
-  modelId:
-    $ref: ./CorrelationId.yaml
   response:
     $ref: ./accountDeletionStatus.yaml
   currentState:

@@ -1653,11 +1653,11 @@
   "accountDeletionResponse": {
     "type": "object",
     "required": [
-      "accountIdType",
-      "accountIdValue"
+      "idType",
+      "idValue"
     ],
     "properties": {
-      "accountIdType": {
+      "idType": {
         "title": "PartyIdType",
         "type": "string",
         "enum": [
@@ -1672,7 +1672,7 @@
         ],
         "description": "Below are the allowed values for the enumeration.\n- MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.\n- EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).\n- PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.\n- BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.\n- DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.\n- ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.\n- IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.\n- ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier."
       },
-      "accountIdValue": {
+      "idValue": {
         "title": "PartyIdentifier",
         "type": "string",
         "minLength": 1,
@@ -1680,19 +1680,12 @@
         "description": "Identifier of the Party.",
         "example": "16135551212"
       },
-      "accountSubIdOrType": {
+      "subIdOrType": {
         "title": "PartySubIdOrType",
         "type": "string",
         "minLength": 1,
         "maxLength": 128,
         "description": "Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType."
-      },
-      "modelId": {
-        "title": "CorrelationId",
-        "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$",
-        "description": "Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)",
-        "example": "b51ec534-ee48-4575-b6a9-ead2955b8069"
       },
       "response": {
         "type": "array",
