@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.9.0](https://github.com/mojaloop/api-snippets/compare/v17.8.0...v17.9.0) (2025-03-19)
+
+
+### Features
+
+* **csi-1244:** add sdk outbound DELETE /accounts/{Type}/{ID}/{SubId} endpoint ([#195](https://github.com/mojaloop/api-snippets/issues/195)) ([a8204f7](https://github.com/mojaloop/api-snippets/commit/a8204f7032d2421e61cf1a8b68b02b218b26f465))
+
 ## [17.8.0](https://github.com/mojaloop/api-snippets/compare/v17.7.13...v17.8.0) (2025-02-20)
 
 
