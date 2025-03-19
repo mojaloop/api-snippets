@@ -1605,6 +1605,222 @@
       }
     ]
   },
+  "FspId": {
+    "title": "FspId",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 32,
+    "description": "FSP identifier."
+  },
+  "accountDeletionStatus": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": [
+        "fspId"
+      ],
+      "properties": {
+        "fspId": {
+          "title": "FspId",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32,
+          "description": "FSP identifier."
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "statusCode": {
+              "type": "string",
+              "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
+            },
+            "message": {
+              "type": "string",
+              "description": "Error message text."
+            }
+          }
+        }
+      }
+    }
+  },
+  "accountDeletionState": {
+    "type": "string",
+    "enum": [
+      "ERROR_OCCURRED",
+      "COMPLETED"
+    ]
+  },
+  "accountDeletionResponse": {
+    "type": "object",
+    "required": [
+      "idType",
+      "idValue"
+    ],
+    "properties": {
+      "idType": {
+        "title": "PartyIdType",
+        "type": "string",
+        "enum": [
+          "MSISDN",
+          "EMAIL",
+          "PERSONAL_ID",
+          "BUSINESS",
+          "DEVICE",
+          "ACCOUNT_ID",
+          "IBAN",
+          "ALIAS"
+        ],
+        "description": "Below are the allowed values for the enumeration.\n- MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.\n- EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).\n- PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.\n- BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.\n- DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.\n- ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.\n- IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.\n- ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier."
+      },
+      "idValue": {
+        "title": "PartyIdentifier",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128,
+        "description": "Identifier of the Party.",
+        "example": "16135551212"
+      },
+      "subIdOrType": {
+        "title": "PartySubIdOrType",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128,
+        "description": "Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType."
+      },
+      "response": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "fspId"
+          ],
+          "properties": {
+            "fspId": {
+              "title": "FspId",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "description": "FSP identifier."
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Error message text."
+                }
+              }
+            }
+          }
+        }
+      },
+      "currentState": {
+        "type": "string",
+        "enum": [
+          "ERROR_OCCURRED",
+          "COMPLETED"
+        ]
+      },
+      "lastError": {
+        "type": "object",
+        "description": "This object represents a Mojaloop API error received at any time during the transfer process",
+        "properties": {
+          "httpStatusCode": {
+            "type": "integer",
+            "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
+          },
+          "mojaloopError": {
+            "type": "object",
+            "properties": {
+              "errorInformation": {
+                "title": "ErrorInformation",
+                "type": "object",
+                "description": "Data model for the complex type ErrorInformation.",
+                "properties": {
+                  "errorCode": {
+                    "title": "ErrorCode",
+                    "type": "string",
+                    "pattern": "^[1-9]\\d{3}$",
+                    "description": "The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.",
+                    "example": "5100"
+                  },
+                  "errorDescription": {
+                    "title": "ErrorDescription",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "description": "Error description string."
+                  },
+                  "extensionList": {
+                    "title": "ExtensionList",
+                    "type": "object",
+                    "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
+                    "properties": {
+                      "extension": {
+                        "type": "array",
+                        "items": {
+                          "title": "Extension_v2_1_0",
+                          "type": "object",
+                          "description": "Data model for the complex type Extension.",
+                          "properties": {
+                            "key": {
+                              "title": "ExtensionKey_v2_1_0",
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "Extension key."
+                            },
+                            "value": {
+                              "title": "ExtensionValue",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 128,
+                              "description": "Extension value."
+                            }
+                          },
+                          "required": [
+                            "key",
+                            "value"
+                          ]
+                        },
+                        "minItems": 1,
+                        "maxItems": 16,
+                        "description": "Number of Extension elements."
+                      }
+                    },
+                    "required": [
+                      "extension"
+                    ]
+                  }
+                },
+                "required": [
+                  "errorCode",
+                  "errorDescription"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "deleteAccountResponse": {
+        "type": "object",
+        "required": [
+          "body"
+        ],
+        "properties": {
+          "body": {
+            "type": "object"
+          },
+          "headers": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  },
   "TransactionInitiatorType": {
     "title": "TransactionInitiatorType",
     "type": "string",
@@ -1662,13 +1878,6 @@
     "type": "string",
     "pattern": "^[\\d]{1,4}$",
     "description": "A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc."
-  },
-  "FspId": {
-    "title": "FspId",
-    "type": "string",
-    "minLength": 1,
-    "maxLength": 32,
-    "description": "FSP identifier."
   },
   "KYCInformation": {
     "title": "KYCInformation",

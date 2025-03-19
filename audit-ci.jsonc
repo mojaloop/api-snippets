@@ -5,6 +5,5 @@
     "moderate": true,
     "allowlist": [
         "GHSA-r7jx-5m6m-cpg9"  // https://github.com/advisories/GHSA-r7jx-5m6m-cpg9
-
     ]
 }
