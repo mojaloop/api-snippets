@@ -22,14 +22,14 @@
  * Mojaloop Foundation
  - Name Surname <name.surname@mojaloop.io>
 
- * Modusbox
- - Vijay Kumar Guthi <vijaya.guthi@modusbox.com>
+ * Infitx
+ - Steven Oderayi <steven.oderayi@infitx.com>
 
  --------------
  ******/
 
 'use strict'
 
-import * as V2_0_0 from './v2_0_0'
-import * as V2_1_0 from './v2_1_0'
-export { V2_0_0, V2_1_0 }
+import * as Backend from './backend'
+import * as Outbound from './outbound'
+export { Backend, Outbound }
