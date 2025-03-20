@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [17.10.0](https://github.com/mojaloop/api-snippets/compare/v17.9.0...v17.10.0) (2025-03-20)
+
+
+### Features
+
+* **csi-1328:** export sdk v2.1.0 ([#197](https://github.com/mojaloop/api-snippets/issues/197)) ([3f76b3d](https://github.com/mojaloop/api-snippets/commit/3f76b3d64e1c157a3ab6fbb2b37e042627f16afa))
+
 ## [17.9.0](https://github.com/mojaloop/api-snippets/compare/v17.8.0...v17.9.0) (2025-03-19)
 
 
