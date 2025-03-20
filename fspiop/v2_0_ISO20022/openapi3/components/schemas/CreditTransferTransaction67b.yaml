@@ -147,7 +147,7 @@ required:
   - DbtrAgt
   - CdtrAgt
   - Cdtr
-  - Purp
+  - VrfctnOfTerms
 example:
   PmtId:
     InstrId: INSTRID

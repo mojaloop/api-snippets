@@ -1,0 +1,64 @@
+title: GroupHeader113
+description: >
+  Set of characteristics shared by all individual transactions included in the
+  message.
+type: object
+properties:
+  MsgId:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Message Identification
+  CreDtTm:
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          Creation Date and Time
+  NbOfTxs:
+    allOf:
+      - $ref: ./Max15NumericText.yaml
+      - description: >
+          Number of Transactions
+  TtlIntrBkSttlmAmt:
+    allOf:
+      - $ref: ./ActiveCurrencyAndAmount.yaml
+      - description: >
+          Total Interbank Settlement Amount
+  SttlmInf:
+    allOf:
+      - $ref: ./SettlementInstruction15.yaml
+      - description: >
+          Settlement Information
+  PmtTpInf:
+    allOf:
+      - $ref: ./PaymentTypeInformation28.yaml
+      - description: >
+          Payment Type Information
+required:
+  - MsgId
+  - CreDtTm
+  - NbOfTxs
+  - SttlmInf
+example:
+  MsgId: 12345
+  CreDtTm: '2020-01-01T00:00:00Z'
+  NbOfTxs: 1
+  TtlIntrBkSttlmAmt:
+    Ccy: EUR
+    Value: 100.0
+  SttlmInf:
+    SttlmMtd: INDA
+    SttlmAcct:
+      Id:
+        IBAN: BE71096123456769
+      Ccy: EUR
+    SttlmAcctOwnr:
+      Nm: Name
+    SttlmAcctSvcr:
+      Nm: Name
+    SttlmAgt:
+      FinInstnId:
+        BICFI: BIC
+  PmtTpInf:
+    InstrPrty: NORM
+    CtgyPurp: CASH

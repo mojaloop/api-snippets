@@ -7,14 +7,14 @@ description: >
 properties:
   GrpHdr:
     allOf:
-      - $ref: ./GroupHeader113.yaml
+      - $ref: ./GroupHeader129b.yaml
       - description: >
           GroupHeader
 
           Set of characteristics shared by all individual transactions included in the message.
   CdtTrfTxInf:
     allOf:
-      - $ref: ./CreditTransferTransaction68_FX_Quotes.yaml
+      - $ref: ./CreditTransferTransaction68_FX_Quotesb.yaml
       - description: >
           CreditTransferTransaction68_FX_Quotes
 
