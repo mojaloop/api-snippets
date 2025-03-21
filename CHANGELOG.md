@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.10.1](https://github.com/mojaloop/api-snippets/compare/v17.10.0...v17.10.1) (2025-03-21)
+
+
+### Maintenance
+
+* remove currency requirment from sdk outbound ([#198](https://github.com/mojaloop/api-snippets/issues/198)) ([90e2f44](https://github.com/mojaloop/api-snippets/commit/90e2f449fa24d1be79a14452c0bf604bee72f857))
+
 ## [17.10.0](https://github.com/mojaloop/api-snippets/compare/v17.9.0...v17.10.0) (2025-03-20)
 
 
