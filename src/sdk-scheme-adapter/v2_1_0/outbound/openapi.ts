@@ -973,7 +973,7 @@ export interface components {
             idType: components["schemas"]["PartyIdType"];
             idValue: components["schemas"]["PartyIdentifier"];
             idSubValue?: components["schemas"]["PartySubIdOrType"];
-            currency: components["schemas"]["Currency"];
+            currency?: components["schemas"]["Currency"];
         }[];
         /**
          * CorrelationId

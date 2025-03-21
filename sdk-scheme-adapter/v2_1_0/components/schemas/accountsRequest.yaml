@@ -4,7 +4,6 @@ items:
   required:
     - idType
     - idValue
-    - currency
   properties:
     idType:
       $ref: ./PartyIdType.yaml
