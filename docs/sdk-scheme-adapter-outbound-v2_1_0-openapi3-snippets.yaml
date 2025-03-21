@@ -787,7 +787,6 @@ components:
         required:
           - idType
           - idValue
-          - currency
         properties:
           idType:
             $ref: '#/components/schemas/PartyIdType'
