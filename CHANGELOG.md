@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.10.2](https://github.com/mojaloop/api-snippets/compare/v17.10.1...v17.10.2) (2025-03-27)
+
+
+### Bug Fixes
+
+* sdk backend transferstates ([#199](https://github.com/mojaloop/api-snippets/issues/199)) ([a2e7f42](https://github.com/mojaloop/api-snippets/commit/a2e7f426868ddc7d0a35527f20c6d917c4fd7f11))
+
 ### [17.10.1](https://github.com/mojaloop/api-snippets/compare/v17.10.0...v17.10.1) (2025-03-21)
 
 
