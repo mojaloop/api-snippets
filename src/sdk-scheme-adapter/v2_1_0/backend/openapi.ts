@@ -776,7 +776,7 @@ export interface components {
             fulfilment?: components["schemas"]["IlpFulfilment"];
             /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
             homeTransactionId: string;
-            transferState?: components["schemas"]["transferState"];
+            transferState?: components["schemas"]["TransferStateFromBackend"];
         };
         /**
          * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
@@ -1166,6 +1166,16 @@ export interface components {
          */
         AuthenticationType: "OTP" | "QRCODE" | "U2F";
         /**
+         * TransferStateFromBackend
+         * @description Below are the allowed values for the enumeration.
+         *     - RESERVED - Next ledger has reserved the transfer.
+         *     - COMMITTED - Next ledger has successfully performed the transfer.
+         *     Note: There is no ABORTED state, http error response with proper mojaloop error code should be used to abort / reject a transfer.
+         * @example COMMITTED
+         * @enum {string}
+         */
+        TransferStateFromBackend: "RESERVED" | "COMMITTED";
+        /**
          * TransfersIDPutResponse
          * @description The object sent in the PUT /transfers/{ID} callback.
          */
@@ -1365,7 +1375,6 @@ export interface components {
         };
         fulfilment: components["schemas"]["IlpFulfilment"] & unknown;
         completedTimestamp: components["schemas"]["DateTime"] & unknown;
-        conversionState: components["schemas"]["TransferState"] & unknown;
         /**
          * FxTransfersPostBackendResponse
          * @description The object sent as a response for the POST /fxTransfers request.
@@ -1375,9 +1384,10 @@ export interface components {
             homeTransactionId?: string;
             fulfilment?: components["schemas"]["fulfilment"];
             completedTimestamp?: components["schemas"]["completedTimestamp"];
-            conversionState: components["schemas"]["conversionState"];
+            conversionState: components["schemas"]["TransferStateFromBackend"];
             extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
+        conversionState: components["schemas"]["TransferState"] & unknown;
         /**
          * FxTransfersPutBackendRequest
          * @description PUT /fxTransfers/{commitRequestId} object

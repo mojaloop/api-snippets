@@ -1459,7 +1459,7 @@ components:
           description: Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems.
           type: string
         transferState:
-          $ref: '#/components/schemas/transferState'
+          $ref: '../components/schemas/TransferStateFromBackend.yaml'
       required:
         - homeTransactionId
       type: object

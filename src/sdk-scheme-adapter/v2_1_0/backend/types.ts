@@ -116,6 +116,7 @@ export namespace Types {
   export type CurrencyConverter = components['schemas']['CurrencyConverter']
   export type FxRate = components['schemas']['FxRate']
   export type AuthenticationType = components['schemas']['AuthenticationType']
+  export type TransferStateFromBackend = components['schemas']['TransferStateFromBackend']
   export type TransfersIDPutResponse = components['schemas']['TransfersIDPutResponse']
   export type TransfersPostRequest = components['schemas']['TransfersPostRequest']
   export type QuotesIDPutResponse = components['schemas']['QuotesIDPutResponse']
@@ -142,8 +143,8 @@ export namespace Types {
   export type FxTransfersPostBackendRequest = components['schemas']['FxTransfersPostBackendRequest']
   export type fulfilment = components['schemas']['fulfilment']
   export type completedTimestamp = components['schemas']['completedTimestamp']
-  export type conversionState = components['schemas']['conversionState']
   export type FxTransfersPostBackendResponse = components['schemas']['FxTransfersPostBackendResponse']
+  export type conversionState = components['schemas']['conversionState']
   export type FxTransfersPutBackendRequest = components['schemas']['FxTransfersPutBackendRequest']
   export type FxTransfersPatchBackendRequest = components['schemas']['FxTransfersPatchBackendRequest']
 }
