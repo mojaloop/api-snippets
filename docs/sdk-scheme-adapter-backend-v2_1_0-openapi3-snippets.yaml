@@ -1538,7 +1538,7 @@ components:
           description: Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems.
           type: string
         transferState:
-          $ref: '#/components/schemas/transferState'
+          $ref: '#/components/schemas/TransferStateFromBackend'
       required:
         - homeTransactionId
       type: object
@@ -2293,6 +2293,18 @@ components:
         - QRCODE - QR code used as One Time Password.
         - U2F - U2F is a new addition isolated to Thirdparty stream.
       example: OTP
+    TransferStateFromBackend:
+      title: TransferStateFromBackend
+      type: string
+      enum:
+        - RESERVED
+        - COMMITTED
+      description: |-
+        Below are the allowed values for the enumeration.
+        - RESERVED - Next ledger has reserved the transfer.
+        - COMMITTED - Next ledger has successfully performed the transfer.
+        Note: There is no ABORTED state, http error response with proper mojaloop error code should be used to abort / reject a transfer.
+      example: COMMITTED
     TransfersIDPutResponse:
       title: TransfersIDPutResponse
       type: object
@@ -2681,10 +2693,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/DateTime'
         - description: Time and date when the conversion was executed.
-    conversionState:
-      allOf:
-        - $ref: '#/components/schemas/TransferState'
-        - description: The current status of the conversion request.
     FxTransfersPostBackendResponse:
       title: FxTransfersPostBackendResponse
       type: object
@@ -2698,11 +2706,15 @@ components:
         completedTimestamp:
           $ref: '#/components/schemas/completedTimestamp'
         conversionState:
-          $ref: '#/components/schemas/conversionState'
+          $ref: '#/components/schemas/TransferStateFromBackend'
         extensionList:
           $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - conversionState
+    conversionState:
+      allOf:
+        - $ref: '#/components/schemas/TransferState'
+        - description: The current status of the conversion request.
     FxTransfersPutBackendRequest:
       title: FxTransfersPutBackendRequest
       type: object

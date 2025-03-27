@@ -116,6 +116,7 @@ export namespace Schemas {
   export const CurrencyConverter = JsonSchemas["CurrencyConverter"]
   export const FxRate = JsonSchemas["FxRate"]
   export const AuthenticationType = JsonSchemas["AuthenticationType"]
+  export const TransferStateFromBackend = JsonSchemas["TransferStateFromBackend"]
   export const TransfersIDPutResponse = JsonSchemas["TransfersIDPutResponse"]
   export const TransfersPostRequest = JsonSchemas["TransfersPostRequest"]
   export const QuotesIDPutResponse = JsonSchemas["QuotesIDPutResponse"]
@@ -142,8 +143,8 @@ export namespace Schemas {
   export const FxTransfersPostBackendRequest = JsonSchemas["FxTransfersPostBackendRequest"]
   export const fulfilment = JsonSchemas["fulfilment"]
   export const completedTimestamp = JsonSchemas["completedTimestamp"]
-  export const conversionState = JsonSchemas["conversionState"]
   export const FxTransfersPostBackendResponse = JsonSchemas["FxTransfersPostBackendResponse"]
+  export const conversionState = JsonSchemas["conversionState"]
   export const FxTransfersPutBackendRequest = JsonSchemas["FxTransfersPutBackendRequest"]
   export const FxTransfersPatchBackendRequest = JsonSchemas["FxTransfersPatchBackendRequest"]
 }
