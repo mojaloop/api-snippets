@@ -1,5 +1,6 @@
 title: Extension_v2_1_0
 type: object
+additionalProperties: false
 description: Data model for the complex type Extension.
 properties:
   key:

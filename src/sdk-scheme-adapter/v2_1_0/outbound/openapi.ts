@@ -1351,7 +1351,7 @@ export interface components {
             autoAcceptQuote: components["schemas"]["autoAcceptQuote"];
             /** @description Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful if a previous party resolution has been performed. */
             skipPartyLookup?: boolean;
-            /** @description Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will  be callbacks whenever the processing is done */
+            /** @description Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will be callbacks whenever the processing is done */
             synchronous?: boolean;
             bulkExpiration: components["schemas"]["DateTime"];
         };
@@ -1612,20 +1612,12 @@ export interface components {
          */
         CurrencyConverter: "PAYER" | "PAYEE";
         /**
-         * Money
-         * @description Data model for the complex type Money.
-         */
-        "Money-2": {
-            currency: components["schemas"]["Currency"];
-            amount: components["schemas"]["Amount"];
-        };
-        /**
          * FxRate
          * @description The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.
          */
         FxRate: {
-            sourceAmount: components["schemas"]["Money-2"] & unknown;
-            targetAmount: components["schemas"]["Money-2"] & unknown;
+            sourceAmount: components["schemas"]["Money"] & unknown;
+            targetAmount: components["schemas"]["Money"] & unknown;
         };
         /**
          * QuotesPostRequest
@@ -2042,8 +2034,8 @@ export interface components {
         determiningTransferId: components["schemas"]["CorrelationId"] & unknown;
         initiatingFsp: components["schemas"]["FspId"] & unknown;
         counterPartyFsp: components["schemas"]["FspId"] & unknown;
-        sourceAmount: components["schemas"]["Money-2"] & unknown;
-        targetAmount: components["schemas"]["Money-2"] & unknown;
+        sourceAmount: components["schemas"]["Money"] & unknown;
+        targetAmount: components["schemas"]["Money"] & unknown;
         condition: components["schemas"]["IlpCondition"] & unknown;
         /**
          * FxTransfersPostOutboundRequest

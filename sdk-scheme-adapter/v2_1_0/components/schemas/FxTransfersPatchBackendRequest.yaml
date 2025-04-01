@@ -1,6 +1,7 @@
 title: fxTransfersPatchBackendRequest
 description: PATCH /fxTransfers/{commitRequestId} object.
 type: object
+additionalProperties: false
 properties:
   conversionId:
     type: string

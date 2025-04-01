@@ -784,7 +784,7 @@ export interface components {
             autoAcceptQuote: components["schemas"]["autoAcceptQuote"];
             /** @description Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful if a previous party resolution has been performed. */
             skipPartyLookup?: boolean;
-            /** @description Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will  be callbacks whenever the processing is done */
+            /** @description Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will be callbacks whenever the processing is done */
             synchronous?: boolean;
             bulkExpiration: components["schemas"]["DateTime"];
         };

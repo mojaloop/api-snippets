@@ -114,7 +114,6 @@ export namespace Types {
   export type bulkTransactionIndividualTransferResult = components['schemas']['bulkTransactionIndividualTransferResult']
   export type bulkTransactionResponse = components['schemas']['bulkTransactionResponse']
   export type CurrencyConverter = components['schemas']['CurrencyConverter']
-  export type Money_2 = components['schemas']['Money-2']
   export type FxRate = components['schemas']['FxRate']
   export type AuthenticationType = components['schemas']['AuthenticationType']
   export type TransferStateFromBackend = components['schemas']['TransferStateFromBackend']

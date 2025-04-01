@@ -1,5 +1,6 @@
 title: SimpleTransfersPostRequest
 type: object
+additionalProperties: false
 properties:
   fspId:
     $ref: ./FspId.yaml

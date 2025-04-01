@@ -1,6 +1,7 @@
 allOf:
   - $ref: ./errorResponse.yaml
   - type: object
+    additionalProperties: false
     required:
       - transferState
     properties:

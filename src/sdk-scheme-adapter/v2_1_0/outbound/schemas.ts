@@ -97,7 +97,6 @@ export namespace Schemas {
   export const BalanceOfPayments = JsonSchemas["BalanceOfPayments"]
   export const TransactionType = JsonSchemas["TransactionType"]
   export const CurrencyConverter = JsonSchemas["CurrencyConverter"]
-  export const Money_2 = JsonSchemas["Money-2"]
   export const FxRate = JsonSchemas["FxRate"]
   export const QuotesPostRequest = JsonSchemas["QuotesPostRequest"]
   export const simpleQuotesPostRequest = JsonSchemas["simpleQuotesPostRequest"]
