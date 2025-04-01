@@ -2,6 +2,7 @@ title: TaxRecord3
 description: |
   Set of elements used to define the tax record.
 type: object
+additionalProperties: false
 properties:
   AddtlInf:
     allOf:

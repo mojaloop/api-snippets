@@ -4,6 +4,7 @@ description: |
 
   Information needed due to regulatory and statutory requirements.
 type: object
+additionalProperties: false
 properties:
   Tp:
     allOf:

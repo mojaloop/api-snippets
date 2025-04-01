@@ -1,5 +1,6 @@
 title: IndividualTransferResult
 type: object
+additionalProperties: false
 description: Data model for the complex type IndividualTransferResult.
 properties:
   transferId:

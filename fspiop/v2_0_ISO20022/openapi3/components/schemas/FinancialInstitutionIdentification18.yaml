@@ -1,5 +1,6 @@
 title: FinancialInstitutionIdentification18
 type: object
+additionalProperties: false
 description: >
   Information used to identify a financial institution.
 properties:
@@ -7,11 +8,11 @@ properties:
     allOf:
       - $ref: ./BICFIDec2014Identifier.yaml
       - description: >
-          BICFI  
+          BICFI
 
           Code allocated to a financial institution by the ISO 9362 Registration Authority as described
           in ISO 9362 "Banking - Banking telecommunication messages - Business identifier code (BIC)"
-  ClrSysMmbId: 
+  ClrSysMmbId:
     allOf:
       - $ref: ./ClearingSystemMemberIdentification2.yaml
       - description: >

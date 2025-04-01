@@ -2,6 +2,7 @@ title: TaxAmount3
 description: |
   Information on the amount of the tax record.
 type: object
+additionalProperties: false
 properties:
   Rate:
     allOf:

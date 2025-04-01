@@ -1,4 +1,5 @@
 type: object
+additionalProperties: false
 required:
   - autoAcceptParty
   - autoAcceptQuote
@@ -28,7 +29,7 @@ properties:
   synchronous:
     description: >-
       Set to true if the bulkTransfer requests need be handled synchronous.
-      Otherwise the requests will be handled asynchronously, meaning there will 
+      Otherwise the requests will be handled asynchronously, meaning there will
       be callbacks whenever the processing is done
     type: boolean
   bulkExpiration:

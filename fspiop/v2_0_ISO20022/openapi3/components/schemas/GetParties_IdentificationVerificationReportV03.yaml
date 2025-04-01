@@ -1,5 +1,6 @@
 title: GetParties_IdentificationVerificationReportV03
 type: object
+additionalProperties: false
 properties:
   Assgnmt:
     allOf:

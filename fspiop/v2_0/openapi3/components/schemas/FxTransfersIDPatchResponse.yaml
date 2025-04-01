@@ -1,5 +1,6 @@
 title: FxTransfersIDPatchResponse
 type: object
+additionalProperties: false
 description: 'PATCH /fxTransfers/{ID} object'
 properties:
   completedTimestamp:

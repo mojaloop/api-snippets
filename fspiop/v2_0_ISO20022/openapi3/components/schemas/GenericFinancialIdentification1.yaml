@@ -1,5 +1,6 @@
 title: GenericFinancialIdentification1
 type: object
+additionalProperties: false
 description: >
   GenericFinancialIdentification
 

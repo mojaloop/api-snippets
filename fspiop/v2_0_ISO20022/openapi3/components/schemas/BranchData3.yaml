@@ -1,5 +1,6 @@
 title: BranchData3
 type: object
+additionalProperties: false
 description: >
   Information that locates and identifies a specific branch of a financial
   institution.

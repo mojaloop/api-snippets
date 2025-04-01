@@ -2,6 +2,7 @@ title: PersonIdentification18
 description: |
   Unique and unambiguous way to identify a person.
 type: object
+additionalProperties: false
 properties:
   DtAndPlcOfBirth:
     allOf:

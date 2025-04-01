@@ -2,6 +2,7 @@ description: >-
   The object sent back as confirmation of payee parties when autoAcceptParty is
   false.
 type: object
+additionalProperties: false
 required:
   - individualTransfers
 properties:

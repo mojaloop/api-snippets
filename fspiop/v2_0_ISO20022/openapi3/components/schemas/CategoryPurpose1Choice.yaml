@@ -3,6 +3,7 @@ description: >
   Contains details about high level purpose of the mandate based on a set of
   pre-defined categories.
 type: object
+additionalProperties: false
 anyOf:
   - properties:
       Cd:

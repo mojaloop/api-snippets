@@ -1,5 +1,6 @@
 title: GenericPersonIdentification2
 type: object
+additionalProperties: false
 description:
   Identification of a person.
 properties:

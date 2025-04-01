@@ -1,5 +1,6 @@
 title: PacsError_FIToFIPaymentStatusReportV15
 type: object
+additionalProperties: false
 description:  >
   This message is sent by an account servicing institution to an account owner. It is used to inform the account owner about the status of a payment initiation.
 

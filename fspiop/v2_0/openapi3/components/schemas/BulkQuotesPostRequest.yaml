@@ -1,5 +1,6 @@
 title: BulkQuotesPostRequest
 type: object
+additionalProperties: false
 description: The object sent in the POST /bulkQuotes request.
 properties:
   bulkQuoteId:

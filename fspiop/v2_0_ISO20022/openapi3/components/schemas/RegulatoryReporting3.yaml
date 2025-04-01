@@ -2,6 +2,7 @@ title: RegulatoryReporting3
 description: |
   Information needed due to regulatory and/or statutory requirements.
 type: object
+additionalProperties: false
 properties:
   DbtCdtRptgInd:
     allOf:

@@ -1,5 +1,6 @@
 title: AuthorizationsIDPutResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /authorizations/{ID} callback.'
 properties:
   authenticationInfo:

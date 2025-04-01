@@ -1,5 +1,6 @@
 title: Party
 type: object
+additionalProperties: false
 description: Data model for the complex type Party.
 properties:
   partyIdInfo:

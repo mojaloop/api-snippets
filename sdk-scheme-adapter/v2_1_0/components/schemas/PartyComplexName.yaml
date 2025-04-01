@@ -1,5 +1,6 @@
 title: PartyComplexName
 type: object
+additionalProperties: false
 description: Data model for the complex type PartyComplexName.
 properties:
   firstName:

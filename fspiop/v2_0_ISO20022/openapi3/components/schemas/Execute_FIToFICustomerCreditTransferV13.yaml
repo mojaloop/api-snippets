@@ -1,5 +1,6 @@
 title: Execute_FIToFICustomerCreditTransferV13
 type: object
+additionalProperties: false
 properties:
   GrpHdr:
     allOf:

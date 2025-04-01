@@ -2,6 +2,7 @@ title: DateAndPlaceOfBirth1
 description: |
   Details about date and place of birth of a person.
 type: object
+additionalProperties: false
 properties:
   BirthDt:
     allOf:

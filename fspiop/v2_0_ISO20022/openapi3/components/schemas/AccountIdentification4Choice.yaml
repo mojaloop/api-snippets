@@ -1,5 +1,6 @@
 title: AccountIdentification4Choice
 type: object
+additionalProperties: false
 description: >
   Specifies the unique identification of an account as assigned by the account
   servicer.

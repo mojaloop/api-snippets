@@ -1,5 +1,6 @@
 title: AddressType3Choice
 type: object
+additionalProperties: false
 description: |
   Choice of formats for the type of address.
 anyOf:

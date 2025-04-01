@@ -2,6 +2,7 @@ title: PartyIdentification135
 description: |
   Specifies the identification of a person or an organisation.
 type: object
+additionalProperties: false
 properties:
   Nm:
     allOf:

@@ -1,5 +1,6 @@
 title: FxRequest_FICreditTransferProposal
 type: object
+additionalProperties: false
 description: >
   FxRequest_FICreditTransferProposal
 

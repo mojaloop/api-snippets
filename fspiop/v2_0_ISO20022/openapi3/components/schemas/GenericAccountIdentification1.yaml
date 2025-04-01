@@ -1,5 +1,6 @@
 title: GenericAccountIdentification1
 type: object
+additionalProperties: false
 description: >
   GenericAccountIdentification
 

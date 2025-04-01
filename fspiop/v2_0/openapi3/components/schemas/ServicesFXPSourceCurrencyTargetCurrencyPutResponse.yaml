@@ -1,5 +1,6 @@
 title: ServicesFXPSourceCurrencyTargetCurrencyPutResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /services/FXP/{SourceCurrency}/{TargetCurrency} callback.'
 properties:
   providers:

@@ -3,6 +3,7 @@ description: >
   Provides further details on the original transactions, to which the status
   report message refers.
 type: object
+additionalProperties: false
 properties:
   StsId:
     allOf:

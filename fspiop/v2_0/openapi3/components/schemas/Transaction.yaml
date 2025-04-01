@@ -1,5 +1,6 @@
 title: Transaction
 type: object
+additionalProperties: false
 description: >-
   Data model for the complex type Transaction. The Transaction type is used to
   carry end-to-end data between the Payer FSP and the Payee FSP in the ILP

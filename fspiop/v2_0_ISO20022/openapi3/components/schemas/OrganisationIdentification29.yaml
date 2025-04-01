@@ -2,6 +2,7 @@ title: OrganisationIdentification29
 description: |
   Unique and unambiguous way to identify an organisation.
 type: object
+additionalProperties: false
 properties:
   AnyBIC:
     allOf:

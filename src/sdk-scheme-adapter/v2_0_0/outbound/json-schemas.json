@@ -206,6 +206,7 @@
     "type": "array",
     "items": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "idType",
         "idValue",
@@ -427,6 +428,7 @@
   },
   "errorResponse": {
     "type": "object",
+    "additionalProperties": false,
     "properties": {
       "statusCode": {
         "type": "string",
@@ -442,6 +444,7 @@
     "type": "array",
     "items": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "idType",
         "idValue"
@@ -479,6 +482,7 @@
         },
         "error": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "statusCode": {
               "type": "string",
@@ -531,6 +535,7 @@
   "Extension": {
     "title": "Extension",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type Extension.",
     "properties": {
       "key": {
@@ -556,6 +561,7 @@
   "ExtensionList": {
     "title": "ExtensionList",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
     "properties": {
       "extension": {
@@ -563,6 +569,7 @@
         "items": {
           "title": "Extension",
           "type": "object",
+          "additionalProperties": false,
           "description": "Data model for the complex type Extension.",
           "properties": {
             "key": {
@@ -597,6 +604,7 @@
   "ErrorInformation": {
     "title": "ErrorInformation",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type ErrorInformation.",
     "properties": {
       "errorCode": {
@@ -616,6 +624,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -623,6 +632,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -662,10 +672,12 @@
   },
   "mojaloopError": {
     "type": "object",
+    "additionalProperties": false,
     "properties": {
       "errorInformation": {
         "title": "ErrorInformation",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ErrorInformation.",
         "properties": {
           "errorCode": {
@@ -685,6 +697,7 @@
           "extensionList": {
             "title": "ExtensionList",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
             "properties": {
               "extension": {
@@ -692,6 +705,7 @@
                 "items": {
                   "title": "Extension",
                   "type": "object",
+                  "additionalProperties": false,
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
@@ -733,6 +747,7 @@
   },
   "transferError": {
     "type": "object",
+    "additionalProperties": false,
     "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
     "properties": {
       "httpStatusCode": {
@@ -741,10 +756,12 @@
       },
       "mojaloopError": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "errorInformation": {
             "title": "ErrorInformation",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type ErrorInformation.",
             "properties": {
               "errorCode": {
@@ -764,6 +781,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -771,6 +789,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -814,6 +833,7 @@
   },
   "accountsResponse": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "accounts"
     ],
@@ -829,6 +849,7 @@
         "type": "array",
         "items": {
           "type": "object",
+          "additionalProperties": false,
           "required": [
             "idType",
             "idValue",
@@ -1045,6 +1066,7 @@
         "type": "array",
         "items": {
           "type": "object",
+          "additionalProperties": false,
           "required": [
             "idType",
             "idValue"
@@ -1082,6 +1104,7 @@
             },
             "error": {
               "type": "object",
+              "additionalProperties": false,
               "properties": {
                 "statusCode": {
                   "type": "string",
@@ -1105,6 +1128,7 @@
       },
       "lastError": {
         "type": "object",
+        "additionalProperties": false,
         "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
         "properties": {
           "httpStatusCode": {
@@ -1113,10 +1137,12 @@
           },
           "mojaloopError": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "errorInformation": {
                 "title": "ErrorInformation",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ErrorInformation.",
                 "properties": {
                   "errorCode": {
@@ -1136,6 +1162,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -1143,6 +1170,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -1204,6 +1232,7 @@
     "allOf": [
       {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "statusCode": {
             "type": "string",
@@ -1217,12 +1246,14 @@
       },
       {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "executionState"
         ],
         "properties": {
           "executionState": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
               "accounts"
             ],
@@ -1238,6 +1269,7 @@
                 "type": "array",
                 "items": {
                   "type": "object",
+                  "additionalProperties": false,
                   "required": [
                     "idType",
                     "idValue",
@@ -1454,6 +1486,7 @@
                 "type": "array",
                 "items": {
                   "type": "object",
+                  "additionalProperties": false,
                   "required": [
                     "idType",
                     "idValue"
@@ -1491,6 +1524,7 @@
                     },
                     "error": {
                       "type": "object",
+                      "additionalProperties": false,
                       "properties": {
                         "statusCode": {
                           "type": "string",
@@ -1514,6 +1548,7 @@
               },
               "lastError": {
                 "type": "object",
+                "additionalProperties": false,
                 "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
                 "properties": {
                   "httpStatusCode": {
@@ -1522,10 +1557,12 @@
                   },
                   "mojaloopError": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                       "errorInformation": {
                         "title": "ErrorInformation",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type ErrorInformation.",
                         "properties": {
                           "errorCode": {
@@ -1545,6 +1582,7 @@
                           "extensionList": {
                             "title": "ExtensionList",
                             "type": "object",
+                            "additionalProperties": false,
                             "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                             "properties": {
                               "extension": {
@@ -1552,6 +1590,7 @@
                                 "items": {
                                   "title": "Extension",
                                   "type": "object",
+                                  "additionalProperties": false,
                                   "description": "Data model for the complex type Extension.",
                                   "properties": {
                                     "key": {
@@ -1683,6 +1722,7 @@
     "items": {
       "title": "Extension",
       "type": "object",
+      "additionalProperties": false,
       "description": "Data model for the complex type Extension.",
       "properties": {
         "key": {
@@ -1710,6 +1750,7 @@
   },
   "transferParty": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "idType",
       "idValue"
@@ -1815,6 +1856,7 @@
         "items": {
           "title": "Extension",
           "type": "object",
+          "additionalProperties": false,
           "description": "Data model for the complex type Extension.",
           "properties": {
             "key": {
@@ -1885,6 +1927,7 @@
   "individualQuote": {
     "title": "IndividualQuote",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type 'individualQuote'.",
     "properties": {
       "quoteId": {
@@ -1896,6 +1939,7 @@
       },
       "to": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -2001,6 +2045,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -2244,6 +2289,7 @@
       "extensions": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -2251,6 +2297,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -2294,6 +2341,7 @@
   },
   "bulkQuoteRequest": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "homeTransactionId",
       "from",
@@ -2313,6 +2361,7 @@
       },
       "from": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -2418,6 +2467,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -2453,6 +2503,7 @@
         "items": {
           "title": "IndividualQuote",
           "type": "object",
+          "additionalProperties": false,
           "description": "Data model for the complex type 'individualQuote'.",
           "properties": {
             "quoteId": {
@@ -2464,6 +2515,7 @@
             },
             "to": {
               "type": "object",
+              "additionalProperties": false,
               "required": [
                 "idType",
                 "idValue"
@@ -2569,6 +2621,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -2812,6 +2865,7 @@
             "extensions": {
               "title": "ExtensionList",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
@@ -2819,6 +2873,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -2864,6 +2919,7 @@
       "extensions": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -2871,6 +2927,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -2921,6 +2978,7 @@
   "Money": {
     "title": "Money",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type Money.",
     "properties": {
       "currency": {
@@ -3126,6 +3184,7 @@
   "GeoCode": {
     "title": "GeoCode",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
     "properties": {
       "latitude": {
@@ -3166,6 +3225,7 @@
   },
   "quoteError": {
     "type": "object",
+    "additionalProperties": false,
     "description": "This object represents a Mojaloop API error received at any time during the quote process",
     "properties": {
       "httpStatusCode": {
@@ -3174,10 +3234,12 @@
       },
       "mojaloopError": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "errorInformation": {
             "title": "ErrorInformation",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type ErrorInformation.",
             "properties": {
               "errorCode": {
@@ -3197,6 +3259,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -3204,6 +3267,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -3247,6 +3311,7 @@
   },
   "individualQuoteResult": {
     "type": "object",
+    "additionalProperties": false,
     "properties": {
       "quoteId": {
         "title": "CorrelationId",
@@ -3258,6 +3323,7 @@
       "transferAmount": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -3449,6 +3515,7 @@
       "payeeReceiveAmount": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -3640,6 +3707,7 @@
       "payeeFspFee": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -3831,6 +3899,7 @@
       "payeeFspCommission": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -4022,6 +4091,7 @@
       "geoCode": {
         "title": "GeoCode",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
         "properties": {
           "latitude": {
@@ -4063,6 +4133,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -4070,6 +4141,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -4103,6 +4175,7 @@
       },
       "lastError": {
         "type": "object",
+        "additionalProperties": false,
         "description": "This object represents a Mojaloop API error received at any time during the quote process",
         "properties": {
           "httpStatusCode": {
@@ -4111,10 +4184,12 @@
           },
           "mojaloopError": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "errorInformation": {
                 "title": "ErrorInformation",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ErrorInformation.",
                 "properties": {
                   "errorCode": {
@@ -4134,6 +4209,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -4141,6 +4217,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -4189,6 +4266,7 @@
   },
   "bulkQuoteResponse": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "bulkQuoteId",
       "individualQuoteResults",
@@ -4217,6 +4295,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -4224,6 +4303,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -4267,6 +4347,7 @@
         "maxItems": 1000,
         "items": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "quoteId": {
               "title": "CorrelationId",
@@ -4278,6 +4359,7 @@
             "transferAmount": {
               "title": "Money",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Money.",
               "properties": {
                 "currency": {
@@ -4469,6 +4551,7 @@
             "payeeReceiveAmount": {
               "title": "Money",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Money.",
               "properties": {
                 "currency": {
@@ -4660,6 +4743,7 @@
             "payeeFspFee": {
               "title": "Money",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Money.",
               "properties": {
                 "currency": {
@@ -4851,6 +4935,7 @@
             "payeeFspCommission": {
               "title": "Money",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Money.",
               "properties": {
                 "currency": {
@@ -5042,6 +5127,7 @@
             "geoCode": {
               "title": "GeoCode",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
               "properties": {
                 "latitude": {
@@ -5083,6 +5169,7 @@
             "extensionList": {
               "title": "ExtensionList",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
@@ -5090,6 +5177,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -5123,6 +5211,7 @@
             },
             "lastError": {
               "type": "object",
+              "additionalProperties": false,
               "description": "This object represents a Mojaloop API error received at any time during the quote process",
               "properties": {
                 "httpStatusCode": {
@@ -5131,10 +5220,12 @@
                 },
                 "mojaloopError": {
                   "type": "object",
+                  "additionalProperties": false,
                   "properties": {
                     "errorInformation": {
                       "title": "ErrorInformation",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type ErrorInformation.",
                       "properties": {
                         "errorCode": {
@@ -5154,6 +5245,7 @@
                         "extensionList": {
                           "title": "ExtensionList",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                           "properties": {
                             "extension": {
@@ -5161,6 +5253,7 @@
                               "items": {
                                 "title": "Extension",
                                 "type": "object",
+                                "additionalProperties": false,
                                 "description": "Data model for the complex type Extension.",
                                 "properties": {
                                   "key": {
@@ -5215,6 +5308,7 @@
     "allOf": [
       {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "statusCode": {
             "type": "string",
@@ -5228,12 +5322,14 @@
       },
       {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "bulkQuoteState"
         ],
         "properties": {
           "bulkQuoteState": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
               "bulkQuoteId",
               "individualQuoteResults",
@@ -5262,6 +5358,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -5269,6 +5366,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -5312,6 +5410,7 @@
                 "maxItems": 1000,
                 "items": {
                   "type": "object",
+                  "additionalProperties": false,
                   "properties": {
                     "quoteId": {
                       "title": "CorrelationId",
@@ -5323,6 +5422,7 @@
                     "transferAmount": {
                       "title": "Money",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Money.",
                       "properties": {
                         "currency": {
@@ -5514,6 +5614,7 @@
                     "payeeReceiveAmount": {
                       "title": "Money",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Money.",
                       "properties": {
                         "currency": {
@@ -5705,6 +5806,7 @@
                     "payeeFspFee": {
                       "title": "Money",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Money.",
                       "properties": {
                         "currency": {
@@ -5896,6 +5998,7 @@
                     "payeeFspCommission": {
                       "title": "Money",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Money.",
                       "properties": {
                         "currency": {
@@ -6087,6 +6190,7 @@
                     "geoCode": {
                       "title": "GeoCode",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
                       "properties": {
                         "latitude": {
@@ -6128,6 +6232,7 @@
                     "extensionList": {
                       "title": "ExtensionList",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                       "properties": {
                         "extension": {
@@ -6135,6 +6240,7 @@
                           "items": {
                             "title": "Extension",
                             "type": "object",
+                            "additionalProperties": false,
                             "description": "Data model for the complex type Extension.",
                             "properties": {
                               "key": {
@@ -6168,6 +6274,7 @@
                     },
                     "lastError": {
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "This object represents a Mojaloop API error received at any time during the quote process",
                       "properties": {
                         "httpStatusCode": {
@@ -6176,10 +6283,12 @@
                         },
                         "mojaloopError": {
                           "type": "object",
+                          "additionalProperties": false,
                           "properties": {
                             "errorInformation": {
                               "title": "ErrorInformation",
                               "type": "object",
+                              "additionalProperties": false,
                               "description": "Data model for the complex type ErrorInformation.",
                               "properties": {
                                 "errorCode": {
@@ -6199,6 +6308,7 @@
                                 "extensionList": {
                                   "title": "ExtensionList",
                                   "type": "object",
+                                  "additionalProperties": false,
                                   "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                                   "properties": {
                                     "extension": {
@@ -6206,6 +6316,7 @@
                                       "items": {
                                         "title": "Extension",
                                         "type": "object",
+                                        "additionalProperties": false,
                                         "description": "Data model for the complex type Extension.",
                                         "properties": {
                                           "key": {
@@ -6269,6 +6380,7 @@
   },
   "bulkQuoteStatusResponse": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "bulkQuoteId",
       "currentState",
@@ -6296,6 +6408,7 @@
         "items": {
           "title": "IndividualQuote",
           "type": "object",
+          "additionalProperties": false,
           "description": "Data model for the complex type 'individualQuote'.",
           "properties": {
             "quoteId": {
@@ -6307,6 +6420,7 @@
             },
             "to": {
               "type": "object",
+              "additionalProperties": false,
               "required": [
                 "idType",
                 "idValue"
@@ -6412,6 +6526,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -6655,6 +6770,7 @@
             "extensions": {
               "title": "ExtensionList",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
@@ -6662,6 +6778,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -6708,6 +6825,7 @@
   },
   "autoAcceptPartyOption": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "enabled"
     ],
@@ -6723,6 +6841,7 @@
   },
   "bulkPerTransferFeeLimit": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "currency",
       "amount"
@@ -6912,6 +7031,7 @@
   },
   "autoAcceptQuote": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "enabled"
     ],
@@ -6928,6 +7048,7 @@
         "minItems": 0,
         "items": {
           "type": "object",
+          "additionalProperties": false,
           "required": [
             "currency",
             "amount"
@@ -7120,6 +7241,7 @@
   },
   "bulkTransactionOptions": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "autoAcceptParty",
       "autoAcceptQuote",
@@ -7132,6 +7254,7 @@
       },
       "autoAcceptParty": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "enabled"
         ],
@@ -7151,6 +7274,7 @@
         "oneOf": [
           {
             "type": "object",
+            "additionalProperties": false,
             "required": [
               "enabled"
             ],
@@ -7167,6 +7291,7 @@
                 "minItems": 0,
                 "items": {
                   "type": "object",
+                  "additionalProperties": false,
                   "required": [
                     "currency",
                     "amount"
@@ -7364,7 +7489,7 @@
         "type": "boolean"
       },
       "synchronous": {
-        "description": "Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will  be callbacks whenever the processing is done",
+        "description": "Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will be callbacks whenever the processing is done",
         "type": "boolean"
       },
       "bulkExpiration": {
@@ -7379,6 +7504,7 @@
   "PartyIdInfo": {
     "title": "PartyIdInfo",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
     "properties": {
       "partyIdType": {
@@ -7421,6 +7547,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -7428,6 +7555,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -7475,6 +7603,7 @@
   "PartyComplexName": {
     "title": "PartyComplexName",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type PartyComplexName.",
     "properties": {
       "firstName": {
@@ -7509,11 +7638,13 @@
   "PartyPersonalInfo": {
     "title": "PartyPersonalInfo",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type PartyPersonalInfo.",
     "properties": {
       "complexName": {
         "title": "PartyComplexName",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type PartyComplexName.",
         "properties": {
           "firstName": {
@@ -7557,11 +7688,13 @@
   "Party": {
     "title": "Party",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type Party.",
     "properties": {
       "partyIdInfo": {
         "title": "PartyIdInfo",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
         "properties": {
           "partyIdType": {
@@ -7604,6 +7737,7 @@
           "extensionList": {
             "title": "ExtensionList",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
             "properties": {
               "extension": {
@@ -7611,6 +7745,7 @@
                 "items": {
                   "title": "Extension",
                   "type": "object",
+                  "additionalProperties": false,
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
@@ -7664,11 +7799,13 @@
       "personalInfo": {
         "title": "PartyPersonalInfo",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type PartyPersonalInfo.",
         "properties": {
           "complexName": {
             "title": "PartyComplexName",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyComplexName.",
             "properties": {
               "firstName": {
@@ -7717,6 +7854,7 @@
   "bulkTransactionIndividualTransfer": {
     "title": "BulkTransactionIndividualTransfer",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type 'bulkTransactionIndividualTransfer'.",
     "properties": {
       "homeTransactionId": {
@@ -7726,11 +7864,13 @@
       "to": {
         "title": "Party",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Party.",
         "properties": {
           "partyIdInfo": {
             "title": "PartyIdInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
             "properties": {
               "partyIdType": {
@@ -7773,6 +7913,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -7780,6 +7921,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -7833,11 +7975,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -8088,6 +8232,7 @@
       "quoteExtensions": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -8095,6 +8240,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -8129,6 +8275,7 @@
       "transferExtensions": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -8136,6 +8283,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -8169,6 +8317,7 @@
       },
       "lastError": {
         "type": "object",
+        "additionalProperties": false,
         "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
         "properties": {
           "httpStatusCode": {
@@ -8177,10 +8326,12 @@
           },
           "mojaloopError": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "errorInformation": {
                 "title": "ErrorInformation",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ErrorInformation.",
                 "properties": {
                   "errorCode": {
@@ -8200,6 +8351,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -8207,6 +8359,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -8259,6 +8412,7 @@
   },
   "bulkTransactionRequest": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "bulkTransactionId",
       "bulkHomeTransactionID",
@@ -8280,6 +8434,7 @@
       },
       "options": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "autoAcceptParty",
           "autoAcceptQuote",
@@ -8292,6 +8447,7 @@
           },
           "autoAcceptParty": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
               "enabled"
             ],
@@ -8311,6 +8467,7 @@
             "oneOf": [
               {
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
                   "enabled"
                 ],
@@ -8327,6 +8484,7 @@
                     "minItems": 0,
                     "items": {
                       "type": "object",
+                      "additionalProperties": false,
                       "required": [
                         "currency",
                         "amount"
@@ -8524,7 +8682,7 @@
             "type": "boolean"
           },
           "synchronous": {
-            "description": "Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will  be callbacks whenever the processing is done",
+            "description": "Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will be callbacks whenever the processing is done",
             "type": "boolean"
           },
           "bulkExpiration": {
@@ -8539,11 +8697,13 @@
       "from": {
         "title": "Party",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Party.",
         "properties": {
           "partyIdInfo": {
             "title": "PartyIdInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
             "properties": {
               "partyIdType": {
@@ -8586,6 +8746,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -8593,6 +8754,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -8646,11 +8808,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -8703,6 +8867,7 @@
         "items": {
           "title": "BulkTransactionIndividualTransfer",
           "type": "object",
+          "additionalProperties": false,
           "description": "Data model for the complex type 'bulkTransactionIndividualTransfer'.",
           "properties": {
             "homeTransactionId": {
@@ -8712,11 +8877,13 @@
             "to": {
               "title": "Party",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Party.",
               "properties": {
                 "partyIdInfo": {
                   "title": "PartyIdInfo",
                   "type": "object",
+                  "additionalProperties": false,
                   "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
                   "properties": {
                     "partyIdType": {
@@ -8759,6 +8926,7 @@
                     "extensionList": {
                       "title": "ExtensionList",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                       "properties": {
                         "extension": {
@@ -8766,6 +8934,7 @@
                           "items": {
                             "title": "Extension",
                             "type": "object",
+                            "additionalProperties": false,
                             "description": "Data model for the complex type Extension.",
                             "properties": {
                               "key": {
@@ -8819,11 +8988,13 @@
                 "personalInfo": {
                   "title": "PartyPersonalInfo",
                   "type": "object",
+                  "additionalProperties": false,
                   "description": "Data model for the complex type PartyPersonalInfo.",
                   "properties": {
                     "complexName": {
                       "title": "PartyComplexName",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type PartyComplexName.",
                       "properties": {
                         "firstName": {
@@ -9074,6 +9245,7 @@
             "quoteExtensions": {
               "title": "ExtensionList",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
@@ -9081,6 +9253,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -9115,6 +9288,7 @@
             "transferExtensions": {
               "title": "ExtensionList",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
@@ -9122,6 +9296,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -9155,6 +9330,7 @@
             },
             "lastError": {
               "type": "object",
+              "additionalProperties": false,
               "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
               "properties": {
                 "httpStatusCode": {
@@ -9163,10 +9339,12 @@
                 },
                 "mojaloopError": {
                   "type": "object",
+                  "additionalProperties": false,
                   "properties": {
                     "errorInformation": {
                       "title": "ErrorInformation",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type ErrorInformation.",
                       "properties": {
                         "errorCode": {
@@ -9186,6 +9364,7 @@
                         "extensionList": {
                           "title": "ExtensionList",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                           "properties": {
                             "extension": {
@@ -9193,6 +9372,7 @@
                               "items": {
                                 "title": "Extension",
                                 "type": "object",
+                                "additionalProperties": false,
                                 "description": "Data model for the complex type Extension.",
                                 "properties": {
                                   "key": {
@@ -9247,6 +9427,7 @@
       "extensions": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -9254,6 +9435,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -9309,6 +9491,7 @@
   },
   "individualTransferResult": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "transferId"
     ],
@@ -9331,6 +9514,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -9338,6 +9522,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -9383,6 +9568,7 @@
       },
       "lastError": {
         "type": "object",
+        "additionalProperties": false,
         "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
         "properties": {
           "httpStatusCode": {
@@ -9391,10 +9577,12 @@
           },
           "mojaloopError": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "errorInformation": {
                 "title": "ErrorInformation",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ErrorInformation.",
                 "properties": {
                   "errorCode": {
@@ -9414,6 +9602,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -9421,6 +9610,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -9466,6 +9656,7 @@
   },
   "bulkTransferResponse": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "bulkTransferId",
       "individualTransferResults",
@@ -9512,6 +9703,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -9519,6 +9711,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -9562,6 +9755,7 @@
         "maxItems": 1000,
         "items": {
           "type": "object",
+          "additionalProperties": false,
           "required": [
             "transferId"
           ],
@@ -9584,6 +9778,7 @@
             "extensionList": {
               "title": "ExtensionList",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
@@ -9591,6 +9786,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -9636,6 +9832,7 @@
             },
             "lastError": {
               "type": "object",
+              "additionalProperties": false,
               "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
               "properties": {
                 "httpStatusCode": {
@@ -9644,10 +9841,12 @@
                 },
                 "mojaloopError": {
                   "type": "object",
+                  "additionalProperties": false,
                   "properties": {
                     "errorInformation": {
                       "title": "ErrorInformation",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type ErrorInformation.",
                       "properties": {
                         "errorCode": {
@@ -9667,6 +9866,7 @@
                         "extensionList": {
                           "title": "ExtensionList",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                           "properties": {
                             "extension": {
@@ -9674,6 +9874,7 @@
                               "items": {
                                 "title": "Extension",
                                 "type": "object",
+                                "additionalProperties": false,
                                 "description": "Data model for the complex type Extension.",
                                 "properties": {
                                   "key": {
@@ -9725,6 +9926,7 @@
     "allOf": [
       {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "statusCode": {
             "type": "string",
@@ -9738,12 +9940,14 @@
       },
       {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "bulkTransferState"
         ],
         "properties": {
           "bulkTransferState": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
               "bulkTransferId",
               "individualTransferResults",
@@ -9790,6 +9994,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -9797,6 +10002,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -9840,6 +10046,7 @@
                 "maxItems": 1000,
                 "items": {
                   "type": "object",
+                  "additionalProperties": false,
                   "required": [
                     "transferId"
                   ],
@@ -9862,6 +10069,7 @@
                     "extensionList": {
                       "title": "ExtensionList",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                       "properties": {
                         "extension": {
@@ -9869,6 +10077,7 @@
                           "items": {
                             "title": "Extension",
                             "type": "object",
+                            "additionalProperties": false,
                             "description": "Data model for the complex type Extension.",
                             "properties": {
                               "key": {
@@ -9914,6 +10123,7 @@
                     },
                     "lastError": {
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
                       "properties": {
                         "httpStatusCode": {
@@ -9922,10 +10132,12 @@
                         },
                         "mojaloopError": {
                           "type": "object",
+                          "additionalProperties": false,
                           "properties": {
                             "errorInformation": {
                               "title": "ErrorInformation",
                               "type": "object",
+                              "additionalProperties": false,
                               "description": "Data model for the complex type ErrorInformation.",
                               "properties": {
                                 "errorCode": {
@@ -9945,6 +10157,7 @@
                                 "extensionList": {
                                   "title": "ExtensionList",
                                   "type": "object",
+                                  "additionalProperties": false,
                                   "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                                   "properties": {
                                     "extension": {
@@ -9952,6 +10165,7 @@
                                       "items": {
                                         "title": "Extension",
                                         "type": "object",
+                                        "additionalProperties": false,
                                         "description": "Data model for the complex type Extension.",
                                         "properties": {
                                           "key": {
@@ -10005,6 +10219,7 @@
   },
   "bulkTransactionIndividualTransferAccept": {
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the 'individualTransfer' while accepting party or quote.",
     "properties": {
       "transferId": {
@@ -10021,6 +10236,7 @@
   },
   "transferContinuationAcceptParty": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "acceptParty"
     ],
@@ -10037,6 +10253,7 @@
   "bulkTransactionContinuationAcceptParty": {
     "description": "The object sent back as confirmation of payee parties when autoAcceptParty is false.",
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "individualTransfers"
     ],
@@ -10049,6 +10266,7 @@
           "allOf": [
             {
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the 'individualTransfer' while accepting party or quote.",
               "properties": {
                 "transferId": {
@@ -10065,6 +10283,7 @@
             },
             {
               "type": "object",
+              "additionalProperties": false,
               "required": [
                 "acceptParty"
               ],
@@ -10085,6 +10304,7 @@
   },
   "transferContinuationAcceptQuote": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "acceptQuote"
     ],
@@ -10101,6 +10321,7 @@
   "bulkTransactionContinuationAcceptQuote": {
     "description": "The object sent back as confirmation of quotes when autoAcceptQuotes is false.",
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "individualTransfers"
     ],
@@ -10113,6 +10334,7 @@
           "allOf": [
             {
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the 'individualTransfer' while accepting party or quote.",
               "properties": {
                 "transferId": {
@@ -10129,6 +10351,7 @@
             },
             {
               "type": "object",
+              "additionalProperties": false,
               "required": [
                 "acceptQuote"
               ],
@@ -10149,6 +10372,7 @@
   },
   "partyError": {
     "type": "object",
+    "additionalProperties": false,
     "description": "This object represents a Mojaloop API error received at any time during the party discovery process",
     "properties": {
       "httpStatusCode": {
@@ -10157,10 +10381,12 @@
       },
       "mojaloopError": {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "errorInformation": {
             "title": "ErrorInformation",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type ErrorInformation.",
             "properties": {
               "errorCode": {
@@ -10180,6 +10406,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -10187,6 +10414,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -10232,6 +10460,7 @@
     "allOf": [
       {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "statusCode": {
             "type": "string",
@@ -10245,6 +10474,7 @@
       },
       {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "bulkTransferState"
         ],
@@ -10254,6 +10484,7 @@
               {
                 "description": "The object sent back as confirmation of payee parties when autoAcceptParty is false.",
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
                   "individualTransfers"
                 ],
@@ -10266,6 +10497,7 @@
                       "allOf": [
                         {
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the 'individualTransfer' while accepting party or quote.",
                           "properties": {
                             "transferId": {
@@ -10282,6 +10514,7 @@
                         },
                         {
                           "type": "object",
+                          "additionalProperties": false,
                           "required": [
                             "acceptParty"
                           ],
@@ -10302,6 +10535,7 @@
               },
               {
                 "type": "object",
+                "additionalProperties": false,
                 "description": "This object represents a Mojaloop API error received at any time during the party discovery process",
                 "properties": {
                   "httpStatusCode": {
@@ -10310,10 +10544,12 @@
                   },
                   "mojaloopError": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                       "errorInformation": {
                         "title": "ErrorInformation",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type ErrorInformation.",
                         "properties": {
                           "errorCode": {
@@ -10333,6 +10569,7 @@
                           "extensionList": {
                             "title": "ExtensionList",
                             "type": "object",
+                            "additionalProperties": false,
                             "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                             "properties": {
                               "extension": {
@@ -10340,6 +10577,7 @@
                                 "items": {
                                   "title": "Extension",
                                   "type": "object",
+                                  "additionalProperties": false,
                                   "description": "Data model for the complex type Extension.",
                                   "properties": {
                                     "key": {
@@ -10391,6 +10629,7 @@
     "allOf": [
       {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "statusCode": {
             "type": "string",
@@ -10404,6 +10643,7 @@
       },
       {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "bulkTansferState"
         ],
@@ -10413,6 +10653,7 @@
               {
                 "description": "The object sent back as confirmation of quotes when autoAcceptQuotes is false.",
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
                   "individualTransfers"
                 ],
@@ -10425,6 +10666,7 @@
                       "allOf": [
                         {
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the 'individualTransfer' while accepting party or quote.",
                           "properties": {
                             "transferId": {
@@ -10441,6 +10683,7 @@
                         },
                         {
                           "type": "object",
+                          "additionalProperties": false,
                           "required": [
                             "acceptQuote"
                           ],
@@ -10461,6 +10704,7 @@
               },
               {
                 "type": "object",
+                "additionalProperties": false,
                 "description": "This object represents a Mojaloop API error received at any time during the quote process",
                 "properties": {
                   "httpStatusCode": {
@@ -10469,10 +10713,12 @@
                   },
                   "mojaloopError": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                       "errorInformation": {
                         "title": "ErrorInformation",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type ErrorInformation.",
                         "properties": {
                           "errorCode": {
@@ -10492,6 +10738,7 @@
                           "extensionList": {
                             "title": "ExtensionList",
                             "type": "object",
+                            "additionalProperties": false,
                             "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                             "properties": {
                               "extension": {
@@ -10499,6 +10746,7 @@
                                 "items": {
                                   "title": "Extension",
                                   "type": "object",
+                                  "additionalProperties": false,
                                   "description": "Data model for the complex type Extension.",
                                   "properties": {
                                     "key": {
@@ -10549,6 +10797,7 @@
   "individualTransfer": {
     "title": "IndividualTransfer",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type 'individualTransfer'.",
     "properties": {
       "transferId": {
@@ -10560,6 +10809,7 @@
       },
       "to": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -10665,6 +10915,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -10924,6 +11175,7 @@
       "extensions": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -10931,6 +11183,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -10975,6 +11228,7 @@
   },
   "bulkTransferRequest": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "bulkTransferId",
       "homeTransactionId",
@@ -11003,6 +11257,7 @@
       },
       "from": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -11108,6 +11363,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -11143,6 +11399,7 @@
         "items": {
           "title": "IndividualTransfer",
           "type": "object",
+          "additionalProperties": false,
           "description": "Data model for the complex type 'individualTransfer'.",
           "properties": {
             "transferId": {
@@ -11154,6 +11411,7 @@
             },
             "to": {
               "type": "object",
+              "additionalProperties": false,
               "required": [
                 "idType",
                 "idValue"
@@ -11259,6 +11517,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -11518,6 +11777,7 @@
             "extensions": {
               "title": "ExtensionList",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
@@ -11525,6 +11785,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -11571,6 +11832,7 @@
       "extensions": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -11578,6 +11840,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -11613,6 +11876,7 @@
   },
   "individualTransferFulfilment": {
     "type": "object",
+    "additionalProperties": false,
     "description": "A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer",
     "properties": {
       "fulfilment": {
@@ -11626,6 +11890,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -11633,6 +11898,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -11694,6 +11960,7 @@
         "maxItems": 1000,
         "items": {
           "type": "object",
+          "additionalProperties": false,
           "description": "A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer",
           "properties": {
             "fulfilment": {
@@ -11707,6 +11974,7 @@
             "extensionList": {
               "title": "ExtensionList",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
               "properties": {
                 "extension": {
@@ -11714,6 +11982,7 @@
                   "items": {
                     "title": "Extension",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
@@ -11761,6 +12030,7 @@
   "partiesByIdResponse": {
     "title": "partiesByIdResponse",
     "type": "object",
+    "additionalProperties": false,
     "description": "GET /parties/{Type}/{ID} response object",
     "properties": {
       "party": {
@@ -11768,11 +12038,13 @@
           "body": {
             "title": "Party",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Party.",
             "properties": {
               "partyIdInfo": {
                 "title": "PartyIdInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
                 "properties": {
                   "partyIdType": {
@@ -11815,6 +12087,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -11822,6 +12095,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -11875,11 +12149,13 @@
               "personalInfo": {
                 "title": "PartyPersonalInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyPersonalInfo.",
                 "properties": {
                   "complexName": {
                     "title": "PartyComplexName",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type PartyComplexName.",
                     "properties": {
                       "firstName": {
@@ -11982,6 +12258,7 @@
   "Refund": {
     "title": "Refund",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type Refund.",
     "properties": {
       "originalTransactionId": {
@@ -12014,6 +12291,7 @@
   "TransactionType": {
     "title": "TransactionType",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type TransactionType.",
     "properties": {
       "scenario": {
@@ -12061,6 +12339,7 @@
       "refundInfo": {
         "title": "Refund",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Refund.",
         "properties": {
           "originalTransactionId": {
@@ -12100,6 +12379,7 @@
   "QuotesPostRequest": {
     "title": "QuotesPostRequest",
     "type": "object",
+    "additionalProperties": false,
     "description": "The object sent in the POST /quotes request.",
     "properties": {
       "quoteId": {
@@ -12126,11 +12406,13 @@
       "payee": {
         "title": "Party",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Party.",
         "properties": {
           "partyIdInfo": {
             "title": "PartyIdInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
             "properties": {
               "partyIdType": {
@@ -12173,6 +12455,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -12180,6 +12463,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -12233,11 +12517,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -12286,11 +12572,13 @@
       "payer": {
         "title": "Party",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Party.",
         "properties": {
           "partyIdInfo": {
             "title": "PartyIdInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
             "properties": {
               "partyIdType": {
@@ -12333,6 +12621,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -12340,6 +12629,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -12393,11 +12683,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -12456,6 +12748,7 @@
       "amount": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -12647,6 +12940,7 @@
       "fees": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -12838,6 +13132,7 @@
       "transactionType": {
         "title": "TransactionType",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type TransactionType.",
         "properties": {
           "scenario": {
@@ -12885,6 +13180,7 @@
           "refundInfo": {
             "title": "Refund",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Refund.",
             "properties": {
               "originalTransactionId": {
@@ -12924,6 +13220,7 @@
       "geoCode": {
         "title": "GeoCode",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
         "properties": {
           "latitude": {
@@ -12964,6 +13261,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -12971,6 +13269,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -13016,6 +13315,7 @@
   "simpleQuotesPostRequest": {
     "title": "simpleQuotesPostRequest",
     "type": "object",
+    "additionalProperties": false,
     "properties": {
       "fspId": {
         "title": "FspId",
@@ -13027,6 +13327,7 @@
       "quotesPostRequest": {
         "title": "QuotesPostRequest",
         "type": "object",
+        "additionalProperties": false,
         "description": "The object sent in the POST /quotes request.",
         "properties": {
           "quoteId": {
@@ -13053,11 +13354,13 @@
           "payee": {
             "title": "Party",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Party.",
             "properties": {
               "partyIdInfo": {
                 "title": "PartyIdInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
                 "properties": {
                   "partyIdType": {
@@ -13100,6 +13403,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -13107,6 +13411,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -13160,11 +13465,13 @@
               "personalInfo": {
                 "title": "PartyPersonalInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyPersonalInfo.",
                 "properties": {
                   "complexName": {
                     "title": "PartyComplexName",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type PartyComplexName.",
                     "properties": {
                       "firstName": {
@@ -13213,11 +13520,13 @@
           "payer": {
             "title": "Party",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Party.",
             "properties": {
               "partyIdInfo": {
                 "title": "PartyIdInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
                 "properties": {
                   "partyIdType": {
@@ -13260,6 +13569,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -13267,6 +13577,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -13320,11 +13631,13 @@
               "personalInfo": {
                 "title": "PartyPersonalInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyPersonalInfo.",
                 "properties": {
                   "complexName": {
                     "title": "PartyComplexName",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type PartyComplexName.",
                     "properties": {
                       "firstName": {
@@ -13383,6 +13696,7 @@
           "amount": {
             "title": "Money",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Money.",
             "properties": {
               "currency": {
@@ -13574,6 +13888,7 @@
           "fees": {
             "title": "Money",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Money.",
             "properties": {
               "currency": {
@@ -13765,6 +14080,7 @@
           "transactionType": {
             "title": "TransactionType",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type TransactionType.",
             "properties": {
               "scenario": {
@@ -13812,6 +14128,7 @@
               "refundInfo": {
                 "title": "Refund",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Refund.",
                 "properties": {
                   "originalTransactionId": {
@@ -13851,6 +14168,7 @@
           "geoCode": {
             "title": "GeoCode",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
             "properties": {
               "latitude": {
@@ -13891,6 +14209,7 @@
           "extensionList": {
             "title": "ExtensionList",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
             "properties": {
               "extension": {
@@ -13898,6 +14217,7 @@
                 "items": {
                   "title": "Extension",
                   "type": "object",
+                  "additionalProperties": false,
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
@@ -13949,6 +14269,7 @@
   "quotesPostResponse": {
     "title": "QuotesPostResponse",
     "type": "object",
+    "additionalProperties": false,
     "properties": {
       "quotes": {
         "title": "QuotesIDPutResponse",
@@ -13961,6 +14282,7 @@
               "transferAmount": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -14152,6 +14474,7 @@
               "payeeReceiveAmount": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -14343,6 +14666,7 @@
               "payeeFspFee": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -14534,6 +14858,7 @@
               "payeeFspCommission": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -14730,6 +15055,7 @@
               "geoCode": {
                 "title": "GeoCode",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
                 "properties": {
                   "latitude": {
@@ -14771,6 +15097,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -14778,6 +15105,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -14844,6 +15172,7 @@
     "allOf": [
       {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "statusCode": {
             "type": "string",
@@ -14858,7 +15187,8 @@
       {
         "type": "object"
       }
-    ]
+    ],
+    "additionalProperties": false
   },
   "AuthenticationType": {
     "title": "AuthenticationType",
@@ -14873,6 +15203,7 @@
   },
   "requestToPayRequest": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "homeR2PTransactionId",
       "from",
@@ -14889,6 +15220,7 @@
       },
       "from": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -14994,6 +15326,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -15023,6 +15356,7 @@
       },
       "to": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -15128,6 +15462,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -15389,16 +15724,19 @@
   "getPartiesResponse": {
     "title": "getPartiesResponse",
     "type": "object",
+    "additionalProperties": false,
     "description": "The object sent in the GET /parties/{Type}/{ID} callback.",
     "properties": {
       "body": {
         "title": "Party",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Party.",
         "properties": {
           "partyIdInfo": {
             "title": "PartyIdInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
             "properties": {
               "partyIdType": {
@@ -15441,6 +15779,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -15448,6 +15787,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -15501,11 +15841,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -15575,6 +15917,7 @@
   "TransactionRequestResponse": {
     "title": "TransactionRequestResponse",
     "type": "object",
+    "additionalProperties": false,
     "description": "The object sent in the PUT /transactionRequests/{ID} callback.",
     "properties": {
       "body": {
@@ -15602,6 +15945,7 @@
           "extensionList": {
             "title": "ExtensionList",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
             "properties": {
               "extension": {
@@ -15609,6 +15953,7 @@
                 "items": {
                   "title": "Extension",
                   "type": "object",
+                  "additionalProperties": false,
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
@@ -15656,6 +16001,7 @@
   },
   "requestToPayResponse": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "transactionRequestId",
       "from",
@@ -15676,6 +16022,7 @@
       },
       "from": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -15781,6 +16128,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -15810,6 +16158,7 @@
       },
       "to": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -15915,6 +16264,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -16163,16 +16513,19 @@
       "getPartiesResponse": {
         "title": "getPartiesResponse",
         "type": "object",
+        "additionalProperties": false,
         "description": "The object sent in the GET /parties/{Type}/{ID} callback.",
         "properties": {
           "body": {
             "title": "Party",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Party.",
             "properties": {
               "partyIdInfo": {
                 "title": "PartyIdInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
                 "properties": {
                   "partyIdType": {
@@ -16215,6 +16568,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -16222,6 +16576,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -16275,11 +16630,13 @@
               "personalInfo": {
                 "title": "PartyPersonalInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyPersonalInfo.",
                 "properties": {
                   "complexName": {
                     "title": "PartyComplexName",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type PartyComplexName.",
                     "properties": {
                       "firstName": {
@@ -16337,6 +16694,7 @@
       "transactionRequestResponse": {
         "title": "TransactionRequestResponse",
         "type": "object",
+        "additionalProperties": false,
         "description": "The object sent in the PUT /transactionRequests/{ID} callback.",
         "properties": {
           "body": {
@@ -16364,6 +16722,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -16371,6 +16730,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -16418,6 +16778,7 @@
       },
       "lastError": {
         "type": "object",
+        "additionalProperties": false,
         "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
         "properties": {
           "httpStatusCode": {
@@ -16426,10 +16787,12 @@
           },
           "mojaloopError": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "errorInformation": {
                 "title": "ErrorInformation",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ErrorInformation.",
                 "properties": {
                   "errorCode": {
@@ -16449,6 +16812,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -16456,6 +16820,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -16511,11 +16876,13 @@
   "QuotesIDPutResponse": {
     "title": "QuotesIDPutResponse",
     "type": "object",
+    "additionalProperties": false,
     "description": "The object sent in the PUT /quotes/{ID} callback.",
     "properties": {
       "transferAmount": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -16707,6 +17074,7 @@
       "payeeReceiveAmount": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -16898,6 +17266,7 @@
       "payeeFspFee": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -17089,6 +17458,7 @@
       "payeeFspCommission": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -17287,6 +17657,7 @@
       "geoCode": {
         "title": "GeoCode",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
         "properties": {
           "latitude": {
@@ -17328,6 +17699,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -17335,6 +17707,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -17377,6 +17750,7 @@
   "TransfersIDPutResponse": {
     "title": "TransfersIDPutResponse",
     "type": "object",
+    "additionalProperties": false,
     "description": "The object sent in the PUT /transfers/{ID} callback.",
     "properties": {
       "fulfilment": {
@@ -17409,6 +17783,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -17416,6 +17791,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -17454,6 +17830,7 @@
   },
   "transferResponse": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "homeTransactionId",
       "from",
@@ -17477,6 +17854,7 @@
       },
       "from": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -17582,6 +17960,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -17611,6 +17990,7 @@
       },
       "to": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -17716,6 +18096,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -17995,11 +18376,13 @@
           "body": {
             "title": "QuotesIDPutResponse",
             "type": "object",
+            "additionalProperties": false,
             "description": "The object sent in the PUT /quotes/{ID} callback.",
             "properties": {
               "transferAmount": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -18191,6 +18574,7 @@
               "payeeReceiveAmount": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -18382,6 +18766,7 @@
               "payeeFspFee": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -18573,6 +18958,7 @@
               "payeeFspCommission": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -18771,6 +19157,7 @@
               "geoCode": {
                 "title": "GeoCode",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
                 "properties": {
                   "latitude": {
@@ -18812,6 +19199,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -18819,6 +19207,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -18876,6 +19265,7 @@
           "body": {
             "title": "TransfersIDPutResponse",
             "type": "object",
+            "additionalProperties": false,
             "description": "The object sent in the PUT /transfers/{ID} callback.",
             "properties": {
               "fulfilment": {
@@ -18908,6 +19298,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -18915,6 +19306,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -18958,6 +19350,7 @@
       },
       "lastError": {
         "type": "object",
+        "additionalProperties": false,
         "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
         "properties": {
           "httpStatusCode": {
@@ -18966,10 +19359,12 @@
           },
           "mojaloopError": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "errorInformation": {
                 "title": "ErrorInformation",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ErrorInformation.",
                 "properties": {
                   "errorCode": {
@@ -18989,6 +19384,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -18996,6 +19392,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -19047,6 +19444,7 @@
     "allOf": [
       {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "statusCode": {
             "type": "string",
@@ -19060,12 +19458,14 @@
       },
       {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "transferState"
         ],
         "properties": {
           "transferState": {
             "type": "object",
+            "additionalProperties": false,
             "required": [
               "homeTransactionId",
               "from",
@@ -19089,6 +19489,7 @@
               },
               "from": {
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
                   "idType",
                   "idValue"
@@ -19194,6 +19595,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -19223,6 +19625,7 @@
               },
               "to": {
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
                   "idType",
                   "idValue"
@@ -19328,6 +19731,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -19607,11 +20011,13 @@
                   "body": {
                     "title": "QuotesIDPutResponse",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "The object sent in the PUT /quotes/{ID} callback.",
                     "properties": {
                       "transferAmount": {
                         "title": "Money",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type Money.",
                         "properties": {
                           "currency": {
@@ -19803,6 +20209,7 @@
                       "payeeReceiveAmount": {
                         "title": "Money",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type Money.",
                         "properties": {
                           "currency": {
@@ -19994,6 +20401,7 @@
                       "payeeFspFee": {
                         "title": "Money",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type Money.",
                         "properties": {
                           "currency": {
@@ -20185,6 +20593,7 @@
                       "payeeFspCommission": {
                         "title": "Money",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type Money.",
                         "properties": {
                           "currency": {
@@ -20383,6 +20792,7 @@
                       "geoCode": {
                         "title": "GeoCode",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
                         "properties": {
                           "latitude": {
@@ -20424,6 +20834,7 @@
                       "extensionList": {
                         "title": "ExtensionList",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                         "properties": {
                           "extension": {
@@ -20431,6 +20842,7 @@
                             "items": {
                               "title": "Extension",
                               "type": "object",
+                              "additionalProperties": false,
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
@@ -20488,6 +20900,7 @@
                   "body": {
                     "title": "TransfersIDPutResponse",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "The object sent in the PUT /transfers/{ID} callback.",
                     "properties": {
                       "fulfilment": {
@@ -20520,6 +20933,7 @@
                       "extensionList": {
                         "title": "ExtensionList",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                         "properties": {
                           "extension": {
@@ -20527,6 +20941,7 @@
                             "items": {
                               "title": "Extension",
                               "type": "object",
+                              "additionalProperties": false,
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
@@ -20570,6 +20985,7 @@
               },
               "lastError": {
                 "type": "object",
+                "additionalProperties": false,
                 "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
                 "properties": {
                   "httpStatusCode": {
@@ -20578,10 +20994,12 @@
                   },
                   "mojaloopError": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                       "errorInformation": {
                         "title": "ErrorInformation",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type ErrorInformation.",
                         "properties": {
                           "errorCode": {
@@ -20601,6 +21019,7 @@
                           "extensionList": {
                             "title": "ExtensionList",
                             "type": "object",
+                            "additionalProperties": false,
                             "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                             "properties": {
                               "extension": {
@@ -20608,6 +21027,7 @@
                                 "items": {
                                   "title": "Extension",
                                   "type": "object",
+                                  "additionalProperties": false,
                                   "description": "Data model for the complex type Extension.",
                                   "properties": {
                                     "key": {
@@ -20661,6 +21081,7 @@
   },
   "requestToPayTransferRequest": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "homeR2PTransactionId",
       "transactionRequestId",
@@ -20687,6 +21108,7 @@
       },
       "from": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -20792,6 +21214,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -20821,6 +21244,7 @@
       },
       "to": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -20926,6 +21350,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -21225,6 +21650,7 @@
       {
         "title": "U2FPinValue",
         "type": "object",
+        "additionalProperties": false,
         "description": "U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.\n",
         "properties": {
           "pinValue": {
@@ -21253,6 +21679,7 @@
   "AuthenticationInfo": {
     "title": "AuthenticationInfo",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type AuthenticationInfo.",
     "properties": {
       "authentication": {
@@ -21285,6 +21712,7 @@
           {
             "title": "U2FPinValue",
             "type": "object",
+            "additionalProperties": false,
             "description": "U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.\n",
             "properties": {
               "pinValue": {
@@ -21330,11 +21758,13 @@
   "AuthorizationIDPutResponse": {
     "title": "AuthorizationIDPutResponse",
     "type": "object",
+    "additionalProperties": false,
     "description": "The object sent in the PUT /authorizations/{ID} callback.",
     "properties": {
       "authenticationInfo": {
         "title": "AuthenticationInfo",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type AuthenticationInfo.",
         "properties": {
           "authentication": {
@@ -21367,6 +21797,7 @@
               {
                 "title": "U2FPinValue",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.\n",
                 "properties": {
                   "pinValue": {
@@ -21416,6 +21847,7 @@
   },
   "requestToPayTransferResponse": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "transactionRequestId",
       "from",
@@ -21446,6 +21878,7 @@
       },
       "from": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -21551,6 +21984,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -21580,6 +22014,7 @@
       },
       "to": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -21685,6 +22120,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -21943,11 +22379,13 @@
           "body": {
             "title": "QuotesIDPutResponse",
             "type": "object",
+            "additionalProperties": false,
             "description": "The object sent in the PUT /quotes/{ID} callback.",
             "properties": {
               "transferAmount": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -22139,6 +22577,7 @@
               "payeeReceiveAmount": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -22330,6 +22769,7 @@
               "payeeFspFee": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -22521,6 +22961,7 @@
               "payeeFspCommission": {
                 "title": "Money",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type Money.",
                 "properties": {
                   "currency": {
@@ -22719,6 +23160,7 @@
               "geoCode": {
                 "title": "GeoCode",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.",
                 "properties": {
                   "latitude": {
@@ -22760,6 +23202,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -22767,6 +23210,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -22824,11 +23268,13 @@
           "body": {
             "title": "AuthorizationIDPutResponse",
             "type": "object",
+            "additionalProperties": false,
             "description": "The object sent in the PUT /authorizations/{ID} callback.",
             "properties": {
               "authenticationInfo": {
                 "title": "AuthenticationInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type AuthenticationInfo.",
                 "properties": {
                   "authentication": {
@@ -22861,6 +23307,7 @@
                       {
                         "title": "U2FPinValue",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.\n",
                         "properties": {
                           "pinValue": {
@@ -22922,6 +23369,7 @@
           "body": {
             "title": "TransfersIDPutResponse",
             "type": "object",
+            "additionalProperties": false,
             "description": "The object sent in the PUT /transfers/{ID} callback.",
             "properties": {
               "fulfilment": {
@@ -22954,6 +23402,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -22961,6 +23410,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -23004,6 +23454,7 @@
       },
       "lastError": {
         "type": "object",
+        "additionalProperties": false,
         "description": "This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.",
         "properties": {
           "httpStatusCode": {
@@ -23012,10 +23463,12 @@
           },
           "mojaloopError": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "errorInformation": {
                 "title": "ErrorInformation",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ErrorInformation.",
                 "properties": {
                   "errorCode": {
@@ -23035,6 +23488,7 @@
                   "extensionList": {
                     "title": "ExtensionList",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                     "properties": {
                       "extension": {
@@ -23042,6 +23496,7 @@
                         "items": {
                           "title": "Extension",
                           "type": "object",
+                          "additionalProperties": false,
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
@@ -23087,6 +23542,7 @@
   },
   "transferContinuationAcceptOTP": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "acceptOTP"
     ],
@@ -23103,6 +23559,7 @@
   "TransfersPostRequest": {
     "title": "TransfersPostRequest",
     "type": "object",
+    "additionalProperties": false,
     "description": "The object sent in the POST /transfers request.",
     "properties": {
       "transferId": {
@@ -23129,6 +23586,7 @@
       "amount": {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -23343,6 +23801,7 @@
       "extensionList": {
         "title": "ExtensionList",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
         "properties": {
           "extension": {
@@ -23350,6 +23809,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -23395,6 +23855,7 @@
   "simpleTransfersPostRequest": {
     "title": "SimpleTransfersPostRequest",
     "type": "object",
+    "additionalProperties": false,
     "properties": {
       "fspId": {
         "title": "FspId",
@@ -23406,6 +23867,7 @@
       "transfersPostRequest": {
         "title": "TransfersPostRequest",
         "type": "object",
+        "additionalProperties": false,
         "description": "The object sent in the POST /transfers request.",
         "properties": {
           "transferId": {
@@ -23432,6 +23894,7 @@
           "amount": {
             "title": "Money",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Money.",
             "properties": {
               "currency": {
@@ -23646,6 +24109,7 @@
           "extensionList": {
             "title": "ExtensionList",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
             "properties": {
               "extension": {
@@ -23653,6 +24117,7 @@
                 "items": {
                   "title": "Extension",
                   "type": "object",
+                  "additionalProperties": false,
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
@@ -23704,12 +24169,14 @@
   "simpleTransfersPostResponse": {
     "title": "SimpleTransfersPostResponse",
     "type": "object",
+    "additionalProperties": false,
     "properties": {
       "transfer": {
         "properties": {
           "body": {
             "title": "TransfersIDPutResponse",
             "type": "object",
+            "additionalProperties": false,
             "description": "The object sent in the PUT /transfers/{ID} callback.",
             "properties": {
               "fulfilment": {
@@ -23742,6 +24209,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -23749,6 +24217,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
@@ -23812,6 +24281,7 @@
     "allOf": [
       {
         "type": "object",
+        "additionalProperties": false,
         "properties": {
           "statusCode": {
             "type": "string",
@@ -23826,10 +24296,12 @@
       {
         "type": "object"
       }
-    ]
+    ],
+    "additionalProperties": false
   },
   "transferRequest": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "homeTransactionId",
       "from",
@@ -23846,6 +24318,7 @@
       },
       "from": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -23951,6 +24424,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -23980,6 +24454,7 @@
       },
       "to": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "idType",
           "idValue"
@@ -24085,6 +24560,7 @@
             "items": {
               "title": "Extension",
               "type": "object",
+              "additionalProperties": false,
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
@@ -24330,6 +24806,7 @@
         "items": {
           "title": "Extension",
           "type": "object",
+          "additionalProperties": false,
           "description": "Data model for the complex type Extension.",
           "properties": {
             "key": {
@@ -24360,6 +24837,7 @@
         "items": {
           "title": "Extension",
           "type": "object",
+          "additionalProperties": false,
           "description": "Data model for the complex type Extension.",
           "properties": {
             "key": {
@@ -24393,6 +24871,7 @@
   },
   "transferStatusResponse": {
     "type": "object",
+    "additionalProperties": false,
     "required": [
       "transferId",
       "currentState",
@@ -24424,6 +24903,7 @@
           "body": {
             "title": "TransfersIDPutResponse",
             "type": "object",
+            "additionalProperties": false,
             "description": "The object sent in the PUT /transfers/{ID} callback.",
             "properties": {
               "fulfilment": {
@@ -24456,6 +24936,7 @@
               "extensionList": {
                 "title": "ExtensionList",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
                 "properties": {
                   "extension": {
@@ -24463,6 +24944,7 @@
                     "items": {
                       "title": "Extension",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {

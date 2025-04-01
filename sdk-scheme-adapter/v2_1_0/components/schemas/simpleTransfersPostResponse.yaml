@@ -1,5 +1,6 @@
 title: SimpleTransfersPostResponse
 type: object
+additionalProperties: false
 properties:
   transfer:
     properties:

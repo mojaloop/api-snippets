@@ -1,5 +1,6 @@
 title: PartiesTypeIDPutResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /parties/{Type}/{ID} callback.'
 properties:
   party:

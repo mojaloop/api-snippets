@@ -1,5 +1,6 @@
 title: FxResponse_FICreditTransferConfirmation
 type: object
+additionalProperties: false
 description: >
   FxResponse_FICreditTransferConfirmation
 

@@ -1,5 +1,6 @@
 title: IndividualQuoteResult
 type: object
+additionalProperties: false
 description: Data model for the complex type IndividualQuoteResult.
 properties:
   quoteId:

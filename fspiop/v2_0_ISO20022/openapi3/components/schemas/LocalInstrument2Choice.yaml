@@ -1,5 +1,6 @@
 title: LocalInstrument2Choice
 type: object
+additionalProperties: false
 description: >
   Specifies the local instrument, as published in an external local instrument code list or as a proprietary code.
 anyOf:

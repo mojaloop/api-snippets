@@ -2,6 +2,7 @@ title: OrganisationIdentificationSchemeName1Choice
 description: |
   Choice of format for the organisation identification.
 type: object
+additionalProperties: false
 properties:
   Cd:
     allOf:

@@ -1,5 +1,6 @@
 title: FxTransfersPutBackendRequest
 type: object
+additionalProperties: false
 description: 'PUT /fxTransfers/{commitRequestId} object'
 properties:
   homeTransactionId:

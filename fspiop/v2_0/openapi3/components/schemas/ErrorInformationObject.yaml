@@ -1,5 +1,6 @@
 title: ErrorInformationObject
 type: object
+additionalProperties: false
 description: Data model for the complex type object that contains ErrorInformation.
 properties:
   errorInformation:

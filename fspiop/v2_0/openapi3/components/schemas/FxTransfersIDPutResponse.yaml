@@ -1,5 +1,6 @@
 title: FxTransfersIDPutResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /fxTransfers/{ID} callback.'
 properties:
   fulfilment:

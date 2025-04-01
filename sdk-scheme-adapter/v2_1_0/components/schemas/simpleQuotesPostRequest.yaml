@@ -1,5 +1,6 @@
 title: simpleQuotesPostRequest
 type: object
+additionalProperties: false
 properties:
   fspId:
     $ref: ./FspId.yaml

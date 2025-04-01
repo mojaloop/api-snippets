@@ -2,6 +2,7 @@ title: TaxPeriod3
 description: |
   Period of time details related to the tax payment.
 type: object
+additionalProperties: false
 properties:
   FrToDt:
     allOf:

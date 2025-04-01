@@ -1,5 +1,6 @@
 title: FinancialInstitutionIdentification23
 type: object
+additionalProperties: false
 description: >
   Information used to identify a financial institution.
 properties:

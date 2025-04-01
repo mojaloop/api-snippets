@@ -1,5 +1,6 @@
 title: TransactionsIDPutResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /transactions/{ID} callback.'
 properties:
   completedTimestamp:

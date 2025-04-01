@@ -1,5 +1,6 @@
 title: IdentificationInformation4
 type: object
+additionalProperties: false
 description: >
   Information that locates and identifies a specific party or account.
 properties:

@@ -2,6 +2,7 @@ title: RegulatoryAuthority2
 description: |
   Information about an entity requiring the regulatory reporting information.
 type: object
+additionalProperties: false
 properties:
   Nm:
     allOf:

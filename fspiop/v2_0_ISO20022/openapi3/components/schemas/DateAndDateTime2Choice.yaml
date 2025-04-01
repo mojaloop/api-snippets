@@ -2,6 +2,7 @@ title: StatusReason6Choice
 description: |
   Specifies the reason for the status.
 type: object
+additionalProperties: false
 anyOf:
   - properties:
       Dt:
