@@ -3,6 +3,7 @@ description: >
   Further information related to the processing of the payment instruction,
   provided by the initiating party, and intended for the next agent in the payment chain.
 type: object
+additionalProperties: false
 properties:
   Cd:
     allOf:

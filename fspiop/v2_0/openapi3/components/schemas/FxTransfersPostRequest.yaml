@@ -1,5 +1,6 @@
 title: FxTransfersPostRequest
 type: object
+additionalProperties: false
 description: The object sent in the POST /fxTransfers request.
 properties:
   commitRequestId:

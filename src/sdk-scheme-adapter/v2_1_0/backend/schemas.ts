@@ -114,6 +114,7 @@ export namespace Schemas {
   export const bulkTransactionIndividualTransferResult = JsonSchemas["bulkTransactionIndividualTransferResult"]
   export const bulkTransactionResponse = JsonSchemas["bulkTransactionResponse"]
   export const CurrencyConverter = JsonSchemas["CurrencyConverter"]
+  export const Money_2 = JsonSchemas["Money-2"]
   export const FxRate = JsonSchemas["FxRate"]
   export const AuthenticationType = JsonSchemas["AuthenticationType"]
   export const TransferStateFromBackend = JsonSchemas["TransferStateFromBackend"]

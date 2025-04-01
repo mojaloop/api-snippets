@@ -1,5 +1,6 @@
 title: BulkTransfersIDPutResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /bulkTransfers/{ID} callback.'
 properties:
   completedTimestamp:

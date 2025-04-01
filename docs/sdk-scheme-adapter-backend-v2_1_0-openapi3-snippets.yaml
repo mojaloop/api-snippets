@@ -1974,6 +1974,7 @@ components:
     PartyComplexName:
       title: PartyComplexName
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyComplexName.
       properties:
         firstName:
@@ -1985,6 +1986,7 @@ components:
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyPersonalInfo.
       properties:
         complexName:
@@ -2264,18 +2266,32 @@ components:
         - PAYER
         - PAYEE
       description: Below are the allowed values for the enumeration CurrencyConverter. - PAYER - Currency conversion should be performed by the payer. - PAYEE - Currency conversion should be performed by the payee.
+    Money-2:
+      title: Money
+      type: object
+      additionalProperties: false
+      description: Data model for the complex type Money.
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        amount:
+          $ref: '#/components/schemas/Amount'
+      required:
+        - currency
+        - amount
     FxRate:
       title: FxRate
       type: object
+      additionalProperties: false
       description: The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.
       properties:
         sourceAmount:
           allOf:
-            - $ref: '#/components/schemas/Money'
+            - $ref: '#/components/schemas/Money-2'
             - description: The amount of the transfer in the source currency.
         targetAmount:
           allOf:
-            - $ref: '#/components/schemas/Money'
+            - $ref: '#/components/schemas/Money-2'
             - description: The amount of the transfer in the target currency.
       required:
         - sourceAmount
@@ -2647,11 +2663,11 @@ components:
         - description: Identifier for the FXP who is performing the currency conversion.
     sourceAmount:
       allOf:
-        - $ref: '#/components/schemas/Money'
+        - $ref: '#/components/schemas/Money-2'
         - description: The amount being offered for conversion by the requesting FSP.
     targetAmount:
       allOf:
-        - $ref: '#/components/schemas/Money'
+        - $ref: '#/components/schemas/Money-2'
         - description: The amount which the FXP is to credit to the requesting FSP in the target currency.
     condition:
       allOf:

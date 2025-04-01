@@ -2,6 +2,7 @@ title: TaxParty2
 description: |
   Details about the entity involved in the tax paid or to be paid.
 type: object
+additionalProperties: false
 properties:
   TaxId:
     allOf:

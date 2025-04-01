@@ -2,6 +2,7 @@ title: StatusReasonInformation14
 description: |
   Unsure on description.
 type: object
+additionalProperties: false
 properties:
   Orgtr:
     allOf:

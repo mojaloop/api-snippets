@@ -2,6 +2,7 @@ title: Contact13
 description: |
   Specifies the details of the contact person.
 type: object
+additionalProperties: false
 properties:
   NmPrfx:
     allOf:

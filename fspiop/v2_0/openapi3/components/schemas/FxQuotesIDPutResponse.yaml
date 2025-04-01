@@ -1,5 +1,6 @@
 title: FxQuotesIDPutResponse
 type: object
+additionalProperties: false
 description: The object sent in the PUT /fxQuotes/{ID} callback.
 properties:
   condition:

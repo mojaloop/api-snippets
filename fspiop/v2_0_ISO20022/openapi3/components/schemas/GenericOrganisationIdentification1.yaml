@@ -1,5 +1,6 @@
 title: GenericOrganisationIdentification1
 type: object
+additionalProperties: false
 description: >
   Information that locates and identifies an organisation.
 properties:
@@ -31,4 +32,3 @@ example:
   SchmeNm:
     Cd: BIC
   Issr: BIC
-  

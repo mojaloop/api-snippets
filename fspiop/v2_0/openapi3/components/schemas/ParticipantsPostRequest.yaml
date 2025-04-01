@@ -1,5 +1,6 @@
 title: ParticipantsPostRequest
 type: object
+additionalProperties: false
 description: The object sent in the POST /participants request.
 properties:
   requestId:

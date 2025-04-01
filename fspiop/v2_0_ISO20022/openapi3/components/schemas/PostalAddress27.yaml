@@ -1,5 +1,6 @@
 title: PostalAddress27
 type: object
+additionalProperties: false
 description: >
   Information that locates and identifies a specific address, as defined by
   postal services.

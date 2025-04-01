@@ -3,6 +3,7 @@ description: |
   Specifies the details on how the settlement of the original transaction(s) between the
   instructing agent and the instructed agent was completed.
 type: object
+additionalProperties: false
 properties:
   SttlmMtd:
     $ref: ./SettlementMethod1Code.yaml

@@ -4,6 +4,7 @@ description: |
 
   Seemingly a generic schema for charges, with an amount, agent, and type.
 type: object
+additionalProperties: false
 properties:
   Amt:
     allOf:

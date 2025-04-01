@@ -3,6 +3,7 @@ description: >
   Provides further details specific to the individual transaction(s) included in
   the message.
 type: object
+additionalProperties: false
 properties:
   PmtId:
     allOf:

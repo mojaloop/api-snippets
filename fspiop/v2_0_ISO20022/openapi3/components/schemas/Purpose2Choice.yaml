@@ -7,6 +7,7 @@ description: |
   is a content element, which is not used for processing by any of the agents involved in the payment
   chain.
 type: object
+additionalProperties: false
 anyOf:
   - properties:
       Cd:

@@ -4,6 +4,7 @@ description: >
 
   Specifies the type of charge.
 type: object
+additionalProperties: false
 anyOf:
   - properties:
       Cd:

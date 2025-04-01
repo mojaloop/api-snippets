@@ -1,5 +1,6 @@
 title: TransactionRequestsPostRequest
 type: object
+additionalProperties: false
 description: The object sent in the POST /transactionRequests request.
 properties:
   transactionRequestId:

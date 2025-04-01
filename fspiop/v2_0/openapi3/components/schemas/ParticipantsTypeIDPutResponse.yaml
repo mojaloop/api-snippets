@@ -1,5 +1,6 @@
 title: ParticipantsTypeIDPutResponse
 type: object
+additionalProperties: false
 description: >-
   The object sent in the PUT /participants/{Type}/{ID}/{SubId} and
   /participants/{Type}/{ID} callbacks.

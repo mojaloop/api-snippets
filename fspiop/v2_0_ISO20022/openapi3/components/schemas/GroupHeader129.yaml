@@ -3,6 +3,7 @@ description: >
   Group Header Set of characteristics shared by all individual transactions included in the
   message.
 type: object
+additionalProperties: false
 properties:
   MsgId:
     allOf:

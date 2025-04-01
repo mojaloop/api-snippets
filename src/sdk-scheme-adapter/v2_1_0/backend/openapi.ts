@@ -1148,12 +1148,20 @@ export interface components {
          */
         CurrencyConverter: "PAYER" | "PAYEE";
         /**
+         * Money
+         * @description Data model for the complex type Money.
+         */
+        "Money-2": {
+            currency: components["schemas"]["Currency"];
+            amount: components["schemas"]["Amount"];
+        };
+        /**
          * FxRate
          * @description The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.
          */
         FxRate: {
-            sourceAmount: components["schemas"]["Money"] & unknown;
-            targetAmount: components["schemas"]["Money"] & unknown;
+            sourceAmount: components["schemas"]["Money-2"] & unknown;
+            targetAmount: components["schemas"]["Money-2"] & unknown;
         };
         /**
          * AuthenticationType
@@ -1355,8 +1363,8 @@ export interface components {
         determiningTransferId: components["schemas"]["CorrelationId"] & unknown;
         initiatingFsp: components["schemas"]["FspId"] & unknown;
         counterPartyFsp: components["schemas"]["FspId"] & unknown;
-        sourceAmount: components["schemas"]["Money"] & unknown;
-        targetAmount: components["schemas"]["Money"] & unknown;
+        sourceAmount: components["schemas"]["Money-2"] & unknown;
+        targetAmount: components["schemas"]["Money-2"] & unknown;
         condition: components["schemas"]["IlpCondition"] & unknown;
         /**
          * FxTransfersPostBackendRequest

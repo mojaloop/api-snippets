@@ -2704,6 +2704,7 @@ components:
     AuthenticationInfo:
       title: AuthenticationInfo
       type: object
+      additionalProperties: false
       description: Data model for the complex type AuthenticationInfo.
       properties:
         authentication:
@@ -2752,6 +2753,7 @@ components:
     AuthorizationsIDPutResponse:
       title: AuthorizationsIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /authorizations/{ID} callback.
       properties:
         authenticationInfo:
@@ -2790,6 +2792,7 @@ components:
     BulkQuotesIDPutResponse:
       title: BulkQuotesIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /bulkQuotes/{ID} callback.
       properties:
         individualQuoteResults:
@@ -2809,6 +2812,7 @@ components:
     BulkQuotesPostRequest:
       title: BulkQuotesPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /bulkQuotes request.
       properties:
         bulkQuoteId:
@@ -2861,6 +2865,7 @@ components:
     BulkTransfersIDPutResponse:
       title: BulkTransfersIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /bulkTransfers/{ID} callback.
       properties:
         completedTimestamp:
@@ -2880,6 +2885,7 @@ components:
     BulkTransfersPostRequest:
       title: BulkTransfersPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /bulkTransfers request.
       properties:
         bulkTransferId:
@@ -3165,6 +3171,7 @@ components:
     ErrorInformation:
       title: ErrorInformation
       type: object
+      additionalProperties: false
       description: Data model for the complex type ErrorInformation.
       properties:
         errorCode:
@@ -3179,6 +3186,7 @@ components:
     ErrorInformationObject:
       title: ErrorInformationObject
       type: object
+      additionalProperties: false
       description: Data model for the complex type object that contains ErrorInformation.
       properties:
         errorInformation:
@@ -3188,6 +3196,7 @@ components:
     ErrorInformationResponse:
       title: ErrorInformationResponse
       type: object
+      additionalProperties: false
       description: >-
         Data model for the complex type object that contains an optional element
         ErrorInformation used along with 4xx and 5xx responses.
@@ -3197,6 +3206,7 @@ components:
     Extension:
       title: Extension
       type: object
+      additionalProperties: false
       description: Data model for the complex type Extension.
       properties:
         key:
@@ -3215,6 +3225,7 @@ components:
     ExtensionList:
       title: ExtensionList
       type: object
+      additionalProperties: false
       description: >-
         Data model for the complex type ExtensionList. An optional list of
         extensions, specific to deployment.
@@ -3253,6 +3264,7 @@ components:
     FxCharge:
       title: FxCharge
       type: object
+      additionalProperties: false
       description: >-
         An FXP will be able to specify a charge which it proposes to levy on the
         currency conversion operation using a FxCharge object.
@@ -3279,6 +3291,7 @@ components:
     FxConversion:
       title: FxConversion
       type: object
+      additionalProperties: false
       description: >-
         A DFSP will be able to request a currency conversion, and an FX provider
         will be able to describe its involvement in a proposed transfer, using a
@@ -3353,6 +3366,7 @@ components:
     FxMoney:
       title: FxMoney
       type: object
+      additionalProperties: false
       description: >-
         Data model for the complex type FxMoney; This is based on the type Money
         but allows the amount to be optional to support FX quotations.
@@ -3366,6 +3380,7 @@ components:
     FxQuotesIDPutResponse:
       title: FxQuotesIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /fxQuotes/{ID} callback.
       properties:
         condition:
@@ -3383,6 +3398,7 @@ components:
     FxQuotesPostRequest:
       title: FxQuotesPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /fxQuotes request.
       properties:
         conversionRequestId:
@@ -3401,6 +3417,7 @@ components:
     FxRate:
       title: FxRate
       type: object
+      additionalProperties: false
       description: >-
         The FxRate object contains information about a currency conversion in
         the transfer. It can be used by parties to the transfer to exchange
@@ -3421,6 +3438,7 @@ components:
     FxTransfersIDPatchResponse:
       title: FxTransfersIDPatchResponse
       type: object
+      additionalProperties: false
       description: PATCH /fxTransfers/{ID} object
       properties:
         completedTimestamp:
@@ -3438,6 +3456,7 @@ components:
     FxTransfersIDPutResponse:
       title: FxTransfersIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /fxTransfers/{ID} callback.
       properties:
         fulfilment:
@@ -3462,6 +3481,7 @@ components:
     FxTransfersPostRequest:
       title: FxTransfersPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /fxTransfers request.
       properties:
         commitRequestId:
@@ -3514,6 +3534,7 @@ components:
     GeoCode:
       title: GeoCode
       type: object
+      additionalProperties: false
       description: >-
         Data model for the complex type GeoCode. Indicates the geographic
         location from where the transaction was initiated.
@@ -3550,6 +3571,7 @@ components:
     IndividualQuote:
       title: IndividualQuote
       type: object
+      additionalProperties: false
       description: Data model for the complex type IndividualQuote.
       properties:
         quoteId:
@@ -3580,6 +3602,7 @@ components:
     IndividualQuoteResult:
       title: IndividualQuoteResult
       type: object
+      additionalProperties: false
       description: Data model for the complex type IndividualQuoteResult.
       properties:
         quoteId:
@@ -3607,6 +3630,7 @@ components:
     IndividualTransfer:
       title: IndividualTransfer
       type: object
+      additionalProperties: false
       description: Data model for the complex type IndividualTransfer.
       properties:
         transferId:
@@ -3627,6 +3651,7 @@ components:
     IndividualTransferResult:
       title: IndividualTransferResult
       type: object
+      additionalProperties: false
       description: Data model for the complex type IndividualTransferResult.
       properties:
         transferId:
@@ -3732,6 +3757,7 @@ components:
     Money:
       title: Money
       type: object
+      additionalProperties: false
       description: Data model for the complex type Money.
       properties:
         currency:
@@ -3778,6 +3804,7 @@ components:
     ParticipantsIDPutResponse:
       title: ParticipantsIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /participants/{ID} callback.
       properties:
         partyList:
@@ -3796,6 +3823,7 @@ components:
     ParticipantsPostRequest:
       title: ParticipantsPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /participants request.
       properties:
         requestId:
@@ -3817,6 +3845,7 @@ components:
     ParticipantsTypeIDPutResponse:
       title: ParticipantsTypeIDPutResponse
       type: object
+      additionalProperties: false
       description: >-
         The object sent in the PUT /participants/{Type}/{ID}/{SubId} and
         /participants/{Type}/{ID} callbacks.
@@ -3826,6 +3855,7 @@ components:
     ParticipantsTypeIDSubIDPostRequest:
       title: ParticipantsTypeIDSubIDPostRequest
       type: object
+      additionalProperties: false
       description: >-
         The object sent in the POST /participants/{Type}/{ID}/{SubId} and
         /participants/{Type}/{ID} requests. An additional optional ExtensionList
@@ -3842,6 +3872,7 @@ components:
     PartiesTypeIDPutResponse:
       title: PartiesTypeIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /parties/{Type}/{ID} callback.
       properties:
         party:
@@ -3851,6 +3882,7 @@ components:
     Party:
       title: Party
       type: object
+      additionalProperties: false
       description: Data model for the complex type Party.
       properties:
         partyIdInfo:
@@ -3873,6 +3905,7 @@ components:
     PartyComplexName:
       title: PartyComplexName
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyComplexName.
       properties:
         firstName:
@@ -3884,6 +3917,7 @@ components:
     PartyIdInfo:
       title: PartyIdInfo
       type: object
+      additionalProperties: false
       description: >-
         Data model for the complex type PartyIdInfo. An ExtensionList element
         has been added to this reqeust in version v1.1
@@ -3975,6 +4009,7 @@ components:
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyPersonalInfo.
       properties:
         complexName:
@@ -3986,6 +4021,7 @@ components:
     PartyResult:
       title: PartyResult
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyResult.
       properties:
         partyId:
@@ -4066,6 +4102,7 @@ components:
     QuotesIDPutResponse:
       title: QuotesIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /quotes/{ID} callback.
       properties:
         transferAmount:
@@ -4094,6 +4131,7 @@ components:
     QuotesPostRequest:
       title: QuotesPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /quotes request.
       properties:
         quoteId:
@@ -4153,6 +4191,7 @@ components:
     Refund:
       title: Refund
       type: object
+      additionalProperties: false
       description: Data model for the complex type Refund.
       properties:
         originalTransactionId:
@@ -4171,6 +4210,7 @@ components:
     ServicesFXPPutResponse:
       title: ServicesFXPPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /services/FXP callback.
       properties:
         providers:
@@ -4187,6 +4227,7 @@ components:
     ServicesFXPSourceCurrencyTargetCurrencyPutResponse:
       title: ServicesFXPSourceCurrencyTargetCurrencyPutResponse
       type: object
+      additionalProperties: false
       description: >-
         The object sent in the PUT
         /services/FXP/{SourceCurrency}/{TargetCurrency} callback.
@@ -4213,6 +4254,7 @@ components:
     Transaction:
       title: Transaction
       type: object
+      additionalProperties: false
       description: >-
         Data model for the complex type Transaction. The Transaction type is
         used to carry end-to-end data between the Payer FSP and the Payee FSP in
@@ -4317,6 +4359,7 @@ components:
     TransactionRequestsIDPutResponse:
       title: TransactionRequestsIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /transactionRequests/{ID} callback.
       properties:
         transactionId:
@@ -4330,6 +4373,7 @@ components:
     TransactionRequestsPostRequest:
       title: TransactionRequestsPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /transactionRequests request.
       properties:
         transactionRequestId:
@@ -4417,6 +4461,7 @@ components:
     TransactionType:
       title: TransactionType
       type: object
+      additionalProperties: false
       description: Data model for the complex type TransactionType.
       properties:
         scenario:
@@ -4438,6 +4483,7 @@ components:
     TransactionsIDPutResponse:
       title: TransactionsIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /transactions/{ID} callback.
       properties:
         completedTimestamp:
@@ -4473,6 +4519,7 @@ components:
     TransfersIDPatchResponse:
       title: TransfersIDPatchResponse
       type: object
+      additionalProperties: false
       description: PATCH /transfers/{ID} object
       properties:
         completedTimestamp:
@@ -4487,6 +4534,7 @@ components:
     TransfersIDPutResponse:
       title: TransfersIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /transfers/{ID} callback.
       properties:
         fulfilment:
@@ -4502,6 +4550,7 @@ components:
     TransfersPostRequest:
       title: TransfersPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /transfers request.
       properties:
         transferId:
@@ -4540,6 +4589,7 @@ components:
     U2FPinValue:
       title: U2FPinValue
       type: object
+      additionalProperties: false
       description: >
         U2F challenge-response, where payer FSP verifies if the response
         provided by end-user device matches the previously registered key.

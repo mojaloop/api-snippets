@@ -8596,6 +8596,7 @@
   "PartyComplexName": {
     "title": "PartyComplexName",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type PartyComplexName.",
     "properties": {
       "firstName": {
@@ -8630,11 +8631,13 @@
   "PartyPersonalInfo": {
     "title": "PartyPersonalInfo",
     "type": "object",
+    "additionalProperties": false,
     "description": "Data model for the complex type PartyPersonalInfo.",
     "properties": {
       "complexName": {
         "title": "PartyComplexName",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type PartyComplexName.",
         "properties": {
           "firstName": {
@@ -8792,11 +8795,13 @@
       "personalInfo": {
         "title": "PartyPersonalInfo",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type PartyPersonalInfo.",
         "properties": {
           "complexName": {
             "title": "PartyComplexName",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyComplexName.",
             "properties": {
               "firstName": {
@@ -9147,11 +9152,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -10143,11 +10150,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -10502,11 +10511,13 @@
                 "personalInfo": {
                   "title": "PartyPersonalInfo",
                   "type": "object",
+                  "additionalProperties": false,
                   "description": "Data model for the complex type PartyPersonalInfo.",
                   "properties": {
                     "complexName": {
                       "title": "PartyComplexName",
                       "type": "object",
+                      "additionalProperties": false,
                       "description": "Data model for the complex type PartyComplexName.",
                       "properties": {
                         "firstName": {
@@ -14282,11 +14293,13 @@
               "personalInfo": {
                 "title": "PartyPersonalInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyPersonalInfo.",
                 "properties": {
                   "complexName": {
                     "title": "PartyComplexName",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type PartyComplexName.",
                     "properties": {
                       "firstName": {
@@ -14700,9 +14713,202 @@
     ],
     "description": "Below are the allowed values for the enumeration CurrencyConverter. - PAYER - Currency conversion should be performed by the payer. - PAYEE - Currency conversion should be performed by the payee."
   },
+  "Money-2": {
+    "title": "Money",
+    "type": "object",
+    "additionalProperties": false,
+    "description": "Data model for the complex type Money.",
+    "properties": {
+      "currency": {
+        "title": "Currency",
+        "description": "The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.",
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 3,
+        "enum": [
+          "AED",
+          "AFN",
+          "ALL",
+          "AMD",
+          "ANG",
+          "AOA",
+          "ARS",
+          "AUD",
+          "AWG",
+          "AZN",
+          "BAM",
+          "BBD",
+          "BDT",
+          "BGN",
+          "BHD",
+          "BIF",
+          "BMD",
+          "BND",
+          "BOB",
+          "BRL",
+          "BSD",
+          "BTN",
+          "BWP",
+          "BYN",
+          "BZD",
+          "CAD",
+          "CDF",
+          "CHF",
+          "CLP",
+          "CNY",
+          "COP",
+          "CRC",
+          "CUC",
+          "CUP",
+          "CVE",
+          "CZK",
+          "DJF",
+          "DKK",
+          "DOP",
+          "DZD",
+          "EGP",
+          "ERN",
+          "ETB",
+          "EUR",
+          "FJD",
+          "FKP",
+          "GBP",
+          "GEL",
+          "GGP",
+          "GHS",
+          "GIP",
+          "GMD",
+          "GNF",
+          "GTQ",
+          "GYD",
+          "HKD",
+          "HNL",
+          "HRK",
+          "HTG",
+          "HUF",
+          "IDR",
+          "ILS",
+          "IMP",
+          "INR",
+          "IQD",
+          "IRR",
+          "ISK",
+          "JEP",
+          "JMD",
+          "JOD",
+          "JPY",
+          "KES",
+          "KGS",
+          "KHR",
+          "KMF",
+          "KPW",
+          "KRW",
+          "KWD",
+          "KYD",
+          "KZT",
+          "LAK",
+          "LBP",
+          "LKR",
+          "LRD",
+          "LSL",
+          "LYD",
+          "MAD",
+          "MDL",
+          "MGA",
+          "MKD",
+          "MMK",
+          "MNT",
+          "MOP",
+          "MRO",
+          "MUR",
+          "MVR",
+          "MWK",
+          "MXN",
+          "MYR",
+          "MZN",
+          "NAD",
+          "NGN",
+          "NIO",
+          "NOK",
+          "NPR",
+          "NZD",
+          "OMR",
+          "PAB",
+          "PEN",
+          "PGK",
+          "PHP",
+          "PKR",
+          "PLN",
+          "PYG",
+          "QAR",
+          "RON",
+          "RSD",
+          "RUB",
+          "RWF",
+          "SAR",
+          "SBD",
+          "SCR",
+          "SDG",
+          "SEK",
+          "SGD",
+          "SHP",
+          "SLL",
+          "SOS",
+          "SPL",
+          "SRD",
+          "STD",
+          "SVC",
+          "SYP",
+          "SZL",
+          "THB",
+          "TJS",
+          "TMT",
+          "TND",
+          "TOP",
+          "TRY",
+          "TTD",
+          "TVD",
+          "TWD",
+          "TZS",
+          "UAH",
+          "UGX",
+          "USD",
+          "UYU",
+          "UZS",
+          "VEF",
+          "VND",
+          "VUV",
+          "WST",
+          "XAF",
+          "XCD",
+          "XDR",
+          "XOF",
+          "XPF",
+          "XTS",
+          "XXX",
+          "YER",
+          "ZAR",
+          "ZMW",
+          "ZWD"
+        ]
+      },
+      "amount": {
+        "title": "Amount",
+        "type": "string",
+        "pattern": "^([0]|([1-9][0-9]{0,17}))([.][0-9]{0,3}[1-9])?$",
+        "description": "The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.",
+        "example": "123.45"
+      }
+    },
+    "required": [
+      "currency",
+      "amount"
+    ]
+  },
   "FxRate": {
     "title": "FxRate",
     "type": "object",
+    "additionalProperties": false,
     "description": "The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.",
     "properties": {
       "sourceAmount": {
@@ -14710,6 +14916,7 @@
           {
             "title": "Money",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Money.",
             "properties": {
               "currency": {
@@ -14908,6 +15115,7 @@
           {
             "title": "Money",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Money.",
             "properties": {
               "currency": {
@@ -15242,11 +15450,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -15588,11 +15798,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -16324,6 +16536,7 @@
           {
             "title": "FxRate",
             "type": "object",
+            "additionalProperties": false,
             "description": "The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.",
             "properties": {
               "sourceAmount": {
@@ -16331,6 +16544,7 @@
                   {
                     "title": "Money",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Money.",
                     "properties": {
                       "currency": {
@@ -16529,6 +16743,7 @@
                   {
                     "title": "Money",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type Money.",
                     "properties": {
                       "currency": {
@@ -16970,11 +17185,13 @@
               "personalInfo": {
                 "title": "PartyPersonalInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyPersonalInfo.",
                 "properties": {
                   "complexName": {
                     "title": "PartyComplexName",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type PartyComplexName.",
                     "properties": {
                       "firstName": {
@@ -17316,11 +17533,13 @@
               "personalInfo": {
                 "title": "PartyPersonalInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyPersonalInfo.",
                 "properties": {
                   "complexName": {
                     "title": "PartyComplexName",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type PartyComplexName.",
                     "properties": {
                       "firstName": {
@@ -18052,6 +18271,7 @@
               {
                 "title": "FxRate",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.",
                 "properties": {
                   "sourceAmount": {
@@ -18059,6 +18279,7 @@
                       {
                         "title": "Money",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type Money.",
                         "properties": {
                           "currency": {
@@ -18257,6 +18478,7 @@
                       {
                         "title": "Money",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type Money.",
                         "properties": {
                           "currency": {
@@ -20483,11 +20705,13 @@
           "personalInfo": {
             "title": "PartyPersonalInfo",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type PartyPersonalInfo.",
             "properties": {
               "complexName": {
                 "title": "PartyComplexName",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyComplexName.",
                 "properties": {
                   "firstName": {
@@ -21814,11 +22038,13 @@
               "personalInfo": {
                 "title": "PartyPersonalInfo",
                 "type": "object",
+                "additionalProperties": false,
                 "description": "Data model for the complex type PartyPersonalInfo.",
                 "properties": {
                   "complexName": {
                     "title": "PartyComplexName",
                     "type": "object",
+                    "additionalProperties": false,
                     "description": "Data model for the complex type PartyComplexName.",
                     "properties": {
                       "firstName": {
@@ -26746,11 +26972,13 @@
                       "personalInfo": {
                         "title": "PartyPersonalInfo",
                         "type": "object",
+                        "additionalProperties": false,
                         "description": "Data model for the complex type PartyPersonalInfo.",
                         "properties": {
                           "complexName": {
                             "title": "PartyComplexName",
                             "type": "object",
+                            "additionalProperties": false,
                             "description": "Data model for the complex type PartyComplexName.",
                             "properties": {
                               "firstName": {
@@ -30175,11 +30403,13 @@
                               "personalInfo": {
                                 "title": "PartyPersonalInfo",
                                 "type": "object",
+                                "additionalProperties": false,
                                 "description": "Data model for the complex type PartyPersonalInfo.",
                                 "properties": {
                                   "complexName": {
                                     "title": "PartyComplexName",
                                     "type": "object",
+                                    "additionalProperties": false,
                                     "description": "Data model for the complex type PartyComplexName.",
                                     "properties": {
                                       "firstName": {
@@ -37566,6 +37796,7 @@
   "ServicesFXPPutResponse": {
     "title": "ServicesFXPPutResponse",
     "type": "object",
+    "additionalProperties": false,
     "description": "The object sent in the PUT /services/FXP callback.",
     "properties": {
       "providers": {
@@ -38645,6 +38876,7 @@
       {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -38843,6 +39075,7 @@
       {
         "title": "Money",
         "type": "object",
+        "additionalProperties": false,
         "description": "Data model for the complex type Money.",
         "properties": {
           "currency": {
@@ -39120,6 +39353,7 @@
           {
             "title": "Money",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Money.",
             "properties": {
               "currency": {
@@ -39318,6 +39552,7 @@
           {
             "title": "Money",
             "type": "object",
+            "additionalProperties": false,
             "description": "Data model for the complex type Money.",
             "properties": {
               "currency": {

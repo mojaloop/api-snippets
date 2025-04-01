@@ -1,5 +1,6 @@
 title: TermsResponse_FIToFICustomerCreditConfirmation
 type: object
+additionalProperties: false
 description: >
   This message is sent by the initiating party to the executing party, directly or through one or more intermediaries, to confirm the credit transfer transaction.
 properties:
@@ -8,14 +9,14 @@ properties:
       - $ref: ./GroupHeader129.yaml
       - description: >
           Group Header
-          
+
           Set of characteristics shared by all individual transactions included in the message.
   CdtTrfTxInf:
     allOf:
       - $ref: ./CreditTransferTransaction67.yaml
       - description: >
           Credit Transfer Transaction Information
-          
+
           Set of elements providing information specific to the individual credit transfer(s).
 required:
   - GrpHdr

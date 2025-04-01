@@ -2,6 +2,7 @@ title: PartyIdentification272
 description: |
   Specifies the identification of a person or an organisation.
 type: object
+additionalProperties: false
 properties:
   Nm:
     allOf:
@@ -68,4 +69,3 @@ example:
     MobNb: +123-123-321
     FaxNb: +123-123-321
     EmailAdr: example@example.com
-    
