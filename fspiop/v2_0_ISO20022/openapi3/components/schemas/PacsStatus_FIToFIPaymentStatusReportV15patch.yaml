@@ -1,0 +1,44 @@
+title: PacsStatus_FIToFIPaymentStatusReportV15
+description:
+  The PacsStatus message is sent by a financial institution to another financial institution as a response to the FIToFIPaymentStatusReport message. The message provides information on the status of a payment instruction and its underlying individual transactions.
+type: object
+properties:
+  GrpHdr:
+    allOf:
+      - $ref: ./GroupHeader120.yaml
+      - description: >
+          Set of characteristics shared by all individual transactions included in the message.
+  TxInfAndSts:
+    allOf:
+      - $ref: ./PaymentTransaction163patch.yaml
+      - description: >
+          Information concerning the original transactions, to which the status report message refers.
+  SplmtryData:
+    allOf:
+      - $ref: ./SupplementaryData1.yaml
+      - description: >
+          Additional information that cannot be captured in the structured elements and/or any other specific block.
+required:
+  - GrpHdr
+  - TxInfAndSts
+example:
+  GrpHdr:
+    MsgId: 12345
+    CreDtTm: '2020-01-01T00:00:00Z'
+    TxInfAndSts:
+      StsId: 12345
+      OrgnlInstrId: 12345
+      OrgnlEndToEndId: 12345
+      OrgnlTxId: 12345
+      OrgnlUETR: 123e4567-e89b-12d3-a456-426614174000
+      TxSts: RJCT
+      StsRsnInf:
+        Rsn: RSN
+        AddtlInf: ADDITIONAL
+      AccptncDtTm: '2020-01-01T00:00:00Z'
+      AcctSvcrRef: ACCTSVCRREF
+      ClrSysRef: CLRSYSREF
+      ExctnConf: 1234567890ABCDEF
+      SplmtryData:
+        PlcAndNm: PLACE
+        Envlp: ENVELOPE

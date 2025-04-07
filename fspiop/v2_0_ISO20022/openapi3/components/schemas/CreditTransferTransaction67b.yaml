@@ -1,0 +1,223 @@
+title: CreditTransferTransaction67
+description: >
+  Provides further details specific to the individual transaction(s) included in
+  the message.
+type: object
+properties:
+  PmtId:
+    allOf:
+      - $ref: ./PaymentIdentification13.yaml
+      - description: >
+          PaymentIdentification
+
+          Set of elements used to reference a payment instruction.
+  PmtTpInf:
+    allOf:
+      - $ref: ./PaymentTypeInformation28.yaml
+      - description: >
+          PaymentTypeInformation
+
+          Set of elements used to further specify the type of transaction.
+  UndrlygCstmrCdtTrf:
+    allOf:
+      - $ref: ./UnderlyingCustomerCreditTransfer.yaml
+      - description: >
+          Underlying Customer Credit Transfer
+
+          TBD
+  IntrBkSttlmAmt:
+    allOf:
+      - $ref: ./ActiveCurrencyAndAmount.yaml
+      - description: >
+          InterbankSettlementAmount
+
+          Amount of money moved between the instructing agent and the instructed agent.
+  InstdAmt:
+    allOf:
+      - $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+      - description: >
+          InstructedAmount
+
+          Amount of money to be moved between the debtor and creditor,
+          before deduction of charges, expressed in the currency as ordered by the initiating party.
+  XchgRate:
+    allOf:
+      - $ref: ./BaseOneRate.yaml
+      - description: >
+          ExchangeRate
+
+          Factor used to convert an amount from one currency into another. This reflects the price at
+          which one currency was bought with another currency.
+  ChrgBr:
+    $ref: ./ChargeBearerType1Code.yaml
+  ChrgsInf:
+    allOf:
+      - $ref: ./Charges16.yaml
+      - description: >
+          ChargesInformation
+
+          Provides information on the charges to be paid by the charge bearer(s) related to the
+          payment transaction.
+  Dbtr:
+    allOf:
+      - $ref: ./PartyIdentification272.yaml
+      - description: >
+          Debtor
+
+          Party that owes an amount of money to the (ultimate) creditor.
+  DbtrAcct:
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          DebtorAccount
+
+          Unambiguous identification of the account of the debtor to which a debit entry will be made
+          as a result of the transaction.
+  DbtrAgt:
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          DebtorAgent
+
+          Financial institution servicing an account for the debtor.
+  CdtrAgt:
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          CreditorAgent
+
+          Financial institution servicing an account for the creditor.
+  Cdtr:
+    allOf:
+      - $ref: ./PartyIdentification272.yaml
+      - description: >
+          Creditor
+
+          Party to which an amount of money is due.
+  CdtrAcct:
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          CreditorAccount
+
+          Unambiguous identification of the account of the creditor to which a credit entry will be
+          posted as a result of the payment transaction.
+  InstrForCdtrAgt:
+    allOf:
+      - $ref: ./InstructionForCreditorAgent3.yaml
+      - description: >
+          InstructionForCreditorAgent
+
+          Set of elements used to provide information on the remittance advice.
+  InstrForNxtAgt:
+    allOf:
+      - $ref: ./InstructionForNextAgent1.yaml
+      - description: >
+          InstructionForNextAgent
+
+          Set of elements used to provide information on the remittance advice.
+  Purp:
+    allOf:
+      - $ref: ./Purpose2Choice.yaml
+      - description: >
+          Purpose
+
+          Underlying reason for the payment transaction.
+  RgltryRptg:
+    allOf:
+      - $ref: ./RegulatoryReporting3.yaml
+      - description: >
+          RegulatoryReporting
+
+          Information needed due to regulatory and statutory requirements.
+  Tax:
+    allOf:
+      - $ref: ./TaxData1.yaml
+      - description: >
+          Tax
+
+          Provides details on the tax.
+  VrfctnOfTerms:
+    $ref: ./CryptographicLockChoice.yaml
+required:
+  - PmtId
+  - IntrBkSttlmAmt
+  - ChrgBr
+  - Dbtr
+  - DbtrAgt
+  - CdtrAgt
+  - Cdtr
+  - VrfctnOfTerms
+example:
+  PmtId:
+    InstrId: INSTRID
+    EndToEndId: ENDTOENDID
+  PmtTpInf:
+    LclInstrm:
+      Cd: CHQB
+      Prtry: PROPRIETARY
+    SeqTp: SEQTP
+  IntrBkSttlmAmt:
+    ActiveCurrencyAndAmount: 123.45
+    Ccy: USD
+  InstdAmt:
+    ActiveOrHistoricCurrencyAndAmount: 123.45
+    Ccy: USD
+  XchgRate: 123.45
+  ChrgBr: SHAR
+  ChrgsInf:
+    Amt:
+      ActiveOrHistoricCurrencyAndAmount: 123.45
+      Ccy: USD
+    Agt:
+      BrnchId:
+        Id: BRANCHID
+      FinInstnId:
+        BICFI: BICFI
+    Tp:
+      Cd: SHAR
+  Dbtr:
+    Nm: NAME
+    PstlAdr:
+      AdrTp: ADDR
+      BldgNb: BLDGNB
+      Ctry: CTRY
+      TwnNm: TWNNM
+      PstCd: PSTCD
+      StrtNm: STRTNM
+  DbtrAcct:
+    Id:
+      IBAN: IBAN
+  DbtrAgt:
+    BrnchId:
+      Id: BRANCHID
+    FinInstnId:
+      BICFI: BICFI
+  CdtrAgt:
+    BrnchId:
+      Id: BRANCHID
+    FinInstnId:
+      BICFI: BICFI
+  Cdtr:
+    Nm: NAME
+    PstlAdr:
+      AdrTp: ADDR
+      BldgNb: BLDGNB
+      Ctry: CTRY
+      TwnNm: TWNNM
+      PstCd: PSTCD
+      StrtNm: STRTNM
+  CdtrAcct:
+    Id:
+      IBAN: IBAN
+  InstrForCdtrAgt:
+    Cd: CODE
+  InstrForNxtAgt:
+    Cd: CODE
+  Purp:
+    Cd: CASH
+  RgltryRptg:
+    Dbtr: TRUE
+    Cdtr: TRUE
+  Tax:
+    Cdtr

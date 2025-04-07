@@ -45,6 +45,7 @@ properties:
 required:
   - OrgnlId
   - Vrfctn
+  - UpdtdPtyAndAcctId
 example:
   OrgnlId: 1234567890123456789012345678901234
   Vrfctn: true

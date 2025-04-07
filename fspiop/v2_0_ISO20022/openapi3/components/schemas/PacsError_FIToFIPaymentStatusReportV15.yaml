@@ -11,7 +11,7 @@ properties:
           Set of characteristics shared by all individual transactions included in the message.
   TxInfAndSts:
     allOf:
-      - $ref: ./PaymentTransaction163.yaml
+      - $ref: ./PaymentTransaction163b.yaml
       - description: >
           Information concerning the original transactions, to which the status report message refers.
   SplmtryData:
@@ -21,13 +21,14 @@ properties:
           Additional information that cannot be captured in the structured elements and/or any other specific block.
 required:
   - GrpHdr
+  - TxInfAndSts
 example:
   GrpHdr:
     MsgId: 12345
     CreDtTm: '2020-01-01T00:00:00Z'
     NbOfTxs: 1
     SttlmInf:
-      SttlmMtd: INDA
+      SttlmMtd: CLRG
       SttlmDt: '2020-01-01'
     InstgAgt:
       FinInstnId:

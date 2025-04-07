@@ -84,6 +84,10 @@ properties:
       - $ref: ./DateAndDateTime2Choice.yaml
       - description: >
           Date/time at which the instruction was processed by the specified party.
+required:          
+  - ExctnConf
+  - PrcgDt
+  - TxSts
 example:
   StsId: 12345
   OrgnlInstrId: 12345

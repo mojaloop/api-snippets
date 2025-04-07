@@ -5,7 +5,7 @@ description:  >
 properties:
   GrpHdr:
     allOf:
-      - $ref: ./GroupHeader129.yaml
+      - $ref: ./GroupHeader129b.yaml
       - description: >
           GroupHeader.
 

@@ -1,0 +1,87 @@
+title: VerificationReport4
+type: object
+description:
+  VerificationReport
+
+  Provides information about the verification of party and/or account identification information.
+properties:
+  OrgnlId:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          OriginalIdentification
+
+          Unique identification, as assigned by a sending party, to unambiguously identify the party
+          and account identification information group within the original message.
+  Vrfctn:
+    allOf:
+      - $ref: ./IdentificationVerificationIndicator.yaml
+      - description: >
+          Verification
+
+          Identifies whether the party and/or account information received is correct.
+          Boolean value.
+  Rsn:
+    allOf:
+      - $ref: ./VerificationReason1Choice.yaml
+      - description: >
+          Reason
+
+          Specifies the reason why the verified identification information is incorrect.
+  OrgnlPtyAndAcctId:
+    allOf:
+      - $ref: ./IdentificationInformation4.yaml
+      - description: >
+          OriginalPartyAndAccountIdentification
+
+          Provides party and/or account identification information as given in the original message.
+  UpdtdPtyAndAcctId:
+    allOf:
+      - $ref: ./IdentificationInformation4.yaml
+      - description: >
+          UpdatedPartyAndAccountIdentification
+
+          Provides party and/or account identification information.
+required:
+  - OrgnlId
+  - Vrfctn
+  - Rsn
+example:
+  OrgnlId: 1234567890123456789012345678901234
+  Vrfctn: true
+  OrgnlPtyAndAcctId:
+    Nm: John Doe
+    PstlAdr:
+      AdrTp: ADDR
+      Dept: Dept
+      SubDept: SubDept
+      StrtNm: 1234 Elm St
+      BldgNb: 1234
+      PstCd: 12345
+      TwnNm: Anytown
+      CtrySubDvsn: CA
+      Ctry: US
+    Id:
+      OrgId:
+        AnyBIC: ABCDUS33
+        Othr:
+          Id: 123456789
+          Issr: ABA
+  UpdtdPtyAndAcctId:
+    Nm: John Doe
+    PstlAdr:
+      AdrTp: ADDR
+      Dept: Dept
+      SubDept: SubDept
+      StrtNm: 1234 Elm St
+      BldgNb: 1234
+      PstCd: 12345
+      TwnNm: Anytown
+      CtrySubDvsn: CA
+      Ctry: US
+    Id:
+      OrgId:
+        AnyBIC: ABCDUS33
+        Othr:
+          Id: 123456789
+          Issr: ABA

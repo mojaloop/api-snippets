@@ -5,10 +5,7 @@ description: |
 
   DEBT: BorneByDebtor All transaction charges are to be borne by the debtor.
   CRED: BorneByCreditor All transaction charges are to be borne by the creditor.
-  SHAR: Shared In a credit transfer context, means that transaction charges on
-        the sender side are to be borne by the debtor, transaction charges on the receiver side are to
-        be borne by the creditor. In a direct debit context, means that transaction charges on the sender side
-        are to be borne by the creditor, transaction charges on the receiver
+  SHAR: This charge code is not supported, however it is used in testing when the charge bearer is unknown.
 type: string
 enum:
   - DEBT

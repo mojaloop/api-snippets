@@ -147,6 +147,7 @@ required:
   - DbtrAgt
   - CdtrAgt
   - Cdtr
+  - Purp
 example:
   PmtId:
     InstrId: INSTRID

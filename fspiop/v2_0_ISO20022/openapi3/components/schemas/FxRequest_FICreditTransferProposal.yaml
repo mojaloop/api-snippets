@@ -7,7 +7,7 @@ description: >
 properties:
   GrpHdr:
     allOf:
-      - $ref: ./GroupHeader113.yaml
+      - $ref: ./GroupHeader129b.yaml
       - description: >
           GroupHeader
 
@@ -29,7 +29,7 @@ example:
       Ccy: EUR
       Value: 100.0
     SttlmInf:
-      SttlmMtd: INDA
+      SttlmMtd: CLRG
       SttlmAcct:
         Id:
           IBAN: BE71096123456769

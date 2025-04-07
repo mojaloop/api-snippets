@@ -5,41 +5,77 @@ description: >
   postal services.
 properties:
   AdrTp:
-    $ref: ./AddressType3Choice.yaml
+    allOf:
+      - $ref: ./AddressType3Choice.yaml
+      - description: Type of address, as defined by the postal services.
   CareOf:
-    $ref: ./Max140Text.yaml
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: Name of the person or entity the mail is directed to, if different from the recipient.
   Dept:
-    $ref: ./Max70Text.yaml
+    allOf:
+      - $ref: ./Max70Text.yaml
+      - description: Name of a department within an organization.
   SubDept:
-    $ref: ./Max70Text.yaml
+    allOf:
+      - $ref: ./Max70Text.yaml
+      - description: Name of a sub-department within a department.
   StrtNm:
-    $ref: ./Max140Text.yaml
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: Name of the street or thoroughfare.
   BldgNb:
-    $ref: ./Max16Text.yaml
+    allOf:
+      - $ref: ./Max16Text.yaml
+      - description: Number that identifies a building on the street.
   BldgNm:
-    $ref: ./Max140Text.yaml
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: Name of the building, if applicable.
   Flr:
-    $ref: ./Max70Text.yaml
+    allOf:
+      - $ref: ./Max70Text.yaml
+      - description: Floor number or identifier within a building.
   UnitNb:
-    $ref: ./Max16Text.yaml
+    allOf:
+      - $ref: ./Max16Text.yaml
+      - description: Unit or apartment number within a building.
   PstBx:
-    $ref: ./Max16Text.yaml
+    allOf:
+      - $ref: ./Max16Text.yaml
+      - description: Post office box number.
   Room:
-    $ref: ./Max70Text.yaml
+    allOf:
+      - $ref: ./Max70Text.yaml
+      - description: Room number or identifier within a building.
   PstCd:
-    $ref: ./Max16Text.yaml
+    allOf:
+      - $ref: ./Max16Text.yaml
+      - description: Postal code or ZIP code.
   TwnNm:
-    $ref: ./Max140Text.yaml
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: Name of the town or city.
   TwnLctnNm:
-    $ref: ./Max140Text.yaml
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: Name of the location within a town or city.
   DstrctNm:
-    $ref: ./Max140Text.yaml
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: Name of the district or region.
   CtrySubDvsn:
-    $ref: ./Max35Text.yaml
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: Name of the country subdivision, such as a state or province.
   Ctry:
-    $ref: ./CountryCode.yaml
+    allOf:
+      - $ref: ./CountryCode.yaml
+      - description: Country code, as defined by ISO 3166-1 alpha-2.
   AdrLine:
-    $ref: ./Max70Text.yaml
+    allOf:
+      - $ref: ./Max70Text.yaml
+      - description: Free-form text line for the address.
 example:
   AdrTp: ADDR
   CareOf: CareOf
