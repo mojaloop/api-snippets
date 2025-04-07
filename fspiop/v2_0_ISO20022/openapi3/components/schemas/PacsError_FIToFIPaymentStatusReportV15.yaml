@@ -28,7 +28,7 @@ example:
     CreDtTm: '2020-01-01T00:00:00Z'
     NbOfTxs: 1
     SttlmInf:
-      SttlmMtd: INDA
+      SttlmMtd: CLRG
       SttlmDt: '2020-01-01'
     InstgAgt:
       FinInstnId:

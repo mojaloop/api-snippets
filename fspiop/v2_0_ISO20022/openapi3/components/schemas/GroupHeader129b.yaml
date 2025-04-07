@@ -41,7 +41,7 @@ example:
   PmtInstrXpryDtTm: '2020-01-01T00:00:00Z'
   NbOfTxs: 1
   SttlmInf:
-    SttlmMtd: INDA
+    SttlmMtd: CLRG
     SttlmAcct:
       Id:
         IBAN: 123

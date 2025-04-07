@@ -1,5 +1,6 @@
 title: SettlementInstruction15
 description: |
+  Only the CLRG: Clearing option is supported.
   Specifies the details on how the settlement of the original transaction(s) between the
   instructing agent and the instructed agent was completed.
 type: object
@@ -9,7 +10,7 @@ properties:
 required:
   - SttlmMtd
 example:
-  SttlmMtd: INDA
+  SttlmMtd: CLRG
   PmtTpInf:
     InstrPrty: NORM
     SvcLvl:
