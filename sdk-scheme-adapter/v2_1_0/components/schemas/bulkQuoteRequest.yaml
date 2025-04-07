@@ -21,4 +21,4 @@ properties:
     items:
       $ref: ./individualQuote.yaml
   extensions:
-    $ref: ./ExtensionList.yaml
+    $ref: ExtensionList_v2_1_0.yaml

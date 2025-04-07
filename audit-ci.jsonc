@@ -4,9 +4,6 @@
     // Only use one of ["low": true, "moderate": true, "high": true, "critical": true]
     "moderate": true,
     "allowlist": [
-        "GHSA-wf5p-g6vw-rhxx", // https://github.com/advisories/GHSA-wf5p-g6vw-rhxx
-        "GHSA-3h5v-q93c-6h6q", // https://github.com/advisories/GHSA-3h5v-q93c-6h6q
-        "GHSA-cm22-4g7w-348p", // https://github.com/advisories/GHSA-cm22-4g7w-348p
-        "GHSA-m6fv-jmcg-4jfg"  // https://github.com/advisories/GHSA-m6fv-jmcg-4jfg
+        "GHSA-r7jx-5m6m-cpg9"  // https://github.com/advisories/GHSA-r7jx-5m6m-cpg9
     ]
 }

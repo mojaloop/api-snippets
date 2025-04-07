@@ -1,0 +1,5 @@
+description: Account deletion completed
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/accountDeletionResponse.yaml

@@ -31,8 +31,8 @@ properties:
   fulfil:
     $ref: ./individualTransferResult.yaml
   quoteExtensions:
-    $ref: ./ExtensionList.yaml
+    $ref: ExtensionList_v2_1_0.yaml
   transferExtensions:
-    $ref: ./ExtensionList.yaml
+    $ref: ExtensionList_v2_1_0.yaml
   lastError:
     $ref: ./transferError.yaml

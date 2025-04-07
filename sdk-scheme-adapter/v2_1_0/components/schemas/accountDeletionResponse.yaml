@@ -1,0 +1,26 @@
+type: object
+required:
+  - idType
+  - idValue
+properties:
+  idType:
+    $ref: ./PartyIdType.yaml
+  idValue:
+    $ref: ./PartyIdentifier.yaml
+  subIdOrType:
+    $ref: ./PartySubIdOrType.yaml
+  response:
+    $ref: ./accountDeletionStatus.yaml
+  currentState:
+    $ref: ./accountDeletionState.yaml
+  lastError:
+    $ref: ./transferError.yaml
+  deleteAccountResponse:
+    type: object
+    required:
+      - body
+    properties:
+      body:
+        type: object
+      headers:
+        type: object

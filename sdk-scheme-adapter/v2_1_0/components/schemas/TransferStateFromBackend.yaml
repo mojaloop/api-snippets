@@ -1,0 +1,15 @@
+title: TransferStateFromBackend
+type: string
+enum:
+  - RESERVED
+  - COMMITTED
+description: >-
+  Below are the allowed values for the enumeration.
+
+  - RESERVED - Next ledger has reserved the transfer.
+
+  - COMMITTED - Next ledger has successfully performed the transfer.
+
+  Note: There is no ABORTED state, http error response with proper mojaloop error code should be used to abort / reject a transfer.
+
+example: 'COMMITTED'

@@ -24,6 +24,10 @@ paths:
     $ref: paths.yaml
   /accounts:
     $ref: paths/accounts.yaml
+  /accounts/{Type}/{ID}:
+    $ref: paths/accounts_Type_ID.yaml
+  /accounts/{Type}/{ID}/{SubId}:
+    $ref: paths/accounts_Type_ID_SubId.yaml
   /bulkQuotes:
     $ref: paths/bulkQuotes.yaml
   /bulkQuotes/{bulkQuoteId}:

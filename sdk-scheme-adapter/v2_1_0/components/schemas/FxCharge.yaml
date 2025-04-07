@@ -1,0 +1,19 @@
+title: FxCharge
+type: object
+description: An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FxCharge object.
+properties:
+  chargeType:
+    type: string
+    minLength: 1
+    maxLength: 32
+    description: A description of the charge which is being levied.
+  sourceAmount:
+    allOf:
+      - $ref: ./Money.yaml
+      - description: The amount of the charge which is being levied, expressed in the source currency.
+  targetAmount:
+    allOf:
+      - $ref: ./Money.yaml
+      - description: The amount of the charge which is being levied, expressed in the target currency.
+required:
+  - chargeType

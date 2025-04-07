@@ -1,4 +1,91 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.10.2](https://github.com/mojaloop/api-snippets/compare/v17.10.1...v17.10.2) (2025-03-27)
+
+
+### Bug Fixes
+
+* sdk backend transferstates ([#199](https://github.com/mojaloop/api-snippets/issues/199)) ([a2e7f42](https://github.com/mojaloop/api-snippets/commit/a2e7f426868ddc7d0a35527f20c6d917c4fd7f11))
+
+### [17.10.1](https://github.com/mojaloop/api-snippets/compare/v17.10.0...v17.10.1) (2025-03-21)
+
+
+### Maintenance
+
+* remove currency requirment from sdk outbound ([#198](https://github.com/mojaloop/api-snippets/issues/198)) ([90e2f44](https://github.com/mojaloop/api-snippets/commit/90e2f449fa24d1be79a14452c0bf604bee72f857))
+
+## [17.10.0](https://github.com/mojaloop/api-snippets/compare/v17.9.0...v17.10.0) (2025-03-20)
+
+
+### Features
+
+* **csi-1328:** export sdk v2.1.0 ([#197](https://github.com/mojaloop/api-snippets/issues/197)) ([3f76b3d](https://github.com/mojaloop/api-snippets/commit/3f76b3d64e1c157a3ab6fbb2b37e042627f16afa))
+
+## [17.9.0](https://github.com/mojaloop/api-snippets/compare/v17.8.0...v17.9.0) (2025-03-19)
+
+
+### Features
+
+* **csi-1244:** add sdk outbound DELETE /accounts/{Type}/{ID}/{SubId} endpoint ([#195](https://github.com/mojaloop/api-snippets/issues/195)) ([a8204f7](https://github.com/mojaloop/api-snippets/commit/a8204f7032d2421e61cf1a8b68b02b218b26f465))
+
+## [17.8.0](https://github.com/mojaloop/api-snippets/compare/v17.7.13...v17.8.0) (2025-02-20)
+
+
+### Features
+
+* add new feild transfer confirmation ([#194](https://github.com/mojaloop/api-snippets/issues/194)) ([c9d7cab](https://github.com/mojaloop/api-snippets/commit/c9d7cab3ad0d35a6351a4406bbe5fb105895e8a5))
+
+### [17.7.13](https://github.com/mojaloop/api-snippets/compare/v17.7.12...v17.7.13) (2025-02-20)
+
+
+### Maintenance
+
+* update license and add grype and trivy scan ([#193](https://github.com/mojaloop/api-snippets/issues/193)) ([67d0e80](https://github.com/mojaloop/api-snippets/commit/67d0e805fdc2b830b855a4cf74bb2faed61185fc))
+
+### [17.7.12](https://github.com/mojaloop/api-snippets/compare/v17.7.11...v17.7.12) (2025-02-18)
+
+
+### Maintenance
+
+* maintenance changes ([#192](https://github.com/mojaloop/api-snippets/issues/192)) ([07ce26a](https://github.com/mojaloop/api-snippets/commit/07ce26a7cd768d34b401a3e900e112982d84931c))
+
+### [17.7.11](https://github.com/mojaloop/api-snippets/compare/v17.7.10...v17.7.11) (2025-02-03)
+
+
+### Bug Fixes
+
+* extensionlist ([#191](https://github.com/mojaloop/api-snippets/issues/191)) ([feb4af9](https://github.com/mojaloop/api-snippets/commit/feb4af904d8ebfff663c5d6b7271a10fee542327))
+
+### [17.7.10](https://github.com/mojaloop/api-snippets/compare/v17.7.9...v17.7.10) (2025-01-31)
+
+
+### Bug Fixes
+
+* **csi-1156:** remove character length limit for ExtensionKey in sdk outbound spec ([#190](https://github.com/mojaloop/api-snippets/issues/190)) ([6c1dc95](https://github.com/mojaloop/api-snippets/commit/6c1dc95f860f62e8246c1d2280497c704669c81f))
+
+### [17.7.9](https://github.com/mojaloop/api-snippets/compare/v17.7.8...v17.7.9) (2025-01-23)
+
+
+### Maintenance
+
+* audit ([daa2960](https://github.com/mojaloop/api-snippets/commit/daa2960f1ee9f67d46e3f0e32ba9828ce7fd6f94))
+* reorder endpoints ([e0ea485](https://github.com/mojaloop/api-snippets/commit/e0ea485827ba9843f43f05f99b2ec421d9b822ed))
+
+### [17.7.8](https://github.com/mojaloop/api-snippets/compare/v17.7.7...v17.7.8) (2024-12-16)
+
+### [17.7.7](https://github.com/mojaloop/api-snippets/compare/v17.7.6...v17.7.7) (2024-12-13)
+
+
+### Bug Fixes
+
+* **csi-1023:** fixed outbound POST transferResponse - error getPartiesResponse ([#189](https://github.com/mojaloop/api-snippets/issues/189)) ([efd152c](https://github.com/mojaloop/api-snippets/commit/efd152c6afc981bdb589b12a68366a8563930cbd))
+
+### [17.7.6](https://github.com/mojaloop/api-snippets/compare/v17.7.5...v17.7.6) (2024-12-12)
+
+
+### Bug Fixes
+
+* **csi-1023:** fixed outbound POST transferResponse - getPartiesResponse ([#188](https://github.com/mojaloop/api-snippets/issues/188)) ([1625504](https://github.com/mojaloop/api-snippets/commit/162550466866bae641d6588c07d8d8995b3c110a))
+
 ### [17.7.5](https://github.com/mojaloop/api-snippets/compare/v17.7.4...v17.7.5) (2024-11-26)
 
 

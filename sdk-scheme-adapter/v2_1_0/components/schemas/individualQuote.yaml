@@ -19,7 +19,7 @@ properties:
   note:
     $ref: ./Note.yaml
   extensions:
-    $ref: ./ExtensionList.yaml
+    $ref: ExtensionList_v2_1_0.yaml
 required:
   - quoteId
   - to

@@ -82,6 +82,86 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/accounts/{Type}/{ID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete account on the Account Lookup Service
+         * @description The HTTP request `DELETE /accounts/{Type}/{ID}` is used to account account information on the Account Lookup Service (ALS) by Type and ID.
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+                    Type: components["parameters"]["Type"];
+                    /** @description The identifier value. */
+                    ID: components["parameters"]["ID"];
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                200: components["responses"]["accountDeletionCompleted"];
+                400: components["responses"]["accountDeletionError"];
+                500: components["responses"]["accountDeletionError"];
+                504: components["responses"]["accountDeletionTimeout"];
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/accounts/{Type}/{ID}/{SubId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete account on the Account Lookup Service
+         * @description The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type, ID, and SubId.
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
+                    Type: components["parameters"]["Type"];
+                    /** @description The identifier value. */
+                    ID: components["parameters"]["ID"];
+                    /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
+                    SubId: components["parameters"]["SubId"];
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                200: components["responses"]["accountDeletionCompleted"];
+                400: components["responses"]["accountDeletionError"];
+                500: components["responses"]["accountDeletionError"];
+                504: components["responses"]["accountDeletionTimeout"];
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/bulkQuotes": {
         parameters: {
             query?: never;
@@ -741,7 +821,7 @@ export interface paths {
          * Continues a transfer that has paused at the quote stage in order to accept or reject payee party and/or quote and/or conversion
          * @description The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage and/or currency conversion stage.
          *
-         *     The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" property set to `true` as required to continue the transfer.
+         *     The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" or "acceptQuoteOrConversion" property set to `true` as required to continue the transfer.
          *
          *     See the description of the `POST /transfers` HTTP method for more information on modes of transfer.
          *
@@ -758,7 +838,7 @@ export interface paths {
             };
             requestBody?: {
                 content: {
-                    "application/json": components["schemas"]["transferContinuationAcceptParty"] | components["schemas"]["transferContinuationAcceptQuote"] | components["schemas"]["transferContinuationAcceptConversion"];
+                    "application/json": components["schemas"]["transferContinuationAcceptParty"] | components["schemas"]["transferContinuationAcceptQuote"] | components["schemas"]["transferContinuationAcceptConversion"] | components["schemas"]["transferContinuationAcceptQuoteOrConversion"];
                 };
             };
             responses: {
@@ -893,7 +973,7 @@ export interface components {
             idType: components["schemas"]["PartyIdType"];
             idValue: components["schemas"]["PartyIdentifier"];
             idSubValue?: components["schemas"]["PartySubIdOrType"];
-            currency: components["schemas"]["Currency"];
+            currency?: components["schemas"]["Currency"];
         }[];
         /**
          * CorrelationId
@@ -929,30 +1009,30 @@ export interface components {
          */
         ErrorDescription: string;
         /**
-         * ExtensionKey
+         * ExtensionKey_v2_1_0
          * @description Extension key.
          */
-        ExtensionKey: string;
+        ExtensionKey_v2_1_0: string;
         /**
          * ExtensionValue
          * @description Extension value.
          */
         ExtensionValue: string;
         /**
-         * Extension
+         * Extension_v2_1_0
          * @description Data model for the complex type Extension.
          */
-        Extension: {
-            key: components["schemas"]["ExtensionKey"];
+        Extension_v2_1_0: {
+            key: components["schemas"]["ExtensionKey_v2_1_0"];
             value: components["schemas"]["ExtensionValue"];
         };
         /**
          * ExtensionList
          * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
          */
-        ExtensionList: {
+        ExtensionList_v2_1_0: {
             /** @description Number of Extension elements. */
-            extension: components["schemas"]["Extension"][];
+            extension: components["schemas"]["Extension_v2_1_0"][];
         };
         /**
          * ErrorInformation
@@ -961,7 +1041,7 @@ export interface components {
         ErrorInformation: {
             errorCode: components["schemas"]["ErrorCode"];
             errorDescription: components["schemas"]["ErrorDescription"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         mojaloopError: {
             errorInformation?: components["schemas"]["ErrorInformation"];
@@ -985,6 +1065,29 @@ export interface components {
         };
         errorAccountsResponse: components["schemas"]["errorResponse"] & {
             executionState: components["schemas"]["accountsResponse"];
+        };
+        /**
+         * FspId
+         * @description FSP identifier.
+         */
+        FspId: string;
+        accountDeletionStatus: {
+            fspId: components["schemas"]["FspId"];
+            error?: components["schemas"]["errorResponse"];
+        }[];
+        /** @enum {string} */
+        accountDeletionState: "ERROR_OCCURRED" | "COMPLETED";
+        accountDeletionResponse: {
+            idType: components["schemas"]["PartyIdType"];
+            idValue: components["schemas"]["PartyIdentifier"];
+            subIdOrType?: components["schemas"]["PartySubIdOrType"];
+            response?: components["schemas"]["accountDeletionStatus"];
+            currentState?: components["schemas"]["accountDeletionState"];
+            lastError?: components["schemas"]["transferError"];
+            deleteAccountResponse?: {
+                body: Record<string, never>;
+                headers?: Record<string, never>;
+            };
         };
         /**
          * TransactionInitiatorType
@@ -1036,11 +1139,6 @@ export interface components {
          */
         MerchantClassificationCode: string;
         /**
-         * FspId
-         * @description FSP identifier.
-         */
-        FspId: string;
-        /**
          * KYCInformation
          * @description KYC information for the party in a form mandated by an individual scheme.
          * @example {
@@ -1072,7 +1170,7 @@ export interface components {
          *     }
          */
         KYCInformation: string;
-        extensionListEmptiable: components["schemas"]["Extension"][];
+        extensionListEmptiable: components["schemas"]["Extension_v2_1_0"][];
         transferParty: {
             type?: components["schemas"]["TransactionInitiatorType"];
             idType: components["schemas"]["PartyIdType"];
@@ -1136,7 +1234,7 @@ export interface components {
             transactionType: components["schemas"]["transferTransactionType"];
             subScenario?: components["schemas"]["TransactionSubScenario"];
             note?: components["schemas"]["Note"];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         bulkQuoteRequest: {
             /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
@@ -1145,7 +1243,7 @@ export interface components {
             from: components["schemas"]["transferParty"];
             /** @description List of individual quotes in a bulk quote. */
             individualQuotes: components["schemas"]["individualQuote"][];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * DateTime
@@ -1209,7 +1307,7 @@ export interface components {
             geoCode?: components["schemas"]["GeoCode"];
             ilpPacket?: components["schemas"]["IlpPacket"];
             condition?: components["schemas"]["IlpCondition"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             lastError?: components["schemas"]["quoteError"];
         };
         bulkQuoteResponse: {
@@ -1217,7 +1315,7 @@ export interface components {
             /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
             homeTransactionId?: string;
             expiration: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             currentState: components["schemas"]["bulkTransferStatus"];
             /** @description List of individualQuoteResults in a bulk transfer response. */
             individualQuoteResults: components["schemas"]["individualQuoteResult"][];
@@ -1266,7 +1364,7 @@ export interface components {
             partyIdentifier: components["schemas"]["PartyIdentifier"];
             partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
             fspId?: components["schemas"]["FspId"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * PartyName
@@ -1317,8 +1415,8 @@ export interface components {
             currency: components["schemas"]["Currency"];
             amount: components["schemas"]["Amount"];
             note?: components["schemas"]["Note"];
-            quoteExtensions?: components["schemas"]["ExtensionList"];
-            transferExtensions?: components["schemas"]["ExtensionList"];
+            quoteExtensions?: components["schemas"]["ExtensionList_v2_1_0"];
+            transferExtensions?: components["schemas"]["ExtensionList_v2_1_0"];
             lastError?: components["schemas"]["transferError"];
         };
         bulkTransactionRequest: {
@@ -1329,7 +1427,7 @@ export interface components {
             from: components["schemas"]["Party"];
             /** @description List of individual transfers in a bulk transfer. */
             individualTransfers: components["schemas"]["bulkTransactionIndividualTransfer"][];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * TransferState
@@ -1351,7 +1449,7 @@ export interface components {
         individualTransferResult: {
             transferId: components["schemas"]["CorrelationId"];
             fulfilment?: components["schemas"]["IlpFulfilment"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             transferState?: components["schemas"]["TransferState"];
             lastError?: components["schemas"]["transferError"];
         };
@@ -1362,7 +1460,7 @@ export interface components {
             homeTransactionId?: string;
             bulkTransferState?: components["schemas"]["TransferState"];
             completedTimestamp?: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             currentState: components["schemas"]["bulkTransferStatus"];
             /** @description List of individual transfer result in a bulk transfer response. */
             individualTransferResults: components["schemas"]["individualTransferResult"][];
@@ -1419,7 +1517,7 @@ export interface components {
             ilpPacket: components["schemas"]["IlpPacket"];
             condition: components["schemas"]["IlpCondition"];
             note?: components["schemas"]["Note"];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         bulkTransferRequest: {
             /** @description Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems. */
@@ -1429,12 +1527,12 @@ export interface components {
             from: components["schemas"]["transferParty"];
             /** @description List of individual transfers in a bulk transfer. */
             individualTransfers: components["schemas"]["individualTransfer"][];
-            extensions?: components["schemas"]["ExtensionList"];
+            extensions?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /** @description A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer */
         individualTransferFulfilment: {
             fulfilment?: components["schemas"]["IlpFulfilment"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         bulkTransferStatusResponse: {
             bulkTransferId: components["schemas"]["CorrelationId"];
@@ -1540,7 +1638,7 @@ export interface components {
             geoCode?: components["schemas"]["GeoCode"];
             note?: components["schemas"]["Note"];
             expiration?: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /** simpleQuotesPostRequest */
         simpleQuotesPostRequest: {
@@ -1567,7 +1665,7 @@ export interface components {
                     geoCode?: components["schemas"]["GeoCode"];
                     ilpPacket: components["schemas"]["IlpPacket"];
                     condition: components["schemas"]["IlpCondition"];
-                    extensionList?: components["schemas"]["ExtensionList"];
+                    extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
                 };
                 headers: Record<string, never>;
             };
@@ -1625,7 +1723,7 @@ export interface components {
             body: {
                 transactionId?: components["schemas"]["CorrelationId"];
                 transactionRequestState: components["schemas"]["TransactionRequestState"];
-                extensionList?: components["schemas"]["ExtensionList"];
+                extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
             };
             headers: Record<string, never>;
         };
@@ -1658,7 +1756,7 @@ export interface components {
             geoCode?: components["schemas"]["GeoCode"];
             ilpPacket: components["schemas"]["IlpPacket"];
             condition: components["schemas"]["IlpCondition"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /**
          * FxMoney
@@ -1693,7 +1791,7 @@ export interface components {
             expiration: components["schemas"]["DateTime"] & unknown;
             /** @description One or more charges which the FXP intends to levy as part of the currency conversion, or which the payee DFSP intends to add to the amount transferred. */
             charges?: components["schemas"]["FxCharge"][];
-            extensionList?: components["schemas"]["ExtensionList"] & unknown;
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"] & unknown;
         };
         /**
          * FxQuotesPostOutboundResponse
@@ -1713,7 +1811,7 @@ export interface components {
             fulfilment?: components["schemas"]["IlpFulfilment"];
             completedTimestamp?: components["schemas"]["DateTime"];
             transferState: components["schemas"]["TransferState"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         transferResponse: {
             transferId?: components["schemas"]["CorrelationId"];
@@ -1730,7 +1828,11 @@ export interface components {
             currentState?: components["schemas"]["transferStatus"];
             quoteId?: components["schemas"]["CorrelationId"];
             getPartiesResponse?: {
-                body: components["schemas"]["Party"];
+                body: {
+                    party: components["schemas"]["Party"];
+                } | {
+                    errorInformation: components["schemas"]["ErrorInformation"];
+                };
                 headers?: Record<string, never>;
             };
             quoteResponse?: {
@@ -1862,7 +1964,7 @@ export interface components {
             ilpPacket: components["schemas"]["IlpPacket"];
             condition: components["schemas"]["IlpCondition"];
             expiration: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
         /** SimpleTransfersPostRequest */
         simpleTransfersPostRequest: {
@@ -1905,6 +2007,10 @@ export interface components {
         transferContinuationAcceptConversion: {
             /** @enum {boolean} */
             acceptConversion: true | false;
+        };
+        transferContinuationAcceptQuoteOrConversion: {
+            /** @enum {boolean} */
+            acceptQuoteOrConversion: true | false;
         };
         /**
          * ServicesFXPPutResponse
@@ -1959,7 +2065,7 @@ export interface components {
             fulfilment?: components["schemas"]["fulfilment"];
             completedTimestamp?: components["schemas"]["completedTimestamp"];
             conversionState: components["schemas"]["conversionState"];
-            extensionList?: components["schemas"]["ExtensionList"];
+            extensionList?: components["schemas"]["ExtensionList_v2_1_0"];
         };
     };
     responses: {
@@ -2001,6 +2107,33 @@ export interface components {
         };
         /** @description Timeout occurred creating accounts */
         accountsCreationTimeout: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["errorAccountsResponse"];
+            };
+        };
+        /** @description Account deletion completed */
+        accountDeletionCompleted: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["accountDeletionResponse"];
+            };
+        };
+        /** @description An error occurred while deleting an account */
+        accountDeletionError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["errorAccountsResponse"];
+            };
+        };
+        /** @description Timeout occurred while deleting an account */
+        accountDeletionTimeout: {
             headers: {
                 [name: string]: unknown;
             };
@@ -2217,18 +2350,18 @@ export interface components {
         };
     };
     parameters: {
-        /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
-        bulkQuoteId: components["schemas"]["CorrelationId"];
-        /** @description Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request. */
-        bulkTransactionId: components["schemas"]["CorrelationId"];
-        /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
-        bulkTransferId: components["schemas"]["CorrelationId"];
         /** @description The type of the party identifier. For example, `MSISDN`, `PERSONAL_ID`. */
         Type: string;
         /** @description The identifier value. */
         ID: string;
         /** @description A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`. */
         SubId: string;
+        /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
+        bulkQuoteId: components["schemas"]["CorrelationId"];
+        /** @description Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request. */
+        bulkTransactionId: components["schemas"]["CorrelationId"];
+        /** @description Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request. */
+        bulkTransferId: components["schemas"]["CorrelationId"];
         /** @description Identifier of the merchant request to pay to continue as returned in the response to a `POST /requestToPay` request. */
         transactionRequestId: components["schemas"]["CorrelationId"];
         /** @description Identifier of the transfer to continue as returned in the response to a `POST /transfers` request. */

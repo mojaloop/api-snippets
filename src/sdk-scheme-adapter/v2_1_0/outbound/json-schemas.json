@@ -208,8 +208,7 @@
       "type": "object",
       "required": [
         "idType",
-        "idValue",
-        "currency"
+        "idValue"
       ],
       "properties": {
         "idType": {
@@ -514,11 +513,10 @@
     "maxLength": 128,
     "description": "Error description string."
   },
-  "ExtensionKey": {
-    "title": "ExtensionKey",
+  "ExtensionKey_v2_1_0": {
+    "title": "ExtensionKey_v2_1_0",
     "type": "string",
     "minLength": 1,
-    "maxLength": 32,
     "description": "Extension key."
   },
   "ExtensionValue": {
@@ -528,16 +526,15 @@
     "maxLength": 128,
     "description": "Extension value."
   },
-  "Extension": {
-    "title": "Extension",
+  "Extension_v2_1_0": {
+    "title": "Extension_v2_1_0",
     "type": "object",
     "description": "Data model for the complex type Extension.",
     "properties": {
       "key": {
-        "title": "ExtensionKey",
+        "title": "ExtensionKey_v2_1_0",
         "type": "string",
         "minLength": 1,
-        "maxLength": 32,
         "description": "Extension key."
       },
       "value": {
@@ -553,7 +550,7 @@
       "value"
     ]
   },
-  "ExtensionList": {
+  "ExtensionList_v2_1_0": {
     "title": "ExtensionList",
     "type": "object",
     "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
@@ -561,15 +558,14 @@
       "extension": {
         "type": "array",
         "items": {
-          "title": "Extension",
+          "title": "Extension_v2_1_0",
           "type": "object",
           "description": "Data model for the complex type Extension.",
           "properties": {
             "key": {
-              "title": "ExtensionKey",
+              "title": "ExtensionKey_v2_1_0",
               "type": "string",
               "minLength": 1,
-              "maxLength": 32,
               "description": "Extension key."
             },
             "value": {
@@ -621,15 +617,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -690,15 +685,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -769,15 +763,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -831,8 +824,7 @@
           "type": "object",
           "required": [
             "idType",
-            "idValue",
-            "currency"
+            "idValue"
           ],
           "properties": {
             "idType": {
@@ -1141,15 +1133,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -1240,8 +1231,7 @@
                   "type": "object",
                   "required": [
                     "idType",
-                    "idValue",
-                    "currency"
+                    "idValue"
                   ],
                   "properties": {
                     "idType": {
@@ -1550,15 +1540,14 @@
                               "extension": {
                                 "type": "array",
                                 "items": {
-                                  "title": "Extension",
+                                  "title": "Extension_v2_1_0",
                                   "type": "object",
                                   "description": "Data model for the complex type Extension.",
                                   "properties": {
                                     "key": {
-                                      "title": "ExtensionKey",
+                                      "title": "ExtensionKey_v2_1_0",
                                       "type": "string",
                                       "minLength": 1,
-                                      "maxLength": 32,
                                       "description": "Extension key."
                                     },
                                     "value": {
@@ -1612,6 +1601,222 @@
         }
       }
     ]
+  },
+  "FspId": {
+    "title": "FspId",
+    "type": "string",
+    "minLength": 1,
+    "maxLength": 32,
+    "description": "FSP identifier."
+  },
+  "accountDeletionStatus": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": [
+        "fspId"
+      ],
+      "properties": {
+        "fspId": {
+          "title": "FspId",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32,
+          "description": "FSP identifier."
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "statusCode": {
+              "type": "string",
+              "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
+            },
+            "message": {
+              "type": "string",
+              "description": "Error message text."
+            }
+          }
+        }
+      }
+    }
+  },
+  "accountDeletionState": {
+    "type": "string",
+    "enum": [
+      "ERROR_OCCURRED",
+      "COMPLETED"
+    ]
+  },
+  "accountDeletionResponse": {
+    "type": "object",
+    "required": [
+      "idType",
+      "idValue"
+    ],
+    "properties": {
+      "idType": {
+        "title": "PartyIdType",
+        "type": "string",
+        "enum": [
+          "MSISDN",
+          "EMAIL",
+          "PERSONAL_ID",
+          "BUSINESS",
+          "DEVICE",
+          "ACCOUNT_ID",
+          "IBAN",
+          "ALIAS"
+        ],
+        "description": "Below are the allowed values for the enumeration.\n- MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.\n- EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).\n- PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.\n- BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.\n- DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.\n- ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.\n- IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.\n- ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier."
+      },
+      "idValue": {
+        "title": "PartyIdentifier",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128,
+        "description": "Identifier of the Party.",
+        "example": "16135551212"
+      },
+      "subIdOrType": {
+        "title": "PartySubIdOrType",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128,
+        "description": "Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType."
+      },
+      "response": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "fspId"
+          ],
+          "properties": {
+            "fspId": {
+              "title": "FspId",
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32,
+              "description": "FSP identifier."
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "statusCode": {
+                  "type": "string",
+                  "description": "Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.\nOtherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.\n"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Error message text."
+                }
+              }
+            }
+          }
+        }
+      },
+      "currentState": {
+        "type": "string",
+        "enum": [
+          "ERROR_OCCURRED",
+          "COMPLETED"
+        ]
+      },
+      "lastError": {
+        "type": "object",
+        "description": "This object represents a Mojaloop API error received at any time during the transfer process",
+        "properties": {
+          "httpStatusCode": {
+            "type": "integer",
+            "description": "The HTTP status code returned to the caller. This is the same as the actual HTTP status code returned with the response."
+          },
+          "mojaloopError": {
+            "type": "object",
+            "properties": {
+              "errorInformation": {
+                "title": "ErrorInformation",
+                "type": "object",
+                "description": "Data model for the complex type ErrorInformation.",
+                "properties": {
+                  "errorCode": {
+                    "title": "ErrorCode",
+                    "type": "string",
+                    "pattern": "^[1-9]\\d{3}$",
+                    "description": "The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.",
+                    "example": "5100"
+                  },
+                  "errorDescription": {
+                    "title": "ErrorDescription",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "description": "Error description string."
+                  },
+                  "extensionList": {
+                    "title": "ExtensionList",
+                    "type": "object",
+                    "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
+                    "properties": {
+                      "extension": {
+                        "type": "array",
+                        "items": {
+                          "title": "Extension_v2_1_0",
+                          "type": "object",
+                          "description": "Data model for the complex type Extension.",
+                          "properties": {
+                            "key": {
+                              "title": "ExtensionKey_v2_1_0",
+                              "type": "string",
+                              "minLength": 1,
+                              "description": "Extension key."
+                            },
+                            "value": {
+                              "title": "ExtensionValue",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 128,
+                              "description": "Extension value."
+                            }
+                          },
+                          "required": [
+                            "key",
+                            "value"
+                          ]
+                        },
+                        "minItems": 1,
+                        "maxItems": 16,
+                        "description": "Number of Extension elements."
+                      }
+                    },
+                    "required": [
+                      "extension"
+                    ]
+                  }
+                },
+                "required": [
+                  "errorCode",
+                  "errorDescription"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "deleteAccountResponse": {
+        "type": "object",
+        "required": [
+          "body"
+        ],
+        "properties": {
+          "body": {
+            "type": "object"
+          },
+          "headers": {
+            "type": "object"
+          }
+        }
+      }
+    }
   },
   "TransactionInitiatorType": {
     "title": "TransactionInitiatorType",
@@ -1671,13 +1876,6 @@
     "pattern": "^[\\d]{1,4}$",
     "description": "A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc."
   },
-  "FspId": {
-    "title": "FspId",
-    "type": "string",
-    "minLength": 1,
-    "maxLength": 32,
-    "description": "FSP identifier."
-  },
   "KYCInformation": {
     "title": "KYCInformation",
     "type": "string",
@@ -1689,15 +1887,14 @@
   "extensionListEmptiable": {
     "type": "array",
     "items": {
-      "title": "Extension",
+      "title": "Extension_v2_1_0",
       "type": "object",
       "description": "Data model for the complex type Extension.",
       "properties": {
         "key": {
-          "title": "ExtensionKey",
+          "title": "ExtensionKey_v2_1_0",
           "type": "string",
           "minLength": 1,
-          "maxLength": 32,
           "description": "Extension key."
         },
         "value": {
@@ -2008,15 +2205,14 @@
       "extensionList": {
         "type": "array",
         "items": {
-          "title": "Extension",
+          "title": "Extension_v2_1_0",
           "type": "object",
           "description": "Data model for the complex type Extension.",
           "properties": {
             "key": {
-              "title": "ExtensionKey",
+              "title": "ExtensionKey_v2_1_0",
               "type": "string",
               "minLength": 1,
-              "maxLength": 32,
               "description": "Extension key."
             },
             "value": {
@@ -2381,15 +2577,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -2631,15 +2826,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -2985,15 +3179,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -3323,15 +3516,14 @@
                 "extensionList": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -3573,15 +3765,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -3625,15 +3816,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -3958,15 +4148,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -4824,15 +5013,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -4895,15 +5083,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -4978,15 +5165,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -5844,15 +6030,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -5915,15 +6100,14 @@
                             "extension": {
                               "type": "array",
                               "items": {
-                                "title": "Extension",
+                                "title": "Extension_v2_1_0",
                                 "type": "object",
                                 "description": "Data model for the complex type Extension.",
                                 "properties": {
                                   "key": {
-                                    "title": "ExtensionKey",
+                                    "title": "ExtensionKey_v2_1_0",
                                     "type": "string",
                                     "minLength": 1,
-                                    "maxLength": 32,
                                     "description": "Extension key."
                                   },
                                   "value": {
@@ -6023,15 +6207,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -6889,15 +7072,14 @@
                         "extension": {
                           "type": "array",
                           "items": {
-                            "title": "Extension",
+                            "title": "Extension_v2_1_0",
                             "type": "object",
                             "description": "Data model for the complex type Extension.",
                             "properties": {
                               "key": {
-                                "title": "ExtensionKey",
+                                "title": "ExtensionKey_v2_1_0",
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 32,
                                 "description": "Extension key."
                               },
                               "value": {
@@ -6960,15 +7142,14 @@
                                     "extension": {
                                       "type": "array",
                                       "items": {
-                                        "title": "Extension",
+                                        "title": "Extension_v2_1_0",
                                         "type": "object",
                                         "description": "Data model for the complex type Extension.",
                                         "properties": {
                                           "key": {
-                                            "title": "ExtensionKey",
+                                            "title": "ExtensionKey_v2_1_0",
                                             "type": "string",
                                             "minLength": 1,
-                                            "maxLength": 32,
                                             "description": "Extension key."
                                           },
                                           "value": {
@@ -7353,15 +7534,14 @@
                 "extensionList": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -7603,15 +7783,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -8369,15 +8548,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -8560,15 +8738,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -8916,15 +9093,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -9418,15 +9594,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -9459,15 +9634,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -9530,15 +9704,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -9916,15 +10089,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -10276,15 +10448,14 @@
                         "extension": {
                           "type": "array",
                           "items": {
-                            "title": "Extension",
+                            "title": "Extension_v2_1_0",
                             "type": "object",
                             "description": "Data model for the complex type Extension.",
                             "properties": {
                               "key": {
-                                "title": "ExtensionKey",
+                                "title": "ExtensionKey_v2_1_0",
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 32,
                                 "description": "Extension key."
                               },
                               "value": {
@@ -10778,15 +10949,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -10819,15 +10989,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -10890,15 +11059,14 @@
                             "extension": {
                               "type": "array",
                               "items": {
-                                "title": "Extension",
+                                "title": "Extension_v2_1_0",
                                 "type": "object",
                                 "description": "Data model for the complex type Extension.",
                                 "properties": {
                                   "key": {
-                                    "title": "ExtensionKey",
+                                    "title": "ExtensionKey_v2_1_0",
                                     "type": "string",
                                     "minLength": 1,
-                                    "maxLength": 32,
                                     "description": "Extension key."
                                   },
                                   "value": {
@@ -10951,15 +11119,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -11035,15 +11202,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -11118,15 +11284,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -11216,15 +11381,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -11288,15 +11452,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -11371,15 +11534,14 @@
                             "extension": {
                               "type": "array",
                               "items": {
-                                "title": "Extension",
+                                "title": "Extension_v2_1_0",
                                 "type": "object",
                                 "description": "Data model for the complex type Extension.",
                                 "properties": {
                                   "key": {
-                                    "title": "ExtensionKey",
+                                    "title": "ExtensionKey_v2_1_0",
                                     "type": "string",
                                     "minLength": 1,
-                                    "maxLength": 32,
                                     "description": "Extension key."
                                   },
                                   "value": {
@@ -11494,15 +11656,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -11566,15 +11727,14 @@
                         "extension": {
                           "type": "array",
                           "items": {
-                            "title": "Extension",
+                            "title": "Extension_v2_1_0",
                             "type": "object",
                             "description": "Data model for the complex type Extension.",
                             "properties": {
                               "key": {
-                                "title": "ExtensionKey",
+                                "title": "ExtensionKey_v2_1_0",
                                 "type": "string",
                                 "minLength": 1,
-                                "maxLength": 32,
                                 "description": "Extension key."
                               },
                               "value": {
@@ -11649,15 +11809,14 @@
                                     "extension": {
                                       "type": "array",
                                       "items": {
-                                        "title": "Extension",
+                                        "title": "Extension_v2_1_0",
                                         "type": "object",
                                         "description": "Data model for the complex type Extension.",
                                         "properties": {
                                           "key": {
-                                            "title": "ExtensionKey",
+                                            "title": "ExtensionKey_v2_1_0",
                                             "type": "string",
                                             "minLength": 1,
-                                            "maxLength": 32,
                                             "description": "Extension key."
                                           },
                                           "value": {
@@ -11884,15 +12043,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -12037,15 +12195,14 @@
                               "extension": {
                                 "type": "array",
                                 "items": {
-                                  "title": "Extension",
+                                  "title": "Extension_v2_1_0",
                                   "type": "object",
                                   "description": "Data model for the complex type Extension.",
                                   "properties": {
                                     "key": {
-                                      "title": "ExtensionKey",
+                                      "title": "ExtensionKey_v2_1_0",
                                       "type": "string",
                                       "minLength": 1,
-                                      "maxLength": 32,
                                       "description": "Extension key."
                                     },
                                     "value": {
@@ -12196,15 +12353,14 @@
                               "extension": {
                                 "type": "array",
                                 "items": {
-                                  "title": "Extension",
+                                  "title": "Extension_v2_1_0",
                                   "type": "object",
                                   "description": "Data model for the complex type Extension.",
                                   "properties": {
                                     "key": {
-                                      "title": "ExtensionKey",
+                                      "title": "ExtensionKey_v2_1_0",
                                       "type": "string",
                                       "minLength": 1,
-                                      "maxLength": 32,
                                       "description": "Extension key."
                                     },
                                     "value": {
@@ -12549,15 +12705,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -12815,15 +12970,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -13179,15 +13333,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -13517,15 +13670,14 @@
                 "extensionList": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -13783,15 +13935,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -13836,15 +13987,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -13891,15 +14041,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -13972,15 +14121,14 @@
                 "extension": {
                   "type": "array",
                   "items": {
-                    "title": "Extension",
+                    "title": "Extension_v2_1_0",
                     "type": "object",
                     "description": "Data model for the complex type Extension.",
                     "properties": {
                       "key": {
-                        "title": "ExtensionKey",
+                        "title": "ExtensionKey_v2_1_0",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 32,
                         "description": "Extension key."
                       },
                       "value": {
@@ -14080,15 +14228,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -15041,15 +15188,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -15388,15 +15534,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -16636,15 +16781,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -16772,15 +16916,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -17119,15 +17262,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -18367,15 +18509,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -19247,15 +19388,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -19650,15 +19790,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -19971,15 +20110,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -20291,15 +20429,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -20639,15 +20776,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -20998,15 +21134,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -21319,15 +21454,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -21626,15 +21760,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -21962,15 +22095,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -22047,15 +22179,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -22927,15 +23058,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -24484,15 +24614,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -25472,15 +25601,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -25571,15 +25699,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -25924,15 +26051,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -26245,15 +26371,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -26506,361 +26631,445 @@
       },
       "getPartiesResponse": {
         "type": "object",
-        "required": [
-          "body"
-        ],
         "properties": {
           "body": {
-            "title": "Party",
-            "type": "object",
-            "description": "Data model for the complex type Party.",
-            "properties": {
-              "partyIdInfo": {
-                "title": "PartyIdInfo",
+            "oneOf": [
+              {
                 "type": "object",
-                "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
                 "properties": {
-                  "partyIdType": {
-                    "title": "PartyIdType",
-                    "type": "string",
-                    "enum": [
-                      "MSISDN",
-                      "EMAIL",
-                      "PERSONAL_ID",
-                      "BUSINESS",
-                      "DEVICE",
-                      "ACCOUNT_ID",
-                      "IBAN",
-                      "ALIAS"
-                    ],
-                    "description": "Below are the allowed values for the enumeration.\n- MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.\n- EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).\n- PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.\n- BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.\n- DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.\n- ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.\n- IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.\n- ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier."
-                  },
-                  "partyIdentifier": {
-                    "title": "PartyIdentifier",
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128,
-                    "description": "Identifier of the Party.",
-                    "example": "16135551212"
-                  },
-                  "partySubIdOrType": {
-                    "title": "PartySubIdOrType",
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128,
-                    "description": "Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType."
-                  },
-                  "fspId": {
-                    "title": "FspId",
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 32,
-                    "description": "FSP identifier."
-                  },
-                  "extensionList": {
-                    "title": "ExtensionList",
+                  "party": {
+                    "title": "Party",
                     "type": "object",
-                    "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
+                    "description": "Data model for the complex type Party.",
                     "properties": {
-                      "extension": {
-                        "type": "array",
-                        "items": {
-                          "title": "Extension",
-                          "type": "object",
-                          "description": "Data model for the complex type Extension.",
-                          "properties": {
-                            "key": {
-                              "title": "ExtensionKey",
-                              "type": "string",
-                              "minLength": 1,
-                              "maxLength": 32,
-                              "description": "Extension key."
+                      "partyIdInfo": {
+                        "title": "PartyIdInfo",
+                        "type": "object",
+                        "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
+                        "properties": {
+                          "partyIdType": {
+                            "title": "PartyIdType",
+                            "type": "string",
+                            "enum": [
+                              "MSISDN",
+                              "EMAIL",
+                              "PERSONAL_ID",
+                              "BUSINESS",
+                              "DEVICE",
+                              "ACCOUNT_ID",
+                              "IBAN",
+                              "ALIAS"
+                            ],
+                            "description": "Below are the allowed values for the enumeration.\n- MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.\n- EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).\n- PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.\n- BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.\n- DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.\n- ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.\n- IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.\n- ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier."
+                          },
+                          "partyIdentifier": {
+                            "title": "PartyIdentifier",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128,
+                            "description": "Identifier of the Party.",
+                            "example": "16135551212"
+                          },
+                          "partySubIdOrType": {
+                            "title": "PartySubIdOrType",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128,
+                            "description": "Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType."
+                          },
+                          "fspId": {
+                            "title": "FspId",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 32,
+                            "description": "FSP identifier."
+                          },
+                          "extensionList": {
+                            "title": "ExtensionList",
+                            "type": "object",
+                            "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
+                            "properties": {
+                              "extension": {
+                                "type": "array",
+                                "items": {
+                                  "title": "Extension_v2_1_0",
+                                  "type": "object",
+                                  "description": "Data model for the complex type Extension.",
+                                  "properties": {
+                                    "key": {
+                                      "title": "ExtensionKey_v2_1_0",
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "description": "Extension key."
+                                    },
+                                    "value": {
+                                      "title": "ExtensionValue",
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "maxLength": 128,
+                                      "description": "Extension value."
+                                    }
+                                  },
+                                  "required": [
+                                    "key",
+                                    "value"
+                                  ]
+                                },
+                                "minItems": 1,
+                                "maxItems": 16,
+                                "description": "Number of Extension elements."
+                              }
                             },
-                            "value": {
-                              "title": "ExtensionValue",
-                              "type": "string",
-                              "minLength": 1,
-                              "maxLength": 128,
-                              "description": "Extension value."
+                            "required": [
+                              "extension"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "partyIdType",
+                          "partyIdentifier"
+                        ]
+                      },
+                      "merchantClassificationCode": {
+                        "title": "MerchantClassificationCode",
+                        "type": "string",
+                        "pattern": "^[\\d]{1,4}$",
+                        "description": "A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc."
+                      },
+                      "name": {
+                        "title": "PartyName",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 128,
+                        "description": "Name of the Party. Could be a real name or a nickname."
+                      },
+                      "personalInfo": {
+                        "title": "PartyPersonalInfo",
+                        "type": "object",
+                        "description": "Data model for the complex type PartyPersonalInfo.",
+                        "properties": {
+                          "complexName": {
+                            "title": "PartyComplexName",
+                            "type": "object",
+                            "description": "Data model for the complex type PartyComplexName.",
+                            "properties": {
+                              "firstName": {
+                                "title": "FirstName",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
+                                "description": "First name of the Party (Name Type).",
+                                "example": "Henrik"
+                              },
+                              "middleName": {
+                                "title": "MiddleName",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
+                                "description": "Middle name of the Party (Name Type).",
+                                "example": "Johannes"
+                              },
+                              "lastName": {
+                                "title": "LastName",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
+                                "description": "Last name of the Party (Name Type).",
+                                "example": "Karlsson"
+                              }
                             }
                           },
-                          "required": [
-                            "key",
-                            "value"
+                          "dateOfBirth": {
+                            "title": "DateofBirth (type Date)",
+                            "type": "string",
+                            "pattern": "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$",
+                            "description": "Date of Birth of the Party.",
+                            "example": "1966-06-16"
+                          },
+                          "kycInformation": {
+                            "title": "KYCInformation",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 2048,
+                            "description": "KYC information for the party in a form mandated by an individual scheme.",
+                            "example": "{\n    \"metadata\": {\n        \"format\": \"JSON\",\n        \"version\": \"1.0\",\n        \"description\": \"Data containing KYC Information\"\n    },\n    \"data\": {\n        \"name\": \"John Doe\",\n        \"dob\": \"1980-05-15\",\n        \"gender\": \"Male\",\n        \"address\": \"123 Main Street, Anytown, USA\",\n        \"email\": \"johndoe@example.com\",\n        \"phone\": \"+1 555-123-4567\",\n        \"nationality\": \"US\",\n        \"passport_number\": \"AB1234567\",\n        \"issue_date\": \"2010-02-20\",\n        \"expiry_date\": \"2025-02-20\",\n        \"bank_account_number\": \"1234567890\",\n        \"bank_name\": \"Example Bank\",\n        \"employer\": \"ABC Company\",\n        \"occupation\": \"Software Engineer\",\n        \"income\": \"$80,000 per year\",\n        \"marital_status\": \"Single\",\n        \"dependents\": 0,\n        \"risk_level\": \"Low\"\n    }\n}"
+                          }
+                        }
+                      },
+                      "supportedCurrencies": {
+                        "type": "array",
+                        "description": "Currencies in which the party can receive funds.",
+                        "items": {
+                          "title": "Currency",
+                          "description": "The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.",
+                          "type": "string",
+                          "minLength": 3,
+                          "maxLength": 3,
+                          "enum": [
+                            "AED",
+                            "AFN",
+                            "ALL",
+                            "AMD",
+                            "ANG",
+                            "AOA",
+                            "ARS",
+                            "AUD",
+                            "AWG",
+                            "AZN",
+                            "BAM",
+                            "BBD",
+                            "BDT",
+                            "BGN",
+                            "BHD",
+                            "BIF",
+                            "BMD",
+                            "BND",
+                            "BOB",
+                            "BRL",
+                            "BSD",
+                            "BTN",
+                            "BWP",
+                            "BYN",
+                            "BZD",
+                            "CAD",
+                            "CDF",
+                            "CHF",
+                            "CLP",
+                            "CNY",
+                            "COP",
+                            "CRC",
+                            "CUC",
+                            "CUP",
+                            "CVE",
+                            "CZK",
+                            "DJF",
+                            "DKK",
+                            "DOP",
+                            "DZD",
+                            "EGP",
+                            "ERN",
+                            "ETB",
+                            "EUR",
+                            "FJD",
+                            "FKP",
+                            "GBP",
+                            "GEL",
+                            "GGP",
+                            "GHS",
+                            "GIP",
+                            "GMD",
+                            "GNF",
+                            "GTQ",
+                            "GYD",
+                            "HKD",
+                            "HNL",
+                            "HRK",
+                            "HTG",
+                            "HUF",
+                            "IDR",
+                            "ILS",
+                            "IMP",
+                            "INR",
+                            "IQD",
+                            "IRR",
+                            "ISK",
+                            "JEP",
+                            "JMD",
+                            "JOD",
+                            "JPY",
+                            "KES",
+                            "KGS",
+                            "KHR",
+                            "KMF",
+                            "KPW",
+                            "KRW",
+                            "KWD",
+                            "KYD",
+                            "KZT",
+                            "LAK",
+                            "LBP",
+                            "LKR",
+                            "LRD",
+                            "LSL",
+                            "LYD",
+                            "MAD",
+                            "MDL",
+                            "MGA",
+                            "MKD",
+                            "MMK",
+                            "MNT",
+                            "MOP",
+                            "MRO",
+                            "MUR",
+                            "MVR",
+                            "MWK",
+                            "MXN",
+                            "MYR",
+                            "MZN",
+                            "NAD",
+                            "NGN",
+                            "NIO",
+                            "NOK",
+                            "NPR",
+                            "NZD",
+                            "OMR",
+                            "PAB",
+                            "PEN",
+                            "PGK",
+                            "PHP",
+                            "PKR",
+                            "PLN",
+                            "PYG",
+                            "QAR",
+                            "RON",
+                            "RSD",
+                            "RUB",
+                            "RWF",
+                            "SAR",
+                            "SBD",
+                            "SCR",
+                            "SDG",
+                            "SEK",
+                            "SGD",
+                            "SHP",
+                            "SLL",
+                            "SOS",
+                            "SPL",
+                            "SRD",
+                            "STD",
+                            "SVC",
+                            "SYP",
+                            "SZL",
+                            "THB",
+                            "TJS",
+                            "TMT",
+                            "TND",
+                            "TOP",
+                            "TRY",
+                            "TTD",
+                            "TVD",
+                            "TWD",
+                            "TZS",
+                            "UAH",
+                            "UGX",
+                            "USD",
+                            "UYU",
+                            "UZS",
+                            "VEF",
+                            "VND",
+                            "VUV",
+                            "WST",
+                            "XAF",
+                            "XCD",
+                            "XDR",
+                            "XOF",
+                            "XPF",
+                            "XTS",
+                            "XXX",
+                            "YER",
+                            "ZAR",
+                            "ZMW",
+                            "ZWD"
                           ]
                         },
-                        "minItems": 1,
-                        "maxItems": 16,
-                        "description": "Number of Extension elements."
+                        "minItems": 0,
+                        "maxItems": 16
                       }
                     },
                     "required": [
-                      "extension"
+                      "partyIdInfo"
                     ]
                   }
                 },
                 "required": [
-                  "partyIdType",
-                  "partyIdentifier"
+                  "party"
                 ]
               },
-              "merchantClassificationCode": {
-                "title": "MerchantClassificationCode",
-                "type": "string",
-                "pattern": "^[\\d]{1,4}$",
-                "description": "A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc."
-              },
-              "name": {
-                "title": "PartyName",
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 128,
-                "description": "Name of the Party. Could be a real name or a nickname."
-              },
-              "personalInfo": {
-                "title": "PartyPersonalInfo",
+              {
                 "type": "object",
-                "description": "Data model for the complex type PartyPersonalInfo.",
                 "properties": {
-                  "complexName": {
-                    "title": "PartyComplexName",
+                  "errorInformation": {
+                    "title": "ErrorInformation",
                     "type": "object",
-                    "description": "Data model for the complex type PartyComplexName.",
+                    "description": "Data model for the complex type ErrorInformation.",
                     "properties": {
-                      "firstName": {
-                        "title": "FirstName",
+                      "errorCode": {
+                        "title": "ErrorCode",
                         "type": "string",
-                        "minLength": 1,
-                        "maxLength": 128,
-                        "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
-                        "description": "First name of the Party (Name Type).",
-                        "example": "Henrik"
+                        "pattern": "^[1-9]\\d{3}$",
+                        "description": "The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.",
+                        "example": "5100"
                       },
-                      "middleName": {
-                        "title": "MiddleName",
+                      "errorDescription": {
+                        "title": "ErrorDescription",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 128,
-                        "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
-                        "description": "Middle name of the Party (Name Type).",
-                        "example": "Johannes"
+                        "description": "Error description string."
                       },
-                      "lastName": {
-                        "title": "LastName",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 128,
-                        "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
-                        "description": "Last name of the Party (Name Type).",
-                        "example": "Karlsson"
+                      "extensionList": {
+                        "title": "ExtensionList",
+                        "type": "object",
+                        "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
+                        "properties": {
+                          "extension": {
+                            "type": "array",
+                            "items": {
+                              "title": "Extension_v2_1_0",
+                              "type": "object",
+                              "description": "Data model for the complex type Extension.",
+                              "properties": {
+                                "key": {
+                                  "title": "ExtensionKey_v2_1_0",
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "description": "Extension key."
+                                },
+                                "value": {
+                                  "title": "ExtensionValue",
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 128,
+                                  "description": "Extension value."
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "value"
+                              ]
+                            },
+                            "minItems": 1,
+                            "maxItems": 16,
+                            "description": "Number of Extension elements."
+                          }
+                        },
+                        "required": [
+                          "extension"
+                        ]
                       }
-                    }
-                  },
-                  "dateOfBirth": {
-                    "title": "DateofBirth (type Date)",
-                    "type": "string",
-                    "pattern": "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$",
-                    "description": "Date of Birth of the Party.",
-                    "example": "1966-06-16"
-                  },
-                  "kycInformation": {
-                    "title": "KYCInformation",
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 2048,
-                    "description": "KYC information for the party in a form mandated by an individual scheme.",
-                    "example": "{\n    \"metadata\": {\n        \"format\": \"JSON\",\n        \"version\": \"1.0\",\n        \"description\": \"Data containing KYC Information\"\n    },\n    \"data\": {\n        \"name\": \"John Doe\",\n        \"dob\": \"1980-05-15\",\n        \"gender\": \"Male\",\n        \"address\": \"123 Main Street, Anytown, USA\",\n        \"email\": \"johndoe@example.com\",\n        \"phone\": \"+1 555-123-4567\",\n        \"nationality\": \"US\",\n        \"passport_number\": \"AB1234567\",\n        \"issue_date\": \"2010-02-20\",\n        \"expiry_date\": \"2025-02-20\",\n        \"bank_account_number\": \"1234567890\",\n        \"bank_name\": \"Example Bank\",\n        \"employer\": \"ABC Company\",\n        \"occupation\": \"Software Engineer\",\n        \"income\": \"$80,000 per year\",\n        \"marital_status\": \"Single\",\n        \"dependents\": 0,\n        \"risk_level\": \"Low\"\n    }\n}"
+                    },
+                    "required": [
+                      "errorCode",
+                      "errorDescription"
+                    ]
                   }
-                }
-              },
-              "supportedCurrencies": {
-                "type": "array",
-                "description": "Currencies in which the party can receive funds.",
-                "items": {
-                  "title": "Currency",
-                  "description": "The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.",
-                  "type": "string",
-                  "minLength": 3,
-                  "maxLength": 3,
-                  "enum": [
-                    "AED",
-                    "AFN",
-                    "ALL",
-                    "AMD",
-                    "ANG",
-                    "AOA",
-                    "ARS",
-                    "AUD",
-                    "AWG",
-                    "AZN",
-                    "BAM",
-                    "BBD",
-                    "BDT",
-                    "BGN",
-                    "BHD",
-                    "BIF",
-                    "BMD",
-                    "BND",
-                    "BOB",
-                    "BRL",
-                    "BSD",
-                    "BTN",
-                    "BWP",
-                    "BYN",
-                    "BZD",
-                    "CAD",
-                    "CDF",
-                    "CHF",
-                    "CLP",
-                    "CNY",
-                    "COP",
-                    "CRC",
-                    "CUC",
-                    "CUP",
-                    "CVE",
-                    "CZK",
-                    "DJF",
-                    "DKK",
-                    "DOP",
-                    "DZD",
-                    "EGP",
-                    "ERN",
-                    "ETB",
-                    "EUR",
-                    "FJD",
-                    "FKP",
-                    "GBP",
-                    "GEL",
-                    "GGP",
-                    "GHS",
-                    "GIP",
-                    "GMD",
-                    "GNF",
-                    "GTQ",
-                    "GYD",
-                    "HKD",
-                    "HNL",
-                    "HRK",
-                    "HTG",
-                    "HUF",
-                    "IDR",
-                    "ILS",
-                    "IMP",
-                    "INR",
-                    "IQD",
-                    "IRR",
-                    "ISK",
-                    "JEP",
-                    "JMD",
-                    "JOD",
-                    "JPY",
-                    "KES",
-                    "KGS",
-                    "KHR",
-                    "KMF",
-                    "KPW",
-                    "KRW",
-                    "KWD",
-                    "KYD",
-                    "KZT",
-                    "LAK",
-                    "LBP",
-                    "LKR",
-                    "LRD",
-                    "LSL",
-                    "LYD",
-                    "MAD",
-                    "MDL",
-                    "MGA",
-                    "MKD",
-                    "MMK",
-                    "MNT",
-                    "MOP",
-                    "MRO",
-                    "MUR",
-                    "MVR",
-                    "MWK",
-                    "MXN",
-                    "MYR",
-                    "MZN",
-                    "NAD",
-                    "NGN",
-                    "NIO",
-                    "NOK",
-                    "NPR",
-                    "NZD",
-                    "OMR",
-                    "PAB",
-                    "PEN",
-                    "PGK",
-                    "PHP",
-                    "PKR",
-                    "PLN",
-                    "PYG",
-                    "QAR",
-                    "RON",
-                    "RSD",
-                    "RUB",
-                    "RWF",
-                    "SAR",
-                    "SBD",
-                    "SCR",
-                    "SDG",
-                    "SEK",
-                    "SGD",
-                    "SHP",
-                    "SLL",
-                    "SOS",
-                    "SPL",
-                    "SRD",
-                    "STD",
-                    "SVC",
-                    "SYP",
-                    "SZL",
-                    "THB",
-                    "TJS",
-                    "TMT",
-                    "TND",
-                    "TOP",
-                    "TRY",
-                    "TTD",
-                    "TVD",
-                    "TWD",
-                    "TZS",
-                    "UAH",
-                    "UGX",
-                    "USD",
-                    "UYU",
-                    "UZS",
-                    "VEF",
-                    "VND",
-                    "VUV",
-                    "WST",
-                    "XAF",
-                    "XCD",
-                    "XDR",
-                    "XOF",
-                    "XPF",
-                    "XTS",
-                    "XXX",
-                    "YER",
-                    "ZAR",
-                    "ZMW",
-                    "ZWD"
-                  ]
                 },
-                "minItems": 0,
-                "maxItems": 16
+                "required": [
+                  "errorInformation"
+                ]
               }
-            },
-            "required": [
-              "partyIdInfo"
             ]
           },
           "headers": {
             "type": "object"
           }
-        }
+        },
+        "required": [
+          "body"
+        ]
       },
       "quoteResponse": {
         "type": "object",
@@ -27693,15 +27902,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -28695,15 +28903,14 @@
                               "extension": {
                                 "type": "array",
                                 "items": {
-                                  "title": "Extension",
+                                  "title": "Extension_v2_1_0",
                                   "type": "object",
                                   "description": "Data model for the complex type Extension.",
                                   "properties": {
                                     "key": {
-                                      "title": "ExtensionKey",
+                                      "title": "ExtensionKey_v2_1_0",
                                       "type": "string",
                                       "minLength": 1,
-                                      "maxLength": 32,
                                       "description": "Extension key."
                                     },
                                     "value": {
@@ -28809,15 +29016,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -28890,15 +29096,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -29275,15 +29480,14 @@
                   "extensionList": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -29596,15 +29800,14 @@
                   "extensionList": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -29857,361 +30060,445 @@
               },
               "getPartiesResponse": {
                 "type": "object",
-                "required": [
-                  "body"
-                ],
                 "properties": {
                   "body": {
-                    "title": "Party",
-                    "type": "object",
-                    "description": "Data model for the complex type Party.",
-                    "properties": {
-                      "partyIdInfo": {
-                        "title": "PartyIdInfo",
+                    "oneOf": [
+                      {
                         "type": "object",
-                        "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
                         "properties": {
-                          "partyIdType": {
-                            "title": "PartyIdType",
-                            "type": "string",
-                            "enum": [
-                              "MSISDN",
-                              "EMAIL",
-                              "PERSONAL_ID",
-                              "BUSINESS",
-                              "DEVICE",
-                              "ACCOUNT_ID",
-                              "IBAN",
-                              "ALIAS"
-                            ],
-                            "description": "Below are the allowed values for the enumeration.\n- MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.\n- EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).\n- PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.\n- BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.\n- DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.\n- ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.\n- IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.\n- ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier."
-                          },
-                          "partyIdentifier": {
-                            "title": "PartyIdentifier",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 128,
-                            "description": "Identifier of the Party.",
-                            "example": "16135551212"
-                          },
-                          "partySubIdOrType": {
-                            "title": "PartySubIdOrType",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 128,
-                            "description": "Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType."
-                          },
-                          "fspId": {
-                            "title": "FspId",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 32,
-                            "description": "FSP identifier."
-                          },
-                          "extensionList": {
-                            "title": "ExtensionList",
+                          "party": {
+                            "title": "Party",
                             "type": "object",
-                            "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
+                            "description": "Data model for the complex type Party.",
                             "properties": {
-                              "extension": {
-                                "type": "array",
-                                "items": {
-                                  "title": "Extension",
-                                  "type": "object",
-                                  "description": "Data model for the complex type Extension.",
-                                  "properties": {
-                                    "key": {
-                                      "title": "ExtensionKey",
-                                      "type": "string",
-                                      "minLength": 1,
-                                      "maxLength": 32,
-                                      "description": "Extension key."
+                              "partyIdInfo": {
+                                "title": "PartyIdInfo",
+                                "type": "object",
+                                "description": "Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1",
+                                "properties": {
+                                  "partyIdType": {
+                                    "title": "PartyIdType",
+                                    "type": "string",
+                                    "enum": [
+                                      "MSISDN",
+                                      "EMAIL",
+                                      "PERSONAL_ID",
+                                      "BUSINESS",
+                                      "DEVICE",
+                                      "ACCOUNT_ID",
+                                      "IBAN",
+                                      "ALIAS"
+                                    ],
+                                    "description": "Below are the allowed values for the enumeration.\n- MSISDN - An MSISDN (Mobile Station International Subscriber Directory Number, that is, the phone number) is used as reference to a participant. The MSISDN identifier should be in international format according to the [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en). Optionally, the MSISDN may be prefixed by a single plus sign, indicating the international prefix.\n- EMAIL - An email is used as reference to a participant. The format of the email should be according to the informational [RFC 3696](https://tools.ietf.org/html/rfc3696).\n- PERSONAL_ID - A personal identifier is used as reference to a participant. Examples of personal identification are passport number, birth certificate number, and national registration number. The identifier number is added in the PartyIdentifier element. The personal identifier type is added in the PartySubIdOrType element.\n- BUSINESS - A specific Business (for example, an organization or a company) is used as reference to a participant. The BUSINESS identifier can be in any format. To make a transaction connected to a specific username or bill number in a Business, the PartySubIdOrType element should be used.\n- DEVICE - A specific device (for example, a POS or ATM) ID connected to a specific business or organization is used as reference to a Party. For referencing a specific device under a specific business or organization, use the PartySubIdOrType element.\n- ACCOUNT_ID - A bank account number or FSP account ID should be used as reference to a participant. The ACCOUNT_ID identifier can be in any format, as formats can greatly differ depending on country and FSP.\n- IBAN - A bank account number or FSP account ID is used as reference to a participant. The IBAN identifier can consist of up to 34 alphanumeric characters and should be entered without whitespace.\n- ALIAS An alias is used as reference to a participant. The alias should be created in the FSP as an alternative reference to an account owner. Another example of an alias is a username in the FSP system. The ALIAS identifier can be in any format. It is also possible to use the PartySubIdOrType element for identifying an account under an Alias defined by the PartyIdentifier."
+                                  },
+                                  "partyIdentifier": {
+                                    "title": "PartyIdentifier",
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 128,
+                                    "description": "Identifier of the Party.",
+                                    "example": "16135551212"
+                                  },
+                                  "partySubIdOrType": {
+                                    "title": "PartySubIdOrType",
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 128,
+                                    "description": "Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType."
+                                  },
+                                  "fspId": {
+                                    "title": "FspId",
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 32,
+                                    "description": "FSP identifier."
+                                  },
+                                  "extensionList": {
+                                    "title": "ExtensionList",
+                                    "type": "object",
+                                    "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
+                                    "properties": {
+                                      "extension": {
+                                        "type": "array",
+                                        "items": {
+                                          "title": "Extension_v2_1_0",
+                                          "type": "object",
+                                          "description": "Data model for the complex type Extension.",
+                                          "properties": {
+                                            "key": {
+                                              "title": "ExtensionKey_v2_1_0",
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "description": "Extension key."
+                                            },
+                                            "value": {
+                                              "title": "ExtensionValue",
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "maxLength": 128,
+                                              "description": "Extension value."
+                                            }
+                                          },
+                                          "required": [
+                                            "key",
+                                            "value"
+                                          ]
+                                        },
+                                        "minItems": 1,
+                                        "maxItems": 16,
+                                        "description": "Number of Extension elements."
+                                      }
                                     },
-                                    "value": {
-                                      "title": "ExtensionValue",
-                                      "type": "string",
-                                      "minLength": 1,
-                                      "maxLength": 128,
-                                      "description": "Extension value."
+                                    "required": [
+                                      "extension"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "partyIdType",
+                                  "partyIdentifier"
+                                ]
+                              },
+                              "merchantClassificationCode": {
+                                "title": "MerchantClassificationCode",
+                                "type": "string",
+                                "pattern": "^[\\d]{1,4}$",
+                                "description": "A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc."
+                              },
+                              "name": {
+                                "title": "PartyName",
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 128,
+                                "description": "Name of the Party. Could be a real name or a nickname."
+                              },
+                              "personalInfo": {
+                                "title": "PartyPersonalInfo",
+                                "type": "object",
+                                "description": "Data model for the complex type PartyPersonalInfo.",
+                                "properties": {
+                                  "complexName": {
+                                    "title": "PartyComplexName",
+                                    "type": "object",
+                                    "description": "Data model for the complex type PartyComplexName.",
+                                    "properties": {
+                                      "firstName": {
+                                        "title": "FirstName",
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 128,
+                                        "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
+                                        "description": "First name of the Party (Name Type).",
+                                        "example": "Henrik"
+                                      },
+                                      "middleName": {
+                                        "title": "MiddleName",
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 128,
+                                        "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
+                                        "description": "Middle name of the Party (Name Type).",
+                                        "example": "Johannes"
+                                      },
+                                      "lastName": {
+                                        "title": "LastName",
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 128,
+                                        "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
+                                        "description": "Last name of the Party (Name Type).",
+                                        "example": "Karlsson"
+                                      }
                                     }
                                   },
-                                  "required": [
-                                    "key",
-                                    "value"
+                                  "dateOfBirth": {
+                                    "title": "DateofBirth (type Date)",
+                                    "type": "string",
+                                    "pattern": "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$",
+                                    "description": "Date of Birth of the Party.",
+                                    "example": "1966-06-16"
+                                  },
+                                  "kycInformation": {
+                                    "title": "KYCInformation",
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 2048,
+                                    "description": "KYC information for the party in a form mandated by an individual scheme.",
+                                    "example": "{\n    \"metadata\": {\n        \"format\": \"JSON\",\n        \"version\": \"1.0\",\n        \"description\": \"Data containing KYC Information\"\n    },\n    \"data\": {\n        \"name\": \"John Doe\",\n        \"dob\": \"1980-05-15\",\n        \"gender\": \"Male\",\n        \"address\": \"123 Main Street, Anytown, USA\",\n        \"email\": \"johndoe@example.com\",\n        \"phone\": \"+1 555-123-4567\",\n        \"nationality\": \"US\",\n        \"passport_number\": \"AB1234567\",\n        \"issue_date\": \"2010-02-20\",\n        \"expiry_date\": \"2025-02-20\",\n        \"bank_account_number\": \"1234567890\",\n        \"bank_name\": \"Example Bank\",\n        \"employer\": \"ABC Company\",\n        \"occupation\": \"Software Engineer\",\n        \"income\": \"$80,000 per year\",\n        \"marital_status\": \"Single\",\n        \"dependents\": 0,\n        \"risk_level\": \"Low\"\n    }\n}"
+                                  }
+                                }
+                              },
+                              "supportedCurrencies": {
+                                "type": "array",
+                                "description": "Currencies in which the party can receive funds.",
+                                "items": {
+                                  "title": "Currency",
+                                  "description": "The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.",
+                                  "type": "string",
+                                  "minLength": 3,
+                                  "maxLength": 3,
+                                  "enum": [
+                                    "AED",
+                                    "AFN",
+                                    "ALL",
+                                    "AMD",
+                                    "ANG",
+                                    "AOA",
+                                    "ARS",
+                                    "AUD",
+                                    "AWG",
+                                    "AZN",
+                                    "BAM",
+                                    "BBD",
+                                    "BDT",
+                                    "BGN",
+                                    "BHD",
+                                    "BIF",
+                                    "BMD",
+                                    "BND",
+                                    "BOB",
+                                    "BRL",
+                                    "BSD",
+                                    "BTN",
+                                    "BWP",
+                                    "BYN",
+                                    "BZD",
+                                    "CAD",
+                                    "CDF",
+                                    "CHF",
+                                    "CLP",
+                                    "CNY",
+                                    "COP",
+                                    "CRC",
+                                    "CUC",
+                                    "CUP",
+                                    "CVE",
+                                    "CZK",
+                                    "DJF",
+                                    "DKK",
+                                    "DOP",
+                                    "DZD",
+                                    "EGP",
+                                    "ERN",
+                                    "ETB",
+                                    "EUR",
+                                    "FJD",
+                                    "FKP",
+                                    "GBP",
+                                    "GEL",
+                                    "GGP",
+                                    "GHS",
+                                    "GIP",
+                                    "GMD",
+                                    "GNF",
+                                    "GTQ",
+                                    "GYD",
+                                    "HKD",
+                                    "HNL",
+                                    "HRK",
+                                    "HTG",
+                                    "HUF",
+                                    "IDR",
+                                    "ILS",
+                                    "IMP",
+                                    "INR",
+                                    "IQD",
+                                    "IRR",
+                                    "ISK",
+                                    "JEP",
+                                    "JMD",
+                                    "JOD",
+                                    "JPY",
+                                    "KES",
+                                    "KGS",
+                                    "KHR",
+                                    "KMF",
+                                    "KPW",
+                                    "KRW",
+                                    "KWD",
+                                    "KYD",
+                                    "KZT",
+                                    "LAK",
+                                    "LBP",
+                                    "LKR",
+                                    "LRD",
+                                    "LSL",
+                                    "LYD",
+                                    "MAD",
+                                    "MDL",
+                                    "MGA",
+                                    "MKD",
+                                    "MMK",
+                                    "MNT",
+                                    "MOP",
+                                    "MRO",
+                                    "MUR",
+                                    "MVR",
+                                    "MWK",
+                                    "MXN",
+                                    "MYR",
+                                    "MZN",
+                                    "NAD",
+                                    "NGN",
+                                    "NIO",
+                                    "NOK",
+                                    "NPR",
+                                    "NZD",
+                                    "OMR",
+                                    "PAB",
+                                    "PEN",
+                                    "PGK",
+                                    "PHP",
+                                    "PKR",
+                                    "PLN",
+                                    "PYG",
+                                    "QAR",
+                                    "RON",
+                                    "RSD",
+                                    "RUB",
+                                    "RWF",
+                                    "SAR",
+                                    "SBD",
+                                    "SCR",
+                                    "SDG",
+                                    "SEK",
+                                    "SGD",
+                                    "SHP",
+                                    "SLL",
+                                    "SOS",
+                                    "SPL",
+                                    "SRD",
+                                    "STD",
+                                    "SVC",
+                                    "SYP",
+                                    "SZL",
+                                    "THB",
+                                    "TJS",
+                                    "TMT",
+                                    "TND",
+                                    "TOP",
+                                    "TRY",
+                                    "TTD",
+                                    "TVD",
+                                    "TWD",
+                                    "TZS",
+                                    "UAH",
+                                    "UGX",
+                                    "USD",
+                                    "UYU",
+                                    "UZS",
+                                    "VEF",
+                                    "VND",
+                                    "VUV",
+                                    "WST",
+                                    "XAF",
+                                    "XCD",
+                                    "XDR",
+                                    "XOF",
+                                    "XPF",
+                                    "XTS",
+                                    "XXX",
+                                    "YER",
+                                    "ZAR",
+                                    "ZMW",
+                                    "ZWD"
                                   ]
                                 },
-                                "minItems": 1,
-                                "maxItems": 16,
-                                "description": "Number of Extension elements."
+                                "minItems": 0,
+                                "maxItems": 16
                               }
                             },
                             "required": [
-                              "extension"
+                              "partyIdInfo"
                             ]
                           }
                         },
                         "required": [
-                          "partyIdType",
-                          "partyIdentifier"
+                          "party"
                         ]
                       },
-                      "merchantClassificationCode": {
-                        "title": "MerchantClassificationCode",
-                        "type": "string",
-                        "pattern": "^[\\d]{1,4}$",
-                        "description": "A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc."
-                      },
-                      "name": {
-                        "title": "PartyName",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 128,
-                        "description": "Name of the Party. Could be a real name or a nickname."
-                      },
-                      "personalInfo": {
-                        "title": "PartyPersonalInfo",
+                      {
                         "type": "object",
-                        "description": "Data model for the complex type PartyPersonalInfo.",
                         "properties": {
-                          "complexName": {
-                            "title": "PartyComplexName",
+                          "errorInformation": {
+                            "title": "ErrorInformation",
                             "type": "object",
-                            "description": "Data model for the complex type PartyComplexName.",
+                            "description": "Data model for the complex type ErrorInformation.",
                             "properties": {
-                              "firstName": {
-                                "title": "FirstName",
+                              "errorCode": {
+                                "title": "ErrorCode",
                                 "type": "string",
-                                "minLength": 1,
-                                "maxLength": 128,
-                                "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
-                                "description": "First name of the Party (Name Type).",
-                                "example": "Henrik"
+                                "pattern": "^[1-9]\\d{3}$",
+                                "description": "The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.",
+                                "example": "5100"
                               },
-                              "middleName": {
-                                "title": "MiddleName",
+                              "errorDescription": {
+                                "title": "ErrorDescription",
                                 "type": "string",
                                 "minLength": 1,
                                 "maxLength": 128,
-                                "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
-                                "description": "Middle name of the Party (Name Type).",
-                                "example": "Johannes"
+                                "description": "Error description string."
                               },
-                              "lastName": {
-                                "title": "LastName",
-                                "type": "string",
-                                "minLength": 1,
-                                "maxLength": 128,
-                                "pattern": "^(?!\\s*$)[\\p{L}\\p{gc=Mark}\\p{digit}\\p{gc=Connector_Punctuation}\\p{Join_Control} .,''-]{1,128}$",
-                                "description": "Last name of the Party (Name Type).",
-                                "example": "Karlsson"
+                              "extensionList": {
+                                "title": "ExtensionList",
+                                "type": "object",
+                                "description": "Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.",
+                                "properties": {
+                                  "extension": {
+                                    "type": "array",
+                                    "items": {
+                                      "title": "Extension_v2_1_0",
+                                      "type": "object",
+                                      "description": "Data model for the complex type Extension.",
+                                      "properties": {
+                                        "key": {
+                                          "title": "ExtensionKey_v2_1_0",
+                                          "type": "string",
+                                          "minLength": 1,
+                                          "description": "Extension key."
+                                        },
+                                        "value": {
+                                          "title": "ExtensionValue",
+                                          "type": "string",
+                                          "minLength": 1,
+                                          "maxLength": 128,
+                                          "description": "Extension value."
+                                        }
+                                      },
+                                      "required": [
+                                        "key",
+                                        "value"
+                                      ]
+                                    },
+                                    "minItems": 1,
+                                    "maxItems": 16,
+                                    "description": "Number of Extension elements."
+                                  }
+                                },
+                                "required": [
+                                  "extension"
+                                ]
                               }
-                            }
-                          },
-                          "dateOfBirth": {
-                            "title": "DateofBirth (type Date)",
-                            "type": "string",
-                            "pattern": "^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$",
-                            "description": "Date of Birth of the Party.",
-                            "example": "1966-06-16"
-                          },
-                          "kycInformation": {
-                            "title": "KYCInformation",
-                            "type": "string",
-                            "minLength": 1,
-                            "maxLength": 2048,
-                            "description": "KYC information for the party in a form mandated by an individual scheme.",
-                            "example": "{\n    \"metadata\": {\n        \"format\": \"JSON\",\n        \"version\": \"1.0\",\n        \"description\": \"Data containing KYC Information\"\n    },\n    \"data\": {\n        \"name\": \"John Doe\",\n        \"dob\": \"1980-05-15\",\n        \"gender\": \"Male\",\n        \"address\": \"123 Main Street, Anytown, USA\",\n        \"email\": \"johndoe@example.com\",\n        \"phone\": \"+1 555-123-4567\",\n        \"nationality\": \"US\",\n        \"passport_number\": \"AB1234567\",\n        \"issue_date\": \"2010-02-20\",\n        \"expiry_date\": \"2025-02-20\",\n        \"bank_account_number\": \"1234567890\",\n        \"bank_name\": \"Example Bank\",\n        \"employer\": \"ABC Company\",\n        \"occupation\": \"Software Engineer\",\n        \"income\": \"$80,000 per year\",\n        \"marital_status\": \"Single\",\n        \"dependents\": 0,\n        \"risk_level\": \"Low\"\n    }\n}"
+                            },
+                            "required": [
+                              "errorCode",
+                              "errorDescription"
+                            ]
                           }
-                        }
-                      },
-                      "supportedCurrencies": {
-                        "type": "array",
-                        "description": "Currencies in which the party can receive funds.",
-                        "items": {
-                          "title": "Currency",
-                          "description": "The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.",
-                          "type": "string",
-                          "minLength": 3,
-                          "maxLength": 3,
-                          "enum": [
-                            "AED",
-                            "AFN",
-                            "ALL",
-                            "AMD",
-                            "ANG",
-                            "AOA",
-                            "ARS",
-                            "AUD",
-                            "AWG",
-                            "AZN",
-                            "BAM",
-                            "BBD",
-                            "BDT",
-                            "BGN",
-                            "BHD",
-                            "BIF",
-                            "BMD",
-                            "BND",
-                            "BOB",
-                            "BRL",
-                            "BSD",
-                            "BTN",
-                            "BWP",
-                            "BYN",
-                            "BZD",
-                            "CAD",
-                            "CDF",
-                            "CHF",
-                            "CLP",
-                            "CNY",
-                            "COP",
-                            "CRC",
-                            "CUC",
-                            "CUP",
-                            "CVE",
-                            "CZK",
-                            "DJF",
-                            "DKK",
-                            "DOP",
-                            "DZD",
-                            "EGP",
-                            "ERN",
-                            "ETB",
-                            "EUR",
-                            "FJD",
-                            "FKP",
-                            "GBP",
-                            "GEL",
-                            "GGP",
-                            "GHS",
-                            "GIP",
-                            "GMD",
-                            "GNF",
-                            "GTQ",
-                            "GYD",
-                            "HKD",
-                            "HNL",
-                            "HRK",
-                            "HTG",
-                            "HUF",
-                            "IDR",
-                            "ILS",
-                            "IMP",
-                            "INR",
-                            "IQD",
-                            "IRR",
-                            "ISK",
-                            "JEP",
-                            "JMD",
-                            "JOD",
-                            "JPY",
-                            "KES",
-                            "KGS",
-                            "KHR",
-                            "KMF",
-                            "KPW",
-                            "KRW",
-                            "KWD",
-                            "KYD",
-                            "KZT",
-                            "LAK",
-                            "LBP",
-                            "LKR",
-                            "LRD",
-                            "LSL",
-                            "LYD",
-                            "MAD",
-                            "MDL",
-                            "MGA",
-                            "MKD",
-                            "MMK",
-                            "MNT",
-                            "MOP",
-                            "MRO",
-                            "MUR",
-                            "MVR",
-                            "MWK",
-                            "MXN",
-                            "MYR",
-                            "MZN",
-                            "NAD",
-                            "NGN",
-                            "NIO",
-                            "NOK",
-                            "NPR",
-                            "NZD",
-                            "OMR",
-                            "PAB",
-                            "PEN",
-                            "PGK",
-                            "PHP",
-                            "PKR",
-                            "PLN",
-                            "PYG",
-                            "QAR",
-                            "RON",
-                            "RSD",
-                            "RUB",
-                            "RWF",
-                            "SAR",
-                            "SBD",
-                            "SCR",
-                            "SDG",
-                            "SEK",
-                            "SGD",
-                            "SHP",
-                            "SLL",
-                            "SOS",
-                            "SPL",
-                            "SRD",
-                            "STD",
-                            "SVC",
-                            "SYP",
-                            "SZL",
-                            "THB",
-                            "TJS",
-                            "TMT",
-                            "TND",
-                            "TOP",
-                            "TRY",
-                            "TTD",
-                            "TVD",
-                            "TWD",
-                            "TZS",
-                            "UAH",
-                            "UGX",
-                            "USD",
-                            "UYU",
-                            "UZS",
-                            "VEF",
-                            "VND",
-                            "VUV",
-                            "WST",
-                            "XAF",
-                            "XCD",
-                            "XDR",
-                            "XOF",
-                            "XPF",
-                            "XTS",
-                            "XXX",
-                            "YER",
-                            "ZAR",
-                            "ZMW",
-                            "ZWD"
-                          ]
                         },
-                        "minItems": 0,
-                        "maxItems": 16
+                        "required": [
+                          "errorInformation"
+                        ]
                       }
-                    },
-                    "required": [
-                      "partyIdInfo"
                     ]
                   },
                   "headers": {
                     "type": "object"
                   }
-                }
+                },
+                "required": [
+                  "body"
+                ]
               },
               "quoteResponse": {
                 "type": "object",
@@ -31044,15 +31331,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -32046,15 +32332,14 @@
                                       "extension": {
                                         "type": "array",
                                         "items": {
-                                          "title": "Extension",
+                                          "title": "Extension_v2_1_0",
                                           "type": "object",
                                           "description": "Data model for the complex type Extension.",
                                           "properties": {
                                             "key": {
-                                              "title": "ExtensionKey",
+                                              "title": "ExtensionKey_v2_1_0",
                                               "type": "string",
                                               "minLength": 1,
-                                              "maxLength": 32,
                                               "description": "Extension key."
                                             },
                                             "value": {
@@ -32160,15 +32445,14 @@
                           "extension": {
                             "type": "array",
                             "items": {
-                              "title": "Extension",
+                              "title": "Extension_v2_1_0",
                               "type": "object",
                               "description": "Data model for the complex type Extension.",
                               "properties": {
                                 "key": {
-                                  "title": "ExtensionKey",
+                                  "title": "ExtensionKey_v2_1_0",
                                   "type": "string",
                                   "minLength": 1,
-                                  "maxLength": 32,
                                   "description": "Extension key."
                                 },
                                 "value": {
@@ -32241,15 +32525,14 @@
                               "extension": {
                                 "type": "array",
                                 "items": {
-                                  "title": "Extension",
+                                  "title": "Extension_v2_1_0",
                                   "type": "object",
                                   "description": "Data model for the complex type Extension.",
                                   "properties": {
                                     "key": {
-                                      "title": "ExtensionKey",
+                                      "title": "ExtensionKey_v2_1_0",
                                       "type": "string",
                                       "minLength": 1,
-                                      "maxLength": 32,
                                       "description": "Extension key."
                                     },
                                     "value": {
@@ -32612,15 +32895,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -32933,15 +33215,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -33745,15 +34026,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -34066,15 +34346,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -35149,15 +35428,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -35343,15 +35621,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -35424,15 +35701,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -35732,15 +36008,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -36035,15 +36310,14 @@
               "extension": {
                 "type": "array",
                 "items": {
-                  "title": "Extension",
+                  "title": "Extension_v2_1_0",
                   "type": "object",
                   "description": "Data model for the complex type Extension.",
                   "properties": {
                     "key": {
-                      "title": "ExtensionKey",
+                      "title": "ExtensionKey_v2_1_0",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 32,
                       "description": "Extension key."
                     },
                     "value": {
@@ -36131,15 +36405,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -36520,15 +36793,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -36841,15 +37113,14 @@
           "extensionList": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {
@@ -37086,15 +37357,14 @@
       "quoteRequestExtensions": {
         "type": "array",
         "items": {
-          "title": "Extension",
+          "title": "Extension_v2_1_0",
           "type": "object",
           "description": "Data model for the complex type Extension.",
           "properties": {
             "key": {
-              "title": "ExtensionKey",
+              "title": "ExtensionKey_v2_1_0",
               "type": "string",
               "minLength": 1,
-              "maxLength": 32,
               "description": "Extension key."
             },
             "value": {
@@ -37116,15 +37386,14 @@
       "transferRequestExtensions": {
         "type": "array",
         "items": {
-          "title": "Extension",
+          "title": "Extension_v2_1_0",
           "type": "object",
           "description": "Data model for the complex type Extension.",
           "properties": {
             "key": {
-              "title": "ExtensionKey",
+              "title": "ExtensionKey_v2_1_0",
               "type": "string",
               "minLength": 1,
-              "maxLength": 32,
               "description": "Extension key."
             },
             "value": {
@@ -37220,15 +37489,14 @@
                   "extension": {
                     "type": "array",
                     "items": {
-                      "title": "Extension",
+                      "title": "Extension_v2_1_0",
                       "type": "object",
                       "description": "Data model for the complex type Extension.",
                       "properties": {
                         "key": {
-                          "title": "ExtensionKey",
+                          "title": "ExtensionKey_v2_1_0",
                           "type": "string",
                           "minLength": 1,
-                          "maxLength": 32,
                           "description": "Extension key."
                         },
                         "value": {
@@ -37272,6 +37540,21 @@
     ],
     "properties": {
       "acceptConversion": {
+        "type": "boolean",
+        "enum": [
+          true,
+          false
+        ]
+      }
+    }
+  },
+  "transferContinuationAcceptQuoteOrConversion": {
+    "type": "object",
+    "required": [
+      "acceptQuoteOrConversion"
+    ],
+    "properties": {
+      "acceptQuoteOrConversion": {
         "type": "boolean",
         "enum": [
           true,
@@ -38242,15 +38525,14 @@
                       "extension": {
                         "type": "array",
                         "items": {
-                          "title": "Extension",
+                          "title": "Extension_v2_1_0",
                           "type": "object",
                           "description": "Data model for the complex type Extension.",
                           "properties": {
                             "key": {
-                              "title": "ExtensionKey",
+                              "title": "ExtensionKey_v2_1_0",
                               "type": "string",
                               "minLength": 1,
-                              "maxLength": 32,
                               "description": "Extension key."
                             },
                             "value": {
@@ -39365,15 +39647,14 @@
           "extension": {
             "type": "array",
             "items": {
-              "title": "Extension",
+              "title": "Extension_v2_1_0",
               "type": "object",
               "description": "Data model for the complex type Extension.",
               "properties": {
                 "key": {
-                  "title": "ExtensionKey",
+                  "title": "ExtensionKey_v2_1_0",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 32,
                   "description": "Extension key."
                 },
                 "value": {

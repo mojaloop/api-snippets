@@ -9,6 +9,6 @@ module.exports = {
     // Updating eslint breaks the build
     'eslint',
     // Breaks peer dependencies with v7+
-    'eslint-plugin-promise',
+    'eslint-plugin-promise'
   ]
 }

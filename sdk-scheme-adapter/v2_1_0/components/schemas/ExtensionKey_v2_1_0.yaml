@@ -1,5 +1,4 @@
-title: ExtensionKey
+title: ExtensionKey_v2_1_0
 type: string
 minLength: 1
-maxLength: 32
 description: Extension key.

@@ -15,7 +15,7 @@ properties:
   expiration:
     $ref: ./DateTime.yaml
   extensionList:
-    $ref: ./ExtensionList.yaml
+    $ref: ./ExtensionList_v2_1_0.yaml
   currentState:
     $ref: ../schemas/bulkTransferStatus.yaml
   individualQuoteResults:
