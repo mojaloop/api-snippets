@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [17.10.3](https://github.com/mojaloop/api-snippets/compare/v17.10.2...v17.10.3) (2025-05-13)
+
+
+### Maintenance
+
+* update NodeJS version and update deps ([#202](https://github.com/mojaloop/api-snippets/issues/202)) ([5771b9d](https://github.com/mojaloop/api-snippets/commit/5771b9ddf0b4e1c24d245aef78ac946622b39d95))
+
 ### [17.10.2](https://github.com/mojaloop/api-snippets/compare/v17.10.1...v17.10.2) (2025-03-27)
 
 
