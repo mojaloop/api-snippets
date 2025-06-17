@@ -1,5 +1,6 @@
 title: FxMoney
 type: object
+additionalProperties: false
 description: Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.
 properties:
   currency:

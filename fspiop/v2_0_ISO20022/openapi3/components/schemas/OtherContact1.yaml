@@ -2,6 +2,7 @@ title: OtherContact1
 description: |
   Communication device number or electronic address used for communication.
 type: object
+additionalProperties: false
 properties:
   ChanlTp:
     allOf:

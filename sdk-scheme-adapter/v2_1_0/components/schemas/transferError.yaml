@@ -1,4 +1,5 @@
 type: object
+additionalProperties: false
 description: >-
   This object represents a Mojaloop API error received at any time during the
   transfer process

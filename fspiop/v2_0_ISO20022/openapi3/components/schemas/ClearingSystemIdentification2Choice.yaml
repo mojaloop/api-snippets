@@ -2,6 +2,7 @@ title: ClearingSystemIdentification2Choice
 description: |
   Specifies the clearing system identification.
 type: object
+additionalProperties: false
 anyOf:
   - properties:
       Cd:

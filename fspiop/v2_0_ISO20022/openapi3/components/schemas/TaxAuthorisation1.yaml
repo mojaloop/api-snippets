@@ -2,6 +2,7 @@ title: TaxAuthorisation1
 description: |
   Details of an authorised tax paying party.
 type: object
+additionalProperties: false
 properties:
   Titl:
     allOf:

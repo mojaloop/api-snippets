@@ -1,5 +1,6 @@
 title: ExtensionList
 type: object
+additionalProperties: false
 description: >
   Data model for the complex type ExtensionList. An optional list of extensions,
   specific to deployment.

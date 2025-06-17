@@ -1,4 +1,5 @@
 type: object
+additionalProperties: false
 description: >-
   This may be a Mojaloop API error returned from another entity in the
   scheme or an object representing other types of error e.g. exceptions that

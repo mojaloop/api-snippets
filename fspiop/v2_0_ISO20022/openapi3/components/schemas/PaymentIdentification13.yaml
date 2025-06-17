@@ -2,6 +2,7 @@ title: PaymentIdentification13
 description: |
   Provides further means of referencing a payment transaction.
 type: object
+additionalProperties: false
 properties:
   InstrId:
     allOf:

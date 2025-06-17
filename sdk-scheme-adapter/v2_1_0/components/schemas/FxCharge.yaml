@@ -1,5 +1,6 @@
 title: FxCharge
 type: object
+additionalProperties: false
 description: An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FxCharge object.
 properties:
   chargeType:

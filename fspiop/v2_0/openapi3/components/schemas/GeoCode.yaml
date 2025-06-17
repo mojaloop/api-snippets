@@ -1,5 +1,6 @@
 title: GeoCode
 type: object
+additionalProperties: false
 description: >-
   Data model for the complex type GeoCode. Indicates the geographic location
   from where the transaction was initiated.

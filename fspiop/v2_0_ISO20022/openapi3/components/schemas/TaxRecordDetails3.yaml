@@ -2,6 +2,7 @@ title: TaxRecordDetails3
 description: |
   Details on the tax period and amount.
 type: object
+additionalProperties: false
 properties:
   Prd:
     allOf:

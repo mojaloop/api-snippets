@@ -2,6 +2,7 @@ title: PacsStatus_FIToFIPaymentStatusReportV15
 description:
   The PacsStatus message is sent by a financial institution to another financial institution as a response to the FIToFIPaymentStatusReport message. The message provides information on the status of a payment instruction and its underlying individual transactions.
 type: object
+additionalProperties: false
 properties:
   GrpHdr:
     allOf:

@@ -1508,6 +1508,7 @@ components:
         - COMPLETED
     autoAcceptPartyOption:
       type: object
+      additionalProperties: false
       required:
         - enabled
       properties:
@@ -1695,6 +1696,7 @@ components:
       example: '123.45'
     bulkPerTransferFeeLimit:
       type: object
+      additionalProperties: false
       required:
         - currency
         - amount
@@ -1705,6 +1707,7 @@ components:
           $ref: '#/components/schemas/Amount'
     autoAcceptQuote:
       type: object
+      additionalProperties: false
       required:
         - enabled
       properties:
@@ -1726,6 +1729,7 @@ components:
       example: '2016-05-24T08:38:08.699-04:00'
     bulkTransactionOptions:
       type: object
+      additionalProperties: false
       required:
         - autoAcceptParty
         - autoAcceptQuote
@@ -1745,7 +1749,7 @@ components:
           description: Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful if a previous party resolution has been performed.
           type: boolean
         synchronous:
-          description: Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will  be callbacks whenever the processing is done
+          description: Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will be callbacks whenever the processing is done
           type: boolean
         bulkExpiration:
           $ref: '#/components/schemas/DateTime'
@@ -1799,6 +1803,7 @@ components:
     Extension:
       title: Extension
       type: object
+      additionalProperties: false
       description: Data model for the complex type Extension.
       properties:
         key:
@@ -1811,6 +1816,7 @@ components:
     ExtensionList:
       title: ExtensionList
       type: object
+      additionalProperties: false
       description: Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
       properties:
         extension:
@@ -1825,6 +1831,7 @@ components:
     PartyIdInfo:
       title: PartyIdInfo
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
       properties:
         partyIdType:
@@ -1849,6 +1856,7 @@ components:
     PartyComplexName:
       title: PartyComplexName
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyComplexName.
       properties:
         firstName:
@@ -1860,6 +1868,7 @@ components:
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyPersonalInfo.
       properties:
         complexName:
@@ -1869,6 +1878,7 @@ components:
     Party:
       title: Party
       type: object
+      additionalProperties: false
       description: Data model for the complex type Party.
       properties:
         partyIdInfo:
@@ -1902,6 +1912,7 @@ components:
     Money:
       title: Money
       type: object
+      additionalProperties: false
       description: Data model for the complex type Money.
       properties:
         currency:
@@ -1926,6 +1937,7 @@ components:
     GeoCode:
       title: GeoCode
       type: object
+      additionalProperties: false
       description: Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
       properties:
         latitude:
@@ -1964,6 +1976,7 @@ components:
     ErrorInformation:
       title: ErrorInformation
       type: object
+      additionalProperties: false
       description: Data model for the complex type ErrorInformation.
       properties:
         errorCode:
@@ -1977,11 +1990,13 @@ components:
         - errorDescription
     mojaloopError:
       type: object
+      additionalProperties: false
       properties:
         errorInformation:
           $ref: '#/components/schemas/ErrorInformation'
     quoteError:
       type: object
+      additionalProperties: false
       description: This object represents a Mojaloop API error received at any time during the quote process
       properties:
         httpStatusCode:
@@ -1991,6 +2006,7 @@ components:
           $ref: '#/components/schemas/mojaloopError'
     individualQuoteResult:
       type: object
+      additionalProperties: false
       properties:
         quoteId:
           $ref: '#/components/schemas/CorrelationId'
@@ -2038,6 +2054,7 @@ components:
       example: RESERVED
     transferError:
       type: object
+      additionalProperties: false
       description: This may be a Mojaloop API error returned from another entity in the scheme or an object representing other types of error e.g. exceptions that may occur inside the scheme adapter.
       properties:
         httpStatusCode:
@@ -2047,6 +2064,7 @@ components:
           $ref: '#/components/schemas/mojaloopError'
     individualTransferResult:
       type: object
+      additionalProperties: false
       required:
         - transferId
       properties:
@@ -2062,6 +2080,7 @@ components:
           $ref: '#/components/schemas/transferError'
     bulkTransactionIndividualTransferResult:
       type: object
+      additionalProperties: false
       required:
         - homeTransactionId
       properties:
@@ -2100,6 +2119,7 @@ components:
     bulkTransactionResponse:
       title: BulkTransactionResponse
       type: object
+      additionalProperties: false
       required:
         - bulkHomeTransactionID
         - bulkTransactionId

@@ -2,6 +2,7 @@ title: CashAccountType2Choice
 description: |
   Specifies the nature, or use of the account.
 type: object
+additionalProperties: false
 anyOf:
   - properties:
       Cd:

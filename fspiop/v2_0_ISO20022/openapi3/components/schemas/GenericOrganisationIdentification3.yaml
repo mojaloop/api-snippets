@@ -1,5 +1,6 @@
 title: GenericOrganisationIdentification3
 type: object
+additionalProperties: false
 description: >
   Information related to an identification of an organisation.
 properties:

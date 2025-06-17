@@ -1,5 +1,6 @@
 title: PartyIdInfo
 type: object
+additionalProperties: false
 description: >-
   Data model for the complex type PartyIdInfo. An ExtensionList element has been
   added to this reqeust in version v1.1

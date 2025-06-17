@@ -1,5 +1,6 @@
 title: ErrorInformationResponse
 type: object
+additionalProperties: false
 description: >-
   Data model for the complex type object that contains an optional element
   ErrorInformation used along with 4xx and 5xx responses.

@@ -1,5 +1,6 @@
 title: QuotesPostResponse
 type: object
+additionalProperties: false
 properties:
   quotes:
     title: QuotesIDPutResponse

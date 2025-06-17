@@ -1,5 +1,6 @@
 title: getPartiesResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the GET /parties/{Type}/{ID} callback.'
 properties:
   body:

@@ -1,5 +1,6 @@
 title: FxQuotesPostOutboundRequest
 type: object
+additionalProperties: false
 description: The object sent in the POST /fxQuotes request.
 properties:
   homeTransactionId:

@@ -2,6 +2,7 @@ title: ProxyAccountIdentification1
 description: |
   Information related to a proxy identification of the account.
 type: object
+additionalProperties: false
 properties:
   Tp:
     allOf:

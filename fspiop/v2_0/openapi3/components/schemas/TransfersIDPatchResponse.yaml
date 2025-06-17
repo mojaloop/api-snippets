@@ -1,5 +1,6 @@
 title: TransfersIDPatchResponse
 type: object
+additionalProperties: false
 description: 'PATCH /transfers/{ID} object'
 properties:
   completedTimestamp:

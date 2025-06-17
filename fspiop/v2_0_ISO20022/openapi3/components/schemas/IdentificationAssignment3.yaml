@@ -1,5 +1,6 @@
 title: IdentificationAssignment3
 type: object
+additionalProperties: false
 description: >
   IdentificationAssignment
 

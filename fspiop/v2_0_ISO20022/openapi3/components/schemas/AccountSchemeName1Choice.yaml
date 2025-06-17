@@ -1,5 +1,6 @@
 title: AccountSchemeName1Choice
 type: object
+additionalProperties: false
 description: |
   Sets of elements to identify a name of the identification scheme.
 anyOf:

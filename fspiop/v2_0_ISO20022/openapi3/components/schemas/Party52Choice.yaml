@@ -2,6 +2,7 @@ title: Party52Choice
 description: |
   NOTE: Unsure on the description.
 type: object
+additionalProperties: false
 anyOf:
   - properties:
       OrgId:

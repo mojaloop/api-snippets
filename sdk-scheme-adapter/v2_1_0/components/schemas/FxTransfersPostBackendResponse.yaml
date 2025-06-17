@@ -1,5 +1,6 @@
 title: FxTransfersPostBackendResponse
 type: object
+additionalProperties: false
 description: 'The object sent as a response for the POST /fxTransfers request.'
 properties:
   homeTransactionId:

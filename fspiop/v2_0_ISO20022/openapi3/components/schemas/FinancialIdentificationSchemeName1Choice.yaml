@@ -1,5 +1,6 @@
 title: FinancialIdentificationSchemeName1Choice
 type: object
+additionalProperties: false
 description: >
   Specifies the name of the identification scheme.
 anyOf:

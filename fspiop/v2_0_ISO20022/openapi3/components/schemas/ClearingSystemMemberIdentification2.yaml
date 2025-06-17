@@ -3,6 +3,7 @@ description: >
   Unique identification, as assigned by a clearing system, to unambiguously
   identify a member of the clearing system.
 type: object
+additionalProperties: false
 properties:
   ClrSysId:
     allOf:

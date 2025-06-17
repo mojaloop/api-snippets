@@ -1,5 +1,6 @@
 title: GenericIdentification30
 type: object
+additionalProperties: false
 description: >
   Generic scheme identification for a party.
 properties:

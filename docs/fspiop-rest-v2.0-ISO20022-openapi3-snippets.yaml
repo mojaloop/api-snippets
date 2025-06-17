@@ -1347,6 +1347,7 @@ components:
     AccountIdentification4Choice:
       title: AccountIdentification4Choice
       type: object
+      additionalProperties: false
       description: >
         Specifies the unique identification of an account as assigned by the
         account servicer.
@@ -1383,6 +1384,7 @@ components:
     AccountSchemeName1Choice:
       title: AccountSchemeName1Choice
       type: object
+      additionalProperties: false
       description: |
         Sets of elements to identify a name of the identification scheme.
       anyOf:
@@ -1411,6 +1413,7 @@ components:
     ActiveCurrencyAndAmount:
       title: ActiveCurrencyAndAmount
       type: object
+      additionalProperties: false
       description: >
         A number of monetary units specified in an active currency where the
         unit of currency is explicit and compliant with ISO 4217.
@@ -1618,6 +1621,7 @@ components:
     ActiveOrHistoricCurrencyAndAmount:
       title: ActiveOrHistoricCurrencyAndAmount
       type: object
+      additionalProperties: false
       description: >
         A number of monetary units specified in an active or a historic currency
         where the unit of currency is explicit and compliant with ISO 4217.
@@ -1849,6 +1853,7 @@ components:
     AddressType3Choice:
       title: AddressType3Choice
       type: object
+      additionalProperties: false
       description: |
         Choice of formats for the type of address.
       anyOf:
@@ -1921,6 +1926,7 @@ components:
     BranchAndFinancialInstitutionIdentification6:
       title: BranchAndFinancialInstitutionIdentification6
       type: object
+      additionalProperties: false
       description: >
         Unique and unambiguous identification of a financial institution or a
         branch of a financial institution.
@@ -1968,6 +1974,7 @@ components:
     BranchAndFinancialInstitutionIdentification8:
       title: BranchAndFinancialInstitutionIdentification8
       type: object
+      additionalProperties: false
       description: >
         Unique and unambiguous identification of a financial institution or a
         branch of a financial institution.
@@ -2008,6 +2015,7 @@ components:
     BranchData3:
       title: BranchData3
       type: object
+      additionalProperties: false
       description: >
         Information that locates and identifies a specific branch of a financial
         institution.
@@ -2064,6 +2072,7 @@ components:
         Information that locates and identifies a specific branch of a financial
         institution.
       type: object
+      additionalProperties: false
       properties:
         Id:
           allOf:
@@ -2110,6 +2119,7 @@ components:
     CashAccount40:
       title: CashAccount40
       type: object
+      additionalProperties: false
       description: |
         Provides the details to identify an account.
       properties:
@@ -2175,6 +2185,7 @@ components:
       description: |
         Specifies the nature, or use of the account.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Cd:
@@ -2202,6 +2213,7 @@ components:
         Contains details about high level purpose of the mandate based on a set
         of pre-defined categories.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Cd:
@@ -2256,6 +2268,7 @@ components:
         ChargeType3Choice
         Specifies the type of charge.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Cd:
@@ -2286,6 +2299,7 @@ components:
 
         Seemingly a generic schema for charges, with an amount, agent, and type.
       type: object
+      additionalProperties: false
       properties:
         Amt:
           allOf:
@@ -2353,6 +2367,7 @@ components:
       description: |
         Specifies the clearing system identification.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Cd:
@@ -2383,6 +2398,7 @@ components:
         Unique identification, as assigned by a clearing system, to
         unambiguously identify a member of the clearing system.
       type: object
+      additionalProperties: false
       properties:
         ClrSysId:
           allOf:
@@ -2410,6 +2426,7 @@ components:
       description: |
         Specifies the details of the contact person.
       type: object
+      additionalProperties: false
       properties:
         NmPrfx:
           allOf:
@@ -2514,6 +2531,7 @@ components:
       description: |
         Specifies the details of the contact person.
       type: object
+      additionalProperties: false
       properties:
         NmPrfx:
           allOf:
@@ -2619,6 +2637,7 @@ components:
         Provides further details specific to the individual transaction(s)
         included in the message.
       type: object
+      additionalProperties: false
       properties:
         PmtId:
           allOf:
@@ -2839,6 +2858,7 @@ components:
         Provides further details specific to the individual transaction(s)
         included in the message.
       type: object
+      additionalProperties: false
       properties:
         PmtId:
           allOf:
@@ -2973,6 +2993,7 @@ components:
         Provides further details specific to the individual transaction(s)
         included in the message.
       type: object
+      additionalProperties: false
       properties:
         PmtId:
           allOf:
@@ -3106,6 +3127,7 @@ components:
       description: |
         Cryptographically signed terms
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             IlpV4PrepPacket:
@@ -3131,6 +3153,7 @@ components:
       description: |
         Specifies the reason for the status.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Dt:
@@ -3157,6 +3180,7 @@ components:
       description: |
         Details about date and place of birth of a person.
       type: object
+      additionalProperties: false
       properties:
         BirthDt:
           allOf:
@@ -3196,6 +3220,7 @@ components:
       description: |
         Range of time defined by a start date and an end date.
       type: object
+      additionalProperties: false
       properties:
         FrDt:
           allOf:
@@ -3237,6 +3262,7 @@ components:
     ErrorInformation:
       title: ErrorInformation
       type: object
+      additionalProperties: false
       description: Data model for the complex type ErrorInformation.
       properties:
         errorCode:
@@ -3251,6 +3277,7 @@ components:
     ErrorInformationResponse:
       title: ErrorInformationResponse
       type: object
+      additionalProperties: false
       description: >
         Data model for the complex type object that contains an optional element
         ErrorInformation used along with 4xx and 5xx responses.
@@ -3276,6 +3303,7 @@ components:
     Execute_FIToFICustomerCreditTransferV13:
       title: Execute_FIToFICustomerCreditTransferV13
       type: object
+      additionalProperties: false
       properties:
         GrpHdr:
           allOf:
@@ -3334,6 +3362,7 @@ components:
     Extension:
       title: Extension
       type: object
+      additionalProperties: false
       description: Data model for the complex type Extension.
       properties:
         key:
@@ -3352,6 +3381,7 @@ components:
     ExtensionList:
       title: ExtensionList
       type: object
+      additionalProperties: false
       description: >
         Data model for the complex type ExtensionList. An optional list of
         extensions, specific to deployment.
@@ -3515,6 +3545,7 @@ components:
     FinancialIdentificationSchemeName1Choice:
       title: FinancialIdentificationSchemeName1Choice
       type: object
+      additionalProperties: false
       description: |
         Specifies the name of the identification scheme.
       anyOf:
@@ -3544,6 +3575,7 @@ components:
     FinancialInstitutionIdentification18:
       title: FinancialInstitutionIdentification18
       type: object
+      additionalProperties: false
       description: |
         Information used to identify a financial institution.
       properties:
@@ -3551,7 +3583,7 @@ components:
           allOf:
             - $ref: "#/components/schemas/BICFIDec2014Identifier"
             - description: >
-                BICFI  
+                BICFI
 
                 Code allocated to a financial institution by the ISO 9362
                 Registration Authority as described in ISO 9362 "Banking -
@@ -3621,6 +3653,7 @@ components:
     FinancialInstitutionIdentification23:
       title: FinancialInstitutionIdentification23
       type: object
+      additionalProperties: false
       description: |
         Information used to identify a financial institution.
       properties:
@@ -3698,6 +3731,7 @@ components:
     FxRequest_FICreditTransferProposal:
       title: FxRequest_FICreditTransferProposal
       type: object
+      additionalProperties: false
       description: >
         FxRequest_FICreditTransferProposal
 
@@ -3797,6 +3831,7 @@ components:
     FxResponse_FICreditTransferConfirmation:
       title: FxResponse_FICreditTransferConfirmation
       type: object
+      additionalProperties: false
       description: >
         FxResponse_FICreditTransferConfirmation
 
@@ -3897,6 +3932,7 @@ components:
     Fxecute_FinancialInstitutionCreditTransferV12:
       title: Fxecute_FinancialInstitutionCreditTransferV12
       type: object
+      additionalProperties: false
       description: >
         The Fxecute FinancialInstitutionCreditTransfer message is sent by the
         initiating party to the executing party to request the execution of a
@@ -3973,6 +4009,7 @@ components:
     GenericAccountIdentification1:
       title: GenericAccountIdentification1
       type: object
+      additionalProperties: false
       description: >
         GenericAccountIdentification
 
@@ -4007,6 +4044,7 @@ components:
     GenericFinancialIdentification1:
       title: GenericFinancialIdentification1
       type: object
+      additionalProperties: false
       description: >
         GenericFinancialIdentification
 
@@ -4041,6 +4079,7 @@ components:
     GenericIdentification3:
       title: GenericIdentification3
       type: object
+      additionalProperties: false
       description: |
         Generic scheme identification for a party.
       properties:
@@ -4066,6 +4105,7 @@ components:
     GenericIdentification30:
       title: GenericIdentification30
       type: object
+      additionalProperties: false
       description: |
         Generic scheme identification for a party.
       properties:
@@ -4099,6 +4139,7 @@ components:
     GenericOrganisationIdentification1:
       title: GenericOrganisationIdentification1
       type: object
+      additionalProperties: false
       description: |
         Information that locates and identifies an organisation.
       properties:
@@ -4131,6 +4172,7 @@ components:
     GenericOrganisationIdentification3:
       title: GenericOrganisationIdentification3
       type: object
+      additionalProperties: false
       description: |
         Information related to an identification of an organisation.
       properties:
@@ -4162,6 +4204,7 @@ components:
     GenericPersonIdentification1:
       title: GenericPersonIdentification1
       type: object
+      additionalProperties: false
       description: |
         GenericPersonIdentification1
         Information that locates and identifies a specific person.
@@ -4194,6 +4237,7 @@ components:
     GenericPersonIdentification2:
       title: GenericPersonIdentification2
       type: object
+      additionalProperties: false
       description: Identification of a person.
       properties:
         Id:
@@ -4224,6 +4268,7 @@ components:
     GetPartiesError_IdentificationVerificationReportV03:
       title: GetPartiesError_IdentificationVerificationReportV03
       type: object
+      additionalProperties: false
       properties:
         Assgnmt:
           allOf:
@@ -4298,6 +4343,7 @@ components:
     GetParties_IdentificationVerificationReportV03:
       title: GetParties_IdentificationVerificationReportV03
       type: object
+      additionalProperties: false
       properties:
         Assgnmt:
           allOf:
@@ -4382,6 +4428,7 @@ components:
         Set of characteristics shared by all individual transactions included in
         the message.
       type: object
+      additionalProperties: false
       properties:
         MsgId:
           allOf:
@@ -4447,6 +4494,7 @@ components:
         Set of characteristics shared by all individual transactions included in
         the message.
       type: object
+      additionalProperties: false
       properties:
         MsgId:
           allOf:
@@ -4479,6 +4527,7 @@ components:
         Group Header Set of characteristics shared by all individual
         transactions included in the message.
       type: object
+      additionalProperties: false
       properties:
         MsgId:
           allOf:
@@ -4594,6 +4643,7 @@ components:
     IdentificationAssignment3:
       title: IdentificationAssignment3
       type: object
+      additionalProperties: false
       description: >
         IdentificationAssignment
 
@@ -4657,6 +4707,7 @@ components:
     IdentificationInformation4:
       title: IdentificationInformation4
       type: object
+      additionalProperties: false
       description: |
         Information that locates and identifies a specific party or account.
       properties:
@@ -4735,6 +4786,7 @@ components:
         instruction, provided by the initiating party, and intended for the
         creditor agent.
       type: object
+      additionalProperties: false
       properties:
         Cd:
           allOf:
@@ -4764,6 +4816,7 @@ components:
         instruction, provided by the initiating party, and intended for the
         creditor agent.
       type: object
+      additionalProperties: false
       properties:
         Cd:
           allOf:
@@ -4793,6 +4846,7 @@ components:
         instruction, provided by the initiating party, and intended for the next
         agent in the payment chain.
       type: object
+      additionalProperties: false
       properties:
         Cd:
           allOf:
@@ -4827,6 +4881,7 @@ components:
     LocalInstrument2Choice:
       title: LocalInstrument2Choice
       type: object
+      additionalProperties: false
       description: >
         Specifies the local instrument, as published in an external local
         instrument code list or as a proprietary code.
@@ -4983,6 +5038,7 @@ components:
       description: |
         Unique and unambiguous way to identify an organisation.
       type: object
+      additionalProperties: false
       properties:
         AnyBIC:
           allOf:
@@ -5019,6 +5075,7 @@ components:
       description: |
         Unique and unambiguous way to identify an organisation.
       type: object
+      additionalProperties: false
       properties:
         AnyBIC:
           allOf:
@@ -5055,6 +5112,7 @@ components:
       description: |
         Choice of format for the organisation identification.
       type: object
+      additionalProperties: false
       properties:
         Cd:
           allOf:
@@ -5083,6 +5141,7 @@ components:
         Communication device number or electronic address used for
         communication.
       type: object
+      additionalProperties: false
       properties:
         ChanlTp:
           allOf:
@@ -5106,6 +5165,7 @@ components:
     PacsError_FIToFIPaymentStatusReportV15:
       title: PacsError_FIToFIPaymentStatusReportV15
       type: object
+      additionalProperties: false
       description: >
         This message is sent by an account servicing institution to an account
         owner. It is used to inform the account owner about the status of a
@@ -5163,6 +5223,7 @@ components:
         message. The message provides information on the status of a payment
         instruction and its underlying individual transactions.
       type: object
+      additionalProperties: false
       properties:
         GrpHdr:
           allOf:
@@ -5210,6 +5271,7 @@ components:
       description: |
         Nature or use of the account.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             OrgId:
@@ -5243,6 +5305,7 @@ components:
       description: |
         Identification of a person, an organisation or a financial institution.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Pty:
@@ -5291,6 +5354,7 @@ components:
       description: |
         NOTE: Unsure on the description.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             OrgId:
@@ -5324,6 +5388,7 @@ components:
       description: |
         Specifies the identification of a person or an organisation.
       type: object
+      additionalProperties: false
       properties:
         Nm:
           allOf:
@@ -5402,6 +5467,7 @@ components:
       description: |
         Specifies the identification of a person or an organisation.
       type: object
+      additionalProperties: false
       properties:
         Nm:
           allOf:
@@ -5474,6 +5540,7 @@ components:
       description: |
         Provides further means of referencing a payment transaction.
       type: object
+      additionalProperties: false
       properties:
         InstrId:
           allOf:
@@ -5587,6 +5654,7 @@ components:
         Provides further details on the original transactions, to which the
         status report message refers.
       type: object
+      additionalProperties: false
       properties:
         StsId:
           allOf:
@@ -5702,6 +5770,7 @@ components:
       description: |
         Provides further details of the type of payment.
       type: object
+      additionalProperties: false
       properties:
         InstrPrty:
           $ref: "#/components/schemas/Priority2Code"
@@ -5754,6 +5823,7 @@ components:
       description: |
         Unique and unambiguous way to identify a person.
       type: object
+      additionalProperties: false
       properties:
         DtAndPlcOfBirth:
           allOf:
@@ -5783,6 +5853,7 @@ components:
       description: |
         Unique and unambiguous way to identify a person.
       type: object
+      additionalProperties: false
       properties:
         DtAndPlcOfBirth:
           allOf:
@@ -5812,6 +5883,7 @@ components:
       description: |
         Sets of elements to identify a name of the identification scheme.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Cd:
@@ -5844,6 +5916,7 @@ components:
     PostalAddress24:
       title: PostalAddress24
       type: object
+      additionalProperties: false
       description: >
         Information that locates and identifies a specific address, as defined
         by postal services.
@@ -5900,6 +5973,7 @@ components:
     PostalAddress27:
       title: PostalAddress27
       type: object
+      additionalProperties: false
       description: >
         Information that locates and identifies a specific address, as defined
         by postal services.
@@ -6029,6 +6103,7 @@ components:
       description: |
         Information related to a proxy identification of the account.
       type: object
+      additionalProperties: false
       properties:
         Tp:
           allOf:
@@ -6055,6 +6130,7 @@ components:
       description: |
         Specifies the type of the proxy account.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Cd:
@@ -6094,6 +6170,7 @@ components:
 
         chain.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Cd:
@@ -6125,6 +6202,7 @@ components:
         Information about an entity requiring the regulatory reporting
         information.
       type: object
+      additionalProperties: false
       properties:
         Nm:
           allOf:
@@ -6152,6 +6230,7 @@ components:
       description: |
         Information needed due to regulatory and/or statutory requirements.
       type: object
+      additionalProperties: false
       properties:
         DbtCdtRptgInd:
           allOf:
@@ -6217,6 +6296,7 @@ components:
       description: |
         Details about a service level.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Cd:
@@ -6251,6 +6331,7 @@ components:
 
         instructing agent and the instructed agent was completed.
       type: object
+      additionalProperties: false
       properties:
         SttlmMtd:
           $ref: "#/components/schemas/SettlementMethod1Code"
@@ -6308,6 +6389,7 @@ components:
       description: |
         Specifies the reason for the status.
       type: object
+      additionalProperties: false
       anyOf:
         - properties:
             Cd:
@@ -6336,6 +6418,7 @@ components:
       description: |
         Unsure on description.
       type: object
+      additionalProperties: false
       properties:
         Orgtr:
           allOf:
@@ -6378,6 +6461,7 @@ components:
 
         Information needed due to regulatory and statutory requirements.
       type: object
+      additionalProperties: false
       properties:
         Tp:
           allOf:
@@ -6451,6 +6535,7 @@ components:
         Additional information that cannot be captured in the structured fields
         and/or any other specific block.
       type: object
+      additionalProperties: false
       properties:
         PlcAndNm:
           allOf:
@@ -6487,11 +6572,13 @@ components:
         information. This technical envelope allows to segregate the
         supplementary data information from any other information.
       type: object
+      additionalProperties: false
     TaxAmount3:
       title: TaxAmount3
       description: |
         Information on the amount of the tax record.
       type: object
+      additionalProperties: false
       properties:
         Rate:
           allOf:
@@ -6549,6 +6636,7 @@ components:
       description: |
         Details of an authorised tax paying party.
       type: object
+      additionalProperties: false
       properties:
         Titl:
           allOf:
@@ -6576,6 +6664,7 @@ components:
         with the law, including pre-defined parameters such as thresholds and
         type of account.
       type: object
+      additionalProperties: false
       properties:
         Cdtr:
           allOf:
@@ -6701,6 +6790,7 @@ components:
       description: |
         Details about the entity involved in the tax paid or to be paid.
       type: object
+      additionalProperties: false
       properties:
         TaxId:
           allOf:
@@ -6734,6 +6824,7 @@ components:
       description: |
         Details about the entity involved in the tax paid or to be paid.
       type: object
+      additionalProperties: false
       properties:
         TaxId:
           allOf:
@@ -6777,6 +6868,7 @@ components:
       description: |
         Period of time details related to the tax payment.
       type: object
+      additionalProperties: false
       properties:
         FrToDt:
           allOf:
@@ -6812,6 +6904,7 @@ components:
       description: |
         Set of elements used to define the tax record.
       type: object
+      additionalProperties: false
       properties:
         AddtlInf:
           allOf:
@@ -6913,6 +7006,7 @@ components:
       description: |
         Details on the tax period and amount.
       type: object
+      additionalProperties: false
       properties:
         Prd:
           allOf:
@@ -6989,6 +7083,7 @@ components:
     TermsRequest_FIToFICustomerCreditProposal:
       title: TermsRequest_FIToFICustomerCreditProposal
       type: object
+      additionalProperties: false
       description: >
         This message is sent by a financial institution to a financial
         institution to propose the terms of a credit to a customer.
@@ -7030,6 +7125,7 @@ components:
     TermsResponse_FIToFICustomerCreditConfirmation:
       title: TermsResponse_FIToFICustomerCreditConfirmation
       type: object
+      additionalProperties: false
       description: >
         This message is sent by the initiating party to the executing party,
         directly or through one or more intermediaries, to confirm the credit
@@ -7086,6 +7182,7 @@ components:
     UnderlyingCustomerCreditTransfer:
       title: UnderlyingCustomerCreditTransfer
       type: object
+      additionalProperties: false
       properties:
         InstdAmt:
           allOf:
@@ -7126,6 +7223,7 @@ components:
     VerificationReason1Choice:
       title: VerificationReason1Choice
       type: object
+      additionalProperties: false
       description: |
         Choice of format for the verification reason.
         Only one, between the coded and the proprietary, can be chosen.
@@ -7157,6 +7255,7 @@ components:
     VerificationReport4:
       title: VerificationReport4
       type: object
+      additionalProperties: false
       description: >-
         VerificationReport
 

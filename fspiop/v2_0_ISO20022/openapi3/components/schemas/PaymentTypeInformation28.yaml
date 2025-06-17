@@ -2,6 +2,7 @@ title: PaymentTypeInformation28
 description: |
   Provides further details of the type of payment.
 type: object
+additionalProperties: false
 properties:
   InstrPrty:
     $ref: ./Priority2Code.yaml

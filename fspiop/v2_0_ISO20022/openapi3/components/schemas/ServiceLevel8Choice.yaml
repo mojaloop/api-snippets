@@ -2,6 +2,7 @@ title: ServiceLevel8Choice
 description: |
   Details about a service level.
 type: object
+additionalProperties: false
 anyOf:
   - properties:
       Cd:

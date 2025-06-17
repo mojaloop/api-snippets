@@ -1,5 +1,6 @@
 title: TransfersPostRequest
 type: object
+additionalProperties: false
 description: The object sent in the POST /transfers request.
 properties:
   transferId:
