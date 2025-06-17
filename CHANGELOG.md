@@ -1,4 +1,15 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [18.0.0](https://github.com/mojaloop/api-snippets/compare/v17.10.3...v18.0.0) (2025-06-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* add additionalProperties false to v2 components (#201)
+
+### Maintenance
+
+* add additionalProperties false to v2 components ([#201](https://github.com/mojaloop/api-snippets/issues/201)) ([ce2e2d7](https://github.com/mojaloop/api-snippets/commit/ce2e2d741c6b4ff19f071302420eba9c1e94324e))
+
 ### [17.10.3](https://github.com/mojaloop/api-snippets/compare/v17.10.2...v17.10.3) (2025-05-13)
 
 
