@@ -92,6 +92,7 @@
   "overrides": {
     "@types/cacheable-request": "^6.0.2",
     "@types/responselike": "^1.0.0",
+    "brace-expansion": "2.0.2",
     "dompurify": "3.2.4"
   },
   "devDependencies": {
