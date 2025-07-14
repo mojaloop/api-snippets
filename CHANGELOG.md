@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [18.1.0](https://github.com/mojaloop/api-snippets/compare/v18.0.0...v18.1.0) (2025-07-14)
+
+
+### Features
+
+* fix open vulnerability ([#204](https://github.com/mojaloop/api-snippets/issues/204)) ([07cd240](https://github.com/mojaloop/api-snippets/commit/07cd240418b186ad9f9fcc6a23ffebb62208bc45))
+
 ## [18.0.0](https://github.com/mojaloop/api-snippets/compare/v17.10.3...v18.0.0) (2025-06-17)
 
 
