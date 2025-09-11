@@ -30,6 +30,7 @@
     "sourceMap": true,
     "outDir": "./lib",
     "strict": true,
+    "skipLibCheck": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
