@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [18.2.0](https://github.com/mojaloop/api-snippets/compare/v18.1.1...v18.2.0) (2025-09-24)
+
+
+### Features
+
+* use ml orb and grype src scan ([#208](https://github.com/mojaloop/api-snippets/issues/208)) ([06520ca](https://github.com/mojaloop/api-snippets/commit/06520cac633e5e5f0860549b51d301e3a785505f))
+
 ### [18.1.1](https://github.com/mojaloop/api-snippets/compare/v18.1.0...v18.1.1) (2025-07-23)
 
 
