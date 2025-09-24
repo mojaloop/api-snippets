@@ -54,7 +54,7 @@
     "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",
     "snapshot": "standard-version --no-verify --skip.changelog --prerelease snapshot --releaseCommitMessageFormat 'chore(snapshot): {{currentTag}}'",
     "test": "npm run test:unit",
-    "test:unit": "jest --testMatch '**/test/dto/*.(test|spec).ts'",
+    "test:unit": "npm run build && jest --testMatch '**/test/dto/*.(test|spec).ts'",
     "test:xunit": "npm -s run test:unit",
     "test:integration": "echo 'No integration tests'",
     "test:functional": "echo 'No functional tests'",
