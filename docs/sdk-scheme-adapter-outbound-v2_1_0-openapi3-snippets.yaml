@@ -2799,6 +2799,26 @@ components:
         skipPartyLookup:
           description: Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful is a previous party resolution has been performed.
           type: boolean
+        prepareExpirySeconds:
+          description: The number of seconds until the prepare expires. If not provided, the default value configured on the SDK will be used.
+          type: integer
+          format: int32
+          minimum: 1
+        fxPrepareExpirySeconds:
+          description: The number of seconds until the FX prepare expires. If not provided, the default value configured on the SDK will be used.
+          type: integer
+          format: int32
+          minimum: 1
+        quoteExpirySeconds:
+          description: The number of seconds until the quote expires. If not provided, the default value configured on the SDK will be used.
+          type: integer
+          format: int32
+          minimum: 1
+        fxQuoteExpirySeconds:
+          description: The number of seconds until the FX quote expires. If not provided, the default value configured on the SDK will be used.
+          type: integer
+          format: int32
+          minimum: 1s
     transferStatusResponse:
       type: object
       additionalProperties: false

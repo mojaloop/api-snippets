@@ -1995,6 +1995,26 @@ export interface components {
             transferRequestExtensions?: components["schemas"]["extensionListEmptiable"];
             /** @description Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful is a previous party resolution has been performed. */
             skipPartyLookup?: boolean;
+            /**
+             * Format: int32
+             * @description The number of seconds until the prepare expires. If not provided, the default value configured on the SDK will be used.
+             */
+            prepareExpirySeconds?: number;
+            /**
+             * Format: int32
+             * @description The number of seconds until the FX prepare expires. If not provided, the default value configured on the SDK will be used.
+             */
+            fxPrepareExpirySeconds?: number;
+            /**
+             * Format: int32
+             * @description The number of seconds until the quote expires. If not provided, the default value configured on the SDK will be used.
+             */
+            quoteExpirySeconds?: number;
+            /**
+             * Format: int32
+             * @description The number of seconds until the FX quote expires. If not provided, the default value configured on the SDK will be used.
+             */
+            fxQuoteExpirySeconds?: number;
         };
         transferStatusResponse: {
             transferId: components["schemas"]["CorrelationId"];
