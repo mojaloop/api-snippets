@@ -510,7 +510,6 @@ export interface components {
         /**
          * ErrorCode
          * @description The API data type errorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represents the specific error.
-         *
          */
         errorCode: string;
         /**
@@ -780,7 +779,6 @@ export interface components {
         };
         /**
          * @description Below are the allowed values for the enumeration - RECEIVED DFSP has received the transfer. - RESERVED DFSP has reserved the transfer. - COMMITTED DFSP has successfully performed the transfer. - ABORTED DFSP has aborted the transfer due a rejection or failure to perform the transfer.
-         *
          * @enum {string}
          */
         transferState: "RECEIVED" | "RESERVED" | "COMMITTED" | "ABORTED";
@@ -831,9 +829,10 @@ export interface components {
          */
         TransactionSubScenario: string;
         errorResponse: {
-            /** @description Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.
+            /**
+             * @description Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.
              *     Otherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.
-             *      */
+             */
             statusCode?: string;
             /** @description Error message text. */
             message?: string;

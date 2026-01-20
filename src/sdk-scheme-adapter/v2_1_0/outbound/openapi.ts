@@ -174,7 +174,6 @@ export interface paths {
         /**
          * Request bulk quotes for the provided financial transactions
          * @description The HTTP request `POST /bulkQuotes` is used to request a bulk quote to fascilitate funds transfer from payer DFSP to payees' DFSP.
-         *
          */
         post: {
             parameters: {
@@ -265,7 +264,6 @@ export interface paths {
         /**
          * Sends money from one account to multiple accounts
          * @description The HTTP request `POST /bulkTransactions` is used to request the movement of funds from payer DFSP to payees' DFSP.
-         *
          */
         post: {
             parameters: {
@@ -359,7 +357,6 @@ export interface paths {
         /**
          * Sends money from one account to multiple accounts
          * @description The HTTP request `POST /bulkTransfers` is used to request the movement of funds from payer DFSP to payees' DFSP.
-         *
          */
         post: {
             parameters: {
@@ -525,7 +522,6 @@ export interface paths {
          *
          *       1. Party lookup. This facilitates a check by the sending party that the destination party is correct before proceeding with a money movement.
          *       2. Transaction Request. This request enables a Payee to request Payer to send electronic funds to the Payee.
-         *
          */
         post: {
             parameters: {
@@ -563,7 +559,6 @@ export interface paths {
          * @description The HTTP request `PUT /requestToPay/{transactionRequestId}` is used to continue a transfer initiated via the `POST /requestToPay` method that has halted after party lookup stage.
          *     The request body should contain the "acceptParty" property set to `true` as required to continue the transfer.
          *     See the description of the `POST /requestToPay` HTTP method for more information on modes of transfer.
-         *
          */
         put: {
             parameters: {
@@ -623,7 +618,6 @@ export interface paths {
          *     If the configuration variables `AUTO_ACCEPT_PARTIES` and `AUTO_ACCEPT_QUOTES` are both set to `"true"` this method will block until all three transfer stages are complete. Upon completion it will return the entire set of transfer details received during the operation.
          *
          *     Combinations of settings for `AUTO_ACCEPT...` configuration variables allow the scheme adapter user to decide which mode of operation best suits their use cases. i.e. the scheme adapter can be configured to "break" the three stage transfer at these points in order to execute backend logic such as party verification, quoted fees assessments etc...
-         *
          */
         post: {
             parameters: {
@@ -666,7 +660,6 @@ export interface paths {
          *     The request body should contain either the "acceptOTP" or "acceptQuote" property set to `true` as required to continue the transfer.
          *
          *     See the description of the `POST /requestToPayTransfer` HTTP method for more information on modes of transfer.
-         *
          */
         put: {
             parameters: {
@@ -746,7 +739,6 @@ export interface paths {
          *     If the configuration variables `AUTO_ACCEPT_PARTIES` and `AUTO_ACCEPT_QUOTES` are both set to `"true"` this method will block until all three transfer stages are complete. Upon completion it will return the entire set of transfer details received during the operation.
          *
          *     Combinations of settings for `AUTO_ACCEPT...` configuration variables allow the scheme adapter user to decide which mode of operation best suits their use cases. i.e. the scheme adapter can be configured to "break" the three stage transfer at these points in order to execute backend logic such as party verification, quoted fees assessments etc...
-         *
          */
         post: {
             parameters: {
@@ -824,7 +816,6 @@ export interface paths {
          *     The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" or "acceptQuoteOrConversion" property set to `true` as required to continue the transfer.
          *
          *     See the description of the `POST /transfers` HTTP method for more information on modes of transfer.
-         *
          */
         put: {
             parameters: {
@@ -982,9 +973,10 @@ export interface components {
          */
         CorrelationId: string;
         errorResponse: {
-            /** @description Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.
+            /**
+             * @description Backend error code from FSP. Ideally, statusCode is FSPIOP conforming. SDK will use status code to retrieve an FSPIOP error with the same code.
              *     Otherwise, a suitable generic FSPIOP will be used with the errorResponse in the FSPIOP error message.
-             *      */
+             */
             statusCode?: string;
             /** @description Error message text. */
             message?: string;
@@ -1839,16 +1831,14 @@ export interface components {
                 body: components["schemas"]["QuotesIDPutResponse"];
                 headers?: Record<string, never>;
             };
-            /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway.
-             *      */
+            /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
             quoteResponseSource?: string;
             conversionRequestId?: components["schemas"]["CorrelationId"];
             fxQuotesResponse?: {
                 body: components["schemas"]["FxQuotesPostOutboundResponse"];
                 headers?: Record<string, never>;
             };
-            /** @description FXPID of the entity that supplied the fxQuotes response.
-             *      */
+            /** @description FXPID of the entity that supplied the fxQuotes response. */
             fxQuotesResponseSource?: string;
             fulfil?: {
                 body: components["schemas"]["TransfersIDPutResponse"];
@@ -1882,8 +1872,7 @@ export interface components {
          * @description Contains the authentication value. The format depends on the authentication type used in the AuthenticationInfo complex type.
          */
         AuthenticationValue: string | {
-            /** @description U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.
-             *      */
+            /** @description U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key. */
             pinValue: string;
             /**
              * Integer
@@ -1935,8 +1924,7 @@ export interface components {
                 body: components["schemas"]["QuotesIDPutResponse"];
                 headers?: Record<string, never>;
             };
-            /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway.
-             *      */
+            /** @description FSPID of the entity that supplied the quote response. This may not be the same as the FSPID of the entity which owns the end user account in the case of a FOREX transfer. i.e. it may be a FOREX gateway. */
             quoteResponseSource?: string;
             authorizationResponse?: {
                 body: components["schemas"]["AuthorizationIDPutResponse"];
@@ -1995,6 +1983,26 @@ export interface components {
             transferRequestExtensions?: components["schemas"]["extensionListEmptiable"];
             /** @description Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful is a previous party resolution has been performed. */
             skipPartyLookup?: boolean;
+            /**
+             * Format: int32
+             * @description The number of seconds until the prepare expires. If not provided, the default value configured on the SDK will be used.
+             */
+            prepareExpirySeconds?: number;
+            /**
+             * Format: int32
+             * @description The number of seconds until the FX prepare expires. If not provided, the default value configured on the SDK will be used.
+             */
+            fxPrepareExpirySeconds?: number;
+            /**
+             * Format: int32
+             * @description The number of seconds until the quote expires. If not provided, the default value configured on the SDK will be used.
+             */
+            quoteExpirySeconds?: number;
+            /**
+             * Format: int32
+             * @description The number of seconds until the FX quote expires. If not provided, the default value configured on the SDK will be used.
+             */
+            fxQuoteExpirySeconds?: number;
         };
         transferStatusResponse: {
             transferId: components["schemas"]["CorrelationId"];
