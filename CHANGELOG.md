@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+## [18.3.0](https://github.com/mojaloop/api-snippets/compare/v18.2.3...v18.3.0) (2026-01-20)
+
+
+### Features
+
+* add granular expiry for outbound transfers ([#215](https://github.com/mojaloop/api-snippets/issues/215)) ([9b769b6](https://github.com/mojaloop/api-snippets/commit/9b769b6961ebb0a7e5ee407b1c62a1ff4f7b9929))
+
 ### [18.2.3](https://github.com/mojaloop/api-snippets/compare/v18.2.2...v18.2.3) (2026-01-13)
 
 
