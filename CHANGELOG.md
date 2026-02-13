@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [18.3.1](https://github.com/mojaloop/api-snippets/compare/v18.3.0...v18.3.1) (2026-02-13)
+
+
+### Maintenance
+
+* **ci:** update CircleCI orb to 1.1.10 ([8e5eba8](https://github.com/mojaloop/api-snippets/commit/8e5eba8a2dc640262301141bd055334b1d10f11e))
+
 ## [18.3.0](https://github.com/mojaloop/api-snippets/compare/v18.2.3...v18.3.0) (2026-01-20)
 
 
