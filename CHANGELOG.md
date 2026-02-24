@@ -1,4 +1,11 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [18.3.2](https://github.com/mojaloop/api-snippets/compare/v18.3.1...v18.3.2) (2026-02-24)
+
+
+### Maintenance
+
+* lower fido id and raw id min length ([#218](https://github.com/mojaloop/api-snippets/issues/218)) ([9876bb5](https://github.com/mojaloop/api-snippets/commit/9876bb5360b9efca2b1a8dfe23073b03fb422120))
+
 ### [18.3.1](https://github.com/mojaloop/api-snippets/compare/v18.3.0...v18.3.1) (2026-02-13)
 
 
