@@ -16,6 +16,7 @@ ignore:
   #     name: "package-name"
   #     version: "1.0.0"
   #   reason: "Not exploitable in our usage context"
+  - vulnerability: GHSA-3ppc-4f35-3m26
 
 # Output formats for scan results
 output:
