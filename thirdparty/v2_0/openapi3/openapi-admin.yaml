@@ -45,12 +45,12 @@ paths:
       responses:
         200:
           description: Ok
-  /tppAccountRequest:
-    $ref: paths/tppAccountRequest.yaml
-  /tppAccountRequest/{ID}:
-    $ref: paths/tppAccountRequest_ID.yaml
-  /tppAccountRequest/{ID}/error:
-    $ref: paths/tppAccountRequest_ID_error.yaml
+  /tppAccountsRequest:
+    $ref: paths/tppAccountsRequest.yaml
+  /tppAccountsRequest/{ID}:
+    $ref: paths/tppAccountsRequest_ID.yaml
+  /tppAccountsRequest/{ID}/error:
+    $ref: paths/tppAccountsRequest_ID_error.yaml
   /tppAccounts/{ID}:
     $ref: paths/tppAccounts_ID.yaml
   /tppAccounts/{ID}/error:

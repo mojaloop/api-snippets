@@ -42,7 +42,7 @@ paths:
       responses:
         '200':
           description: Ok
-  /tppAccountRequest:
+  /tppAccountsRequest:
     parameters:
       - $ref: '#/components/parameters/Content-Type'
       - $ref: '#/components/parameters/Date'
@@ -71,7 +71,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/tppAccountRequestPostRequest'
+              $ref: '#/components/schemas/tppAccountsRequestPostRequest'
       responses:
         '202':
           $ref: '#/components/responses/202'
@@ -91,7 +91,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /tppAccountRequest/{ID}:
+  /tppAccountsRequest/{ID}:
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -107,7 +107,7 @@ paths:
       operationId: GetAccountRequest
       summary: GetAccountRequest
       description: |
-        The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountRequest/ call.
+        The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountsRequest/ call.
         The *{ID}* in the URI should contain the accountRequestId that was assigned to the
         request by the PISP when the PISP originated the request. The result is return via the PUT callback.
       tags:
@@ -156,7 +156,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/tppAccountRequestPutResponse'
+              $ref: '#/components/schemas/tppAccountsRequestPutResponse'
       responses:
         '202':
           $ref: '#/components/responses/202'
@@ -176,7 +176,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /tppAccountRequest/{ID}/error:
+  /tppAccountsRequest/{ID}/error:
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -240,7 +240,7 @@ paths:
       summary: GetAccountsByUserId
       description: |
         The HTTP request `GET /tppAccounts/{ID}/{SignedChallenge}` is used to retrieve the list of potential accounts available for linking.
-        The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountRequest/` callback. 
+        The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountsRequest/` callback. 
 
         The signed challenge must match the authentication channel that was selected by the DFSP. For example, if the WEB authentication channel was selected by the DFSP, then signed challenge needs to be authToken, otherwise if the OTP channel was selected, then it needs to be the OTP that was entered by the party.
         (For example, GET /tppAccounts/12345/56789).
@@ -2527,14 +2527,14 @@ components:
       maxLength: 512
       description: |
         The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
-    tppAccountRequestPostRequest:
-      title: AccountRequestPostRequest
+    tppAccountsRequestPostRequest:
+      title: AccountsRequestPostRequest
       type: object
       description: |-
         Used by: PISP
         The /tppAccountsRequest resource is used to request consent from a user for access to their accounts information. This resource must be called before the /tppAccounts resource can be queried which provides the account information. 
-        Callback and data model for POST /tppAccountRequest:
-        Callback: PUT /tppAccountRequests/{ID} Error callback: PUT /tppAccountRequests/{ID}/error Data model - see below url
+        Callback and data model for POST /tppAccountsRequest:
+        Callback: PUT /tppAccountsRequests/{ID} Error callback: PUT /tppAccountsRequests/{ID}/error Data model - see below url
         https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#31212-post-accountrequest
       properties:
         accountRequestId:
@@ -2565,8 +2565,8 @@ components:
       type: string
       pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
       description: The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-    tppAccountRequestPutResponse:
-      title: AccountRequestPutResponse
+    tppAccountsRequestPutResponse:
+      title: AccountsRequestPutResponse
       type: object
       description: |-
         Used by: PISP

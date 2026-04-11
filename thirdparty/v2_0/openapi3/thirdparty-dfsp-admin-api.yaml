@@ -4,7 +4,7 @@ info:
   version: '2.0'
   description: |
     A Mojaloop API for DFSPs supporting Third Party functions.
-    DFSPs who want to enable Payment Initiation Service Providers (PISPs) to perform actions on behalf of a DFSP's user should  implement this API.
+    DFSPs who want to enable Payment Initiation Service Providers (PISPs) to perform actions on behalf of a DFSP's user should implement this API.
     PISPs should implement the accompanying API - Mojaloop Third  Party API (PISP) instead.
   license:
     name: Open API for FSP Interoperability (FSPIOP) (Implementation Friendly Version)
@@ -12,7 +12,7 @@ info:
 servers:
   - url: /
 paths:
-  /tppAccountRequest:
+  /tppAccountsRequest:
     parameters:
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
@@ -46,8 +46,8 @@ paths:
               description: |-
                 Used by: PISP
                 The /tppAccountsRequest resource is used to request consent from a user for access to their accounts information. This resource must be called before the /tppAccounts resource can be queried which provides the account information. 
-                Callback and data model for POST /tppAccountRequest:
-                Callback: PUT /tppAccountRequests/{ID} Error callback: PUT /tppAccountRequests/{ID}/error Data model - see below url
+                Callback and data model for POST /tppAccountsRequest:
+                Callback: PUT /tppAccountsRequest/{ID} Error callback: PUT /tppAccountsRequest/{ID}/error Data model - see below url
                 https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#31212-post-accountrequest
               properties:
                 accountRequestId:
@@ -68,7 +68,7 @@ paths:
                   minLength: 1
                   maxLength: 256
                   items:
-                    $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authChannel'
+                    $ref: '#/paths/~1tppAccountsRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authChannel'
                 callbackUri:
                   title: Uri
                   type: string
@@ -101,7 +101,7 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/501'
         '503':
           $ref: '#/paths/~1tppConsents/post/responses/503'
-  '/tppAccountRequest/{ID}':
+  '/tppAccountsRequest/{ID}':
     parameters:
       - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
@@ -117,7 +117,7 @@ paths:
       operationId: GetAccountRequest
       summary: GetAccountRequest
       description: |
-        The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountRequest/ call.
+        The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountsRequest/ call.
         The *{ID}* in the URI should contain the accountRequestId that was assigned to the
         request by the PISP when the PISP originated the request. The result is return via the PUT callback.
       tags:
@@ -185,9 +185,9 @@ paths:
                     - WEB - DFSP can support authorization via a web-based login.
                     - OTP - DFSP can support authorization via a One Time PIN.
                 callbackUri:
-                  $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
+                  $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
                 authUri:
-                  $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
+                  $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
                 authToken:
                   type: string
                   pattern: '^[A-Za-z0-9-_]+[=]{0,2}$'
@@ -213,7 +213,7 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/501'
         '503':
           $ref: '#/paths/~1tppConsents/post/responses/503'
-  '/tppAccountRequest/{ID}/error':
+  '/tppAccountsRequest/{ID}/error':
     parameters:
       - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
@@ -282,7 +282,7 @@ paths:
       summary: GetAccountsByUserId
       description: |
         The HTTP request `GET /tppAccounts/{ID}/{SignedChallenge}` is used to retrieve the list of potential accounts available for linking.
-        The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountRequest/` callback. 
+        The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountsRequest/` callback. 
 
         The signed challenge must match the authentication channel that was selected by the DFSP. For example, if the WEB authentication channel was selected by the DFSP, then signed challenge needs to be authToken, otherwise if the OTP channel was selected, then it needs to be the OTP that was entered by the party.
         (For example, GET /tppAccounts/12345/56789).
@@ -505,7 +505,7 @@ paths:
                 Callback: PUT /tppConsentRequests/{ID} Error callback: PUT /tppConsentRequests/{ID}/error
               properties:
                 consentRequestId:
-                  $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                  $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                 partyIdInfo:
                   title: PartyIdInfo
                   type: object
@@ -571,7 +571,7 @@ paths:
                         specific access to a given account.
                       example: PERSONAL_ID
                     partyIdentifier:
-                      $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/partyItentifier'
+                      $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/partyItentifier'
                     partySubIdOrType:
                       title: PartySubIdOrType
                       type: string
@@ -640,9 +640,9 @@ paths:
                   minLength: 1
                   maxLength: 256
                   items:
-                    $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authChannel'
+                    $ref: '#/paths/~1tppAccountsRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authChannel'
                 callbackUri:
-                  $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
+                  $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
                 extensionList:
                   $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
               required:
@@ -763,9 +763,9 @@ paths:
                         description: |
                           The web auth channel being used for `PUT /tppConsentRequest/{ID}` request.
                     callbackUri:
-                      $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
+                      $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
                     authUri:
-                      $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
+                      $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
                     extensionList:
                       $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
@@ -799,7 +799,7 @@ paths:
                         description: |
                           The OTP auth channel being used for `PUT /tppConsentRequests/{ID}` request.
                     callbackUri:
-                      $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
+                      $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
                     extensionList:
                       $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
@@ -847,7 +847,7 @@ paths:
                 After the user completes an out-of-band authorization with the DFSP, the PISP will receive a token which they can use to prove to the DFSP that the user trusts this PISP.
               properties:
                 authToken:
-                  $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
+                  $ref: '#/paths/~1tppAccountsRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
                 extensionList:
                   $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
               required:
@@ -1014,12 +1014,12 @@ paths:
                   properties:
                     consentId:
                       allOf:
-                        - $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                        - $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                       description: |
                         Common ID between the PISP and FSP for the Consent object
                         determined by the DFSP who creates the Consent.
                     consentRequestId:
-                      $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                      $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                     scopes:
                       minLength: 1
                       maxLength: 256
@@ -1054,14 +1054,14 @@ paths:
                   properties:
                     consentId:
                       allOf:
-                        - $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                        - $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                       description: |
                         Common ID between the PISP and the Payer DFSP for the consent object. The ID
                         should be reused for re-sends of the same consent. A new ID should be generated
                         for each new consent.
                     consentRequestId:
                       allOf:
-                        - $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                        - $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                       description: |
                         The ID given to the original consent request on which this consent is based.
                     scopes:
@@ -1386,9 +1386,9 @@ paths:
                             A publicKey + signature of a challenge for a generic public/private keypair.
                           properties:
                             publicKey:
-                              $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
+                              $ref: '#/paths/~1tppAccountsRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
                             signature:
-                              $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
+                              $ref: '#/paths/~1tppAccountsRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
                           required:
                             - publicKey
                             - signature
@@ -1635,13 +1635,13 @@ paths:
                   properties:
                     verificationRequestId:
                       allOf:
-                        - $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                        - $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                     challenge:
                       type: string
                       description: Base64 encoded bytes - The challenge generated by the DFSP.
                     consentId:
                       allOf:
-                        - $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                        - $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                       description: |
                         The id of the stored consent object that contains the credential with which to verify
                         the signed challenge against.
@@ -1737,13 +1737,13 @@ paths:
                   properties:
                     verificationRequestId:
                       allOf:
-                        - $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                        - $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                     challenge:
                       type: string
                       description: Base64 encoded bytes - The challenge generated by the DFSP.
                     consentId:
                       allOf:
-                        - $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                        - $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                       description: |
                         The id of the stored consent object that contains the credential with which to verify
                         the signed challenge against.
@@ -1754,7 +1754,7 @@ paths:
                         - GENERIC
                       description: Describes a challenge that has been signed with a private key
                     genericSignedPayload:
-                      $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
+                      $ref: '#/paths/~1tppAccountsRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
                     extensionList:
                       $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
@@ -1966,9 +1966,9 @@ paths:
               type: object
               properties:
                 authorizationRequestId:
-                  $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                  $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                 transactionRequestId:
-                  $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
+                  $ref: '#/paths/~1tppAccountsRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                 challenge:
                   type: string
                   description: The challenge that the PISP's client is to sign
@@ -2541,7 +2541,7 @@ paths:
                         signedPayloadType:
                           $ref: '#/paths/~1tppVerifications/post/requestBody/content/application~1json/schema/oneOf/1/properties/signedPayloadType'
                         genericSignedPayload:
-                          $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
+                          $ref: '#/paths/~1tppAccountsRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
                       required:
                         - signedPayloadType
                         - genericSignedPayload
