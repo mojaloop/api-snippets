@@ -90,7 +90,8 @@
   },
   "overrides": {
     "@types/cacheable-request": "^6.0.2",
-    "@types/responselike": "^1.0.0"
+    "@types/responselike": "^1.0.0",
+    "lodash-es": "4.18.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
