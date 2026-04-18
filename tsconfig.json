@@ -28,6 +28,7 @@
     ],
     "types": [
       "node",
+      "jest",
     ],
     "importHelpers": true,
     "declaration": true,
