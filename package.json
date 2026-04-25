@@ -79,7 +79,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.1.2",
-    "@redocly/openapi-core": "^2.29.0",
+    "@redocly/openapi-core": "^2.30.0",
     "commander": "^14.0.3",
     "jest-ts-auto-mock": "^2.1.0",
     "js-yaml": "^4.1.1",
@@ -96,10 +96,10 @@
     "lodash-es": "4.18.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.5.0",
+    "@commitlint/cli": "^20.5.2",
     "@commitlint/config-conventional": "^20.5.0",
     "@mojaloop/api-snippets": "^18.3.2",
-    "@redocly/cli": "^2.29.0",
+    "@redocly/cli": "^2.30.0",
     "@redocly/openapi-cli": "^1.0.0-beta.95",
     "@types/jest": "^30.0.0",
     "@types/js-yaml": "^4.0.9",
@@ -119,9 +119,9 @@
     "eslint-plugin-standard": "^5.0.0",
     "husky": "9.1.7",
     "jest": "^30.3.0",
-    "jest-junit": "^16.0.0",
+    "jest-junit": "^17.0.0",
     "lint-staged": "^16.4.0",
-    "npm-check-updates": "^21.0.2",
+    "npm-check-updates": "^21.0.3",
     "prettier": "^3.8.3",
     "standard-version": "^9.5.0",
     "swagger-cli": "^4.0.4",
