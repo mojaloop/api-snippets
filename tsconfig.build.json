@@ -13,11 +13,12 @@
     "target": "es2022",
     "paths": {
       "~/*": [
-        "src/*"
+        "./src/*"
       ],
       "test/*": [
-        "test/*"
+        "./test/*"
       ]
-    }
+    },
+    "rootDir": "./src"
   }
 }

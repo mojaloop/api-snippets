@@ -4,6 +4,12 @@
     // Only use one of ["low": true, "moderate": true, "high": true, "critical": true]
     "moderate": true,
     "allowlist": [
-        "GHSA-wf5p-g6vw-rhxx" // https://github.com/advisories/GHSA-wf5p-g6vw-rhxx
+        /**
+            Package: postcss (@redocly/cli > styled-components > postcss)
+            Severity: Moderate
+            Reason: as of 04/25/2026 @redocly/cli > styled-components does yet update to the patch version of postcss
+            https://github.com/advisories/GHSA-qx2v-qp2m-jg93
+        **/
+        "GHSA-qx2v-qp2m-jg93"
     ]
 }

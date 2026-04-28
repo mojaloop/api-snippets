@@ -69,9 +69,11 @@ export interface paths {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -94,7 +96,6 @@ export interface paths {
         /**
          * tppTransactionsPost
          * @description The `/tppTransactionRequests` resource is analogous to the `/transactionRequests` resource described fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee, or a request to pay request from a named payer into the customer's account.
-         *
          */
         post: operations["tppTransactionsPost"];
         delete?: never;
@@ -111,9 +112,11 @@ export interface paths {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -138,7 +141,6 @@ export interface paths {
          * GetThirdpartyTransactionRequests
          * @description The HTTP request `GET /tppTransactionRequests/{ID}` is used to request the
          *     retrieval of a third party transaction request.
-         *
          */
         get: operations["GetThirdpartyTransactionRequests"];
         /**
@@ -147,7 +149,6 @@ export interface paths {
          *     the status of a previously requested thirdparty transaction request.
          *
          *     Switch(Thirdparty API Adapter) -> PISP
-         *
          */
         put: operations["tppUpdateTransactionRequests"];
         post?: never;
@@ -165,9 +166,11 @@ export interface paths {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -195,7 +198,6 @@ export interface paths {
          *     the error callback `PUT /tppTransactionRequests/{ID}/error` is used.
          *     The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of
          *     the thirdparty transaction request.
-         *
          */
         put: operations["tppTransactionRequestsError"];
         post?: never;
@@ -213,9 +215,11 @@ export interface paths {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -254,9 +258,11 @@ export interface paths {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -281,7 +287,6 @@ export interface paths {
          * tppGetTransfers
          * @description The HTTP request `GET /tppTransfers/{ID}` is used to request the
          *     retrieval of a third party transaction request.
-         *
          */
         get: operations["tppGetTransfers"];
         /**
@@ -290,7 +295,6 @@ export interface paths {
          *     the status of a previously requested thirdparty transaction request. The ID is the executionRequestId that was provided in the corresponding POST request.
          *
          *     Switch(Thirdparty API Adapter) -> PISP
-         *
          */
         put: operations["tppUpdateTransfersRequest"];
         post?: never;
@@ -308,9 +312,11 @@ export interface paths {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -338,7 +344,6 @@ export interface paths {
          *     the error callback `PUT /tppTransfers/{ID}/error` is used.
          *     The `{ID}` in the URI should contain the `transactionRequestId` that was used for the creation of
          *     the thirdparty transaction request.
-         *
          */
         put: operations["tppTransfersRequestsError"];
         post?: never;
@@ -397,7 +402,6 @@ export interface components {
          *     a DFSP, and a specific Customer's account at the DFSP. The content of the link
          *     is created by the DFSP at the time when it gives permission to the PISP for
          *     specific access to a given account.
-         *
          * @example PERSONAL_ID
          * @enum {string}
          */
@@ -599,7 +603,6 @@ export interface components {
          *     This is a variant based on FSPIOP `PartiesTypeIDPutResponse` specification.
          *     Main difference being that it returns a `Party` with the newly added
          *     `accounts` property.
-         *
          */
         PartiesTypeIDPutResponse: {
             party: components["schemas"]["Party"];
@@ -674,7 +677,6 @@ export interface components {
          * AuthorizationResponseType
          * @description Enum containing authorization response information; if the customer
          *     accepted the terms of the transfer, or rejected the terms.
-         *
          * @enum {string}
          */
         AuthorizationResponseType: "ACCEPTED" | "REJECTED";
@@ -705,7 +707,6 @@ export interface components {
         /**
          * PartyIdTypeTPLink
          * @description - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
-         *
          * @example PERSONAL_ID
          * @enum {string}
          */
@@ -741,9 +742,10 @@ export interface components {
          */
         ParticipantsPostRequest: {
             requestId: components["schemas"]["CorrelationId"];
-            /** @description List of PartyIdInfo elements that the client would like to update
+            /**
+             * @description List of PartyIdInfo elements that the client would like to update
              *     or create FSP information about.
-             *      */
+             */
             partyList: components["schemas"]["PartyIdInfo"][];
             currency?: components["schemas"]["Currency"];
         };
@@ -891,8 +893,7 @@ export interface components {
          *     Callback - PUT /tppTransationRequest/{ID} Error Callback - PUT /tppTransationRequest/{ID}/error
          */
         tppTransactionRequestPostRequest: {
-            /** @description Common ID between the PISP and the Payer DFSP for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request.
-             *      */
+            /** @description Common ID between the PISP and the Payer DFSP for the transaction request object. The ID should be reused for resends of the same transaction request. A new ID should be generated for each new transaction request. */
             transactionRequestId: components["schemas"]["CorrelationId"];
             /** @description Information about the Payee in the proposed financial transaction. */
             payee: components["schemas"]["Party"];
@@ -908,7 +909,6 @@ export interface components {
             note?: string;
             /**
              * @description Date and time until when the transaction request is valid. It can be set to get a quick failure in case the peer FSP takes too long to respond.
-             *
              * @example 2016-05-24T08:38:08.699-04:00
              */
             expiration: string;
@@ -951,7 +951,6 @@ export interface components {
         /**
          * AuthorizationResponseType
          * @description The customer accepted the terms of the transfer
-         *
          * @enum {string}
          */
         AuthorizationResponseTypeAccepted: "ACCEPTED";
@@ -993,31 +992,27 @@ export interface components {
          *     For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
          *
          *     https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#32128-fidopublickeycredentialassertion
-         *
          */
         FIDOPublicKeyCredentialAssertion: {
-            /** @description credential id: identifier of pair of keys, base64 encoded
+            /**
+             * @description credential id: identifier of pair of keys, base64 encoded
              *     https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-             *      */
+             */
             id: string;
-            /** @description raw credential id: identifier of pair of keys, base64 encoded.
-             *      */
+            /** @description raw credential id: identifier of pair of keys, base64 encoded. */
             rawId: string;
-            /** @description AuthenticatorAssertionResponse
-             *      */
+            /** @description AuthenticatorAssertionResponse */
             response: {
-                /** @description Authenticator data object.
-                 *      */
+                /** @description Authenticator data object. */
                 authenticatorData: string;
-                /** @description JSON string with client data.
-                 *      */
+                /** @description JSON string with client data. */
                 clientDataJSON: string;
-                /** @description The signature generated by the private key associated with this credential.
-                 *      */
+                /** @description The signature generated by the private key associated with this credential. */
                 signature: string;
-                /** @description This field is optionally provided by the authenticator, and
+                /**
+                 * @description This field is optionally provided by the authenticator, and
                  *     represents the user.id that was supplied during registration.
-                 *      */
+                 */
                 userHandle?: string;
             };
             /**
@@ -1184,9 +1179,11 @@ export interface components {
         "Content-Type": string;
         /** @description The `Date` header field indicates the date when the request was sent. */
         Date: string;
-        /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+        /**
+         * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
          *
-         *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+         *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
         "X-Forwarded-For": string;
         /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
         "FSPIOP-Source": string;
@@ -1202,18 +1199,22 @@ export interface components {
         "FSPIOP-HTTP-Method": string;
         /** @description The `Accept` header field indicates the version of the API the client would like the server to use. */
         Accept: string;
-        /** @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+        /**
+         * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
          *
-         *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes). */
+         *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
         "Content-Length": number;
         /** @description The identifier value. */
         ID: string;
     };
     requestBodies: never;
     headers: {
-        /** @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+        /**
+         * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
          *
-         *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes). */
+         *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+         */
         "Content-Length": number;
         /** @description The `Content-Type` header indicates the specific version of the API used to send the payload body. */
         "Content-Type": string;
@@ -1292,9 +1293,11 @@ export interface operations {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -1310,9 +1313,11 @@ export interface operations {
                 "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
                 /** @description The `Accept` header field indicates the version of the API the client would like the server to use. */
                 Accept: components["parameters"]["Accept"];
-                /** @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+                /**
+                 * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
                  *
-                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes). */
+                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+                 */
                 "Content-Length"?: components["parameters"]["Content-Length"];
             };
             path?: never;
@@ -1344,9 +1349,11 @@ export interface operations {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -1390,9 +1397,11 @@ export interface operations {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -1406,9 +1415,11 @@ export interface operations {
                 "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
                 /** @description The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
                 "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
-                /** @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+                /**
+                 * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
                  *
-                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes). */
+                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+                 */
                 "Content-Length"?: components["parameters"]["Content-Length"];
             };
             path: {
@@ -1442,9 +1453,11 @@ export interface operations {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -1458,9 +1471,11 @@ export interface operations {
                 "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
                 /** @description The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
                 "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
-                /** @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+                /**
+                 * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
                  *
-                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes). */
+                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+                 */
                 "Content-Length"?: components["parameters"]["Content-Length"];
             };
             path: {
@@ -1495,9 +1510,11 @@ export interface operations {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -1513,9 +1530,11 @@ export interface operations {
                 "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
                 /** @description The `Accept` header field indicates the version of the API the client would like the server to use. */
                 Accept: components["parameters"]["Accept"];
-                /** @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+                /**
+                 * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
                  *
-                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes). */
+                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+                 */
                 "Content-Length"?: components["parameters"]["Content-Length"];
             };
             path?: never;
@@ -1547,9 +1566,11 @@ export interface operations {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -1593,9 +1614,11 @@ export interface operations {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -1609,9 +1632,11 @@ export interface operations {
                 "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
                 /** @description The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
                 "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
-                /** @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+                /**
+                 * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
                  *
-                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes). */
+                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+                 */
                 "Content-Length"?: components["parameters"]["Content-Length"];
             };
             path: {
@@ -1622,9 +1647,11 @@ export interface operations {
         };
         requestBody: {
             content: {
-                /** @example {
+                /**
+                 * @example {
                  *       "transactionRequestState": "RECEIVED"
-                 *     } */
+                 *     }
+                 */
                 "application/json": components["schemas"]["tppTransfersPutResponse"];
             };
         };
@@ -1648,9 +1675,11 @@ export interface operations {
                 "Content-Type": components["parameters"]["Content-Type"];
                 /** @description The `Date` header field indicates the date when the request was sent. */
                 Date: components["parameters"]["Date"];
-                /** @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+                /**
+                 * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
                  *
-                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`. */
+                 *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+                 */
                 "X-Forwarded-For"?: components["parameters"]["X-Forwarded-For"];
                 /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
                 "FSPIOP-Source": components["parameters"]["FSPIOP-Source"];
@@ -1664,9 +1693,11 @@ export interface operations {
                 "FSPIOP-URI"?: components["parameters"]["FSPIOP-URI"];
                 /** @description The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
                 "FSPIOP-HTTP-Method"?: components["parameters"]["FSPIOP-HTTP-Method"];
-                /** @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
+                /**
+                 * @description The `Content-Length` header field indicates the anticipated size of the payload body. Only sent if there is a body.
                  *
-                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes). */
+                 *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
+                 */
                 "Content-Length"?: components["parameters"]["Content-Length"];
             };
             path: {
