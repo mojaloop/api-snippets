@@ -1,0 +1,33 @@
+title: TaxPeriod3
+description: |
+  Period of time details related to the tax payment.
+type: object
+additionalProperties: false
+properties:
+  FrToDt:
+    allOf:
+      - $ref: ./DatePeriod2.yaml
+      - description: |
+          FromToDate
+
+          Range of time between a start date and an end date for which the tax report is provided.
+  Tp:
+    allOf:
+      - $ref: ./TaxRecordPeriod1Code.yaml
+      - description: |
+          Type
+
+          Identification of the period related to the tax payment.
+  Yr:
+    allOf:
+      - $ref: ./ISOYear.yaml
+      - description: |
+          Year
+
+          Year related to the tax payment.
+example:
+  Yr: 2020
+  Tp: MM01
+  FrToDt:
+    FrDt: '2020-01-01'
+    ToDt: '2020-01-31'

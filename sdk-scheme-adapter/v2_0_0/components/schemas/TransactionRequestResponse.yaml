@@ -1,5 +1,6 @@
 title: TransactionRequestResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /transactionRequests/{ID} callback.'
 properties:
   body:

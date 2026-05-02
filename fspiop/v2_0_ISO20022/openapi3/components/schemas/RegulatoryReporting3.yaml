@@ -1,0 +1,40 @@
+title: RegulatoryReporting3
+description: |
+  Information needed due to regulatory and/or statutory requirements.
+type: object
+additionalProperties: false
+properties:
+  DbtCdtRptgInd:
+    allOf:
+      - $ref: ./RegulatoryReportingType1Code.yaml
+      - description: >
+          DebitCreditReportingIndicator
+
+          Identifies whether the regulatory reporting information applies to the debit side,
+          to the credit side or to both debit and credit sides of the transaction.
+  Authrty:
+    allOf:
+      - $ref: ./RegulatoryAuthority2.yaml
+      - description: |
+          Authority
+
+          Entity requiring the regulatory reporting information.
+  Dtls:
+    description: >
+      Details
+
+      Identifies whether the regulatory reporting information applies to the debit side,
+      to the credit side or to both debit and credit sides of the transaction.
+    anyOf:
+      - $ref: ./StructuredRegulatoryReporting3.yaml
+      - items:
+          $ref: ./StructuredRegulatoryReporting3.yaml
+        type: array
+example:
+  DbtCdtRptgInd: CRED
+  Authrty:
+    Nm: Swiss National Bank
+    Ctry: CH
+  Dtls:
+    Cd: A1
+    Inf: Mandatory regulatory information

@@ -1,0 +1,49 @@
+title: Party40Choice
+description: |
+   Identification of a person, an organisation or a financial institution.
+type: object
+additionalProperties: false
+anyOf:
+  - properties:
+      Pty:
+        allOf:
+          - $ref: ./PartyIdentification135.yaml
+          - description: >
+              Party
+
+              Identification of a person or an organisation.
+    required:
+      - Pty
+  - properties:
+      Agt:
+        allOf:
+          - $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
+          - description: >
+              Agent
+
+              Identification of a financial institution.
+    required:
+      - Agt
+example:
+  Pty:
+    Nm: Name
+    PstlAdr:
+      Ctry: US
+      AdrLine:
+        - Line1
+        - Line2
+    Id:
+      OrgId:
+        AnyBIC: BIC
+  Agt:
+    FinInstnId:
+      BICFI: BUKBGB22
+    BrnchId:
+      Id: 12345
+      Nm: Oxford Street Branch
+      PstlAdr:
+        Ctry: GB
+        AdrLine:
+          - 1 Oxford Street
+          - London
+          - UK

@@ -1,5 +1,6 @@
 title: FxConversion
 type: object
+additionalProperties: false
 description: A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
 properties:
   conversionId:

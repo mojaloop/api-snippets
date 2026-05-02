@@ -1,0 +1,30 @@
+title: VerificationReason1Choice
+type: object
+additionalProperties: false
+description: |
+  Choice of format for the verification reason.
+  Only one, between the coded and the proprietary, can be chosen.
+anyOf:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalVerificationReason1Code.yaml
+          - description: >
+              Code
+
+              Reason why the verified identification information is incorrect, as published in an external
+              reason code list.
+    required:
+      - Cd
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Reason why the verified identification information is incorrect, in a free text form.
+    required:
+      - Prtry
+example:
+  Cd: AGNT

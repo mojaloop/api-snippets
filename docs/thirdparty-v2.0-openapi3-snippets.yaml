@@ -540,6 +540,7 @@ components:
     Extension:
       title: Extension
       type: object
+      additionalProperties: false
       description: Data model for the complex type Extension.
       properties:
         key:
@@ -552,6 +553,7 @@ components:
     ExtensionList:
       title: ExtensionList
       type: object
+      additionalProperties: false
       description: Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
       properties:
         extension:
@@ -596,6 +598,7 @@ components:
     ErrorInformation:
       title: ErrorInformation
       type: object
+      additionalProperties: false
       description: Data model for the complex type ErrorInformation.
       properties:
         errorCode:
@@ -843,6 +846,7 @@ components:
     PartyComplexName:
       title: PartyComplexName
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyComplexName.
       properties:
         firstName:
@@ -894,6 +898,7 @@ components:
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyPersonalInfo.
       properties:
         complexName:
@@ -940,6 +945,7 @@ components:
     Money:
       title: Money
       type: object
+      additionalProperties: false
       description: Data model for the complex type Money.
       properties:
         currency:
@@ -970,6 +976,7 @@ components:
     GeoCode:
       title: GeoCode
       type: object
+      additionalProperties: false
       description: Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
       properties:
         latitude:
@@ -996,6 +1003,7 @@ components:
     QuotesIDPutResponse:
       title: QuotesIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /quotes/{ID} callback.
       properties:
         transferAmount:
@@ -1097,8 +1105,8 @@ components:
     CorrelationId:
       title: CorrelationId
       type: string
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-      description: Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
+      description: Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)
       example: b51ec534-ee48-4575-b6a9-ead2955b8069
     ParticipantsPostRequest:
       title: ParticipantsPostRequest
@@ -1191,6 +1199,7 @@ components:
     Refund:
       title: Refund
       type: object
+      additionalProperties: false
       description: Data model for the complex type Refund.
       properties:
         originalTransactionId:
@@ -1208,6 +1217,7 @@ components:
     TransactionType:
       title: TransactionType
       type: object
+      additionalProperties: false
       description: Data model for the complex type TransactionType.
       properties:
         scenario:
@@ -1287,6 +1297,7 @@ components:
     ErrorInformationResponse:
       title: ErrorInformationResponse
       type: object
+      additionalProperties: false
       description: Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
       properties:
         errorInformation:
@@ -1345,6 +1356,44 @@ components:
         - amount
         - transactionType
         - expiration
+    CorrelationId-2:
+      title: CorrelationId
+      type: string
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+      description: Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+      example: b51ec534-ee48-4575-b6a9-ead2955b8069
+    Refund-2:
+      title: Refund
+      type: object
+      description: Data model for the complex type Refund.
+      properties:
+        originalTransactionId:
+          $ref: '#/components/schemas/CorrelationId-2'
+        refundReason:
+          $ref: '#/components/schemas/RefundReason'
+      required:
+        - originalTransactionId
+    TransactionType-2:
+      title: TransactionType
+      type: object
+      description: Data model for the complex type TransactionType.
+      properties:
+        scenario:
+          $ref: '#/components/schemas/TransactionScenario'
+        subScenario:
+          $ref: '#/components/schemas/TransactionSubScenario'
+        initiator:
+          $ref: '#/components/schemas/TransactionInitiator'
+        initiatorType:
+          $ref: '#/components/schemas/TransactionInitiatorType'
+        refundInfo:
+          $ref: '#/components/schemas/Refund-2'
+        balanceOfPayments:
+          $ref: '#/components/schemas/BalanceOfPayments'
+      required:
+        - scenario
+        - initiator
+        - initiatorType
     tppTransactionRequestPutResponse:
       title: tppAuthorizationsPostRequest
       description: |-
@@ -1382,7 +1431,7 @@ components:
             - $ref: '#/components/schemas/Party'
           description: Information about the Payee in the proposed financial transaction.
         transactionType:
-          $ref: '#/components/schemas/TransactionType'
+          $ref: '#/components/schemas/TransactionType-2'
         expiration:
           allOf:
             - $ref: '#/components/schemas/DateTime'
@@ -1404,6 +1453,7 @@ components:
     ErrorInformationObject:
       title: ErrorInformationObject
       type: object
+      additionalProperties: false
       description: Data model for the complex type object that contains ErrorInformation.
       properties:
         errorInformation:

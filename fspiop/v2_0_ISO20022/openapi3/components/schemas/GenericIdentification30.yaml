@@ -1,0 +1,34 @@
+title: GenericIdentification30
+type: object
+additionalProperties: false
+description: >
+  Generic scheme identification for a party.
+properties:
+  Id:
+    allOf:
+      - $ref: ./Exact4AlphaNumericText.yaml
+      - description: >
+          Identification
+
+          Proprietary information, often a code, issued by the data source scheme issuer.
+  Issr:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Issuer
+
+          Entity that assigns the identification.
+  SchmeNm:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          SchemeName
+
+          Short textual description of the scheme.
+required:
+  - Id
+  - Issr
+example:
+  Id: 1234
+  Issr: BIC
+  SchmeNm: BICFI

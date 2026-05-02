@@ -1,5 +1,6 @@
 title: QuotesPostRequest
 type: object
+additionalProperties: false
 description: The object sent in the POST /quotes request.
 properties:
   quoteId:
@@ -42,7 +43,7 @@ properties:
   expiration:
     $ref: ./DateTime.yaml
   extensionList:
-    $ref: ./ExtensionList.yaml
+    $ref: ./ExtensionList_v2_1_0.yaml
 required:
   - quoteId
   - transactionId

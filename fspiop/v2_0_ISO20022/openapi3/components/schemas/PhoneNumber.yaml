@@ -1,0 +1,5 @@
+title: PhoneNumber
+type: string
+description: |
+  Double check this regex.
+pattern: ^\+[0-9]{1,3}-[0-9()+\-]{1,30}$

@@ -58,6 +58,12 @@ paths:
       responses:
         200:
           description: Ok
+  /participants:
+    $ref: 'paths/participants.yaml'
+  /participants/{ID}:
+    $ref: 'paths/participants_ID.yaml'
+  /participants/{ID}/error:
+    $ref: 'paths/participants_ID_error.yaml'
   /participants/{Type}/{ID}:
     $ref: 'paths/participants_Type_ID.yaml'
   /participants/{Type}/{ID}/error:
@@ -66,12 +72,6 @@ paths:
     $ref: 'paths/participants_Type_ID_SubId.yaml'
   /participants/{Type}/{ID}/{SubId}/error:
     $ref: 'paths/participants_Type_ID_SubId_error.yaml'
-  /participants:
-    $ref: 'paths/participants.yaml'
-  /participants/{ID}:
-    $ref: 'paths/participants_ID.yaml'
-  /participants/{ID}/error:
-    $ref: 'paths/participants_ID_error.yaml'
   /parties/{Type}/{ID}:
     $ref: 'paths/parties_Type_ID.yaml'
   /parties/{Type}/{ID}/error:

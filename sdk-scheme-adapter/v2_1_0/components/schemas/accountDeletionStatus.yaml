@@ -1,0 +1,11 @@
+type: array
+items:
+  type: object
+  additionalProperties: false
+  required:
+    - fspId
+  properties:
+    fspId:
+      $ref: ./FspId.yaml
+    error:
+      $ref: ./errorResponse.yaml

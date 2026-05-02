@@ -8,7 +8,7 @@ put:
     party lookup and/or quotation stage and/or currency conversion stage.
 
 
-    The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion"
+    The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" or "acceptQuoteOrConversion"
     property set to `true` as required to continue the transfer.
 
 
@@ -24,6 +24,7 @@ put:
             - $ref: ../../components/schemas/transferContinuationAcceptParty.yaml
             - $ref: ../../components/schemas/transferContinuationAcceptQuote.yaml
             - $ref: ../../components/schemas/transferContinuationAcceptConversion.yaml
+            - $ref: ../../components/schemas/transferContinuationAcceptQuoteOrConversion.yaml
   parameters:
     - $ref: ../../components/parameters/transferId.yaml
   responses:

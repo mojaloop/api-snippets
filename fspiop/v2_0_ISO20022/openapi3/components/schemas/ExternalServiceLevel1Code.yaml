@@ -1,0 +1,6 @@
+title: ExternalServiceLevel1Code
+description: Specifies the external service level code.
+type: string
+minLength: 1
+maxLength: 4
+example: 1234

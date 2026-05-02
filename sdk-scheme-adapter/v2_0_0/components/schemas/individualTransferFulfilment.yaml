@@ -1,4 +1,5 @@
 type: object
+additionalProperties: false
 description: >-
   A Mojaloop API transfer fulfilment for individual transfers in a bulk
   transfer

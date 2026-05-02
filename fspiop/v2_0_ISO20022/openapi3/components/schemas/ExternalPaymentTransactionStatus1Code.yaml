@@ -1,0 +1,22 @@
+title: ExternalPaymentTransactionStatus1Code
+description: |
+  Specifies the external payment transaction status code.
+
+  For FSPIOP transfer state enumeration mappings:
+  {
+    "COMM": "COMMITED",
+    "RESV": "RESERVED",
+    "RECV": "RECEIVED",
+    "ABOR": "ABORTED"
+  }
+
+  NOTE: enum enforcement is not apart of the ISO20022 specification, but is added here for FSPIOP mappings.
+type: string
+minLength: 1
+maxLength: 4
+example: COMM
+enum:
+  - COMM
+  - RESV
+  - RECV
+  - ABOR

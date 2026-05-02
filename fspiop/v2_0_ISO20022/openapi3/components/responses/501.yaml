@@ -1,0 +1,10 @@
+description: Not Implemented
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/ErrorInformationResponse.yaml
+headers:
+  Content-Length:
+    $ref: ../headers/Content-Length.yaml
+  Content-Type:
+    $ref: ../headers/Content-Type.yaml

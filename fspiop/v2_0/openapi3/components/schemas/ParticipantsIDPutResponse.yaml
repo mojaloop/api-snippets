@@ -1,5 +1,6 @@
 title: ParticipantsIDPutResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /participants/{ID} callback.'
 properties:
   partyList:

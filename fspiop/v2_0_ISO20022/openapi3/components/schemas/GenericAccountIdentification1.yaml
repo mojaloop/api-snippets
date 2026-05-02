@@ -1,0 +1,36 @@
+title: GenericAccountIdentification1
+type: object
+additionalProperties: false
+description: >
+  GenericAccountIdentification
+
+  Unique and unambiguous identification of an account, as assigned by the account servicer.
+properties:
+  Id:
+    allOf:
+      - $ref: ./Max34Text.yaml
+      - description: >
+          Identification
+
+          Identification assigned by an institution.
+  SchmeNm:
+    allOf:
+      - $ref: ./AccountSchemeName1Choice.yaml
+      - description: >
+          SchemeName
+
+          Name of the identification scheme.
+  Issr:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Issuer
+
+          Entity that assigns the identification.
+required:
+  - Id
+example:
+  Id: 123
+  SchmeNm:
+    Cd: IBAN
+  Issr: BIC

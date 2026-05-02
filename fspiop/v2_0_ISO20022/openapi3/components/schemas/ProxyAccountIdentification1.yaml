@@ -1,0 +1,26 @@
+title: ProxyAccountIdentification1
+description: |
+  Information related to a proxy identification of the account.
+type: object
+additionalProperties: false
+properties:
+  Tp:
+    allOf:
+      - $ref: ./ProxyAccountType1Choice.yaml
+      - description: >
+          Type
+
+          Type of the proxy identification.
+  Id:
+    allOf:
+      - $ref: ./Max2048Text.yaml
+      - description: >
+          Identification
+
+          Identification used to indicate the account identification under another specified name.
+required:
+  - Id
+example:
+  Tp:
+    Cd: IBAN
+  Id: 123

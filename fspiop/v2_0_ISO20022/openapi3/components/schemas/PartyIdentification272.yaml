@@ -1,0 +1,71 @@
+title: PartyIdentification272
+description: |
+  Specifies the identification of a person or an organisation.
+type: object
+additionalProperties: false
+properties:
+  Nm:
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: >
+          Name
+
+          Name by which a party is known and which is usually used to identify that party.
+  PstlAdr:
+    allOf:
+      - $ref: ./PostalAddress27.yaml
+      - description: >
+          Postal Address
+
+          Information that locates and identifies a specific address, as defined by postal services.
+  Id:
+    allOf:
+      - $ref: ./Party52Choice.yaml
+      - description: >
+          Identification
+
+          Unique and unambiguous identification of a party.
+  CtryOfRes:
+    allOf:
+      - $ref: ./CountryCode.yaml
+      - description: >
+          Country of Residence
+
+          Country in which a person resides (the place of a person's home).
+          In the case of a company, it is the country from which the affairs of that company are directed.
+  CtctDtls:
+    allOf:
+      - $ref: ./Contact13.yaml
+      - description: >
+          Contact Details
+
+          Set of elements used to indicate how to contact the party.
+required:
+  - Id
+example:
+  Nm: John Doe
+  PstlAdr:
+    AdrTp: ADDR
+    Dept: Dept
+    SubDept: SubDept
+    StrtNm: StrtNm
+    BldgNb: BldgNb
+    PstCd: PstCd
+    TwnNm: TwnNm
+    CtrySubDvsn: CtrySubDvsn
+    Ctry: Ctry
+  Id:
+    OrgId:
+      AnyBIC: BIC
+    PrvtId:
+      DtAndPlcOfBirth:
+        Dt: '2018-01-01'
+        CityOfBirth: City
+  CtryOfRes: BE
+  CtctDtls:
+    NmPrfx: Mr
+    Nm: John Doe
+    PhneNb: +123-123-321
+    MobNb: +123-123-321
+    FaxNb: +123-123-321
+    EmailAdr: example@example.com

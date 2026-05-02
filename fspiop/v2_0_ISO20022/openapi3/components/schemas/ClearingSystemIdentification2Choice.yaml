@@ -1,0 +1,28 @@
+title: ClearingSystemIdentification2Choice
+description: |
+  Specifies the clearing system identification.
+type: object
+additionalProperties: false
+anyOf:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalClearingSystemIdentification1Code.yaml
+          - description: >
+              Code
+
+              Clearing system identification code, as published in an external list.
+    required:
+      - Cd
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Proprietary identification of the clearing system.
+    required:
+      - Prtry
+example:
+  Cd: CHIPS

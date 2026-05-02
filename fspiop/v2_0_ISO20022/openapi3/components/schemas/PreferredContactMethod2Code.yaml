@@ -1,0 +1,16 @@
+title: PreferredContactMethod2Code
+description: |
+  Preferred method used to reach the individual contact within an organisation.
+  LETT: Letter
+  MAIL: Email
+  PHON: Phone
+  FAXX: Fax
+  CELL: Mobile phone
+type: string
+enum:
+  - LETT
+  - MAIL
+  - PHON
+  - FAXX
+  - CELL
+example: MAIL

@@ -1,5 +1,6 @@
 title: TransfersIDPutResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /transfers/{ID} callback.'
 properties:
   fulfilment:

@@ -1,0 +1,28 @@
+title: StatusReason6Choice
+description: |
+  Specifies the reason for the status.
+type: object
+additionalProperties: false
+anyOf:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalStatusReason1Code.yaml
+          - description: >
+              Code
+
+              Reason for the status, as published in an external reason code list.
+    required:
+      - Cd
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Reason for the status, in a proprietary form.
+    required:
+      - Prtry
+example:
+  Cd: AGNT

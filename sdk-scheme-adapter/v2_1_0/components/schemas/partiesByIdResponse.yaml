@@ -1,5 +1,6 @@
 title: partiesByIdResponse
 type: object
+additionalProperties: false
 description: GET /parties/{Type}/{ID} response object
 properties:
   party:

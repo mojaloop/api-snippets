@@ -603,8 +603,8 @@ components:
         - RECEIVE
       type: string
     bulkQuoteId:
-      description: A Mojaloop API bulk quote identifier (UUID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+      description: A Mojaloop API bulk quote identifier (UUID/ULID).
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     bulkQuoteRequest:
       description: A request for a bulk quote.
@@ -649,8 +649,8 @@ components:
         - individualQuoteResults
       type: object
     bulkTransferId:
-      description: A Mojaloop API transfer identifier (UUID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+      description: A Mojaloop API transfer identifier (UUID/ULID).
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     bulkTransferRequest:
       properties:
@@ -888,7 +888,6 @@ components:
     extensionItem:
       properties:
         key:
-          maxLength: 32
           minLength: 1
           type: string
         value:
@@ -944,7 +943,7 @@ components:
         fulfil:
           properties:
             body:
-              type: object
+              $ref: ../components/schemas/TransfersIDPutResponse.yaml
             headers:
               type: object
           type: object
@@ -955,34 +954,34 @@ components:
         prepare:
           properties:
             body:
-              type: object
+              $ref: '../components/schemas/TransfersPostRequest.yaml'
             headers:
               type: object
           type: object
         quote:
           properties:
             fulfilment:
-              type: string
+              $ref: '../components/schemas/IlpFulfilment.yaml'
             internalRequest:
-              type: object
+              $ref: '#/components/schemas/quoteRequest'
             mojaloopResponse:
-              type: object
+              $ref: '../components/schemas/QuotesIDPutResponse.yaml'
             request:
-              type: object
+              $ref: '../components/schemas/QuotesPostRequest.yaml'
             response:
-              type: object
+              $ref: '#/components/schemas/quoteResponse'
           type: object
         quoteRequest:
           properties:
             body:
-              type: object
+              $ref: '../components/schemas/QuotesPostRequest.yaml'
             headers:
               type: object
           type: object
         quoteResponse:
           properties:
             body:
-              type: object
+              $ref: '../components/schemas/QuotesIDPutResponse.yaml'
             headers:
               type: object
           type: object
@@ -1092,8 +1091,8 @@ components:
         - DEVICE
       type: string
     quoteId:
-      description: A Mojaloop API quote identifier (UUID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+      description: A Mojaloop API quote identifier (UUID/ULID).
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     quoteRequest:
       description: A request for a quote for transfer from the DFSP backend.
@@ -1213,7 +1212,7 @@ components:
       type: string
     transactionId:
       description: ID of the transaction, the ID is decided by the Payer FSP during the creation of the quote.
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     transactionRequest:
       description: A request for a pull based transfer.
@@ -1258,8 +1257,8 @@ components:
         - initiatorType
       type: object
     transactionRequestId:
-      description: A Mojaloop API transaction request identifier (UUID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+      description: A Mojaloop API transaction request identifier (UUID/ULID).
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     transactionRequestResponse:
       description: A response to a request for a quote.
@@ -1352,8 +1351,8 @@ components:
         - timestamp
       type: object
     transferId:
-      description: A Mojaloop API transfer identifier (UUID).
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+      description: A Mojaloop API transfer identifier (UUID/ULID).
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
       type: string
     transferParty:
       properties:
@@ -1460,7 +1459,7 @@ components:
           description: Transaction ID from the DFSP backend, used to reconcile transactions between the Switch and DFSP backend systems.
           type: string
         transferState:
-          $ref: '#/components/schemas/transferState'
+          $ref: '../components/schemas/TransferStateFromBackend.yaml'
       required:
         - homeTransactionId
       type: object

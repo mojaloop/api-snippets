@@ -1,0 +1,53 @@
+title: TaxAmount3
+description: |
+  Information on the amount of the tax record.
+type: object
+additionalProperties: false
+properties:
+  Rate:
+    allOf:
+      - $ref: ./PercentageRate.yaml
+      - description: |
+          Rate
+
+          Rate used to calculate the tax.
+  TaxblBaseAmt:
+    allOf:
+      - $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+      - description: |
+          TaxableBaseAmount
+
+          Amount of money on which the tax is based.
+  TtlAmt:
+    allOf:
+      - $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+      - description: |
+          TotalAmount
+
+          Total amount that is the result of the calculation of the tax for the record.
+  Dtls:
+    description: |
+      Details
+
+      Set of elements used to provide details on the tax period and amount.
+    anyOf:
+      - $ref: ./TaxRecordDetails3.yaml
+      - items:
+          $ref: ./TaxRecordDetails3.yaml
+        type: array
+example:
+  Rate: 0.0
+  TaxblBaseAmt:
+    Ccy: EUR
+    Amt: 0
+  TtlAmt:
+    Ccy: EUR
+    Amt: 0
+  Dtls:
+    Tp: T1
+    Ctry: CH
+    Cd: CHF
+    Amt:
+      Ccy: CHF
+      Amt: 1000
+    Inf: 12345

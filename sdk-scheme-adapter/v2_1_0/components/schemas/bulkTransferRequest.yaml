@@ -1,4 +1,5 @@
 type: object
+additionalProperties: false
 required:
 - bulkTransferId
 - homeTransactionId
@@ -25,4 +26,4 @@ properties:
     items:
       $ref: ./individualTransfer.yaml
   extensions:
-    $ref: ./ExtensionList.yaml
+    $ref: ExtensionList_v2_1_0.yaml

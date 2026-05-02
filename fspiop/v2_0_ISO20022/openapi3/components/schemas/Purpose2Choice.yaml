@@ -1,0 +1,33 @@
+title: Purpose2Choice
+description: |
+  Specifies the underlying reason for the payment transaction.
+
+  Usage: Purpose is used by the end-customers, that is initiating party,
+  (ultimate) debtor, (ultimate) creditor to provide information concerning the nature of the payment. Purpose
+  is a content element, which is not used for processing by any of the agents involved in the payment
+  chain.
+type: object
+additionalProperties: false
+anyOf:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalPurpose1Code.yaml
+          - description: |
+              Code
+
+              Underlying reason for the payment transaction, as published in an external purpose code list.
+    required:
+      - Cd
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: |
+              Proprietary
+
+              Purpose, in a proprietary form.
+    required:
+      - Prtry
+example:
+  Cd: CH03

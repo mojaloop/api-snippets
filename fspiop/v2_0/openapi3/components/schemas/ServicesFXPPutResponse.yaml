@@ -1,5 +1,6 @@
 title: ServicesFXPPutResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /services/FXP callback.'
 properties:
   providers:

@@ -1,4 +1,5 @@
 type: object
+additionalProperties: false
 properties:
   quoteId:
     $ref: ./CorrelationId.yaml

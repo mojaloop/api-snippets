@@ -1,0 +1,28 @@
+title: ProxyAccountType1Choice
+description: |
+  Specifies the type of the proxy account.
+type: object
+additionalProperties: false
+anyOf:
+  - properties:
+      Cd:
+        allOf:
+          - $ref: ./ExternalProxyAccountType1Code.yaml
+          - description: >
+              Code
+
+              Proxy account type, in a coded form as published in an external list.
+    required:
+      - Cd
+  - properties:
+      Prtry:
+        allOf:
+          - $ref: ./Max35Text.yaml
+          - description: >
+              Proprietary
+
+              Proxy account type, in a proprietary form.
+    required:
+      - Prtry
+example:
+  Cd: EMAIL

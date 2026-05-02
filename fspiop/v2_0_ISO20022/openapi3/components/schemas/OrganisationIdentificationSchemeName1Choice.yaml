@@ -1,0 +1,27 @@
+title: OrganisationIdentificationSchemeName1Choice
+description: |
+  Choice of format for the organisation identification.
+type: object
+additionalProperties: false
+properties:
+  Cd:
+    allOf:
+      - $ref: ./ExternalOrganisationIdentification1Code.yaml
+      - description: >
+          Code
+
+          Name of the identification scheme, in a coded form as published in an external list.
+  Prtry:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Proprietary
+
+          Name of the identification scheme, in a free text form.
+anyOf:
+  - properties:
+      Cd: {}
+  - properties:
+      Prtry: {}
+example:
+  Cd: BIC

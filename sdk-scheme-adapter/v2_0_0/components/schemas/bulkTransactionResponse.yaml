@@ -1,5 +1,6 @@
 title: BulkTransactionResponse
 type: object
+additionalProperties: false
 required:
   - bulkHomeTransactionID
   - bulkTransactionId

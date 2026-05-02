@@ -1,0 +1,83 @@
+parameters:
+  - $ref: ../components/parameters/Type.yaml
+  - $ref: ../components/parameters/ID.yaml
+  - $ref: ../components/parameters/SubId.yaml
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+get:
+  description: >-
+    The HTTP request `GET /parties/{Type}/{ID}` (or `GET
+    /parties/{Type}/{ID}/{SubId}`) is used to look up information regarding the
+    requested Party, defined by `{Type}`, `{ID}` and optionally `{SubId}` (for
+    example, `GET /parties/MSISDN/123456789`, or `GET
+    /parties/BUSINESS/shoecompany/employee1`).
+  summary: Look up party information
+  tags:
+    - parties
+  operationId: PartiesSubIdByTypeAndID
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    '202':
+      $ref: ../components/responses/202.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml
+put:
+  description: >-
+    The callback `PUT /parties/{Type}/{ID}` (or `PUT
+    /parties/{Type}/{ID}/{SubId}`) is used to inform the client of a successful
+    result of the Party information lookup.
+  summary: Return party information
+  tags:
+    - parties
+  operationId: PartiesSubIdByTypeAndIDPut
+  parameters:
+    - $ref: ../components/parameters/Content-Length.yaml
+  requestBody:
+    description: Party information returned.
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: >-
+            ../components/schemas/GetParties_IdentificationVerificationReportV03.yaml
+  responses:
+    '200':
+      $ref: ../components/responses/200.yaml
+    '400':
+      $ref: ../components/responses/400.yaml
+    '401':
+      $ref: ../components/responses/401.yaml
+    '403':
+      $ref: ../components/responses/403.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+    '405':
+      $ref: ../components/responses/405.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+    '501':
+      $ref: ../components/responses/501.yaml
+    '503':
+      $ref: ../components/responses/503.yaml

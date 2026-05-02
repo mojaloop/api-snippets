@@ -1,0 +1,29 @@
+title: PersonIdentification18
+description: |
+  Unique and unambiguous way to identify a person.
+type: object
+additionalProperties: false
+properties:
+  DtAndPlcOfBirth:
+    allOf:
+      - $ref: ./DateAndPlaceOfBirth1.yaml
+      - description: >
+          DateAndPlaceOfBirth
+
+          Date and place of birth of a person.
+  Othr:
+    allOf:
+      - $ref: ./GenericPersonIdentification2.yaml
+      - description: >
+          Other
+
+          Unique identification of a person, as assigned by an institution, using an identification scheme.
+example:
+  DtAndPlcOfBirth:
+    Dt: '2018-01-01'
+    CityOfBirth: City
+  Othr:
+    Id: 123
+    SchmeNm:
+      Cd: CUST
+      Prtry: 1

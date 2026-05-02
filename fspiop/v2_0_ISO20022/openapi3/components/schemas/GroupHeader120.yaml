@@ -1,0 +1,31 @@
+title: GroupHeader120
+description: >
+  Set of characteristics shared by all individual transactions included in the
+  message.
+type: object
+additionalProperties: false
+properties:
+  MsgId:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          MessageIdentification
+
+          Definition: Point to point reference, as assigned by the instructing party, and sent to the next party in the
+          chain to unambiguously identify the message.
+
+          Usage: The instructing party has to make sure that MessageIdentification is unique per instructed party
+          for a pre-agreed period.
+  CreDtTm:
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          CreationDateTime
+
+          Date and time at which the message was created.
+required:
+  - MsgId
+  - CreDtTm
+example:
+  MsgId: 12345
+  CreDtTm: '2020-01-01T00:00:00Z'

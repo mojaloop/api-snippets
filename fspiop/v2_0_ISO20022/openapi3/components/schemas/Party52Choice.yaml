@@ -1,0 +1,33 @@
+title: Party52Choice
+description: |
+  NOTE: Unsure on the description.
+type: object
+additionalProperties: false
+anyOf:
+  - properties:
+      OrgId:
+        allOf:
+          - $ref: ./OrganisationIdentification39.yaml
+          - description: >
+              Organisation
+
+              Unique and unambiguous way to identify an organisation.
+    required:
+      - OrgId
+  - properties:
+      PrvtId:
+        allOf:
+          - $ref: ./PersonIdentification18.yaml
+          - description: >
+              Person
+
+              Unique and unambiguous identification of a person, for example a passport.
+    required:
+      - PrvtId
+example:
+  OrgId:
+    AnyBIC: BIC
+  PrvtId:
+    DtAndPlcOfBirth:
+      Dt: '2018-01-01'
+      CityOfBirth: City

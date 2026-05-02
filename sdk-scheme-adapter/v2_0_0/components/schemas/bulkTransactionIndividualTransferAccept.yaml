@@ -1,4 +1,5 @@
 type: object
+additionalProperties: false
 description: Data model for the 'individualTransfer' while accepting party or quote.
 properties:
   transferId:

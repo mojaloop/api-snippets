@@ -1,0 +1,97 @@
+title: Contact4
+description: |
+  Specifies the details of the contact person.
+type: object
+additionalProperties: false
+properties:
+  NmPrfx:
+    allOf:
+      - $ref: ./NamePrefix2Code.yaml
+      - description: >
+          NamePrefix
+
+          Name prefix to be used before the name of the person.
+  Nm:
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: >
+          Name
+
+          Name by which a party is known and which is usually used to identify that party.
+  PhneNb:
+    allOf:
+      - $ref: ./PhoneNumber.yaml
+      - description: >
+          PhoneNumber
+
+          Collection of information that identifies a phone number, as defined by telecom services.
+  MobNb:
+    allOf:
+      - $ref: ./PhoneNumber.yaml
+      - description: >
+          MobilePhoneNumber
+
+          Collection of information that identifies a mobile phone number, as defined by telecom services.
+  FaxNb:
+    allOf:
+      - $ref: ./PhoneNumber.yaml
+      - description: >
+          FaxNumber
+
+          Collection of information that identifies a fax number, as defined by telecom services.
+  EmailAdr:
+    allOf:
+      - $ref: ./Max2048Text.yaml
+      - description: >
+          EmailAddress
+
+          Address for electronic mail (e-mail).
+  EmailPurp:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          EmailPurpose
+
+          Purpose for which an email address may be used.
+  JobTitl:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          JobTitle
+
+          Title of the function.
+  Rspnsblty:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Responsibility
+
+          Role of a person in an organisation.
+  Dept:
+    allOf:
+      - $ref: ./Max70Text.yaml
+      - description: >
+          Department
+
+          Identification of a division of a large organisation or building.
+  Othr:
+    allOf:
+      - $ref: ./OtherContact1.yaml
+      - description: >
+          Other
+
+          Contact details in another form.
+  PrefrdMtd:
+    allOf:
+      - $ref: ./PreferredContactMethod1Code.yaml
+      - description: >
+          PreferredMethod
+
+          Preferred method used to reach the contact.
+example:
+  NmPrfx: Mr
+  Nm: John Doe
+  PhneNb: +123-123-321
+  MobNb: +123-123-321
+  FaxNb: +123-123-321
+  EmailAdr: example@example.com

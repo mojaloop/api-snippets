@@ -1,0 +1,53 @@
+openapi: 3.0.2
+info:
+  version: v2.0-iso20022-draft
+  title: Open API for FSP Interoperability (FSPIOP) - the ISO 20022 message version
+  description: >-
+    IN PROGRESS
+  license:
+    name: CC BY-ND 4.0
+    url: https://github.com/mojaloop/mojaloop-specification/blob/main/LICENSE.md
+  contact:
+    name: Sam Kummary
+    url: https://github.com/mojaloop/mojaloop-specification/issues
+servers:
+  - url: 'protocol://hostname:<port>/switch/'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+paths:
+  /parties/{Type}/{ID}:
+    $ref: paths/parties_{Type}_{ID}.yaml
+  /parties/{Type}/{ID}/error:
+    $ref: paths/parties_{Type}_{ID}_error.yaml
+  /parties/{Type}/{ID}/{SubId}:
+    $ref: paths/parties_{Type}_{ID}_{SubId}.yaml
+  /parties/{Type}/{ID}/{SubId}/error:
+    $ref: paths/parties_{Type}_{ID}_{SubId}_error.yaml
+  /quotes:
+    $ref: paths/quotes.yaml
+  /quotes/{ID}:
+    $ref: paths/quotes_{ID}.yaml
+  /quotes/{ID}/error:
+    $ref: paths/quotes_{ID}_error.yaml
+  /transfers:
+    $ref: paths/transfers.yaml
+  /transfers/{ID}:
+    $ref: paths/transfers_{ID}.yaml
+  /transfers/{ID}/error:
+    $ref: paths/transfers_{ID}_error.yaml
+  /fxQuotes:
+    $ref: paths/fxQuotes.yaml
+  /fxQuotes/{ID}:
+    $ref: paths/fxQuotes_{ID}.yaml
+  /fxQuotes/{ID}/error:
+    $ref: paths/fxQuotes_{ID}_error.yaml
+  /fxTransfers:
+    $ref: paths/fxTransfers.yaml
+  /fxTransfers/{ID}:
+    $ref: paths/fxTransfers_{ID}.yaml
+  /fxTransfers/{ID}/error:
+    $ref: paths/fxTransfers_{ID}_error.yaml

@@ -1,0 +1,23 @@
+title: TaxAuthorisation1
+description: |
+  Details of an authorised tax paying party.
+type: object
+additionalProperties: false
+properties:
+  Titl:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          Title
+
+          Title or position of debtor or the debtor's authorised representative.
+  Nm:
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: |
+          Name
+
+          Name of the debtor or the debtor's authorised representative.
+example:
+  Titl: Mr
+  Nm: John Doe

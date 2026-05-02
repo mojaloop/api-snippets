@@ -1,5 +1,6 @@
 title: ParticipantsTypeIDSubIDPostRequest
 type: object
+additionalProperties: false
 description: >-
   The object sent in the POST /participants/{Type}/{ID}/{SubId} and
   /participants/{Type}/{ID} requests. An additional optional ExtensionList

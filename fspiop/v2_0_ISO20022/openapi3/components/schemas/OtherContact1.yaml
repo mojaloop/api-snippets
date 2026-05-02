@@ -1,0 +1,25 @@
+title: OtherContact1
+description: |
+  Communication device number or electronic address used for communication.
+type: object
+additionalProperties: false
+properties:
+  ChanlTp:
+    allOf:
+      - $ref: ./Max4Text.yaml
+      - description: >
+          ChannelType
+
+          Method used to contact the financial institution's contact for the specific tax region.
+  Id:
+    allOf:
+      - $ref: ./Max128Text.yaml
+      - description: >
+          Identifier
+
+          Communication value such as phone number or email address.
+required:
+  - ChanlTp
+example:
+  ChanlTp: PHON
+  Id: 1234567890

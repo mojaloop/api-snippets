@@ -4,3 +4,4 @@ test/resolved.*
 junit.xml
 .eslintcache
 coverage
+*.idea

@@ -1,0 +1,7 @@
+title: Max4Text
+description: |
+  Specifies a character string with a maximum length of 4 characters.
+type: string
+minLength: 1
+maxLength: 4
+example: 1234

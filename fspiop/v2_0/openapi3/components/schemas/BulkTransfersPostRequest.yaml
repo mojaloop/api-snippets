@@ -1,5 +1,6 @@
 title: BulkTransfersPostRequest
 type: object
+additionalProperties: false
 description: The object sent in the POST /bulkTransfers request.
 properties:
   bulkTransferId:

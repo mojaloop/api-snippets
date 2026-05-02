@@ -1,0 +1,77 @@
+title: PartyIdentification135
+description: |
+  Specifies the identification of a person or an organisation.
+type: object
+additionalProperties: false
+properties:
+  Nm:
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: >
+          Name
+
+          Name by which a party is known and which is usually used to identify that party.
+  PstlAdr:
+    allOf:
+      - $ref: ./PostalAddress24.yaml
+      - description: >
+          PostalAddress
+
+          Information that locates and identifies a specific address, as defined by postal services.
+  Id:
+    allOf:
+      - $ref: ./Party38Choice.yaml
+      - description: >
+          Identification
+
+          Unique and unambiguous way to identify an organisation.
+  CtryOfRes:
+    allOf:
+      - $ref: ./CountryCode.yaml
+      - description: >
+          CountryOfResidence
+
+          Country in which a person resides (the place of a person's home). In the case of a company,
+          it is the country from which the affairs of that company are directed.
+  CtctDtls:
+    allOf:
+      - $ref: ./Contact4.yaml
+      - description: >
+          ContactDetails
+
+          Set of elements used to indicate how to contact the party.
+required:
+  - Id
+example:
+  Nm: John Doe
+  PstlAdr:
+    AdrTp: ADDR
+    Dept: Dept
+    SubDept: SubDept
+    StrtNm: StrtNm
+    BldgNb: BldgNb
+    BldgNm: BldgNm
+    Flr: Flr
+    PstBx: PstBx
+    Room: Room
+    PstCd: PstCd
+    TwnNm: TwnNm
+    TwnLctnNm: TwnLctnNm
+    DstrctNm: DstrctNm
+    CtrySubDvsn: CtrySubDvsn
+    Ctry: Ctry
+    AdrLine: AdrLine
+  Id:
+    OrgId:
+      Othr:
+        Id: 123
+        SchmeNm:
+          Prtry: DfspId
+  CtryOfRes: BE
+  CtctDtls:
+    NmPrfx: Mr
+    Nm: John Doe
+    PhneNb: +123-123-321
+    MobNb: +123-123-321
+    FaxNb: +123-123-321
+    EmailAdr: example@example.com

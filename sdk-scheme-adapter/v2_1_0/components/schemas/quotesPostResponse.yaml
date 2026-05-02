@@ -1,5 +1,6 @@
 title: QuotesPostResponse
 type: object
+additionalProperties: false
 properties:
   quotes:
     title: QuotesIDPutResponse
@@ -30,7 +31,7 @@ properties:
           condition:
             $ref: ./IlpCondition.yaml
           extensionList:
-            $ref: ./ExtensionList.yaml
+            $ref: ./ExtensionList_v2_1_0.yaml
         required:
           - transferAmount
           - expiration

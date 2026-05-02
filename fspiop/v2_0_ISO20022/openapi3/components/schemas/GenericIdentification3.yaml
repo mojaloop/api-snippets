@@ -1,0 +1,26 @@
+title: GenericIdentification3
+type: object
+additionalProperties: false
+description: >
+  Generic scheme identification for a party.
+properties:
+  Id:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Identification
+
+          Name or number assigned by an entity to enable recognition of that entity, for example,
+          account identifier.
+  Issr:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Issuer
+
+          Entity that assigns the identification.
+required:
+  - Id
+example:
+  Id: 123
+  Issr: BIC

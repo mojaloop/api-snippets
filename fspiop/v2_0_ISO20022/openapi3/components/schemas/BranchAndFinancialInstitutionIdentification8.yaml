@@ -1,0 +1,41 @@
+title: BranchAndFinancialInstitutionIdentification8
+type: object
+additionalProperties: false
+description: >
+  Unique and unambiguous identification of a financial institution or a branch
+  of a financial institution.
+properties:
+  FinInstnId:
+    allOf:
+      - $ref: ./FinancialInstitutionIdentification23.yaml
+      - description: >
+          FinancialInstitutionIdentification
+
+          Unique and unambiguous identification of a financial institution or a branch of a financial
+          institution.
+  BrnchId:
+    allOf:
+      - $ref: ./BranchData5.yaml
+      - description: >
+          BranchIdentification
+
+          Identifies a specific branch of a financial institution.
+required:
+  - FinInstnId
+example:
+  FinInstnId:
+    BICFI: J5BMVH7D
+  BrnchId:
+    Id: 123
+    Nm: Name
+    PstlAdr:
+      AdrTp: ADDR
+      Dept: Department
+      SubDept: Sub department
+      StrtNm: Street name
+      BldgNb: Building number
+      PstCd: Post code
+      TwnNm: Town name
+      CtrySubDvsn: Country subdivision
+      Ctry: Country
+      AdrLine: Address line

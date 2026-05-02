@@ -1,0 +1,43 @@
+title: PaymentTypeInformation28
+description: |
+  Provides further details of the type of payment.
+type: object
+additionalProperties: false
+properties:
+  InstrPrty:
+    $ref: ./Priority2Code.yaml
+  ClrChanl:
+    $ref: ./ClearingChannel2Code.yaml
+  SvcLvl:
+    allOf:
+      - $ref: ./ServiceLevel8Choice.yaml
+      - description: >
+          ServiceLevel
+
+          Agreement under which or rules under which the transaction should be processed.
+  LclInstrm:
+    allOf:
+      - $ref: ./LocalInstrument2Choice.yaml
+      - description: >
+          LocalInstrument
+
+          Definition: User community specific instrument.
+
+          Usage: This element is used to specify a local instrument, local clearing option and/or further qualify the
+          service or service level.
+  CtgyPurp:
+    allOf:
+      - $ref: ./CategoryPurpose1Choice.yaml
+      - description: >
+          CategoryPurpose
+
+          Specifies the high level purpose of the instruction based on a set of pre-defined categories.
+example:
+  InstrPrty: NORM
+  ClrChanl: RTGS
+  SvcLvl:
+    Cd: SEPA
+  LclInstrm:
+    Cd: CORE
+  CtgyPurp:
+    Cd: CASH

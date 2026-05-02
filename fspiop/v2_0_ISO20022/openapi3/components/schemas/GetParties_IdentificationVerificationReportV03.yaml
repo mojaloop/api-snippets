@@ -1,0 +1,81 @@
+title: GetParties_IdentificationVerificationReportV03
+type: object
+additionalProperties: false
+properties:
+  Assgnmt:
+    allOf:
+      - $ref: ./IdentificationAssignment3.yaml
+      - description: >
+          Assignment
+
+          Identifies the identification assignment.
+  Rpt:
+    allOf:
+      - $ref: ./VerificationReport4.yaml
+      - description: >
+          Report
+
+          Information concerning the verification of the identification data for which verification was
+          requested.
+  SplmtryData:
+    allOf:
+      - $ref: ./SupplementaryData1.yaml
+      - description: >
+          SupplementaryData
+
+          Additional information that cannot be captured in the structured elements and/or any other specific block.
+required:
+  - Assgnmt
+  - Rpt
+example:
+  Assgnmt:
+    MsgId: 123
+    CreDtTm: '2020-01-01T00:00:00Z'
+    Assgnr:
+      OrgId:
+        Othr:
+          Id: 123
+          SchmeNm:
+            Cd: BIC
+          Issr: BIC
+    Assgne:
+      OrgId:
+        Othr:
+          Id: DFSPID
+  Rpt:
+    OrgnlId: 12345678
+    Vrfctn: true
+    UpdtdPtyAndAcctId:
+      Pty:
+        Nm: John Doe
+        PstlAdr:
+          AdrTp: ADDR
+          Dept: Dept
+          SubDept: SubDept
+          StrtNm: StrtNm
+          BldgNb: BldgNb
+          BldgNm: BldgNm
+          Flr: Flr
+          PstBx: PstBx
+          Room: Room
+          PstCd: PstCd
+          TwnNm: TwnNm
+          TwnLctnNm: TwnLctnNm
+          DstrctNm: DstrctNm
+          CtrySubDvsn: CtrySubDvsn
+          Ctry: Ctry
+          AdrLine: AdrLine
+        Id:
+          OrgId:
+            Othr:
+              Id: 18761231234
+            SchmeNm:
+              Prtry: MSISDN
+        CtryOfRes: BE
+        CtctDtls:
+          NmPrfx: Mr
+          Nm: John Doe
+          PhneNb: +123-123-321
+          MobNb: +123-123-321
+          FaxNb: +123-123-321
+          EmailAdr: example@example.com

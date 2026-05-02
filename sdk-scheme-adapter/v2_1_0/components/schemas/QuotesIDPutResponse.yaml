@@ -1,5 +1,6 @@
 title: QuotesIDPutResponse
 type: object
+additionalProperties: false
 description: The object sent in the PUT /quotes/{ID} callback.
 properties:
   transferAmount:
@@ -19,7 +20,7 @@ properties:
   condition:
     $ref: ./IlpCondition.yaml
   extensionList:
-    $ref: ./ExtensionList.yaml
+    $ref: ./ExtensionList_v2_1_0.yaml
 required:
   - transferAmount
   - expiration

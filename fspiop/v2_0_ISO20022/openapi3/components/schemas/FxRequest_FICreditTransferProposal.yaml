@@ -1,0 +1,97 @@
+title: FxRequest_FICreditTransferProposal
+type: object
+additionalProperties: false
+description: >
+  FxRequest_FICreditTransferProposal
+
+  A group of elements providing information specific to the individual credit transfer(s) included in the message.
+properties:
+  GrpHdr:
+    allOf:
+      - $ref: ./GroupHeader113.yaml
+      - description: >
+          GroupHeader
+
+          Set of characteristics shared by all individual transactions included in the message.
+  CdtTrfTxInf:
+    allOf:
+      - $ref: ./CreditTransferTransaction68_FX_Quotes.yaml
+      - description: >
+          Credit Transfer Transaction Information
+required:
+  - GrpHdr
+  - CdtTrfTxInf
+example:
+  GrpHdr:
+    MsgId: 12345
+    CreDtTm: '2020-01-01T00:00:00Z'
+    NbOfTxs: 1
+    TtlIntrBkSttlmAmt:
+      Ccy: EUR
+      Value: 100.0
+    SttlmInf:
+      SttlmMtd: INDA
+      SttlmAcct:
+        Id:
+          IBAN: BE71096123456769
+        Ccy: EUR
+      SttlmAcctOwnr:
+        Nm: Name
+      SttlmAcctSvcr:
+        Nm: Name
+      SttlmAgt:
+        FinInstnId:
+          BICFI: BIC
+    PmtTpInf:
+      InstrPrty: NORM
+      CtgyPurp: CASH
+    CdtTrfTxInf:
+      PmtId:
+        InstrId: 12345
+        EndToEndId: 12345
+      Amt:
+        InstdAmt:
+          Ccy: EUR
+          Value: 100.0
+      Cdtr:
+        Nm: Name
+      CdtrAcct:
+        Id:
+          IBAN: BE71096123456769
+        Ccy: EUR
+      CdtrAgt:
+        FinInstnId:
+          BICFI: BIC
+      Dbtr:
+        Nm: Name
+      DbtrAcct:
+        Id:
+          IBAN: BE71096123456769
+        Ccy: EUR
+      DbtrAgt:
+        FinInstnId:
+          BICFI: BIC
+      IntrBkSttlmAmt:
+        Ccy: EUR
+        Value: 100.0
+      PmtTpInf:
+        InstrPrty: NORM
+        ClrChanl: RTGS
+        SvcLvl:
+          Cd: SEPA
+        LclInstrm:
+          Cd: CORE
+        CtgyPurp:
+          Cd: CASH
+      RgltryRptg:
+        Dbtr:
+          Nm: Name
+        DbtrAcct:
+          Id:
+            IBAN: BE71096123456769
+          Ccy: EUR
+        DbtrAgt:
+          FinInstnId:
+            BICFI: BIC
+        Cdtr:
+          Nm: Name

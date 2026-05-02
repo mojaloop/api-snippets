@@ -1,5 +1,6 @@
 title: FxQuotesPostBackendResponse
 type: object
+additionalProperties: false
 description: The object sent as a response for the POST /fxQuotes request. The terms under which the FXP will undertake the currency conversion proposed by the requester.
 properties:
   homeTransactionId:
@@ -7,7 +8,7 @@ properties:
     type: string
   conversionTerms:
     allOf:
-      - $ref: ../../../../fspiop/v2_0/openapi3/components/schemas/FxConversion.yaml
+      - $ref: ./FxConversion.yaml
       - description: The terms under which the FXP will undertake the currency conversion proposed by the requester.
 
 required:

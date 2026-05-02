@@ -1,0 +1,74 @@
+title: GetPartiesError_IdentificationVerificationReportV03
+type: object
+additionalProperties: false
+properties:
+  Assgnmt:
+    allOf:
+      - $ref: ./IdentificationAssignment3.yaml
+      - description: >
+          Assignment
+
+          Information related to the identification assignment.
+  Rpt:
+    allOf:
+      - $ref: ./VerificationReport4.yaml
+      - description: >
+          Report
+
+          Information concerning the verification of the identification data for which verification was
+          requested.
+  SplmtryData:
+    allOf:
+      - $ref: ./SupplementaryData1.yaml
+      - description: >
+          SupplementaryData
+
+          Additional information that cannot be captured in the structured elements and/or any other specific block.
+required:
+  - Assgnmt
+  - Rpt
+example:
+  Assgnmt:
+    Id: 123
+    CreDtTm: '2013-03-07T16:30:00'
+    Assgnr:
+      Id:
+        Id: 123
+        SchmeNm:
+          Cd: IBAN
+        Issr: BIC
+    Assgne:
+      Id:
+        Id: 123
+        SchmeNm:
+          Cd: IBAN
+        Issr: BIC
+  Rpt:
+    Id: 123
+    CreDtTm: '2013-03-07T16:30:00'
+    RptgPty:
+      Id:
+        Id: 123
+        SchmeNm:
+          Cd: IBAN
+        Issr: BIC
+    RptdPty:
+      Id:
+        Id: 123
+        SchmeNm:
+          Cd: IBAN
+        Issr: BIC
+    RptdDoc:
+      Nb: 123
+      RltdDt: '2013-03-07'
+      RltdDtTp:
+        Cd: 123
+    Rsn:
+      Cd: 123
+      Prtry: 123
+  SplmtryData:
+    PlcAndNm: 123
+    Envlp: 123
+    RltdDt: '2013-03-07'
+    RltdDtTp:
+      Cd: 123

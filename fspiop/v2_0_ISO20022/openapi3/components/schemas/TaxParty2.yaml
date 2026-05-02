@@ -1,0 +1,41 @@
+title: TaxParty2
+description: |
+  Details about the entity involved in the tax paid or to be paid.
+type: object
+additionalProperties: false
+properties:
+  TaxId:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          TaxIdentification
+
+          Tax identification number of the debtor.
+  RegnId:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          RegistrationIdentification
+
+          Unique identification, as assigned by an organisation, to unambiguously identify a party.
+  TaxTp:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: |
+          TaxType
+
+          Type of tax payer.
+  Authstn:
+    allOf:
+      - $ref: ./TaxAuthorisation1.yaml
+      - description: |
+          Authorisation
+
+          Details of the authorised tax paying party.
+example:
+  TaxId: 123456789
+  RegnId: 123456789
+  TaxTp: VAT
+  Authstn:
+    Titl: Mr
+    Nm: John Doe

@@ -1,0 +1,6 @@
+title: ExternalVerificationReason1Code
+description: Specifies the external verification reason code.
+type: string
+minLength: 1
+maxLength: 4
+example: 1234

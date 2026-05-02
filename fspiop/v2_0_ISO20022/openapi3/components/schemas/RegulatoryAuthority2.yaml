@@ -1,0 +1,23 @@
+title: RegulatoryAuthority2
+description: |
+  Information about an entity requiring the regulatory reporting information.
+type: object
+additionalProperties: false
+properties:
+  Nm:
+    allOf:
+      - $ref: ./Max140Text.yaml
+      - description: |
+          Name
+
+          Name of the entity requiring the regulatory reporting information.
+  Ctry:
+    allOf:
+      - $ref: ./CountryCode.yaml
+      - description: |
+          Country
+
+          Country of the entity that requires the regulatory reporting information.
+example:
+  Nm: Swiss National Bank
+  Ctry: CH

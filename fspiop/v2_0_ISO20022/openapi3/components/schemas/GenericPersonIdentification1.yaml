@@ -1,0 +1,36 @@
+title: GenericPersonIdentification1
+type: object
+additionalProperties: false
+description: >
+  GenericPersonIdentification1
+
+  Information that locates and identifies a specific person.
+properties:
+  Id:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Identification
+
+          Unique and unambiguous identification of a person.
+  SchmeNm:
+    allOf:
+      - $ref: ./PersonIdentificationSchemeName1Choice.yaml
+      - description: >
+          SchemeName
+
+          Name of the identification scheme.
+  Issr:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Issuer
+
+          Entity that assigns the identification.
+required:
+  - Id
+example:
+  Id: 123
+  SchmeNm:
+    Cd: DRLC
+  Issr: BIC

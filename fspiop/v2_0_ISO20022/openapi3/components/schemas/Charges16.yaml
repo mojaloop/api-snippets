@@ -1,0 +1,43 @@
+title: Charges16
+description: |
+  NOTE: Unsure on description.
+
+  Seemingly a generic schema for charges, with an amount, agent, and type.
+type: object
+additionalProperties: false
+properties:
+  Amt:
+    allOf:
+      - $ref: ./ActiveOrHistoricCurrencyAndAmount.yaml
+      - description: >
+          Amount
+
+          Transaction charges to be paid by the charge bearer.
+  Agt:
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification8.yaml
+      - description: >
+          Agent
+
+          Agent that takes the transaction charges or to which the transaction charges are due.
+  Tp:
+    allOf:
+      - $ref: ./ChargeType3Choice.yaml
+      - description: >
+          Type
+
+          Defines the type of charges.
+required:
+  - Amt
+  - Agt
+example:
+  Amt:
+    ActiveOrHistoricCurrencyAndAmount: 123.45
+    Ccy: USD
+  Agt:
+    BrnchId:
+      Id: BRANCHID
+    FinInstnId:
+      BICFI: BICFI
+  Tp:
+    Cd: SHAR

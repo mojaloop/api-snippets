@@ -48,6 +48,43 @@ paths:
           $ref: '#/components/responses/accountsCreationError'
         '504':
           $ref: '#/components/responses/accountsCreationTimeout'
+  /accounts/{Type}/{ID}:
+    delete:
+      summary: Delete account on the Account Lookup Service
+      description: The HTTP request `DELETE /accounts/{Type}/{ID}` is used to account account information on the Account Lookup Service (ALS) by Type and ID.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/Type'
+        - $ref: '#/components/parameters/ID'
+      responses:
+        '200':
+          $ref: '#/components/responses/accountDeletionCompleted'
+        '400':
+          $ref: '#/components/responses/accountDeletionError'
+        '500':
+          $ref: '#/components/responses/accountDeletionError'
+        '504':
+          $ref: '#/components/responses/accountDeletionTimeout'
+  /accounts/{Type}/{ID}/{SubId}:
+    delete:
+      summary: Delete account on the Account Lookup Service
+      description: The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on the Account Lookup Service (ALS) by Type, ID, and SubId.
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/Type'
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/SubId'
+      responses:
+        '200':
+          $ref: '#/components/responses/accountDeletionCompleted'
+        '400':
+          $ref: '#/components/responses/accountDeletionError'
+        '500':
+          $ref: '#/components/responses/accountDeletionError'
+        '504':
+          $ref: '#/components/responses/accountDeletionTimeout'
   /bulkQuotes:
     post:
       summary: Request bulk quotes for the provided financial transactions
@@ -411,7 +448,7 @@ paths:
       description: |
         The HTTP request `PUT /transfers/{transferId}` is used to continue a transfer initiated via the `POST /transfers` method that has halted after party lookup and/or quotation stage and/or currency conversion stage.
 
-        The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" property set to `true` as required to continue the transfer.
+        The request body should contain either the "acceptParty" or "acceptQuote" or "acceptConversion" or "acceptQuoteOrConversion" property set to `true` as required to continue the transfer.
 
         See the description of the `POST /transfers` HTTP method for more information on modes of transfer.
       tags:
@@ -424,6 +461,7 @@ paths:
                 - $ref: '#/components/schemas/transferContinuationAcceptParty'
                 - $ref: '#/components/schemas/transferContinuationAcceptQuote'
                 - $ref: '#/components/schemas/transferContinuationAcceptConversion'
+                - $ref: '#/components/schemas/transferContinuationAcceptQuoteOrConversion'
       parameters:
         - $ref: '#/components/parameters/transferId'
       responses:
@@ -746,10 +784,10 @@ components:
       type: array
       items:
         type: object
+        additionalProperties: false
         required:
           - idType
           - idValue
-          - currency
         properties:
           idType:
             $ref: '#/components/schemas/PartyIdType'
@@ -762,11 +800,12 @@ components:
     CorrelationId:
       title: CorrelationId
       type: string
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-      description: Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
+      description: Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)
       example: b51ec534-ee48-4575-b6a9-ead2955b8069
     errorResponse:
       type: object
+      additionalProperties: false
       properties:
         statusCode:
           type: string
@@ -780,6 +819,7 @@ components:
       type: array
       items:
         type: object
+        additionalProperties: false
         required:
           - idType
           - idValue
@@ -809,11 +849,10 @@ components:
       minLength: 1
       maxLength: 128
       description: Error description string.
-    ExtensionKey:
-      title: ExtensionKey
+    ExtensionKey_v2_1_0:
+      title: ExtensionKey_v2_1_0
       type: string
       minLength: 1
-      maxLength: 32
       description: Extension key.
     ExtensionValue:
       title: ExtensionValue
@@ -821,27 +860,29 @@ components:
       minLength: 1
       maxLength: 128
       description: Extension value.
-    Extension:
-      title: Extension
+    Extension_v2_1_0:
+      title: Extension_v2_1_0
       type: object
+      additionalProperties: false
       description: Data model for the complex type Extension.
       properties:
         key:
-          $ref: '#/components/schemas/ExtensionKey'
+          $ref: '#/components/schemas/ExtensionKey_v2_1_0'
         value:
           $ref: '#/components/schemas/ExtensionValue'
       required:
         - key
         - value
-    ExtensionList:
+    ExtensionList_v2_1_0:
       title: ExtensionList
       type: object
+      additionalProperties: false
       description: Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
       properties:
         extension:
           type: array
           items:
-            $ref: '#/components/schemas/Extension'
+            $ref: '#/components/schemas/Extension_v2_1_0'
           minItems: 1
           maxItems: 16
           description: Number of Extension elements.
@@ -850,6 +891,7 @@ components:
     ErrorInformation:
       title: ErrorInformation
       type: object
+      additionalProperties: false
       description: Data model for the complex type ErrorInformation.
       properties:
         errorCode:
@@ -857,17 +899,19 @@ components:
         errorDescription:
           $ref: '#/components/schemas/ErrorDescription'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - errorCode
         - errorDescription
     mojaloopError:
       type: object
+      additionalProperties: false
       properties:
         errorInformation:
           $ref: '#/components/schemas/ErrorInformation'
     transferError:
       type: object
+      additionalProperties: false
       description: This object represents a Mojaloop API error received at any time during the transfer process
       properties:
         httpStatusCode:
@@ -877,6 +921,7 @@ components:
           $ref: '#/components/schemas/mojaloopError'
     accountsResponse:
       type: object
+      additionalProperties: false
       required:
         - accounts
       properties:
@@ -908,6 +953,57 @@ components:
           properties:
             executionState:
               $ref: '#/components/schemas/accountsResponse'
+    FspId:
+      title: FspId
+      type: string
+      minLength: 1
+      maxLength: 32
+      description: FSP identifier.
+    accountDeletionStatus:
+      type: array
+      items:
+        type: object
+        additionalProperties: false
+        required:
+          - fspId
+        properties:
+          fspId:
+            $ref: '#/components/schemas/FspId'
+          error:
+            $ref: '#/components/schemas/errorResponse'
+    accountDeletionState:
+      type: string
+      enum:
+        - ERROR_OCCURRED
+        - COMPLETED
+    accountDeletionResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - idType
+        - idValue
+      properties:
+        idType:
+          $ref: '#/components/schemas/PartyIdType'
+        idValue:
+          $ref: '#/components/schemas/PartyIdentifier'
+        subIdOrType:
+          $ref: '#/components/schemas/PartySubIdOrType'
+        response:
+          $ref: '#/components/schemas/accountDeletionStatus'
+        currentState:
+          $ref: '#/components/schemas/accountDeletionState'
+        lastError:
+          $ref: '#/components/schemas/transferError'
+        deleteAccountResponse:
+          type: object
+          required:
+            - body
+          properties:
+            body:
+              type: object
+            headers:
+              type: object
     TransactionInitiatorType:
       title: TransactionInitiatorType
       type: string
@@ -968,12 +1064,6 @@ components:
       type: string
       pattern: ^[\d]{1,4}$
       description: A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
-    FspId:
-      title: FspId
-      type: string
-      minLength: 1
-      maxLength: 32
-      description: FSP identifier.
     KYCInformation:
       title: KYCInformation
       type: string
@@ -1011,11 +1101,12 @@ components:
     extensionListEmptiable:
       type: array
       items:
-        $ref: '#/components/schemas/Extension'
+        $ref: '#/components/schemas/Extension_v2_1_0'
       minItems: 0
       maxItems: 16
     transferParty:
       type: object
+      additionalProperties: false
       required:
         - idType
         - idValue
@@ -1092,6 +1183,7 @@ components:
     individualQuote:
       title: IndividualQuote
       type: object
+      additionalProperties: false
       description: Data model for the complex type 'individualQuote'.
       properties:
         quoteId:
@@ -1111,7 +1203,7 @@ components:
         note:
           $ref: '#/components/schemas/Note'
         extensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - quoteId
         - to
@@ -1121,6 +1213,7 @@ components:
         - amount
     bulkQuoteRequest:
       type: object
+      additionalProperties: false
       required:
         - homeTransactionId
         - from
@@ -1141,7 +1234,7 @@ components:
           items:
             $ref: '#/components/schemas/individualQuote'
         extensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
     DateTime:
       title: DateTime
       type: string
@@ -1156,6 +1249,7 @@ components:
     Money:
       title: Money
       type: object
+      additionalProperties: false
       description: Data model for the complex type Money.
       properties:
         currency:
@@ -1180,6 +1274,7 @@ components:
     GeoCode:
       title: GeoCode
       type: object
+      additionalProperties: false
       description: Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
       properties:
         latitude:
@@ -1205,6 +1300,7 @@ components:
       description: Condition that must be attached to the transfer by the Payer.
     quoteError:
       type: object
+      additionalProperties: false
       description: This object represents a Mojaloop API error received at any time during the quote process
       properties:
         httpStatusCode:
@@ -1214,6 +1310,7 @@ components:
           $ref: '#/components/schemas/mojaloopError'
     individualQuoteResult:
       type: object
+      additionalProperties: false
       properties:
         quoteId:
           $ref: '#/components/schemas/CorrelationId'
@@ -1232,13 +1329,14 @@ components:
         condition:
           $ref: '#/components/schemas/IlpCondition'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         lastError:
           $ref: '#/components/schemas/quoteError'
       required:
         - quoteId
     bulkQuoteResponse:
       type: object
+      additionalProperties: false
       required:
         - bulkQuoteId
         - individualQuoteResults
@@ -1253,7 +1351,7 @@ components:
         expiration:
           $ref: '#/components/schemas/DateTime'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         currentState:
           $ref: '#/components/schemas/bulkTransferStatus'
         individualQuoteResults:
@@ -1266,6 +1364,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/errorResponse'
         - type: object
+          additionalProperties: false
           required:
             - bulkQuoteState
           properties:
@@ -1278,6 +1377,7 @@ components:
         - COMPLETED
     bulkQuoteStatusResponse:
       type: object
+      additionalProperties: false
       required:
         - bulkQuoteId
         - currentState
@@ -1295,6 +1395,7 @@ components:
             $ref: '#/components/schemas/individualQuote'
     autoAcceptPartyOption:
       type: object
+      additionalProperties: false
       required:
         - enabled
       properties:
@@ -1305,6 +1406,7 @@ components:
             - true
     bulkPerTransferFeeLimit:
       type: object
+      additionalProperties: false
       required:
         - currency
         - amount
@@ -1315,6 +1417,7 @@ components:
           $ref: '#/components/schemas/Amount'
     autoAcceptQuote:
       type: object
+      additionalProperties: false
       required:
         - enabled
       properties:
@@ -1330,6 +1433,7 @@ components:
             $ref: '#/components/schemas/bulkPerTransferFeeLimit'
     bulkTransactionOptions:
       type: object
+      additionalProperties: false
       required:
         - autoAcceptParty
         - autoAcceptQuote
@@ -1349,13 +1453,14 @@ components:
           description: Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful if a previous party resolution has been performed.
           type: boolean
         synchronous:
-          description: Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will  be callbacks whenever the processing is done
+          description: Set to true if the bulkTransfer requests need be handled synchronous. Otherwise the requests will be handled asynchronously, meaning there will be callbacks whenever the processing is done
           type: boolean
         bulkExpiration:
           $ref: '#/components/schemas/DateTime'
     PartyIdInfo:
       title: PartyIdInfo
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyIdInfo. An ExtensionList element has been added to this reqeust in version v1.1
       properties:
         partyIdType:
@@ -1367,7 +1472,7 @@ components:
         fspId:
           $ref: '#/components/schemas/FspId'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - partyIdType
         - partyIdentifier
@@ -1380,6 +1485,7 @@ components:
     PartyComplexName:
       title: PartyComplexName
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyComplexName.
       properties:
         firstName:
@@ -1391,6 +1497,7 @@ components:
     PartyPersonalInfo:
       title: PartyPersonalInfo
       type: object
+      additionalProperties: false
       description: Data model for the complex type PartyPersonalInfo.
       properties:
         complexName:
@@ -1402,6 +1509,7 @@ components:
     Party:
       title: Party
       type: object
+      additionalProperties: false
       description: Data model for the complex type Party.
       properties:
         partyIdInfo:
@@ -1424,6 +1532,7 @@ components:
     bulkTransactionIndividualTransfer:
       title: BulkTransactionIndividualTransfer
       type: object
+      additionalProperties: false
       description: Data model for the complex type 'bulkTransactionIndividualTransfer'.
       properties:
         homeTransactionId:
@@ -1443,9 +1552,9 @@ components:
         note:
           $ref: '#/components/schemas/Note'
         quoteExtensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         transferExtensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         lastError:
           $ref: '#/components/schemas/transferError'
       required:
@@ -1456,6 +1565,7 @@ components:
         - amount
     bulkTransactionRequest:
       type: object
+      additionalProperties: false
       required:
         - bulkTransactionId
         - bulkHomeTransactionID
@@ -1479,7 +1589,7 @@ components:
           items:
             $ref: '#/components/schemas/bulkTransactionIndividualTransfer'
         extensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
     TransferState:
       title: TransferState
       type: string
@@ -1504,6 +1614,7 @@ components:
       example: WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
     individualTransferResult:
       type: object
+      additionalProperties: false
       required:
         - transferId
       properties:
@@ -1512,13 +1623,14 @@ components:
         fulfilment:
           $ref: '#/components/schemas/IlpFulfilment'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         transferState:
           $ref: '#/components/schemas/TransferState'
         lastError:
           $ref: '#/components/schemas/transferError'
     bulkTransferResponse:
       type: object
+      additionalProperties: false
       required:
         - bulkTransferId
         - individualTransferResults
@@ -1536,7 +1648,7 @@ components:
         completedTimestamp:
           $ref: '#/components/schemas/DateTime'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
         currentState:
           $ref: '#/components/schemas/bulkTransferStatus'
         individualTransferResults:
@@ -1549,6 +1661,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/errorResponse'
         - type: object
+          additionalProperties: false
           required:
             - bulkTransferState
           properties:
@@ -1556,6 +1669,7 @@ components:
               $ref: '#/components/schemas/bulkTransferResponse'
     bulkTransactionIndividualTransferAccept:
       type: object
+      additionalProperties: false
       description: Data model for the 'individualTransfer' while accepting party or quote.
       properties:
         transferId:
@@ -1564,6 +1678,7 @@ components:
         - transferId
     transferContinuationAcceptParty:
       type: object
+      additionalProperties: false
       required:
         - acceptParty
       properties:
@@ -1575,6 +1690,7 @@ components:
     bulkTransactionContinuationAcceptParty:
       description: The object sent back as confirmation of payee parties when autoAcceptParty is false.
       type: object
+      additionalProperties: false
       required:
         - individualTransfers
       properties:
@@ -1588,6 +1704,7 @@ components:
               - $ref: '#/components/schemas/transferContinuationAcceptParty'
     transferContinuationAcceptQuote:
       type: object
+      additionalProperties: false
       required:
         - acceptQuote
       properties:
@@ -1599,6 +1716,7 @@ components:
     bulkTransactionContinuationAcceptQuote:
       description: The object sent back as confirmation of quotes when autoAcceptQuotes is false.
       type: object
+      additionalProperties: false
       required:
         - individualTransfers
       properties:
@@ -1612,6 +1730,7 @@ components:
               - $ref: '#/components/schemas/transferContinuationAcceptQuote'
     partyError:
       type: object
+      additionalProperties: false
       description: This object represents a Mojaloop API error received at any time during the party discovery process
       properties:
         httpStatusCode:
@@ -1623,6 +1742,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/errorResponse'
         - type: object
+          additionalProperties: false
           required:
             - bulkTransferState
           properties:
@@ -1634,6 +1754,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/errorResponse'
         - type: object
+          additionalProperties: false
           required:
             - bulkTansferState
           properties:
@@ -1644,6 +1765,7 @@ components:
     individualTransfer:
       title: IndividualTransfer
       type: object
+      additionalProperties: false
       description: Data model for the complex type 'individualTransfer'.
       properties:
         transferId:
@@ -1667,7 +1789,7 @@ components:
         note:
           $ref: '#/components/schemas/Note'
         extensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - transferId
         - to
@@ -1678,6 +1800,7 @@ components:
         - condition
     bulkTransferRequest:
       type: object
+      additionalProperties: false
       required:
         - bulkTransferId
         - homeTransactionId
@@ -1702,15 +1825,16 @@ components:
           items:
             $ref: '#/components/schemas/individualTransfer'
         extensions:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
     individualTransferFulfilment:
       type: object
+      additionalProperties: false
       description: A Mojaloop API transfer fulfilment for individual transfers in a bulk transfer
       properties:
         fulfilment:
           $ref: '#/components/schemas/IlpFulfilment'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
     bulkTransferStatusResponse:
       type: object
       required:
@@ -1737,6 +1861,7 @@ components:
     partiesByIdResponse:
       title: partiesByIdResponse
       type: object
+      additionalProperties: false
       description: GET /parties/{Type}/{ID} response object
       properties:
         party:
@@ -1791,6 +1916,7 @@ components:
     Refund:
       title: Refund
       type: object
+      additionalProperties: false
       description: Data model for the complex type Refund.
       properties:
         originalTransactionId:
@@ -1808,6 +1934,7 @@ components:
     TransactionType:
       title: TransactionType
       type: object
+      additionalProperties: false
       description: Data model for the complex type TransactionType.
       properties:
         scenario:
@@ -1836,6 +1963,7 @@ components:
     FxRate:
       title: FxRate
       type: object
+      additionalProperties: false
       description: The FxRate object contains information about a currency conversion in the transfer. It can be used by parties to the transfer to exchange information with each other about the exchange rate for the transfer, to ensure that the best rate can be agreed on.
       properties:
         sourceAmount:
@@ -1852,6 +1980,7 @@ components:
     QuotesPostRequest:
       title: QuotesPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /quotes request.
       properties:
         quoteId:
@@ -1887,7 +2016,7 @@ components:
         expiration:
           $ref: '#/components/schemas/DateTime'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - quoteId
         - transactionId
@@ -1899,6 +2028,7 @@ components:
     simpleQuotesPostRequest:
       title: simpleQuotesPostRequest
       type: object
+      additionalProperties: false
       properties:
         fspId:
           $ref: '#/components/schemas/FspId'
@@ -1910,6 +2040,7 @@ components:
     quotesPostResponse:
       title: QuotesPostResponse
       type: object
+      additionalProperties: false
       properties:
         quotes:
           title: QuotesIDPutResponse
@@ -1938,7 +2069,7 @@ components:
                 condition:
                   $ref: '#/components/schemas/IlpCondition'
                 extensionList:
-                  $ref: '#/components/schemas/ExtensionList'
+                  $ref: '#/components/schemas/ExtensionList_v2_1_0'
               required:
                 - transferAmount
                 - expiration
@@ -1958,6 +2089,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/errorResponse'
         - type: object
+      additionalProperties: false
     AuthenticationType:
       title: AuthenticationType
       type: string
@@ -1973,6 +2105,7 @@ components:
       example: OTP
     requestToPayRequest:
       type: object
+      additionalProperties: false
       required:
         - homeR2PTransactionId
         - from
@@ -2010,6 +2143,7 @@ components:
     getPartiesResponse:
       title: getPartiesResponse
       type: object
+      additionalProperties: false
       description: The object sent in the GET /parties/{Type}/{ID} callback.
       properties:
         body:
@@ -2037,6 +2171,7 @@ components:
     TransactionRequestResponse:
       title: TransactionRequestResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /transactionRequests/{ID} callback.
       properties:
         body:
@@ -2047,7 +2182,7 @@ components:
             transactionRequestState:
               $ref: '#/components/schemas/TransactionRequestState'
             extensionList:
-              $ref: '#/components/schemas/ExtensionList'
+              $ref: '#/components/schemas/ExtensionList_v2_1_0'
           required:
             - transactionRequestState
         headers:
@@ -2057,6 +2192,7 @@ components:
         - headers
     requestToPayResponse:
       type: object
+      additionalProperties: false
       required:
         - transactionRequestId
         - from
@@ -2102,6 +2238,7 @@ components:
     QuotesIDPutResponse:
       title: QuotesIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /quotes/{ID} callback.
       properties:
         transferAmount:
@@ -2121,7 +2258,7 @@ components:
         condition:
           $ref: '#/components/schemas/IlpCondition'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - transferAmount
         - expiration
@@ -2130,6 +2267,7 @@ components:
     FxMoney:
       title: FxMoney
       type: object
+      additionalProperties: false
       description: Data model for the complex type FxMoney; This is based on the type Money but allows the amount to be optional to support FX quotations.
       properties:
         currency:
@@ -2141,6 +2279,7 @@ components:
     FxCharge:
       title: FxCharge
       type: object
+      additionalProperties: false
       description: An FXP will be able to specify a charge which it proposes to levy on the currency conversion operation using a FxCharge object.
       properties:
         chargeType:
@@ -2161,6 +2300,7 @@ components:
     FxConversion:
       title: FxConversion
       type: object
+      additionalProperties: false
       description: A DFSP will be able to request a currency conversion, and an FX provider will be able to describe its involvement in a proposed transfer, using a FxConversion object.
       properties:
         conversionId:
@@ -2204,7 +2344,7 @@ components:
           maxItems: 16
         extensionList:
           allOf:
-            - $ref: '#/components/schemas/ExtensionList'
+            - $ref: '#/components/schemas/ExtensionList_v2_1_0'
             - description: The extension list for the currency conversion request.
       required:
         - conversionId
@@ -2217,6 +2357,7 @@ components:
     FxQuotesPostOutboundResponse:
       title: FxQuotesPostOutboundResponse
       type: object
+      additionalProperties: false
       description: The object sent as a response for the POST /fxQuotes request. The terms under which the FXP will undertake the currency conversion proposed by the requester.
       properties:
         homeTransactionId:
@@ -2235,6 +2376,7 @@ components:
     TransfersIDPutResponse:
       title: TransfersIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /transfers/{ID} callback.
       properties:
         fulfilment:
@@ -2244,11 +2386,12 @@ components:
         transferState:
           $ref: '#/components/schemas/TransferState'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - transferState
     transferResponse:
       type: object
+      additionalProperties: false
       required:
         - homeTransactionId
         - from
@@ -2285,13 +2428,25 @@ components:
           $ref: '#/components/schemas/CorrelationId'
         getPartiesResponse:
           type: object
-          required:
-            - body
           properties:
             body:
-              type: object
+              oneOf:
+                - type: object
+                  properties:
+                    party:
+                      $ref: '#/components/schemas/Party'
+                  required:
+                    - party
+                - type: object
+                  properties:
+                    errorInformation:
+                      $ref: '#/components/schemas/ErrorInformation'
+                  required:
+                    - errorInformation
             headers:
               type: object
+          required:
+            - body
         quoteResponse:
           type: object
           required:
@@ -2338,6 +2493,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/errorResponse'
         - type: object
+          additionalProperties: false
           required:
             - transferState
           properties:
@@ -2345,6 +2501,7 @@ components:
               $ref: '#/components/schemas/transferResponse'
     requestToPayTransferRequest:
       type: object
+      additionalProperties: false
       required:
         - homeR2PTransactionId
         - transactionRequestId
@@ -2398,6 +2555,7 @@ components:
           description: QR code used as a One Time Password.
         - title: U2FPinValue
           type: object
+          additionalProperties: false
           description: |
             U2F challenge-response, where payer FSP verifies if the response provided by end-user device matches the previously registered key.
           properties:
@@ -2421,6 +2579,7 @@ components:
     AuthenticationInfo:
       title: AuthenticationInfo
       type: object
+      additionalProperties: false
       description: Data model for the complex type AuthenticationInfo.
       properties:
         authentication:
@@ -2446,6 +2605,7 @@ components:
     AuthorizationIDPutResponse:
       title: AuthorizationIDPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /authorizations/{ID} callback.
       properties:
         authenticationInfo:
@@ -2456,6 +2616,7 @@ components:
         - responseType
     requestToPayTransferResponse:
       type: object
+      additionalProperties: false
       required:
         - transactionRequestId
         - from
@@ -2525,6 +2686,7 @@ components:
           $ref: '#/components/schemas/transferError'
     transferContinuationAcceptOTP:
       type: object
+      additionalProperties: false
       required:
         - acceptOTP
       properties:
@@ -2536,6 +2698,7 @@ components:
     TransfersPostRequest:
       title: TransfersPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /transfers request.
       properties:
         transferId:
@@ -2553,7 +2716,7 @@ components:
         expiration:
           $ref: '#/components/schemas/DateTime'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - transferId
         - payeeFsp
@@ -2565,6 +2728,7 @@ components:
     simpleTransfersPostRequest:
       title: SimpleTransfersPostRequest
       type: object
+      additionalProperties: false
       properties:
         fspId:
           $ref: '#/components/schemas/FspId'
@@ -2576,6 +2740,7 @@ components:
     simpleTransfersPostResponse:
       title: SimpleTransfersPostResponse
       type: object
+      additionalProperties: false
       properties:
         transfer:
           properties:
@@ -2595,8 +2760,10 @@ components:
       allOf:
         - $ref: '#/components/schemas/errorResponse'
         - type: object
+      additionalProperties: false
     transferRequest:
       type: object
+      additionalProperties: false
       required:
         - homeTransactionId
         - from
@@ -2632,8 +2799,29 @@ components:
         skipPartyLookup:
           description: Set to true if supplying an FSPID for the payee party and no party resolution is needed. This may be useful is a previous party resolution has been performed.
           type: boolean
+        prepareExpirySeconds:
+          description: The number of seconds until the prepare expires. If not provided, the default value configured on the SDK will be used.
+          type: integer
+          format: int32
+          minimum: 1
+        fxPrepareExpirySeconds:
+          description: The number of seconds until the FX prepare expires. If not provided, the default value configured on the SDK will be used.
+          type: integer
+          format: int32
+          minimum: 1
+        quoteExpirySeconds:
+          description: The number of seconds until the quote expires. If not provided, the default value configured on the SDK will be used.
+          type: integer
+          format: int32
+          minimum: 1
+        fxQuoteExpirySeconds:
+          description: The number of seconds until the FX quote expires. If not provided, the default value configured on the SDK will be used.
+          type: integer
+          format: int32
+          minimum: 1s
     transferStatusResponse:
       type: object
+      additionalProperties: false
       required:
         - transferId
         - currentState
@@ -2654,6 +2842,7 @@ components:
               type: object
     transferContinuationAcceptConversion:
       type: object
+      additionalProperties: false
       required:
         - acceptConversion
       properties:
@@ -2662,9 +2851,21 @@ components:
           enum:
             - true
             - false
+    transferContinuationAcceptQuoteOrConversion:
+      type: object
+      additionalProperties: false
+      required:
+        - acceptQuoteOrConversion
+      properties:
+        acceptQuoteOrConversion:
+          type: boolean
+          enum:
+            - true
+            - false
     ServicesFXPPutResponse:
       title: ServicesFXPPutResponse
       type: object
+      additionalProperties: false
       description: The object sent in the PUT /services/FXP callback.
       properties:
         providers:
@@ -2679,6 +2880,7 @@ components:
     FxQuotesPostOutboundRequest:
       title: FxQuotesPostOutboundRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /fxQuotes request.
       properties:
         homeTransactionId:
@@ -2726,6 +2928,7 @@ components:
     FxTransfersPostOutboundRequest:
       title: FxTransfersPostOutboundRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /fxTransfers request.
       properties:
         homeTransactionId:
@@ -2766,6 +2969,7 @@ components:
     FxTransfersPostOutboundResponse:
       title: FxTransfersPostOutboundResponse
       type: object
+      additionalProperties: false
       description: The object sent as a response for the POST /fxTransfers request.
       properties:
         homeTransactionId:
@@ -2778,7 +2982,7 @@ components:
         conversionState:
           $ref: '#/components/schemas/conversionState'
         extensionList:
-          $ref: '#/components/schemas/ExtensionList'
+          $ref: '#/components/schemas/ExtensionList_v2_1_0'
       required:
         - conversionState
   responses:
@@ -2808,6 +3012,24 @@ components:
             $ref: '#/components/schemas/errorAccountsResponse'
     accountsCreationTimeout:
       description: Timeout occurred creating accounts
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorAccountsResponse'
+    accountDeletionCompleted:
+      description: Account deletion completed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/accountDeletionResponse'
+    accountDeletionError:
+      description: An error occurred while deleting an account
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorAccountsResponse'
+    accountDeletionTimeout:
+      description: Timeout occurred while deleting an account
       content:
         application/json:
           schema:
@@ -2952,27 +3174,6 @@ components:
           schema:
             $ref: '#/components/schemas/ServicesFXPPutResponse'
   parameters:
-    bulkQuoteId:
-      name: bulkQuoteId
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/CorrelationId'
-      description: Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request.
-    bulkTransactionId:
-      name: bulkTransactionId
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/CorrelationId'
-      description: Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request.
-    bulkTransferId:
-      name: bulkTransferId
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/CorrelationId'
-      description: Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request.
     Type:
       name: Type
       in: path
@@ -2994,6 +3195,27 @@ components:
       schema:
         type: string
       description: A sub-identifier of the party identifier, or a sub-type of the party identifier's type. For example, `PASSPORT`, `DRIVING_LICENSE`.
+    bulkQuoteId:
+      name: bulkQuoteId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/CorrelationId'
+      description: Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request.
+    bulkTransactionId:
+      name: bulkTransactionId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/CorrelationId'
+      description: Identifier of the bulk transaction to continue as returned in the response to a `POST /bulkTransaction` request.
+    bulkTransferId:
+      name: bulkTransferId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/CorrelationId'
+      description: Identifier of the bulk transfer to continue as returned in the response to a `POST /bulkTransfers` request.
     transactionRequestId:
       name: transactionRequestId
       in: path

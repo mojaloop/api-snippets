@@ -1,0 +1,35 @@
+title: OrganisationIdentification39
+description: |
+  Unique and unambiguous way to identify an organisation.
+type: object
+additionalProperties: false
+properties:
+  AnyBIC:
+    allOf:
+      - $ref: ./AnyBICDec2014Identifier.yaml
+      - description: >
+          AnyBIC
+
+          Business identification code of the organisation.
+  LEI:
+    allOf:
+      - $ref: ./LEIIdentifier.yaml
+      - description: >
+          LEI
+
+          Legal entity identification as an alternate identification for a party.
+  Othr:
+    allOf:
+      - $ref: ./GenericOrganisationIdentification3.yaml
+      - description: >
+          Other
+
+          Unique identification of an organisation, as assigned by an institution, using an identification scheme.
+example:
+  AnyBIC: BICFI
+  LEI: 529900T8BM49AURSDO55
+  Othr:
+    Id: 123
+    SchmeNm:
+      Cd: BIC
+    Issr: BIC

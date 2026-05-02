@@ -1,0 +1,60 @@
+title: IdentificationAssignment3
+type: object
+additionalProperties: false
+description: >
+  IdentificationAssignment
+
+  Information that unambiguously identifies a message, as assigned by the assignor to the assignee.
+properties:
+  MsgId:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          MessageIdentification
+
+          Unique identification, as assigned by the assigner, to unambiguously identify the message.
+  CreDtTm:
+    allOf:
+      - $ref: ./ISODateTime.yaml
+      - description: >
+          CreationDateTime
+
+          Date and time at which the identification assignment was created.
+  Assgnr:
+    allOf:
+      - $ref: ./Party40Choice.yaml
+      - description: >
+          Assignor
+
+          Party that assigns the identification assignment to another party. This is also the sender of
+          the message.
+  Assgne:
+    allOf:
+      - $ref: ./Party40Choice.yaml
+      - description: >
+          Assignee
+
+          Party that the identification assignment is assigned to. This is also the receiver of the
+          message.
+required:
+  - MsgId
+  - CreDtTm
+  - Assgnr
+  - Assgne
+example:
+  MsgId: 123
+  CreDtTm: '2020-01-01T00:00:00Z'
+  Assgnr:
+    OrgId:
+      Othr:
+        Id: 123
+        SchmeNm:
+          Cd: BIC
+        Issr: BIC
+  Assgne:
+    OrgId:
+      Othr:
+        Id: 123
+        SchmeNm:
+          Cd: BIC
+        Issr: BIC

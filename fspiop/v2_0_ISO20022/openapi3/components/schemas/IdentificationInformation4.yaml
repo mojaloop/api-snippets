@@ -1,0 +1,42 @@
+title: IdentificationInformation4
+type: object
+additionalProperties: false
+description: >
+  Information that locates and identifies a specific party or account.
+properties:
+  Pty:
+    allOf:
+      - $ref: ./PartyIdentification135.yaml
+      - description: >
+          Party
+
+          Account owner that owes an amount of money or to whom an amount of money is due.
+  Acct:
+    allOf:
+      - $ref: ./CashAccount40.yaml
+      - description: >
+          Account
+
+          Unambiguous identification of the account of a party.
+  Agt:
+    allOf:
+      - $ref: ./BranchAndFinancialInstitutionIdentification6.yaml
+      - description: >
+          Agent
+
+          Financial institution servicing an account for a party.
+required:
+  - Pty
+example:
+  Pty:
+    Id:
+      OrgId:
+        AnyBIC:
+          BICFI: BICFI
+    CtryOfRes: FI
+  Acct:
+    Id:
+      IBAN: FI2112345600000785
+  Agt:
+    FinInstnId:
+      BICFI: BICFI

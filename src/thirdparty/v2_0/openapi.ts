@@ -732,7 +732,7 @@ export interface components {
         ServiceType: "THIRD_PARTY_DFSP" | "PISP" | "AUTH_SERVICE";
         /**
          * CorrelationId
-         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+         * @description Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)
          * @example b51ec534-ee48-4575-b6a9-ead2955b8069
          */
         CorrelationId: string;
@@ -915,6 +915,32 @@ export interface components {
             extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
+         * CorrelationId
+         * @description Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
+         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+         */
+        "CorrelationId-2": string;
+        /**
+         * Refund
+         * @description Data model for the complex type Refund.
+         */
+        "Refund-2": {
+            originalTransactionId: components["schemas"]["CorrelationId-2"];
+            refundReason?: components["schemas"]["RefundReason"];
+        };
+        /**
+         * TransactionType
+         * @description Data model for the complex type TransactionType.
+         */
+        "TransactionType-2": {
+            scenario: components["schemas"]["TransactionScenario"];
+            subScenario?: components["schemas"]["TransactionSubScenario"];
+            initiator: components["schemas"]["TransactionInitiator"];
+            initiatorType: components["schemas"]["TransactionInitiatorType"];
+            refundInfo?: components["schemas"]["Refund-2"];
+            balanceOfPayments?: components["schemas"]["BalanceOfPayments"];
+        };
+        /**
          * tppAuthorizationsPostRequest
          * @description Used by: DFSP
          *     The HTTP request PUT /tppTransactionRequests/<ID> resource will have the following content. The <ID> in the request should match the transactionRequestId which was given when the transaction request was created.
@@ -936,7 +962,7 @@ export interface components {
             payer: components["schemas"]["PartyIdInfo"];
             /** @description Information about the Payee in the proposed financial transaction. */
             payee: components["schemas"]["Party"];
-            transactionType: components["schemas"]["TransactionType"];
+            transactionType: components["schemas"]["TransactionType-2"];
             /** @description The time by which the transfer must be completed, set by the payee DFSP. */
             expiration: components["schemas"]["DateTime"];
             extensionList?: components["schemas"]["ExtensionList"];

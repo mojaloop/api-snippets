@@ -1,0 +1,4 @@
+title: ULIDIdentifier
+type: string
+pattern: ^[0-9A-HJKMNP-TV-Z]{26}$
+example: 01AN4Z07BY79KA1307SR9X4MV3

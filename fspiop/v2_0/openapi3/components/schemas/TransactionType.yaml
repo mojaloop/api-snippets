@@ -1,5 +1,6 @@
 title: TransactionType
 type: object
+additionalProperties: false
 description: Data model for the complex type TransactionType.
 properties:
   scenario:

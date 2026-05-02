@@ -1,5 +1,6 @@
 title: TransactionRequestResponse
 type: object
+additionalProperties: false
 description: 'The object sent in the PUT /transactionRequests/{ID} callback.'
 properties:
   body:
@@ -10,7 +11,7 @@ properties:
       transactionRequestState:
         $ref: ./TransactionRequestState.yaml
       extensionList:
-        $ref: ./ExtensionList.yaml
+        $ref: ./ExtensionList_v2_1_0.yaml
     required:
       - transactionRequestState
   headers:

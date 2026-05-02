@@ -1129,7 +1129,7 @@ paths:
                           title: FIDOPublicKeyCredentialAttestation
                           type: object
                           description: |
-                            A data model representing a FIDO Attestation result. Derived from 
+                            A data model representing a FIDO Attestation result. Derived from
                             [`PublicKeyCredential` Interface](https://w3c.github.io/webauthn/#iface-pkcredential).
 
                             The `PublicKeyCredential` interface represents the below fields with
@@ -1852,7 +1852,7 @@ paths:
                             [RFC 3696](https://tools.ietf.org/html/rfc3696).
                             - PERSONAL_ID - A personal identifier is used as reference to a participant.
                             Examples of personal identification are passport number, birth certificate
-                            number, and national registration number. The identifier number is added in 
+                            number, and national registration number. The identifier number is added in
                             the PartyIdentifier element. The personal identifier type is added in the
                             PartySubIdOrType element.
                             - BUSINESS - A specific Business (for example, an organization or a company)
@@ -1876,12 +1876,12 @@ paths:
                             PartySubIdOrType element for identifying an account under an Alias defined
                             by the PartyIdentifier.
                             - CONSENT - A Consent represents an agreement between a PISP, a Customer and
-                            a DFSP which allows the PISP permission to perform actions on behalf of the 
-                            customer. A Consent has an authoritative source: either the DFSP who issued 
+                            a DFSP which allows the PISP permission to perform actions on behalf of the
+                            customer. A Consent has an authoritative source: either the DFSP who issued
                             the Consent, or an Auth Service which administers the Consent.
                             - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
-                            a DFSP, and a specific Customer's account at the DFSP. The content of the link 
-                            is created by the DFSP at the time when it gives permission to the PISP for 
+                            a DFSP, and a specific Customer's account at the DFSP. The content of the link
+                            is created by the DFSP at the time when it gives permission to the PISP for
                             specific access to a given account.
                           example: PERSONAL_ID
                         partyIdentifier:

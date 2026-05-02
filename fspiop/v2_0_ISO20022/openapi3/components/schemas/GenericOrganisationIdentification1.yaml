@@ -1,0 +1,34 @@
+title: GenericOrganisationIdentification1
+type: object
+additionalProperties: false
+description: >
+  Information that locates and identifies an organisation.
+properties:
+  Id:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Identification for an organisation.
+          FSPIOP equivalent to Party Identifier for an organisation in ISO 20022.
+          Identification assigned by an institution.
+  SchmeNm:
+    allOf:
+      - $ref: ./OrganisationIdentificationSchemeName1Choice.yaml
+      - description: >
+          SchemeName
+
+          Name of the identification scheme.
+  Issr:
+    allOf:
+      - $ref: ./Max35Text.yaml
+      - description: >
+          Issuer
+
+          Entity that assigns the identification.
+required:
+  - Id
+example:
+  Id: 123
+  SchmeNm:
+    Cd: BIC
+  Issr: BIC

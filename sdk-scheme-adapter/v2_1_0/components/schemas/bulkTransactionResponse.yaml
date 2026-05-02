@@ -1,5 +1,6 @@
 title: BulkTransactionResponse
 type: object
+additionalProperties: false
 required:
   - bulkHomeTransactionID
   - bulkTransactionId
@@ -24,4 +25,4 @@ properties:
     items:
       $ref: ./bulkTransactionIndividualTransferResult.yaml
   extensions:
-    $ref: ./ExtensionList.yaml
+    $ref: ExtensionList_v2_1_0.yaml

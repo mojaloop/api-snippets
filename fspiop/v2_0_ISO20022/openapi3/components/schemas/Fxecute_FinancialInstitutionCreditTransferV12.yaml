@@ -1,0 +1,70 @@
+title: Fxecute_FinancialInstitutionCreditTransferV12
+type: object
+additionalProperties: false
+description:  >
+  The Fxecute FinancialInstitutionCreditTransfer message is sent by the initiating party to the executing party to request the execution of a payment. It is used to request movement of funds from the debtor account to the creditor account. The message can carry multiple credit transfer instructions.
+properties:
+  GrpHdr:
+    allOf:
+      - $ref: ./GroupHeader129.yaml
+      - description: >
+          GroupHeader.
+
+          Set of characteristics shared by all individual transactions included in the message.
+  CdtTrfTxInf:
+    allOf:
+      - $ref: ./CreditTransferTransaction68.yaml
+      - description: >
+          CreditTransferTransactionInformation.
+
+          Set of elements providing information specific to the individual credit transfer(s).
+required:
+  - GrpHdr
+  - CdtTrfTxInf
+example:
+  GrpHdr:
+    MsgId: 20191113001
+    CreDtTm: '2019-11-13T10:00:00'
+    NbOfTxs: 1
+    CtrlSum: 1000
+    InitgPty:
+      Nm: Initiating Party Name
+      Id:
+        OrgId:
+          Othr:
+            Id: 123456789
+            SchmeNm:
+              Cd: BBA
+    FwdgAgt:
+      FinInstnId:
+        BICFI: BBBBBBBB
+    DbtrAgt:
+      FinInstnId:
+        BICFI: AAAAAAAA
+    CdtrAgt:
+      FinInstnId:
+        BICFI: CCCCCCCC
+  CdtTrfTxInf:
+    PmtId:
+      InstrId: 20191113001
+      EndToEndId: 20191113001
+    PmtTpInf:
+      InstrPrty: NORM
+      CtgyPurp:
+        Cd: SUPP
+    InstrForCdtrAgt:
+      Cd: /ACC/123456789
+    IntrBkSttlmAmt:
+      Amt: 1000
+      Ccy: EUR
+    ChrgBr: SHAR
+    CdtrAgt:
+      FinInstnId:
+        BICFI: CCCCCCCC
+    Cdtr:
+      Nm: Creditor Name
+    CdtrAcct:
+      Id:
+        IBAN: BE71096123456769
+    RmtInf:
+      Ustrd: Payment for invoice 12345

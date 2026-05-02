@@ -1,0 +1,20 @@
+delete:
+  summary: Delete account on the Account Lookup Service
+  description: >-
+    The HTTP request `DELETE /accounts/{Type}/{ID}/{SubId}` is used to account account information on
+    the Account Lookup Service (ALS) by Type, ID, and SubId.
+  tags:
+    - Accounts
+  parameters:
+    - $ref: ../../components/parameters/Type.yaml
+    - $ref: ../../components/parameters/ID.yaml
+    - $ref: ../../components/parameters/SubId.yaml
+  responses:
+    '200':
+      $ref: ../../components/responses/accountDeletionCompleted.yaml
+    '400':
+      $ref: ../../components/responses/accountDeletionError.yaml
+    '500':
+      $ref: ../../components/responses/accountDeletionError.yaml
+    '504':
+      $ref: ../../components/responses/accountDeletionTimeout.yaml
