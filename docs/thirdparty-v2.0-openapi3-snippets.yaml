@@ -1356,44 +1356,6 @@ components:
         - amount
         - transactionType
         - expiration
-    CorrelationId-2:
-      title: CorrelationId
-      type: string
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
-      description: Identifier that correlates all messages of the same sequence. The API data type UUID (Universally Unique Identifier) is a JSON String in canonical format, conforming to [RFC 4122](https://tools.ietf.org/html/rfc4122), that is restricted by a regular expression for interoperability reasons. A UUID is always 36 characters long, 32 hexadecimal symbols and 4 dashes (‘-‘).
-      example: b51ec534-ee48-4575-b6a9-ead2955b8069
-    Refund-2:
-      title: Refund
-      type: object
-      description: Data model for the complex type Refund.
-      properties:
-        originalTransactionId:
-          $ref: '#/components/schemas/CorrelationId-2'
-        refundReason:
-          $ref: '#/components/schemas/RefundReason'
-      required:
-        - originalTransactionId
-    TransactionType-2:
-      title: TransactionType
-      type: object
-      description: Data model for the complex type TransactionType.
-      properties:
-        scenario:
-          $ref: '#/components/schemas/TransactionScenario'
-        subScenario:
-          $ref: '#/components/schemas/TransactionSubScenario'
-        initiator:
-          $ref: '#/components/schemas/TransactionInitiator'
-        initiatorType:
-          $ref: '#/components/schemas/TransactionInitiatorType'
-        refundInfo:
-          $ref: '#/components/schemas/Refund-2'
-        balanceOfPayments:
-          $ref: '#/components/schemas/BalanceOfPayments'
-      required:
-        - scenario
-        - initiator
-        - initiatorType
     tppTransactionRequestPutResponse:
       title: tppAuthorizationsPostRequest
       description: |-
@@ -1431,7 +1393,7 @@ components:
             - $ref: '#/components/schemas/Party'
           description: Information about the Payee in the proposed financial transaction.
         transactionType:
-          $ref: '#/components/schemas/TransactionType-2'
+          $ref: '#/components/schemas/TransactionType'
         expiration:
           allOf:
             - $ref: '#/components/schemas/DateTime'

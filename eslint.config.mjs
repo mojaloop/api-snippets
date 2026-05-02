@@ -13,6 +13,8 @@ export default [
       ".circleci/*",
       "config.ts",
       "**/openapi.ts",
+      "**/schemas.ts",
+      "**/types.ts",
     ],
   },
 

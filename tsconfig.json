@@ -1,6 +1,6 @@
 {
   "include": [
-    ".eslintrc.js",
+    ".ncurc.js",
     "commitlint.config.js",
     "jest.config.js",
     "src",
