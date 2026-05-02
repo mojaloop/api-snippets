@@ -37991,7 +37991,7 @@
         "description": "The number of seconds until the FX quote expires. If not provided, the default value configured on the SDK will be used.",
         "type": "integer",
         "format": "int32",
-        "minimum": "1s"
+        "minimum": 1
       }
     }
   },

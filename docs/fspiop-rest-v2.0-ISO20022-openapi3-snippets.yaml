@@ -3625,7 +3625,6 @@ components:
 
                 Unique identification of an agent, as assigned by an
                 institution, using an identification scheme.
-      required: []
       example:
         BICFI: J5BMVH7D
         ClrSysMmbId:
@@ -3703,7 +3702,6 @@ components:
 
                 Unique identification of an agent, as assigned by an
                 institution, using an identification scheme.
-      required: []
       example:
         BICFI: J5BMVH7D
         ClrSysMmbId:

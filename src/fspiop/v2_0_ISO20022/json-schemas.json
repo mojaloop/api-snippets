@@ -1685,7 +1685,6 @@
                 ]
               }
             },
-            "required": [],
             "example": {
               "BICFI": "J5BMVH7D",
               "ClrSysMmbId": {
@@ -2628,7 +2627,6 @@
                 ]
               }
             },
-            "required": [],
             "example": {
               "BICFI": "J5BMVH7D",
               "ClrSysMmbId": {
@@ -5245,7 +5243,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -9666,7 +9663,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -10630,7 +10626,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -12288,7 +12283,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -14990,7 +14984,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -15954,7 +15947,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -26096,7 +26088,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -27060,7 +27051,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -28251,7 +28241,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -29765,7 +29754,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -30729,7 +30717,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -31693,7 +31680,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -36116,7 +36102,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -37080,7 +37065,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -38271,7 +38255,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -39785,7 +39768,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -40749,7 +40731,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -41713,7 +41694,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -46942,7 +46922,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -47906,7 +47885,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -49564,7 +49542,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -52266,7 +52243,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -53230,7 +53206,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -61017,7 +60992,6 @@
         ]
       }
     },
-    "required": [],
     "example": {
       "BICFI": "J5BMVH7D",
       "ClrSysMmbId": {
@@ -61581,7 +61555,6 @@
         ]
       }
     },
-    "required": [],
     "example": {
       "BICFI": "J5BMVH7D",
       "ClrSysMmbId": {
@@ -65687,7 +65660,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -66651,7 +66623,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -67842,7 +67813,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -69356,7 +69326,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -70320,7 +70289,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -71284,7 +71252,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -76684,7 +76651,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -77648,7 +77614,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -78839,7 +78804,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -80353,7 +80317,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -81317,7 +81280,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -82281,7 +82243,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -87225,7 +87186,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -88189,7 +88149,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -89380,7 +89339,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -90894,7 +90852,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -91858,7 +91815,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -92822,7 +92778,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -96503,7 +96458,6 @@
                                             ]
                                           }
                                         },
-                                        "required": [],
                                         "example": {
                                           "BICFI": "J5BMVH7D",
                                           "ClrSysMmbId": {
@@ -98549,7 +98503,6 @@
                                             ]
                                           }
                                         },
-                                        "required": [],
                                         "example": {
                                           "BICFI": "J5BMVH7D",
                                           "ClrSysMmbId": {
@@ -101273,7 +101226,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -103846,7 +103798,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -106105,7 +106056,6 @@
                                             ]
                                           }
                                         },
-                                        "required": [],
                                         "example": {
                                           "BICFI": "J5BMVH7D",
                                           "ClrSysMmbId": {
@@ -108151,7 +108101,6 @@
                                             ]
                                           }
                                         },
-                                        "required": [],
                                         "example": {
                                           "BICFI": "J5BMVH7D",
                                           "ClrSysMmbId": {
@@ -110875,7 +110824,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -113448,7 +113396,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -117006,7 +116953,6 @@
                                     ]
                                   }
                                 },
-                                "required": [],
                                 "example": {
                                   "BICFI": "J5BMVH7D",
                                   "ClrSysMmbId": {
@@ -119052,7 +118998,6 @@
                                     ]
                                   }
                                 },
-                                "required": [],
                                 "example": {
                                   "BICFI": "J5BMVH7D",
                                   "ClrSysMmbId": {
@@ -121671,7 +121616,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -128116,7 +128060,6 @@
                             ]
                           }
                         },
-                        "required": [],
                         "example": {
                           "BICFI": "J5BMVH7D",
                           "ClrSysMmbId": {
@@ -147718,7 +147661,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -148682,7 +148624,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -150340,7 +150281,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -153042,7 +152982,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -154006,7 +153945,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -164593,7 +164531,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -165557,7 +165494,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -167215,7 +167151,6 @@
                                         ]
                                       }
                                     },
-                                    "required": [],
                                     "example": {
                                       "BICFI": "J5BMVH7D",
                                       "ClrSysMmbId": {
@@ -169917,7 +169852,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -170881,7 +170815,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -180740,7 +180673,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -181704,7 +181636,6 @@
                         ]
                       }
                     },
-                    "required": [],
                     "example": {
                       "BICFI": "J5BMVH7D",
                       "ClrSysMmbId": {
@@ -184418,7 +184349,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {
@@ -186991,7 +186921,6 @@
                                 ]
                               }
                             },
-                            "required": [],
                             "example": {
                               "BICFI": "J5BMVH7D",
                               "ClrSysMmbId": {

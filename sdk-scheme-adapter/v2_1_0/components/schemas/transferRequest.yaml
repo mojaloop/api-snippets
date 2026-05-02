@@ -67,4 +67,4 @@ properties:
       default value configured on the SDK will be used.
     type: integer
     format: int32
-    minimum: 1s
+    minimum: 1
