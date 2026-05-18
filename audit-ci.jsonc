@@ -5,11 +5,9 @@
     "moderate": true,
     "allowlist": [
         /**
-            Package: postcss (@redocly/cli > styled-components > postcss)
-            Severity: Moderate
-            Reason: as of 04/25/2026 @redocly/cli > styled-components does yet update to the patch version of postcss
-            https://github.com/advisories/GHSA-qx2v-qp2m-jg93
+            [05-18-2026] ws (WebSocket): Uninitialized memory disclosure.
+            Not direct dependency of the repo but used inside "@redocly/cli@2.31.1", "browser-sync@3.0.4", and "socket.io@4.8.3".
         **/
-        "GHSA-qx2v-qp2m-jg93"
+        "GHSA-58qx-3vcg-4xpx"
     ]
 }
