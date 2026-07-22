@@ -1,13 +1,13 @@
-{
+ {
   "include": [
     ".ncurc.js",
     "commitlint.config.js",
     "jest.config.js",
     "src",
-    "test",
+    "test"
   ],
   "exclude": [
-    "node_modules",
+    "node_modules"
   ],
   "compilerOptions": {
     "target": "es2022",
@@ -43,7 +43,7 @@
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "rootDir": "./src",
+    "rootDir": ".",
     "paths": {
       "~/*": [
         "./src/*"

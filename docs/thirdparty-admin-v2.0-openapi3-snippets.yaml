@@ -42,7 +42,7 @@ paths:
       responses:
         '200':
           description: Ok
-  /tppAccountRequest:
+  /tppAccountsRequest:
     parameters:
       - $ref: '#/components/parameters/Content-Type'
       - $ref: '#/components/parameters/Date'
@@ -55,9 +55,9 @@ paths:
       - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     post:
       tags:
-        - accountRequest
-      operationId: AuthorisingAccountRequest
-      summary: AuthorisingAccountRequest
+        - accountsRequest
+      operationId: AuthorisingAccountsRequest
+      summary: AuthorisingAccountsRequest
       description: |
         The `/tppAccountsRequest` resource is used to request consent from a user 
         for access to their accounts information. This resource must be called before 
@@ -71,7 +71,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/tppAccountRequestPostRequest'
+              $ref: '#/components/schemas/tppAccountsRequestPostRequest'
       responses:
         '202':
           $ref: '#/components/responses/202'
@@ -91,7 +91,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /tppAccountRequest/{ID}:
+  /tppAccountsRequest/{ID}:
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -104,14 +104,14 @@ paths:
       - $ref: '#/components/parameters/FSPIOP-URI'
       - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     get:
-      operationId: GetAccountRequest
-      summary: GetAccountRequest
+      operationId: GetAccountsRequest
+      summary: GetAccountsRequest
       description: |
-        The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountRequest/ call.
-        The *{ID}* in the URI should contain the accountRequestId that was assigned to the
+        The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountsRequest/ call.
+        The *{ID}* in the URI should contain the AccountsRequestId that was assigned to the
         request by the PISP when the PISP originated the request. The result is return via the PUT callback.
       tags:
-        - accountRequest
+        - AccountsRequest
       parameters:
         - $ref: '#/components/parameters/Accept'
       responses:
@@ -135,11 +135,11 @@ paths:
           $ref: '#/components/responses/503'
     put:
       tags:
-        - accountRequest
-      operationId: UpdateAccountRequest
-      summary: UpdateAccountRequest
+        - AccountsRequest
+      operationId: UpdateAccountsRequest
+      summary: UpdateAccountsRequest
       description: |
-        A DFSP uses this callback to (1) inform the PISP that the accountRequest has been accepted,
+        A DFSP uses this callback to (1) inform the PISP that the AccountsRequest has been accepted,
         and (2) communicate to the PISP which `authChannel` it should use to authenticate their user
         with.
 
@@ -156,7 +156,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/tppAccountRequestPutResponse'
+              $ref: '#/components/schemas/tppAccountsRequestPutResponse'
       responses:
         '202':
           $ref: '#/components/responses/202'
@@ -176,7 +176,7 @@ paths:
           $ref: '#/components/responses/501'
         '503':
           $ref: '#/components/responses/503'
-  /tppAccountRequest/{ID}/error:
+  /tppAccountsRequest/{ID}/error:
     parameters:
       - $ref: '#/components/parameters/ID'
       - $ref: '#/components/parameters/Content-Type'
@@ -190,9 +190,9 @@ paths:
       - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     put:
       tags:
-        - accountRequest
-      operationId: NotifyErrorAccountRequest
-      summary: NotifyErrorAccountRequest
+        - AccountsRequest
+      operationId: NotifyErrorAccountsRequest
+      summary: NotifyErrorAccountsRequest
       description: |
         DFSP responds to the PISP if something went wrong with validating an OTP or secret.
       parameters:
@@ -240,7 +240,7 @@ paths:
       summary: GetAccountsByUserId
       description: |
         The HTTP request `GET /tppAccounts/{ID}/{SignedChallenge}` is used to retrieve the list of potential accounts available for linking.
-        The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountRequest/` callback. 
+        The request `{ID}` is the AccountsRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountsRequest/` callback. 
 
         The signed challenge must match the authentication channel that was selected by the DFSP. For example, if the WEB authentication channel was selected by the DFSP, then signed challenge needs to be authToken, otherwise if the OTP channel was selected, then it needs to be the OTP that was entered by the party.
         (For example, GET /tppAccounts/12345/56789).
@@ -2556,17 +2556,17 @@ components:
       maxLength: 512
       description: |
         The API data type Uri is a JSON string in a canonical format that is restricted by a regular expression for interoperability reasons.
-    tppAccountRequestPostRequest:
-      title: AccountRequestPostRequest
+    tppAccountsRequestPostRequest:
+      title: AccountsRequestPostRequest
       type: object
       description: |-
         Used by: PISP
         The /tppAccountsRequest resource is used to request consent from a user for access to their accounts information. This resource must be called before the /tppAccounts resource can be queried which provides the account information. 
-        Callback and data model for POST /tppAccountRequest:
-        Callback: PUT /tppAccountRequests/{ID} Error callback: PUT /tppAccountRequests/{ID}/error Data model - see below url
-        https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#31212-post-accountrequest
+        Callback and data model for POST /tppAccountsRequest:
+        Callback: PUT /tppAccountsRequest/{ID} Error callback: PUT /tppAccountsRequest/{ID}/error Data model - see below url
+        https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#31212-post-AccountsRequest
       properties:
-        accountRequestId:
+        AccountsRequestId:
           $ref: '#/components/schemas/CorrelationId'
         partyItentifier:
           $ref: '#/components/schemas/PartyIdentifier'
@@ -2579,7 +2579,7 @@ components:
         callbackUri:
           $ref: '#/components/schemas/Uri'
       required:
-        - accountRequestId
+        - AccountsRequestId
         - partyIdInfo
         - authChannels
         - callbackUri
@@ -2595,12 +2595,12 @@ components:
       type: string
       pattern: ^[A-Za-z0-9-_]+[=]{0,2}$
       description: The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters.
-    tppAccountRequestPutResponse:
-      title: AccountRequestPutResponse
+    tppAccountsRequestPutResponse:
+      title: AccountsRequestPutResponse
       type: object
       description: |-
         Used by: PISP
-        This is the message that the DFSP sends to the PISP to inform the PISP that  the accountRequest has been accepted, and to communicate to the PISP which  `authChannel` it should use to authenticate their user with. I.e. it is a response to a POST /tppAccountsRequest request, or a GET /tppAccountsRequest/{ID} request.
+        This is the message that the DFSP sends to the PISP to inform the PISP that  the AccountsRequest has been accepted, and to communicate to the PISP which  `authChannel` it should use to authenticate their user with. I.e. it is a response to a POST /tppAccountsRequest request, or a GET /tppAccountsRequest/{ID} request.
         When a PISP requests a series of permissions from a DFSP on behalf of a DFSP's customer,  not all the permissions requested may be granted by the DFSP. Conversely,  the out-of-loop authorization process may result in additional privileges  being granted by the account holder to the PISP. The `PUT /tppAccountsRequest/<ID>`  resource returns the current state of the permissions relating to a particular authorization request. 
           
       properties:

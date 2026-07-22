@@ -12,14 +12,14 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-URI.yaml
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 get:
-  operationId: GetAccountRequest
-  summary: GetAccountRequest
+  operationId: GetAccountsRequest
+  summary: GetAccountsRequest
   description: |
-    The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountRequest/ call.
-    The *{ID}* in the URI should contain the accountRequestId that was assigned to the
+    The `GET /tppAccountsRequest/{ID}` is used to request status of POST /tppAccountsRequest/ call.
+    The *{ID}* in the URI should contain the AccountsRequestId that was assigned to the
     request by the PISP when the PISP originated the request. The result is return via the PUT callback.
   tags:
-    - accountRequest
+    - AccountsRequest
   parameters:
     - $ref: ../components/parameters/Accept.yaml
   responses:
@@ -43,11 +43,11 @@ get:
       $ref: ../components/responses/503.yaml
 put:
   tags:
-    - accountRequest
-  operationId: UpdateAccountRequest
-  summary: UpdateAccountRequest
+    - AccountsRequest
+  operationId: UpdateAccountsRequest
+  summary: UpdateAccountsRequest
   description: |
-    A DFSP uses this callback to (1) inform the PISP that the accountRequest has been accepted,
+    A DFSP uses this callback to (1) inform the PISP that the AccountsRequest has been accepted,
     and (2) communicate to the PISP which `authChannel` it should use to authenticate their user
     with.
 
@@ -64,7 +64,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/tppAccountRequestPutResponse.yaml
+          $ref: ../components/schemas/tppAccountsRequestPutResponse.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml

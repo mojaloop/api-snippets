@@ -11,9 +11,9 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 post:
   tags:
-    - accountRequest
-  operationId: AuthorisingAccountRequest
-  summary: AuthorisingAccountRequest
+    - AccountsRequest
+  operationId: AuthorisingAccountsRequest
+  summary: AuthorisingAccountsRequest
   description: |
     The `/tppAccountsRequest` resource is used to request consent from a user 
     for access to their accounts information. This resource must be called before 
@@ -27,7 +27,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/tppAccountRequestPostRequest.yaml
+          $ref: ../components/schemas/tppAccountsRequestPostRequest.yaml
   responses:
     202:
       $ref: ../components/responses/202.yaml

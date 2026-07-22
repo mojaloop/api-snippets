@@ -20,17 +20,17 @@ servers:
 paths:
   /parties/{Type}/{ID}:
     parameters:
-      - $ref: "#/components/parameters/Type"
-      - $ref: "#/components/parameters/ID"
-      - $ref: "#/components/parameters/Content-Type"
-      - $ref: "#/components/parameters/Date"
-      - $ref: "#/components/parameters/X-Forwarded-For"
-      - $ref: "#/components/parameters/FSPIOP-Source"
-      - $ref: "#/components/parameters/FSPIOP-Destination"
-      - $ref: "#/components/parameters/FSPIOP-Encryption"
-      - $ref: "#/components/parameters/FSPIOP-Signature"
-      - $ref: "#/components/parameters/FSPIOP-URI"
-      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      - $ref: '#/components/parameters/Type'
+      - $ref: '#/components/parameters/ID'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Date'
+      - $ref: '#/components/parameters/X-Forwarded-For'
+      - $ref: '#/components/parameters/FSPIOP-Source'
+      - $ref: '#/components/parameters/FSPIOP-Destination'
+      - $ref: '#/components/parameters/FSPIOP-Encryption'
+      - $ref: '#/components/parameters/FSPIOP-Signature'
+      - $ref: '#/components/parameters/FSPIOP-URI'
+      - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     get:
       description: >-
         The HTTP request `GET /parties/{Type}/{ID}` (or `GET
@@ -43,26 +43,26 @@ paths:
         - parties
       operationId: PartiesByTypeAndID
       parameters:
-        - $ref: "#/components/parameters/Accept"
+        - $ref: '#/components/parameters/Accept'
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
     put:
       description: >-
         The callback `PUT /parties/{Type}/{ID}` (or `PUT
@@ -73,7 +73,7 @@ paths:
         - parties
       operationId: PartiesByTypeAndID2
       parameters:
-        - $ref: "#/components/parameters/Content-Length"
+        - $ref: '#/components/parameters/Content-Length'
       requestBody:
         description: Party information returned.
         required: true
@@ -83,24 +83,24 @@ paths:
               $ref: >-
                 #/components/schemas/GetParties_IdentificationVerificationReportV03
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /parties/{Type}/{ID}/error:
     put:
       description: >-
@@ -113,18 +113,18 @@ paths:
         - parties
       operationId: PartiesErrorByTypeAndID
       parameters:
-        - $ref: "#/components/parameters/Type"
-        - $ref: "#/components/parameters/ID"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/Type'
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the error returned.
         required: true
@@ -134,38 +134,38 @@ paths:
               $ref: >-
                 #/components/schemas/GetPartiesError_IdentificationVerificationReportV03
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /parties/{Type}/{ID}/{SubId}:
     parameters:
-      - $ref: "#/components/parameters/Type"
-      - $ref: "#/components/parameters/ID"
-      - $ref: "#/components/parameters/SubId"
-      - $ref: "#/components/parameters/Content-Type"
-      - $ref: "#/components/parameters/Date"
-      - $ref: "#/components/parameters/X-Forwarded-For"
-      - $ref: "#/components/parameters/FSPIOP-Source"
-      - $ref: "#/components/parameters/FSPIOP-Destination"
-      - $ref: "#/components/parameters/FSPIOP-Encryption"
-      - $ref: "#/components/parameters/FSPIOP-Signature"
-      - $ref: "#/components/parameters/FSPIOP-URI"
-      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      - $ref: '#/components/parameters/Type'
+      - $ref: '#/components/parameters/ID'
+      - $ref: '#/components/parameters/SubId'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Date'
+      - $ref: '#/components/parameters/X-Forwarded-For'
+      - $ref: '#/components/parameters/FSPIOP-Source'
+      - $ref: '#/components/parameters/FSPIOP-Destination'
+      - $ref: '#/components/parameters/FSPIOP-Encryption'
+      - $ref: '#/components/parameters/FSPIOP-Signature'
+      - $ref: '#/components/parameters/FSPIOP-URI'
+      - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     get:
       description: >-
         The HTTP request `GET /parties/{Type}/{ID}` (or `GET
@@ -178,26 +178,26 @@ paths:
         - parties
       operationId: PartiesSubIdByTypeAndID
       parameters:
-        - $ref: "#/components/parameters/Accept"
+        - $ref: '#/components/parameters/Accept'
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
     put:
       description: >-
         The callback `PUT /parties/{Type}/{ID}` (or `PUT
@@ -208,7 +208,7 @@ paths:
         - parties
       operationId: PartiesSubIdByTypeAndIDPut
       parameters:
-        - $ref: "#/components/parameters/Content-Length"
+        - $ref: '#/components/parameters/Content-Length'
       requestBody:
         description: Party information returned.
         required: true
@@ -218,24 +218,24 @@ paths:
               $ref: >-
                 #/components/schemas/GetParties_IdentificationVerificationReportV03
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /parties/{Type}/{ID}/{SubId}/error:
     put:
       description: >-
@@ -248,19 +248,19 @@ paths:
         - parties
       operationId: PartiesSubIdErrorByTypeAndID
       parameters:
-        - $ref: "#/components/parameters/Type"
-        - $ref: "#/components/parameters/ID"
-        - $ref: "#/components/parameters/SubId"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/Type'
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/SubId'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the error returned.
         required: true
@@ -270,24 +270,24 @@ paths:
               $ref: >-
                 #/components/schemas/GetPartiesError_IdentificationVerificationReportV03
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /quotes:
     post:
       description: >-
@@ -298,55 +298,55 @@ paths:
         - quotes
       operationId: Quotes
       parameters:
-        - $ref: "#/components/parameters/Accept"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the quote to be created.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TermsRequest_FIToFICustomerCreditProposal"
+              $ref: '#/components/schemas/TermsRequest_FIToFICustomerCreditProposal'
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /quotes/{ID}:
     parameters:
-      - $ref: "#/components/parameters/ID"
-      - $ref: "#/components/parameters/Content-Type"
-      - $ref: "#/components/parameters/Date"
-      - $ref: "#/components/parameters/X-Forwarded-For"
-      - $ref: "#/components/parameters/FSPIOP-Source"
-      - $ref: "#/components/parameters/FSPIOP-Destination"
-      - $ref: "#/components/parameters/FSPIOP-Encryption"
-      - $ref: "#/components/parameters/FSPIOP-Signature"
-      - $ref: "#/components/parameters/FSPIOP-URI"
-      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      - $ref: '#/components/parameters/ID'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Date'
+      - $ref: '#/components/parameters/X-Forwarded-For'
+      - $ref: '#/components/parameters/FSPIOP-Source'
+      - $ref: '#/components/parameters/FSPIOP-Destination'
+      - $ref: '#/components/parameters/FSPIOP-Encryption'
+      - $ref: '#/components/parameters/FSPIOP-Signature'
+      - $ref: '#/components/parameters/FSPIOP-URI'
+      - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     get:
       description: >-
         The HTTP request `GET /quotes/{ID}` is used to get information regarding
@@ -357,26 +357,26 @@ paths:
         - quotes
       operationId: QuotesByID
       parameters:
-        - $ref: "#/components/parameters/Accept"
+        - $ref: '#/components/parameters/Accept'
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
     put:
       description: >-
         The callback `PUT /quotes/{ID}` is used to inform the client of a
@@ -388,7 +388,7 @@ paths:
         - quotes
       operationId: QuotesByID1
       parameters:
-        - $ref: "#/components/parameters/Content-Length"
+        - $ref: '#/components/parameters/Content-Length'
       requestBody:
         description: Quote information returned.
         required: true
@@ -398,24 +398,24 @@ paths:
               $ref: >-
                 #/components/schemas/TermsResponse_FIToFICustomerCreditConfirmation
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /quotes/{ID}/error:
     put:
       description: >-
@@ -429,43 +429,43 @@ paths:
         - quotes
       operationId: QuotesByIDAndError
       parameters:
-        - $ref: "#/components/parameters/ID"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the error returned.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PacsError_FIToFIPaymentStatusReportV15"
+              $ref: '#/components/schemas/PacsError_FIToFIPaymentStatusReportV15'
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /transfers:
     post:
       description: >-
@@ -477,55 +477,55 @@ paths:
         - transfers
       operationId: transfers
       parameters:
-        - $ref: "#/components/parameters/Accept"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the transfer to be created.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Execute_FIToFICustomerCreditTransferV13"
+              $ref: '#/components/schemas/Execute_FIToFICustomerCreditTransferV13'
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /transfers/{ID}:
     parameters:
-      - $ref: "#/components/parameters/ID"
-      - $ref: "#/components/parameters/Content-Type"
-      - $ref: "#/components/parameters/Date"
-      - $ref: "#/components/parameters/X-Forwarded-For"
-      - $ref: "#/components/parameters/FSPIOP-Source"
-      - $ref: "#/components/parameters/FSPIOP-Destination"
-      - $ref: "#/components/parameters/FSPIOP-Encryption"
-      - $ref: "#/components/parameters/FSPIOP-Signature"
-      - $ref: "#/components/parameters/FSPIOP-URI"
-      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      - $ref: '#/components/parameters/ID'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Date'
+      - $ref: '#/components/parameters/X-Forwarded-For'
+      - $ref: '#/components/parameters/FSPIOP-Source'
+      - $ref: '#/components/parameters/FSPIOP-Destination'
+      - $ref: '#/components/parameters/FSPIOP-Encryption'
+      - $ref: '#/components/parameters/FSPIOP-Signature'
+      - $ref: '#/components/parameters/FSPIOP-URI'
+      - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     get:
       description: >-
         The HTTP request `GET /transfers/{ID}` is used to get information
@@ -537,26 +537,26 @@ paths:
         - transfers
       operationId: TransfersByIDGet
       parameters:
-        - $ref: "#/components/parameters/Accept"
+        - $ref: '#/components/parameters/Accept'
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
     patch:
       description: >-
         The HTTP request PATCH /transfers/<ID> is used by a Switch to update the
@@ -570,33 +570,33 @@ paths:
         - transfers
       operationId: TransfersByIDPatch
       parameters:
-        - $ref: "#/components/parameters/Content-Length"
+        - $ref: '#/components/parameters/Content-Length'
       requestBody:
         description: Transfer notification upon completion.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15"
+              $ref: '#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15'
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
     put:
       description: >-
         The callback `PUT /transfers/{ID}` is used to inform the client of a
@@ -608,33 +608,33 @@ paths:
         - transfers
       operationId: TransfersByIDPut
       parameters:
-        - $ref: "#/components/parameters/Content-Length"
+        - $ref: '#/components/parameters/Content-Length'
       requestBody:
         description: Transfer information returned.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15"
+              $ref: '#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15'
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /transfers/{ID}/error:
     put:
       description: >-
@@ -648,43 +648,43 @@ paths:
         - transfers
       operationId: TransfersByIDAndError
       parameters:
-        - $ref: "#/components/parameters/ID"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the error returned.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PacsError_FIToFIPaymentStatusReportV15"
+              $ref: '#/components/schemas/PacsError_FIToFIPaymentStatusReportV15'
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /fxQuotes:
     post:
       description: >-
@@ -695,55 +695,55 @@ paths:
         - fxQuotes
       operationId: FxQuotesPost
       parameters:
-        - $ref: "#/components/parameters/Accept"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the FX quote to be created.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/FxRequest_FICreditTransferProposal"
+              $ref: '#/components/schemas/FxRequest_FICreditTransferProposal'
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /fxQuotes/{ID}:
     parameters:
-      - $ref: "#/components/parameters/ID"
-      - $ref: "#/components/parameters/Content-Type"
-      - $ref: "#/components/parameters/Date"
-      - $ref: "#/components/parameters/X-Forwarded-For"
-      - $ref: "#/components/parameters/FSPIOP-Source"
-      - $ref: "#/components/parameters/FSPIOP-Destination"
-      - $ref: "#/components/parameters/FSPIOP-Encryption"
-      - $ref: "#/components/parameters/FSPIOP-Signature"
-      - $ref: "#/components/parameters/FSPIOP-URI"
-      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      - $ref: '#/components/parameters/ID'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Date'
+      - $ref: '#/components/parameters/X-Forwarded-For'
+      - $ref: '#/components/parameters/FSPIOP-Source'
+      - $ref: '#/components/parameters/FSPIOP-Destination'
+      - $ref: '#/components/parameters/FSPIOP-Encryption'
+      - $ref: '#/components/parameters/FSPIOP-Signature'
+      - $ref: '#/components/parameters/FSPIOP-URI'
+      - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     get:
       description: >-
         The HTTP request `GET /fxQuotes/{ID}` is used to request information
@@ -755,26 +755,26 @@ paths:
         - fxQuotes
       operationId: FxQuotesByIDGet
       parameters:
-        - $ref: "#/components/parameters/Accept"
+        - $ref: '#/components/parameters/Accept'
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
     put:
       description: >-
         The callback `PUT /fxQuotes/{ID}` is used to inform the requester about
@@ -787,33 +787,33 @@ paths:
         - fxQuotes
       operationId: FxQuotesByIdPut
       parameters:
-        - $ref: "#/components/parameters/Content-Length"
+        - $ref: '#/components/parameters/Content-Length'
       requestBody:
         description: FX Quote information returned.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/FxResponse_FICreditTransferConfirmation"
+              $ref: '#/components/schemas/FxResponse_FICreditTransferConfirmation'
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /fxQuotes/{ID}/error:
     put:
       description: >-
@@ -827,43 +827,43 @@ paths:
         - fxQuotes
       operationId: FxQuotesByIDAndErrorPut
       parameters:
-        - $ref: "#/components/parameters/ID"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the error returned.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PacsError_FIToFIPaymentStatusReportV15"
+              $ref: '#/components/schemas/PacsError_FIToFIPaymentStatusReportV15'
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /fxTransfers:
     post:
       description: >-
@@ -874,17 +874,17 @@ paths:
         - fxTransfers
       operationId: FxTransfersPost
       parameters:
-        - $ref: "#/components/parameters/Accept"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the FX transfer to be created.
         required: true
@@ -894,36 +894,36 @@ paths:
               $ref: >-
                 #/components/schemas/Fxecute_FinancialInstitutionCreditTransferV12
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /fxTransfers/{ID}:
     parameters:
-      - $ref: "#/components/parameters/ID"
-      - $ref: "#/components/parameters/Content-Type"
-      - $ref: "#/components/parameters/Date"
-      - $ref: "#/components/parameters/X-Forwarded-For"
-      - $ref: "#/components/parameters/FSPIOP-Source"
-      - $ref: "#/components/parameters/FSPIOP-Destination"
-      - $ref: "#/components/parameters/FSPIOP-Encryption"
-      - $ref: "#/components/parameters/FSPIOP-Signature"
-      - $ref: "#/components/parameters/FSPIOP-URI"
-      - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+      - $ref: '#/components/parameters/ID'
+      - $ref: '#/components/parameters/Content-Type'
+      - $ref: '#/components/parameters/Date'
+      - $ref: '#/components/parameters/X-Forwarded-For'
+      - $ref: '#/components/parameters/FSPIOP-Source'
+      - $ref: '#/components/parameters/FSPIOP-Destination'
+      - $ref: '#/components/parameters/FSPIOP-Encryption'
+      - $ref: '#/components/parameters/FSPIOP-Signature'
+      - $ref: '#/components/parameters/FSPIOP-URI'
+      - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
     get:
       description: >-
         The HTTP request `GET /fxTransfers/{ID}` s used to request information
@@ -935,26 +935,26 @@ paths:
         - fxTransfers
       operationId: FxTransfersByIDGet
       parameters:
-        - $ref: "#/components/parameters/Accept"
+        - $ref: '#/components/parameters/Accept'
       responses:
-        "202":
-          $ref: "#/components/responses/202"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '202':
+          $ref: '#/components/responses/202'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
     patch:
       description: >-
         The HTTP request PATCH /fxTransfers/<ID> is used to inform the requester
@@ -967,33 +967,33 @@ paths:
         - fxTransfers
       operationId: FxTransfersByIDPatch
       parameters:
-        - $ref: "#/components/parameters/Content-Length"
+        - $ref: '#/components/parameters/Content-Length'
       requestBody:
         description: Transfer notification upon completion.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15"
+              $ref: '#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15'
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
     put:
       description: >-
         The callback `PUT /fxTransfers/{ID}` is used to inform the requester
@@ -1006,33 +1006,33 @@ paths:
         - fxTransfers
       operationId: FxTransfersByIDPut
       parameters:
-        - $ref: "#/components/parameters/Content-Length"
+        - $ref: '#/components/parameters/Content-Length'
       requestBody:
         description: Transfer information returned.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15"
+              $ref: '#/components/schemas/PacsStatus_FIToFIPaymentStatusReportV15'
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
   /fxTransfers/{ID}/error:
     put:
       description: >-
@@ -1046,43 +1046,43 @@ paths:
         - fxTransfers
       operationId: FxTransfersByIDAndErrorPut
       parameters:
-        - $ref: "#/components/parameters/ID"
-        - $ref: "#/components/parameters/Content-Length"
-        - $ref: "#/components/parameters/Content-Type"
-        - $ref: "#/components/parameters/Date"
-        - $ref: "#/components/parameters/X-Forwarded-For"
-        - $ref: "#/components/parameters/FSPIOP-Source"
-        - $ref: "#/components/parameters/FSPIOP-Destination"
-        - $ref: "#/components/parameters/FSPIOP-Encryption"
-        - $ref: "#/components/parameters/FSPIOP-Signature"
-        - $ref: "#/components/parameters/FSPIOP-URI"
-        - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
+        - $ref: '#/components/parameters/ID'
+        - $ref: '#/components/parameters/Content-Length'
+        - $ref: '#/components/parameters/Content-Type'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/X-Forwarded-For'
+        - $ref: '#/components/parameters/FSPIOP-Source'
+        - $ref: '#/components/parameters/FSPIOP-Destination'
+        - $ref: '#/components/parameters/FSPIOP-Encryption'
+        - $ref: '#/components/parameters/FSPIOP-Signature'
+        - $ref: '#/components/parameters/FSPIOP-URI'
+        - $ref: '#/components/parameters/FSPIOP-HTTP-Method'
       requestBody:
         description: Details of the error returned.
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PacsError_FIToFIPaymentStatusReportV15"
+              $ref: '#/components/schemas/PacsError_FIToFIPaymentStatusReportV15'
       responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
+        '200':
+          $ref: '#/components/responses/200'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '405':
+          $ref: '#/components/responses/405'
+        '406':
+          $ref: '#/components/responses/406'
+        '501':
+          $ref: '#/components/responses/501'
+        '503':
+          $ref: '#/components/responses/503'
 components:
   parameters:
     Accept:
@@ -1232,98 +1232,98 @@ components:
         7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC
         7239 is less-used and supported than `X-Forwarded-For`.
   responses:
-    "200":
+    '200':
       description: OK
-    "202":
+    '202':
       description: Accepted
-    "400":
+    '400':
       description: Bad Request
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInformationResponse"
+            $ref: '#/components/schemas/ErrorInformationResponse'
       headers:
         Content-Length:
-          $ref: "#/components/headers/Content-Length"
+          $ref: '#/components/headers/Content-Length'
         Content-Type:
-          $ref: "#/components/headers/Content-Type"
-    "401":
+          $ref: '#/components/headers/Content-Type'
+    '401':
       description: Unauthorized
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInformationResponse"
+            $ref: '#/components/schemas/ErrorInformationResponse'
       headers:
         Content-Length:
-          $ref: "#/components/headers/Content-Length"
+          $ref: '#/components/headers/Content-Length'
         Content-Type:
-          $ref: "#/components/headers/Content-Type"
-    "403":
+          $ref: '#/components/headers/Content-Type'
+    '403':
       description: Forbidden
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInformationResponse"
+            $ref: '#/components/schemas/ErrorInformationResponse'
       headers:
         Content-Length:
-          $ref: "#/components/headers/Content-Length"
+          $ref: '#/components/headers/Content-Length'
         Content-Type:
-          $ref: "#/components/headers/Content-Type"
-    "404":
+          $ref: '#/components/headers/Content-Type'
+    '404':
       description: Not Found
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInformationResponse"
+            $ref: '#/components/schemas/ErrorInformationResponse'
       headers:
         Content-Length:
-          $ref: "#/components/headers/Content-Length"
+          $ref: '#/components/headers/Content-Length'
         Content-Type:
-          $ref: "#/components/headers/Content-Type"
-    "405":
+          $ref: '#/components/headers/Content-Type'
+    '405':
       description: Method Not Allowed
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInformationResponse"
+            $ref: '#/components/schemas/ErrorInformationResponse'
       headers:
         Content-Length:
-          $ref: "#/components/headers/Content-Length"
+          $ref: '#/components/headers/Content-Length'
         Content-Type:
-          $ref: "#/components/headers/Content-Type"
-    "406":
+          $ref: '#/components/headers/Content-Type'
+    '406':
       description: Not Acceptable
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInformationResponse"
+            $ref: '#/components/schemas/ErrorInformationResponse'
       headers:
         Content-Length:
-          $ref: "#/components/headers/Content-Length"
+          $ref: '#/components/headers/Content-Length'
         Content-Type:
-          $ref: "#/components/headers/Content-Type"
-    "501":
+          $ref: '#/components/headers/Content-Type'
+    '501':
       description: Not Implemented
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInformationResponse"
+            $ref: '#/components/schemas/ErrorInformationResponse'
       headers:
         Content-Length:
-          $ref: "#/components/headers/Content-Length"
+          $ref: '#/components/headers/Content-Length'
         Content-Type:
-          $ref: "#/components/headers/Content-Type"
-    "503":
+          $ref: '#/components/headers/Content-Type'
+    '503':
       description: Service Unavailable
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/ErrorInformationResponse"
+            $ref: '#/components/schemas/ErrorInformationResponse'
       headers:
         Content-Length:
-          $ref: "#/components/headers/Content-Length"
+          $ref: '#/components/headers/Content-Length'
         Content-Type:
-          $ref: "#/components/headers/Content-Type"
+          $ref: '#/components/headers/Content-Type'
   headers:
     Content-Length:
       required: false
@@ -1355,7 +1355,7 @@ components:
         - properties:
             IBAN:
               allOf:
-                - $ref: "#/components/schemas/IBAN2007Identifier"
+                - $ref: '#/components/schemas/IBAN2007Identifier'
                 - description: >
                     IBAN
 
@@ -1371,7 +1371,7 @@ components:
         - properties:
             Othr:
               allOf:
-                - $ref: "#/components/schemas/GenericAccountIdentification1"
+                - $ref: '#/components/schemas/GenericAccountIdentification1'
                 - description: >
                     Other
 
@@ -1391,7 +1391,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalAccountIdentification1Code"
+                - $ref: '#/components/schemas/ExternalAccountIdentification1Code'
                 - description: >
                     Code
 
@@ -1402,7 +1402,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
                     Name of the identification scheme, in a free text form.
@@ -1420,10 +1420,10 @@ components:
       properties:
         ActiveCurrencyAndAmount:
           allOf:
-            - $ref: "#/components/schemas/ActiveCurrencyAndAmount_SimpleType"
+            - $ref: '#/components/schemas/ActiveCurrencyAndAmount_SimpleType'
         Ccy:
           allOf:
-            - $ref: "#/components/schemas/ActiveCurrencyCode"
+            - $ref: '#/components/schemas/ActiveCurrencyCode'
             - description: |
                 Currency
                 Identification of the currency in which the account is held.
@@ -1636,7 +1636,7 @@ components:
                 ordered by the initiating party.
         Ccy:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyCode"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'
             - description: |
                 Currency
                 Identification of the currency in which the account is held.
@@ -1860,7 +1860,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/AddressType2Code"
+                - $ref: '#/components/schemas/AddressType2Code'
                 - description: |
                     Code
                     Type of address expressed as a code.
@@ -1869,7 +1869,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/GenericIdentification30"
+                - $ref: '#/components/schemas/GenericIdentification30'
                 - description: |
                     Proprietary
                     Type of address expressed as a proprietary code.
@@ -1933,7 +1933,7 @@ components:
       properties:
         FinInstnId:
           allOf:
-            - $ref: "#/components/schemas/FinancialInstitutionIdentification18"
+            - $ref: '#/components/schemas/FinancialInstitutionIdentification18'
             - description: >
                 FinancialInstitutionIdentification
 
@@ -1942,7 +1942,7 @@ components:
                 proprietary identification scheme.
         BrnchId:
           allOf:
-            - $ref: "#/components/schemas/BranchData3"
+            - $ref: '#/components/schemas/BranchData3'
             - description: >
                 BranchIdentification
 
@@ -1981,7 +1981,7 @@ components:
       properties:
         FinInstnId:
           allOf:
-            - $ref: "#/components/schemas/FinancialInstitutionIdentification23"
+            - $ref: '#/components/schemas/FinancialInstitutionIdentification23'
             - description: >
                 FinancialInstitutionIdentification
 
@@ -1989,7 +1989,7 @@ components:
                 or a branch of a financial institution.
         BrnchId:
           allOf:
-            - $ref: "#/components/schemas/BranchData5"
+            - $ref: '#/components/schemas/BranchData5'
             - description: |
                 BranchIdentification
                 Identifies a specific branch of a financial institution.
@@ -2022,7 +2022,7 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Identification
 
@@ -2030,7 +2030,7 @@ components:
                 institution.
         LEI:
           allOf:
-            - $ref: "#/components/schemas/LEIIdentifier"
+            - $ref: '#/components/schemas/LEIIdentifier'
             - description: >
                 Legal Entity Identifier
 
@@ -2038,7 +2038,7 @@ components:
                 institution.
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 Name
 
@@ -2046,7 +2046,7 @@ components:
                 identify that agent.
         PstlAdr:
           allOf:
-            - $ref: "#/components/schemas/PostalAddress24"
+            - $ref: '#/components/schemas/PostalAddress24'
             - description: >
                 Postal Address
 
@@ -2076,7 +2076,7 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Identification
 
@@ -2084,7 +2084,7 @@ components:
                 institution.
         LEI:
           allOf:
-            - $ref: "#/components/schemas/LEIIdentifier"
+            - $ref: '#/components/schemas/LEIIdentifier'
             - description: >
                 LEI
 
@@ -2092,7 +2092,7 @@ components:
                 institution.
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 Name
 
@@ -2100,7 +2100,7 @@ components:
                 identify that agent.
         PstlAdr:
           allOf:
-            - $ref: "#/components/schemas/PostalAddress27"
+            - $ref: '#/components/schemas/PostalAddress27'
             - description: >
                 PostalAddress
 
@@ -2125,7 +2125,7 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/AccountIdentification4Choice"
+            - $ref: '#/components/schemas/AccountIdentification4Choice'
             - description: >
                 Identification
 
@@ -2133,13 +2133,13 @@ components:
                 the account owner and the account servicer.
         Tp:
           allOf:
-            - $ref: "#/components/schemas/CashAccountType2Choice"
+            - $ref: '#/components/schemas/CashAccountType2Choice'
             - description: |
                 Type
                 Specifies the nature, or use of the account.
         Ccy:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyCode"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'
             - description: >
                 Currency
 
@@ -2151,7 +2151,7 @@ components:
                 settlement on the account.
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max70Text"
+            - $ref: '#/components/schemas/Max70Text'
             - description: >
                 Name
 
@@ -2165,7 +2165,7 @@ components:
                 account owner's identity and the account number.
         Prxy:
           allOf:
-            - $ref: "#/components/schemas/ProxyAccountIdentification1"
+            - $ref: '#/components/schemas/ProxyAccountIdentification1'
             - description: >
                 Proxy
 
@@ -2190,7 +2190,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalCashAccountType1Code"
+                - $ref: '#/components/schemas/ExternalCashAccountType1Code'
                 - description: |
                     Code
                     Account type, in a coded form.
@@ -2199,7 +2199,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
                     Nature or use of the account in a proprietary form.
@@ -2218,7 +2218,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalCategoryPurpose1Code"
+                - $ref: '#/components/schemas/ExternalCategoryPurpose1Code'
                 - description: >
                     Code
 
@@ -2229,7 +2229,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
                     Category purpose, in a proprietary form.
@@ -2273,7 +2273,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalChargeType1Code"
+                - $ref: '#/components/schemas/ExternalChargeType1Code'
                 - description: |
                     Code
                     Charge type, in a coded form.
@@ -2282,7 +2282,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/GenericIdentification3"
+                - $ref: '#/components/schemas/GenericIdentification3'
                 - description: >
                     Proprietary
 
@@ -2303,7 +2303,7 @@ components:
       properties:
         Amt:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             - description: |
                 Amount
                 Transaction charges to be paid by the charge bearer.
@@ -2318,7 +2318,7 @@ components:
                 transaction charges are due.
         Tp:
           allOf:
-            - $ref: "#/components/schemas/ChargeType3Choice"
+            - $ref: '#/components/schemas/ChargeType3Choice'
             - description: |
                 Type
                 Defines the type of charges.
@@ -2384,7 +2384,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
                     Proprietary identification of the clearing system.
@@ -2402,7 +2402,7 @@ components:
       properties:
         ClrSysId:
           allOf:
-            - $ref: "#/components/schemas/ClearingSystemIdentification2Choice"
+            - $ref: '#/components/schemas/ClearingSystemIdentification2Choice'
             - description: >
                 ClearingSystemIdentification
 
@@ -2411,7 +2411,7 @@ components:
                 processed.
         MmbId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 MemberIdentification
                 Identification of a member of a clearing system.
@@ -2430,13 +2430,13 @@ components:
       properties:
         NmPrfx:
           allOf:
-            - $ref: "#/components/schemas/NamePrefix2Code"
+            - $ref: '#/components/schemas/NamePrefix2Code'
             - description: |
                 NamePrefix
                 Specifies the terms used to formally address a person.
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 Name
 
@@ -2444,7 +2444,7 @@ components:
                 identify that party.
         PhneNb:
           allOf:
-            - $ref: "#/components/schemas/PhoneNumber"
+            - $ref: '#/components/schemas/PhoneNumber'
             - description: >
                 PhoneNumber
 
@@ -2452,7 +2452,7 @@ components:
                 defined by telecom services.
         MobNb:
           allOf:
-            - $ref: "#/components/schemas/PhoneNumber"
+            - $ref: '#/components/schemas/PhoneNumber'
             - description: >
                 MobilePhoneNumber
 
@@ -2460,7 +2460,7 @@ components:
                 as defined by telecom services.
         FaxNb:
           allOf:
-            - $ref: "#/components/schemas/PhoneNumber"
+            - $ref: '#/components/schemas/PhoneNumber'
             - description: >
                 FaxNumber
 
@@ -2468,7 +2468,7 @@ components:
                 defined by telecom services.
         URLAdr:
           allOf:
-            - $ref: "#/components/schemas/Max2048Text"
+            - $ref: '#/components/schemas/Max2048Text'
             - description: >
                 URLAddress
 
@@ -2476,31 +2476,31 @@ components:
                 address used over the www (HTTP) service.
         EmailAdr:
           allOf:
-            - $ref: "#/components/schemas/Max256Text"
+            - $ref: '#/components/schemas/Max256Text'
             - description: |
                 EmailAddress
                 Address for electronic mail (e-mail).
         EmailPurp:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 EmailPurpose
                 Purpose for which an email address may be used.
         JobTitl:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 JobTitle
                 Title of the function.
         Rspnsblty:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Responsibility
                 Role of a person in an organisation.
         Dept:
           allOf:
-            - $ref: "#/components/schemas/Max70Text"
+            - $ref: '#/components/schemas/Max70Text'
             - description: >
                 Department
 
@@ -2508,13 +2508,13 @@ components:
                 building.
         Othr:
           allOf:
-            - $ref: "#/components/schemas/OtherContact1"
+            - $ref: '#/components/schemas/OtherContact1'
             - description: |
                 OtherContact
                 Contact details in another form.
         PrefrdMtd:
           allOf:
-            - $ref: "#/components/schemas/PreferredContactMethod2Code"
+            - $ref: '#/components/schemas/PreferredContactMethod2Code'
             - description: |
                 PreferredContactMethod
                 Preferred method used to reach the contact.
@@ -2535,13 +2535,13 @@ components:
       properties:
         NmPrfx:
           allOf:
-            - $ref: "#/components/schemas/NamePrefix2Code"
+            - $ref: '#/components/schemas/NamePrefix2Code'
             - description: |
                 NamePrefix
                 Name prefix to be used before the name of the person.
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 Name
 
@@ -2549,7 +2549,7 @@ components:
                 identify that party.
         PhneNb:
           allOf:
-            - $ref: "#/components/schemas/PhoneNumber"
+            - $ref: '#/components/schemas/PhoneNumber'
             - description: >
                 PhoneNumber
 
@@ -2557,7 +2557,7 @@ components:
                 defined by telecom services.
         MobNb:
           allOf:
-            - $ref: "#/components/schemas/PhoneNumber"
+            - $ref: '#/components/schemas/PhoneNumber'
             - description: >
                 MobilePhoneNumber
 
@@ -2565,7 +2565,7 @@ components:
                 as defined by telecom services.
         FaxNb:
           allOf:
-            - $ref: "#/components/schemas/PhoneNumber"
+            - $ref: '#/components/schemas/PhoneNumber'
             - description: >
                 FaxNumber
 
@@ -2573,31 +2573,31 @@ components:
                 defined by telecom services.
         EmailAdr:
           allOf:
-            - $ref: "#/components/schemas/Max2048Text"
+            - $ref: '#/components/schemas/Max2048Text'
             - description: |
                 EmailAddress
                 Address for electronic mail (e-mail).
         EmailPurp:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 EmailPurpose
                 Purpose for which an email address may be used.
         JobTitl:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 JobTitle
                 Title of the function.
         Rspnsblty:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Responsibility
                 Role of a person in an organisation.
         Dept:
           allOf:
-            - $ref: "#/components/schemas/Max70Text"
+            - $ref: '#/components/schemas/Max70Text'
             - description: >
                 Department
 
@@ -2605,13 +2605,13 @@ components:
                 building.
         Othr:
           allOf:
-            - $ref: "#/components/schemas/OtherContact1"
+            - $ref: '#/components/schemas/OtherContact1'
             - description: |
                 Other
                 Contact details in another form.
         PrefrdMtd:
           allOf:
-            - $ref: "#/components/schemas/PreferredContactMethod1Code"
+            - $ref: '#/components/schemas/PreferredContactMethod1Code'
             - description: |
                 PreferredMethod
                 Preferred method used to reach the contact.
@@ -2641,25 +2641,25 @@ components:
       properties:
         PmtId:
           allOf:
-            - $ref: "#/components/schemas/PaymentIdentification13"
+            - $ref: '#/components/schemas/PaymentIdentification13'
             - description: |
                 PaymentIdentification
                 Set of elements used to reference a payment instruction.
         PmtTpInf:
           allOf:
-            - $ref: "#/components/schemas/PaymentTypeInformation28"
+            - $ref: '#/components/schemas/PaymentTypeInformation28'
             - description: |
                 PaymentTypeInformation
                 Set of elements used to further specify the type of transaction.
         UndrlygCstmrCdtTrf:
           allOf:
-            - $ref: "#/components/schemas/UnderlyingCustomerCreditTransfer"
+            - $ref: '#/components/schemas/UnderlyingCustomerCreditTransfer'
             - description: |
                 Underlying Customer Credit Transfer
                 TBD
         IntrBkSttlmAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveCurrencyAndAmount'
             - description: >
                 InterbankSettlementAmount
 
@@ -2667,7 +2667,7 @@ components:
                 instructed agent.
         InstdAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             - description: >
                 InstructedAmount
 
@@ -2676,7 +2676,7 @@ components:
                 ordered by the initiating party.
         XchgRate:
           allOf:
-            - $ref: "#/components/schemas/BaseOneRate"
+            - $ref: '#/components/schemas/BaseOneRate'
             - description: >
                 ExchangeRate
 
@@ -2684,10 +2684,10 @@ components:
                 This reflects the price at which one currency was bought with
                 another currency.
         ChrgBr:
-          $ref: "#/components/schemas/ChargeBearerType1Code"
+          $ref: '#/components/schemas/ChargeBearerType1Code'
         ChrgsInf:
           allOf:
-            - $ref: "#/components/schemas/Charges16"
+            - $ref: '#/components/schemas/Charges16'
             - description: >
                 ChargesInformation
 
@@ -2695,13 +2695,13 @@ components:
                 bearer(s) related to the payment transaction.
         Dbtr:
           allOf:
-            - $ref: "#/components/schemas/PartyIdentification272"
+            - $ref: '#/components/schemas/PartyIdentification272'
             - description: |
                 Debtor
                 Party that owes an amount of money to the (ultimate) creditor.
         DbtrAcct:
           allOf:
-            - $ref: "#/components/schemas/CashAccount40"
+            - $ref: '#/components/schemas/CashAccount40'
             - description: >
                 DebtorAccount
 
@@ -2723,13 +2723,13 @@ components:
                 Financial institution servicing an account for the creditor.
         Cdtr:
           allOf:
-            - $ref: "#/components/schemas/PartyIdentification272"
+            - $ref: '#/components/schemas/PartyIdentification272'
             - description: |
                 Creditor
                 Party to which an amount of money is due.
         CdtrAcct:
           allOf:
-            - $ref: "#/components/schemas/CashAccount40"
+            - $ref: '#/components/schemas/CashAccount40'
             - description: >
                 CreditorAccount
 
@@ -2738,7 +2738,7 @@ components:
                 transaction.
         InstrForCdtrAgt:
           allOf:
-            - $ref: "#/components/schemas/InstructionForCreditorAgent3"
+            - $ref: '#/components/schemas/InstructionForCreditorAgent3'
             - description: >
                 InstructionForCreditorAgent
 
@@ -2746,7 +2746,7 @@ components:
                 advice.
         InstrForNxtAgt:
           allOf:
-            - $ref: "#/components/schemas/InstructionForNextAgent1"
+            - $ref: '#/components/schemas/InstructionForNextAgent1'
             - description: >
                 InstructionForNextAgent
 
@@ -2754,24 +2754,24 @@ components:
                 advice.
         Purp:
           allOf:
-            - $ref: "#/components/schemas/Purpose2Choice"
+            - $ref: '#/components/schemas/Purpose2Choice'
             - description: |
                 Purpose
                 Underlying reason for the payment transaction.
         RgltryRptg:
           allOf:
-            - $ref: "#/components/schemas/RegulatoryReporting3"
+            - $ref: '#/components/schemas/RegulatoryReporting3'
             - description: |
                 RegulatoryReporting
                 Information needed due to regulatory and statutory requirements.
         Tax:
           allOf:
-            - $ref: "#/components/schemas/TaxData1"
+            - $ref: '#/components/schemas/TaxData1'
             - description: |
                 Tax
                 Provides details on the tax.
         VrfctnOfTerms:
-          $ref: "#/components/schemas/CryptographicLockChoice"
+          $ref: '#/components/schemas/CryptographicLockChoice'
       required:
         - PmtId
         - IntrBkSttlmAmt
@@ -2862,25 +2862,25 @@ components:
       properties:
         PmtId:
           allOf:
-            - $ref: "#/components/schemas/PaymentIdentification13"
+            - $ref: '#/components/schemas/PaymentIdentification13'
             - description: |
                 PaymentIdentification
                 Set of elements used to reference a payment instruction.
         PmtTpInf:
           allOf:
-            - $ref: "#/components/schemas/PaymentTypeInformation28"
+            - $ref: '#/components/schemas/PaymentTypeInformation28'
             - description: |
                 PaymentTypeInformation
                 Set of elements used to further specify the type of transaction.
         UndrlygCstmrCdtTrf:
           allOf:
-            - $ref: "#/components/schemas/UnderlyingCustomerCreditTransfer"
+            - $ref: '#/components/schemas/UnderlyingCustomerCreditTransfer'
             - description: |
                 Underlying Customer Credit Transfer
                 TBD
         IntrBkSttlmAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveCurrencyAndAmount'
             - description: >
                 InterbankSettlementAmount
 
@@ -2895,7 +2895,7 @@ components:
                 Party that owes an amount of money to the (ultimate) creditor.
         DbtrAcct:
           allOf:
-            - $ref: "#/components/schemas/CashAccount40"
+            - $ref: '#/components/schemas/CashAccount40'
             - description: |
                 DebtorAccount
                 Account used to process a payment.
@@ -2922,13 +2922,13 @@ components:
                 Party to which an amount of money is due.
         CdtrAcct:
           allOf:
-            - $ref: "#/components/schemas/CashAccount40"
+            - $ref: '#/components/schemas/CashAccount40'
             - description: |
                 CreditorAccount
                 Account to which a credit entry is made.
         InstrForCdtrAgt:
           allOf:
-            - $ref: "#/components/schemas/InstructionForCreditorAgent3"
+            - $ref: '#/components/schemas/InstructionForCreditorAgent3'
             - description: >
                 InstructionForCreditorAgent
 
@@ -2936,13 +2936,13 @@ components:
                 advice.
         Purp:
           allOf:
-            - $ref: "#/components/schemas/Purpose2Choice"
+            - $ref: '#/components/schemas/Purpose2Choice'
             - description: |
                 Purpose
                 Underlying reason for the payment transaction.
         VrfctnOfTerms:
           allOf:
-            - $ref: "#/components/schemas/CryptographicLockChoice"
+            - $ref: '#/components/schemas/CryptographicLockChoice'
             - description: >
                 VerificationOfTerms
 
@@ -2997,25 +2997,25 @@ components:
       properties:
         PmtId:
           allOf:
-            - $ref: "#/components/schemas/PaymentIdentification13"
+            - $ref: '#/components/schemas/PaymentIdentification13'
             - description: |
                 PaymentIdentification
                 Set of elements used to reference a payment instruction.
         PmtTpInf:
           allOf:
-            - $ref: "#/components/schemas/PaymentTypeInformation28"
+            - $ref: '#/components/schemas/PaymentTypeInformation28'
             - description: |
                 PaymentTypeInformation
                 Set of elements used to further specify the type of transaction.
         UndrlygCstmrCdtTrf:
           allOf:
-            - $ref: "#/components/schemas/UnderlyingCustomerCreditTransfer"
+            - $ref: '#/components/schemas/UnderlyingCustomerCreditTransfer'
             - description: |
                 Underlying Customer Credit Transfer
                 TBD
         IntrBkSttlmAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveCurrencyAndAmount'
             - description: >
                 InterbankSettlementAmount
 
@@ -3030,7 +3030,7 @@ components:
                 Party that owes an amount of money to the (ultimate) creditor.
         DbtrAcct:
           allOf:
-            - $ref: "#/components/schemas/CashAccount40"
+            - $ref: '#/components/schemas/CashAccount40'
             - description: |
                 DebtorAccount
                 Account used to process a payment.
@@ -3057,13 +3057,13 @@ components:
                 Party to which an amount of money is due.
         CdtrAcct:
           allOf:
-            - $ref: "#/components/schemas/CashAccount40"
+            - $ref: '#/components/schemas/CashAccount40'
             - description: |
                 CreditorAccount
                 Account to which a credit entry is made.
         InstrForCdtrAgt:
           allOf:
-            - $ref: "#/components/schemas/InstructionForCreditorAgent3_FX_Quotes"
+            - $ref: '#/components/schemas/InstructionForCreditorAgent3_FX_Quotes'
             - description: >
                 InstructionForCreditorAgent
 
@@ -3071,13 +3071,13 @@ components:
                 advice.
         Purp:
           allOf:
-            - $ref: "#/components/schemas/Purpose2Choice"
+            - $ref: '#/components/schemas/Purpose2Choice'
             - description: |
                 Purpose
                 Underlying reason for the payment transaction.
         VrfctnOfTerms:
           allOf:
-            - $ref: "#/components/schemas/CryptographicLockChoice"
+            - $ref: '#/components/schemas/CryptographicLockChoice'
             - description: >
                 VerificationOfTerms
 
@@ -3132,7 +3132,7 @@ components:
         - properties:
             IlpV4PrepPacket:
               allOf:
-                - $ref: "#/components/schemas/hexBinary"
+                - $ref: '#/components/schemas/hexBinary'
                 - description: >
                     Interledger Protocol packet (ILPv4) containing
                     Cryptographically signed terms
@@ -3141,7 +3141,7 @@ components:
         - properties:
             Sh256Sgntr:
               allOf:
-                - $ref: "#/components/schemas/Exact32HexBinaryText"
+                - $ref: '#/components/schemas/Exact32HexBinaryText'
                 - description: |
                     SHA-256 signature of the terms
           required:
@@ -3158,7 +3158,7 @@ components:
         - properties:
             Dt:
               allOf:
-                - $ref: "#/components/schemas/ISODate"
+                - $ref: '#/components/schemas/ISODate'
                 - description: |
                     Date
                     Specified date.
@@ -3167,14 +3167,14 @@ components:
         - properties:
             DtTm:
               allOf:
-                - $ref: "#/components/schemas/ISODateTime"
+                - $ref: '#/components/schemas/ISODateTime'
                 - description: |
                     DateTime
                     Specified date and time.
           required:
             - DtTm
       example:
-        DtTm: "2020-01-01T00:00:00Z"
+        DtTm: '2020-01-01T00:00:00Z'
     DateAndPlaceOfBirth1:
       title: DateAndPlaceOfBirth1
       description: |
@@ -3184,25 +3184,25 @@ components:
       properties:
         BirthDt:
           allOf:
-            - $ref: "#/components/schemas/ISODate"
+            - $ref: '#/components/schemas/ISODate'
             - description: |
                 BirthDate
                 Date on which a person was born.
         PrvcOfBirth:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 ProvinceOfBirth
                 Province where a person was born.
         CityOfBirth:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 CityOfBirth
                 City where a person was born.
         CtryOfBirth:
           allOf:
-            - $ref: "#/components/schemas/CountryCode"
+            - $ref: '#/components/schemas/CountryCode'
             - description: |
                 CountryOfBirth
                 Country where a person was born.
@@ -3211,8 +3211,8 @@ components:
         - CityOfBirth
         - CtryOfBirth
       example:
-        BirthDt: "1970-01-01"
-        PrvcOfBirth: "ON"
+        BirthDt: '1970-01-01'
+        PrvcOfBirth: 'ON'
         CityOfBirth: Ottawa
         CtryOfBirth: CA
     DatePeriod2:
@@ -3224,13 +3224,13 @@ components:
       properties:
         FrDt:
           allOf:
-            - $ref: "#/components/schemas/ISODate"
+            - $ref: '#/components/schemas/ISODate'
             - description: |
                 FromDate
                 Start date of the range.
         ToDt:
           allOf:
-            - $ref: "#/components/schemas/ISODate"
+            - $ref: '#/components/schemas/ISODate'
             - description: |
                 ToDate
                 End date of the range.
@@ -3238,8 +3238,8 @@ components:
         - FrDt
         - ToDt
       example:
-        FrDt: "2022-01-01"
-        ToDt: "2022-12-31"
+        FrDt: '2022-01-01'
+        ToDt: '2022-12-31'
     ErrorCode:
       title: ErrorCode
       type: string
@@ -3252,7 +3252,7 @@ components:
         the high-level error category, the second number (2 in the example)
         represents the low-level error category, and the last two numbers (34 in
         the example) represent the specific error.
-      example: "5100"
+      example: '5100'
     ErrorDescription:
       title: ErrorDescription
       type: string
@@ -3266,11 +3266,11 @@ components:
       description: Data model for the complex type ErrorInformation.
       properties:
         errorCode:
-          $ref: "#/components/schemas/ErrorCode"
+          $ref: '#/components/schemas/ErrorCode'
         errorDescription:
-          $ref: "#/components/schemas/ErrorDescription"
+          $ref: '#/components/schemas/ErrorDescription'
         extensionList:
-          $ref: "#/components/schemas/ExtensionList"
+          $ref: '#/components/schemas/ExtensionList'
       required:
         - errorCode
         - errorDescription
@@ -3283,7 +3283,7 @@ components:
         ErrorInformation used along with 4xx and 5xx responses.
       properties:
         errorInformation:
-          $ref: "#/components/schemas/ErrorInformation"
+          $ref: '#/components/schemas/ErrorInformation'
     Exact32HexBinaryText:
       title: Exact32HexBinaryText
       description: |
@@ -3307,7 +3307,7 @@ components:
       properties:
         GrpHdr:
           allOf:
-            - $ref: "#/components/schemas/GroupHeader129"
+            - $ref: '#/components/schemas/GroupHeader129'
             - description: >
                 Group Header
 
@@ -3315,7 +3315,7 @@ components:
                 included in the message.
         CdtTrfTxInf:
           allOf:
-            - $ref: "#/components/schemas/CreditTransferTransaction67"
+            - $ref: '#/components/schemas/CreditTransferTransaction67'
             - description: >
                 Credit Transfer Transaction Information
 
@@ -3327,8 +3327,8 @@ components:
       example:
         GrpHdr:
           MsgId: 12345
-          CreDtTm: "2020-01-01T00:00:00Z"
-          PmtInstrXpryDtTm: "2020-01-01T00:00:00Z"
+          CreDtTm: '2020-01-01T00:00:00Z'
+          PmtInstrXpryDtTm: '2020-01-01T00:00:00Z'
           NbOfTxs: 1
           SttlmInf:
             SttlmMtd: INDA
@@ -3366,9 +3366,9 @@ components:
       description: Data model for the complex type Extension.
       properties:
         key:
-          $ref: "#/components/schemas/ExtensionKey"
+          $ref: '#/components/schemas/ExtensionKey'
         value:
-          $ref: "#/components/schemas/ExtensionValue"
+          $ref: '#/components/schemas/ExtensionValue'
       required:
         - key
         - value
@@ -3389,7 +3389,7 @@ components:
         extension:
           type: array
           items:
-            $ref: "#/components/schemas/Extension"
+            $ref: '#/components/schemas/Extension'
           minItems: 1
           maxItems: 16
           description: Number of Extension elements.
@@ -3564,7 +3564,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
                     Name of the identification scheme, in a free text form.
@@ -3581,7 +3581,7 @@ components:
       properties:
         BICFI:
           allOf:
-            - $ref: "#/components/schemas/BICFIDec2014Identifier"
+            - $ref: '#/components/schemas/BICFIDec2014Identifier'
             - description: >
                 BICFI
 
@@ -3591,19 +3591,19 @@ components:
                 (BIC)"
         ClrSysMmbId:
           allOf:
-            - $ref: "#/components/schemas/ClearingSystemMemberIdentification2"
+            - $ref: '#/components/schemas/ClearingSystemMemberIdentification2'
             - description: |
                 ClearingSystemMemberIdentification
                 Information used to identify a member within a clearing system
         LEI:
           allOf:
-            - $ref: "#/components/schemas/LEIIdentifier"
+            - $ref: '#/components/schemas/LEIIdentifier'
             - description: |
                 LEI
                 Legal entity identifier of the financial institution.
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 Name
 
@@ -3611,7 +3611,7 @@ components:
                 identify that agent
         PstlAdr:
           allOf:
-            - $ref: "#/components/schemas/PostalAddress24"
+            - $ref: '#/components/schemas/PostalAddress24'
             - description: >
                 PostalAddress
 
@@ -3619,7 +3619,7 @@ components:
                 defined by postal services.
         Othr:
           allOf:
-            - $ref: "#/components/schemas/GenericFinancialIdentification1"
+            - $ref: '#/components/schemas/GenericFinancialIdentification1'
             - description: >
                 Other
 
@@ -3658,7 +3658,7 @@ components:
       properties:
         BICFI:
           allOf:
-            - $ref: "#/components/schemas/BICFIDec2014Identifier"
+            - $ref: '#/components/schemas/BICFIDec2014Identifier'
             - description: >
                 BICFI
 
@@ -3668,19 +3668,19 @@ components:
                 (BIC)"
         ClrSysMmbId:
           allOf:
-            - $ref: "#/components/schemas/ClearingSystemMemberIdentification2"
+            - $ref: '#/components/schemas/ClearingSystemMemberIdentification2'
             - description: |
                 ClearingSystemMemberIdentification
                 Information used to identify a member within a clearing system
         LEI:
           allOf:
-            - $ref: "#/components/schemas/LEIIdentifier"
+            - $ref: '#/components/schemas/LEIIdentifier'
             - description: |
                 LEI
                 Legal entity identifier of the financial institution.
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 Name
 
@@ -3688,7 +3688,7 @@ components:
                 identify that agent
         PstlAdr:
           allOf:
-            - $ref: "#/components/schemas/PostalAddress24"
+            - $ref: '#/components/schemas/PostalAddress24'
             - description: >
                 PostalAddress
 
@@ -3696,7 +3696,7 @@ components:
                 defined by postal services.
         Othr:
           allOf:
-            - $ref: "#/components/schemas/GenericFinancialIdentification1"
+            - $ref: '#/components/schemas/GenericFinancialIdentification1'
             - description: >
                 Other
 
@@ -3738,7 +3738,7 @@ components:
       properties:
         GrpHdr:
           allOf:
-            - $ref: "#/components/schemas/GroupHeader113"
+            - $ref: '#/components/schemas/GroupHeader113'
             - description: >
                 GroupHeader
 
@@ -3746,7 +3746,7 @@ components:
                 included in the message.
         CdtTrfTxInf:
           allOf:
-            - $ref: "#/components/schemas/CreditTransferTransaction68_FX_Quotes"
+            - $ref: '#/components/schemas/CreditTransferTransaction68_FX_Quotes'
             - description: |
                 Credit Transfer Transaction Information
       required:
@@ -3755,7 +3755,7 @@ components:
       example:
         GrpHdr:
           MsgId: 12345
-          CreDtTm: "2020-01-01T00:00:00Z"
+          CreDtTm: '2020-01-01T00:00:00Z'
           NbOfTxs: 1
           TtlIntrBkSttlmAmt:
             Ccy: EUR
@@ -3839,7 +3839,7 @@ components:
       properties:
         GrpHdr:
           allOf:
-            - $ref: "#/components/schemas/GroupHeader113"
+            - $ref: '#/components/schemas/GroupHeader113'
             - description: >
                 GroupHeader
 
@@ -3847,7 +3847,7 @@ components:
                 included in the message.
         CdtTrfTxInf:
           allOf:
-            - $ref: "#/components/schemas/CreditTransferTransaction68_FX_Quotes"
+            - $ref: '#/components/schemas/CreditTransferTransaction68_FX_Quotes'
             - description: >
                 CreditTransferTransaction68_FX_Quotes
 
@@ -3859,7 +3859,7 @@ components:
       example:
         GrpHdr:
           MsgId: 20191122-123456
-          CreDtTm: "2019-11-22T12:34:56"
+          CreDtTm: '2019-11-22T12:34:56'
           NbOfTxs: 1
           CtrlSum: 100
           InitgPty:
@@ -3940,7 +3940,7 @@ components:
       properties:
         GrpHdr:
           allOf:
-            - $ref: "#/components/schemas/GroupHeader129"
+            - $ref: '#/components/schemas/GroupHeader129'
             - description: >
                 GroupHeader.
 
@@ -3948,7 +3948,7 @@ components:
                 included in the message.
         CdtTrfTxInf:
           allOf:
-            - $ref: "#/components/schemas/CreditTransferTransaction68"
+            - $ref: '#/components/schemas/CreditTransferTransaction68'
             - description: >
                 CreditTransferTransactionInformation.
 
@@ -3960,7 +3960,7 @@ components:
       example:
         GrpHdr:
           MsgId: 20191113001
-          CreDtTm: "2019-11-13T10:00:00"
+          CreDtTm: '2019-11-13T10:00:00'
           NbOfTxs: 1
           CtrlSum: 1000
           InitgPty:
@@ -4016,19 +4016,19 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max34Text"
+            - $ref: '#/components/schemas/Max34Text'
             - description: |
                 Identification
                 Identification assigned by an institution.
         SchmeNm:
           allOf:
-            - $ref: "#/components/schemas/AccountSchemeName1Choice"
+            - $ref: '#/components/schemas/AccountSchemeName1Choice'
             - description: |
                 SchemeName
                 Name of the identification scheme.
         Issr:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Issuer
                 Entity that assigns the identification.
@@ -4051,19 +4051,19 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Identification
                 Unique and unambiguous identification of a person.
         SchmeNm:
           allOf:
-            - $ref: "#/components/schemas/FinancialIdentificationSchemeName1Choice"
+            - $ref: '#/components/schemas/FinancialIdentificationSchemeName1Choice'
             - description: |
                 SchemeName
                 Name of the identification scheme.
         Issr:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Issuer
                 Entity that assigns the identification.
@@ -4083,7 +4083,7 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Identification
 
@@ -4091,7 +4091,7 @@ components:
                 that entity, for example, account identifier.
         Issr:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Issuer
                 Entity that assigns the identification.
@@ -4109,7 +4109,7 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Exact4AlphaNumericText"
+            - $ref: '#/components/schemas/Exact4AlphaNumericText'
             - description: >
                 Identification
 
@@ -4117,13 +4117,13 @@ components:
                 scheme issuer.
         Issr:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Issuer
                 Entity that assigns the identification.
         SchmeNm:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 SchemeName
                 Short textual description of the scheme.
@@ -4143,20 +4143,20 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Identification for an organisation. FSPIOP equivalent to Party
                 Identifier for an organisation in ISO 20022. Identification
                 assigned by an institution.
         SchmeNm:
           allOf:
-            - $ref: "#/components/schemas/OrganisationIdentificationSchemeName1Choice"
+            - $ref: '#/components/schemas/OrganisationIdentificationSchemeName1Choice'
             - description: |
                 SchemeName
                 Name of the identification scheme.
         Issr:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Issuer
                 Entity that assigns the identification.
@@ -4176,19 +4176,19 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max256Text"
+            - $ref: '#/components/schemas/Max256Text'
             - description: |
                 Identification
                 Identification assigned by an institution.
         SchmeNm:
           allOf:
-            - $ref: "#/components/schemas/OrganisationIdentificationSchemeName1Choice"
+            - $ref: '#/components/schemas/OrganisationIdentificationSchemeName1Choice'
             - description: |
                 SchemeName
                 Name of the identification scheme.
         Issr:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Issuer
                 Entity that assigns the identification.
@@ -4209,19 +4209,19 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Identification
                 Unique and unambiguous identification of a person.
         SchmeNm:
           allOf:
-            - $ref: "#/components/schemas/PersonIdentificationSchemeName1Choice"
+            - $ref: '#/components/schemas/PersonIdentificationSchemeName1Choice'
             - description: |
                 SchemeName
                 Name of the identification scheme.
         Issr:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Issuer
                 Entity that assigns the identification.
@@ -4240,19 +4240,19 @@ components:
       properties:
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max256Text"
+            - $ref: '#/components/schemas/Max256Text'
             - description: |
                 Identification
                 Unique and unambiguous identification of a person.
         SchmeNm:
           allOf:
-            - $ref: "#/components/schemas/PersonIdentificationSchemeName1Choice"
+            - $ref: '#/components/schemas/PersonIdentificationSchemeName1Choice'
             - description: |
                 SchemeName
                 Name of the identification scheme.
         Issr:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Issuer
                 Entity that assigns the identification.
@@ -4270,13 +4270,13 @@ components:
       properties:
         Assgnmt:
           allOf:
-            - $ref: "#/components/schemas/IdentificationAssignment3"
+            - $ref: '#/components/schemas/IdentificationAssignment3'
             - description: |
                 Assignment
                 Information related to the identification assignment.
         Rpt:
           allOf:
-            - $ref: "#/components/schemas/VerificationReport4"
+            - $ref: '#/components/schemas/VerificationReport4'
             - description: >
                 Report
 
@@ -4284,7 +4284,7 @@ components:
                 data for which verification was requested.
         SplmtryData:
           allOf:
-            - $ref: "#/components/schemas/SupplementaryData1"
+            - $ref: '#/components/schemas/SupplementaryData1'
             - description: >
                 SupplementaryData
 
@@ -4296,7 +4296,7 @@ components:
       example:
         Assgnmt:
           Id: 123
-          CreDtTm: "2013-03-07T16:30:00"
+          CreDtTm: '2013-03-07T16:30:00'
           Assgnr:
             Id:
               Id: 123
@@ -4311,7 +4311,7 @@ components:
               Issr: BIC
         Rpt:
           Id: 123
-          CreDtTm: "2013-03-07T16:30:00"
+          CreDtTm: '2013-03-07T16:30:00'
           RptgPty:
             Id:
               Id: 123
@@ -4326,7 +4326,7 @@ components:
               Issr: BIC
           RptdDoc:
             Nb: 123
-            RltdDt: "2013-03-07"
+            RltdDt: '2013-03-07'
             RltdDtTp:
               Cd: 123
           Rsn:
@@ -4335,7 +4335,7 @@ components:
         SplmtryData:
           PlcAndNm: 123
           Envlp: 123
-          RltdDt: "2013-03-07"
+          RltdDt: '2013-03-07'
           RltdDtTp:
             Cd: 123
     GetParties_IdentificationVerificationReportV03:
@@ -4345,13 +4345,13 @@ components:
       properties:
         Assgnmt:
           allOf:
-            - $ref: "#/components/schemas/IdentificationAssignment3"
+            - $ref: '#/components/schemas/IdentificationAssignment3'
             - description: |
                 Assignment
                 Identifies the identification assignment.
         Rpt:
           allOf:
-            - $ref: "#/components/schemas/VerificationReport4"
+            - $ref: '#/components/schemas/VerificationReport4'
             - description: >
                 Report
 
@@ -4359,7 +4359,7 @@ components:
                 data for which verification was requested.
         SplmtryData:
           allOf:
-            - $ref: "#/components/schemas/SupplementaryData1"
+            - $ref: '#/components/schemas/SupplementaryData1'
             - description: >
                 SupplementaryData
 
@@ -4371,7 +4371,7 @@ components:
       example:
         Assgnmt:
           MsgId: 123
-          CreDtTm: "2020-01-01T00:00:00Z"
+          CreDtTm: '2020-01-01T00:00:00Z'
           Assgnr:
             OrgId:
               Othr:
@@ -4430,32 +4430,32 @@ components:
       properties:
         MsgId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Message Identification
         CreDtTm:
           allOf:
-            - $ref: "#/components/schemas/ISODateTime"
+            - $ref: '#/components/schemas/ISODateTime'
             - description: |
                 Creation Date and Time
         NbOfTxs:
           allOf:
-            - $ref: "#/components/schemas/Max15NumericText"
+            - $ref: '#/components/schemas/Max15NumericText'
             - description: |
                 Number of Transactions
         TtlIntrBkSttlmAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveCurrencyAndAmount'
             - description: |
                 Total Interbank Settlement Amount
         SttlmInf:
           allOf:
-            - $ref: "#/components/schemas/SettlementInstruction15"
+            - $ref: '#/components/schemas/SettlementInstruction15'
             - description: |
                 Settlement Information
         PmtTpInf:
           allOf:
-            - $ref: "#/components/schemas/PaymentTypeInformation28"
+            - $ref: '#/components/schemas/PaymentTypeInformation28'
             - description: |
                 Payment Type Information
       required:
@@ -4465,7 +4465,7 @@ components:
         - SttlmInf
       example:
         MsgId: 12345
-        CreDtTm: "2020-01-01T00:00:00Z"
+        CreDtTm: '2020-01-01T00:00:00Z'
         NbOfTxs: 1
         TtlIntrBkSttlmAmt:
           Ccy: EUR
@@ -4496,7 +4496,7 @@ components:
       properties:
         MsgId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 MessageIdentification
 
@@ -4509,7 +4509,7 @@ components:
                 pre-agreed period.
         CreDtTm:
           allOf:
-            - $ref: "#/components/schemas/ISODateTime"
+            - $ref: '#/components/schemas/ISODateTime'
             - description: |
                 CreationDateTime
                 Date and time at which the message was created.
@@ -4518,7 +4518,7 @@ components:
         - CreDtTm
       example:
         MsgId: 12345
-        CreDtTm: "2020-01-01T00:00:00Z"
+        CreDtTm: '2020-01-01T00:00:00Z'
     GroupHeader129:
       title: GroupHeader129
       description: >
@@ -4529,27 +4529,27 @@ components:
       properties:
         MsgId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Message Identification
         CreDtTm:
           allOf:
-            - $ref: "#/components/schemas/ISODateTime"
+            - $ref: '#/components/schemas/ISODateTime'
             - description: |
                 Creation Date and Time
         PmtInstrXpryDtTm:
           allOf:
-            - $ref: "#/components/schemas/ISODateTime"
+            - $ref: '#/components/schemas/ISODateTime'
             - description: |
                 Payment Instruction Expiry Date and Time
         NbOfTxs:
           allOf:
-            - $ref: "#/components/schemas/Max15NumericText"
+            - $ref: '#/components/schemas/Max15NumericText'
             - description: |
                 Number of Transactions
         SttlmInf:
           allOf:
-            - $ref: "#/components/schemas/SettlementInstruction15"
+            - $ref: '#/components/schemas/SettlementInstruction15'
             - description: |
                 Settlement Information
       required:
@@ -4559,8 +4559,8 @@ components:
         - SttlmInf
       example:
         MsgId: 12345
-        CreDtTm: "2020-01-01T00:00:00Z"
-        PmtInstrXpryDtTm: "2020-01-01T00:00:00Z"
+        CreDtTm: '2020-01-01T00:00:00Z'
+        PmtInstrXpryDtTm: '2020-01-01T00:00:00Z'
         NbOfTxs: 1
         SttlmInf:
           SttlmMtd: INDA
@@ -4593,7 +4593,7 @@ components:
         October 2004" which is aligned with ISO 8601.
       type: string
       format: date
-      example: "2013-03-07"
+      example: '2013-03-07'
     ISODateTime:
       title: ISODateTime
       description: >
@@ -4630,7 +4630,7 @@ components:
       type: string
       pattern: >-
         ^(?:[1-9]\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:(\.\d{3}))(?:Z|[+-][01]\d:[0-5]\d)$
-      example: "2013-03-07T14:44:30.000Z"
+      example: '2013-03-07T14:44:30.000Z'
     ISOYear:
       title: ISOYear
       description: |
@@ -4650,7 +4650,7 @@ components:
       properties:
         MsgId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 MessageIdentification
 
@@ -4658,7 +4658,7 @@ components:
                 unambiguously identify the message.
         CreDtTm:
           allOf:
-            - $ref: "#/components/schemas/ISODateTime"
+            - $ref: '#/components/schemas/ISODateTime'
             - description: >
                 CreationDateTime
 
@@ -4666,7 +4666,7 @@ components:
                 created.
         Assgnr:
           allOf:
-            - $ref: "#/components/schemas/Party40Choice"
+            - $ref: '#/components/schemas/Party40Choice'
             - description: >
                 Assignor
 
@@ -4674,7 +4674,7 @@ components:
                 party. This is also the sender of the message.
         Assgne:
           allOf:
-            - $ref: "#/components/schemas/Party40Choice"
+            - $ref: '#/components/schemas/Party40Choice'
             - description: >
                 Assignee
 
@@ -4687,7 +4687,7 @@ components:
         - Assgne
       example:
         MsgId: 123
-        CreDtTm: "2020-01-01T00:00:00Z"
+        CreDtTm: '2020-01-01T00:00:00Z'
         Assgnr:
           OrgId:
             Othr:
@@ -4711,7 +4711,7 @@ components:
       properties:
         Pty:
           allOf:
-            - $ref: "#/components/schemas/PartyIdentification135"
+            - $ref: '#/components/schemas/PartyIdentification135'
             - description: >
                 Party
 
@@ -4719,7 +4719,7 @@ components:
                 of money is due.
         Acct:
           allOf:
-            - $ref: "#/components/schemas/CashAccount40"
+            - $ref: '#/components/schemas/CashAccount40'
             - description: |
                 Account
                 Unambiguous identification of the account of a party.
@@ -4788,7 +4788,7 @@ components:
       properties:
         Cd:
           allOf:
-            - $ref: "#/components/schemas/ExternalCreditorAgentInstruction1Code"
+            - $ref: '#/components/schemas/ExternalCreditorAgentInstruction1Code'
             - description: >
                 Code
 
@@ -4797,7 +4797,7 @@ components:
                 the creditor's agent.
         InstrInf:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 InstructionInformation
 
@@ -4818,7 +4818,7 @@ components:
       properties:
         Cd:
           allOf:
-            - $ref: "#/components/schemas/ExternalCreditorAgentInstruction1Code"
+            - $ref: '#/components/schemas/ExternalCreditorAgentInstruction1Code'
             - description: >
                 Code
 
@@ -4827,7 +4827,7 @@ components:
                 the creditor's agent.
         InstrInf:
           allOf:
-            - $ref: "#/components/schemas/AmountTypeEnum"
+            - $ref: '#/components/schemas/AmountTypeEnum'
             - description: >
                 InstructionInformation
 
@@ -4848,7 +4848,7 @@ components:
       properties:
         Cd:
           allOf:
-            - $ref: "#/components/schemas/Instruction4Code"
+            - $ref: '#/components/schemas/Instruction4Code'
             - description: >
                 Code
 
@@ -4857,7 +4857,7 @@ components:
                 the next agent in the payment chain.
         InstrInf:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 InstructionInformation
 
@@ -4887,7 +4887,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalLocalInstrument1Code"
+                - $ref: '#/components/schemas/ExternalLocalInstrument1Code'
                 - description: >
                     Code
 
@@ -4898,7 +4898,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
                     Specifies the local instrument, as a proprietary code.
@@ -5040,13 +5040,13 @@ components:
       properties:
         AnyBIC:
           allOf:
-            - $ref: "#/components/schemas/AnyBICDec2014Identifier"
+            - $ref: '#/components/schemas/AnyBICDec2014Identifier'
             - description: |
                 AnyBIC
                 Business identification code of the organisation.
         LEI:
           allOf:
-            - $ref: "#/components/schemas/LEIIdentifier"
+            - $ref: '#/components/schemas/LEIIdentifier'
             - description: >
                 LEI
 
@@ -5054,7 +5054,7 @@ components:
                 party.
         Othr:
           allOf:
-            - $ref: "#/components/schemas/GenericOrganisationIdentification1"
+            - $ref: '#/components/schemas/GenericOrganisationIdentification1'
             - description: >
                 Other
 
@@ -5077,13 +5077,13 @@ components:
       properties:
         AnyBIC:
           allOf:
-            - $ref: "#/components/schemas/AnyBICDec2014Identifier"
+            - $ref: '#/components/schemas/AnyBICDec2014Identifier'
             - description: |
                 AnyBIC
                 Business identification code of the organisation.
         LEI:
           allOf:
-            - $ref: "#/components/schemas/LEIIdentifier"
+            - $ref: '#/components/schemas/LEIIdentifier'
             - description: >
                 LEI
 
@@ -5091,7 +5091,7 @@ components:
                 party.
         Othr:
           allOf:
-            - $ref: "#/components/schemas/GenericOrganisationIdentification3"
+            - $ref: '#/components/schemas/GenericOrganisationIdentification3'
             - description: >
                 Other
 
@@ -5114,7 +5114,7 @@ components:
       properties:
         Cd:
           allOf:
-            - $ref: "#/components/schemas/ExternalOrganisationIdentification1Code"
+            - $ref: '#/components/schemas/ExternalOrganisationIdentification1Code'
             - description: >
                 Code
 
@@ -5122,7 +5122,7 @@ components:
                 in an external list.
         Prtry:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Proprietary
                 Name of the identification scheme, in a free text form.
@@ -5143,7 +5143,7 @@ components:
       properties:
         ChanlTp:
           allOf:
-            - $ref: "#/components/schemas/Max4Text"
+            - $ref: '#/components/schemas/Max4Text'
             - description: >
                 ChannelType
 
@@ -5151,7 +5151,7 @@ components:
                 the specific tax region.
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max128Text"
+            - $ref: '#/components/schemas/Max128Text'
             - description: |
                 Identifier
                 Communication value such as phone number or email address.
@@ -5171,19 +5171,19 @@ components:
       properties:
         GrpHdr:
           allOf:
-            - $ref: "#/components/schemas/GroupHeader120"
+            - $ref: '#/components/schemas/GroupHeader120'
             - description: >
                 Set of characteristics shared by all individual transactions
                 included in the message.
         TxInfAndSts:
           allOf:
-            - $ref: "#/components/schemas/PaymentTransaction163"
+            - $ref: '#/components/schemas/PaymentTransaction163'
             - description: >
                 Information concerning the original transactions, to which the
                 status report message refers.
         SplmtryData:
           allOf:
-            - $ref: "#/components/schemas/SupplementaryData1"
+            - $ref: '#/components/schemas/SupplementaryData1'
             - description: >
                 Additional information that cannot be captured in the structured
                 elements and/or any other specific block.
@@ -5192,11 +5192,11 @@ components:
       example:
         GrpHdr:
           MsgId: 12345
-          CreDtTm: "2020-01-01T00:00:00Z"
+          CreDtTm: '2020-01-01T00:00:00Z'
           NbOfTxs: 1
           SttlmInf:
             SttlmMtd: INDA
-            SttlmDt: "2020-01-01"
+            SttlmDt: '2020-01-01'
           InstgAgt:
             FinInstnId:
               BICFI: BICFI
@@ -5225,19 +5225,19 @@ components:
       properties:
         GrpHdr:
           allOf:
-            - $ref: "#/components/schemas/GroupHeader120"
+            - $ref: '#/components/schemas/GroupHeader120'
             - description: >
                 Set of characteristics shared by all individual transactions
                 included in the message.
         TxInfAndSts:
           allOf:
-            - $ref: "#/components/schemas/PaymentTransaction163"
+            - $ref: '#/components/schemas/PaymentTransaction163'
             - description: >
                 Information concerning the original transactions, to which the
                 status report message refers.
         SplmtryData:
           allOf:
-            - $ref: "#/components/schemas/SupplementaryData1"
+            - $ref: '#/components/schemas/SupplementaryData1'
             - description: >
                 Additional information that cannot be captured in the structured
                 elements and/or any other specific block.
@@ -5246,7 +5246,7 @@ components:
       example:
         GrpHdr:
           MsgId: 12345
-          CreDtTm: "2020-01-01T00:00:00Z"
+          CreDtTm: '2020-01-01T00:00:00Z'
           TxInfAndSts:
             StsId: 12345
             OrgnlInstrId: 12345
@@ -5257,7 +5257,7 @@ components:
             StsRsnInf:
               Rsn: RSN
               AddtlInf: ADDITIONAL
-            AccptncDtTm: "2020-01-01T00:00:00Z"
+            AccptncDtTm: '2020-01-01T00:00:00Z'
             AcctSvcrRef: ACCTSVCRREF
             ClrSysRef: CLRSYSREF
             ExctnConf: 1234567890ABCDEF
@@ -5274,7 +5274,7 @@ components:
         - properties:
             OrgId:
               allOf:
-                - $ref: "#/components/schemas/OrganisationIdentification29"
+                - $ref: '#/components/schemas/OrganisationIdentification29'
                 - description: |
                     Organisation
                     Unique and unambiguous way to identify an organisation.
@@ -5283,7 +5283,7 @@ components:
         - properties:
             PrvtId:
               allOf:
-                - $ref: "#/components/schemas/PersonIdentification13"
+                - $ref: '#/components/schemas/PersonIdentification13'
                 - description: >
                     PrivateIdentification
 
@@ -5296,7 +5296,7 @@ components:
           AnyBIC: BIC
         PrvtId:
           DtAndPlcOfBirth:
-            Dt: "2018-01-01"
+            Dt: '2018-01-01'
             CityOfBirth: City
     Party40Choice:
       title: Party40Choice
@@ -5308,7 +5308,7 @@ components:
         - properties:
             Pty:
               allOf:
-                - $ref: "#/components/schemas/PartyIdentification135"
+                - $ref: '#/components/schemas/PartyIdentification135'
                 - description: |
                     Party
                     Identification of a person or an organisation.
@@ -5357,7 +5357,7 @@ components:
         - properties:
             OrgId:
               allOf:
-                - $ref: "#/components/schemas/OrganisationIdentification39"
+                - $ref: '#/components/schemas/OrganisationIdentification39'
                 - description: |
                     Organisation
                     Unique and unambiguous way to identify an organisation.
@@ -5366,7 +5366,7 @@ components:
         - properties:
             PrvtId:
               allOf:
-                - $ref: "#/components/schemas/PersonIdentification18"
+                - $ref: '#/components/schemas/PersonIdentification18'
                 - description: >
                     Person
 
@@ -5379,7 +5379,7 @@ components:
           AnyBIC: BIC
         PrvtId:
           DtAndPlcOfBirth:
-            Dt: "2018-01-01"
+            Dt: '2018-01-01'
             CityOfBirth: City
     PartyIdentification135:
       title: PartyIdentification135
@@ -5390,7 +5390,7 @@ components:
       properties:
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 Name
 
@@ -5398,7 +5398,7 @@ components:
                 identify that party.
         PstlAdr:
           allOf:
-            - $ref: "#/components/schemas/PostalAddress24"
+            - $ref: '#/components/schemas/PostalAddress24'
             - description: >
                 PostalAddress
 
@@ -5406,13 +5406,13 @@ components:
                 defined by postal services.
         Id:
           allOf:
-            - $ref: "#/components/schemas/Party38Choice"
+            - $ref: '#/components/schemas/Party38Choice'
             - description: |
                 Identification
                 Unique and unambiguous way to identify an organisation.
         CtryOfRes:
           allOf:
-            - $ref: "#/components/schemas/CountryCode"
+            - $ref: '#/components/schemas/CountryCode'
             - description: >
                 CountryOfResidence
 
@@ -5421,7 +5421,7 @@ components:
                 the affairs of that company are directed.
         CtctDtls:
           allOf:
-            - $ref: "#/components/schemas/Contact4"
+            - $ref: '#/components/schemas/Contact4'
             - description: |
                 ContactDetails
                 Set of elements used to indicate how to contact the party.
@@ -5469,7 +5469,7 @@ components:
       properties:
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 Name
 
@@ -5477,7 +5477,7 @@ components:
                 identify that party.
         PstlAdr:
           allOf:
-            - $ref: "#/components/schemas/PostalAddress27"
+            - $ref: '#/components/schemas/PostalAddress27'
             - description: >
                 Postal Address
 
@@ -5485,13 +5485,13 @@ components:
                 defined by postal services.
         Id:
           allOf:
-            - $ref: "#/components/schemas/Party52Choice"
+            - $ref: '#/components/schemas/Party52Choice'
             - description: |
                 Identification
                 Unique and unambiguous identification of a party.
         CtryOfRes:
           allOf:
-            - $ref: "#/components/schemas/CountryCode"
+            - $ref: '#/components/schemas/CountryCode'
             - description: >
                 Country of Residence
 
@@ -5500,7 +5500,7 @@ components:
                 the affairs of that company are directed.
         CtctDtls:
           allOf:
-            - $ref: "#/components/schemas/Contact13"
+            - $ref: '#/components/schemas/Contact13'
             - description: |
                 Contact Details
                 Set of elements used to indicate how to contact the party.
@@ -5523,7 +5523,7 @@ components:
             AnyBIC: BIC
           PrvtId:
             DtAndPlcOfBirth:
-              Dt: "2018-01-01"
+              Dt: '2018-01-01'
               CityOfBirth: City
         CtryOfRes: BE
         CtctDtls:
@@ -5542,7 +5542,7 @@ components:
       properties:
         InstrId:
           allOf:
-            - $ref: "#/components/schemas/ULIDIdentifier"
+            - $ref: '#/components/schemas/ULIDIdentifier'
             - description: >
                 InstructionIdentification (FSPIOP equivalent:
                 transactionRequestId)
@@ -5567,7 +5567,7 @@ components:
                 `Max35Text`` schema to a ULIDIdentifier schema.
         EndToEndId:
           allOf:
-            - $ref: "#/components/schemas/ULIDIdentifier"
+            - $ref: '#/components/schemas/ULIDIdentifier'
             - description: >
                 EndToEndIdentification (FSPIOP equivalent: transactionId)
 
@@ -5597,7 +5597,7 @@ components:
                 `Max35Text`` schema to a ULIDIdentifier schema.
         TxId:
           allOf:
-            - $ref: "#/components/schemas/ULIDIdentifier"
+            - $ref: '#/components/schemas/ULIDIdentifier'
             - description: >
                 TransactionIdentification (FSPIOP equivalent: quoteId in quote
                 request, transferId in transfer request)
@@ -5624,7 +5624,7 @@ components:
                 `Max35Text`` schema to a ULIDIdentifier schema.
         UETR:
           allOf:
-            - $ref: "#/components/schemas/UUIDv4Identifier"
+            - $ref: '#/components/schemas/UUIDv4Identifier'
             - description: >
                 UETR
 
@@ -5632,7 +5632,7 @@ components:
                 of a payment transaction.
         ClrSysRef:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 ClearingSystemReference
 
@@ -5656,13 +5656,13 @@ components:
       properties:
         StsId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Unique identification, as assigned by the original sending
                 party, to unambiguously identify the status report.
         OrgnlInstrId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Unique identification, as assigned by the original sending
                 party, to
@@ -5673,7 +5673,7 @@ components:
                 (FSPIOP equivalent: transactionRequestId)
         OrgnlEndToEndId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Unique identification, as assigned by the original sending
                 party, to
@@ -5684,7 +5684,7 @@ components:
                 (FSPIOP equivalent: transactionId)
         OrgnlTxId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Unique identification, as assigned by the original sending
                 party, to
@@ -5695,54 +5695,54 @@ components:
                 (FSPIOP equivalent: quoteId)
         OrgnlUETR:
           allOf:
-            - $ref: "#/components/schemas/UUIDv4Identifier"
+            - $ref: '#/components/schemas/UUIDv4Identifier'
             - description: >
                 Unique end-to-end transaction reference, as assigned by the
                 original sending party, to unambiguously identify the original
                 transaction.
         TxSts:
           allOf:
-            - $ref: "#/components/schemas/ExternalPaymentTransactionStatus1Code"
+            - $ref: '#/components/schemas/ExternalPaymentTransactionStatus1Code'
             - description: |
                 Specifies the status of the transaction.
         StsRsnInf:
           allOf:
-            - $ref: "#/components/schemas/StatusReasonInformation14"
+            - $ref: '#/components/schemas/StatusReasonInformation14'
             - description: |
                 Information concerning the reason for the status.
         AccptncDtTm:
           allOf:
-            - $ref: "#/components/schemas/ISODateTime"
+            - $ref: '#/components/schemas/ISODateTime'
             - description: |
                 Date and time at which the status was accepted.
         AcctSvcrRef:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Unique reference, as assigned by the account servicing
                 institution, to unambiguously identify the status report.
         ClrSysRef:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Reference that is assigned by the account servicing institution
                 and sent to the account owner to unambiguously identify the
                 transaction.
         ExctnConf:
           allOf:
-            - $ref: "#/components/schemas/Exact32HexBinaryText"
+            - $ref: '#/components/schemas/Exact32HexBinaryText'
             - description: >
                 Unique reference, as assigned by the account servicing
                 institution, to unambiguously identify the confirmation.
         SplmtryData:
           allOf:
-            - $ref: "#/components/schemas/SupplementaryData1"
+            - $ref: '#/components/schemas/SupplementaryData1'
             - description: >
                 Additional information that cannot be captured in the structured
                 elements and/or any other specific block.
         PrcgDt:
           allOf:
-            - $ref: "#/components/schemas/DateAndDateTime2Choice"
+            - $ref: '#/components/schemas/DateAndDateTime2Choice'
             - description: >
                 Date/time at which the instruction was processed by the
                 specified party.
@@ -5756,7 +5756,7 @@ components:
         StsRsnInf:
           Rsn: RSN
           AddtlInf: ADDITIONAL
-        AccptncDtTm: "2020-01-01T00:00:00Z"
+        AccptncDtTm: '2020-01-01T00:00:00Z'
         AcctSvcrRef: ACCTSVCRREF
         ClrSysRef: CLRSYSREF
         ExctnConf: 1234567890ABCDEF
@@ -5771,12 +5771,12 @@ components:
       additionalProperties: false
       properties:
         InstrPrty:
-          $ref: "#/components/schemas/Priority2Code"
+          $ref: '#/components/schemas/Priority2Code'
         ClrChanl:
-          $ref: "#/components/schemas/ClearingChannel2Code"
+          $ref: '#/components/schemas/ClearingChannel2Code'
         SvcLvl:
           allOf:
-            - $ref: "#/components/schemas/ServiceLevel8Choice"
+            - $ref: '#/components/schemas/ServiceLevel8Choice'
             - description: >
                 ServiceLevel
 
@@ -5784,7 +5784,7 @@ components:
                 should be processed.
         LclInstrm:
           allOf:
-            - $ref: "#/components/schemas/LocalInstrument2Choice"
+            - $ref: '#/components/schemas/LocalInstrument2Choice'
             - description: >
                 LocalInstrument
 
@@ -5795,7 +5795,7 @@ components:
                 level.
         CtgyPurp:
           allOf:
-            - $ref: "#/components/schemas/CategoryPurpose1Choice"
+            - $ref: '#/components/schemas/CategoryPurpose1Choice'
             - description: >
                 CategoryPurpose
 
@@ -5825,13 +5825,13 @@ components:
       properties:
         DtAndPlcOfBirth:
           allOf:
-            - $ref: "#/components/schemas/DateAndPlaceOfBirth1"
+            - $ref: '#/components/schemas/DateAndPlaceOfBirth1'
             - description: |
                 DateAndPlaceOfBirth
                 Date and place of birth of a person.
         Othr:
           allOf:
-            - $ref: "#/components/schemas/GenericPersonIdentification1"
+            - $ref: '#/components/schemas/GenericPersonIdentification1'
             - description: >
                 Other
 
@@ -5839,7 +5839,7 @@ components:
                 institution, using an identification scheme.
       example:
         DtAndPlcOfBirth:
-          Dt: "2018-01-01"
+          Dt: '2018-01-01'
           CityOfBirth: City
         Othr:
           Id: 123
@@ -5855,13 +5855,13 @@ components:
       properties:
         DtAndPlcOfBirth:
           allOf:
-            - $ref: "#/components/schemas/DateAndPlaceOfBirth1"
+            - $ref: '#/components/schemas/DateAndPlaceOfBirth1'
             - description: |
                 DateAndPlaceOfBirth
                 Date and place of birth of a person.
         Othr:
           allOf:
-            - $ref: "#/components/schemas/GenericPersonIdentification2"
+            - $ref: '#/components/schemas/GenericPersonIdentification2'
             - description: >
                 Other
 
@@ -5869,7 +5869,7 @@ components:
                 institution, using an identification scheme.
       example:
         DtAndPlcOfBirth:
-          Dt: "2018-01-01"
+          Dt: '2018-01-01'
           CityOfBirth: City
         Othr:
           Id: 123
@@ -5886,7 +5886,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalPersonIdentification1Code"
+                - $ref: '#/components/schemas/ExternalPersonIdentification1Code'
                 - description: >
                     Code
 
@@ -5897,7 +5897,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
                     Name of the identification scheme, in a free text form.
@@ -5920,37 +5920,37 @@ components:
         by postal services.
       properties:
         AdrTp:
-          $ref: "#/components/schemas/AddressType3Choice"
+          $ref: '#/components/schemas/AddressType3Choice'
         Dept:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
         SubDept:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
         StrtNm:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
         BldgNb:
-          $ref: "#/components/schemas/Max16Text"
+          $ref: '#/components/schemas/Max16Text'
         BldgNm:
-          $ref: "#/components/schemas/Max35Text"
+          $ref: '#/components/schemas/Max35Text'
         Flr:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
         PstBx:
-          $ref: "#/components/schemas/Max16Text"
+          $ref: '#/components/schemas/Max16Text'
         Room:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
         PstCd:
-          $ref: "#/components/schemas/Max16Text"
+          $ref: '#/components/schemas/Max16Text'
         TwnNm:
-          $ref: "#/components/schemas/Max35Text"
+          $ref: '#/components/schemas/Max35Text'
         TwnLctnNm:
-          $ref: "#/components/schemas/Max35Text"
+          $ref: '#/components/schemas/Max35Text'
         DstrctNm:
-          $ref: "#/components/schemas/Max35Text"
+          $ref: '#/components/schemas/Max35Text'
         CtrySubDvsn:
-          $ref: "#/components/schemas/Max35Text"
+          $ref: '#/components/schemas/Max35Text'
         Ctry:
-          $ref: "#/components/schemas/CountryCode"
+          $ref: '#/components/schemas/CountryCode'
         AdrLine:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
       example:
         AdrTp: ADDR
         Dept: Dept
@@ -5977,41 +5977,41 @@ components:
         by postal services.
       properties:
         AdrTp:
-          $ref: "#/components/schemas/AddressType3Choice"
+          $ref: '#/components/schemas/AddressType3Choice'
         CareOf:
-          $ref: "#/components/schemas/Max140Text"
+          $ref: '#/components/schemas/Max140Text'
         Dept:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
         SubDept:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
         StrtNm:
-          $ref: "#/components/schemas/Max140Text"
+          $ref: '#/components/schemas/Max140Text'
         BldgNb:
-          $ref: "#/components/schemas/Max16Text"
+          $ref: '#/components/schemas/Max16Text'
         BldgNm:
-          $ref: "#/components/schemas/Max140Text"
+          $ref: '#/components/schemas/Max140Text'
         Flr:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
         UnitNb:
-          $ref: "#/components/schemas/Max16Text"
+          $ref: '#/components/schemas/Max16Text'
         PstBx:
-          $ref: "#/components/schemas/Max16Text"
+          $ref: '#/components/schemas/Max16Text'
         Room:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
         PstCd:
-          $ref: "#/components/schemas/Max16Text"
+          $ref: '#/components/schemas/Max16Text'
         TwnNm:
-          $ref: "#/components/schemas/Max140Text"
+          $ref: '#/components/schemas/Max140Text'
         TwnLctnNm:
-          $ref: "#/components/schemas/Max140Text"
+          $ref: '#/components/schemas/Max140Text'
         DstrctNm:
-          $ref: "#/components/schemas/Max140Text"
+          $ref: '#/components/schemas/Max140Text'
         CtrySubDvsn:
-          $ref: "#/components/schemas/Max35Text"
+          $ref: '#/components/schemas/Max35Text'
         Ctry:
-          $ref: "#/components/schemas/CountryCode"
+          $ref: '#/components/schemas/CountryCode'
         AdrLine:
-          $ref: "#/components/schemas/Max70Text"
+          $ref: '#/components/schemas/Max70Text'
       example:
         AdrTp: ADDR
         CareOf: CareOf
@@ -6105,13 +6105,13 @@ components:
       properties:
         Tp:
           allOf:
-            - $ref: "#/components/schemas/ProxyAccountType1Choice"
+            - $ref: '#/components/schemas/ProxyAccountType1Choice'
             - description: |
                 Type
                 Type of the proxy identification.
         Id:
           allOf:
-            - $ref: "#/components/schemas/Max2048Text"
+            - $ref: '#/components/schemas/Max2048Text'
             - description: >
                 Identification
 
@@ -6133,7 +6133,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalProxyAccountType1Code"
+                - $ref: '#/components/schemas/ExternalProxyAccountType1Code'
                 - description: >
                     Code
 
@@ -6144,7 +6144,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
                     Proxy account type, in a proprietary form.
@@ -6173,7 +6173,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalPurpose1Code"
+                - $ref: '#/components/schemas/ExternalPurpose1Code'
                 - description: >
                     Code
 
@@ -6185,7 +6185,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
 
@@ -6204,7 +6204,7 @@ components:
       properties:
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: >
                 Name
 
@@ -6213,7 +6213,7 @@ components:
                 information.
         Ctry:
           allOf:
-            - $ref: "#/components/schemas/CountryCode"
+            - $ref: '#/components/schemas/CountryCode'
             - description: >
                 Country
 
@@ -6232,7 +6232,7 @@ components:
       properties:
         DbtCdtRptgInd:
           allOf:
-            - $ref: "#/components/schemas/RegulatoryReportingType1Code"
+            - $ref: '#/components/schemas/RegulatoryReportingType1Code'
             - description: >
                 DebitCreditReportingIndicator
 
@@ -6241,7 +6241,7 @@ components:
                 credit sides of the transaction.
         Authrty:
           allOf:
-            - $ref: "#/components/schemas/RegulatoryAuthority2"
+            - $ref: '#/components/schemas/RegulatoryAuthority2'
             - description: |
                 Authority
 
@@ -6254,9 +6254,9 @@ components:
             the debit side, to the credit side or to both debit and credit sides
             of the transaction.
           anyOf:
-            - $ref: "#/components/schemas/StructuredRegulatoryReporting3"
+            - $ref: '#/components/schemas/StructuredRegulatoryReporting3'
             - items:
-                $ref: "#/components/schemas/StructuredRegulatoryReporting3"
+                $ref: '#/components/schemas/StructuredRegulatoryReporting3'
               type: array
       example:
         DbtCdtRptgInd: CRED
@@ -6299,7 +6299,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalServiceLevel1Code"
+                - $ref: '#/components/schemas/ExternalServiceLevel1Code'
                 - description: >
                     Code
 
@@ -6311,7 +6311,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: >
                     Proprietary
 
@@ -6332,9 +6332,9 @@ components:
       additionalProperties: false
       properties:
         SttlmMtd:
-          $ref: "#/components/schemas/SettlementMethod1Code"
+          $ref: '#/components/schemas/SettlementMethod1Code'
         PmtTpInf:
-          $ref: "#/components/schemas/PaymentTypeInformation28"
+          $ref: '#/components/schemas/PaymentTypeInformation28'
       required:
         - SttlmMtd
       example:
@@ -6392,7 +6392,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalStatusReason1Code"
+                - $ref: '#/components/schemas/ExternalStatusReason1Code'
                 - description: >
                     Code
 
@@ -6403,7 +6403,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: |
                     Proprietary
                     Reason for the status, in a proprietary form.
@@ -6420,19 +6420,19 @@ components:
       properties:
         Orgtr:
           allOf:
-            - $ref: "#/components/schemas/PartyIdentification272"
+            - $ref: '#/components/schemas/PartyIdentification272'
             - description: |
                 Originator
                 Party that issues the status.
         Rsn:
           allOf:
-            - $ref: "#/components/schemas/StatusReason6Choice"
+            - $ref: '#/components/schemas/StatusReason6Choice'
             - description: |
                 Reason
                 Specifies the reason for the status report.
         AddtlInf:
           allOf:
-            - $ref: "#/components/schemas/Max105Text"
+            - $ref: '#/components/schemas/Max105Text'
             - description: |
                 AdditionalInformation
                 Additional information about the status report.
@@ -6463,7 +6463,7 @@ components:
       properties:
         Tp:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Type
 
@@ -6472,7 +6472,7 @@ components:
                 reporting details.
         Dt:
           allOf:
-            - $ref: "#/components/schemas/ISODate"
+            - $ref: '#/components/schemas/ISODate'
             - description: >
                 Date
 
@@ -6481,7 +6481,7 @@ components:
                 details.
         Ctry:
           allOf:
-            - $ref: "#/components/schemas/CountryCode"
+            - $ref: '#/components/schemas/CountryCode'
             - description: >
                 Country
 
@@ -6490,7 +6490,7 @@ components:
                 details.
         Cd:
           allOf:
-            - $ref: "#/components/schemas/Max10Text"
+            - $ref: '#/components/schemas/Max10Text'
             - description: >
                 Code
 
@@ -6499,7 +6499,7 @@ components:
                 form.
         Amt:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             - description: >
                 Amount
 
@@ -6514,13 +6514,13 @@ components:
             Additional details that cater for specific domestic regulatory
             requirements.
           anyOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - items:
-                $ref: "#/components/schemas/Max35Text"
+                $ref: '#/components/schemas/Max35Text'
               type: array
       example:
         Tp: T1
-        Dt: "2018-01-01"
+        Dt: '2018-01-01'
         Ctry: CH
         Cd: CHF
         Amt:
@@ -6537,7 +6537,7 @@ components:
       properties:
         PlcAndNm:
           allOf:
-            - $ref: "#/components/schemas/Max350Text"
+            - $ref: '#/components/schemas/Max350Text'
             - description: >
                 PlaceAndName
 
@@ -6545,7 +6545,7 @@ components:
                 data must be inserted in the message instance.
         Envlp:
           allOf:
-            - $ref: "#/components/schemas/SupplementaryDataEnvelope1"
+            - $ref: '#/components/schemas/SupplementaryDataEnvelope1'
             - description: >
                 Envelope
 
@@ -6580,21 +6580,21 @@ components:
       properties:
         Rate:
           allOf:
-            - $ref: "#/components/schemas/PercentageRate"
+            - $ref: '#/components/schemas/PercentageRate'
             - description: |
                 Rate
 
                 Rate used to calculate the tax.
         TaxblBaseAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             - description: |
                 TaxableBaseAmount
 
                 Amount of money on which the tax is based.
         TtlAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             - description: >
                 TotalAmount
 
@@ -6609,9 +6609,9 @@ components:
             Set of elements used to provide details on the tax period and
             amount.
           anyOf:
-            - $ref: "#/components/schemas/TaxRecordDetails3"
+            - $ref: '#/components/schemas/TaxRecordDetails3'
             - items:
-                $ref: "#/components/schemas/TaxRecordDetails3"
+                $ref: '#/components/schemas/TaxRecordDetails3'
               type: array
       example:
         Rate: 0
@@ -6638,7 +6638,7 @@ components:
       properties:
         Titl:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Title
 
@@ -6647,7 +6647,7 @@ components:
                 representative.
         Nm:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: |
                 Name
 
@@ -6666,7 +6666,7 @@ components:
       properties:
         Cdtr:
           allOf:
-            - $ref: "#/components/schemas/TaxParty1"
+            - $ref: '#/components/schemas/TaxParty1'
             - description: >
                 Creditor
 
@@ -6675,7 +6675,7 @@ components:
                 applies.
         Dbtr:
           allOf:
-            - $ref: "#/components/schemas/TaxParty2"
+            - $ref: '#/components/schemas/TaxParty2'
             - description: >
                 Debtor
 
@@ -6684,7 +6684,7 @@ components:
                 applies.
         UltmtDbtr:
           allOf:
-            - $ref: "#/components/schemas/TaxParty2"
+            - $ref: '#/components/schemas/TaxParty2'
             - description: >
                 UltimateDebtor
 
@@ -6693,7 +6693,7 @@ components:
                 creditor, in this case, to the taxing authority.
         AdmstnZone:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 AdministrationZone
 
@@ -6702,14 +6702,14 @@ components:
                 related.
         RefNb:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: |
                 ReferenceNumber
 
                 Tax reference information that is specific to a taxing agency.
         Mtd:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 Method
 
@@ -6718,28 +6718,28 @@ components:
                 is paid.
         TtlTaxblBaseAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             - description: |
                 TotalTaxableBaseAmount
 
                 Total amount of money on which the tax is based.
         TtlTaxAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             - description: |
                 TotalTaxAmount
 
                 Total amount of money as result of the calculation of the tax.
         Dt:
           allOf:
-            - $ref: "#/components/schemas/ISODate"
+            - $ref: '#/components/schemas/ISODate'
             - description: |
                 Date
 
                 Date by which tax is due.
         SeqNb:
           allOf:
-            - $ref: "#/components/schemas/Number"
+            - $ref: '#/components/schemas/Number'
             - description: |
                 SequenceNumber
 
@@ -6750,9 +6750,9 @@ components:
 
             Details of the tax record.
           anyOf:
-            - $ref: "#/components/schemas/TaxRecord3"
+            - $ref: '#/components/schemas/TaxRecord3'
             - items:
-                $ref: "#/components/schemas/TaxRecord3"
+                $ref: '#/components/schemas/TaxRecord3'
               type: array
       example:
         Cdtr:
@@ -6773,7 +6773,7 @@ components:
         TtlTaxAmt:
           Ccy: CHF
           Amt: 100
-        Dt: "2018-01-01"
+        Dt: '2018-01-01'
         SeqNb: 1
         Rcrd:
           Tp: T1
@@ -6792,14 +6792,14 @@ components:
       properties:
         TaxId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 TaxIdentification
 
                 Tax identification number of the creditor.
         RegnId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 RegistrationIdentification
 
@@ -6808,7 +6808,7 @@ components:
                 unambiguously identify a party.
         TaxTp:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 TaxType
 
@@ -6826,14 +6826,14 @@ components:
       properties:
         TaxId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 TaxIdentification
 
                 Tax identification number of the debtor.
         RegnId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 RegistrationIdentification
 
@@ -6842,14 +6842,14 @@ components:
                 unambiguously identify a party.
         TaxTp:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 TaxType
 
                 Type of tax payer.
         Authstn:
           allOf:
-            - $ref: "#/components/schemas/TaxAuthorisation1"
+            - $ref: '#/components/schemas/TaxAuthorisation1'
             - description: |
                 Authorisation
 
@@ -6870,7 +6870,7 @@ components:
       properties:
         FrToDt:
           allOf:
-            - $ref: "#/components/schemas/DatePeriod2"
+            - $ref: '#/components/schemas/DatePeriod2'
             - description: >
                 FromToDate
 
@@ -6879,14 +6879,14 @@ components:
                 tax report is provided.
         Tp:
           allOf:
-            - $ref: "#/components/schemas/TaxRecordPeriod1Code"
+            - $ref: '#/components/schemas/TaxRecordPeriod1Code'
             - description: |
                 Type
 
                 Identification of the period related to the tax payment.
         Yr:
           allOf:
-            - $ref: "#/components/schemas/ISOYear"
+            - $ref: '#/components/schemas/ISOYear'
             - description: |
                 Year
 
@@ -6895,8 +6895,8 @@ components:
         Yr: 2020
         Tp: MM01
         FrToDt:
-          FrDt: "2020-01-01"
-          ToDt: "2020-01-31"
+          FrDt: '2020-01-01'
+          ToDt: '2020-01-31'
     TaxRecord3:
       title: TaxRecord3
       description: |
@@ -6906,14 +6906,14 @@ components:
       properties:
         AddtlInf:
           allOf:
-            - $ref: "#/components/schemas/Max140Text"
+            - $ref: '#/components/schemas/Max140Text'
             - description: |
                 AdditionalInformation
 
                 Further details of the tax record.
         CertId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 CertificateIdentification
 
@@ -6922,21 +6922,21 @@ components:
                 taxing authority.
         Ctgy:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Category
 
                 Specifies the tax code as published by the tax authority.
         CtgyDtls:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 CategoryDetails
 
                 Provides further details of the category tax code.
         DbtrSts:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 DebtorStatus
 
@@ -6945,7 +6945,7 @@ components:
                 party that has drawn up the settlement document.
         FrmsCd:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 FormsCode
 
@@ -6954,7 +6954,7 @@ components:
                 to be provided.
         Prd:
           allOf:
-            - $ref: "#/components/schemas/TaxPeriod3"
+            - $ref: '#/components/schemas/TaxPeriod3'
             - description: >
                 Period
 
@@ -6963,7 +6963,7 @@ components:
                 related to the tax payment.
         TaxAmt:
           allOf:
-            - $ref: "#/components/schemas/TaxAmount3"
+            - $ref: '#/components/schemas/TaxAmount3'
             - description: >
                 TaxAmount
 
@@ -6972,7 +6972,7 @@ components:
                 tax record.
         Tp:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: |
                 Type
 
@@ -6988,8 +6988,8 @@ components:
           Yr: 2019
           Tp: MM01
           FrToDt:
-            FrDt: "2019-01-01"
-            ToDt: "2019-12-31"
+            FrDt: '2019-01-01'
+            ToDt: '2019-12-31'
         TaxAmt:
           Rate: 0.2
           TaxblBaseAmt:
@@ -7008,7 +7008,7 @@ components:
       properties:
         Prd:
           allOf:
-            - $ref: "#/components/schemas/TaxPeriod3"
+            - $ref: '#/components/schemas/TaxPeriod3'
             - description: >
                 Period
 
@@ -7017,7 +7017,7 @@ components:
                 related to the tax payment.
         Amt:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             - description: |
                 Amount
 
@@ -7029,8 +7029,8 @@ components:
           Yr: 2020
           Tp: MM01
           FrToDt:
-            FrDt: "2020-01-01"
-            ToDt: "2020-01-31"
+            FrDt: '2020-01-01'
+            ToDt: '2020-01-31'
         Amt:
           Amt: 100
           Ccy: EUR
@@ -7088,7 +7088,7 @@ components:
       properties:
         GrpHdr:
           allOf:
-            - $ref: "#/components/schemas/GroupHeader129"
+            - $ref: '#/components/schemas/GroupHeader129'
             - description: >
                 Group Header
 
@@ -7096,7 +7096,7 @@ components:
                 included in the message.
         CdtTrfTxInf:
           allOf:
-            - $ref: "#/components/schemas/CreditTransferTransaction67"
+            - $ref: '#/components/schemas/CreditTransferTransaction67'
             - description: |
                 Credit Transfer Transaction Information
       required:
@@ -7105,7 +7105,7 @@ components:
       example:
         GrpHdr:
           MsgId: 123456789
-          CreDtTm: "2020-01-01T00:00:00Z"
+          CreDtTm: '2020-01-01T00:00:00Z'
           NbOfTxs: 1
           CtrlSum: 100
           InitgPty:
@@ -7131,7 +7131,7 @@ components:
       properties:
         GrpHdr:
           allOf:
-            - $ref: "#/components/schemas/GroupHeader129"
+            - $ref: '#/components/schemas/GroupHeader129'
             - description: >
                 Group Header
 
@@ -7139,7 +7139,7 @@ components:
                 included in the message.
         CdtTrfTxInf:
           allOf:
-            - $ref: "#/components/schemas/CreditTransferTransaction67"
+            - $ref: '#/components/schemas/CreditTransferTransaction67'
             - description: >
                 Credit Transfer Transaction Information
 
@@ -7151,7 +7151,7 @@ components:
       example:
         GrpHdr:
           MsgId: 123456789
-          CreDtTm: "2020-01-01T00:00:00Z"
+          CreDtTm: '2020-01-01T00:00:00Z'
           NbOfTxs: 1
           CtrlSum: 100
           InitgPty:
@@ -7184,7 +7184,7 @@ components:
       properties:
         InstdAmt:
           allOf:
-            - $ref: "#/components/schemas/ActiveOrHistoricCurrencyAndAmount"
+            - $ref: '#/components/schemas/ActiveOrHistoricCurrencyAndAmount'
             - description: >
                 InstructedAmount
 
@@ -7193,12 +7193,12 @@ components:
                 ordered by the initiating party.
         Dbtr:
           allOf:
-            - $ref: "#/components/schemas/PartyIdentification272"
+            - $ref: '#/components/schemas/PartyIdentification272'
             - description: |
                 Party that owes an amount of money to the (ultimate) creditor.
         Cdtr:
           allOf:
-            - $ref: "#/components/schemas/PartyIdentification272"
+            - $ref: '#/components/schemas/PartyIdentification272'
             - description: |
                 Party to which an amount of money is due.
         DbtrAgt:
@@ -7229,7 +7229,7 @@ components:
         - properties:
             Cd:
               allOf:
-                - $ref: "#/components/schemas/ExternalVerificationReason1Code"
+                - $ref: '#/components/schemas/ExternalVerificationReason1Code'
                 - description: >
                     Code
 
@@ -7240,7 +7240,7 @@ components:
         - properties:
             Prtry:
               allOf:
-                - $ref: "#/components/schemas/Max35Text"
+                - $ref: '#/components/schemas/Max35Text'
                 - description: >
                     Proprietary
 
@@ -7262,7 +7262,7 @@ components:
       properties:
         OrgnlId:
           allOf:
-            - $ref: "#/components/schemas/Max35Text"
+            - $ref: '#/components/schemas/Max35Text'
             - description: >
                 OriginalIdentification
 
@@ -7271,7 +7271,7 @@ components:
                 information group within the original message.
         Vrfctn:
           allOf:
-            - $ref: "#/components/schemas/IdentificationVerificationIndicator"
+            - $ref: '#/components/schemas/IdentificationVerificationIndicator'
             - description: >
                 Verification
 
@@ -7279,7 +7279,7 @@ components:
                 is correct. Boolean value.
         Rsn:
           allOf:
-            - $ref: "#/components/schemas/VerificationReason1Choice"
+            - $ref: '#/components/schemas/VerificationReason1Choice'
             - description: >
                 Reason
 
@@ -7287,7 +7287,7 @@ components:
                 is incorrect.
         OrgnlPtyAndAcctId:
           allOf:
-            - $ref: "#/components/schemas/IdentificationInformation4"
+            - $ref: '#/components/schemas/IdentificationInformation4'
             - description: >
                 OriginalPartyAndAccountIdentification
 
@@ -7295,7 +7295,7 @@ components:
                 given in the original message.
         UpdtdPtyAndAcctId:
           allOf:
-            - $ref: "#/components/schemas/IdentificationInformation4"
+            - $ref: '#/components/schemas/IdentificationInformation4'
             - description: |
                 UpdatedPartyAndAccountIdentification
                 Provides party and/or account identification information.
