@@ -51,10 +51,12 @@ paths:
     $ref: paths/tppAccountRequest_ID.yaml
   /tppAccountRequest/{ID}/error:
     $ref: paths/tppAccountRequest_ID_error.yaml
-  /tppAccounts/{ID}:
-    $ref: paths/tppAccounts_ID.yaml
-  /tppAccounts/{ID}/error:
-    $ref: paths/tppAccounts_ID_error.yaml
+  /tppAccounts/{accountRequestId}:
+    $ref: paths/tppAccounts_accountRequestId.yaml
+  /tppAccounts/{accountRequestId}/{SignedChallenge}:
+    $ref: paths/tppAccounts_accountRequestId_SignedChallenge.yaml
+  /tppAccounts/{accountRequestId}/error:
+    $ref: paths/tppAccounts_accountRequestId_error.yaml
   /health:
     $ref: paths/health.yaml
   /metrics:
