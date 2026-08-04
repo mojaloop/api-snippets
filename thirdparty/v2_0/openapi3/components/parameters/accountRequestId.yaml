@@ -1,0 +1,6 @@
+name: accountRequestId
+in: path
+required: true
+schema:
+  type: string
+description: The account request identifier.
