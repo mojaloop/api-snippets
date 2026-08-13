@@ -97,7 +97,7 @@ paths:
                 - providers
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
@@ -141,10 +141,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/paths/~1tppAccounts~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1tppConsents~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
@@ -205,19 +205,96 @@ paths:
                   pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[1-7][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$|^[0-9A-HJKMNP-TV-Z]{26}$
                   description: Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)
                   example: b51ec534-ee48-4575-b6a9-ead2955b8069
-                partyItentifier:
-                  title: PartyIdentifier
-                  type: string
-                  minLength: 1
-                  maxLength: 128
-                  description: Identifier of the Party.
-                  example: '16135551212'
+                partyIdInfo:
+                  title: PartyIdInfo
+                  type: object
+                  description: Data model for the complex type PartyIdInfo.
+                  properties:
+                    partyIdType:
+                      title: PartyIdType
+                      type: string
+                      enum:
+                        - MSISDN
+                        - EMAIL
+                        - PERSONAL_ID
+                        - BUSINESS
+                        - DEVICE
+                        - ACCOUNT_ID
+                        - IBAN
+                        - ALIAS
+                        - CONSENT
+                        - THIRD_PARTY_LINK
+                      description: |
+                        Below are the allowed values for the enumeration.
+                        - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
+                        Number, that is, the phone number) is used as reference to a participant.
+                        The MSISDN identifier should be in international format according to the
+                        [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
+                        Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
+                        international prefix.
+                        - EMAIL - An email is used as reference to a
+                        participant. The format of the email should be according to the informational
+                        [RFC 3696](https://tools.ietf.org/html/rfc3696).
+                        - PERSONAL_ID - A personal identifier is used as reference to a participant.
+                        Examples of personal identification are passport number, birth certificate
+                        number, and national registration number. The identifier number is added in 
+                        the PartyIdentifier element. The personal identifier type is added in the
+                        PartySubIdOrType element.
+                        - BUSINESS - A specific Business (for example, an organization or a company)
+                        is used as reference to a participant. The BUSINESS identifier can be in any
+                        format. To make a transaction connected to a specific username or bill number
+                        in a Business, the PartySubIdOrType element should be used.
+                        - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
+                        specific business or organization is used as reference to a Party.
+                        For referencing a specific device under a specific business or organization,
+                        use the PartySubIdOrType element.
+                        - ACCOUNT_ID - A bank account number or FSP account ID should be used as
+                        reference to a participant. The ACCOUNT_ID identifier can be in any format,
+                        as formats can greatly differ depending on country and FSP.
+                        - IBAN - A bank account number or FSP account ID is used as reference to a
+                        participant. The IBAN identifier can consist of up to 34 alphanumeric
+                        characters and should be entered without whitespace.
+                        - ALIAS An alias is used as reference to a participant. The alias should be
+                        created in the FSP as an alternative reference to an account owner.
+                        Another example of an alias is a username in the FSP system.
+                        The ALIAS identifier can be in any format. It is also possible to use the
+                        PartySubIdOrType element for identifying an account under an Alias defined
+                        by the PartyIdentifier.
+                        - CONSENT - A Consent represents an agreement between a PISP, a Customer and
+                        a DFSP which allows the PISP permission to perform actions on behalf of the 
+                        customer. A Consent has an authoritative source: either the DFSP who issued 
+                        the Consent, or an Auth Service which administers the Consent.
+                        - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
+                        a DFSP, and a specific Customer's account at the DFSP. The content of the link 
+                        is created by the DFSP at the time when it gives permission to the PISP for 
+                        specific access to a given account.
+                      example: PERSONAL_ID
+                    partyIdentifier:
+                      title: PartyIdentifier
+                      type: string
+                      minLength: 1
+                      maxLength: 128
+                      description: Identifier of the Party.
+                      example: '16135551212'
+                    partySubIdOrType:
+                      title: PartySubIdOrType
+                      type: string
+                      minLength: 1
+                      maxLength: 128
+                      description: Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
+                    fspId:
+                      $ref: '#/paths/~1services~1%7BServiceType%7D/put/requestBody/content/application~1json/schema/properties/providers/items'
+                    extensionList:
+                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
+                  required:
+                    - partyIdType
+                    - partyIdentifier
                 authChannels:
                   type: array
-                  minLength: 1
-                  maxLength: 256
+                  minItems: 1
+                  maxItems: 256
                   items:
-                    $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authChannel'
+                    $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authChannels'
                 callbackUri:
                   title: Uri
                   type: string
@@ -252,7 +329,7 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/503'
   /tppAccountRequest/{ID}:
     parameters:
-      - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
+      - $ref: '#/paths/~1tppConsents~1%7BID%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -319,11 +396,11 @@ paths:
               type: object
               description: |-
                 Used by: PISP
-                This is the message that the DFSP sends to the PISP to inform the PISP that  the accountRequest has been accepted, and to communicate to the PISP which  `authChannel` it should use to authenticate their user with. I.e. it is a response to a POST /tppAccountsRequest request, or a GET /tppAccountsRequest/{ID} request.
+                This is the message that the DFSP sends to the PISP to inform the PISP that  the accountRequest has been accepted, and to communicate to the PISP which  `authChannels` it should use to authenticate their user with. I.e. it is a response to a POST /tppAccountsRequest request, or a GET /tppAccountsRequest/{ID} request.
                 When a PISP requests a series of permissions from a DFSP on behalf of a DFSP's customer,  not all the permissions requested may be granted by the DFSP. Conversely,  the out-of-loop authorization process may result in additional privileges  being granted by the account holder to the PISP. The `PUT /tppAccountsRequest/<ID>`  resource returns the current state of the permissions relating to a particular authorization request. 
                   
               properties:
-                authChannel:
+                authChannels:
                   title: ConsentRequestChannelType
                   type: string
                   enum:
@@ -364,7 +441,7 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/503'
   /tppAccountRequest/{ID}/error:
     parameters:
-      - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
+      - $ref: '#/paths/~1tppConsents~1%7BID%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -389,10 +466,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/paths/~1tppAccounts~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1tppConsents~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
@@ -409,14 +486,14 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/501'
         '503':
           $ref: '#/paths/~1tppConsents/post/responses/503'
-  /tppAccounts/{ID}:
+  /tppAccounts/{accountRequestId}:
     parameters:
-      - name: ID
+      - name: accountRequestId
         in: path
         required: true
         schema:
           type: string
-        description: The identifier value.
+        description: The account request identifier.
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -426,41 +503,9 @@ paths:
       - $ref: '#/paths/~1tppConsents/parameters/6'
       - $ref: '#/paths/~1tppConsents/parameters/7'
       - $ref: '#/paths/~1tppConsents/parameters/8'
-    get:
-      operationId: GetAccountsByUserId
-      summary: GetAccountsByUserId
-      description: |
-        The HTTP request `GET /tppAccounts/{ID}/{SignedChallenge}` is used to retrieve the list of potential accounts available for linking.
-        The request `{ID}` is the accountRequestID and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountRequest/` callback. 
-
-        The signed challenge must match the authentication channel that was selected by the DFSP. For example, if the WEB authentication channel was selected by the DFSP, then signed challenge needs to be authToken, otherwise if the OTP channel was selected, then it needs to be the OTP that was entered by the party.
-        (For example, GET /tppAccounts/12345/56789).
-      tags:
-        - accounts
-      parameters:
-        - $ref: '#/paths/~1tppConsents/post/parameters/0'
-      responses:
-        '202':
-          $ref: '#/paths/~1tppConsents/post/responses/202'
-        '400':
-          $ref: '#/paths/~1tppConsents/post/responses/400'
-        '401':
-          $ref: '#/paths/~1tppConsents/post/responses/401'
-        '403':
-          $ref: '#/paths/~1tppConsents/post/responses/403'
-        '404':
-          $ref: '#/paths/~1tppConsents/post/responses/404'
-        '405':
-          $ref: '#/paths/~1tppConsents/post/responses/405'
-        '406':
-          $ref: '#/paths/~1tppConsents/post/responses/406'
-        '501':
-          $ref: '#/paths/~1tppConsents/post/responses/501'
-        '503':
-          $ref: '#/paths/~1tppConsents/post/responses/503'
     put:
       description: |
-        The HTTP request `PUT /tppAccounts/{ID}` is used to return the list of potential accounts available for linking
+        The HTTP request `PUT /tppAccounts/{accountRequestId}` is used by the DFSP to inform the requester of the result of a request for accounts information.
       operationId: UpdateAccountsByUserId
       summary: UpdateAccountsByUserId
       tags:
@@ -475,12 +520,12 @@ paths:
               title: AccountsIDPutResponse
               type: object
               description: |-
-                Callback and data model information for GET /accounts/{ID}:
-                Callback - PUT /tppAccounts/{ID} Error Callback - PUT /tppAccounts/{ID}/error Data Model - Empty body
-                The PUT /accounts/{ID} response is used to inform the requester of the result of a request for accounts information. The identifier ID given in the call are the values given in the original request.
+                Callback and data model information for GET /tppAccounts/{accountRequestId}/{SignedChallenge}:
+                Callback - PUT /tppAccounts/{accountRequestId} Error Callback - PUT /tppAccounts/{accountRequestId}/error Data Model - accountList
+                The PUT /tppAccounts/{accountRequestId} response is used to inform the requester of the result of a request for accounts information. The accountRequestId given in the call is the value given in the original request.
                 https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#31121--put-accountsid
               properties:
-                accounts:
+                accountList:
                   title: AccountList
                   type: array
                   description: |-
@@ -516,17 +561,18 @@ paths:
                 extensionList:
                   $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
               required:
-                - accounts
+                - accountList
             example:
-              - accountNickname: dfspa.user.nickname1
-                id: dfspa.username.1234
-                currency: ZAR
-              - accountNickname: dfspa.user.nickname2
-                id: dfspa.username.5678
-                currency: USD
+              accountList:
+                - accountNickname: dfspa.user.nickname1
+                  id: dfspa.username.1234
+                  currency: ZAR
+                - accountNickname: dfspa.user.nickname2
+                  id: dfspa.username.5678
+                  currency: USD
       responses:
         '200':
-          description: OK
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
@@ -543,9 +589,59 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/501'
         '503':
           $ref: '#/paths/~1tppConsents/post/responses/503'
-  /tppAccounts/{ID}/error:
+  /tppAccounts/{accountRequestId}/{SignedChallenge}:
     parameters:
-      - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
+      - $ref: '#/paths/~1tppAccounts~1%7BaccountRequestId%7D/parameters/0'
+      - name: SignedChallenge
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The signed challenge value.
+      - $ref: '#/paths/~1tppConsents/parameters/0'
+      - $ref: '#/paths/~1tppConsents/parameters/1'
+      - $ref: '#/paths/~1tppConsents/parameters/2'
+      - $ref: '#/paths/~1tppConsents/parameters/3'
+      - $ref: '#/paths/~1tppConsents/parameters/4'
+      - $ref: '#/paths/~1tppConsents/parameters/5'
+      - $ref: '#/paths/~1tppConsents/parameters/6'
+      - $ref: '#/paths/~1tppConsents/parameters/7'
+      - $ref: '#/paths/~1tppConsents/parameters/8'
+    get:
+      operationId: GetAccountsByUserId
+      summary: GetAccountsByUserId
+      description: |
+        The HTTP request `GET /tppAccounts/{accountRequestId}/{SignedChallenge}` is used to retrieve the list of potential accounts available for linking.
+        The request `{accountRequestId}` is the accountRequestId and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountsRequest/` callback.
+
+        The signed challenge must match the authentication channel that was selected by the DFSP. For example, if the WEB authentication channel was selected by the DFSP, then signed challenge needs to be authToken, otherwise if the OTP channel was selected, then it needs to be the OTP that was entered by the party.
+        (For example, GET /tppAccounts/12345/56789).
+      tags:
+        - accounts
+      parameters:
+        - $ref: '#/paths/~1tppConsents/post/parameters/0'
+      responses:
+        '202':
+          $ref: '#/paths/~1tppConsents/post/responses/202'
+        '400':
+          $ref: '#/paths/~1tppConsents/post/responses/400'
+        '401':
+          $ref: '#/paths/~1tppConsents/post/responses/401'
+        '403':
+          $ref: '#/paths/~1tppConsents/post/responses/403'
+        '404':
+          $ref: '#/paths/~1tppConsents/post/responses/404'
+        '405':
+          $ref: '#/paths/~1tppConsents/post/responses/405'
+        '406':
+          $ref: '#/paths/~1tppConsents/post/responses/406'
+        '501':
+          $ref: '#/paths/~1tppConsents/post/responses/501'
+        '503':
+          $ref: '#/paths/~1tppConsents/post/responses/503'
+  /tppAccounts/{accountRequestId}/error:
+    parameters:
+      - $ref: '#/paths/~1tppAccounts~1%7BaccountRequestId%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -557,7 +653,7 @@ paths:
       - $ref: '#/paths/~1tppConsents/parameters/8'
     put:
       description: |
-        The HTTP request `PUT /ttpAccounts/{ID}/error` is used to return error information
+        The HTTP request `PUT /tppAccounts/{accountRequestId}/error` is used by the DFSP to inform the requester that an account list request has given rise to an error.
       operationId: UpdateAccountsByUserIdError
       summary: UpdateAccountsByUserIdError
       tags:
@@ -570,39 +666,10 @@ paths:
         content:
           application/json:
             schema:
-              title: ErrorInformationObject
-              type: object
-              additionalProperties: false
-              description: Data model for the complex type object that contains ErrorInformation.
-              properties:
-                errorInformation:
-                  title: ErrorInformation
-                  type: object
-                  additionalProperties: false
-                  description: Data model for the complex type ErrorInformation.
-                  properties:
-                    errorCode:
-                      title: ErrorCode
-                      type: string
-                      pattern: ^[1-9]\d{3}$
-                      description: The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-                      example: '5100'
-                    errorDescription:
-                      title: ErrorDescription
-                      type: string
-                      minLength: 1
-                      maxLength: 128
-                      description: Error description string.
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
-                  required:
-                    - errorCode
-                    - errorDescription
-              required:
-                - errorInformation
+              $ref: '#/paths/~1tppConsents~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
@@ -658,84 +725,7 @@ paths:
                 consentRequestId:
                   $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/accountRequestId'
                 partyIdInfo:
-                  title: PartyIdInfo
-                  type: object
-                  description: Data model for the complex type PartyIdInfo.
-                  properties:
-                    partyIdType:
-                      title: PartyIdType
-                      type: string
-                      enum:
-                        - MSISDN
-                        - EMAIL
-                        - PERSONAL_ID
-                        - BUSINESS
-                        - DEVICE
-                        - ACCOUNT_ID
-                        - IBAN
-                        - ALIAS
-                        - CONSENT
-                        - THIRD_PARTY_LINK
-                      description: |
-                        Below are the allowed values for the enumeration.
-                        - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
-                        Number, that is, the phone number) is used as reference to a participant.
-                        The MSISDN identifier should be in international format according to the
-                        [ITU-T E.164 standard](https://www.itu.int/rec/T-REC-E.164/en).
-                        Optionally, the MSISDN may be prefixed by a single plus sign, indicating the
-                        international prefix.
-                        - EMAIL - An email is used as reference to a
-                        participant. The format of the email should be according to the informational
-                        [RFC 3696](https://tools.ietf.org/html/rfc3696).
-                        - PERSONAL_ID - A personal identifier is used as reference to a participant.
-                        Examples of personal identification are passport number, birth certificate
-                        number, and national registration number. The identifier number is added in 
-                        the PartyIdentifier element. The personal identifier type is added in the
-                        PartySubIdOrType element.
-                        - BUSINESS - A specific Business (for example, an organization or a company)
-                        is used as reference to a participant. The BUSINESS identifier can be in any
-                        format. To make a transaction connected to a specific username or bill number
-                        in a Business, the PartySubIdOrType element should be used.
-                        - DEVICE - A specific device (for example, a POS or ATM) ID connected to a
-                        specific business or organization is used as reference to a Party.
-                        For referencing a specific device under a specific business or organization,
-                        use the PartySubIdOrType element.
-                        - ACCOUNT_ID - A bank account number or FSP account ID should be used as
-                        reference to a participant. The ACCOUNT_ID identifier can be in any format,
-                        as formats can greatly differ depending on country and FSP.
-                        - IBAN - A bank account number or FSP account ID is used as reference to a
-                        participant. The IBAN identifier can consist of up to 34 alphanumeric
-                        characters and should be entered without whitespace.
-                        - ALIAS An alias is used as reference to a participant. The alias should be
-                        created in the FSP as an alternative reference to an account owner.
-                        Another example of an alias is a username in the FSP system.
-                        The ALIAS identifier can be in any format. It is also possible to use the
-                        PartySubIdOrType element for identifying an account under an Alias defined
-                        by the PartyIdentifier.
-                        - CONSENT - A Consent represents an agreement between a PISP, a Customer and
-                        a DFSP which allows the PISP permission to perform actions on behalf of the 
-                        customer. A Consent has an authoritative source: either the DFSP who issued 
-                        the Consent, or an Auth Service which administers the Consent.
-                        - THIRD_PARTY_LINK - A Third Party Link represents an agreement between a PISP,
-                        a DFSP, and a specific Customer's account at the DFSP. The content of the link 
-                        is created by the DFSP at the time when it gives permission to the PISP for 
-                        specific access to a given account.
-                      example: PERSONAL_ID
-                    partyIdentifier:
-                      $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/partyItentifier'
-                    partySubIdOrType:
-                      title: PartySubIdOrType
-                      type: string
-                      minLength: 1
-                      maxLength: 128
-                      description: Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
-                    fspId:
-                      $ref: '#/paths/~1services~1%7BServiceType%7D/put/requestBody/content/application~1json/schema/properties/providers/items'
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
-                  required:
-                    - partyIdType
-                    - partyIdentifier
+                  $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/partyIdInfo'
                 scopes:
                   type: array
                   minLength: 1
@@ -787,7 +777,7 @@ paths:
                   minLength: 1
                   maxLength: 256
                   items:
-                    $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authChannel'
+                    $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authChannels'
                 callbackUri:
                   $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
                 extensionList:
@@ -819,7 +809,7 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/503'
   /tppConsentRequests/{ID}:
     parameters:
-      - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
+      - $ref: '#/paths/~1tppConsents~1%7BID%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -1020,7 +1010,7 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/503'
   /tppConsentRequests/{ID}/error:
     parameters:
-      - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
+      - $ref: '#/paths/~1tppConsents~1%7BID%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -1045,10 +1035,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/paths/~1tppAccounts~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1tppConsents~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
@@ -1240,7 +1230,7 @@ paths:
                 description: Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
                 properties:
                   errorInformation:
-                    $ref: '#/paths/~1tppAccounts~1%7BID%7D~1error/put/requestBody/content/application~1json/schema/properties/errorInformation'
+                    $ref: '#/paths/~1tppConsents~1%7BID%7D~1error/put/requestBody/content/application~1json/schema/properties/errorInformation'
           headers:
             Content-Length:
               required: false
@@ -1334,7 +1324,12 @@ paths:
               $ref: '#/paths/~1tppConsents/post/responses/400/headers/Content-Type'
   /tppConsents/{ID}:
     parameters:
-      - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
+      - name: ID
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier value.
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -1448,7 +1443,7 @@ paths:
         - $ref: '#/paths/~1tppConsents/post/parameters/1'
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
@@ -1651,7 +1646,7 @@ paths:
         - $ref: '#/paths/~1tppConsents/post/parameters/1'
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          description: OK
         '202':
           $ref: '#/paths/~1tppConsents/post/responses/202'
         '400':
@@ -1704,7 +1699,7 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/503'
   /tppConsents/{ID}/error:
     parameters:
-      - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
+      - $ref: '#/paths/~1tppConsents~1%7BID%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -1729,10 +1724,39 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/paths/~1tppAccounts~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
+              title: ErrorInformationObject
+              type: object
+              additionalProperties: false
+              description: Data model for the complex type object that contains ErrorInformation.
+              properties:
+                errorInformation:
+                  title: ErrorInformation
+                  type: object
+                  additionalProperties: false
+                  description: Data model for the complex type ErrorInformation.
+                  properties:
+                    errorCode:
+                      title: ErrorCode
+                      type: string
+                      pattern: ^[1-9]\d{3}$
+                      description: The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+                      example: '5100'
+                    errorDescription:
+                      title: ErrorDescription
+                      type: string
+                      minLength: 1
+                      maxLength: 128
+                      description: Error description string.
+                    extensionList:
+                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
+                  required:
+                    - errorCode
+                    - errorDescription
+              required:
+                - errorInformation
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
@@ -1990,7 +2014,7 @@ paths:
                   description: The amount of fees that the paying customer will be charged as part of the transaction.
                 payer:
                   allOf:
-                    - $ref: '#/paths/~1tppConsentRequests/post/requestBody/content/application~1json/schema/properties/partyIdInfo'
+                    - $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/partyIdInfo'
                   description: Information about the Payer type, id, sub-type/id, FSP Id in the proposed financial transaction.
                 payee:
                   allOf:
@@ -1999,7 +2023,7 @@ paths:
                       description: Data model for the complex type Party.
                       properties:
                         partyIdInfo:
-                          $ref: '#/paths/~1tppConsentRequests/post/requestBody/content/application~1json/schema/properties/partyIdInfo'
+                          $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/partyIdInfo'
                         merchantClassificationCode:
                           title: MerchantClassificationCode
                           type: string
@@ -2247,7 +2271,7 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/503'
   /tppAuthorizations/{ID}:
     parameters:
-      - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
+      - $ref: '#/paths/~1tppConsents~1%7BID%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -2455,7 +2479,7 @@ paths:
                   additionalProperties: false
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
@@ -2474,7 +2498,7 @@ paths:
           $ref: '#/paths/~1tppConsents/post/responses/503'
   /tppAuthorizations/{ID}/error:
     parameters:
-      - $ref: '#/paths/~1tppAccounts~1%7BID%7D/parameters/0'
+      - $ref: '#/paths/~1tppConsents~1%7BID%7D/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/0'
       - $ref: '#/paths/~1tppConsents/parameters/1'
       - $ref: '#/paths/~1tppConsents/parameters/2'
@@ -2506,10 +2530,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/paths/~1tppAccounts~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
+              $ref: '#/paths/~1tppConsents~1%7BID%7D~1error/put/requestBody/content/application~1json/schema'
       responses:
         '200':
-          $ref: '#/paths/~1tppAccounts~1%7BID%7D/put/responses/200'
+          $ref: '#/paths/~1tppConsents~1%7BID%7D/put/responses/200'
         '400':
           $ref: '#/paths/~1tppConsents/post/responses/400'
         '401':
