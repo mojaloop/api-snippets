@@ -71,7 +71,7 @@ delete openapi.paths['/interface']
 fs.writeFileSync(
   outputFile,
   stringifyYaml(openapi, {
-    quotingType: '"',
+    quoteStyle: 'double',
     forceQuotes: false
   })
 )
