@@ -16,7 +16,11 @@ description: >-
     
 properties:
   authChannels:
-    $ref: ./ConsentRequestChannelType.yaml
+    type: array
+    minItems: 1
+    maxItems: 256
+    items:
+      $ref: ./ConsentRequestChannelType.yaml
   callbackUri:
     $ref: ./Uri.yaml
   authUri:

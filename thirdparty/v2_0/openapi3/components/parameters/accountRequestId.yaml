@@ -2,5 +2,5 @@ name: accountRequestId
 in: path
 required: true
 schema:
-  type: string
+  $ref: ../schemas/CorrelationId.yaml
 description: The account request identifier.
