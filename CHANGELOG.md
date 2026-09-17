@@ -1,4 +1,16 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [18.4.2](https://github.com/mojaloop/api-snippets/compare/v18.4.1...v18.4.2) (2026-09-17)
+
+
+### Bug Fixes
+
+* **pisp:** use correct version of third-party API specification to build .d.ts file ([#225](https://github.com/mojaloop/api-snippets/issues/225)) ([226cf89](https://github.com/mojaloop/api-snippets/commit/226cf89f3d43d29fb52f087d2772372bea88014d))
+
+
+### Maintenance
+
+* update api-snippets dependencies ([#236](https://github.com/mojaloop/api-snippets/issues/236)) ([9d48124](https://github.com/mojaloop/api-snippets/commit/9d481245a174f835d334fb68963e927b609a8eff))
+
 ### [18.4.1](https://github.com/mojaloop/api-snippets/compare/v18.4.0...v18.4.1) (2026-07-08)
 
 
