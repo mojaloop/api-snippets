@@ -2604,8 +2604,12 @@ components:
         When a PISP requests a series of permissions from a DFSP on behalf of a DFSP's customer,  not all the permissions requested may be granted by the DFSP. Conversely,  the out-of-loop authorization process may result in additional privileges  being granted by the account holder to the PISP. The `PUT /tppAccountsRequest/<ID>`  resource returns the current state of the permissions relating to a particular authorization request. 
           
       properties:
-        authChannel:
-          $ref: '#/components/schemas/ConsentRequestChannelType'
+        authChannels:
+          type: array
+          minItems: 1
+          maxItems: 256
+          items:
+            $ref: '#/components/schemas/ConsentRequestChannelType'
         callbackUri:
           $ref: '#/components/schemas/Uri'
         authUri:
@@ -3582,6 +3586,20 @@ components:
       schema:
         type: string
       description: The identifier value.
+    accountRequestId:
+      name: accountRequestId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/CorrelationId'
+      description: The account request identifier.
+    SignedChallenge:
+      name: SignedChallenge
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The signed challenge value.
     Type:
       name: Type
       in: path
