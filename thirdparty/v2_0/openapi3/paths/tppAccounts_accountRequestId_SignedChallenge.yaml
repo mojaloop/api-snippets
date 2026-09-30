@@ -1,0 +1,46 @@
+parameters:
+  #Path
+  - $ref: ../components/parameters/accountRequestId.yaml
+  - $ref: ../components/parameters/SignedChallenge.yaml
+  #Headers
+  - $ref: ../components/parameters/Content-Type.yaml
+  - $ref: ../components/parameters/Date.yaml
+  - $ref: ../components/parameters/X-Forwarded-For.yaml
+  - $ref: ../components/parameters/FSPIOP-Source.yaml
+  - $ref: ../components/parameters/FSPIOP-Destination.yaml
+  - $ref: ../components/parameters/FSPIOP-Encryption.yaml
+  - $ref: ../components/parameters/FSPIOP-Signature.yaml
+  - $ref: ../components/parameters/FSPIOP-URI.yaml
+  - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
+get:
+  operationId: GetAccountsByUserId
+  summary: GetAccountsByUserId
+  description: |
+    The HTTP request `GET /tppAccounts/{accountRequestId}/{SignedChallenge}` is used to retrieve the list of potential accounts available for linking.
+    The request `{accountRequestId}` is the accountRequestId and the `{SignedChallenge}` is the signed challenge that resulted from the `POST /tppAccountsRequest/` callback.
+
+    The signed challenge must match the authentication channel that was selected by the DFSP. For example, if the WEB authentication channel was selected by the DFSP, then signed challenge needs to be authToken, otherwise if the OTP channel was selected, then it needs to be the OTP that was entered by the party.
+    (For example, GET /tppAccounts/12345/56789).
+  tags:
+    - accounts
+  parameters:
+    - $ref: ../components/parameters/Accept.yaml
+  responses:
+    202:
+      $ref: ../components/responses/202.yaml
+    400:
+      $ref: ../components/responses/400.yaml
+    401:
+      $ref: ../components/responses/401.yaml
+    403:
+      $ref: ../components/responses/403.yaml
+    404:
+      $ref: ../components/responses/404.yaml
+    405:
+      $ref: ../components/responses/405.yaml
+    406:
+      $ref: ../components/responses/406.yaml
+    501:
+      $ref: ../components/responses/501.yaml
+    503:
+      $ref: ../components/responses/503.yaml
