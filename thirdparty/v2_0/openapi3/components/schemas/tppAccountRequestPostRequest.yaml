@@ -15,12 +15,12 @@ description: >-
 properties:
   accountRequestId:
     $ref: ./CorrelationId.yaml
-  partyItentifier:
-    $ref: '../../../../../fspiop/v2_0/openapi3/components/schemas/PartyIdentifier.yaml'
+  partyIdInfo:
+    $ref: ./PartyIdInfo.yaml
   authChannels:
     type: array
-    minLength: 1
-    maxLength: 256
+    minItems: 1
+    maxItems: 256
     items:
       $ref: ./ConsentRequestChannelType.yaml
   #   The callback uri that the user will be redirected to after completing the

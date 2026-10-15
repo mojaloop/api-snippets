@@ -22,6 +22,21 @@ ignore:
       version: "8.18.3"
     reason: " Uninitialized memory disclosure"
 
+  # Temporary exception matching audit-ci.jsonc; review by 2026-11-14.
+  # Grype ignore rules do not enforce expiry dates.
+  - vulnerability: "GHSA-vfj7-8cjw-p6xm"
+    package:
+      name: "braces"
+      version: "3.0.3"
+    reason: >-
+      Reviewed 2026-10-15; no patched release. Tracking:
+      https://github.com/micromatch/braces/issues/70.
+      npm-proposed ts-auto-mock downgrade failed tests with
+      TypeError: a.createIdentifier is not a function on TypeScript 6.0.3.
+      Deeply nested untrusted glob patterns can terminate the tool process;
+      use only trusted repository patterns. Reassess by 2026-11-14.
+      This exception does not fix the vulnerability.
+
 # Output formats for scan results
 output:
   - "table"  # Human-readable table format

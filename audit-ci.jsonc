@@ -8,6 +8,13 @@
             [05-18-2026] ws (WebSocket): Uninitialized memory disclosure.
             Not direct dependency of the repo but used inside "@redocly/cli@2.31.1", "browser-sync@3.0.4", and "socket.io@4.8.3".
         **/
-        "GHSA-58qx-3vcg-4xpx"
+        "GHSA-58qx-3vcg-4xpx",
+        {
+            "GHSA-vfj7-8cjw-p6xm": {
+                "active": true,
+                "expiry": "2026-11-14",
+                "notes": "Reviewed 2026-10-15. CVE-2026-93687: braces <=3.0.3 has no patched release. Tracking: https://github.com/micromatch/braces/issues/70. Used by OpenAPI preview and BrowserSync file watching, and ts-auto-mock glob filters. Deeply nested untrusted patterns can terminate the tool process; use only trusted repository glob patterns and do not expose these tools to untrusted glob input. npm-proposed ts-auto-mock downgrade 3.7.4 -> 2.5.3 was tested in an isolated copy: npm test failed all 3 suites with TypeError: a.createIdentifier is not a function on TypeScript 6.0.3. Retain current tools; reassess for a patched release or compatible replacement by 2026-11-14. This exception does not fix braces."
+            }
+        }
     ]
 }
