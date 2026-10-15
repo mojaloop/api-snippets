@@ -1,4 +1,4 @@
-name: SignedChallenge
+name: signedChallenge
 in: path
 required: true
 schema:

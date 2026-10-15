@@ -53,8 +53,8 @@ paths:
     $ref: paths/tppAccountRequest_ID_error.yaml
   /tppAccounts/{accountRequestId}:
     $ref: paths/tppAccounts_accountRequestId.yaml
-  /tppAccounts/{accountRequestId}/{SignedChallenge}:
-    $ref: paths/tppAccounts_accountRequestId_SignedChallenge.yaml
+  /tppAccounts/{accountRequestId}/{signedChallenge}:
+    $ref: paths/tppAccounts_accountRequestId_signedChallenge.yaml
   /tppAccounts/{accountRequestId}/error:
     $ref: paths/tppAccounts_accountRequestId_error.yaml
   /health:

@@ -1,7 +1,7 @@
 title: AccountsIDPutResponse
 type: object
 description: >-
-  Callback and data model information for GET /tppAccounts/{accountRequestId}/{SignedChallenge}:
+  Callback and data model information for GET /tppAccounts/{accountRequestId}/{signedChallenge}:
 
   Callback - PUT /tppAccounts/{accountRequestId}
   Error Callback - PUT /tppAccounts/{accountRequestId}/error
