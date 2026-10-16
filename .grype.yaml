@@ -1,45 +1,32 @@
-# Grype vulnerability scanning configuration for api-snippets
-# This is a library project without Docker images, so we use source scanning
 scan-type: source
-
-# Enable vulnerability scanning
 disabled: false
-
-# Vulnerability ignore rules
-# Add specific CVEs here if they are false positives or acceptable risks
 ignore:
-  # Example format for ignoring specific vulnerabilities:
-  # - vulnerability: "CVE-2023-xxxxx"
-  #   reason: "False positive in dev dependency that doesn't affect production"
-  # - vulnerability: "GHSA-xxxx-xxxx-xxxx"
-  #   package:
-  #     name: "package-name"
-  #     version: "1.0.0"
-  #   reason: "Not exploitable in our usage context"
-  - vulnerability: "GHSA-58qx-3vcg-4xpx"
+  - vulnerability: GHSA-58qx-3vcg-4xpx
     package:
-      name: "ws (WebSocket)"
-      version: "8.18.3"
-    reason: " Uninitialized memory disclosure"
-
-# Output formats for scan results
+      name: ws (WebSocket)
+      version: 8.18.3
+    reason: ' Uninitialized memory disclosure'
+  - vulnerability: GHSA-8r5x-fm3f-whwj
+    include-aliases: true
+    reason: 'Unfixable npm transitive vulnerability: handlebars (critical severity) as of 2026-10-16'
+  - vulnerability: GHSA-p8wg-vrv2-v86f
+    include-aliases: true
+    reason: 'Unfixable npm transitive vulnerability: handlebars (critical severity) as of 2026-10-16'
+  - vulnerability: GHSA-vfj7-8cjw-p6xm
+    include-aliases: true
+    reason: 'Unfixable npm transitive vulnerability: braces (high severity) as of 2026-10-16'
+  - vulnerability: GHSA-xw65-4hp5-5hc7
+    include-aliases: true
+    reason: 'Unfixable npm transitive vulnerability: handlebars (moderate severity) as of 2026-10-16'
 output:
-  - "table"  # Human-readable table format
-  - "json"   # Machine-readable JSON for further processing
-
-# Grype configuration options
-quiet: false                    # Show progress and status messages
-check-for-app-update: false     # Don't check for Grype updates during CI
-only-fixed: false               # Show all vulnerabilities, not just those with fixes
-add-cpes-if-none: false         # Don't add CPEs if none are found
-by-cve: false                   # Group by vulnerability rather than CVE
-
-# Database settings
+  - table
+  - json
+quiet: false
+check-for-app-update: false
+only-fixed: false
+add-cpes-if-none: false
+by-cve: false
 db:
-  auto-update: true             # Auto-update the vulnerability database
-  validate-age: true            # Validate the age of the vulnerability database
-  max-allowed-built-age: 120h   # Maximum age of the vulnerability database (5 days)
-
-# Severity thresholds (handled by the orb, but documented here for clarity)
-# The build will fail on Critical, High, or Medium severity vulnerabilities
-# Low and Negligible severities are reported but won't fail the build
+  auto-update: true
+  validate-age: true
+  max-allowed-built-age: 120h
