@@ -22,6 +22,12 @@ ignore:
       version: "8.18.3"
     reason: " Uninitialized memory disclosure"
 
+  - vulnerability: "GHSA-vfj7-8cjw-p6xm"
+    package:
+      name: "braces"
+      version: "3.0.3"
+    reason: "Advisory withdrawn from Github as not exploitable, no patched version exist as 3.0.3 is the latest version, only a dev dependency"
+
 # Output formats for scan results
 output:
   - "table"  # Human-readable table format
