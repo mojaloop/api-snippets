@@ -113,8 +113,7 @@ export namespace Schemas {
   export type ThirdpartyRequestsVerificationsPostRequestGeneric =
     components['schemas']['ThirdpartyRequestsVerificationsPostRequestGeneric']
   export type ThirdpartyRequestsVerificationsPostRequest =
-    | ThirdpartyRequestsVerificationsPostRequestFIDO
-    | ThirdpartyRequestsVerificationsPostRequestGeneric
+    ThirdpartyRequestsVerificationsPostRequestFIDO | ThirdpartyRequestsVerificationsPostRequestGeneric
   export type TransactionInitiator = components['schemas']['TransactionInitiator']
   export type TransactionInitiatorType = components['schemas']['TransactionInitiatorType']
   export type TransactionRequestState = components['schemas']['TransactionRequestState']

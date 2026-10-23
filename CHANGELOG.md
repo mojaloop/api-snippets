@@ -1,4 +1,43 @@
 # Changelog: [mojaloop/api-snippets](https://github.com/mojaloop/api-snippets)
+### [18.4.3](https://github.com/mojaloop/api-snippets/compare/v18.4.2...v18.4.3) (2026-09-22)
+
+
+### Maintenance
+
+* update dependencies and apply security patches ([#241](https://github.com/mojaloop/api-snippets/issues/241)) ([0e3d76c](https://github.com/mojaloop/api-snippets/commit/0e3d76c5e55caece5ed1efb7cd2a023531af330d))
+
+### [18.4.2](https://github.com/mojaloop/api-snippets/compare/v18.4.1...v18.4.2) (2026-09-17)
+
+
+### Bug Fixes
+
+* **pisp:** use correct version of third-party API specification to build .d.ts file ([#225](https://github.com/mojaloop/api-snippets/issues/225)) ([226cf89](https://github.com/mojaloop/api-snippets/commit/226cf89f3d43d29fb52f087d2772372bea88014d))
+
+
+### Maintenance
+
+* update api-snippets dependencies ([#236](https://github.com/mojaloop/api-snippets/issues/236)) ([9d48124](https://github.com/mojaloop/api-snippets/commit/9d481245a174f835d334fb68963e927b609a8eff))
+
+### [18.4.1](https://github.com/mojaloop/api-snippets/compare/v18.4.0...v18.4.1) (2026-07-08)
+
+
+### Maintenance
+
+* take dependency majors per no-preemptive-reject policy [mojaloop/[#4479](https://github.com/mojaloop/api-snippets/issues/4479)] ([#224](https://github.com/mojaloop/api-snippets/issues/224)) ([9c9064f](https://github.com/mojaloop/api-snippets/commit/9c9064f91191f036b63ec98685ff925259a5a96f))
+
+## [18.4.0](https://github.com/mojaloop/api-snippets/compare/v18.3.2...v18.4.0) (2026-06-25)
+
+
+### Features
+
+* pisp v2 ([#221](https://github.com/mojaloop/api-snippets/issues/221)) ([a0f9dc1](https://github.com/mojaloop/api-snippets/commit/a0f9dc146f56bb8ae24f7846db89537e8d9227c0)), closes [#220](https://github.com/mojaloop/api-snippets/issues/220) [PR#218](https://github.com/mojaloop/PR/issues/218)
+
+
+### Maintenance
+
+* cleanup vulnerabilities ([d0e7ea5](https://github.com/mojaloop/api-snippets/commit/d0e7ea5f8438face70f897527a7c89758ff866f0))
+* update libs, orb and node, fix vuls ([fd9c167](https://github.com/mojaloop/api-snippets/commit/fd9c167762790bdae4e5c063a2bb23e084b56be5))
+
 ### [18.3.2](https://github.com/mojaloop/api-snippets/compare/v18.3.1...v18.3.2) (2026-02-24)
 
 
