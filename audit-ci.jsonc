@@ -5,9 +5,11 @@
     "moderate": true,
     "allowlist": [
         /**
-            [05-18-2026] ws (WebSocket): Uninitialized memory disclosure.
-            Not direct dependency of the repo but used inside "@redocly/cli@2.31.1", "browser-sync@3.0.4", and "socket.io@4.8.3".
+            [11-03-2026] minimatch <11.0.1: potential DoS via globparts amplification.
+            Transitive only (minimatch@3.x/5.x via @redocly/openapi-core, browser-sync>resp-modifier,
+            eslint-plugin-import, eslint-plugin-node, standard-version>dotgitignore).
+            No fixed release on those major lines, and minimatch@11 has a different API.
         **/
-        "GHSA-58qx-3vcg-4xpx"
+        "GHSA-g3hv-75wg-m249"
     ]
 }
