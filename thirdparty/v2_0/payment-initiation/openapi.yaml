@@ -1,9 +1,9 @@
-openapi: 3.0.2
+openapi: 3.1.0
 info:
   version: '1.0'
   title: Third-party Payment Initiation API
   description: |
-    The Third-party Payment Initiation API allows third-party payment initiation service providers (PISP),a non-fund-holding participants, to initiate payments on behalf of their customers over a centralized Mojaloop hub.
+    The Third-party Payment Initiation (3PPI) API allows third-party payment initiation service providers (PISP),a non-fund-holding participants, to initiate payments on behalf of their customers over a centralized Mojaloop hub.
 
     The API provides 2 categories of endpoints:
     1. Administration endpoints for managing how accounts are linked and credentials are established between a DFSP and a PISP 
@@ -12,7 +12,7 @@ info:
     name: Apache License Version 2.0, January 2004
     url: http://www.apache.org/licenses/
 servers:
-  - url: '{protocol}://api.mojaloop.thirdparty-payment-initiation-service.com/v1'
+  - url: '{protocol}://api.mojaloop.sandbox.com/v1'
     variables:
       protocol:
         enum:
