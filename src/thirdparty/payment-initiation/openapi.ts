@@ -13,7 +13,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** @description Essential path to include schema definitions that are not used so that these definitions get included into the openapi-cli bundle api definition so that they get converted into typescript definitions. */
+        /** @description Essential path to include schema definitions that are not used so that these definitions get included into the openapi-cli bundle api definition so that they get converted into typescript definitions. This pay till be strip by the pre-doc build step in the scripts/openapi-refactor.ts */
         post: operations["test"];
         delete?: never;
         options?: never;
