@@ -13,8 +13,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** @description Essential path to include schema definitions that are not used so that these definitions get included into the openapi-cli bundle api definition so that they get converted into typescript definitions. This pay till be strip by the pre-doc build step in the scripts/openapi-refactor.ts */
-        post: operations["test"];
+        /**
+         * Include Schema Definitions needed for Typescript definition files
+         * @description Essential path to include schema definitions that are not used explicitly by 3PPI API endpoints. When bundled with openapi-cli, these definitions get included into the API definition that will be used to generate Typescript definition files.  This path will be stripped by the pre-doc build script (defined in the scripts/openapi-refactor.ts) when building final OpenAPI references.
+         */
+        post: operations["includeSchemaDefinitions"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1223,7 +1226,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    test: {
+    includeSchemaDefinitions: {
         parameters: {
             query?: never;
             header?: never;
