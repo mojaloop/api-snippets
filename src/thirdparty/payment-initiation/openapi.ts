@@ -24,46 +24,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/health": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Health check endpoint
-         * @description The HTTP request GET /health is used to return the current status of the API.
-         */
-        get: operations["HealthGet"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/metrics": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Prometheus metrics endpoint
-         * @description The HTTP request GET /metrics is used to return metrics for the API.
-         */
-        get: operations["MetricsGet"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/tppTransactionRequests": {
         parameters: {
             query?: never;
@@ -349,6 +309,46 @@ export interface paths {
          *     the thirdparty transaction request.
          */
         put: operations["tppTransfersRequestsError"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/health": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Health check endpoint
+         * @description The HTTP request GET /health is used to return the current status of the API.
+         */
+        get: operations["HealthGet"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/metrics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Prometheus metrics endpoint
+         * @description The HTTP request GET /metrics is used to return metrics for the API.
+         */
+        get: operations["MetricsGet"];
+        put?: never;
         post?: never;
         delete?: never;
         options?: never;
@@ -882,13 +882,6 @@ export interface components {
             extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
-         * ErrorInformationResponse
-         * @description Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
-         */
-        ErrorInformationResponse: {
-            errorInformation?: components["schemas"]["ErrorInformation"];
-        };
-        /**
          * tppTransactionRequestPostRequest
          * @description Used by: PISP
          *     The HTTP request POST /tppTransationRequest is used to request the creation of a transaction request on the server for the transfer described in the request.
@@ -916,6 +909,13 @@ export interface components {
              */
             expiration: string;
             extensionList?: components["schemas"]["ExtensionList"];
+        };
+        /**
+         * ErrorInformationResponse
+         * @description Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
+         */
+        ErrorInformationResponse: {
+            errorInformation?: components["schemas"]["ErrorInformation"];
         };
         /**
          * tppAuthorizationsPostRequest
@@ -1246,46 +1246,6 @@ export interface operations {
                 };
                 content?: never;
             };
-        };
-    };
-    HealthGet: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: components["responses"]["200"];
-            400: components["responses"]["400"];
-            401: components["responses"]["401"];
-            403: components["responses"]["403"];
-            404: components["responses"]["404"];
-            405: components["responses"]["405"];
-            406: components["responses"]["406"];
-            501: components["responses"]["501"];
-            503: components["responses"]["503"];
-        };
-    };
-    MetricsGet: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: components["responses"]["200"];
-            400: components["responses"]["400"];
-            401: components["responses"]["401"];
-            403: components["responses"]["403"];
-            404: components["responses"]["404"];
-            405: components["responses"]["405"];
-            406: components["responses"]["406"];
-            501: components["responses"]["501"];
-            503: components["responses"]["503"];
         };
     };
     tppTransactionsPost: {
@@ -1715,6 +1675,46 @@ export interface operations {
                 "application/json": components["schemas"]["ErrorInformationObject"];
             };
         };
+        responses: {
+            200: components["responses"]["200"];
+            400: components["responses"]["400"];
+            401: components["responses"]["401"];
+            403: components["responses"]["403"];
+            404: components["responses"]["404"];
+            405: components["responses"]["405"];
+            406: components["responses"]["406"];
+            501: components["responses"]["501"];
+            503: components["responses"]["503"];
+        };
+    };
+    HealthGet: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: components["responses"]["200"];
+            400: components["responses"]["400"];
+            401: components["responses"]["401"];
+            403: components["responses"]["403"];
+            404: components["responses"]["404"];
+            405: components["responses"]["405"];
+            406: components["responses"]["406"];
+            501: components["responses"]["501"];
+            503: components["responses"]["503"];
+        };
+    };
+    MetricsGet: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
         responses: {
             200: components["responses"]["200"];
             400: components["responses"]["400"];

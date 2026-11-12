@@ -14,7 +14,7 @@ post:
   summary: tppPostTransfers
   description: The HTTP request POST `/tppTransfers` is used by a PISP to initiate a 3rd party Transaction request with a DFSP
   tags:
-    - transfers
+    - tppTransfers
   parameters:
     #Headers
     - $ref: ../components/parameters/Accept.yaml

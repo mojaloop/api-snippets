@@ -22,8 +22,15 @@ servers:
 tags:
   - name: tppTransactionRequests
     x-displayName: Transaction Requests
+    x-kind: sequence
     description: |
       The `/tppTransactionRequests` resources are analogous to the `/transactionRequests` resource described in fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee.
+  
+  - name: tppTransfers
+    x-displayName: Transfers
+    x-kind: sequence
+    description: |
+      The `/tppTransfers` resources are analogous to the `/transfers` resource described in fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee.
 x-tagGroups:
   - name: Administration
     tags:
@@ -33,6 +40,10 @@ x-tagGroups:
     tags:
       - tppTransactionRequests
       - tppTransfers
+  - name: Monitoring
+    tags:
+      - health
+      - metrics
 paths:
   /interface:
     post:
@@ -63,10 +74,6 @@ paths:
       responses:
         200:
           description: Ok
-  /health:
-    $ref: paths/health.yaml
-  /metrics:
-    $ref: paths/metrics.yaml
   /tppTransactionRequests:
     $ref: paths/tppTransactionRequests.yaml
   /tppTransactionRequests/{ID}:
@@ -79,4 +86,9 @@ paths:
     $ref: paths/tppTransfers_ID.yaml
   /tppTransfers/{ID}/error:
     $ref: paths/tppTransfers_ID_error.yaml
-  
+
+  # --- Monitoring Paths ---
+  /health:
+    $ref: paths/health.yaml
+  /metrics:
+    $ref: paths/metrics.yaml 
