@@ -58,37 +58,37 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: './components/schemas/ParticipantsIDPutResponse.yaml'
-                - $ref: './components/schemas/PartiesTypeIDPutResponse.yaml'
-                - $ref: './components/schemas/QuotesIDPutResponse.yaml'
-                - $ref: './components/schemas/AuthorizationResponseType.yaml'
-                - $ref: './components/schemas/ConsentStatusIssued.yaml'
-                - $ref: './components/schemas/IlpFulfilment.yaml'
-                - $ref: './components/schemas/Integer.yaml'
-                - $ref: './components/schemas/Note.yaml'
-                - $ref: './components/schemas/PartyIdInfoTPLink.yaml'
-                - $ref: './components/schemas/PartyResult.yaml'
-                - $ref: './components/schemas/ServiceType.yaml'
-                - $ref: './components/schemas/ParticipantsPostRequest.yaml'
-                - $ref: './components/schemas/QuotesPostRequest.yaml'
+                - $ref: '../components/schemas/ParticipantsIDPutResponse.yaml'
+                - $ref: '../components/schemas/PartiesTypeIDPutResponse.yaml'
+                - $ref: '../components/schemas/QuotesIDPutResponse.yaml'
+                - $ref: '../components/schemas/AuthorizationResponseType.yaml'
+                - $ref: '../components/schemas/ConsentStatusIssued.yaml'
+                - $ref: '../components/schemas/IlpFulfilment.yaml'
+                - $ref: '../components/schemas/Integer.yaml'
+                - $ref: '../components/schemas/Note.yaml'
+                - $ref: '../components/schemas/PartyIdInfoTPLink.yaml'
+                - $ref: '../components/schemas/PartyResult.yaml'
+                - $ref: '../components/schemas/ServiceType.yaml'
+                - $ref: '../components/schemas/ParticipantsPostRequest.yaml'
+                - $ref: '../components/schemas/QuotesPostRequest.yaml'
       responses:
         200:
           description: Ok
   /tppTransactionRequests:
-    $ref: paths/tppTransactionRequests.yaml
+    $ref: ../paths/tppTransactionRequests.yaml
   /tppTransactionRequests/{ID}:
-    $ref: paths/tppTransactionRequests_ID.yaml
+    $ref: ../paths/tppTransactionRequests_ID.yaml
   /tppTransactionRequests/{ID}/error:
-    $ref: paths/tppTransactionRequests_ID_error.yaml
+    $ref: ../paths/tppTransactionRequests_ID_error.yaml
   /tppTransfers:
-    $ref: paths/tppTransfers.yaml
+    $ref: ../paths/tppTransfers.yaml
   /tppTransfers/{ID}:
-    $ref: paths/tppTransfers_ID.yaml
+    $ref: ../paths/tppTransfers_ID.yaml
   /tppTransfers/{ID}/error:
-    $ref: paths/tppTransfers_ID_error.yaml
+    $ref: ../paths/tppTransfers_ID_error.yaml
 
   # --- Monitoring Paths ---
   /health:
-    $ref: paths/health.yaml
+    $ref: ../paths/health.yaml
   /metrics:
-    $ref: paths/metrics.yaml 
+    $ref: ../paths/metrics.yaml
