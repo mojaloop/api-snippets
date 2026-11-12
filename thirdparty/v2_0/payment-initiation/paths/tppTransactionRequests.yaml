@@ -16,7 +16,7 @@ post:
   description: |
     The `/tppTransactionRequests` resource is analogous to the `/transactionRequests` resource described fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee, or a request to pay request from a named payer into the customer's account.
   tags:
-    - transaction Requests
+    - tppTransactionRequests
   parameters:
     #Headers
     - $ref: ../components/parameters/Accept.yaml

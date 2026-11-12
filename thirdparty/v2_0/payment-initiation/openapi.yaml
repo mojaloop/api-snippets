@@ -19,6 +19,11 @@ servers:
           - http
           - https
         default: https
+tags:
+  - name: tppTransactionRequests
+    x-displayName: Transaction Requests
+    description: |
+      The `/tppTransactionRequests` resources are analogous to the `/transactionRequests` resource described in fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee.
 x-tagGroups:
   - name: Administration
     tags:

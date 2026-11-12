@@ -13,7 +13,7 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 get:
   tags:
-    - transaction Requests
+    - tppTransactionRequests
   operationId: GetThirdpartyTransactionRequests
   summary: GetThirdpartyTransactionRequests
   description: |
@@ -44,7 +44,7 @@ get:
 
 put:
   tags:
-    - transaction Requests
+    - tppTransactionRequests
   operationId: tppUpdateTransactionRequests
   summary: tppUpdateTransactionRequests
   description: |
