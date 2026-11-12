@@ -5,3 +5,4 @@ junit.xml
 .eslintcache
 coverage
 *.idea
+.DS_Store
