@@ -17,6 +17,17 @@ servers:
           - http
           - https
         default: https
+tags:
+  - name: parties
+    x-displayName: Parties
+  - name: quotes
+    x-displayName: Quotes
+  - name: transfers
+    x-displayName: Transfers
+  - name: fxQuotes
+    x-displayName: FX Quotes
+  - name: fxTransfers
+    x-displayName: FX Transfers
 paths:
   /parties/{Type}/{ID}:
     parameters:

@@ -33,6 +33,31 @@ servers:
           - http
           - https
         default: https
+tags:
+  - name: participants
+    x-displayName: Participants
+  - name: parties
+    x-displayName: Parties
+  - name: transactionRequests
+    x-displayName: Transaction Requests
+  - name: quotes
+    x-displayName: Quotes
+  - name: authorizations
+    x-displayName: Authorizations
+  - name: transfers
+    x-displayName: Transfers
+  - name: transactions
+    x-displayName: Transactions
+  - name: bulkQuotes
+    x-displayName: Bulk Quotes
+  - name: bulkTransfers
+    x-displayName: Bulk Transfers
+  - name: fxQuotes
+    x-displayName: FX Quotes
+  - name: fxTransfers
+    x-displayName: FX Transfers
+  - name: servicesFXP
+    x-displayName: Services FXP
 paths:
   /participants:
     post:
