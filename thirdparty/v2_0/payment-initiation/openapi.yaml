@@ -3,16 +3,13 @@ info:
   version: '1.0'
   title: Third-party Payment Initiation API
   description: |
-    The Third-party Payment Initiation (3PPI) API allows third-party payment initiation service providers (PISP),a non-fund-holding participants, to initiate payments on behalf of their customers over a centralized Mojaloop hub.
-
-    The API provides 2 categories of endpoints:
-    1. Administration endpoints for managing how accounts are linked and credentials are established between a DFSP and a PISP 
-    2. Payment initiation endpoints for managing transaction process between a PISP and a DFSP
+    The Third-party Payment Initiation (3PPI) API allows third-party payment initiation service providers (PISP),a non-fund-holding participants, to initiate payments on behalf of their customers over a centralized Mojaloop hub. The 3PPI API is developed in alignment with ISO20022 message standards for Payment Initiation.
+    The 3PPI API assumes that the PISP has already has obtained authorization and consent from the customer to initiate a payment on their behalf. The 3PPI API, therefore, only concerns with the payment process.
   license:
     name: Apache License Version 2.0, January 2004
     url: http://www.apache.org/licenses/
 servers:
-  - url: '{protocol}://api.mojaloop.sandbox.com/v1'
+  - url: '{protocol}://api.mojaloop.sandbox.com'
     variables:
       protocol:
         enum:
@@ -32,10 +29,6 @@ tags:
     description: |
       The `/tppTransfers` resources are analogous to the `/transfers` resource described in fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee.
 x-tagGroups:
-  - name: Administration
-    tags:
-      - tppAccountRequest
-      - tppAccounts
   - name: Payment Initiation
     tags:
       - tppTransactionRequests

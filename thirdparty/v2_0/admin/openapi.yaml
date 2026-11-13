@@ -1,21 +1,29 @@
-openapi: 3.0.2
+openapi: 3.1.0
 info:
-  version: '0.1'
-  title: Thirdparty Snippets
+  version: '1.0'
+  title: Third-party Admin API
   description: |
-    Based on sequence diagrams
-    (https://github.com/mojaloop/tpp/tree/main/docs/out).
-    This is a work in progress.
+    The Third-party Admin API allows payment initiation service providers (PISP), a non-fund-holding participants, to manage account linking processes between PISP, financial service providers, and customers over a centralized Mojaloop hub.
   license:
-    name: TBD
+    name: Apache License Version 2.0, January 2004
+    url: http://www.apache.org/licenses/
 servers:
-  - url: '{protocol}://hostname:<port>/switch/'
+  - url: '{protocol}://api.mojaloop.sandbox.com'
     variables:
       protocol:
         enum:
           - http
           - https
         default: https
+x-tagGroups:
+  - name: Administration
+    tags:
+      - tppAccountRequest
+      - tppAccounts
+  - name: Monitoring
+    tags:
+      - health
+      - metrics
 paths:
   /interface:
     $ref: ../paths/interface.yaml
