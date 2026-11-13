@@ -4,26 +4,6 @@
  */
 
 export interface paths {
-    "/interface": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Include Schema Definitions needed for Typescript definition files
-         * @description Essential path to include schema definitions that are not used explicitly by 3PPI API endpoints. When bundled with openapi-cli, these definitions get included into the API definition that will be used to generate Typescript definition files.  This path will be stripped by the pre-doc build script (defined in the scripts/openapi-refactor.ts) when building final OpenAPI references.
-         */
-        post: operations["includeSchemaDefinitions"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/tppTransactionRequests": {
         parameters: {
             query?: never;
@@ -361,6 +341,362 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         /**
+         * Amount
+         * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
+         * @example 123.45
+         */
+        Amount: string;
+        /**
+         * AmountType
+         * @description Below are the allowed values for the enumeration AmountType.
+         *     - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
+         *     - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
+         * @example RECEIVE
+         * @enum {string}
+         */
+        AmountType: "SEND" | "RECEIVE";
+        /**
+         * AuthorizationResponseType
+         * @description Enum containing authorization response information; if the customer
+         *     accepted the terms of the transfer, or rejected the terms.
+         * @enum {string}
+         */
+        AuthorizationResponseType: "ACCEPTED" | "REJECTED";
+        /**
+         * AuthorizationResponseType
+         * @description The customer accepted the terms of the transfer
+         * @enum {string}
+         */
+        AuthorizationResponseTypeAccepted: "ACCEPTED";
+        /**
+         * BalanceOfPayments
+         * @description (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
+         * @example 123
+         */
+        BalanceOfPayments: string;
+        /** @description The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters. */
+        BinaryString: string;
+        /**
+         * ConsentStatusIssued
+         * @description Allowed values for the enumeration ConsentStatus
+         *     - ISSUED - The consent has been issued by the DFSP
+         * @enum {string}
+         */
+        ConsentStatusIssued: "ISSUED";
+        /**
+         * CorrelationId
+         * @description Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)
+         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
+         */
+        CorrelationId: string;
+        /**
+         * Currency
+         * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
+         * @enum {string}
+         */
+        Currency: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
+        /**
+         * DateofBirth (type Date)
+         * @description Date of Birth of the Party.
+         * @example 1966-06-16
+         */
+        DateOfBirth: string;
+        /**
+         * DateTime
+         * @description The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
+         * @example 2016-05-24T08:38:08.699-04:00
+         */
+        DateTime: string;
+        /**
+         * ErrorCode
+         * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+         * @example 5100
+         */
+        ErrorCode: string;
+        /**
+         * ErrorDescription
+         * @description Error description string.
+         */
+        ErrorDescription: string;
+        /**
+         * ErrorInformation
+         * @description Data model for the complex type ErrorInformation.
+         */
+        ErrorInformation: {
+            errorCode: components["schemas"]["ErrorCode"];
+            errorDescription: components["schemas"]["ErrorDescription"];
+            extensionList?: components["schemas"]["ExtensionList"];
+        };
+        /**
+         * ErrorInformationObject
+         * @description Data model for the complex type object that contains ErrorInformation.
+         */
+        ErrorInformationObject: {
+            errorInformation: components["schemas"]["ErrorInformation"];
+        };
+        /**
+         * ErrorInformationResponse
+         * @description Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
+         */
+        ErrorInformationResponse: {
+            errorInformation?: components["schemas"]["ErrorInformation"];
+        };
+        /**
+         * Extension
+         * @description Data model for the complex type Extension.
+         */
+        Extension: {
+            key: components["schemas"]["ExtensionKey"];
+            value: components["schemas"]["ExtensionValue"];
+        };
+        /**
+         * ExtensionKey
+         * @description Extension key.
+         */
+        ExtensionKey: string;
+        /**
+         * ExtensionList
+         * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+         */
+        ExtensionList: {
+            /** @description Number of Extension elements. */
+            extension: components["schemas"]["Extension"][];
+        };
+        /**
+         * ExtensionValue
+         * @description Extension value.
+         */
+        ExtensionValue: string;
+        /**
+         * FIDOPublicKeyCredentialAssertion
+         * @description A data model representing a FIDO Assertion result.
+         *     Derived from PublicKeyCredential Interface in WebAuthN.
+         *
+         *     The PublicKeyCredential interface represents the below fields with a Type of
+         *     Javascript ArrayBuffer.
+         *     For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
+         *
+         *     https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#32128-fidopublickeycredentialassertion
+         */
+        FIDOPublicKeyCredentialAssertion: {
+            /**
+             * @description credential id: identifier of pair of keys, base64 encoded
+             *     https://w3c.github.io/webauthn/#ref-for-dom-credential-id
+             */
+            id: string;
+            /** @description raw credential id: identifier of pair of keys, base64 encoded. */
+            rawId: string;
+            /** @description AuthenticatorAssertionResponse */
+            response: {
+                /** @description Authenticator data object. */
+                authenticatorData: string;
+                /** @description JSON string with client data. */
+                clientDataJSON: string;
+                /** @description The signature generated by the private key associated with this credential. */
+                signature: string;
+                /**
+                 * @description This field is optionally provided by the authenticator, and
+                 *     represents the user.id that was supplied during registration.
+                 */
+                userHandle?: string;
+            };
+            /**
+             * @description response type, we need only the type of public-key
+             * @enum {string}
+             */
+            type: "public-key";
+        };
+        /**
+         * FirstName
+         * @description First name of the Party (Name Type).
+         * @example Henrik
+         */
+        FirstName: string;
+        /**
+         * FspId
+         * @description FSP identifier.
+         */
+        FspId: string;
+        /**
+         * GeoCode
+         * @description Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
+         */
+        GeoCode: {
+            latitude: components["schemas"]["Latitude"];
+            longitude: components["schemas"]["Longitude"];
+        };
+        /**
+         * IlpCondition
+         * @description Condition that must be attached to the transfer by the Payer.
+         */
+        IlpCondition: string;
+        /**
+         * IlpFulfilment
+         * @description Fulfilment that must be attached to the transfer by the Payee.
+         * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
+         */
+        IlpFulfilment: string;
+        /**
+         * IlpPacket
+         * @description Information for recipient (transport layer information).
+         * @example AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
+         */
+        IlpPacket: string;
+        /**
+         * Integer
+         * @description The API data type Integer is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited to a specific number of digits.
+         */
+        Integer: string;
+        /**
+         * KYCInformation
+         * @description KYC information for the party in a form mandated by an individual scheme.
+         * @example {
+         *         "metadata": {
+         *             "format": "JSON",
+         *             "version": "1.0",
+         *             "description": "Data containing KYC Information"
+         *         },
+         *         "data": {
+         *             "name": "John Doe",
+         *             "dob": "1980-05-15",
+         *             "gender": "Male",
+         *             "address": "123 Main Street, Anytown, USA",
+         *             "email": "johndoe@example.com",
+         *             "phone": "+1 555-123-4567",
+         *             "nationality": "US",
+         *             "passport_number": "AB1234567",
+         *             "issue_date": "2010-02-20",
+         *             "expiry_date": "2025-02-20",
+         *             "bank_account_number": "1234567890",
+         *             "bank_name": "Example Bank",
+         *             "employer": "ABC Company",
+         *             "occupation": "Software Engineer",
+         *             "income": "$80,000 per year",
+         *             "marital_status": "Single",
+         *             "dependents": 0,
+         *             "risk_level": "Low"
+         *         }
+         *     }
+         */
+        KYCInformation: string;
+        /**
+         * LastName
+         * @description Last name of the Party (Name Type).
+         * @example Karlsson
+         */
+        LastName: string;
+        /**
+         * Latitude
+         * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+         * @example +45.4215
+         */
+        Latitude: string;
+        /**
+         * Longitude
+         * @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
+         * @example +75.6972
+         */
+        Longitude: string;
+        /**
+         * MerchantClassificationCode
+         * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
+         */
+        MerchantClassificationCode: string;
+        /**
+         * MiddleName
+         * @description Middle name of the Party (Name Type).
+         * @example Johannes
+         */
+        MiddleName: string;
+        /**
+         * Money
+         * @description Data model for the complex type Money.
+         */
+        Money: {
+            currency: components["schemas"]["Currency"];
+            amount: components["schemas"]["Amount"];
+        };
+        /**
+         * Note
+         * @description Memo assigned to transaction.
+         * @example Note sent to Payee.
+         */
+        Note: string;
+        /**
+         * ParticipantsIDPutResponse
+         * @description The object sent in the PUT /participants/{ID} callback.
+         */
+        ParticipantsIDPutResponse: {
+            /** @description List of PartyResult elements that were either created or failed to be created. */
+            partyList: components["schemas"]["PartyResult"][];
+            currency?: components["schemas"]["Currency"];
+        };
+        /**
+         * ParticipantsPostRequest
+         * @description The object sent in the POST /participants request.
+         */
+        ParticipantsPostRequest: {
+            requestId: components["schemas"]["CorrelationId"];
+            /**
+             * @description List of PartyIdInfo elements that the client would like to update
+             *     or create FSP information about.
+             */
+            partyList: components["schemas"]["PartyIdInfo"][];
+            currency?: components["schemas"]["Currency"];
+        };
+        /**
+         * PartiesTypeIDPutResponse
+         * @description The object sent in the PUT /parties/{Type}/{ID} callback.
+         *
+         *     This is a variant based on FSPIOP `PartiesTypeIDPutResponse` specification.
+         *     Main difference being that it returns a `Party` with the newly added
+         *     `accounts` property.
+         */
+        PartiesTypeIDPutResponse: {
+            party: components["schemas"]["Party"];
+        };
+        /**
+         * Party
+         * @description Data model for the complex type Party.
+         */
+        Party: {
+            partyIdInfo: components["schemas"]["PartyIdInfo"];
+            merchantClassificationCode?: components["schemas"]["MerchantClassificationCode"];
+            name?: components["schemas"]["PartyName"];
+            personalInfo?: components["schemas"]["PartyPersonalInfo"];
+        };
+        /**
+         * PartyComplexName
+         * @description Data model for the complex type PartyComplexName.
+         */
+        PartyComplexName: {
+            firstName?: components["schemas"]["FirstName"];
+            middleName?: components["schemas"]["MiddleName"];
+            lastName?: components["schemas"]["LastName"];
+        };
+        /**
+         * PartyIdInfo
+         * @description Data model for the complex type PartyIdInfo.
+         */
+        PartyIdInfo: {
+            partyIdType: components["schemas"]["PartyIdType"];
+            partyIdentifier: components["schemas"]["PartyIdentifier"];
+            partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
+            fspId?: components["schemas"]["FspId"];
+            extensionList?: components["schemas"]["ExtensionList"];
+        };
+        /**
+         * PartyIdInfo
+         * @description Data model for the complex type PartyIdInfo.
+         */
+        PartyIdInfoTPLink: {
+            partyIdType: components["schemas"]["PartyIdTypeTPLink"];
+            partyIdentifier: components["schemas"]["PartyIdentifier"];
+            partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
+            fspId?: components["schemas"]["FspId"];
+            extensionList?: components["schemas"]["ExtensionList"];
+        };
+        /**
          * PartyIdType
          * @description Below are the allowed values for the enumeration.
          *     - MSISDN - An MSISDN (Mobile Station International Subscriber Directory
@@ -410,176 +746,23 @@ export interface components {
          */
         PartyIdType: "MSISDN" | "EMAIL" | "PERSONAL_ID" | "BUSINESS" | "DEVICE" | "ACCOUNT_ID" | "IBAN" | "ALIAS" | "CONSENT" | "THIRD_PARTY_LINK";
         /**
+         * PartyIdTypeTPLink
+         * @description - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
+         * @example PERSONAL_ID
+         * @enum {string}
+         */
+        PartyIdTypeTPLink: "THIRD_PARTY_LINK";
+        /**
          * PartyIdentifier
          * @description Identifier of the Party.
          * @example 16135551212
          */
         PartyIdentifier: string;
         /**
-         * PartySubIdOrType
-         * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
-         */
-        PartySubIdOrType: string;
-        /**
-         * FspId
-         * @description FSP identifier.
-         */
-        FspId: string;
-        /**
-         * ExtensionKey
-         * @description Extension key.
-         */
-        ExtensionKey: string;
-        /**
-         * ExtensionValue
-         * @description Extension value.
-         */
-        ExtensionValue: string;
-        /**
-         * Extension
-         * @description Data model for the complex type Extension.
-         */
-        Extension: {
-            key: components["schemas"]["ExtensionKey"];
-            value: components["schemas"]["ExtensionValue"];
-        };
-        /**
-         * ExtensionList
-         * @description Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-         */
-        ExtensionList: {
-            /** @description Number of Extension elements. */
-            extension: components["schemas"]["Extension"][];
-        };
-        /**
-         * PartyIdInfo
-         * @description Data model for the complex type PartyIdInfo.
-         */
-        PartyIdInfo: {
-            partyIdType: components["schemas"]["PartyIdType"];
-            partyIdentifier: components["schemas"]["PartyIdentifier"];
-            partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
-            fspId?: components["schemas"]["FspId"];
-            extensionList?: components["schemas"]["ExtensionList"];
-        };
-        /**
-         * ErrorCode
-         * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-         * @example 5100
-         */
-        ErrorCode: string;
-        /**
-         * ErrorDescription
-         * @description Error description string.
-         */
-        ErrorDescription: string;
-        /**
-         * ErrorInformation
-         * @description Data model for the complex type ErrorInformation.
-         */
-        ErrorInformation: {
-            errorCode: components["schemas"]["ErrorCode"];
-            errorDescription: components["schemas"]["ErrorDescription"];
-            extensionList?: components["schemas"]["ExtensionList"];
-        };
-        /**
-         * PartyResult
-         * @description Data model for the complex type PartyResult.
-         */
-        PartyResult: {
-            partyId: components["schemas"]["PartyIdInfo"];
-            errorInformation?: components["schemas"]["ErrorInformation"];
-        };
-        /**
-         * Currency
-         * @description The currency codes defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) as three-letter alphabetic codes are used as the standard naming representation for currencies.
-         * @enum {string}
-         */
-        Currency: "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SPL" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TVD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XCD" | "XDR" | "XOF" | "XPF" | "XTS" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWD";
-        /**
-         * ParticipantsIDPutResponse
-         * @description The object sent in the PUT /participants/{ID} callback.
-         */
-        ParticipantsIDPutResponse: {
-            /** @description List of PartyResult elements that were either created or failed to be created. */
-            partyList: components["schemas"]["PartyResult"][];
-            currency?: components["schemas"]["Currency"];
-        };
-        /**
-         * MerchantClassificationCode
-         * @description A limited set of pre-defined numbers. This list would be a limited set of numbers identifying a set of popular merchant types like School Fees, Pubs and Restaurants, Groceries, etc.
-         */
-        MerchantClassificationCode: string;
-        /**
          * PartyName
          * @description Name of the Party. Could be a real name or a nickname.
          */
         PartyName: string;
-        /**
-         * FirstName
-         * @description First name of the Party (Name Type).
-         * @example Henrik
-         */
-        FirstName: string;
-        /**
-         * MiddleName
-         * @description Middle name of the Party (Name Type).
-         * @example Johannes
-         */
-        MiddleName: string;
-        /**
-         * LastName
-         * @description Last name of the Party (Name Type).
-         * @example Karlsson
-         */
-        LastName: string;
-        /**
-         * PartyComplexName
-         * @description Data model for the complex type PartyComplexName.
-         */
-        PartyComplexName: {
-            firstName?: components["schemas"]["FirstName"];
-            middleName?: components["schemas"]["MiddleName"];
-            lastName?: components["schemas"]["LastName"];
-        };
-        /**
-         * DateofBirth (type Date)
-         * @description Date of Birth of the Party.
-         * @example 1966-06-16
-         */
-        DateOfBirth: string;
-        /**
-         * KYCInformation
-         * @description KYC information for the party in a form mandated by an individual scheme.
-         * @example {
-         *         "metadata": {
-         *             "format": "JSON",
-         *             "version": "1.0",
-         *             "description": "Data containing KYC Information"
-         *         },
-         *         "data": {
-         *             "name": "John Doe",
-         *             "dob": "1980-05-15",
-         *             "gender": "Male",
-         *             "address": "123 Main Street, Anytown, USA",
-         *             "email": "johndoe@example.com",
-         *             "phone": "+1 555-123-4567",
-         *             "nationality": "US",
-         *             "passport_number": "AB1234567",
-         *             "issue_date": "2010-02-20",
-         *             "expiry_date": "2025-02-20",
-         *             "bank_account_number": "1234567890",
-         *             "bank_name": "Example Bank",
-         *             "employer": "ABC Company",
-         *             "occupation": "Software Engineer",
-         *             "income": "$80,000 per year",
-         *             "marital_status": "Single",
-         *             "dependents": 0,
-         *             "risk_level": "Low"
-         *         }
-         *     }
-         */
-        KYCInformation: string;
         /**
          * PartyPersonalInfo
          * @description Data model for the complex type PartyPersonalInfo.
@@ -590,77 +773,18 @@ export interface components {
             kycInformation?: components["schemas"]["KYCInformation"];
         };
         /**
-         * Party
-         * @description Data model for the complex type Party.
+         * PartyResult
+         * @description Data model for the complex type PartyResult.
          */
-        Party: {
-            partyIdInfo: components["schemas"]["PartyIdInfo"];
-            merchantClassificationCode?: components["schemas"]["MerchantClassificationCode"];
-            name?: components["schemas"]["PartyName"];
-            personalInfo?: components["schemas"]["PartyPersonalInfo"];
+        PartyResult: {
+            partyId: components["schemas"]["PartyIdInfo"];
+            errorInformation?: components["schemas"]["ErrorInformation"];
         };
         /**
-         * PartiesTypeIDPutResponse
-         * @description The object sent in the PUT /parties/{Type}/{ID} callback.
-         *
-         *     This is a variant based on FSPIOP `PartiesTypeIDPutResponse` specification.
-         *     Main difference being that it returns a `Party` with the newly added
-         *     `accounts` property.
+         * PartySubIdOrType
+         * @description Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
          */
-        PartiesTypeIDPutResponse: {
-            party: components["schemas"]["Party"];
-        };
-        /**
-         * Amount
-         * @description The API data type Amount is a JSON String in a canonical format that is restricted by a regular expression for interoperability reasons. This pattern does not allow any trailing zeroes at all, but allows an amount without a minor currency unit. It also only allows four digits in the minor currency unit; a negative value is not allowed. Using more than 18 digits in the major currency unit is not allowed.
-         * @example 123.45
-         */
-        Amount: string;
-        /**
-         * Money
-         * @description Data model for the complex type Money.
-         */
-        Money: {
-            currency: components["schemas"]["Currency"];
-            amount: components["schemas"]["Amount"];
-        };
-        /**
-         * DateTime
-         * @description The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
-         * @example 2016-05-24T08:38:08.699-04:00
-         */
-        DateTime: string;
-        /**
-         * Latitude
-         * @description The API data type Latitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
-         * @example +45.4215
-         */
-        Latitude: string;
-        /**
-         * Longitude
-         * @description The API data type Longitude is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons.
-         * @example +75.6972
-         */
-        Longitude: string;
-        /**
-         * GeoCode
-         * @description Data model for the complex type GeoCode. Indicates the geographic location from where the transaction was initiated.
-         */
-        GeoCode: {
-            latitude: components["schemas"]["Latitude"];
-            longitude: components["schemas"]["Longitude"];
-        };
-        /**
-         * IlpPacket
-         * @description Information for recipient (transport layer information).
-         * @example AYIBgQAAAAAAAASwNGxldmVsb25lLmRmc3AxLm1lci45T2RTOF81MDdqUUZERmZlakgyOVc4bXFmNEpLMHlGTFGCAUBQU0svMS4wCk5vbmNlOiB1SXlweUYzY3pYSXBFdzVVc05TYWh3CkVuY3J5cHRpb246IG5vbmUKUGF5bWVudC1JZDogMTMyMzZhM2ItOGZhOC00MTYzLTg0NDctNGMzZWQzZGE5OGE3CgpDb250ZW50LUxlbmd0aDogMTM1CkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbgpTZW5kZXItSWRlbnRpZmllcjogOTI4MDYzOTEKCiJ7XCJmZWVcIjowLFwidHJhbnNmZXJDb2RlXCI6XCJpbnZvaWNlXCIsXCJkZWJpdE5hbWVcIjpcImFsaWNlIGNvb3BlclwiLFwiY3JlZGl0TmFtZVwiOlwibWVyIGNoYW50XCIsXCJkZWJpdElkZW50aWZpZXJcIjpcIjkyODA2MzkxXCJ9IgA
-         */
-        IlpPacket: string;
-        /**
-         * IlpCondition
-         * @description Condition that must be attached to the transfer by the Payer.
-         */
-        IlpCondition: string;
+        PartySubIdOrType: string;
         /**
          * QuotesIDPutResponse
          * @description The object sent in the PUT /quotes/{ID} callback.
@@ -675,161 +799,6 @@ export interface components {
             ilpPacket: components["schemas"]["IlpPacket"];
             condition: components["schemas"]["IlpCondition"];
             extensionList?: components["schemas"]["ExtensionList"];
-        };
-        /**
-         * AuthorizationResponseType
-         * @description Enum containing authorization response information; if the customer
-         *     accepted the terms of the transfer, or rejected the terms.
-         * @enum {string}
-         */
-        AuthorizationResponseType: "ACCEPTED" | "REJECTED";
-        /**
-         * ConsentStatusIssued
-         * @description Allowed values for the enumeration ConsentStatus
-         *     - ISSUED - The consent has been issued by the DFSP
-         * @enum {string}
-         */
-        ConsentStatusIssued: "ISSUED";
-        /**
-         * IlpFulfilment
-         * @description Fulfilment that must be attached to the transfer by the Payee.
-         * @example WLctttbu2HvTsa1XWvUoGRcQozHsqeu9Ahl2JW9Bsu8
-         */
-        IlpFulfilment: string;
-        /**
-         * Integer
-         * @description The API data type Integer is a JSON String consisting of digits only. Negative numbers and leading zeroes are not allowed. The data type is always limited to a specific number of digits.
-         */
-        Integer: string;
-        /**
-         * Note
-         * @description Memo assigned to transaction.
-         * @example Note sent to Payee.
-         */
-        Note: string;
-        /**
-         * PartyIdTypeTPLink
-         * @description - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
-         * @example PERSONAL_ID
-         * @enum {string}
-         */
-        PartyIdTypeTPLink: "THIRD_PARTY_LINK";
-        /**
-         * PartyIdInfo
-         * @description Data model for the complex type PartyIdInfo.
-         */
-        PartyIdInfoTPLink: {
-            partyIdType: components["schemas"]["PartyIdTypeTPLink"];
-            partyIdentifier: components["schemas"]["PartyIdentifier"];
-            partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
-            fspId?: components["schemas"]["FspId"];
-            extensionList?: components["schemas"]["ExtensionList"];
-        };
-        /**
-         * ServiceType
-         * @description The ServiceType enumeration describes the types of role for which a DFSP may query using the /services resource.
-         *     Below are the allowed values for the enumeration ServiceType - THIRD_PARTY_DFSP - Enum used to query for DFSPs that have thirdparty features enabled. - PISP - Enum used to query for PISPs. - AUTH_SERVICE - Participants which provide Authentication Services.
-         *     https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#3229-servicetype
-         * @enum {string}
-         */
-        ServiceType: "THIRD_PARTY_DFSP" | "PISP" | "AUTH_SERVICE";
-        /**
-         * CorrelationId
-         * @description Identifier that correlates all messages of the same sequence. The supported identifiers formats are for lowercase [UUID](https://datatracker.ietf.org/doc/html/rfc9562) and uppercase [ULID](https://github.com/ulid/spec)
-         * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-         */
-        CorrelationId: string;
-        /**
-         * ParticipantsPostRequest
-         * @description The object sent in the POST /participants request.
-         */
-        ParticipantsPostRequest: {
-            requestId: components["schemas"]["CorrelationId"];
-            /**
-             * @description List of PartyIdInfo elements that the client would like to update
-             *     or create FSP information about.
-             */
-            partyList: components["schemas"]["PartyIdInfo"][];
-            currency?: components["schemas"]["Currency"];
-        };
-        /**
-         * AmountType
-         * @description Below are the allowed values for the enumeration AmountType.
-         *     - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
-         *     - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
-         * @example RECEIVE
-         * @enum {string}
-         */
-        AmountType: "SEND" | "RECEIVE";
-        /**
-         * TransactionScenario
-         * @description Below are the allowed values for the enumeration.
-         *     - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.
-         *     - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.
-         *     - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.
-         *     - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
-         *     - REFUND - Used for performing a refund of transaction.
-         * @example DEPOSIT
-         * @enum {string}
-         */
-        TransactionScenario: "DEPOSIT" | "WITHDRAWAL" | "TRANSFER" | "PAYMENT" | "REFUND";
-        /**
-         * TransactionSubScenario
-         * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
-         * @example LOCALLY_DEFINED_SUBSCENARIO
-         */
-        TransactionSubScenario: string;
-        /**
-         * TransactionInitiator
-         * @description Below are the allowed values for the enumeration.
-         *     - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
-         *     - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
-         * @example PAYEE
-         * @enum {string}
-         */
-        TransactionInitiator: "PAYER" | "PAYEE";
-        /**
-         * TransactionInitiatorType
-         * @description Below are the allowed values for the enumeration.
-         *     - CONSUMER - Consumer is the initiator of the transaction.
-         *     - AGENT - Agent is the initiator of the transaction.
-         *     - BUSINESS - Business is the initiator of the transaction.
-         *     - DEVICE - Device is the initiator of the transaction.
-         * @example CONSUMER
-         * @enum {string}
-         */
-        TransactionInitiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
-        /**
-         * RefundReason
-         * @description Reason for the refund.
-         * @example Free text indicating reason for the refund.
-         */
-        RefundReason: string;
-        /**
-         * Refund
-         * @description Data model for the complex type Refund.
-         */
-        Refund: {
-            originalTransactionId: components["schemas"]["CorrelationId"];
-            refundReason?: components["schemas"]["RefundReason"];
-        };
-        /**
-         * BalanceOfPayments
-         * @description (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
-         * @example 123
-         */
-        BalanceOfPayments: string;
-        /**
-         * TransactionType
-         * @description Data model for the complex type TransactionType.
-         */
-        TransactionType: {
-            scenario: components["schemas"]["TransactionScenario"];
-            subScenario?: components["schemas"]["TransactionSubScenario"];
-            initiator: components["schemas"]["TransactionInitiator"];
-            initiatorType: components["schemas"]["TransactionInitiatorType"];
-            refundInfo?: components["schemas"]["Refund"];
-            balanceOfPayments?: components["schemas"]["BalanceOfPayments"];
         };
         /**
          * QuotesPostRequest
@@ -882,6 +851,129 @@ export interface components {
             extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
+         * Refund
+         * @description Data model for the complex type Refund.
+         */
+        Refund: {
+            originalTransactionId: components["schemas"]["CorrelationId"];
+            refundReason?: components["schemas"]["RefundReason"];
+        };
+        /**
+         * RefundReason
+         * @description Reason for the refund.
+         * @example Free text indicating reason for the refund.
+         */
+        RefundReason: string;
+        /**
+         * ServiceType
+         * @description The ServiceType enumeration describes the types of role for which a DFSP may query using the /services resource.
+         *     Below are the allowed values for the enumeration ServiceType - THIRD_PARTY_DFSP - Enum used to query for DFSPs that have thirdparty features enabled. - PISP - Enum used to query for PISPs. - AUTH_SERVICE - Participants which provide Authentication Services.
+         *     https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#3229-servicetype
+         * @enum {string}
+         */
+        ServiceType: "THIRD_PARTY_DFSP" | "PISP" | "AUTH_SERVICE";
+        /** SignedPayloadFIDO */
+        SignedPayloadFIDO: {
+            signedPayloadType: components["schemas"]["SignedPayloadTypeFIDO"];
+            fidoSignedPayload: components["schemas"]["FIDOPublicKeyCredentialAssertion"];
+        };
+        /** SignedPayloadGeneric */
+        SignedPayloadGeneric: {
+            signedPayloadType: components["schemas"]["SignedPayloadTypeGeneric"];
+            genericSignedPayload: components["schemas"]["BinaryString"];
+        };
+        /**
+         * SignedPayloadTypeFIDO
+         * @description Describes a challenge that has been signed with FIDO Attestation flows
+         * @enum {string}
+         */
+        SignedPayloadTypeFIDO: "FIDO";
+        /**
+         * SignedPayloadTypeGeneric
+         * @description Describes a challenge that has been signed with a private key
+         * @enum {string}
+         */
+        SignedPayloadTypeGeneric: "GENERIC";
+        /**
+         * TransactionInitiator
+         * @description Below are the allowed values for the enumeration.
+         *     - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
+         *     - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
+         * @example PAYEE
+         * @enum {string}
+         */
+        TransactionInitiator: "PAYER" | "PAYEE";
+        /**
+         * TransactionInitiatorType
+         * @description Below are the allowed values for the enumeration.
+         *     - CONSUMER - Consumer is the initiator of the transaction.
+         *     - AGENT - Agent is the initiator of the transaction.
+         *     - BUSINESS - Business is the initiator of the transaction.
+         *     - DEVICE - Device is the initiator of the transaction.
+         * @example CONSUMER
+         * @enum {string}
+         */
+        TransactionInitiatorType: "CONSUMER" | "AGENT" | "BUSINESS" | "DEVICE";
+        /**
+         * TransactionScenario
+         * @description Below are the allowed values for the enumeration.
+         *     - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.
+         *     - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.
+         *     - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.
+         *     - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
+         *     - REFUND - Used for performing a refund of transaction.
+         * @example DEPOSIT
+         * @enum {string}
+         */
+        TransactionScenario: "DEPOSIT" | "WITHDRAWAL" | "TRANSFER" | "PAYMENT" | "REFUND";
+        /**
+         * TransactionState
+         * @description Below are the allowed values for the enumeration.
+         *     - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
+         *     - PENDING - Payee FSP has validated the transaction.
+         *     - COMPLETED - Payee FSP has successfully performed the transaction.
+         *     - REJECTED - Payee FSP has failed to perform the transaction.
+         * @example RECEIVED
+         * @enum {string}
+         */
+        TransactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
+        /**
+         * TransactionSubScenario
+         * @description Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+         * @example LOCALLY_DEFINED_SUBSCENARIO
+         */
+        TransactionSubScenario: string;
+        /**
+         * TransactionType
+         * @description Data model for the complex type TransactionType.
+         */
+        TransactionType: {
+            scenario: components["schemas"]["TransactionScenario"];
+            subScenario?: components["schemas"]["TransactionSubScenario"];
+            initiator: components["schemas"]["TransactionInitiator"];
+            initiatorType: components["schemas"]["TransactionInitiatorType"];
+            refundInfo?: components["schemas"]["Refund"];
+            balanceOfPayments?: components["schemas"]["BalanceOfPayments"];
+        };
+        /**
+         * TransfersPostRequestFIDO
+         * @description The object sent in the PUT /tppAuthorizations/{ID} callback.
+         */
+        TransfersPostRequestFIDO: {
+            responseType: components["schemas"]["AuthorizationResponseTypeAccepted"];
+            signedPayload: components["schemas"]["SignedPayloadFIDO"];
+            extensionList?: components["schemas"]["ExtensionList"];
+        };
+        /**
+         * TransfersPostRequestGeneric
+         * @description The object sent in the PUT /tppAuthorizations/{ID} callback.
+         */
+        TransfersPostRequestGeneric: {
+            responseType: components["schemas"]["AuthorizationResponseTypeAccepted"];
+            signedPayload: components["schemas"]["SignedPayloadGeneric"];
+            extensionList?: components["schemas"]["ExtensionList"];
+        };
+        /**
          * tppTransactionRequestPostRequest
          * @description Used by: PISP
          *     The HTTP request POST /tppTransationRequest is used to request the creation of a transaction request on the server for the transfer described in the request.
@@ -911,13 +1003,6 @@ export interface components {
             extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
-         * ErrorInformationResponse
-         * @description Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
-         */
-        ErrorInformationResponse: {
-            errorInformation?: components["schemas"]["ErrorInformation"];
-        };
-        /**
          * tppAuthorizationsPostRequest
          * @description Used by: DFSP
          *     The HTTP request PUT /tppTransactionRequests/<ID> resource will have the following content. The <ID> in the request should match the transactionRequestId which was given when the transaction request was created.
@@ -945,100 +1030,6 @@ export interface components {
             extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
-         * ErrorInformationObject
-         * @description Data model for the complex type object that contains ErrorInformation.
-         */
-        ErrorInformationObject: {
-            errorInformation: components["schemas"]["ErrorInformation"];
-        };
-        /**
-         * AuthorizationResponseType
-         * @description The customer accepted the terms of the transfer
-         * @enum {string}
-         */
-        AuthorizationResponseTypeAccepted: "ACCEPTED";
-        /**
-         * SignedPayloadTypeGeneric
-         * @description Describes a challenge that has been signed with a private key
-         * @enum {string}
-         */
-        SignedPayloadTypeGeneric: "GENERIC";
-        /** @description The API data type BinaryString is a JSON String. The string is a base64url  encoding of a string of raw bytes, where padding (character ‘=’) is added at the end of the data if needed to ensure that the string is a multiple of 4 characters. The length restriction indicates the allowed number of characters. */
-        BinaryString: string;
-        /** SignedPayloadGeneric */
-        SignedPayloadGeneric: {
-            signedPayloadType: components["schemas"]["SignedPayloadTypeGeneric"];
-            genericSignedPayload: components["schemas"]["BinaryString"];
-        };
-        /**
-         * TransfersPostRequestGeneric
-         * @description The object sent in the PUT /tppAuthorizations/{ID} callback.
-         */
-        TransfersPostRequestGeneric: {
-            responseType: components["schemas"]["AuthorizationResponseTypeAccepted"];
-            signedPayload: components["schemas"]["SignedPayloadGeneric"];
-            extensionList?: components["schemas"]["ExtensionList"];
-        };
-        /**
-         * SignedPayloadTypeFIDO
-         * @description Describes a challenge that has been signed with FIDO Attestation flows
-         * @enum {string}
-         */
-        SignedPayloadTypeFIDO: "FIDO";
-        /**
-         * FIDOPublicKeyCredentialAssertion
-         * @description A data model representing a FIDO Assertion result.
-         *     Derived from PublicKeyCredential Interface in WebAuthN.
-         *
-         *     The PublicKeyCredential interface represents the below fields with a Type of
-         *     Javascript ArrayBuffer.
-         *     For this API, we represent ArrayBuffers as base64 encoded utf-8 strings.
-         *
-         *     https://github.com/mojaloop/documentation/blob/main/website/versioned_docs/v2.0.0/api/thirdparty/data-models.md#32128-fidopublickeycredentialassertion
-         */
-        FIDOPublicKeyCredentialAssertion: {
-            /**
-             * @description credential id: identifier of pair of keys, base64 encoded
-             *     https://w3c.github.io/webauthn/#ref-for-dom-credential-id
-             */
-            id: string;
-            /** @description raw credential id: identifier of pair of keys, base64 encoded. */
-            rawId: string;
-            /** @description AuthenticatorAssertionResponse */
-            response: {
-                /** @description Authenticator data object. */
-                authenticatorData: string;
-                /** @description JSON string with client data. */
-                clientDataJSON: string;
-                /** @description The signature generated by the private key associated with this credential. */
-                signature: string;
-                /**
-                 * @description This field is optionally provided by the authenticator, and
-                 *     represents the user.id that was supplied during registration.
-                 */
-                userHandle?: string;
-            };
-            /**
-             * @description response type, we need only the type of public-key
-             * @enum {string}
-             */
-            type: "public-key";
-        };
-        /** SignedPayloadFIDO */
-        SignedPayloadFIDO: {
-            signedPayloadType: components["schemas"]["SignedPayloadTypeFIDO"];
-            fidoSignedPayload: components["schemas"]["FIDOPublicKeyCredentialAssertion"];
-        };
-        /**
-         * TransfersPostRequestFIDO
-         * @description The object sent in the PUT /tppAuthorizations/{ID} callback.
-         */
-        TransfersPostRequestFIDO: {
-            responseType: components["schemas"]["AuthorizationResponseTypeAccepted"];
-            signedPayload: components["schemas"]["SignedPayloadFIDO"];
-            extensionList?: components["schemas"]["ExtensionList"];
-        };
-        /**
          * tppTransfersPostRequest
          * @description The object sent in the PUT /tppAuthorizations/{ID} callback.
          */
@@ -1048,17 +1039,6 @@ export interface components {
             authenticationInfo: components["schemas"]["TransfersPostRequestGeneric"] | components["schemas"]["TransfersPostRequestFIDO"];
             extensionList?: components["schemas"]["ExtensionList"];
         };
-        /**
-         * TransactionState
-         * @description Below are the allowed values for the enumeration.
-         *     - RECEIVED - Payee FSP has received the transaction from the Payer FSP.
-         *     - PENDING - Payee FSP has validated the transaction.
-         *     - COMPLETED - Payee FSP has successfully performed the transaction.
-         *     - REJECTED - Payee FSP has failed to perform the transaction.
-         * @example RECEIVED
-         * @enum {string}
-         */
-        TransactionState: "RECEIVED" | "PENDING" | "COMPLETED" | "REJECTED";
         /**
          * tppTransfersPutResponse
          * @description Used by: DFSP
@@ -1178,28 +1158,6 @@ export interface components {
         };
     };
     parameters: {
-        /** @description The `Content-Type` header indicates the specific version of the API used to send the payload body. */
-        "Content-Type": string;
-        /** @description The `Date` header field indicates the date when the request was sent. */
-        Date: string;
-        /**
-         * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
-         *
-         *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
-         */
-        "X-Forwarded-For": string;
-        /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
-        "FSPIOP-Source": string;
-        /** @description The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
-        "FSPIOP-Destination": string;
-        /** @description The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
-        "FSPIOP-Encryption": string;
-        /** @description The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
-        "FSPIOP-Signature": string;
-        /** @description The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
-        "FSPIOP-URI": string;
-        /** @description The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
-        "FSPIOP-HTTP-Method": string;
         /** @description The `Accept` header field indicates the version of the API the client would like the server to use. */
         Accept: string;
         /**
@@ -1208,8 +1166,30 @@ export interface components {
          *     **Note:** The API supports a maximum size of 5242880 bytes (5 Megabytes).
          */
         "Content-Length": number;
+        /** @description The `Content-Type` header indicates the specific version of the API used to send the payload body. */
+        "Content-Type": string;
+        /** @description The `Date` header field indicates the date when the request was sent. */
+        Date: string;
+        /** @description The `FSPIOP-Destination` header field is a non-HTTP standard field used by the API for HTTP header based routing of requests and responses to the destination. The field must be set by the original sender of the request if the destination is known (valid for all services except GET /parties) so that any entities between the client and the server do not need to parse the payload for routing purposes. If the destination is not known (valid for service GET /parties), the field should be left empty. */
+        "FSPIOP-Destination": string;
+        /** @description The `FSPIOP-Encryption` header field is a non-HTTP standard field used by the API for applying end-to-end encryption of the request. */
+        "FSPIOP-Encryption": string;
+        /** @description The `FSPIOP-HTTP-Method` header field is a non-HTTP standard field used by the API for signature verification, should contain the service HTTP method. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
+        "FSPIOP-HTTP-Method": string;
+        /** @description The `FSPIOP-Signature` header field is a non-HTTP standard field used by the API for applying an end-to-end request signature. */
+        "FSPIOP-Signature": string;
+        /** @description The `FSPIOP-Source` header field is a non-HTTP standard field used by the API for identifying the sender of the HTTP request. The field should be set by the original sender of the request. Required for routing and signature verification (see header field `FSPIOP-Signature`). */
+        "FSPIOP-Source": string;
+        /** @description The `FSPIOP-URI` header field is a non-HTTP standard field used by the API for signature verification, should contain the service URI. Required if signature verification is used, for more information, see [the API Signature document](https://github.com/mojaloop/docs/tree/main/Specification%20Document%20Set). */
+        "FSPIOP-URI": string;
         /** @description The identifier value. */
         ID: string;
+        /**
+         * @description The `X-Forwarded-For` header field is an unofficially accepted standard used for informational purposes of the originating client IP address, as a request might pass multiple proxies, firewalls, and so on. Multiple `X-Forwarded-For` values should be expected and supported by implementers of the API.
+         *
+         *     **Note:** An alternative to `X-Forwarded-For` is defined in [RFC 7239](https://tools.ietf.org/html/rfc7239). However, to this point RFC 7239 is less-used and supported than `X-Forwarded-For`.
+         */
+        "X-Forwarded-For": string;
     };
     requestBodies: never;
     headers: {
@@ -1226,28 +1206,6 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    includeSchemaDefinitions: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["ParticipantsIDPutResponse"] | components["schemas"]["PartiesTypeIDPutResponse"] | components["schemas"]["QuotesIDPutResponse"] | components["schemas"]["AuthorizationResponseType"] | components["schemas"]["ConsentStatusIssued"] | components["schemas"]["IlpFulfilment"] | components["schemas"]["Integer"] | components["schemas"]["Note"] | components["schemas"]["PartyIdInfoTPLink"] | components["schemas"]["PartyResult"] | components["schemas"]["ServiceType"] | components["schemas"]["ParticipantsPostRequest"] | components["schemas"]["QuotesPostRequest"];
-            };
-        };
-        responses: {
-            /** @description Ok */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
     tppTransactionsPost: {
         parameters: {
             query?: never;

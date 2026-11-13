@@ -3,16 +3,13 @@ info:
   version: '1.0'
   title: Third-party Payment Initiation API
   description: |
-    The Third-party Payment Initiation (3PPI) API allows third-party payment initiation service providers (PISP),a non-fund-holding participants, to initiate payments on behalf of their customers over a centralized Mojaloop hub.
-
-    The API provides 2 categories of endpoints:
-    1. Administration endpoints for managing how accounts are linked and credentials are established between a DFSP and a PISP 
-    2. Payment initiation endpoints for managing transaction process between a PISP and a DFSP
+    The Third-party Payment Initiation (3PPI) API allows third-party payment initiation service providers (PISP),a non-fund-holding participants, to initiate payments on behalf of their customers over a centralized Mojaloop hub. The 3PPI API is developed in alignment with ISO20022 message standards for Payment Initiation.
+    The 3PPI API assumes that the PISP has already has obtained authorization and consent from the customer to initiate a payment on their behalf. The 3PPI API, therefore, only concerns with the payment process.
   license:
     name: Apache License Version 2.0, January 2004
     url: http://www.apache.org/licenses/
 servers:
-  - url: '{protocol}://api.mojaloop.sandbox.com/v1'
+  - url: '{protocol}://api.mojaloop.sandbox.com'
     variables:
       protocol:
         enum:
@@ -33,9 +30,9 @@ tags:
 paths:
   /interface:
     post:
-      operationId: includeSchemaDefinitions
+      operationId: explicitlyIncludeAllSchemaDefinitions
       summary: Include Schema Definitions needed for Typescript definition files
-      description: Essential path to include schema definitions that are not used explicitly by 3PPI API endpoints. When bundled with openapi-cli, these definitions get included into the API definition that will be used to generate Typescript definition files.  This path will be stripped by the pre-doc build script (defined in the scripts/openapi-refactor.ts) when building final OpenAPI references.
+      description: Include schema definitions that are not used explicitly in the third-partyAPIs. When bundled with openapi-cli, these definitions get included into the API definition so the definitions will be included in the generated Typescript definition files.  This path will be stripped by the pre-doc build script (defined in the scripts/openapi-refactor.ts) when building final OpenAPI references.
       requestBody:
         content:
           application/json:
@@ -1840,10 +1837,6 @@ components:
       required: true
       description: The `Content-Type` header indicates the specific version of the API used to send the payload body.
 x-tagGroups:
-  - name: Administration
-    tags:
-      - tppAccountRequest
-      - tppAccounts
   - name: Payment Initiation
     tags:
       - tppTransactionRequests
