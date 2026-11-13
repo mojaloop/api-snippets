@@ -18,33 +18,7 @@ servers:
         default: https
 paths:
   /interface:
-    post:
-      description: >-
-        Essential path to include schema definitions that are not used so that
-        these definitions get included into the openapi-cli bundle api
-        definition so that they get converted into typescript definitions.
-      operationId: test
-      requestBody:
-        content:
-          application/json:
-            schema:
-              oneOf:
-                - $ref: '../components/schemas/ParticipantsIDPutResponse.yaml'
-                - $ref: '../components/schemas/PartiesTypeIDPutResponse.yaml'
-                - $ref: '../components/schemas/QuotesIDPutResponse.yaml'
-                - $ref: '../components/schemas/AuthorizationResponseType.yaml'
-                - $ref: '../components/schemas/ConsentStatusIssued.yaml'
-                - $ref: '../components/schemas/IlpFulfilment.yaml'
-                - $ref: '../components/schemas/Integer.yaml'
-                - $ref: '../components/schemas/Note.yaml'
-                - $ref: '../components/schemas/PartyIdInfoTPLink.yaml'
-                - $ref: '../components/schemas/PartyResult.yaml'
-                - $ref: '../components/schemas/ServiceType.yaml'
-                - $ref: '../components/schemas/ParticipantsPostRequest.yaml'
-                - $ref: '../components/schemas/QuotesPostRequest.yaml'
-      responses:
-        200:
-          description: Ok
+    $ref: ../paths/interface.yaml
   /tppAccountRequest:
     $ref: ../paths/tppAccountRequest.yaml
   /tppAccountRequest/{ID}:

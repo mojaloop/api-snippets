@@ -1,0 +1,27 @@
+post:
+  operationId: explicitlyIncludeAllSchemaDefinitions
+  summary: Include Schema Definitions needed for Typescript definition files
+  description: >-
+    Include schema definitions that are not used explicitly in the third-partyAPIs. When bundled with openapi-cli, these definitions get included into the API definition so the definitions will be included in the generated Typescript definition files. 
+    This path will be stripped by the pre-doc build script (defined in the scripts/openapi-refactor.ts) when building final OpenAPI references.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: '../components/schemas/ParticipantsIDPutResponse.yaml'
+            - $ref: '../components/schemas/PartiesTypeIDPutResponse.yaml'
+            - $ref: '../components/schemas/QuotesIDPutResponse.yaml'
+            - $ref: '../components/schemas/AuthorizationResponseType.yaml'
+            - $ref: '../components/schemas/ConsentStatusIssued.yaml'
+            - $ref: '../components/schemas/IlpFulfilment.yaml'
+            - $ref: '../components/schemas/Integer.yaml'
+            - $ref: '../components/schemas/Note.yaml'
+            - $ref: '../components/schemas/PartyIdInfoTPLink.yaml'
+            - $ref: '../components/schemas/PartyResult.yaml'
+            - $ref: '../components/schemas/ServiceType.yaml'
+            - $ref: '../components/schemas/ParticipantsPostRequest.yaml'
+            - $ref: '../components/schemas/QuotesPostRequest.yaml'
+  responses:
+    200:
+      description: Ok
