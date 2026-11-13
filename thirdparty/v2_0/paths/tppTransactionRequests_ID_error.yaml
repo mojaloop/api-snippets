@@ -13,7 +13,7 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 put:
   tags:
-    - tppTransactionRequests
+    - transactionRequests
   operationId: tppTransactionRequestsError
   summary: tppTransactionRequestsError
   description: |

@@ -11,13 +11,73 @@ info:
     name: Apache License Version 2.0, January 2004
     url: http://www.apache.org/licenses/
 servers:
-  - url: "{protocol}://api.mojaloop.sandbox.com"
-    variables:
-      protocol:
-        enum:
-          - http
-          - https
-        default: https
+  - url: https://third-paryty-sandbox.mojaloop.com
+    description: Sandbox environment
+tags:
+  - name: accountRequest
+    x-displayName: Account Requests
+    x-kind: sequence
+    description: >
+      The `/tppAccountRequest` resources are used to request consent from a user
+      for access to their accounts information.
+  - name: accounts
+    x-displayName: Accounts
+    x-kind: sequence
+    description: >
+      The `/tppAccounts` resources are used to retrieve the list of potential
+      accounts available for linking.
+  - name: consentRequests
+    x-displayName: Consent Requests
+    x-kind: sequence
+    description: >
+      The `/tppConsentRequests` resources are used to request a DFSP to grant
+      access to one or more accounts owned by a customer of the DFSP for the
+      PISP.
+  - name: consents
+    x-displayName: Consents
+    x-kind: sequence
+    description: >
+      The `/tppConsents` resources are used to manage consents for interactions
+      between a PISP and the DFSP who owns the customer's account.
+  - name: participants
+    x-displayName: Participants
+    x-kind: sequence
+    description: >
+      The `/participants` resources are used to create and lookup FSP
+      information regarding party identities.
+  - name: services
+    x-displayName: Services
+    x-kind: sequence
+    description: >
+      The `/services` resources are used to retrieve the list of participants
+      that support a specified service.
+  - name: authorizations
+    x-displayName: Authorizations
+    x-kind: sequence
+    description: >
+      The `/tppAuthorizations` resources are used by a Payer DFSP to request
+      authorization from the Payer to make a payment through a third-party
+      provider.
+  - name: verifications
+    x-displayName: Verifications
+    x-kind: sequence
+    description: >
+      The `/tppVerifications` resources are used by a DFSP to verify a
+      third-party authorization with an authentication service.
+  - name: health
+    x-displayName: Health
+    x-kind: monitoring
+    description: >
+      The `/health` resource is used to check the health of the Third-party
+      Admin API service.
+  - name: metrics
+    x-displayName: Metrics
+    x-kind: monitoring
+    description: >
+      The `/metrics` resource is Prometheus metrics endpoint for the Third-party
+      Admin API service. See
+      [Prometheus](https://prometheus.io/docs/introduction/overview/) for more
+      information.
 paths:
   /tppAccountRequest:
     parameters:
@@ -369,60 +429,6 @@ paths:
           $ref: "#/components/responses/501"
         "503":
           $ref: "#/components/responses/503"
-  /health:
-    get:
-      tags:
-        - health
-      responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
-      operationId: HealthGet
-      summary: Health check endpoint
-      description: >-
-        The HTTP request GET /health is used to return the current status of the
-        API.
-  /metrics:
-    get:
-      tags:
-        - health
-      responses:
-        "200":
-          $ref: "#/components/responses/200"
-        "400":
-          $ref: "#/components/responses/400"
-        "401":
-          $ref: "#/components/responses/401"
-        "403":
-          $ref: "#/components/responses/403"
-        "404":
-          $ref: "#/components/responses/404"
-        "405":
-          $ref: "#/components/responses/405"
-        "406":
-          $ref: "#/components/responses/406"
-        "501":
-          $ref: "#/components/responses/501"
-        "503":
-          $ref: "#/components/responses/503"
-      operationId: MetricsGet
-      summary: Prometheus metrics endpoint
-      description: The HTTP request GET /metrics is used to return metrics for the API.
   /tppConsentRequests:
     parameters:
       - $ref: "#/components/parameters/Content-Type"
@@ -1836,6 +1842,60 @@ paths:
           $ref: "#/components/responses/501"
         "503":
           $ref: "#/components/responses/503"
+  /health:
+    get:
+      tags:
+        - health
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+      operationId: HealthGet
+      summary: Health check endpoint
+      description: >-
+        The HTTP request GET /health is used to return the current status of the
+        API.
+  /metrics:
+    get:
+      tags:
+        - metrics
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "403":
+          $ref: "#/components/responses/403"
+        "404":
+          $ref: "#/components/responses/404"
+        "405":
+          $ref: "#/components/responses/405"
+        "406":
+          $ref: "#/components/responses/406"
+        "501":
+          $ref: "#/components/responses/501"
+        "503":
+          $ref: "#/components/responses/503"
+      operationId: MetricsGet
+      summary: Prometheus metrics endpoint
+      description: The HTTP request GET /metrics is used to return metrics for the API.
 components:
   schemas:
     Account:
@@ -4251,12 +4311,3 @@ components:
       description: >-
         The `Content-Type` header indicates the specific version of the API used
         to send the payload body.
-x-tagGroups:
-  - name: Administration
-    tags:
-      - tppAccountRequest
-      - tppAccounts
-  - name: Monitoring
-    tags:
-      - health
-      - metrics

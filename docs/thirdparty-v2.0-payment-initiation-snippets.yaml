@@ -19,7 +19,7 @@ servers:
   - url: https://third-paryty-sandbox.mojaloop.com
     description: Sandbox environment
 tags:
-  - name: tppTransactionRequests
+  - name: transactionRequests
     x-displayName: Transaction Requests
     x-kind: sequence
     description: >
@@ -28,7 +28,7 @@ tags:
       to request the owner of the PISP's customer's account to transfer a
       specified amount from the customer's account with the DFSP to a named
       Payee.
-  - name: tppTransfers
+  - name: transfers
     x-displayName: Transfers
     x-kind: sequence
     description: >
@@ -74,7 +74,7 @@ paths:
         Payee, or a request to pay request from a named payer into the
         customer's account.
       tags:
-        - tppTransactionRequests
+        - transactionRequests
       parameters:
         - $ref: "#/components/parameters/Accept"
         - $ref: "#/components/parameters/Content-Length"
@@ -118,7 +118,7 @@ paths:
       - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
     get:
       tags:
-        - tppTransactionRequests
+        - transactionRequests
       operationId: GetThirdpartyTransactionRequests
       summary: GetThirdpartyTransactionRequests
       description: >
@@ -149,7 +149,7 @@ paths:
           $ref: "#/components/responses/503"
     put:
       tags:
-        - tppTransactionRequests
+        - transactionRequests
       operationId: tppUpdateTransactionRequests
       summary: tppUpdateTransactionRequests
       description: >
@@ -201,7 +201,7 @@ paths:
       - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
     put:
       tags:
-        - tppTransactionRequests
+        - transactionRequests
       operationId: tppTransactionRequestsError
       summary: tppTransactionRequestsError
       description: >
@@ -260,7 +260,7 @@ paths:
         The HTTP request POST `/tppTransfers` is used by a PISP to initiate a
         3rd party Transaction request with a DFSP
       tags:
-        - tppTransfers
+        - transfers
       parameters:
         - $ref: "#/components/parameters/Accept"
         - $ref: "#/components/parameters/Content-Length"
@@ -304,7 +304,7 @@ paths:
       - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
     get:
       tags:
-        - tppTransfers
+        - transfers
       operationId: tppGetTransfers
       summary: tppGetTransfers
       description: |
@@ -333,7 +333,7 @@ paths:
           $ref: "#/components/responses/503"
     put:
       tags:
-        - tppTransfers
+        - transfers
       operationId: tppUpdateTransfersRequest
       summary: tppUpdateTransfersRequest
       description: >
@@ -389,7 +389,7 @@ paths:
       - $ref: "#/components/parameters/FSPIOP-HTTP-Method"
     put:
       tags:
-        - tppTransfers
+        - transfers
       operationId: tppTransfersRequestsError
       summary: tppTransfersRequestsError
       description: >

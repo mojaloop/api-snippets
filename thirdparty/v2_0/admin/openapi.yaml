@@ -8,22 +8,59 @@ info:
     name: Apache License Version 2.0, January 2004
     url: http://www.apache.org/licenses/
 servers:
-  - url: '{protocol}://api.mojaloop.sandbox.com'
-    variables:
-      protocol:
-        enum:
-          - http
-          - https
-        default: https
-x-tagGroups:
-  - name: Administration
-    tags:
-      - tppAccountRequest
-      - tppAccounts
-  - name: Monitoring
-    tags:
-      - health
-      - metrics
+  - url: 'https://third-paryty-sandbox.mojaloop.com'
+    description: Sandbox environment
+tags:
+  - name: accountRequest
+    x-displayName: Account Requests
+    x-kind: sequence
+    description: |
+      The `/tppAccountRequest` resources are used to request consent from a user for access to their accounts information.
+  - name: accounts
+    x-displayName: Accounts
+    x-kind: sequence
+    description: |
+      The `/tppAccounts` resources are used to retrieve the list of potential accounts available for linking.
+  - name: consentRequests
+    x-displayName: Consent Requests
+    x-kind: sequence
+    description: |
+      The `/tppConsentRequests` resources are used to request a DFSP to grant access to one or more accounts owned by a customer of the DFSP for the PISP.
+  - name: consents
+    x-displayName: Consents
+    x-kind: sequence
+    description: |
+      The `/tppConsents` resources are used to manage consents for interactions between a PISP and the DFSP who owns the customer's account.
+  - name: participants
+    x-displayName: Participants
+    x-kind: sequence
+    description: |
+      The `/participants` resources are used to create and lookup FSP information regarding party identities.
+  - name: services
+    x-displayName: Services
+    x-kind: sequence
+    description: |
+      The `/services` resources are used to retrieve the list of participants that support a specified service.
+  - name: authorizations
+    x-displayName: Authorizations
+    x-kind: sequence
+    description: |
+      The `/tppAuthorizations` resources are used by a Payer DFSP to request authorization from the Payer to make a payment through a third-party provider.
+  - name: verifications
+    x-displayName: Verifications
+    x-kind: sequence
+    description: |
+      The `/tppVerifications` resources are used by a DFSP to verify a third-party authorization with an authentication service.
+  - name: health
+    x-displayName: Health
+    x-kind: monitoring
+    description: |
+      The `/health` resource is used to check the health of the Third-party Admin API service.
+  - name: metrics
+    x-displayName: Metrics
+    x-kind: monitoring
+    description: |
+      The `/metrics` resource is Prometheus metrics endpoint for the Third-party Admin API service. See [Prometheus](https://prometheus.io/docs/introduction/overview/) for more information.
 paths:
   /interface:
     $ref: ../paths/interface.yaml
@@ -37,10 +74,6 @@ paths:
     $ref: ../paths/tppAccounts_ID.yaml
   /tppAccounts/{ID}/error:
     $ref: ../paths/tppAccounts_ID_error.yaml
-  /health:
-    $ref: ../paths/health.yaml
-  /metrics:
-    $ref: ../paths/metrics.yaml
   /tppConsentRequests:
     $ref: ../paths/tppConsentRequests.yaml
   /tppConsentRequests/{ID}:
@@ -79,3 +112,9 @@ paths:
     $ref: ../paths/tppVerifications_ID.yaml
   /tppVerifications/{ID}/error:
     $ref: ../paths/tppVerifications_ID_error.yaml
+
+  # --- Monitoring Paths ---
+  /health:
+    $ref: ../paths/health.yaml
+  /metrics:
+    $ref: ../paths/metrics.yaml

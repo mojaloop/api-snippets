@@ -13,7 +13,7 @@ parameters:
   - $ref: ../components/parameters/FSPIOP-HTTP-Method.yaml
 get:
   tags:
-    - tppTransfers
+    - transfers
   operationId: tppGetTransfers
   summary: tppGetTransfers
   description: |
@@ -44,7 +44,7 @@ get:
 
 put:
   tags:
-    - tppTransfers
+    - transfers
   operationId: tppUpdateTransfersRequest
   summary: tppUpdateTransfersRequest
   description: |

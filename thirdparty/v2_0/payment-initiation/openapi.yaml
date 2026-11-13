@@ -12,12 +12,12 @@ servers:
   - url: 'https://third-paryty-sandbox.mojaloop.com'
     description: Sandbox environment
 tags:
-  - name: tppTransactionRequests
+  - name: transactionRequests
     x-displayName: Transaction Requests
     x-kind: sequence
     description: |
       The `/tppTransactionRequests` resources are analogous to the `/transactionRequests` resource described in fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee.
-  - name: tppTransfers
+  - name: transfers
     x-displayName: Transfers
     x-kind: sequence
     description: |
