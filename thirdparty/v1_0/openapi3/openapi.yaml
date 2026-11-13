@@ -16,6 +16,41 @@ servers:
           - http
           - https
         default: https
+tags:
+  - name: accounts
+    x-displayName: Accounts
+    description: |
+      The `/accounts` resources are used to retrieve the list of potential accounts available for linking.
+  - name: consentRequests
+    x-displayName: Consent Requests
+    description: |
+      The `/consentRequests` resources are used to request a DFSP to grant access to one or more accounts owned by a customer of the DFSP for the PISP.
+  - name: consents
+    x-displayName: Consents
+    description: |
+      The `/consents` resources are used to manage consents for interactions between a PISP and the DFSP who owns the customer's account.
+  - name: participants
+    x-displayName: Participants
+    description: |
+      The `/participants` resources are used to create and lookup FSP information regarding party identities.
+  - name: services
+    x-displayName: Services
+    description: |
+      The `/services` resources are used to retrieve the list of participants that support a specified service.
+  - name: authorizations
+    x-displayName: Authorizations
+    description: |
+      The `/thirdpartyRequests/authorizations` resources are used by a Payer DFSP to request authorization from the Payer to make a payment through a third-party provider.
+  - name: thirdpartyRequests
+    x-displayName: Thirdparty Requests
+    description: |
+      The `/thirdpartyRequests` resources are used to initiate third-party transaction requests and verify authorizations.
+  - name: health
+    x-displayName: Health
+    description: |
+      The `/health` and `/metrics` resources are used to monitor the health and metrics of the Thirdparty API service.
+  - name: sampled
+    x-displayName: Sampled
 paths:
   /interface:
     post:
