@@ -3,7 +3,7 @@ info:
   version: '1.0'
   title: Third-party Admin API
   description: |
-    The Third-party Admin API allows payment initiation service providers (PISP), a non-fund-holding participants, to manage account linking processes between PISP, financial service providers, and customers over a centralized Mojaloop hub.
+    The Third-party Admin (3PA) API allows payment initiation service providers (PISP), a non-fund-holding participants, to manage account linking processes between PISP, financial service providers, and their customers over a centralized Mojaloop hub.
   license:
     name: Apache License Version 2.0, January 2004
     url: http://www.apache.org/licenses/

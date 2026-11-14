@@ -36,7 +36,7 @@ paths:
   /interface:
     $ref: ../paths/interface.yaml
   
-  # --- Payment Initiation Paths ---
+  # --- P2P Payment Initiation Paths ---
   /tppTransactionRequests:
     $ref: ../paths/tppTransactionRequests.yaml
   /tppTransactionRequests/{ID}:
