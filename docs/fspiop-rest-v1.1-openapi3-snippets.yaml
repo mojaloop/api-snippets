@@ -1,6 +1,7 @@
 openapi: 3.0.2
 info:
   version: "1.1"
+  x-lifecycle: production
   title: Open API for FSP Interoperability (FSPIOP)
   description: >-
     Revision date: 2023-11-23 Based on [API Definition updated on 2020-05-19
