@@ -1,6 +1,7 @@
 openapi: 3.1.0
 info:
   version: '1.0'
+  x-lifecycle: "development"
   title: Third-party Payment Initiation API
   description: |
     The Third-party Payment Initiation (3PPI) API allows third-party payment initiation service providers (PISP),a non-fund-holding participants, to initiate payments on behalf of their customers over a centralized Mojaloop hub. The 3PPI API is developed in alignment with ISO20022 message standards for Payment Initiation.

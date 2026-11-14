@@ -66,7 +66,8 @@
     "test:integration": "echo 'No integration tests'",
     "test:functional": "echo 'No functional tests'",
     "test:coverage-check": "echo 'No coverage check'",
-    "dev:watch": "browser-sync start --server 'docs' --cwd 'docs'  --files '*.yaml'"
+    "dev:watch": "browser-sync start --server 'docs' --cwd 'docs'  --files '*.yaml'",
+    "dev:portal": "cp docs/thirdparty-v1.0-openapi3-snippets.yaml docs/thirdparty-v2.0-*.yaml docs/fspiop-rest-v1.1-openapi3-snippets.yaml docs/fspiop-rest-v2.0-*.yaml developer-portal/docs/apis/ && npm --prefix developer-portal/docs run dev"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix"

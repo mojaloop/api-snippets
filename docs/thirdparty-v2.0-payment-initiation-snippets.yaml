@@ -1,6 +1,7 @@
 openapi: 3.1.0
 info:
   version: "1.0"
+  x-lifecycle: development
   title: Third-party Payment Initiation API
   description: >
     The Third-party Payment Initiation (3PPI) API allows third-party payment

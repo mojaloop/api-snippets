@@ -1,6 +1,7 @@
 openapi: 3.1.0
 info:
   version: '1.0'
+  x-lifecycle: "development"
   title: Third-party Admin API
   description: |
     The Third-party Admin (3PA) API allows payment initiation service providers (PISP), a non-fund-holding participants, to manage account linking processes between PISP, financial service providers, and their customers over a centralized Mojaloop hub.
