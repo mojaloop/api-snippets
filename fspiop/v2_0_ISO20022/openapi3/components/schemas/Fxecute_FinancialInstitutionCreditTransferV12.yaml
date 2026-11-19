@@ -25,7 +25,7 @@ example:
   GrpHdr:
     MsgId: 20191113001
     CreDtTm: '2019-11-13T10:00:00'
-    NbOfTxs: 1
+    NbOfTxs: '1'
     CtrlSum: 1000
     InitgPty:
       Nm: Initiating Party Name
