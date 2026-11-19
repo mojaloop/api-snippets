@@ -1332,7 +1332,7 @@ export interface components {
          *         "MsgId": 12345,
          *         "CreDtTm": "2020-01-01T00:00:00Z",
          *         "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "SttlmInf": {
          *           "SttlmMtd": "INDA",
          *           "SttlmAcct": {
@@ -1619,7 +1619,7 @@ export interface components {
          *       "GrpHdr": {
          *         "MsgId": 12345,
          *         "CreDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "TtlIntrBkSttlmAmt": {
          *           "Ccy": "EUR",
          *           "Value": 100
@@ -1739,7 +1739,7 @@ export interface components {
          *       "GrpHdr": {
          *         "MsgId": "20191122-123456",
          *         "CreDtTm": "2019-11-22T12:34:56",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "CtrlSum": 100,
          *         "InitgPty": {
          *           "Nm": "Initiating Party Name"
@@ -1850,7 +1850,7 @@ export interface components {
          *       "GrpHdr": {
          *         "MsgId": 20191113001,
          *         "CreDtTm": "2019-11-13T10:00:00",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "CtrlSum": 1000,
          *         "InitgPty": {
          *           "Nm": "Initiating Party Name",
@@ -2205,7 +2205,7 @@ export interface components {
          * @example {
          *       "MsgId": 12345,
          *       "CreDtTm": "2020-01-01T00:00:00Z",
-         *       "NbOfTxs": 1,
+         *       "NbOfTxs": "1",
          *       "TtlIntrBkSttlmAmt": {
          *         "Ccy": "EUR",
          *         "Value": 100
@@ -2263,7 +2263,7 @@ export interface components {
          *       "MsgId": 12345,
          *       "CreDtTm": "2020-01-01T00:00:00Z",
          *       "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-         *       "NbOfTxs": 1,
+         *       "NbOfTxs": "1",
          *       "SttlmInf": {
          *         "SttlmMtd": "INDA",
          *         "SttlmAcct": {
@@ -2639,7 +2639,7 @@ export interface components {
          *       "GrpHdr": {
          *         "MsgId": 12345,
          *         "CreDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "SttlmInf": {
          *           "SttlmMtd": "INDA",
          *           "SttlmDt": "2020-01-01"
@@ -3666,7 +3666,7 @@ export interface components {
          *       "GrpHdr": {
          *         "MsgId": 123456789,
          *         "CreDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "CtrlSum": 100,
          *         "InitgPty": {
          *           "Nm": "Initiating Party Name",
@@ -3703,7 +3703,7 @@ export interface components {
          *       "GrpHdr": {
          *         "MsgId": 123456789,
          *         "CreDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "CtrlSum": 100,
          *         "InitgPty": {
          *           "Nm": "Initiating Party Name",

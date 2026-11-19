@@ -43359,7 +43359,7 @@
                     "description": "Specifies a numeric string with a maximum length of 15 digits.\n",
                     "type": "string",
                     "pattern": "^[0-9]{1,15}$",
-                    "example": 123456789012345
+                    "example": "123456789012345"
                   },
                   {
                     "description": "Number of Transactions\n"
@@ -43676,7 +43676,7 @@
               "MsgId": 12345,
               "CreDtTm": "2020-01-01T00:00:00Z",
               "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-              "NbOfTxs": 1,
+              "NbOfTxs": "1",
               "SttlmInf": {
                 "SttlmMtd": "INDA",
                 "SttlmAcct": {
@@ -60140,7 +60140,7 @@
         "MsgId": 12345,
         "CreDtTm": "2020-01-01T00:00:00Z",
         "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-        "NbOfTxs": 1,
+        "NbOfTxs": "1",
         "SttlmInf": {
           "SttlmMtd": "INDA",
           "SttlmAcct": {
@@ -61635,7 +61635,7 @@
                     "description": "Specifies a numeric string with a maximum length of 15 digits.\n",
                     "type": "string",
                     "pattern": "^[0-9]{1,15}$",
-                    "example": 123456789012345
+                    "example": "123456789012345"
                   },
                   {
                     "description": "Number of Transactions\n"
@@ -62400,7 +62400,7 @@
             "example": {
               "MsgId": 12345,
               "CreDtTm": "2020-01-01T00:00:00Z",
-              "NbOfTxs": 1,
+              "NbOfTxs": "1",
               "TtlIntrBkSttlmAmt": {
                 "Ccy": "EUR",
                 "Value": 100
@@ -72468,7 +72468,7 @@
       "GrpHdr": {
         "MsgId": 12345,
         "CreDtTm": "2020-01-01T00:00:00Z",
-        "NbOfTxs": 1,
+        "NbOfTxs": "1",
         "TtlIntrBkSttlmAmt": {
           "Ccy": "EUR",
           "Value": 100
@@ -72626,7 +72626,7 @@
                     "description": "Specifies a numeric string with a maximum length of 15 digits.\n",
                     "type": "string",
                     "pattern": "^[0-9]{1,15}$",
-                    "example": 123456789012345
+                    "example": "123456789012345"
                   },
                   {
                     "description": "Number of Transactions\n"
@@ -73391,7 +73391,7 @@
             "example": {
               "MsgId": 12345,
               "CreDtTm": "2020-01-01T00:00:00Z",
-              "NbOfTxs": 1,
+              "NbOfTxs": "1",
               "TtlIntrBkSttlmAmt": {
                 "Ccy": "EUR",
                 "Value": 100
@@ -83459,7 +83459,7 @@
       "GrpHdr": {
         "MsgId": "20191122-123456",
         "CreDtTm": "2019-11-22T12:34:56",
-        "NbOfTxs": 1,
+        "NbOfTxs": "1",
         "CtrlSum": 100,
         "InitgPty": {
           "Nm": "Initiating Party Name"
@@ -83623,7 +83623,7 @@
                     "description": "Specifies a numeric string with a maximum length of 15 digits.\n",
                     "type": "string",
                     "pattern": "^[0-9]{1,15}$",
-                    "example": 123456789012345
+                    "example": "123456789012345"
                   },
                   {
                     "description": "Number of Transactions\n"
@@ -83940,7 +83940,7 @@
               "MsgId": 12345,
               "CreDtTm": "2020-01-01T00:00:00Z",
               "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-              "NbOfTxs": 1,
+              "NbOfTxs": "1",
               "SttlmInf": {
                 "SttlmMtd": "INDA",
                 "SttlmAcct": {
@@ -93992,7 +93992,7 @@
       "GrpHdr": {
         "MsgId": 20191113001,
         "CreDtTm": "2019-11-13T10:00:00",
-        "NbOfTxs": 1,
+        "NbOfTxs": "1",
         "CtrlSum": 1000,
         "InitgPty": {
           "Nm": "Initiating Party Name",
@@ -114066,7 +114066,7 @@
             "description": "Specifies a numeric string with a maximum length of 15 digits.\n",
             "type": "string",
             "pattern": "^[0-9]{1,15}$",
-            "example": 123456789012345
+            "example": "123456789012345"
           },
           {
             "description": "Number of Transactions\n"
@@ -114831,7 +114831,7 @@
     "example": {
       "MsgId": 12345,
       "CreDtTm": "2020-01-01T00:00:00Z",
-      "NbOfTxs": 1,
+      "NbOfTxs": "1",
       "TtlIntrBkSttlmAmt": {
         "Ccy": "EUR",
         "Value": 100
@@ -114963,7 +114963,7 @@
             "description": "Specifies a numeric string with a maximum length of 15 digits.\n",
             "type": "string",
             "pattern": "^[0-9]{1,15}$",
-            "example": 123456789012345
+            "example": "123456789012345"
           },
           {
             "description": "Number of Transactions\n"
@@ -115280,7 +115280,7 @@
       "MsgId": 12345,
       "CreDtTm": "2020-01-01T00:00:00Z",
       "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-      "NbOfTxs": 1,
+      "NbOfTxs": "1",
       "SttlmInf": {
         "SttlmMtd": "INDA",
         "SttlmAcct": {
@@ -122294,7 +122294,7 @@
     "description": "Specifies a numeric string with a maximum length of 15 digits.\n",
     "type": "string",
     "pattern": "^[0-9]{1,15}$",
-    "example": 123456789012345
+    "example": "123456789012345"
   },
   "Max16Text": {
     "title": "Max16Text",
@@ -124392,7 +124392,7 @@
       "GrpHdr": {
         "MsgId": 12345,
         "CreDtTm": "2020-01-01T00:00:00Z",
-        "NbOfTxs": 1,
+        "NbOfTxs": "1",
         "SttlmInf": {
           "SttlmMtd": "INDA",
           "SttlmDt": "2020-01-01"
@@ -144098,7 +144098,7 @@
                     "description": "Specifies a numeric string with a maximum length of 15 digits.\n",
                     "type": "string",
                     "pattern": "^[0-9]{1,15}$",
-                    "example": 123456789012345
+                    "example": "123456789012345"
                   },
                   {
                     "description": "Number of Transactions\n"
@@ -144415,7 +144415,7 @@
               "MsgId": 12345,
               "CreDtTm": "2020-01-01T00:00:00Z",
               "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-              "NbOfTxs": 1,
+              "NbOfTxs": "1",
               "SttlmInf": {
                 "SttlmMtd": "INDA",
                 "SttlmAcct": {
@@ -160878,7 +160878,7 @@
       "GrpHdr": {
         "MsgId": 123456789,
         "CreDtTm": "2020-01-01T00:00:00Z",
-        "NbOfTxs": 1,
+        "NbOfTxs": "1",
         "CtrlSum": 100,
         "InitgPty": {
           "Nm": "Initiating Party Name",
@@ -160968,7 +160968,7 @@
                     "description": "Specifies a numeric string with a maximum length of 15 digits.\n",
                     "type": "string",
                     "pattern": "^[0-9]{1,15}$",
-                    "example": 123456789012345
+                    "example": "123456789012345"
                   },
                   {
                     "description": "Number of Transactions\n"
@@ -161285,7 +161285,7 @@
               "MsgId": 12345,
               "CreDtTm": "2020-01-01T00:00:00Z",
               "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-              "NbOfTxs": 1,
+              "NbOfTxs": "1",
               "SttlmInf": {
                 "SttlmMtd": "INDA",
                 "SttlmAcct": {
@@ -177748,7 +177748,7 @@
       "GrpHdr": {
         "MsgId": 123456789,
         "CreDtTm": "2020-01-01T00:00:00Z",
-        "NbOfTxs": 1,
+        "NbOfTxs": "1",
         "CtrlSum": 100,
         "InitgPty": {
           "Nm": "Initiating Party Name",

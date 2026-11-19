@@ -26,7 +26,7 @@ example:
   GrpHdr:
     MsgId: 12345
     CreDtTm: '2020-01-01T00:00:00Z'
-    NbOfTxs: 1
+    NbOfTxs: '1'
     SttlmInf:
       SttlmMtd: INDA
       SttlmDt: '2020-01-01'
