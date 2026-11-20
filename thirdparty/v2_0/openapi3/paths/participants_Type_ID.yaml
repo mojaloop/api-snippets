@@ -33,7 +33,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/ParticipantsTypeIDSubIDPostRequest.yaml
+          $ref: ../../../../fspiop/v2_0/openapi3/components/schemas/ParticipantsTypeIDSubIDPostRequest.yaml
   responses:
     '202':
       $ref: ../components/responses/202.yaml

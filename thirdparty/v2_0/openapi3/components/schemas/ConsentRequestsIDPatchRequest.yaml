@@ -10,7 +10,5 @@ description: >-
 properties:
   authToken:
     $ref: ./BinaryString.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - authToken

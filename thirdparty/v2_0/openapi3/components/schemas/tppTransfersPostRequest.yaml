@@ -10,8 +10,6 @@ properties:
     oneOf:
       - $ref: './TransfersPostRequestGeneric.yaml'
       - $ref: './TransfersPostRequestFIDO.yaml'    
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - executionRequestId
   - transactionRequestId

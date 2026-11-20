@@ -10,8 +10,6 @@ properties:
     $ref: ./ConsentStatusRevoked.yaml
   revokedAt:
     $ref: ./DateTime.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - status
   - revokedAt
