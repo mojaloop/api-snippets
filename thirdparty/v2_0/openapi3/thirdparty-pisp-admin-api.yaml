@@ -91,8 +91,6 @@ paths:
                     minLength: 1
                     maxLength: 32
                     description: FSP identifier.
-                extensionList:
-                  $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
               required:
                 - providers
       responses:
@@ -513,8 +511,6 @@ paths:
                       - currency
                   minItems: 1
                   maxItems: 256
-                extensionList:
-                  $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
               required:
                 - accounts
             example:
@@ -594,7 +590,39 @@ paths:
                       maxLength: 128
                       description: Error description string.
                     extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
+                      title: ExtensionList
+                      type: object
+                      additionalProperties: false
+                      description: Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
+                      properties:
+                        extension:
+                          type: array
+                          items:
+                            title: Extension
+                            type: object
+                            additionalProperties: false
+                            description: Data model for the complex type Extension.
+                            properties:
+                              key:
+                                title: ExtensionKey
+                                type: string
+                                minLength: 1
+                                maxLength: 32
+                                description: Extension key.
+                              value:
+                                title: ExtensionValue
+                                type: string
+                                minLength: 1
+                                maxLength: 128
+                                description: Extension value.
+                            required:
+                              - key
+                              - value
+                          minItems: 1
+                          maxItems: 16
+                          description: Number of Extension elements.
+                      required:
+                        - extension
                   required:
                     - errorCode
                     - errorDescription
@@ -731,8 +759,6 @@ paths:
                       description: Either a sub-identifier of a PartyIdentifier, or a sub-type of the PartyIdType, normally a PersonalIdentifierType.
                     fspId:
                       $ref: '#/paths/~1services~1%7BServiceType%7D/put/requestBody/content/application~1json/schema/properties/providers/items'
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - partyIdType
                     - partyIdentifier
@@ -790,8 +816,6 @@ paths:
                     $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authChannel'
                 callbackUri:
                   $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
-                extensionList:
-                  $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
               required:
                 - consentRequestId
                 - partyIdInfo
@@ -913,8 +937,6 @@ paths:
                       $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
                     authUri:
                       $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - scopes
                     - authChannels
@@ -947,8 +969,6 @@ paths:
                           The OTP auth channel being used for `PUT /tppConsentRequests/{ID}` request.
                     callbackUri:
                       $ref: '#/paths/~1tppAccountRequest/post/requestBody/content/application~1json/schema/properties/callbackUri'
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - scopes
                     - authChannels
@@ -995,8 +1015,6 @@ paths:
               properties:
                 authToken:
                   $ref: '#/paths/~1tppAccountRequest~1%7BID%7D/put/requestBody/content/application~1json/schema/properties/authToken'
-                extensionList:
-                  $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
               required:
                 - authToken
       responses:
@@ -1186,8 +1204,6 @@ paths:
                         Allowed values for the enumeration ConsentStatus
                         - ISSUED - The consent has been issued by the DFSP
                         - REVOKED - The consent has been revoked
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - consentId
                     - scopes
@@ -1219,8 +1235,6 @@ paths:
                         $ref: '#/paths/~1tppConsentRequests/post/requestBody/content/application~1json/schema/properties/scopes/items'
                     status:
                       $ref: '#/paths/~1tppConsents/post/requestBody/content/application~1json/schema/oneOf/0/properties/status'
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - consentId
                     - consentRequestId
@@ -1416,8 +1430,6 @@ paths:
                             - "VERIFIED" - The Credential is valid and verified.
                       required:
                         - status
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - credential
                 - title: ConsentsIDPatchResponseRevoked
@@ -1438,8 +1450,6 @@ paths:
                         - REVOKED - The consent has been revoked
                     revokedAt:
                       $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/expiration/allOf/0'
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - status
                     - revokedAt
@@ -1600,8 +1610,6 @@ paths:
                         - credentialType
                         - status
                       additionalProperties: false
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - scopes
                     - credential
@@ -1641,8 +1649,6 @@ paths:
                         - credentialType
                         - status
                       additionalProperties: false
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - scopes
                     - credential
@@ -2180,40 +2186,6 @@ paths:
                       description: The API data type DateTime is a JSON String in a lexical format that is restricted by a regular expression for interoperability reasons. The format is according to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html), expressed in a combined date, time and time zone format. A more readable version of the format is yyyy-MM-ddTHH:mm:ss.SSS[-HH:MM]. Examples are "2016-05-24T08:38:08.699-04:00", "2016-05-24T08:38:08.699Z" (where Z indicates Zulu time zone, same as UTC).
                       example: '2016-05-24T08:38:08.699-04:00'
                   description: The time by which the transfer must be completed, set by the payee DFSP.
-                extensionList:
-                  title: ExtensionList
-                  type: object
-                  additionalProperties: false
-                  description: Data model for the complex type ExtensionList. An optional list of extensions, specific to deployment.
-                  properties:
-                    extension:
-                      type: array
-                      items:
-                        title: Extension
-                        type: object
-                        additionalProperties: false
-                        description: Data model for the complex type Extension.
-                        properties:
-                          key:
-                            title: ExtensionKey
-                            type: string
-                            minLength: 1
-                            maxLength: 32
-                            description: Extension key.
-                          value:
-                            title: ExtensionValue
-                            type: string
-                            minLength: 1
-                            maxLength: 128
-                            description: Extension value.
-                        required:
-                          - key
-                          - value
-                      minItems: 1
-                      maxItems: 16
-                      description: Number of Extension elements.
-                  required:
-                    - extension
               required:
                 - authorizationRequestId
                 - transactionRequestId
@@ -2318,8 +2290,6 @@ paths:
                       type: string
                       enum:
                         - REJECTED
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - responseType
                 - title: tppAuthorizationsIDPutResponseFIDO
@@ -2419,8 +2389,6 @@ paths:
                         - signedPayloadType
                         - fidoSignedPayload
                       additionalProperties: false
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - responseType
                     - signedPayload
@@ -2447,8 +2415,6 @@ paths:
                         - signedPayloadType
                         - genericSignedPayload
                       additionalProperties: false
-                    extensionList:
-                      $ref: '#/paths/~1tppAuthorizations/post/requestBody/content/application~1json/schema/properties/extensionList'
                   required:
                     - responseType
                     - signedPayload

@@ -13,7 +13,5 @@ properties:
         $ref: ./CredentialStatusVerified.yaml
     required:
       - status
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - credential

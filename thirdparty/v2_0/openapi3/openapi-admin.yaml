@@ -37,11 +37,9 @@ paths:
                 - $ref: './components/schemas/IlpFulfilment.yaml'
                 - $ref: './components/schemas/Integer.yaml'
                 - $ref: './components/schemas/Note.yaml'
-                - $ref: './components/schemas/PartyIdInfoTPLink.yaml'
                 - $ref: './components/schemas/PartyResult.yaml'
                 - $ref: './components/schemas/ServiceType.yaml'
                 - $ref: './components/schemas/ParticipantsPostRequest.yaml'
-                - $ref: './components/schemas/QuotesPostRequest.yaml'
       responses:
         200:
           description: Ok

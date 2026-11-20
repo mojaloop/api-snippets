@@ -15,8 +15,6 @@ properties:
       $ref: ./Scope.yaml
   credential:
     $ref: ./SignedCredential.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - scopes
   - credential

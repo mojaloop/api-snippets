@@ -22,8 +22,6 @@ properties:
   # whitelist the PISP's url ahead of time.
   callbackUri:
     $ref: ./Uri.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - scopes
   - authChannels

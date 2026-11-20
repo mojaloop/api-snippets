@@ -10,8 +10,6 @@ properties:
     $ref: ./PartySubIdOrType.yaml
   fspId:
     $ref: ./FspId.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - partyIdType
   - partyIdentifier
