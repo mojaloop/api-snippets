@@ -88,7 +88,7 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^16.0.8",
+    "@apidevtools/json-schema-ref-parser": "^16.1.1",
     "@redocly/openapi-core": "^2.83.0",
     "commander": "^15.1.0",
     "jest-ts-auto-mock": "^2.1.0",
