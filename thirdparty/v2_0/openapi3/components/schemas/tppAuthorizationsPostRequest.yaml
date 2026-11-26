@@ -51,8 +51,6 @@ properties:
     allOf:
       - $ref: ./DateTime.yaml
     description: The time by which the transfer must be completed, set by the payee DFSP.
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - authorizationRequestId
   - transactionRequestId

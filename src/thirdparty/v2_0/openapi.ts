@@ -423,6 +423,27 @@ export interface components {
          */
         FspId: string;
         /**
+         * PartyIdInfo
+         * @description Data model for the complex type PartyIdInfo.
+         */
+        PartyIdInfo: {
+            partyIdType: components["schemas"]["PartyIdType"];
+            partyIdentifier: components["schemas"]["PartyIdentifier"];
+            partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
+            fspId?: components["schemas"]["FspId"];
+        };
+        /**
+         * ErrorCode
+         * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+         * @example 5100
+         */
+        ErrorCode: string;
+        /**
+         * ErrorDescription
+         * @description Error description string.
+         */
+        ErrorDescription: string;
+        /**
          * ExtensionKey
          * @description Extension key.
          */
@@ -448,28 +469,6 @@ export interface components {
             /** @description Number of Extension elements. */
             extension: components["schemas"]["Extension"][];
         };
-        /**
-         * PartyIdInfo
-         * @description Data model for the complex type PartyIdInfo.
-         */
-        PartyIdInfo: {
-            partyIdType: components["schemas"]["PartyIdType"];
-            partyIdentifier: components["schemas"]["PartyIdentifier"];
-            partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
-            fspId?: components["schemas"]["FspId"];
-            extensionList?: components["schemas"]["ExtensionList"];
-        };
-        /**
-         * ErrorCode
-         * @description The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-         * @example 5100
-         */
-        ErrorCode: string;
-        /**
-         * ErrorDescription
-         * @description Error description string.
-         */
-        ErrorDescription: string;
         /**
          * ErrorInformation
          * @description Data model for the complex type ErrorInformation.
@@ -705,24 +704,6 @@ export interface components {
          */
         Note: string;
         /**
-         * PartyIdTypeTPLink
-         * @description - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
-         * @example PERSONAL_ID
-         * @enum {string}
-         */
-        PartyIdTypeTPLink: "THIRD_PARTY_LINK";
-        /**
-         * PartyIdInfo
-         * @description Data model for the complex type PartyIdInfo.
-         */
-        PartyIdInfoTPLink: {
-            partyIdType: components["schemas"]["PartyIdTypeTPLink"];
-            partyIdentifier: components["schemas"]["PartyIdentifier"];
-            partySubIdOrType?: components["schemas"]["PartySubIdOrType"];
-            fspId?: components["schemas"]["FspId"];
-            extensionList?: components["schemas"]["ExtensionList"];
-        };
-        /**
          * ServiceType
          * @description The ServiceType enumeration describes the types of role for which a DFSP may query using the /services resource.
          *     Below are the allowed values for the enumeration ServiceType - THIRD_PARTY_DFSP - Enum used to query for DFSPs that have thirdparty features enabled. - PISP - Enum used to query for PISPs. - AUTH_SERVICE - Participants which provide Authentication Services.
@@ -748,6 +729,13 @@ export interface components {
              */
             partyList: components["schemas"]["PartyIdInfo"][];
             currency?: components["schemas"]["Currency"];
+        };
+        /**
+         * ErrorInformationResponse
+         * @description Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
+         */
+        ErrorInformationResponse: {
+            errorInformation?: components["schemas"]["ErrorInformation"];
         };
         /**
          * AmountType
@@ -829,63 +817,6 @@ export interface components {
             balanceOfPayments?: components["schemas"]["BalanceOfPayments"];
         };
         /**
-         * QuotesPostRequest
-         * @description The object sent in the POST /quotes request.
-         */
-        QuotesPostRequest: {
-            /**
-             * @description Common ID between the FSPs for the quote object, decided by the Payer FSP. The ID should be reused for resends of the same quote for a transaction. A new ID should be generated for each new quote for a transaction.
-             * @example b51ec534-ee48-4575-b6a9-ead2955b8069
-             */
-            quoteId: components["schemas"]["CorrelationId"];
-            /**
-             * @description Common ID (decided by the Payer FSP) between the FSPs for the future transaction object. The actual transaction will be created as part of a successful transfer process. The ID should be reused for resends of the same quote for a transaction. A new ID should be generated for each new quote for a transaction.
-             * @example a8323bc6-c228-4df2-ae82-e5a997baf899
-             */
-            transactionId: components["schemas"]["CorrelationId"];
-            /**
-             * @description Identifies an optional previously-sent transaction request.
-             * @example a8323bc6-c228-4df2-ae82-e5a997baf890
-             */
-            transactionRequestId?: components["schemas"]["CorrelationId"];
-            /** @description Information about the Payee in the proposed financial transaction. */
-            payee: components["schemas"]["Party"];
-            /** @description Information about the Payer in the proposed financial transaction. */
-            payer: components["schemas"]["Party"];
-            /**
-             * @description SEND for send amount, RECEIVE for receive amount.
-             * @example SEND
-             */
-            amountType: components["schemas"]["AmountType"];
-            /** @description Depending on amountType - If SEND - The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction. If RECEIVE - The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities. */
-            amount: components["schemas"]["Money"];
-            /** @description The fees in the transaction. The fees element should be empty if fees should be non-disclosed. The fees element should be non-empty if fees should be disclosed. */
-            fees?: components["schemas"]["Money"];
-            /** @description Type of transaction for which the quote is requested. */
-            transactionType: components["schemas"]["TransactionType"];
-            /** @description Longitude and Latitude of the initiating Party. Can be used to detect fraud. */
-            geoCode?: components["schemas"]["GeoCode"];
-            /**
-             * @description A memo that will be attached to the transaction.
-             * @example Free-text memo.
-             */
-            note?: components["schemas"]["Note"];
-            /**
-             * @description Expiration is optional. It can be set to get a quick failure in case the peer FSP takes too long to respond. Also, it may be beneficial for Consumer, Agent, and Merchant to know that their request has a time limit.
-             * @example 2016-05-24T08:38:08.699-04:00
-             */
-            expiration?: components["schemas"]["DateTime"];
-            /** @description Optional extension, specific to deployment. */
-            extensionList?: components["schemas"]["ExtensionList"];
-        };
-        /**
-         * ErrorInformationResponse
-         * @description Data model for the complex type object that contains an optional element ErrorInformation used along with 4xx and 5xx responses.
-         */
-        ErrorInformationResponse: {
-            errorInformation?: components["schemas"]["ErrorInformation"];
-        };
-        /**
          * tppTransactionRequestPostRequest
          * @description Used by: PISP
          *     The HTTP request POST /tppTransationRequest is used to request the creation of a transaction request on the server for the transfer described in the request.
@@ -912,7 +843,6 @@ export interface components {
              * @example 2016-05-24T08:38:08.699-04:00
              */
             expiration: string;
-            extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
          * tppAuthorizationsPostRequest
@@ -939,7 +869,6 @@ export interface components {
             transactionType: components["schemas"]["TransactionType"];
             /** @description The time by which the transfer must be completed, set by the payee DFSP. */
             expiration: components["schemas"]["DateTime"];
-            extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
          * ErrorInformationObject
@@ -974,7 +903,6 @@ export interface components {
         TransfersPostRequestGeneric: {
             responseType: components["schemas"]["AuthorizationResponseTypeAccepted"];
             signedPayload: components["schemas"]["SignedPayloadGeneric"];
-            extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
          * SignedPayloadTypeFIDO
@@ -1033,7 +961,6 @@ export interface components {
         TransfersPostRequestFIDO: {
             responseType: components["schemas"]["AuthorizationResponseTypeAccepted"];
             signedPayload: components["schemas"]["SignedPayloadFIDO"];
-            extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
          * tppTransfersPostRequest
@@ -1043,7 +970,6 @@ export interface components {
             executionRequestId: components["schemas"]["CorrelationId"];
             transactionRequestId: components["schemas"]["CorrelationId"];
             authenticationInfo: components["schemas"]["TransfersPostRequestGeneric"] | components["schemas"]["TransfersPostRequestFIDO"];
-            extensionList?: components["schemas"]["ExtensionList"];
         };
         /**
          * TransactionState
@@ -1067,7 +993,6 @@ export interface components {
         tppTransfersPutResponse: {
             completedTimestamp?: components["schemas"]["DateTime"];
             transactionState: components["schemas"]["TransactionState"];
-            extensionList?: components["schemas"]["ExtensionList"];
         };
     };
     responses: {
@@ -1232,7 +1157,7 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": components["schemas"]["ParticipantsIDPutResponse"] | components["schemas"]["PartiesTypeIDPutResponse"] | components["schemas"]["QuotesIDPutResponse"] | components["schemas"]["AuthorizationResponseType"] | components["schemas"]["ConsentStatusIssued"] | components["schemas"]["IlpFulfilment"] | components["schemas"]["Integer"] | components["schemas"]["Note"] | components["schemas"]["PartyIdInfoTPLink"] | components["schemas"]["PartyResult"] | components["schemas"]["ServiceType"] | components["schemas"]["ParticipantsPostRequest"] | components["schemas"]["QuotesPostRequest"];
+                "application/json": components["schemas"]["ParticipantsIDPutResponse"] | components["schemas"]["PartiesTypeIDPutResponse"] | components["schemas"]["QuotesIDPutResponse"] | components["schemas"]["AuthorizationResponseType"] | components["schemas"]["ConsentStatusIssued"] | components["schemas"]["IlpFulfilment"] | components["schemas"]["Integer"] | components["schemas"]["Note"] | components["schemas"]["PartyResult"] | components["schemas"]["ServiceType"] | components["schemas"]["ParticipantsPostRequest"];
             };
         };
         responses: {

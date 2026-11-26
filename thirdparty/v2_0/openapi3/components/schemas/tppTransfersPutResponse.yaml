@@ -18,8 +18,6 @@ properties:
     $ref: ./DateTime.yaml
   transactionState:
     $ref: ./TransactionState.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - transactionRequestState
   - transactionState

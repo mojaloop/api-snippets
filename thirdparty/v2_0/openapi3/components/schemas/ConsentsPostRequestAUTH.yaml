@@ -23,8 +23,6 @@ properties:
       - $ref: ./SignedCredential.yaml
   status:
     $ref: ./ConsentStatus.yaml
-  extensionList:
-    $ref: ./ExtensionList.yaml
 required:
   - consentId
   - scopes

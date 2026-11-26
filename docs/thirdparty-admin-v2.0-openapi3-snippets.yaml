@@ -34,11 +34,9 @@ paths:
                 - $ref: '#/components/schemas/IlpFulfilment'
                 - $ref: '#/components/schemas/Integer'
                 - $ref: '#/components/schemas/Note'
-                - $ref: '#/components/schemas/PartyIdInfoTPLink'
                 - $ref: '#/components/schemas/PartyResult'
                 - $ref: '#/components/schemas/ServiceType'
                 - $ref: '#/components/schemas/ParticipantsPostRequest'
-                - $ref: '#/components/schemas/QuotesPostRequest'
       responses:
         '200':
           description: Ok
@@ -1769,6 +1767,34 @@ components:
       minLength: 1
       maxLength: 32
       description: FSP identifier.
+    PartyIdInfo:
+      title: PartyIdInfo
+      type: object
+      description: Data model for the complex type PartyIdInfo.
+      properties:
+        partyIdType:
+          $ref: '#/components/schemas/PartyIdType'
+        partyIdentifier:
+          $ref: '#/components/schemas/PartyIdentifier'
+        partySubIdOrType:
+          $ref: '#/components/schemas/PartySubIdOrType'
+        fspId:
+          $ref: '#/components/schemas/FspId'
+      required:
+        - partyIdType
+        - partyIdentifier
+    ErrorCode:
+      title: ErrorCode
+      type: string
+      pattern: ^[1-9]\d{3}$
+      description: The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
+      example: '5100'
+    ErrorDescription:
+      title: ErrorDescription
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Error description string.
     ExtensionKey:
       title: ExtensionKey
       type: string
@@ -1809,36 +1835,6 @@ components:
           description: Number of Extension elements.
       required:
         - extension
-    PartyIdInfo:
-      title: PartyIdInfo
-      type: object
-      description: Data model for the complex type PartyIdInfo.
-      properties:
-        partyIdType:
-          $ref: '#/components/schemas/PartyIdType'
-        partyIdentifier:
-          $ref: '#/components/schemas/PartyIdentifier'
-        partySubIdOrType:
-          $ref: '#/components/schemas/PartySubIdOrType'
-        fspId:
-          $ref: '#/components/schemas/FspId'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
-      required:
-        - partyIdType
-        - partyIdentifier
-    ErrorCode:
-      title: ErrorCode
-      type: string
-      pattern: ^[1-9]\d{3}$
-      description: The API data type ErrorCode is a JSON String of four characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed. Each error code in the API is a four-digit number, for example, 1234, where the first number (1 in the example) represents the high-level error category, the second number (2 in the example) represents the low-level error category, and the last two numbers (34 in the example) represent the specific error.
-      example: '5100'
-    ErrorDescription:
-      title: ErrorDescription
-      type: string
-      minLength: 1
-      maxLength: 128
-      description: Error description string.
     ErrorInformation:
       title: ErrorInformation
       type: object
@@ -2309,32 +2305,6 @@ components:
       maxLength: 128
       description: Memo assigned to transaction.
       example: Note sent to Payee.
-    PartyIdTypeTPLink:
-      title: PartyIdTypeTPLink
-      type: string
-      enum:
-        - THIRD_PARTY_LINK
-      description: |
-        - THIRD_PARTY_LINK - is the DFSP's internal reference which allows DFSP to find out the corresponding consent
-      example: PERSONAL_ID
-    PartyIdInfoTPLink:
-      title: PartyIdInfo
-      type: object
-      description: Data model for the complex type PartyIdInfo.
-      properties:
-        partyIdType:
-          $ref: '#/components/schemas/PartyIdTypeTPLink'
-        partyIdentifier:
-          $ref: '#/components/schemas/PartyIdentifier'
-        partySubIdOrType:
-          $ref: '#/components/schemas/PartySubIdOrType'
-        fspId:
-          $ref: '#/components/schemas/FspId'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
-      required:
-        - partyIdType
-        - partyIdentifier
     ServiceType:
       title: ServiceType
       type: string
@@ -2373,171 +2343,6 @@ components:
       required:
         - requestId
         - partyList
-    AmountType:
-      title: AmountType
-      type: string
-      enum:
-        - SEND
-        - RECEIVE
-      description: |-
-        Below are the allowed values for the enumeration AmountType.
-        - SEND - Amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees.
-        - RECEIVE - Amount the Payer would like the Payee to receive, that is, the amount that should be sent to the receiver exclusive of any fees.
-      example: RECEIVE
-    TransactionScenario:
-      title: TransactionScenario
-      type: string
-      enum:
-        - DEPOSIT
-        - WITHDRAWAL
-        - TRANSFER
-        - PAYMENT
-        - REFUND
-      description: |-
-        Below are the allowed values for the enumeration.
-        - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.
-        - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.
-        - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.
-        - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
-        - REFUND - Used for performing a refund of transaction.
-      example: DEPOSIT
-    TransactionSubScenario:
-      title: TransactionSubScenario
-      type: string
-      pattern: ^[A-Z_]{1,32}$
-      description: Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
-      example: LOCALLY_DEFINED_SUBSCENARIO
-    TransactionInitiator:
-      title: TransactionInitiator
-      type: string
-      enum:
-        - PAYER
-        - PAYEE
-      description: |-
-        Below are the allowed values for the enumeration.
-        - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
-        - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
-      example: PAYEE
-    TransactionInitiatorType:
-      title: TransactionInitiatorType
-      type: string
-      enum:
-        - CONSUMER
-        - AGENT
-        - BUSINESS
-        - DEVICE
-      description: |-
-        Below are the allowed values for the enumeration.
-        - CONSUMER - Consumer is the initiator of the transaction.
-        - AGENT - Agent is the initiator of the transaction.
-        - BUSINESS - Business is the initiator of the transaction.
-        - DEVICE - Device is the initiator of the transaction.
-      example: CONSUMER
-    RefundReason:
-      title: RefundReason
-      type: string
-      minLength: 1
-      maxLength: 128
-      description: Reason for the refund.
-      example: Free text indicating reason for the refund.
-    Refund:
-      title: Refund
-      type: object
-      additionalProperties: false
-      description: Data model for the complex type Refund.
-      properties:
-        originalTransactionId:
-          $ref: '#/components/schemas/CorrelationId'
-        refundReason:
-          $ref: '#/components/schemas/RefundReason'
-      required:
-        - originalTransactionId
-    BalanceOfPayments:
-      title: BalanceOfPayments
-      type: string
-      pattern: ^[1-9]\d{2}$
-      description: (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
-      example: '123'
-    TransactionType:
-      title: TransactionType
-      type: object
-      additionalProperties: false
-      description: Data model for the complex type TransactionType.
-      properties:
-        scenario:
-          $ref: '#/components/schemas/TransactionScenario'
-        subScenario:
-          $ref: '#/components/schemas/TransactionSubScenario'
-        initiator:
-          $ref: '#/components/schemas/TransactionInitiator'
-        initiatorType:
-          $ref: '#/components/schemas/TransactionInitiatorType'
-        refundInfo:
-          $ref: '#/components/schemas/Refund'
-        balanceOfPayments:
-          $ref: '#/components/schemas/BalanceOfPayments'
-      required:
-        - scenario
-        - initiator
-        - initiatorType
-    QuotesPostRequest:
-      title: QuotesPostRequest
-      type: object
-      description: The object sent in the POST /quotes request.
-      properties:
-        quoteId:
-          $ref: '#/components/schemas/CorrelationId'
-          description: Common ID between the FSPs for the quote object, decided by the Payer FSP. The ID should be reused for resends of the same quote for a transaction. A new ID should be generated for each new quote for a transaction.
-          example: b51ec534-ee48-4575-b6a9-ead2955b8069
-        transactionId:
-          $ref: '#/components/schemas/CorrelationId'
-          description: Common ID (decided by the Payer FSP) between the FSPs for the future transaction object. The actual transaction will be created as part of a successful transfer process. The ID should be reused for resends of the same quote for a transaction. A new ID should be generated for each new quote for a transaction.
-          example: a8323bc6-c228-4df2-ae82-e5a997baf899
-        transactionRequestId:
-          $ref: '#/components/schemas/CorrelationId'
-          description: Identifies an optional previously-sent transaction request.
-          example: a8323bc6-c228-4df2-ae82-e5a997baf890
-        payee:
-          $ref: '#/components/schemas/Party'
-          description: Information about the Payee in the proposed financial transaction.
-        payer:
-          $ref: '#/components/schemas/Party'
-          description: Information about the Payer in the proposed financial transaction.
-        amountType:
-          $ref: '#/components/schemas/AmountType'
-          description: SEND for send amount, RECEIVE for receive amount.
-          example: SEND
-        amount:
-          $ref: '#/components/schemas/Money'
-          description: Depending on amountType - If SEND - The amount the Payer would like to send, that is, the amount that should be withdrawn from the Payer account including any fees. The amount is updated by each participating entity in the transaction. If RECEIVE - The amount the Payee should receive, that is, the amount that should be sent to the receiver exclusive any fees. The amount is not updated by any of the participating entities.
-        fees:
-          $ref: '#/components/schemas/Money'
-          description: The fees in the transaction. The fees element should be empty if fees should be non-disclosed. The fees element should be non-empty if fees should be disclosed.
-        transactionType:
-          $ref: '#/components/schemas/TransactionType'
-          description: Type of transaction for which the quote is requested.
-        geoCode:
-          $ref: '#/components/schemas/GeoCode'
-          description: Longitude and Latitude of the initiating Party. Can be used to detect fraud.
-        note:
-          $ref: '#/components/schemas/Note'
-          description: A memo that will be attached to the transaction.
-          example: Free-text memo.
-        expiration:
-          $ref: '#/components/schemas/DateTime'
-          description: Expiration is optional. It can be set to get a quick failure in case the peer FSP takes too long to respond. Also, it may be beneficial for Consumer, Agent, and Merchant to know that their request has a time limit.
-          example: '2016-05-24T08:38:08.699-04:00'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
-          description: Optional extension, specific to deployment.
-      required:
-        - quoteId
-        - transactionId
-        - payee
-        - payer
-        - amountType
-        - amount
-        - transactionType
     ConsentRequestChannelType:
       title: ConsentRequestChannelType
       type: string
@@ -2685,8 +2490,6 @@ components:
       properties:
         accounts:
           $ref: '#/components/schemas/AccountList'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - accounts
     ScopeAction:
@@ -2749,8 +2552,6 @@ components:
             $ref: '#/components/schemas/ConsentRequestChannelType'
         callbackUri:
           $ref: '#/components/schemas/Uri'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - consentRequestId
         - partyIdInfo
@@ -2791,8 +2592,6 @@ components:
           $ref: '#/components/schemas/Uri'
         authUri:
           $ref: '#/components/schemas/Uri'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - scopes
         - authChannels
@@ -2828,8 +2627,6 @@ components:
             $ref: '#/components/schemas/ConsentRequestChannelTypeOTP'
         callbackUri:
           $ref: '#/components/schemas/Uri'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - scopes
         - authChannels
@@ -2843,8 +2640,6 @@ components:
       properties:
         authToken:
           $ref: '#/components/schemas/BinaryString'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - authToken
     CredentialType:
@@ -2917,7 +2712,7 @@ components:
               type: string
               description: |
                 CBOR.encoded attestation object
-              minLength: 306
+              minLength: 238
               maxLength: 2048
           required:
             - clientDataJSON
@@ -2992,8 +2787,6 @@ components:
             - $ref: '#/components/schemas/SignedCredential'
         status:
           $ref: '#/components/schemas/ConsentStatus'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - consentId
         - scopes
@@ -3026,8 +2819,6 @@ components:
             $ref: '#/components/schemas/Scope'
         status:
           $ref: '#/components/schemas/ConsentStatus'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - consentId
         - consentRequestId
@@ -3048,8 +2839,6 @@ components:
             $ref: '#/components/schemas/Scope'
         credential:
           $ref: '#/components/schemas/SignedCredential'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - scopes
         - credential
@@ -3100,8 +2889,6 @@ components:
             $ref: '#/components/schemas/Scope'
         credential:
           $ref: '#/components/schemas/VerifiedCredential'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - scopes
         - credential
@@ -3122,8 +2909,6 @@ components:
               $ref: '#/components/schemas/CredentialStatusVerified'
           required:
             - status
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - credential
     ConsentStatusRevoked:
@@ -3147,8 +2932,6 @@ components:
           $ref: '#/components/schemas/ConsentStatusRevoked'
         revokedAt:
           $ref: '#/components/schemas/DateTime'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - status
         - revokedAt
@@ -3162,6 +2945,7 @@ components:
     ParticipantsTypeIDSubIDPostRequest:
       title: ParticipantsTypeIDSubIDPostRequest
       type: object
+      additionalProperties: false
       description: The object sent in the POST /participants/{Type}/{ID}/{SubId} and /participants/{Type}/{ID} requests. An additional optional ExtensionList element has been added as part of v1.1 changes.
       properties:
         fspId:
@@ -3188,10 +2972,104 @@ components:
           maxLength: 256
           items:
             $ref: '#/components/schemas/FspId'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - providers
+    TransactionScenario:
+      title: TransactionScenario
+      type: string
+      enum:
+        - DEPOSIT
+        - WITHDRAWAL
+        - TRANSFER
+        - PAYMENT
+        - REFUND
+      description: |-
+        Below are the allowed values for the enumeration.
+        - DEPOSIT - Used for performing a Cash-In (deposit) transaction. In a normal scenario, electronic funds are transferred from a Business account to a Consumer account, and physical cash is given from the Consumer to the Business User.
+        - WITHDRAWAL - Used for performing a Cash-Out (withdrawal) transaction. In a normal scenario, electronic funds are transferred from a Consumer’s account to a Business account, and physical cash is given from the Business User to the Consumer.
+        - TRANSFER - Used for performing a P2P (Peer to Peer, or Consumer to Consumer) transaction.
+        - PAYMENT - Usually used for performing a transaction from a Consumer to a Merchant or Organization, but could also be for a B2B (Business to Business) payment. The transaction could be online for a purchase in an Internet store, in a physical store where both the Consumer and Business User are present, a bill payment, a donation, and so on.
+        - REFUND - Used for performing a refund of transaction.
+      example: DEPOSIT
+    TransactionSubScenario:
+      title: TransactionSubScenario
+      type: string
+      pattern: ^[A-Z_]{1,32}$
+      description: Possible sub-scenario, defined locally within the scheme (UndefinedEnum Type).
+      example: LOCALLY_DEFINED_SUBSCENARIO
+    TransactionInitiator:
+      title: TransactionInitiator
+      type: string
+      enum:
+        - PAYER
+        - PAYEE
+      description: |-
+        Below are the allowed values for the enumeration.
+        - PAYER - Sender of funds is initiating the transaction. The account to send from is either owned by the Payer or is connected to the Payer in some way.
+        - PAYEE - Recipient of the funds is initiating the transaction by sending a transaction request. The Payer must approve the transaction, either automatically by a pre-generated OTP or by pre-approval of the Payee, or by manually approving in his or her own Device.
+      example: PAYEE
+    TransactionInitiatorType:
+      title: TransactionInitiatorType
+      type: string
+      enum:
+        - CONSUMER
+        - AGENT
+        - BUSINESS
+        - DEVICE
+      description: |-
+        Below are the allowed values for the enumeration.
+        - CONSUMER - Consumer is the initiator of the transaction.
+        - AGENT - Agent is the initiator of the transaction.
+        - BUSINESS - Business is the initiator of the transaction.
+        - DEVICE - Device is the initiator of the transaction.
+      example: CONSUMER
+    RefundReason:
+      title: RefundReason
+      type: string
+      minLength: 1
+      maxLength: 128
+      description: Reason for the refund.
+      example: Free text indicating reason for the refund.
+    Refund:
+      title: Refund
+      type: object
+      additionalProperties: false
+      description: Data model for the complex type Refund.
+      properties:
+        originalTransactionId:
+          $ref: '#/components/schemas/CorrelationId'
+        refundReason:
+          $ref: '#/components/schemas/RefundReason'
+      required:
+        - originalTransactionId
+    BalanceOfPayments:
+      title: BalanceOfPayments
+      type: string
+      pattern: ^[1-9]\d{2}$
+      description: (BopCode) The API data type [BopCode](https://www.imf.org/external/np/sta/bopcode/) is a JSON String of 3 characters, consisting of digits only. Negative numbers are not allowed. A leading zero is not allowed.
+      example: '123'
+    TransactionType:
+      title: TransactionType
+      type: object
+      additionalProperties: false
+      description: Data model for the complex type TransactionType.
+      properties:
+        scenario:
+          $ref: '#/components/schemas/TransactionScenario'
+        subScenario:
+          $ref: '#/components/schemas/TransactionSubScenario'
+        initiator:
+          $ref: '#/components/schemas/TransactionInitiator'
+        initiatorType:
+          $ref: '#/components/schemas/TransactionInitiatorType'
+        refundInfo:
+          $ref: '#/components/schemas/Refund'
+        balanceOfPayments:
+          $ref: '#/components/schemas/BalanceOfPayments'
+      required:
+        - scenario
+        - initiator
+        - initiatorType
     tppAuthorizationsPostRequest:
       title: tppAuthorizationsPostRequest
       description: |-
@@ -3234,8 +3112,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/DateTime'
           description: The time by which the transfer must be completed, set by the payee DFSP.
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - authorizationRequestId
         - transactionRequestId
@@ -3262,8 +3138,6 @@ components:
       properties:
         responseType:
           $ref: '#/components/schemas/AuthorizationResponseTypeRejected'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - responseType
     AuthorizationResponseTypeAccepted:
@@ -3372,8 +3246,6 @@ components:
           $ref: '#/components/schemas/AuthorizationResponseTypeAccepted'
         signedPayload:
           $ref: '#/components/schemas/SignedPayloadFIDO'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - responseType
         - signedPayload
@@ -3405,8 +3277,6 @@ components:
           $ref: '#/components/schemas/AuthorizationResponseTypeAccepted'
         signedPayload:
           $ref: '#/components/schemas/SignedPayloadGeneric'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - responseType
         - signedPayload
@@ -3432,8 +3302,6 @@ components:
           $ref: '#/components/schemas/SignedPayloadTypeFIDO'
         fidoSignedPayload:
           $ref: '#/components/schemas/FIDOPublicKeyCredentialAssertion'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - verificationRequestId
         - challenge
@@ -3461,8 +3329,6 @@ components:
           $ref: '#/components/schemas/SignedPayloadTypeGeneric'
         genericSignedPayload:
           $ref: '#/components/schemas/BinaryString'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - verificationRequestId
         - challenge
@@ -3487,8 +3353,6 @@ components:
       properties:
         authenticationResponse:
           $ref: '#/components/schemas/AuthenticationResponse'
-        extensionList:
-          $ref: '#/components/schemas/ExtensionList'
       required:
         - authenticationResponse
   parameters:
