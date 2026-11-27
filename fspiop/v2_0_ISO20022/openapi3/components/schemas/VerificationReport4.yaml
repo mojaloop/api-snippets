@@ -47,7 +47,7 @@ required:
   - OrgnlId
   - Vrfctn
 example:
-  OrgnlId: 1234567890123456789012345678901234
+  OrgnlId: '1234567890123456789012345678901234'
   Vrfctn: true
   OrgnlPtyAndAcctId:
     Nm: John Doe
@@ -56,8 +56,8 @@ example:
       Dept: Dept
       SubDept: SubDept
       StrtNm: 1234 Elm St
-      BldgNb: 1234
-      PstCd: 12345
+      BldgNb: '1234'
+      PstCd: '12345'
       TwnNm: Anytown
       CtrySubDvsn: CA
       Ctry: US
@@ -65,7 +65,7 @@ example:
       OrgId:
         AnyBIC: ABCDUS33
         Othr:
-          Id: 123456789
+          Id: '123456789'
           Issr: ABA
   UpdtdPtyAndAcctId:
     Nm: John Doe
@@ -74,8 +74,8 @@ example:
       Dept: Dept
       SubDept: SubDept
       StrtNm: 1234 Elm St
-      BldgNb: 1234
-      PstCd: 12345
+      BldgNb: '1234'
+      PstCd: '12345'
       TwnNm: Anytown
       CtrySubDvsn: CA
       Ctry: US
@@ -83,5 +83,5 @@ example:
       OrgId:
         AnyBIC: ABCDUS33
         Othr:
-          Id: 123456789
+          Id: '123456789'
           Issr: ABA

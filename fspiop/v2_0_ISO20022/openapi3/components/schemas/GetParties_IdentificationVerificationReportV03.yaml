@@ -29,12 +29,12 @@ required:
   - Rpt
 example:
   Assgnmt:
-    MsgId: 123
+    MsgId: '123'
     CreDtTm: '2020-01-01T00:00:00Z'
     Assgnr:
       OrgId:
         Othr:
-          Id: 123
+          Id: '123'
           SchmeNm:
             Cd: BIC
           Issr: BIC
@@ -43,7 +43,7 @@ example:
         Othr:
           Id: DFSPID
   Rpt:
-    OrgnlId: 12345678
+    OrgnlId: '12345678'
     Vrfctn: true
     UpdtdPtyAndAcctId:
       Pty:
@@ -68,7 +68,7 @@ example:
         Id:
           OrgId:
             Othr:
-              Id: 18761231234
+              Id: '18761231234'
             SchmeNm:
               Prtry: MSISDN
         CtryOfRes: BE

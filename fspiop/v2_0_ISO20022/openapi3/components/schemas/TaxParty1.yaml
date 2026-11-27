@@ -26,6 +26,6 @@ properties:
 
           Type of tax payer.
 example:
-  TaxId: 123456789
-  RegnId: 123456789
+  TaxId: '123456789'
+  RegnId: '123456789'
   TaxTp: VAT

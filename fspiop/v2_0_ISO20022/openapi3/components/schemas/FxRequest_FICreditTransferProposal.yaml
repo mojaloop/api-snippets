@@ -23,12 +23,12 @@ required:
   - CdtTrfTxInf
 example:
   GrpHdr:
-    MsgId: 12345
+    MsgId: '12345'
     CreDtTm: '2020-01-01T00:00:00Z'
-    NbOfTxs: 1
+    NbOfTxs: '1'
     TtlIntrBkSttlmAmt:
       Ccy: EUR
-      Value: 100.0
+      Value: '100.0'
     SttlmInf:
       SttlmMtd: INDA
       SttlmAcct:
@@ -47,12 +47,12 @@ example:
       CtgyPurp: CASH
     CdtTrfTxInf:
       PmtId:
-        InstrId: 12345
-        EndToEndId: 12345
+        InstrId: '12345'
+        EndToEndId: '12345'
       Amt:
         InstdAmt:
           Ccy: EUR
-          Value: 100.0
+          Value: '100.0'
       Cdtr:
         Nm: Name
       CdtrAcct:
@@ -73,7 +73,7 @@ example:
           BICFI: BIC
       IntrBkSttlmAmt:
         Ccy: EUR
-        Value: 100.0
+        Value: '100.0'
       PmtTpInf:
         InstrPrty: NORM
         ClrChanl: RTGS

@@ -26,7 +26,7 @@ example:
   FinInstnId:
     BICFI: J5BMVH7D
   BrnchId:
-    Id: 123
+    Id: '123'
     Nm: Name
     PstlAdr:
       AdrTp: ADDR

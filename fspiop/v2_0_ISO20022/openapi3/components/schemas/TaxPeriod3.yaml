@@ -26,7 +26,7 @@ properties:
 
           Year related to the tax payment.
 example:
-  Yr: 2020
+  Yr: '2020'
   Tp: MM01
   FrToDt:
     FrDt: '2020-01-01'

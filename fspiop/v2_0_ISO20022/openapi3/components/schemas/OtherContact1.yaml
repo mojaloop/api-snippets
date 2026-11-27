@@ -22,4 +22,4 @@ required:
   - ChanlTp
 example:
   ChanlTp: PHON
-  Id: 1234567890
+  Id: '1234567890'

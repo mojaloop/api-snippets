@@ -36,18 +36,18 @@ properties:
           $ref: ./TaxRecordDetails3.yaml
         type: array
 example:
-  Rate: 0.0
+  Rate: '0.0'
   TaxblBaseAmt:
     Ccy: EUR
-    Amt: 0
+    Amt: '0'
   TtlAmt:
     Ccy: EUR
-    Amt: 0
+    Amt: '0'
   Dtls:
     Tp: T1
     Ctry: CH
     Cd: CHF
     Amt:
       Ccy: CHF
-      Amt: 1000
-    Inf: 12345
+      Amt: '1000'
+    Inf: '12345'

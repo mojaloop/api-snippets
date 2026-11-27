@@ -23,4 +23,4 @@ required:
 example:
   Tp:
     Cd: IBAN
-  Id: 123
+  Id: '123'

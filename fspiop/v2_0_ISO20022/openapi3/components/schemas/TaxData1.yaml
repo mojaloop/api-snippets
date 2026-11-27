@@ -96,21 +96,21 @@ example:
     Titl: Mr
     Nm: John Doe
   AdmstnZone: CH
-  RefNb: 12345
+  RefNb: '12345'
   Mtd: A
   TtlTaxblBaseAmt:
     Ccy: CHF
-    Amt: 1000
+    Amt: '1000'
   TtlTaxAmt:
     Ccy: CHF
-    Amt: 100
+    Amt: '100'
   Dt: '2018-01-01'
-  SeqNb: 1
+  SeqNb: '1'
   Rcrd:
     Tp: T1
     Ctry: CH
     Cd: CHF
     Amt:
       Ccy: CHF
-      Amt: 1000
-    Inf: 12345
+      Amt: '1000'
+    Inf: '12345'

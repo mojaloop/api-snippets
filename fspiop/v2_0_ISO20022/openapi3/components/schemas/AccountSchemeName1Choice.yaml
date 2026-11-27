@@ -25,4 +25,4 @@ anyOf:
     required:
       - Prtry
 example:
-  Cd: 1111
+  Cd: '1111'

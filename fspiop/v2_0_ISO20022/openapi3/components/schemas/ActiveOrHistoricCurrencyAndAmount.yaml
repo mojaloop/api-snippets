@@ -21,5 +21,5 @@ required:
   - ActiveOrHistoricCurrencyAndAmount
   - Ccy
 example:
-  ActiveOrHistoricCurrencyAndAmount: 123.45
+  ActiveOrHistoricCurrencyAndAmount: '123.45'
   Ccy: USD

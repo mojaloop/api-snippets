@@ -23,16 +23,16 @@ required:
   - CdtTrfTxInf
 example:
   GrpHdr:
-    MsgId: 20191113001
+    MsgId: '20191113001'
     CreDtTm: '2019-11-13T10:00:00'
-    NbOfTxs: 1
-    CtrlSum: 1000
+    NbOfTxs: '1'
+    CtrlSum: '1000'
     InitgPty:
       Nm: Initiating Party Name
       Id:
         OrgId:
           Othr:
-            Id: 123456789
+            Id: '123456789'
             SchmeNm:
               Cd: BBA
     FwdgAgt:
@@ -46,8 +46,8 @@ example:
         BICFI: CCCCCCCC
   CdtTrfTxInf:
     PmtId:
-      InstrId: 20191113001
-      EndToEndId: 20191113001
+      InstrId: '20191113001'
+      EndToEndId: '20191113001'
     PmtTpInf:
       InstrPrty: NORM
       CtgyPurp:
@@ -55,7 +55,7 @@ example:
     InstrForCdtrAgt:
       Cd: /ACC/123456789
     IntrBkSttlmAmt:
-      Amt: 1000
+      Amt: '1000'
       Ccy: EUR
     ChrgBr: SHAR
     CdtrAgt:

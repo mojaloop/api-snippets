@@ -36,16 +36,16 @@ required:
   - NbOfTxs
   - SttlmInf
 example:
-  MsgId: 12345
+  MsgId: '12345'
   CreDtTm: '2020-01-01T00:00:00Z'
   PmtInstrXpryDtTm: '2020-01-01T00:00:00Z'
-  NbOfTxs: 1
+  NbOfTxs: '1'
   SttlmInf:
     SttlmMtd: INDA
     SttlmAcct:
       Id:
-        IBAN: 123
+        IBAN: '123'
     SttlmAcctOwnr:
       Nm: John Doe
     SttlmAcctSvcr:
-      BICFI: 123
+      BICFI: '123'

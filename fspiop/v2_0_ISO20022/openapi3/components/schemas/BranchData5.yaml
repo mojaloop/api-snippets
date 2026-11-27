@@ -34,8 +34,8 @@ properties:
 
           Information that locates and identifies a specific address, as defined by postal services.
 example:
-  Id: 123
-  LEI: 123
+  Id: '123'
+  LEI: '123'
   Nm: Name
   PstlAdr:
     AdrTp: ADDR

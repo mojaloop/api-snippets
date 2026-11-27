@@ -31,12 +31,12 @@ example:
         OrgId:
           AnyBIC: BIC
           Othr:
-            Id: 123
+            Id: '123'
             SchmeNm:
               Cd: IBAN
               Issr: BIC
       CtryOfRes: CH
       CtctDtls:
         Nm: Name
-        PhneNb: 123
+        PhneNb: '123'
         EmailAdr:

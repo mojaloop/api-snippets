@@ -51,9 +51,10 @@ properties:
 example:
   BICFI: J5BMVH7D
   ClrSysMmbId:
-    ClrSysId: 1234
-    MmbId: 123
-  LEI: 123
+    ClrSysId:
+      Cd: CHQB
+    MmbId: '123'
+  LEI: '123'
   Nm: Name
   PstlAdr:
     AdrTp: ADDR
@@ -67,8 +68,8 @@ example:
     Ctry: Country
     AdrLine: Address line
   Othr:
-    Id: 123
+    Id: '123'
     SchmeNm:
-      Cd: 123
-      Prtry: 123
-    Issr: 123
+      Cd: '123'
+      Prtry: '123'
+    Issr: '123'

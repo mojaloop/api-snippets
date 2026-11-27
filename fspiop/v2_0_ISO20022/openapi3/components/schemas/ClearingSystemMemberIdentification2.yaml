@@ -25,4 +25,4 @@ required:
 example:
   ClrSysId:
     Cd: CHQB
-  MmbId: 123456789
+  MmbId: '123456789'
