@@ -1403,7 +1403,7 @@ components:
           required:
             - Prtry
       example:
-        Cd: 1111
+        Cd: "1111"
     ActiveCurrencyAndAmount:
       title: ActiveCurrencyAndAmount
       type: object
@@ -1425,13 +1425,13 @@ components:
         - ActiveCurrencyAndAmount
         - Ccy
       example:
-        ActiveCurrencyAndAmount: 123.45
+        ActiveCurrencyAndAmount: "123.45"
         Ccy: USD
     ActiveCurrencyAndAmount_SimpleType:
       title: ActiveCurrencyAndAmount_SimpleType
       type: string
       pattern: ^(?!0\d)(\d{1,18}|\d{1,17}.\d{1}|\d{1,16}.\d{1,2}|\d{1,15}.\d{1,3}|\d{1,14}.\d{1,4}|\d{1,13}.\d{1,5})$
-      example: 123.45
+      example: "123.45"
     ActiveCurrencyCode:
       title: ActiveCurrencyCode
       type: string
@@ -1636,12 +1636,12 @@ components:
         - ActiveOrHistoricCurrencyAndAmount
         - Ccy
       example:
-        ActiveOrHistoricCurrencyAndAmount: 123.45
+        ActiveOrHistoricCurrencyAndAmount: "123.45"
         Ccy: USD
     ActiveOrHistoricCurrencyAndAmount_SimpleType:
       title: ActiveOrHistoricCurrencyAndAmount_SimpleType
       type: string
-      example: 123.45
+      example: "123.45"
       pattern: ^(?!0\d)(\d{1,18}|\d{1,17}.\d{1}|\d{1,16}.\d{1,2}|\d{1,15}.\d{1,3}|\d{1,14}.\d{1,4}|\d{1,13}.\d{1,5})$
     ActiveOrHistoricCurrencyCode:
       title: ActiveOrHistoricCurrencyCode
@@ -1911,7 +1911,7 @@ components:
       type: string
       description: |
         Rate expressed as a decimal, for example, 0.7 is 7/10 and 70%.
-      example: 0.7
+      example: "0.7"
       pattern: ^(?!0\d)(\d{1,11}|\d{1,10}.\d{1}|\d{1,9}.\d{1,2}|\d{1,8}.\d{1,3}|\d{1,7}.\d{1,4}|\d{1,6}.\d{1,5}|\d{1,5}.\d{1,6}|\d{1,4}.\d{1,7}|\d{1,3}.\d{1,8}|\d{1,2}.\d{1,9}|\d{1}.\d{1,10})$
     BranchAndFinancialInstitutionIdentification6:
       title: BranchAndFinancialInstitutionIdentification6
@@ -1948,7 +1948,7 @@ components:
         FinInstnId:
           BICFI: J5BMVH7D
         BrnchId:
-          Id: 123
+          Id: "123"
           Nm: Name
           PstlAdr:
             AdrTp: ADDR
@@ -1989,7 +1989,7 @@ components:
         FinInstnId:
           BICFI: J5BMVH7D
         BrnchId:
-          Id: 123
+          Id: "123"
           Nm: Name
           PstlAdr:
             AdrTp: ADDR
@@ -2043,7 +2043,7 @@ components:
                 Information that locates and identifies a specific address, as
                 defined by postal services.
       example:
-        Id: 123
+        Id: "123"
         Nm: Name
         PstlAdr:
           AdrTp: ADDR
@@ -2097,8 +2097,8 @@ components:
                 Information that locates and identifies a specific address, as
                 defined by postal services.
       example:
-        Id: 123
-        LEI: 123
+        Id: "123"
+        LEI: "123"
         Nm: Name
         PstlAdr:
           AdrTp: ADDR
@@ -2169,7 +2169,7 @@ components:
         Ccy: EUR
         Nm: My account
         Prxy:
-          Id: 12345
+          Id: "12345"
     CashAccountType2Choice:
       title: CashAccountType2Choice
       description: |
@@ -2316,7 +2316,7 @@ components:
         - Agt
       example:
         Amt:
-          ActiveOrHistoricCurrencyAndAmount: 123.45
+          ActiveOrHistoricCurrencyAndAmount: "123.45"
           Ccy: USD
         Agt:
           BrnchId:
@@ -2408,7 +2408,7 @@ components:
       example:
         ClrSysId:
           Cd: CHQB
-        MmbId: 123456789
+        MmbId: "123456789"
     Contact13:
       title: Contact13
       description: |
@@ -2776,16 +2776,16 @@ components:
             Prtry: PROPRIETARY
           SeqTp: SEQTP
         IntrBkSttlmAmt:
-          ActiveCurrencyAndAmount: 123.45
+          ActiveCurrencyAndAmount: "123.45"
           Ccy: USD
         InstdAmt:
-          ActiveOrHistoricCurrencyAndAmount: 123.45
+          ActiveOrHistoricCurrencyAndAmount: "123.45"
           Ccy: USD
-        XchgRate: 123.45
+        XchgRate: "123.45"
         ChrgBr: SHAR
         ChrgsInf:
           Amt:
-            ActiveOrHistoricCurrencyAndAmount: 123.45
+            ActiveOrHistoricCurrencyAndAmount: "123.45"
             Ccy: USD
           Agt:
             BrnchId:
@@ -2944,7 +2944,7 @@ components:
             Cd: CHQB
             Prtry: PROPRIETARY
         IntrBkSttlmAmt:
-          Amount: 123.45
+          Amount: "123.45"
           Ccy: EUR
         Dbtr:
           Nm: Debtor Name
@@ -3075,7 +3075,7 @@ components:
             Cd: CHQB
             Prtry: PROPRIETARY
         IntrBkSttlmAmt:
-          Amount: 123.45
+          Amount: "123.45"
           Ccy: EUR
         Dbtr:
           Nm: Debtor Name
@@ -3277,7 +3277,7 @@ components:
         Specifies an alphanumeric string with a length of 4 characters.
       type: string
       pattern: ^[a-zA-Z0-9]{4}$
-      example: 1234
+      example: "1234"
     Execute_FIToFICustomerCreditTransferV13:
       title: Execute_FIToFICustomerCreditTransferV13
       type: object
@@ -3304,37 +3304,37 @@ components:
         - CdtTrfTxInf
       example:
         GrpHdr:
-          MsgId: 12345
+          MsgId: "12345"
           CreDtTm: "2020-01-01T00:00:00Z"
           PmtInstrXpryDtTm: "2020-01-01T00:00:00Z"
-          NbOfTxs: 1
+          NbOfTxs: "1"
           SttlmInf:
             SttlmMtd: INDA
             SttlmAcct:
               Id:
-                IBAN: 123
+                IBAN: "123"
             SttlmAcctOwnr:
               Nm: John Doe
             SttlmAcctSvcr:
-              BICFI: 123
+              BICFI: "123"
         CdtTrfTxInf:
           PmtId:
-            InstrId: 123
-            EndToEndId: 123
+            InstrId: "123"
+            EndToEndId: "123"
           PmtTpInf:
             InstrPrty: NORM
           InstdAmt:
-            Amt: 123
+            Amt: "123"
             Ccy: EUR
           ChrgBr: SHAR
           CdtrAgt:
             FinInstnId:
-              BICFI: 123
+              BICFI: "123"
           Cdtr:
             Nm: John Doe
           CdtrAcct:
             Id:
-              IBAN: 123
+              IBAN: "123"
           RmtInf:
             Ustrd: Test
     Extension:
@@ -3387,7 +3387,7 @@ components:
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalCashAccountType1Code:
       title: ExternalCashAccountType1Code
       description: >
@@ -3396,7 +3396,7 @@ components:
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalCategoryPurpose1Code:
       description: >
         Specifies the category purpose, as published in an external category
@@ -3406,7 +3406,7 @@ components:
       maxLength: 4
       minLength: 1
       type: string
-      example: 1234
+      example: "1234"
     ExternalChargeType1Code:
       title: ExternalChargeType1Code
       description: |
@@ -3414,7 +3414,7 @@ components:
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalClearingSystemIdentification1Code:
       title: ExternalClearingSystemIdentification1Code
       description: |
@@ -3422,35 +3422,35 @@ components:
       type: string
       minLength: 1
       maxLength: 5
-      example: 12345
+      example: "12345"
     ExternalCreditorAgentInstruction1Code:
       title: ExternalCreditorAgentInstruction1Code
       description: Specifies the instruction given by the creditor to the creditor agent.
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalFinancialInstitutionIdentification1Code:
       title: ExternalFinancialInstitutionIdentification1Code
       description: Specifies the external financial institution identification code.
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalLocalInstrument1Code:
       title: ExternalLocalInstrument1Code
       description: Specifies the external local instrument identification code.
       type: string
       minLength: 1
       maxLength: 35
-      example: 12345
+      example: "12345"
     ExternalOrganisationIdentification1Code:
       title: ExternalOrganisationIdentification1Code
       description: Specifies the external organisation identification code.
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalPaymentTransactionStatus1Code:
       title: ExternalPaymentTransactionStatus1Code
       description: >
@@ -3484,42 +3484,42 @@ components:
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalProxyAccountType1Code:
       title: ExternalProxyAccountType1Code
       description: Specifies the external proxy account type code.
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalPurpose1Code:
       title: ExternalPurpose1Code
       description: Specifies the external purpose code.
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalServiceLevel1Code:
       title: ExternalServiceLevel1Code
       description: Specifies the external service level code.
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalStatusReason1Code:
       title: ExternalStatusReason1Code
       description: Specifies the external status reason code.
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     ExternalVerificationReason1Code:
       title: ExternalVerificationReason1Code
       description: Specifies the external verification reason code.
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     FinancialIdentificationSchemeName1Choice:
       title: FinancialIdentificationSchemeName1Choice
       type: object
@@ -3605,9 +3605,10 @@ components:
       example:
         BICFI: J5BMVH7D
         ClrSysMmbId:
-          ClrSysId: 1234
-          MmbId: 123
-        LEI: 123
+          ClrSysId:
+            Cd: CHQB
+          MmbId: "123"
+        LEI: "123"
         Nm: Name
         PstlAdr:
           AdrTp: ADDR
@@ -3621,11 +3622,11 @@ components:
           Ctry: Country
           AdrLine: Address line
         Othr:
-          Id: 123
+          Id: "123"
           SchmeNm:
-            Cd: 123
-            Prtry: 123
-          Issr: 123
+            Cd: "123"
+            Prtry: "123"
+          Issr: "123"
     FinancialInstitutionIdentification23:
       title: FinancialInstitutionIdentification23
       type: object
@@ -3682,9 +3683,10 @@ components:
       example:
         BICFI: J5BMVH7D
         ClrSysMmbId:
-          ClrSysId: 1234
-          MmbId: 123
-        LEI: 123
+          ClrSysId:
+            Cd: CHQB
+          MmbId: "123"
+        LEI: "123"
         Nm: Name
         PstlAdr:
           AdrTp: ADDR
@@ -3698,11 +3700,11 @@ components:
           Ctry: Country
           AdrLine: Address line
         Othr:
-          Id: 123
+          Id: "123"
           SchmeNm:
-            Cd: 123
-            Prtry: 123
-          Issr: 123
+            Cd: "123"
+            Prtry: "123"
+          Issr: "123"
     FxRequest_FICreditTransferProposal:
       title: FxRequest_FICreditTransferProposal
       type: object
@@ -3731,12 +3733,12 @@ components:
         - CdtTrfTxInf
       example:
         GrpHdr:
-          MsgId: 12345
+          MsgId: "12345"
           CreDtTm: "2020-01-01T00:00:00Z"
-          NbOfTxs: 1
+          NbOfTxs: "1"
           TtlIntrBkSttlmAmt:
             Ccy: EUR
-            Value: 100
+            Value: "100.0"
           SttlmInf:
             SttlmMtd: INDA
             SttlmAcct:
@@ -3755,12 +3757,12 @@ components:
             CtgyPurp: CASH
           CdtTrfTxInf:
             PmtId:
-              InstrId: 12345
-              EndToEndId: 12345
+              InstrId: "12345"
+              EndToEndId: "12345"
             Amt:
               InstdAmt:
                 Ccy: EUR
-                Value: 100
+                Value: "100.0"
             Cdtr:
               Nm: Name
             CdtrAcct:
@@ -3781,7 +3783,7 @@ components:
                 BICFI: BIC
             IntrBkSttlmAmt:
               Ccy: EUR
-              Value: 100
+              Value: "100.0"
             PmtTpInf:
               InstrPrty: NORM
               ClrChanl: RTGS
@@ -3837,8 +3839,8 @@ components:
         GrpHdr:
           MsgId: 20191122-123456
           CreDtTm: "2019-11-22T12:34:56"
-          NbOfTxs: 1
-          CtrlSum: 100
+          NbOfTxs: "1"
+          CtrlSum: "100.00"
           InitgPty:
             Nm: Initiating Party Name
           MsgRcpt:
@@ -3851,7 +3853,7 @@ components:
             InstrPrty: NORM
             CtgyPurp: SUPP
           IntrBkSttlmAmt:
-            Amt: 100
+            Amt: "100.00"
             Ccy: EUR
           ChrgBr: SHAR
           Cdtr:
@@ -3936,16 +3938,16 @@ components:
         - CdtTrfTxInf
       example:
         GrpHdr:
-          MsgId: 20191113001
+          MsgId: "20191113001"
           CreDtTm: "2019-11-13T10:00:00"
-          NbOfTxs: 1
-          CtrlSum: 1000
+          NbOfTxs: "1"
+          CtrlSum: "1000"
           InitgPty:
             Nm: Initiating Party Name
             Id:
               OrgId:
                 Othr:
-                  Id: 123456789
+                  Id: "123456789"
                   SchmeNm:
                     Cd: BBA
           FwdgAgt:
@@ -3959,8 +3961,8 @@ components:
               BICFI: CCCCCCCC
         CdtTrfTxInf:
           PmtId:
-            InstrId: 20191113001
-            EndToEndId: 20191113001
+            InstrId: "20191113001"
+            EndToEndId: "20191113001"
           PmtTpInf:
             InstrPrty: NORM
             CtgyPurp:
@@ -3968,7 +3970,7 @@ components:
           InstrForCdtrAgt:
             Cd: /ACC/123456789
           IntrBkSttlmAmt:
-            Amt: 1000
+            Amt: "1000"
             Ccy: EUR
           ChrgBr: SHAR
           CdtrAgt:
@@ -4012,7 +4014,7 @@ components:
       required:
         - Id
       example:
-        Id: 123
+        Id: "123"
         SchmeNm:
           Cd: IBAN
         Issr: BIC
@@ -4047,7 +4049,7 @@ components:
       required:
         - Id
       example:
-        Id: 123
+        Id: "123"
         SchmeNm:
           Cd: IBAN
         Issr: BIC
@@ -4075,7 +4077,7 @@ components:
       required:
         - Id
       example:
-        Id: 123
+        Id: "123"
         Issr: BIC
     GenericIdentification30:
       title: GenericIdentification30
@@ -4108,7 +4110,7 @@ components:
         - Id
         - Issr
       example:
-        Id: 1234
+        Id: "1234"
         Issr: BIC
         SchmeNm: BICFI
     GenericOrganisationIdentification1:
@@ -4140,7 +4142,7 @@ components:
       required:
         - Id
       example:
-        Id: 123
+        Id: "123"
         SchmeNm:
           Cd: BIC
         Issr: BIC
@@ -4172,7 +4174,7 @@ components:
       required:
         - Id
       example:
-        Id: 123
+        Id: "123"
         SchmeNm:
           Cd: BIC
         Issr: BIC
@@ -4205,7 +4207,7 @@ components:
       required:
         - Id
       example:
-        Id: 123
+        Id: "123"
         SchmeNm:
           Cd: DRLC
         Issr: BIC
@@ -4236,7 +4238,7 @@ components:
       required:
         - Id
       example:
-        Id: 123
+        Id: "123"
         SchmeNm:
           Cd: DRLC
         Issr: BIC
@@ -4272,49 +4274,49 @@ components:
         - Rpt
       example:
         Assgnmt:
-          Id: 123
+          Id: "123"
           CreDtTm: "2013-03-07T16:30:00"
           Assgnr:
             Id:
-              Id: 123
+              Id: "123"
               SchmeNm:
                 Cd: IBAN
               Issr: BIC
           Assgne:
             Id:
-              Id: 123
+              Id: "123"
               SchmeNm:
                 Cd: IBAN
               Issr: BIC
         Rpt:
-          Id: 123
+          Id: "123"
           CreDtTm: "2013-03-07T16:30:00"
           RptgPty:
             Id:
-              Id: 123
+              Id: "123"
               SchmeNm:
                 Cd: IBAN
               Issr: BIC
           RptdPty:
             Id:
-              Id: 123
+              Id: "123"
               SchmeNm:
                 Cd: IBAN
               Issr: BIC
           RptdDoc:
-            Nb: 123
+            Nb: "123"
             RltdDt: "2013-03-07"
             RltdDtTp:
-              Cd: 123
+              Cd: "123"
           Rsn:
-            Cd: 123
-            Prtry: 123
+            Cd: "123"
+            Prtry: "123"
         SplmtryData:
-          PlcAndNm: 123
-          Envlp: 123
+          PlcAndNm: "123"
+          Envlp: {}
           RltdDt: "2013-03-07"
           RltdDtTp:
-            Cd: 123
+            Cd: "123"
     GetParties_IdentificationVerificationReportV03:
       title: GetParties_IdentificationVerificationReportV03
       type: object
@@ -4347,12 +4349,12 @@ components:
         - Rpt
       example:
         Assgnmt:
-          MsgId: 123
+          MsgId: "123"
           CreDtTm: "2020-01-01T00:00:00Z"
           Assgnr:
             OrgId:
               Othr:
-                Id: 123
+                Id: "123"
                 SchmeNm:
                   Cd: BIC
                 Issr: BIC
@@ -4361,7 +4363,7 @@ components:
               Othr:
                 Id: DFSPID
         Rpt:
-          OrgnlId: 12345678
+          OrgnlId: "12345678"
           Vrfctn: true
           UpdtdPtyAndAcctId:
             Pty:
@@ -4386,7 +4388,7 @@ components:
               Id:
                 OrgId:
                   Othr:
-                    Id: 18761231234
+                    Id: "18761231234"
                   SchmeNm:
                     Prtry: MSISDN
               CtryOfRes: BE
@@ -4441,12 +4443,12 @@ components:
         - NbOfTxs
         - SttlmInf
       example:
-        MsgId: 12345
+        MsgId: "12345"
         CreDtTm: "2020-01-01T00:00:00Z"
-        NbOfTxs: 1
+        NbOfTxs: "1"
         TtlIntrBkSttlmAmt:
           Ccy: EUR
-          Value: 100
+          Value: "100.0"
         SttlmInf:
           SttlmMtd: INDA
           SttlmAcct:
@@ -4494,7 +4496,7 @@ components:
         - MsgId
         - CreDtTm
       example:
-        MsgId: 12345
+        MsgId: "12345"
         CreDtTm: "2020-01-01T00:00:00Z"
     GroupHeader129:
       title: GroupHeader129
@@ -4535,19 +4537,19 @@ components:
         - NbOfTxs
         - SttlmInf
       example:
-        MsgId: 12345
+        MsgId: "12345"
         CreDtTm: "2020-01-01T00:00:00Z"
         PmtInstrXpryDtTm: "2020-01-01T00:00:00Z"
-        NbOfTxs: 1
+        NbOfTxs: "1"
         SttlmInf:
           SttlmMtd: INDA
           SttlmAcct:
             Id:
-              IBAN: 123
+              IBAN: "123"
           SttlmAcctOwnr:
             Nm: John Doe
           SttlmAcctSvcr:
-            BICFI: 123
+            BICFI: "123"
     IBAN2007Identifier:
       title: IBAN2007Identifier
       description: >
@@ -4613,7 +4615,7 @@ components:
         Year represented by YYYY (ISO 8601).
       type: string
       pattern: ^\d{4}(Z|([+-]\d{2}:\d{2})){0,1}$
-      example: 2019
+      example: "2019"
     IdentificationAssignment3:
       title: IdentificationAssignment3
       type: object
@@ -4662,19 +4664,19 @@ components:
         - Assgnr
         - Assgne
       example:
-        MsgId: 123
+        MsgId: "123"
         CreDtTm: "2020-01-01T00:00:00Z"
         Assgnr:
           OrgId:
             Othr:
-              Id: 123
+              Id: "123"
               SchmeNm:
                 Cd: BIC
               Issr: BIC
         Assgne:
           OrgId:
             Othr:
-              Id: 123
+              Id: "123"
               SchmeNm:
                 Cd: BIC
               Issr: BIC
@@ -4888,7 +4890,7 @@ components:
       type: string
       minLength: 1
       maxLength: 105
-      example: 12345
+      example: "12345"
     Max10Text:
       title: Max10Text
       description: |
@@ -4896,7 +4898,7 @@ components:
       type: string
       minLength: 1
       maxLength: 10
-      example: 1234567890
+      example: "1234567890"
     Max128Text:
       title: Max128Text
       description: |
@@ -4904,7 +4906,7 @@ components:
       type: string
       minLength: 1
       maxLength: 128
-      example: 12345
+      example: "12345"
     Max140Text:
       title: Max140Text
       description: |
@@ -4912,14 +4914,14 @@ components:
       type: string
       minLength: 1
       maxLength: 140
-      example: 12345
+      example: "12345"
     Max15NumericText:
       title: Max15NumericText
       description: |
         Specifies a numeric string with a maximum length of 15 digits.
       type: string
       pattern: ^[0-9]{1,15}$
-      example: 123456789012345
+      example: "123456789012345"
     Max16Text:
       title: Max16Text
       description: |
@@ -4927,7 +4929,7 @@ components:
       type: string
       minLength: 1
       maxLength: 16
-      example: 1234567890123456
+      example: "1234567890123456"
     Max2048Text:
       title: Max2048Text
       description: |
@@ -4935,7 +4937,7 @@ components:
       type: string
       minLength: 1
       maxLength: 2048
-      example: 2048
+      example: "2048"
     Max256Text:
       title: Max256Text
       description: |
@@ -4943,7 +4945,7 @@ components:
       type: string
       minLength: 1
       maxLength: 256
-      example: 256
+      example: "256"
     Max34Text:
       title: Max34Text
       description: |
@@ -4951,7 +4953,7 @@ components:
       type: string
       minLength: 1
       maxLength: 34
-      example: 1.2345678901234568e+33
+      example: "1234567890123456789012345678901234"
     Max350Text:
       title: Max350Text
       description: |
@@ -4959,7 +4961,7 @@ components:
       type: string
       minLength: 1
       maxLength: 350
-      example: 350
+      example: "350"
     Max35Text:
       title: Max35Text
       description: |
@@ -4967,7 +4969,7 @@ components:
       type: string
       minLength: 1
       maxLength: 35
-      example: 1.234567890123457e+34
+      example: "12345678901234567890123456789012345"
     Max4Text:
       title: Max4Text
       description: |
@@ -4975,7 +4977,7 @@ components:
       type: string
       minLength: 1
       maxLength: 4
-      example: 1234
+      example: "1234"
     Max70Text:
       title: Max70Text
       description: |
@@ -4983,7 +4985,7 @@ components:
       type: string
       minLength: 1
       maxLength: 70
-      example: 1.2345678901234567e+99
+      example: "1234567890123456789012345678901234567890123456789012345678901234567890"
     NamePrefix2Code:
       description: |
         Specifies the terms used to formally address a person.
@@ -5004,7 +5006,7 @@ components:
     Number:
       title: Number
       type: string
-      example: 256
+      example: "256"
       pattern: ^(?!0\d)\d{1,18}$
     OrganisationIdentification29:
       title: OrganisationIdentification29
@@ -5039,7 +5041,7 @@ components:
         AnyBIC: BICFI
         LEI: 529900T8BM49AURSDO55
         Othr:
-          Id: 123
+          Id: "123"
           SchmeNm:
             Cd: BIC
           Issr: BIC
@@ -5076,7 +5078,7 @@ components:
         AnyBIC: BICFI
         LEI: 529900T8BM49AURSDO55
         Othr:
-          Id: 123
+          Id: "123"
           SchmeNm:
             Cd: BIC
           Issr: BIC
@@ -5134,7 +5136,7 @@ components:
         - ChanlTp
       example:
         ChanlTp: PHON
-        Id: 1234567890
+        Id: "1234567890"
     PacsError_FIToFIPaymentStatusReportV15:
       title: PacsError_FIToFIPaymentStatusReportV15
       type: object
@@ -5166,9 +5168,9 @@ components:
         - GrpHdr
       example:
         GrpHdr:
-          MsgId: 12345
+          MsgId: "12345"
           CreDtTm: "2020-01-01T00:00:00Z"
-          NbOfTxs: 1
+          NbOfTxs: "1"
           SttlmInf:
             SttlmMtd: INDA
             SttlmDt: "2020-01-01"
@@ -5179,8 +5181,8 @@ components:
             FinInstnId:
               BICFI: BICFI
         TxInfAndSts:
-          OrgnlInstrId: 12345
-          OrgnlEndToEndId: 12345
+          OrgnlInstrId: "12345"
+          OrgnlEndToEndId: "12345"
           TxSts: RJCT
           StsRsnInf:
             Rsn: RSN
@@ -5220,13 +5222,13 @@ components:
         - GrpHdr
       example:
         GrpHdr:
-          MsgId: 12345
+          MsgId: "12345"
           CreDtTm: "2020-01-01T00:00:00Z"
           TxInfAndSts:
-            StsId: 12345
-            OrgnlInstrId: 12345
-            OrgnlEndToEndId: 12345
-            OrgnlTxId: 12345
+            StsId: "12345"
+            OrgnlInstrId: "12345"
+            OrgnlEndToEndId: "12345"
+            OrgnlTxId: "12345"
             OrgnlUETR: 123e4567-e89b-12d3-a456-426614174000
             TxSts: RJCT
             StsRsnInf:
@@ -5313,7 +5315,7 @@ components:
           FinInstnId:
             BICFI: BUKBGB22
           BrnchId:
-            Id: 12345
+            Id: "12345"
             Nm: Oxford Street Branch
             PstlAdr:
               Ctry: GB
@@ -5423,7 +5425,7 @@ components:
         Id:
           OrgId:
             Othr:
-              Id: 123
+              Id: "123"
               SchmeNm:
                 Prtry: DfspId
         CtryOfRes: BE
@@ -5721,10 +5723,10 @@ components:
                 Date/time at which the instruction was processed by the
                 specified party.
       example:
-        StsId: 12345
-        OrgnlInstrId: 12345
-        OrgnlEndToEndId: 12345
-        OrgnlTxId: 12345
+        StsId: "12345"
+        OrgnlInstrId: "12345"
+        OrgnlEndToEndId: "12345"
+        OrgnlTxId: "12345"
         OrgnlUETR: 123e4567-e89b-12d3-a456-426614174000
         TxSts: RJCT
         StsRsnInf:
@@ -5787,7 +5789,7 @@ components:
     PercentageRate:
       title: PercentageRate
       type: string
-      example: 1234
+      example: "1234"
       pattern: ^(?!0\d)(\d{1,11}|\d{1,10}.\d{1}|\d{1,9}.\d{1,2}|\d{1,8}.\d{1,3}|\d{1,7}.\d{1,4}|\d{1,6}.\d{1,5}|\d{1,5}.\d{1,6}|\d{1,4}.\d{1,7}|\d{1,3}.\d{1,8}|\d{1,2}.\d{1,9}|\d{1}.\d{1,10})$
     PersonIdentification13:
       title: PersonIdentification13
@@ -5815,10 +5817,10 @@ components:
           Dt: "2018-01-01"
           CityOfBirth: City
         Othr:
-          Id: 123
+          Id: "123"
           SchmeNm:
             Cd: CUST
-            Prtry: 1
+            Prtry: "1"
     PersonIdentification18:
       title: PersonIdentification18
       description: |
@@ -5845,10 +5847,10 @@ components:
           Dt: "2018-01-01"
           CityOfBirth: City
         Othr:
-          Id: 123
+          Id: "123"
           SchmeNm:
             Cd: CUST
-            Prtry: 1
+            Prtry: "1"
     PersonIdentificationSchemeName1Choice:
       title: PersonIdentificationSchemeName1Choice
       description: |
@@ -6095,7 +6097,7 @@ components:
       example:
         Tp:
           Cd: IBAN
-        Id: 123
+        Id: "123"
     ProxyAccountType1Choice:
       title: ProxyAccountType1Choice
       description: |
@@ -6330,14 +6332,14 @@ components:
               OrgId:
                 AnyBIC: BIC
                 Othr:
-                  Id: 123
+                  Id: "123"
                   SchmeNm:
                     Cd: IBAN
                     Issr: BIC
             CtryOfRes: CH
             CtctDtls:
               Nm: Name
-              PhneNb: 123
+              PhneNb: "123"
               EmailAdr: null
     SettlementMethod1Code:
       title: SettlementMethod1Code
@@ -6498,8 +6500,8 @@ components:
         Cd: CHF
         Amt:
           Ccy: CHF
-          Amt: 1000
-        Inf: 12345
+          Amt: "1000"
+        Inf: "12345"
     SupplementaryData1:
       title: SupplementaryData1
       description: >
@@ -6587,21 +6589,21 @@ components:
                 $ref: "#/components/schemas/TaxRecordDetails3"
               type: array
       example:
-        Rate: 0
+        Rate: "0.0"
         TaxblBaseAmt:
           Ccy: EUR
-          Amt: 0
+          Amt: "0"
         TtlAmt:
           Ccy: EUR
-          Amt: 0
+          Amt: "0"
         Dtls:
           Tp: T1
           Ctry: CH
           Cd: CHF
           Amt:
             Ccy: CHF
-            Amt: 1000
-          Inf: 12345
+            Amt: "1000"
+          Inf: "12345"
     TaxAuthorisation1:
       title: TaxAuthorisation1
       description: |
@@ -6738,24 +6740,24 @@ components:
           Titl: Mr
           Nm: John Doe
         AdmstnZone: CH
-        RefNb: 12345
+        RefNb: "12345"
         Mtd: A
         TtlTaxblBaseAmt:
           Ccy: CHF
-          Amt: 1000
+          Amt: "1000"
         TtlTaxAmt:
           Ccy: CHF
-          Amt: 100
+          Amt: "100"
         Dt: "2018-01-01"
-        SeqNb: 1
+        SeqNb: "1"
         Rcrd:
           Tp: T1
           Ctry: CH
           Cd: CHF
           Amt:
             Ccy: CHF
-            Amt: 1000
-          Inf: 12345
+            Amt: "1000"
+          Inf: "12345"
     TaxParty1:
       title: TaxParty1
       description: |
@@ -6787,8 +6789,8 @@ components:
 
                 Type of tax payer.
       example:
-        TaxId: 123456789
-        RegnId: 123456789
+        TaxId: "123456789"
+        RegnId: "123456789"
         TaxTp: VAT
     TaxParty2:
       title: TaxParty2
@@ -6828,8 +6830,8 @@ components:
 
                 Details of the authorised tax paying party.
       example:
-        TaxId: 123456789
-        RegnId: 123456789
+        TaxId: "123456789"
+        RegnId: "123456789"
         TaxTp: VAT
         Authstn:
           Titl: Mr
@@ -6865,7 +6867,7 @@ components:
 
                 Year related to the tax payment.
       example:
-        Yr: 2020
+        Yr: "2020"
         Tp: MM01
         FrToDt:
           FrDt: "2020-01-01"
@@ -6955,22 +6957,22 @@ components:
         Ctgy: A
         CtgyDtls: Standard
         DbtrSts: Resident
-        CertId: 123456789
-        FrmsCd: 123456789
+        CertId: "123456789"
+        FrmsCd: "123456789"
         Prd:
-          Yr: 2019
+          Yr: "2019"
           Tp: MM01
           FrToDt:
             FrDt: "2019-01-01"
             ToDt: "2019-12-31"
         TaxAmt:
-          Rate: 0.2
+          Rate: "0.2"
           TaxblBaseAmt:
             Ccy: EUR
-            Amt: 1000
+            Amt: "1000"
           TtlAmt:
             Ccy: EUR
-            Amt: 200
+            Amt: "200"
         AddtlInf: VAT applicable
     TaxRecordDetails3:
       title: TaxRecordDetails3
@@ -6999,13 +7001,13 @@ components:
         - Amt
       example:
         Prd:
-          Yr: 2020
+          Yr: "2020"
           Tp: MM01
           FrToDt:
             FrDt: "2020-01-01"
             ToDt: "2020-01-31"
         Amt:
-          Amt: 100
+          Amt: "100.00"
           Ccy: EUR
     TaxRecordPeriod1Code:
       title: TaxRecordPeriod1Code
@@ -7077,16 +7079,16 @@ components:
         - CdtTrfTxInf
       example:
         GrpHdr:
-          MsgId: 123456789
+          MsgId: "123456789"
           CreDtTm: "2020-01-01T00:00:00Z"
-          NbOfTxs: 1
-          CtrlSum: 100
+          NbOfTxs: "1"
+          CtrlSum: "100.00"
           InitgPty:
             Nm: Initiating Party Name
             Id:
               OrgId:
                 Othr:
-                  - Id: 123456789
+                  - Id: "123456789"
                     SchmeNm:
                       Cd: BBA
                       Prtry: Party Identification Scheme Name
@@ -7123,16 +7125,16 @@ components:
         - CdtTrfTxInf
       example:
         GrpHdr:
-          MsgId: 123456789
+          MsgId: "123456789"
           CreDtTm: "2020-01-01T00:00:00Z"
-          NbOfTxs: 1
-          CtrlSum: 100
+          NbOfTxs: "1"
+          CtrlSum: "100.00"
           InitgPty:
             Nm: Initiating Party Name
             Id:
               OrgId:
                 Othr:
-                  - Id: 123456789
+                  - Id: "123456789"
                     SchmeNm:
                       Cd: BBA
                       Prtry: Party Identification Scheme Name
@@ -7273,7 +7275,7 @@ components:
         - OrgnlId
         - Vrfctn
       example:
-        OrgnlId: 1.2345678901234568e+33
+        OrgnlId: "1234567890123456789012345678901234"
         Vrfctn: true
         OrgnlPtyAndAcctId:
           Nm: John Doe
@@ -7282,8 +7284,8 @@ components:
             Dept: Dept
             SubDept: SubDept
             StrtNm: 1234 Elm St
-            BldgNb: 1234
-            PstCd: 12345
+            BldgNb: "1234"
+            PstCd: "12345"
             TwnNm: Anytown
             CtrySubDvsn: CA
             Ctry: US
@@ -7291,7 +7293,7 @@ components:
             OrgId:
               AnyBIC: ABCDUS33
               Othr:
-                Id: 123456789
+                Id: "123456789"
                 Issr: ABA
         UpdtdPtyAndAcctId:
           Nm: John Doe
@@ -7300,8 +7302,8 @@ components:
             Dept: Dept
             SubDept: SubDept
             StrtNm: 1234 Elm St
-            BldgNb: 1234
-            PstCd: 12345
+            BldgNb: "1234"
+            PstCd: "12345"
             TwnNm: Anytown
             CtrySubDvsn: CA
             Ctry: US
@@ -7309,10 +7311,10 @@ components:
             OrgId:
               AnyBIC: ABCDUS33
               Othr:
-                Id: 123456789
+                Id: "123456789"
                 Issr: ABA
     hexBinary:
       title: hexBinary
       type: string
-      example: 4660
+      example: "0x1234"
       pattern: ^[A-Za-z0-9-_]+[=]{0,2}$

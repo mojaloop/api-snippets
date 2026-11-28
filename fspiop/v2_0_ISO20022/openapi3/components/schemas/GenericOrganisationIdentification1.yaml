@@ -28,7 +28,7 @@ properties:
 required:
   - Id
 example:
-  Id: 123
+  Id: '123'
   SchmeNm:
     Cd: BIC
   Issr: BIC

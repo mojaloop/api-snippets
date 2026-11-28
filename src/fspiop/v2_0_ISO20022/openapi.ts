@@ -538,7 +538,7 @@ export interface components {
          * AccountSchemeName1Choice
          * @description Sets of elements to identify a name of the identification scheme.
          * @example {
-         *       "Cd": 1111
+         *       "Cd": "1111"
          *     }
          */
         AccountSchemeName1Choice: {
@@ -550,7 +550,7 @@ export interface components {
          * ActiveCurrencyAndAmount
          * @description A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.
          * @example {
-         *       "ActiveCurrencyAndAmount": 123.45,
+         *       "ActiveCurrencyAndAmount": "123.45",
          *       "Ccy": "USD"
          *     }
          */
@@ -575,7 +575,7 @@ export interface components {
          * ActiveOrHistoricCurrencyAndAmount
          * @description A number of monetary units specified in an active or a historic currency where the unit of currency is explicit and compliant with ISO 4217.
          * @example {
-         *       "ActiveOrHistoricCurrencyAndAmount": 123.45,
+         *       "ActiveOrHistoricCurrencyAndAmount": "123.45",
          *       "Ccy": "USD"
          *     }
          */
@@ -662,7 +662,7 @@ export interface components {
          *         "BICFI": "J5BMVH7D"
          *       },
          *       "BrnchId": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "Nm": "Name",
          *         "PstlAdr": {
          *           "AdrTp": "ADDR",
@@ -691,7 +691,7 @@ export interface components {
          *         "BICFI": "J5BMVH7D"
          *       },
          *       "BrnchId": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "Nm": "Name",
          *         "PstlAdr": {
          *           "AdrTp": "ADDR",
@@ -716,7 +716,7 @@ export interface components {
          * BranchData3
          * @description Information that locates and identifies a specific branch of a financial institution.
          * @example {
-         *       "Id": 123,
+         *       "Id": "123",
          *       "Nm": "Name",
          *       "PstlAdr": {
          *         "AdrTp": "ADDR",
@@ -742,8 +742,8 @@ export interface components {
          * BranchData5
          * @description Information that locates and identifies a specific branch of a financial institution.
          * @example {
-         *       "Id": 123,
-         *       "LEI": 123,
+         *       "Id": "123",
+         *       "LEI": "123",
          *       "Nm": "Name",
          *       "PstlAdr": {
          *         "AdrTp": "ADDR",
@@ -773,7 +773,7 @@ export interface components {
          *       "Ccy": "EUR",
          *       "Nm": "My account",
          *       "Prxy": {
-         *         "Id": 12345
+         *         "Id": "12345"
          *       }
          *     }
          */
@@ -843,7 +843,7 @@ export interface components {
          *     Seemingly a generic schema for charges, with an amount, agent, and type.
          * @example {
          *       "Amt": {
-         *         "ActiveOrHistoricCurrencyAndAmount": 123.45,
+         *         "ActiveOrHistoricCurrencyAndAmount": "123.45",
          *         "Ccy": "USD"
          *       },
          *       "Agt": {
@@ -896,7 +896,7 @@ export interface components {
          *       "ClrSysId": {
          *         "Cd": "CHQB"
          *       },
-         *       "MmbId": 123456789
+         *       "MmbId": "123456789"
          *     }
          */
         ClearingSystemMemberIdentification2: {
@@ -979,18 +979,18 @@ export interface components {
          *         "SeqTp": "SEQTP"
          *       },
          *       "IntrBkSttlmAmt": {
-         *         "ActiveCurrencyAndAmount": 123.45,
+         *         "ActiveCurrencyAndAmount": "123.45",
          *         "Ccy": "USD"
          *       },
          *       "InstdAmt": {
-         *         "ActiveOrHistoricCurrencyAndAmount": 123.45,
+         *         "ActiveOrHistoricCurrencyAndAmount": "123.45",
          *         "Ccy": "USD"
          *       },
-         *       "XchgRate": 123.45,
+         *       "XchgRate": "123.45",
          *       "ChrgBr": "SHAR",
          *       "ChrgsInf": {
          *         "Amt": {
-         *           "ActiveOrHistoricCurrencyAndAmount": 123.45,
+         *           "ActiveOrHistoricCurrencyAndAmount": "123.45",
          *           "Ccy": "USD"
          *         },
          *         "Agt": {
@@ -1106,7 +1106,7 @@ export interface components {
          *         }
          *       },
          *       "IntrBkSttlmAmt": {
-         *         "Amount": 123.45,
+         *         "Amount": "123.45",
          *         "Ccy": "EUR"
          *       },
          *       "Dbtr": {
@@ -1177,7 +1177,7 @@ export interface components {
          *         }
          *       },
          *       "IntrBkSttlmAmt": {
-         *         "Amount": 123.45,
+         *         "Amount": "123.45",
          *         "Ccy": "EUR"
          *       },
          *       "Dbtr": {
@@ -1329,41 +1329,41 @@ export interface components {
          * Execute_FIToFICustomerCreditTransferV13
          * @example {
          *       "GrpHdr": {
-         *         "MsgId": 12345,
+         *         "MsgId": "12345",
          *         "CreDtTm": "2020-01-01T00:00:00Z",
          *         "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "SttlmInf": {
          *           "SttlmMtd": "INDA",
          *           "SttlmAcct": {
          *             "Id": {
-         *               "IBAN": 123
+         *               "IBAN": "123"
          *             }
          *           },
          *           "SttlmAcctOwnr": {
          *             "Nm": "John Doe"
          *           },
          *           "SttlmAcctSvcr": {
-         *             "BICFI": 123
+         *             "BICFI": "123"
          *           }
          *         }
          *       },
          *       "CdtTrfTxInf": {
          *         "PmtId": {
-         *           "InstrId": 123,
-         *           "EndToEndId": 123
+         *           "InstrId": "123",
+         *           "EndToEndId": "123"
          *         },
          *         "PmtTpInf": {
          *           "InstrPrty": "NORM"
          *         },
          *         "InstdAmt": {
-         *           "Amt": 123,
+         *           "Amt": "123",
          *           "Ccy": "EUR"
          *         },
          *         "ChrgBr": "SHAR",
          *         "CdtrAgt": {
          *           "FinInstnId": {
-         *             "BICFI": 123
+         *             "BICFI": "123"
          *           }
          *         },
          *         "Cdtr": {
@@ -1371,7 +1371,7 @@ export interface components {
          *         },
          *         "CdtrAcct": {
          *           "Id": {
-         *             "IBAN": 123
+         *             "IBAN": "123"
          *           }
          *         },
          *         "RmtInf": {
@@ -1535,10 +1535,12 @@ export interface components {
          * @example {
          *       "BICFI": "J5BMVH7D",
          *       "ClrSysMmbId": {
-         *         "ClrSysId": 1234,
-         *         "MmbId": 123
+         *         "ClrSysId": {
+         *           "Cd": "CHQB"
+         *         },
+         *         "MmbId": "123"
          *       },
-         *       "LEI": 123,
+         *       "LEI": "123",
          *       "Nm": "Name",
          *       "PstlAdr": {
          *         "AdrTp": "ADDR",
@@ -1553,12 +1555,12 @@ export interface components {
          *         "AdrLine": "Address line"
          *       },
          *       "Othr": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "SchmeNm": {
-         *           "Cd": 123,
-         *           "Prtry": 123
+         *           "Cd": "123",
+         *           "Prtry": "123"
          *         },
-         *         "Issr": 123
+         *         "Issr": "123"
          *       }
          *     }
          */
@@ -1576,10 +1578,12 @@ export interface components {
          * @example {
          *       "BICFI": "J5BMVH7D",
          *       "ClrSysMmbId": {
-         *         "ClrSysId": 1234,
-         *         "MmbId": 123
+         *         "ClrSysId": {
+         *           "Cd": "CHQB"
+         *         },
+         *         "MmbId": "123"
          *       },
-         *       "LEI": 123,
+         *       "LEI": "123",
          *       "Nm": "Name",
          *       "PstlAdr": {
          *         "AdrTp": "ADDR",
@@ -1594,12 +1598,12 @@ export interface components {
          *         "AdrLine": "Address line"
          *       },
          *       "Othr": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "SchmeNm": {
-         *           "Cd": 123,
-         *           "Prtry": 123
+         *           "Cd": "123",
+         *           "Prtry": "123"
          *         },
-         *         "Issr": 123
+         *         "Issr": "123"
          *       }
          *     }
          */
@@ -1617,12 +1621,12 @@ export interface components {
          *     A group of elements providing information specific to the individual credit transfer(s) included in the message.
          * @example {
          *       "GrpHdr": {
-         *         "MsgId": 12345,
+         *         "MsgId": "12345",
          *         "CreDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "TtlIntrBkSttlmAmt": {
          *           "Ccy": "EUR",
-         *           "Value": 100
+         *           "Value": "100.0"
          *         },
          *         "SttlmInf": {
          *           "SttlmMtd": "INDA",
@@ -1650,13 +1654,13 @@ export interface components {
          *         },
          *         "CdtTrfTxInf": {
          *           "PmtId": {
-         *             "InstrId": 12345,
-         *             "EndToEndId": 12345
+         *             "InstrId": "12345",
+         *             "EndToEndId": "12345"
          *           },
          *           "Amt": {
          *             "InstdAmt": {
          *               "Ccy": "EUR",
-         *               "Value": 100
+         *               "Value": "100.0"
          *             }
          *           },
          *           "Cdtr": {
@@ -1689,7 +1693,7 @@ export interface components {
          *           },
          *           "IntrBkSttlmAmt": {
          *             "Ccy": "EUR",
-         *             "Value": 100
+         *             "Value": "100.0"
          *           },
          *           "PmtTpInf": {
          *             "InstrPrty": "NORM",
@@ -1739,8 +1743,8 @@ export interface components {
          *       "GrpHdr": {
          *         "MsgId": "20191122-123456",
          *         "CreDtTm": "2019-11-22T12:34:56",
-         *         "NbOfTxs": 1,
-         *         "CtrlSum": 100,
+         *         "NbOfTxs": "1",
+         *         "CtrlSum": "100.00",
          *         "InitgPty": {
          *           "Nm": "Initiating Party Name"
          *         },
@@ -1758,7 +1762,7 @@ export interface components {
          *           "CtgyPurp": "SUPP"
          *         },
          *         "IntrBkSttlmAmt": {
-         *           "Amt": 100,
+         *           "Amt": "100.00",
          *           "Ccy": "EUR"
          *         },
          *         "ChrgBr": "SHAR",
@@ -1848,16 +1852,16 @@ export interface components {
          * @description The Fxecute FinancialInstitutionCreditTransfer message is sent by the initiating party to the executing party to request the execution of a payment. It is used to request movement of funds from the debtor account to the creditor account. The message can carry multiple credit transfer instructions.
          * @example {
          *       "GrpHdr": {
-         *         "MsgId": 20191113001,
+         *         "MsgId": "20191113001",
          *         "CreDtTm": "2019-11-13T10:00:00",
-         *         "NbOfTxs": 1,
-         *         "CtrlSum": 1000,
+         *         "NbOfTxs": "1",
+         *         "CtrlSum": "1000",
          *         "InitgPty": {
          *           "Nm": "Initiating Party Name",
          *           "Id": {
          *             "OrgId": {
          *               "Othr": {
-         *                 "Id": 123456789,
+         *                 "Id": "123456789",
          *                 "SchmeNm": {
          *                   "Cd": "BBA"
          *                 }
@@ -1883,8 +1887,8 @@ export interface components {
          *       },
          *       "CdtTrfTxInf": {
          *         "PmtId": {
-         *           "InstrId": 20191113001,
-         *           "EndToEndId": 20191113001
+         *           "InstrId": "20191113001",
+         *           "EndToEndId": "20191113001"
          *         },
          *         "PmtTpInf": {
          *           "InstrPrty": "NORM",
@@ -1896,7 +1900,7 @@ export interface components {
          *           "Cd": "/ACC/123456789"
          *         },
          *         "IntrBkSttlmAmt": {
-         *           "Amt": 1000,
+         *           "Amt": "1000",
          *           "Ccy": "EUR"
          *         },
          *         "ChrgBr": "SHAR",
@@ -1928,7 +1932,7 @@ export interface components {
          * @description GenericAccountIdentification
          *     Unique and unambiguous identification of an account, as assigned by the account servicer.
          * @example {
-         *       "Id": 123,
+         *       "Id": "123",
          *       "SchmeNm": {
          *         "Cd": "IBAN"
          *       },
@@ -1945,7 +1949,7 @@ export interface components {
          * @description GenericFinancialIdentification
          *     Unique and unambiguous identification of a person, which is used to refer to a person in a financial context.
          * @example {
-         *       "Id": 123,
+         *       "Id": "123",
          *       "SchmeNm": {
          *         "Cd": "IBAN"
          *       },
@@ -1961,7 +1965,7 @@ export interface components {
          * GenericIdentification3
          * @description Generic scheme identification for a party.
          * @example {
-         *       "Id": 123,
+         *       "Id": "123",
          *       "Issr": "BIC"
          *     }
          */
@@ -1973,7 +1977,7 @@ export interface components {
          * GenericIdentification30
          * @description Generic scheme identification for a party.
          * @example {
-         *       "Id": 1234,
+         *       "Id": "1234",
          *       "Issr": "BIC",
          *       "SchmeNm": "BICFI"
          *     }
@@ -1987,7 +1991,7 @@ export interface components {
          * GenericOrganisationIdentification1
          * @description Information that locates and identifies an organisation.
          * @example {
-         *       "Id": 123,
+         *       "Id": "123",
          *       "SchmeNm": {
          *         "Cd": "BIC"
          *       },
@@ -2003,7 +2007,7 @@ export interface components {
          * GenericOrganisationIdentification3
          * @description Information related to an identification of an organisation.
          * @example {
-         *       "Id": 123,
+         *       "Id": "123",
          *       "SchmeNm": {
          *         "Cd": "BIC"
          *       },
@@ -2020,7 +2024,7 @@ export interface components {
          * @description GenericPersonIdentification1
          *     Information that locates and identifies a specific person.
          * @example {
-         *       "Id": 123,
+         *       "Id": "123",
          *       "SchmeNm": {
          *         "Cd": "DRLC"
          *       },
@@ -2036,7 +2040,7 @@ export interface components {
          * GenericPersonIdentification2
          * @description Identification of a person.
          * @example {
-         *       "Id": 123,
+         *       "Id": "123",
          *       "SchmeNm": {
          *         "Cd": "DRLC"
          *       },
@@ -2052,11 +2056,11 @@ export interface components {
          * GetPartiesError_IdentificationVerificationReportV03
          * @example {
          *       "Assgnmt": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "CreDtTm": "2013-03-07T16:30:00",
          *         "Assgnr": {
          *           "Id": {
-         *             "Id": 123,
+         *             "Id": "123",
          *             "SchmeNm": {
          *               "Cd": "IBAN"
          *             },
@@ -2065,7 +2069,7 @@ export interface components {
          *         },
          *         "Assgne": {
          *           "Id": {
-         *             "Id": 123,
+         *             "Id": "123",
          *             "SchmeNm": {
          *               "Cd": "IBAN"
          *             },
@@ -2074,11 +2078,11 @@ export interface components {
          *         }
          *       },
          *       "Rpt": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "CreDtTm": "2013-03-07T16:30:00",
          *         "RptgPty": {
          *           "Id": {
-         *             "Id": 123,
+         *             "Id": "123",
          *             "SchmeNm": {
          *               "Cd": "IBAN"
          *             },
@@ -2087,7 +2091,7 @@ export interface components {
          *         },
          *         "RptdPty": {
          *           "Id": {
-         *             "Id": 123,
+         *             "Id": "123",
          *             "SchmeNm": {
          *               "Cd": "IBAN"
          *             },
@@ -2095,23 +2099,23 @@ export interface components {
          *           }
          *         },
          *         "RptdDoc": {
-         *           "Nb": 123,
+         *           "Nb": "123",
          *           "RltdDt": "2013-03-07",
          *           "RltdDtTp": {
-         *             "Cd": 123
+         *             "Cd": "123"
          *           }
          *         },
          *         "Rsn": {
-         *           "Cd": 123,
-         *           "Prtry": 123
+         *           "Cd": "123",
+         *           "Prtry": "123"
          *         }
          *       },
          *       "SplmtryData": {
-         *         "PlcAndNm": 123,
-         *         "Envlp": 123,
+         *         "PlcAndNm": "123",
+         *         "Envlp": {},
          *         "RltdDt": "2013-03-07",
          *         "RltdDtTp": {
-         *           "Cd": 123
+         *           "Cd": "123"
          *         }
          *       }
          *     }
@@ -2125,12 +2129,12 @@ export interface components {
          * GetParties_IdentificationVerificationReportV03
          * @example {
          *       "Assgnmt": {
-         *         "MsgId": 123,
+         *         "MsgId": "123",
          *         "CreDtTm": "2020-01-01T00:00:00Z",
          *         "Assgnr": {
          *           "OrgId": {
          *             "Othr": {
-         *               "Id": 123,
+         *               "Id": "123",
          *               "SchmeNm": {
          *                 "Cd": "BIC"
          *               },
@@ -2147,7 +2151,7 @@ export interface components {
          *         }
          *       },
          *       "Rpt": {
-         *         "OrgnlId": 12345678,
+         *         "OrgnlId": "12345678",
          *         "Vrfctn": true,
          *         "UpdtdPtyAndAcctId": {
          *           "Pty": {
@@ -2173,7 +2177,7 @@ export interface components {
          *             "Id": {
          *               "OrgId": {
          *                 "Othr": {
-         *                   "Id": 18761231234
+         *                   "Id": "18761231234"
          *                 },
          *                 "SchmeNm": {
          *                   "Prtry": "MSISDN"
@@ -2203,12 +2207,12 @@ export interface components {
          * GroupHeader113
          * @description Set of characteristics shared by all individual transactions included in the message.
          * @example {
-         *       "MsgId": 12345,
+         *       "MsgId": "12345",
          *       "CreDtTm": "2020-01-01T00:00:00Z",
-         *       "NbOfTxs": 1,
+         *       "NbOfTxs": "1",
          *       "TtlIntrBkSttlmAmt": {
          *         "Ccy": "EUR",
-         *         "Value": 100
+         *         "Value": "100.0"
          *       },
          *       "SttlmInf": {
          *         "SttlmMtd": "INDA",
@@ -2248,7 +2252,7 @@ export interface components {
          * GroupHeader120
          * @description Set of characteristics shared by all individual transactions included in the message.
          * @example {
-         *       "MsgId": 12345,
+         *       "MsgId": "12345",
          *       "CreDtTm": "2020-01-01T00:00:00Z"
          *     }
          */
@@ -2260,22 +2264,22 @@ export interface components {
          * GroupHeader129
          * @description Group Header Set of characteristics shared by all individual transactions included in the message.
          * @example {
-         *       "MsgId": 12345,
+         *       "MsgId": "12345",
          *       "CreDtTm": "2020-01-01T00:00:00Z",
          *       "PmtInstrXpryDtTm": "2020-01-01T00:00:00Z",
-         *       "NbOfTxs": 1,
+         *       "NbOfTxs": "1",
          *       "SttlmInf": {
          *         "SttlmMtd": "INDA",
          *         "SttlmAcct": {
          *           "Id": {
-         *             "IBAN": 123
+         *             "IBAN": "123"
          *           }
          *         },
          *         "SttlmAcctOwnr": {
          *           "Nm": "John Doe"
          *         },
          *         "SttlmAcctSvcr": {
-         *           "BICFI": 123
+         *           "BICFI": "123"
          *         }
          *       }
          *     }
@@ -2333,12 +2337,12 @@ export interface components {
          * @description IdentificationAssignment
          *     Information that unambiguously identifies a message, as assigned by the assignor to the assignee.
          * @example {
-         *       "MsgId": 123,
+         *       "MsgId": "123",
          *       "CreDtTm": "2020-01-01T00:00:00Z",
          *       "Assgnr": {
          *         "OrgId": {
          *           "Othr": {
-         *             "Id": 123,
+         *             "Id": "123",
          *             "SchmeNm": {
          *               "Cd": "BIC"
          *             },
@@ -2349,7 +2353,7 @@ export interface components {
          *       "Assgne": {
          *         "OrgId": {
          *           "Othr": {
-         *             "Id": 123,
+         *             "Id": "123",
          *             "SchmeNm": {
          *               "Cd": "BIC"
          *             },
@@ -2521,7 +2525,7 @@ export interface components {
         /**
          * Max34Text
          * @description Specifies a character string with a maximum length of 34 characters.
-         * @example 1.2345678901234568e+33
+         * @example 1234567890123456789012345678901234
          */
         Max34Text: string;
         /**
@@ -2533,7 +2537,7 @@ export interface components {
         /**
          * Max35Text
          * @description Specifies a character string with a maximum length of 35 characters.
-         * @example 1.234567890123457e+34
+         * @example 12345678901234567890123456789012345
          */
         Max35Text: string;
         /**
@@ -2545,7 +2549,7 @@ export interface components {
         /**
          * Max70Text
          * @description Specifies a character string with a maximum length of 70 characters.
-         * @example 1.2345678901234567e+99
+         * @example 1234567890123456789012345678901234567890123456789012345678901234567890
          */
         Max70Text: string;
         /**
@@ -2572,7 +2576,7 @@ export interface components {
          *       "AnyBIC": "BICFI",
          *       "LEI": "529900T8BM49AURSDO55",
          *       "Othr": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "SchmeNm": {
          *           "Cd": "BIC"
          *         },
@@ -2592,7 +2596,7 @@ export interface components {
          *       "AnyBIC": "BICFI",
          *       "LEI": "529900T8BM49AURSDO55",
          *       "Othr": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "SchmeNm": {
          *           "Cd": "BIC"
          *         },
@@ -2625,7 +2629,7 @@ export interface components {
          * @description Communication device number or electronic address used for communication.
          * @example {
          *       "ChanlTp": "PHON",
-         *       "Id": 1234567890
+         *       "Id": "1234567890"
          *     }
          */
         OtherContact1: {
@@ -2637,9 +2641,9 @@ export interface components {
          * @description This message is sent by an account servicing institution to an account owner. It is used to inform the account owner about the status of a payment initiation.
          * @example {
          *       "GrpHdr": {
-         *         "MsgId": 12345,
+         *         "MsgId": "12345",
          *         "CreDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
+         *         "NbOfTxs": "1",
          *         "SttlmInf": {
          *           "SttlmMtd": "INDA",
          *           "SttlmDt": "2020-01-01"
@@ -2656,8 +2660,8 @@ export interface components {
          *         }
          *       },
          *       "TxInfAndSts": {
-         *         "OrgnlInstrId": 12345,
-         *         "OrgnlEndToEndId": 12345,
+         *         "OrgnlInstrId": "12345",
+         *         "OrgnlEndToEndId": "12345",
          *         "TxSts": "RJCT",
          *         "StsRsnInf": {
          *           "Rsn": "RSN",
@@ -2680,13 +2684,13 @@ export interface components {
          * @description The PacsStatus message is sent by a financial institution to another financial institution as a response to the FIToFIPaymentStatusReport message. The message provides information on the status of a payment instruction and its underlying individual transactions.
          * @example {
          *       "GrpHdr": {
-         *         "MsgId": 12345,
+         *         "MsgId": "12345",
          *         "CreDtTm": "2020-01-01T00:00:00Z",
          *         "TxInfAndSts": {
-         *           "StsId": 12345,
-         *           "OrgnlInstrId": 12345,
-         *           "OrgnlEndToEndId": 12345,
-         *           "OrgnlTxId": 12345,
+         *           "StsId": "12345",
+         *           "OrgnlInstrId": "12345",
+         *           "OrgnlEndToEndId": "12345",
+         *           "OrgnlTxId": "12345",
          *           "OrgnlUETR": "123e4567-e89b-12d3-a456-426614174000",
          *           "TxSts": "RJCT",
          *           "StsRsnInf": {
@@ -2754,7 +2758,7 @@ export interface components {
          *           "BICFI": "BUKBGB22"
          *         },
          *         "BrnchId": {
-         *           "Id": 12345,
+         *           "Id": "12345",
          *           "Nm": "Oxford Street Branch",
          *           "PstlAdr": {
          *             "Ctry": "GB",
@@ -2819,7 +2823,7 @@ export interface components {
          *       "Id": {
          *         "OrgId": {
          *           "Othr": {
-         *             "Id": 123,
+         *             "Id": "123",
          *             "SchmeNm": {
          *               "Prtry": "DfspId"
          *             }
@@ -2911,10 +2915,10 @@ export interface components {
          * PaymentTransaction163
          * @description Provides further details on the original transactions, to which the status report message refers.
          * @example {
-         *       "StsId": 12345,
-         *       "OrgnlInstrId": 12345,
-         *       "OrgnlEndToEndId": 12345,
-         *       "OrgnlTxId": 12345,
+         *       "StsId": "12345",
+         *       "OrgnlInstrId": "12345",
+         *       "OrgnlEndToEndId": "12345",
+         *       "OrgnlTxId": "12345",
          *       "OrgnlUETR": "123e4567-e89b-12d3-a456-426614174000",
          *       "TxSts": "RJCT",
          *       "StsRsnInf": {
@@ -2984,10 +2988,10 @@ export interface components {
          *         "CityOfBirth": "City"
          *       },
          *       "Othr": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "SchmeNm": {
          *           "Cd": "CUST",
-         *           "Prtry": 1
+         *           "Prtry": "1"
          *         }
          *       }
          *     }
@@ -3005,10 +3009,10 @@ export interface components {
          *         "CityOfBirth": "City"
          *       },
          *       "Othr": {
-         *         "Id": 123,
+         *         "Id": "123",
          *         "SchmeNm": {
          *           "Cd": "CUST",
-         *           "Prtry": 1
+         *           "Prtry": "1"
          *         }
          *       }
          *     }
@@ -3161,7 +3165,7 @@ export interface components {
          *       "Tp": {
          *         "Cd": "IBAN"
          *       },
-         *       "Id": 123
+         *       "Id": "123"
          *     }
          */
         ProxyAccountIdentification1: {
@@ -3285,7 +3289,7 @@ export interface components {
          *             "OrgId": {
          *               "AnyBIC": "BIC",
          *               "Othr": {
-         *                 "Id": 123,
+         *                 "Id": "123",
          *                 "SchmeNm": {
          *                   "Cd": "IBAN",
          *                   "Issr": "BIC"
@@ -3296,7 +3300,7 @@ export interface components {
          *           "CtryOfRes": "CH",
          *           "CtctDtls": {
          *             "Nm": "Name",
-         *             "PhneNb": 123,
+         *             "PhneNb": "123",
          *             "EmailAdr": null
          *           }
          *         }
@@ -3372,9 +3376,9 @@ export interface components {
          *       "Cd": "CHF",
          *       "Amt": {
          *         "Ccy": "CHF",
-         *         "Amt": 1000
+         *         "Amt": "1000"
          *       },
-         *       "Inf": 12345
+         *       "Inf": "12345"
          *     }
          */
         StructuredRegulatoryReporting3: {
@@ -3415,14 +3419,14 @@ export interface components {
          * TaxAmount3
          * @description Information on the amount of the tax record.
          * @example {
-         *       "Rate": 0,
+         *       "Rate": "0.0",
          *       "TaxblBaseAmt": {
          *         "Ccy": "EUR",
-         *         "Amt": 0
+         *         "Amt": "0"
          *       },
          *       "TtlAmt": {
          *         "Ccy": "EUR",
-         *         "Amt": 0
+         *         "Amt": "0"
          *       },
          *       "Dtls": {
          *         "Tp": "T1",
@@ -3430,9 +3434,9 @@ export interface components {
          *         "Cd": "CHF",
          *         "Amt": {
          *           "Ccy": "CHF",
-         *           "Amt": 1000
+         *           "Amt": "1000"
          *         },
-         *         "Inf": 12345
+         *         "Inf": "12345"
          *       }
          *     }
          */
@@ -3476,27 +3480,27 @@ export interface components {
          *         "Nm": "John Doe"
          *       },
          *       "AdmstnZone": "CH",
-         *       "RefNb": 12345,
+         *       "RefNb": "12345",
          *       "Mtd": "A",
          *       "TtlTaxblBaseAmt": {
          *         "Ccy": "CHF",
-         *         "Amt": 1000
+         *         "Amt": "1000"
          *       },
          *       "TtlTaxAmt": {
          *         "Ccy": "CHF",
-         *         "Amt": 100
+         *         "Amt": "100"
          *       },
          *       "Dt": "2018-01-01",
-         *       "SeqNb": 1,
+         *       "SeqNb": "1",
          *       "Rcrd": {
          *         "Tp": "T1",
          *         "Ctry": "CH",
          *         "Cd": "CHF",
          *         "Amt": {
          *           "Ccy": "CHF",
-         *           "Amt": 1000
+         *           "Amt": "1000"
          *         },
-         *         "Inf": 12345
+         *         "Inf": "12345"
          *       }
          *     }
          */
@@ -3522,8 +3526,8 @@ export interface components {
          * TaxParty1
          * @description Details about the entity involved in the tax paid or to be paid.
          * @example {
-         *       "TaxId": 123456789,
-         *       "RegnId": 123456789,
+         *       "TaxId": "123456789",
+         *       "RegnId": "123456789",
          *       "TaxTp": "VAT"
          *     }
          */
@@ -3536,8 +3540,8 @@ export interface components {
          * TaxParty2
          * @description Details about the entity involved in the tax paid or to be paid.
          * @example {
-         *       "TaxId": 123456789,
-         *       "RegnId": 123456789,
+         *       "TaxId": "123456789",
+         *       "RegnId": "123456789",
          *       "TaxTp": "VAT",
          *       "Authstn": {
          *         "Titl": "Mr",
@@ -3555,7 +3559,7 @@ export interface components {
          * TaxPeriod3
          * @description Period of time details related to the tax payment.
          * @example {
-         *       "Yr": 2020,
+         *       "Yr": "2020",
          *       "Tp": "MM01",
          *       "FrToDt": {
          *         "FrDt": "2020-01-01",
@@ -3576,10 +3580,10 @@ export interface components {
          *       "Ctgy": "A",
          *       "CtgyDtls": "Standard",
          *       "DbtrSts": "Resident",
-         *       "CertId": 123456789,
-         *       "FrmsCd": 123456789,
+         *       "CertId": "123456789",
+         *       "FrmsCd": "123456789",
          *       "Prd": {
-         *         "Yr": 2019,
+         *         "Yr": "2019",
          *         "Tp": "MM01",
          *         "FrToDt": {
          *           "FrDt": "2019-01-01",
@@ -3587,14 +3591,14 @@ export interface components {
          *         }
          *       },
          *       "TaxAmt": {
-         *         "Rate": 0.2,
+         *         "Rate": "0.2",
          *         "TaxblBaseAmt": {
          *           "Ccy": "EUR",
-         *           "Amt": 1000
+         *           "Amt": "1000"
          *         },
          *         "TtlAmt": {
          *           "Ccy": "EUR",
-         *           "Amt": 200
+         *           "Amt": "200"
          *         }
          *       },
          *       "AddtlInf": "VAT applicable"
@@ -3616,7 +3620,7 @@ export interface components {
          * @description Details on the tax period and amount.
          * @example {
          *       "Prd": {
-         *         "Yr": 2020,
+         *         "Yr": "2020",
          *         "Tp": "MM01",
          *         "FrToDt": {
          *           "FrDt": "2020-01-01",
@@ -3624,7 +3628,7 @@ export interface components {
          *         }
          *       },
          *       "Amt": {
-         *         "Amt": 100,
+         *         "Amt": "100.00",
          *         "Ccy": "EUR"
          *       }
          *     }
@@ -3664,17 +3668,17 @@ export interface components {
          * @description This message is sent by a financial institution to a financial institution to propose the terms of a credit to a customer.
          * @example {
          *       "GrpHdr": {
-         *         "MsgId": 123456789,
+         *         "MsgId": "123456789",
          *         "CreDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
-         *         "CtrlSum": 100,
+         *         "NbOfTxs": "1",
+         *         "CtrlSum": "100.00",
          *         "InitgPty": {
          *           "Nm": "Initiating Party Name",
          *           "Id": {
          *             "OrgId": {
          *               "Othr": [
          *                 {
-         *                   "Id": 123456789,
+         *                   "Id": "123456789",
          *                   "SchmeNm": {
          *                     "Cd": "BBA",
          *                     "Prtry": "Party Identification Scheme Name"
@@ -3701,17 +3705,17 @@ export interface components {
          * @description This message is sent by the initiating party to the executing party, directly or through one or more intermediaries, to confirm the credit transfer transaction.
          * @example {
          *       "GrpHdr": {
-         *         "MsgId": 123456789,
+         *         "MsgId": "123456789",
          *         "CreDtTm": "2020-01-01T00:00:00Z",
-         *         "NbOfTxs": 1,
-         *         "CtrlSum": 100,
+         *         "NbOfTxs": "1",
+         *         "CtrlSum": "100.00",
          *         "InitgPty": {
          *           "Nm": "Initiating Party Name",
          *           "Id": {
          *             "OrgId": {
          *               "Othr": [
          *                 {
-         *                   "Id": 123456789,
+         *                   "Id": "123456789",
          *                   "SchmeNm": {
          *                     "Cd": "BBA",
          *                     "Prtry": "Party Identification Scheme Name"
@@ -3769,7 +3773,7 @@ export interface components {
          * @description VerificationReport
          *     Provides information about the verification of party and/or account identification information.
          * @example {
-         *       "OrgnlId": 1.2345678901234568e+33,
+         *       "OrgnlId": "1234567890123456789012345678901234",
          *       "Vrfctn": true,
          *       "OrgnlPtyAndAcctId": {
          *         "Nm": "John Doe",
@@ -3778,8 +3782,8 @@ export interface components {
          *           "Dept": "Dept",
          *           "SubDept": "SubDept",
          *           "StrtNm": "1234 Elm St",
-         *           "BldgNb": 1234,
-         *           "PstCd": 12345,
+         *           "BldgNb": "1234",
+         *           "PstCd": "12345",
          *           "TwnNm": "Anytown",
          *           "CtrySubDvsn": "CA",
          *           "Ctry": "US"
@@ -3788,7 +3792,7 @@ export interface components {
          *           "OrgId": {
          *             "AnyBIC": "ABCDUS33",
          *             "Othr": {
-         *               "Id": 123456789,
+         *               "Id": "123456789",
          *               "Issr": "ABA"
          *             }
          *           }
@@ -3801,8 +3805,8 @@ export interface components {
          *           "Dept": "Dept",
          *           "SubDept": "SubDept",
          *           "StrtNm": "1234 Elm St",
-         *           "BldgNb": 1234,
-         *           "PstCd": 12345,
+         *           "BldgNb": "1234",
+         *           "PstCd": "12345",
          *           "TwnNm": "Anytown",
          *           "CtrySubDvsn": "CA",
          *           "Ctry": "US"
@@ -3811,7 +3815,7 @@ export interface components {
          *           "OrgId": {
          *             "AnyBIC": "ABCDUS33",
          *             "Othr": {
-         *               "Id": 123456789,
+         *               "Id": "123456789",
          *               "Issr": "ABA"
          *             }
          *           }
@@ -3828,7 +3832,7 @@ export interface components {
         };
         /**
          * hexBinary
-         * @example 4660
+         * @example 0x1234
          */
         hexBinary: string;
     };

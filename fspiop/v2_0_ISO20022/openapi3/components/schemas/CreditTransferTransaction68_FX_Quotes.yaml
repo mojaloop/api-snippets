@@ -110,7 +110,7 @@ example:
       Cd: CHQB
       Prtry: PROPRIETARY
   IntrBkSttlmAmt:
-    Amount: 123.45
+    Amount: '123.45'
     Ccy: EUR
   Dbtr:
     Nm: Debtor Name

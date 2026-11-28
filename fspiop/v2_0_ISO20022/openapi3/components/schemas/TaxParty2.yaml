@@ -33,8 +33,8 @@ properties:
 
           Details of the authorised tax paying party.
 example:
-  TaxId: 123456789
-  RegnId: 123456789
+  TaxId: '123456789'
+  RegnId: '123456789'
   TaxTp: VAT
   Authstn:
     Titl: Mr

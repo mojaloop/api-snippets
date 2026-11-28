@@ -86,10 +86,10 @@ properties:
       - description: >
           Date/time at which the instruction was processed by the specified party.
 example:
-  StsId: 12345
-  OrgnlInstrId: 12345
-  OrgnlEndToEndId: 12345
-  OrgnlTxId: 12345
+  StsId: '12345'
+  OrgnlInstrId: '12345'
+  OrgnlEndToEndId: '12345'
+  OrgnlTxId: '12345'
   OrgnlUETR: 123e4567-e89b-12d3-a456-426614174000
   TxSts: RJCT
   StsRsnInf:

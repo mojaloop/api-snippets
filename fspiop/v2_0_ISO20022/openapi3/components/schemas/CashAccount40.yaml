@@ -56,4 +56,4 @@ example:
   Ccy: EUR
   Nm: My account
   Prxy:
-    Id: 12345
+    Id: '12345'

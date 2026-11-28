@@ -72,20 +72,20 @@ example:
   Ctgy: A
   CtgyDtls: Standard
   DbtrSts: Resident
-  CertId: 123456789
-  FrmsCd: 123456789
+  CertId: '123456789'
+  FrmsCd: '123456789'
   Prd:
-    Yr: 2019
+    Yr: '2019'
     Tp: MM01
     FrToDt:
       FrDt: '2019-01-01'
       ToDt: '2019-12-31'
   TaxAmt:
-    Rate: 0.2
+    Rate: '0.2'
     TaxblBaseAmt:
       Ccy: EUR
-      Amt: 1000
+      Amt: '1000'
     TtlAmt:
       Ccy: EUR
-      Amt: 200
+      Amt: '200'
   AddtlInf: VAT applicable

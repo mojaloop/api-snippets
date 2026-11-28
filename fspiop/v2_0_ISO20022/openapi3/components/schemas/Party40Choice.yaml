@@ -39,7 +39,7 @@ example:
     FinInstnId:
       BICFI: BUKBGB22
     BrnchId:
-      Id: 12345
+      Id: '12345'
       Nm: Oxford Street Branch
       PstlAdr:
         Ctry: GB

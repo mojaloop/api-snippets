@@ -32,7 +32,7 @@ required:
   - Agt
 example:
   Amt:
-    ActiveOrHistoricCurrencyAndAmount: 123.45
+    ActiveOrHistoricCurrencyAndAmount: '123.45'
     Ccy: USD
   Agt:
     BrnchId:

@@ -29,7 +29,7 @@ example:
   AnyBIC: BICFI
   LEI: 529900T8BM49AURSDO55
   Othr:
-    Id: 123
+    Id: '123'
     SchmeNm:
       Cd: BIC
     Issr: BIC

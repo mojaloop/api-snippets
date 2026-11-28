@@ -64,7 +64,7 @@ example:
   Id:
     OrgId:
       Othr:
-        Id: 123
+        Id: '123'
         SchmeNm:
           Prtry: DfspId
   CtryOfRes: BE

@@ -23,7 +23,7 @@ example:
     Dt: '2018-01-01'
     CityOfBirth: City
   Othr:
-    Id: 123
+    Id: '123'
     SchmeNm:
       Cd: CUST
-      Prtry: 1
+      Prtry: '1'

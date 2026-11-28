@@ -41,12 +41,12 @@ required:
   - NbOfTxs
   - SttlmInf
 example:
-  MsgId: 12345
+  MsgId: '12345'
   CreDtTm: '2020-01-01T00:00:00Z'
-  NbOfTxs: 1
+  NbOfTxs: '1'
   TtlIntrBkSttlmAmt:
     Ccy: EUR
-    Value: 100.0
+    Value: '100.0'
   SttlmInf:
     SttlmMtd: INDA
     SttlmAcct:
