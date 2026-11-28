@@ -1,6 +1,7 @@
 openapi: 3.0.2
 info:
-  version: v2.0-iso20022-draft
+  version: '2.0'
+  x-lifecycle: "development"
   title: Open API for FSP Interoperability (FSPIOP) - the ISO 20022 message version
   description: >-
     IN PROGRESS
@@ -18,6 +19,17 @@ servers:
           - http
           - https
         default: https
+tags:
+  - name: parties
+    x-displayName: Parties
+  - name: quotes
+    x-displayName: Quotes
+  - name: transfers
+    x-displayName: Transfers
+  - name: fxQuotes
+    x-displayName: FX Quotes
+  - name: fxTransfers
+    x-displayName: FX Transfers
 paths:
   /parties/{Type}/{ID}:
     $ref: paths/parties_{Type}_{ID}.yaml

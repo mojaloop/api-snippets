@@ -1,0 +1,58 @@
+openapi: 3.1.0
+info:
+  version: '1.0'
+  x-lifecycle: "development"
+  title: Third-party Payment Initiation API
+  description: |
+    The Third-party Payment Initiation (3PPI) API allows third-party payment initiation service providers (PISP),a non-fund-holding participants, to initiate payments on behalf of their customers over a centralized Mojaloop hub. The 3PPI API is developed in alignment with ISO20022 message standards for Payment Initiation.
+    The 3PPI API assumes that the PISP has already has obtained authorization and consent from the customer to initiate a payment on their behalf. The 3PPI API, therefore, only concerns with the payment process.
+  license:
+    name: Apache License Version 2.0, January 2004
+    url: http://www.apache.org/licenses/
+servers:
+  - url: 'https://third-paryty-sandbox.mojaloop.com'
+    description: Sandbox environment
+tags:
+  - name: transactionRequests
+    x-displayName: Transaction Requests
+    x-kind: sequence
+    description: |
+      The `/tppTransactionRequests` resources are analogous to the `/transactionRequests` resource described in fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee.
+  - name: transfers
+    x-displayName: Transfers
+    x-kind: sequence
+    description: |
+      The `/tppTransfers` resources are analogous to the `/transfers` resource described in fspiop API. The PISP uses it to request the owner of the PISP's customer's account to transfer a specified amount from the customer's account with the DFSP to a named Payee.
+  - name: health
+    x-displayName: Health
+    x-kind: monitoring
+    description: |
+      The `/health` resource is used to check the health of the 3PPI API service.
+  - name: metrics
+    x-displayName: Metrics
+    x-kind: monitoring
+    description: |
+      The `/metrics` resource is Prometheus metrics endpoint for the 3PPI API service. See [Prometheus](https://prometheus.io/docs/introduction/overview/) for more information.
+paths:
+  /interface:
+    $ref: ../paths/interface.yaml
+  
+  # --- P2P Payment Initiation Paths ---
+  /tppTransactionRequests:
+    $ref: ../paths/tppTransactionRequests.yaml
+  /tppTransactionRequests/{ID}:
+    $ref: ../paths/tppTransactionRequests_ID.yaml
+  /tppTransactionRequests/{ID}/error:
+    $ref: ../paths/tppTransactionRequests_ID_error.yaml
+  /tppTransfers:
+    $ref: ../paths/tppTransfers.yaml
+  /tppTransfers/{ID}:
+    $ref: ../paths/tppTransfers_ID.yaml
+  /tppTransfers/{ID}/error:
+    $ref: ../paths/tppTransfers_ID_error.yaml
+
+  # --- Monitoring Paths ---
+  /health:
+    $ref: ../paths/health.yaml
+  /metrics:
+    $ref: ../paths/metrics.yaml

@@ -1,6 +1,7 @@
 openapi: 3.0.2
 info:
-  version: 2.0-draft
+  version: "2.0"
+  x-lifecycle: development
   title: Open API for FSP Interoperability (FSPIOP)
   description: >-
     Revision date: 2023-11-23 Based on [API Definition updated on 2020-05-19
@@ -33,6 +34,31 @@ servers:
           - http
           - https
         default: https
+tags:
+  - name: participants
+    x-displayName: Participants
+  - name: parties
+    x-displayName: Parties
+  - name: transactionRequests
+    x-displayName: Transaction Requests
+  - name: quotes
+    x-displayName: Quotes
+  - name: authorizations
+    x-displayName: Authorizations
+  - name: transfers
+    x-displayName: Transfers
+  - name: transactions
+    x-displayName: Transactions
+  - name: bulkQuotes
+    x-displayName: Bulk Quotes
+  - name: bulkTransfers
+    x-displayName: Bulk Transfers
+  - name: fxQuotes
+    x-displayName: FX Quotes
+  - name: fxTransfers
+    x-displayName: FX Transfers
+  - name: servicesFXP
+    x-displayName: Services FXP
 paths:
   /participants:
     post:
